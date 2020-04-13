@@ -1,0 +1,222 @@
+0 FileObject FileObjByFunc ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(FileOpen\x28)
+`
+/docs/objects/File.htm
+
+
+Property
+Pos
+FileObj.Pos (R/W)
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Property
+Length
+FileObj.Length (R/W)
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Property
+AtEOF
+FileObj.AtEOF (R/O)
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Property
+Encoding
+FileObj.Encoding (R/W)
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Property
+Handle
+FileObj.Handle (R/O)
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+Close
+FileObj.Close()
+/Closes FileObj and removes references to it.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+Read
+FileObj.Read([Length])
+/Reads/returns specified number of characters and advances the file pointer.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+Write
+FileObj.Write(String)
+/Returns number of bytes (not characters) written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadLine
+FileObj.ReadLine()
+/Reads a (current?) line of text and advances the file pointer.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteLine
+FileObj.WriteLine([String])
+/Writes a string of characters followed by ``n or ``r``n depending on the flags used to open the file. Advances the file pointer.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadUInt
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadInt
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadInt64
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadShort
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadUShort
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadChar
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadUChar
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadDouble
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+ReadFloat
+FileObj.[MemberName]()
+Reads the specified number type and advances the pointer.  Returns number of bytes read.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteUInt
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteInt
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteInt64
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteShort
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteUShort
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteChar
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteUChar
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteDouble
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]
+
+
+Method
+WriteFloat
+FileObj.[MemberName]()
+Writes a number to the file and advances the file pointer.  Returns number of bytes written.
+`
+/docs/objects/File.htm#[MemberName]

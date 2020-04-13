@@ -1,0 +1,131 @@
+0 MenuObject MenuCreate ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(MenuCreate\x28)
+0 MenuObject MenuFromHandle ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(MenuFromHandle\x28)
+0 MenuObject MenuFromVar ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(A_TrayMenu)
+0 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; MenuObject)$
+1 MenuObject MenuFromObj ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.MenuBar)
+`
+/docs/objects/Menu.htm
+
+
+Property
+ClickCount
+MenuObj.ClickCount (R/W)
+/Retrieves or sets the number of clicks required to activate the tray menu's default item.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Property
+Default
+MenuObj.Default (R/W)
+/Retrieves or sets the default menu item.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Property
+Handle
+MenuObj.Handle (R/O)
+/Returns a handle to a Win32 menu (a handle of type HMENU), constructing it if
+necessary.  The returned handle is valid only until the Win32 menu is destroyed.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Add
+MenuObj.Add([MenuItem_&N_or_Name, Callback/Submenu, Options])
+/Callback:   FunctionName(ItemName, ItemPos/N&, Menu)
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Check
+MenuObj.Check(MenuItem)
+/Adds a visible checkmark in the menu next to MenuItem (N& or name).
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Delete
+MenuObj.Delete([N&/ItemName])
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Enable
+MenuObj.Enable(N&/ItemName)
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Insert
+MenuObj.Insert([N&/ItemName_InsertBefore, &N/ItemName_New, Callback/Submenu, Options])
+/As Standard menu items are not counted ("1&" always refers to the first custom item),
+an item cannot be inserted immediately before the standard items.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Rename
+MenuObj.Rename(N&/ItemName, [ItemName_New])
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+SetColor
+MenuObj.SetColor([ColorValue, Submenus := true])
+/Changes the background color of the menu to ColorValue.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+SetIcon
+MenuObj.SetIcon(N&/ItemName, FileName, [IconNumber, IconWidth])
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Show
+MenuObj.Show([X,Y])
+/Any popup menu can be shown, including submenus and the tray menu. However,
+an exception is thrown if Menu is a MenuBar object.
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+ToggleCheck
+MenuObj.ToggleCheck(N&/ItemName)
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+ToggleEnable
+MenuObj.ToggleEnable(N&/ItemName)
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+Uncheck
+MenuObj.Uncheck(N&/ItemName)
+`
+/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+AddStandard
+MenuObj.AddStandard()
+/Adds the standard tray menu items.
+`
+/docs/objects/Menu.htm#[MemberName]

@@ -1,0 +1,263 @@
+This documents explains how to get the most out of using this script to display
+call tips on demand using the included configuration files.
+
+This script allows you to add multiple languages for use with call tips.  This
+document explains how to design each language folder.
+
+Please note that examples are indented for clarity.  The indentation is NOT
+meant to be used verbatim.  The column of pipe (|) characters represents the
+left edge of the document.
+
+All regex matches are UNQUOTED in all List_*.txt files.
+
+================================================================================
+Table of Contents
+================================================================================
+
+1. Folder Structure
+2. Script Settings
+3. Commands List
+4. Object Lists
+5. Hotkeys
+
+================================================================================
+1. Folder Structure
+================================================================================
+
+All entries are folders unless they have an extension.
+
+	ScriptDir
+		Languages     <--- base dir for languages
+			LangName    <--- base dir for any single language
+				Keywords
+					KW_*.txt (optional)
+				Objects
+					List_ObjType.txt
+				Other
+					List_BeginEnd.txt
+					List_Commands.txt
+		CallTipsForAll.ahk   <---   script file
+
+================================================================================
+2. Script Settings
+================================================================================
+
+At the top of the script are variables that are meant to be set by the user.
+
+The following settings are used:
+	|
+	|srcFiles := A_ScriptDir "\Languages\AHK"	<-- sub folder
+	|fontFace := "Courier New"					<-- font name
+	|fontSize := 10								<-- font size
+	|fontColor := "Yellow"						<-- font color
+	|
+	
+The following settings are not implemented yet:
+	|
+	|useTooltip, AhkVer
+	|
+
+Other settings are likely to be added for more features and flexibility.  I may
+even make a GUI and allow user settings to be saved.
+	
+================================================================================
+3. Commands List - including functions and other 1 to 1 references
+================================================================================
+
+The "Commands List" consists of files named List_*.txt  (ie. List_Commands.txt).
+Only one file is needed for functions and commands, but you can use multiple
+files to break things up into categories, and for easier proofing.  One other
+file must go in there, and that is "List_BeginEnd.txt".  This file configures
+the regex strings that recognize the beginning and end of user defined
+functions.
+
+A "Command List" in this context simply means something that can be expressed as
+"1 to 1".  Functions and commands have a single name, and a definition.  Objects
+on the other hand have the "object name" as well as a list of nested methods,
+properties, and other objects (in some cases).
+
+The Begin/End regex is the same as AutoHotkey regex, so refer to the AutoHotkey
+help files for help on regex for this context.
+
+Starting with "List_BeginEnd.txt", the format is as follows:
+	|
+	|Begin: ^([\w]+)(\(.+\))[ \t]*\{
+	|End: ^\}.*
+	|
+	
+This would match a function formatted like so:
+	|
+	|FuncName(param1, ByRef param2, param3 := "a") {
+	|	If (nested braces indented) {
+	|		; blah
+	|	}
+	|}
+	|
+	
+If you need a nested function in your function definition, then try this for the
+Begin line:
+	|
+	|Begin: ^([\w]+)(\(.+)[ \t]*\{
+	|
+	
+In the case of identifying a function with braces, any nested braces within a
+function MUST be indented.  The last brace signifying the end of the function
+should NOT be indented for the best simplicity.  But you can change the
+Begin/End lines to match any kind of function formatting you wish.
+
+The format for Function and Command entries is the same.  All line batches must
+be separated by 2 blank lines (a total of 3 CRLFs). All entries are multi-line
+entries.
+
+Example:
+	|
+	|Entry
+	|
+	|
+	|Entry
+	|
+	|
+	|...
+	|
+
+The format for each "Entry" is as follows:
+	|
+	|Func/Cmd_Name
+	|`                      <--- Chr(96)
+	|multi-line_description
+	|`
+	|another_description...    <--- optional
+	|`
+	|help_link_to_chm_topic    <--- optional
+	|
+
+The user will use Up/Down arrows to scroll between the various call tips.
+
+You can have single blank lines in the description, but I don't recommend this
+for the sake of grouping.  Instead format your descriptions like so:
+	|
+	|Desc start line.
+	|/Start a line with forward slash to add a CRLF before it.
+	|Forward slashes (/) can still be used within the desc.
+	|Only forward slashes at the beginning of the line will
+	|create extra CRLFs.
+	|
+
+For CHM help links, decompile the CHM to see the dir structure.  You can
+decomplie a CHM with HTML Help Workshop.
+Link: https://www.microsoft.com/en-us/download/details.aspx?id=21138
+CHM Help Link example:   /docs/folder/file.htm
+                         /docs/folder/file.htm#ID_section
+
+================================================================================
+4. Object Lists
+================================================================================
+
+Ensure your object list files are placed in the proper folder as described
+above.  The structure is as follows:
+	|
+	|Regex matches (multi-line)  <-- first batch of lines
+	|`
+	|help_link_to_chm_topic    <--- optional
+	|
+	|
+	|Method or Property Entry
+	|
+	|
+	|Method or Property Entry
+	|
+	|
+	|...
+	|
+
+The "Regex matches (multi-line)" are formatted as follows:
+	|
+	|Level ObjType Label RegexMatchStr
+	|...
+	|
+
+> Level is an integer from 0-9.  It indicates which order the objects should be
+loaded in.  Some objects are derived from other objects, so it is important to
+set the level correctly, otherwise you may have issues getting your call tips to
+display properly.  Several example files are included.
+
+> ObjType is a string such as "GuiObject".  This is normally consistent on each
+line within a single regex line batch, but different related objects that share
+methods/properties can be grouped into the same list file if it makes sense to
+do so.
+
+> Label this can be anything but it MUST be unique across ALL of the object
+list files.
+
+> RegExMatchStr must have 2 "back reference" sections specified in most cases.
+The other case is described later.
+
+    ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
+           (       )              (             )
+           backRef1                 backRef2
+
+This would match:
+
+	varName := InputHook(
+
+... and thus would match "varName" as an InputHook object.
+
+Be sure to use ^ and $ as needed to get the most precise match possible.
+
+Some objects are not set with := ... and must be detected differently.  You can
+identify an object with comments like so:
+
+0 InputHookObject InputHookByComment ^[ \t]*[\w]+\(([\w]+).*(; InputHookObject)$
+
+The above line would match the following in this InputHook example:
+	|
+	|IH := InputHook("V I1","","")
+	|IH.OnKeyDown := Func("keyPress")
+	|
+	|keyPress(iHook, VK, SC) { ; InputHookObject    <--- object match
+	|	; ... function content
+	|}
+	|
+
+In the above callback function example, this is a callback for the OnKeyDown
+property in an InputHook object in AutoHotkey.  You can see "; InputHookObject"
+as a comment at the end of the line.  The regex match string will match "iHook"
+in this case as an InputHookObject.
+
+Matching objects this way can be a bit dicey, since it requires specific
+instances that may be quite obsecure.  Use with caution.
+
+Each "Method or Property Entry" is formatted as follows:
+	|Format:         |Example:
+	|                |
+	|Type            |Method
+	|Name            |DefineMethod
+	|Desc-multi-line |Obj.DefineMethod(Name,FuncObj)
+	|`               |`
+	|CHM_help_Link   |/docs/folder/item.htm
+
+> Type is "Method" or "Property".
+
+> Name is the name of the method or property.  Do not add extra dots (.) or
+parenthesis.
+
+> Description is the same as Functions and Commands.  You can use the Chr(96) `
+to separate multi-line descrptions and you can use fwd slash (/) at the
+beginning of a line to add a CRLF.
+
+================================================================================
+5. Hotkeys
+================================================================================
+
+CTRL + SHIFT + Space    =    invoke call tip
+> Cursor must be a the beginning, end, or anywhere in the middle of the keyword
+you want to invoke a call tip for.
+
+CTRL + ALT + Space      =    invoke auto complete window
+> not implemented yet
+
+CTRL + SHIFT + F12      =    close script
+
+ESC                     =    closes call tip window
+> Clicking on the call tip window will also close it.  You can scroll wile the
+call tip window is active and it will remain.

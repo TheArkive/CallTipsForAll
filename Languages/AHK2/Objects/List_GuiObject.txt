@@ -1,0 +1,158 @@
+0 GuiObject GuiCreate ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(GuiCreate\x28)
+0 GuiObject GuiFromHwnd ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(GuiFromHwnd\x28)
+`
+/docs/objects/Gui.htm
+
+
+Method
+Add
+Add(ControlType, [Options, Text])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Destroy
+GuiObj.Destroy()
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Flash
+Flash([Blink := true])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Hide
+GuiObj.Hide()
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Maximize
+GuiObj.Maximize()
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Minimize
+GuiObj.Minimize()
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+OnEvent
+OnEvent(EventName, Callback, [AddRemove := 1])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Opt
+Opt(OptionsString)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Restore
+GuiObj.Restore()
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+SetFont
+SetFont([Options, FontName])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Show
+GuiObj.Show([Options])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Submit
+Submit([Hide := true])
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+Hwnd
+GuiObj.Hwnd (R/O)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+BackColor
+GuiObj.BackColor (R/W)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+MarginX
+GuiObj.MarginXZ (R/W)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+MarginY
+GuiObj.MarginY (R/W)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+Name
+GuiObj.Name (R/W)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+Title
+GuiObj.Title (R/W)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+ClientPos
+GuiObj.ClientPos (Obj)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+FocusedCtrl
+GuiObj.FocusedCtrl (Obj)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+MenuBar
+GuiObj.MenuBar (Obj)
+`
+/docs/objects/Gui.htm#[MemberName]
+
+
+Property
+Pos
+GuiObj.Pos (Obj)
+`
+/docs/objects/Gui.htm#[MemberName]

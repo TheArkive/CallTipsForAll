@@ -1,0 +1,22 @@
+0 BufferObject BufferByAlloc ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(BufferAlloc\x28)
+0 BufferObject BufferByClipboard ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(ClipboardAll\x28)
+1 BufferObject BufferByRawRead ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawRead\x28)
+1 BufferObject BufferByRawWrite ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawWrite\x28)
+`
+/docs/objects/Buffer.htm
+
+
+Property
+Ptr
+Buffer.Ptr
+/Retrieves the buffer's current memory address.
+`
+/docs/objects/Buffer.htm#[MemberName]
+
+
+Property
+Size
+Buffer.Size
+/Retrieves or sets the buffer's size, in bytes.
+`
+/docs/objects/Buffer.htm#[MemberName]
