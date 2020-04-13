@@ -24,3 +24,4 @@ For now, change user settings in the script.  GUI coming later.
 * Add auto-complete as CTRL + ALT + Space or automatic
 * Add GUI to save user settings and easily switch languages
 * Add more languages ... but that will take a while
+* Improve support for `var := expr, var := expr`
