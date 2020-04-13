@@ -9,9 +9,13 @@ Currentlly only AHK v2 call tips have been created.  AHK v1 call tips will be av
 
 Run script and use hotkeys to invoke call tips.
 
+### Hotkeys
+```
 CTRL + SHIFT + Space   =   invoke call tip
-
 ESC                    =   close call tip
+```
+### User Settings
+For now, change user settings in the script.  GUI coming later.
 
 ## To-Do List
 
