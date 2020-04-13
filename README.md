@@ -13,6 +13,8 @@ Run script and use hotkeys to invoke call tips.
 ```
 CTRL + SHIFT + Space   =   invoke call tip
 ESC                    =   close call tip
+
+Click on call tips to invoke the CHM and link directly to the corresponding page.
 ```
 ### User Settings
 For now, change user settings in the script.  GUI coming later.
