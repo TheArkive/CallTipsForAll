@@ -1283,7 +1283,7 @@ Up::
 			} Else SendInput "{Up}"
 		} Else
 			SendInput "{Up}"
-	}
+	} Else SendInput "{Up}"
 return
 
 Down::
@@ -1296,7 +1296,7 @@ Down::
 			} Else SendInput "{Down}"
 		} Else
 			SendInput "{Down}"
-	}
+	} Else SendInput "{Down}"
 return
 
 ~LButton::
