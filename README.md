@@ -7,6 +7,8 @@ Currentlly only AHK v2 call tips have been created.  AHK v1 call tips will be av
 
 AutoHotkey CHM help files are included in this release, but you can of course replace them with your local copy if desired.
 
+If you find any info missing that should be added in the call tips please add an issue and I'll try to address it.  Keep in mind certain things are more tricky, like trying to regocnize ListView and TreeView objects in AHK v2.
+
 ## Basic Usage
 
 Run script and use hotkeys to invoke call tips.
@@ -23,7 +25,10 @@ For now, change user settings in the script.  GUI coming later.
 
 ## To-Do List
 
-* make AHKv1 compatible version
+AutoHotkey v1 and v2 call tips are ready!  Call Tips should be around 90% complete on both.
+
+AHK v1 version of the script is now ready.
+
 * Add auto-complete as CTRL + ALT + Space or automatic
 * Add GUI to save user settings and easily switch languages
 * Improve support for `var := expr, var := expr`
