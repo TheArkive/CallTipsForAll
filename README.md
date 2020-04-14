@@ -41,7 +41,7 @@ For now, change user settings in the script.  GUI coming later.
 Some cases require a "cheat code" to get the call tips working.  Here they are:
 
 AHK v1 and v2
-*InputHook Object from callback, example:
+* InputHook Object from callback, example:
 ```
 InputHook.OnKeyDown := Func("myFunc")
 myFunc(iHook, VK, SC) { ... } ; InputHookObject
