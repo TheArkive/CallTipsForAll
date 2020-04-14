@@ -59,8 +59,18 @@ iconMenu(ItemName, ItemPos, MenuObj) { ... } ; MenuObject
 MenuObj is detected as a Menu object.
 ```
 
-AHK v2
+AHK v2 (in progress for next update)
 * ListView object from `GuiObj["item"]`
 ```
 LvObj := GuiObj["item"] ; ListViewObject
+
+LvObj is detected as a ListView object
+```
+
+AHK v2 (in progress for next update)
+* TreeView object from `GuiObj["item"]`
+```
+TvObj := GuiObj["item"] ; TreeViewObject
+
+TvObj is detected as a TreeView object
 ```
