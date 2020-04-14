@@ -27,3 +27,4 @@ For now, change user settings in the script.  GUI coming later.
 * Improve support for `var := expr, var := expr`
 * enable #INCLUDE processing for custom functions and objects
 * parse classes
+* Add ListView / TreeView object definitions
