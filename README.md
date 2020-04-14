@@ -5,6 +5,8 @@ Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for
 
 Currentlly only AHK v2 call tips have been created.  AHK v1 call tips will be available soon.
 
+AutoHotkey CHM help files are included in this release, but you can of course replace them with your local copy if desired.
+
 ## Basic Usage
 
 Run script and use hotkeys to invoke call tips.
