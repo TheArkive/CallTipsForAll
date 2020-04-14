@@ -25,3 +25,5 @@ For now, change user settings in the script.  GUI coming later.
 * Add GUI to save user settings and easily switch languages
 * Add more languages ... but that will take a while
 * Improve support for `var := expr, var := expr`
+* enable #INCLUDE processing for custom functions and objects
+* parse classes
