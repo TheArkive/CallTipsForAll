@@ -1,0 +1,131 @@
+0 Object ObjectByBrace ([\w\.]+)[ \t]*:=[ \t]*(\x7B\x7D)
+0 ArrayObject ArrayByFunc ([\w\.]+)[ \t]*:=[ \t]*(Array\x28)
+0 AssocArrayObject ArrayByFunc ([\w\.]+)[ \t]*:=[ \t]*(Object\x28)
+0 ArrayObject ArrayByStrSplit ([\w\.]+)[ \t]*:=[ \t]*(StrSplit\x28)
+0 ArrayObject ArrayByBracket ([\w\.]+)[ \t]*:=[ \t]*(\x5B)
+`
+/docs/objects/Object.htm
+
+
+Method
+InsertAt
+Object.InsertAt(Pos, Value1 [, Value2, ... ValueN])
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+RemoveAt
+Object.RemoveAt(Pos [, Length])
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Push
+Object.Push([ Value, Value2, ..., ValueN ])
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Pop
+Value := Object.Pop()
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Delete
+Object.Delete(Key)
+Object.Delete(FirstKey, LastKey)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+MinIndex
+MinIndex := Object.MinIndex()
+`
+/docs/objects/Object.htm#MinMaxIndex
+
+
+Method
+MaxIndex
+MaxIndex := Object.MaxIndex()
+`
+/docs/objects/Object.htm#MinMaxIndex
+
+
+Method
+Length
+Length := Object.Length()
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Count
+Count := Object.Count()
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+SetCapacity
+Object.SetCapacity(MaxItems)    or    Object.SetCapacity(Key, ByteSize)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+GetCapacity
+MaxItems := Object.GetCapacity()    or    ByteSize := Object.GetCapacity(Key)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+GetAddress
+Ptr := Object.GetAddress(Key)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+HasKey
+Boolean := Object.HasKey(Key)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Clone
+Clone := Object.Clone()
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Property
+Base
+BaseObject := Object.Base    or    Object.Base := BaseObject
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Insert
+Object.Insert(Pos, Value1 [, Value2, ... ValueN ])    Deprecated!
+Object.Insert(Value)                                  Deprecated!
+Object.Insert(StringOrObjectKey, Value)               Deprecated!
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Method
+Remove
+Object.Remove(FirstKey, LastKey)    Deprecated!
+`
+/docs/objects/Object.htm#[MemberName]
+
+

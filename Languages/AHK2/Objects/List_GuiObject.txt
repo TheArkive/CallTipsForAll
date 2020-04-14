@@ -1,5 +1,5 @@
-0 GuiObject GuiCreate ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(GuiCreate\x28)
-0 GuiObject GuiFromHwnd ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(GuiFromHwnd\x28)
+0 GuiObject GuiCreate ([\w\.]+)[ \t]*:=[ \t]*(GuiCreate\x28)
+0 GuiObject GuiFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiFromHwnd\x28)
 `
 /docs/objects/Gui.htm
 

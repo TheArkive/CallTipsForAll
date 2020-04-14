@@ -1,6 +1,6 @@
-0 GuiControlObject GuiControlFromHwnd ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(GuiControlFromHwnd\x28)
-1 GuiControlObject GuiControlByItem ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)
-1 GuiControlObject GuiControlByMethod ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28)
+0 GuiControlObject GuiControlFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiControlFromHwnd\x28)
+1 GuiControlObject GuiControlByItem ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)
+1 GuiControlObject GuiControlByMethod ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28)
 `
 /docs/objects/GuiControl.htm
 

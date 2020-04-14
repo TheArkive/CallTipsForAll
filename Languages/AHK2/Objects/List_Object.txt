@@ -1,4 +1,4 @@
-0 Object BasicObj ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(\{\})
+0 Object BasicObj ([\w\.]+)[ \t]*:=[ \t]*(\x7B\x7D)
 `
 /docs/objects/Object.htm
 

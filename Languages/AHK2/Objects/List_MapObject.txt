@@ -1,4 +1,4 @@
-0 MapObject MapByFunc ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(Map\x28)
+0 MapObject MapByFunc ([\w\.]+)[ \t]*:=[ \t]*(Map\x28)
 `
 /docs/objects/Map.htm
 

@@ -1175,13 +1175,6 @@ Loop Parse String [, Delimiters, OmitChars]
 
 
 Flow
-Read
-Loop Read InputFile [, OutputFile]
-`
-/docs/commands/LoopRead.htm
-
-
-Flow
 Reg
 Loop Reg KeyName [, Mode]
 `
@@ -2618,3 +2611,71 @@ Command
 /docs/commands/_WinActivateForce.htm
 
 
+Function
+ObjRawGet
+Value := ObjRawGet(Object, Key)    Deprecated!
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjRawSet
+ObjRawSet(Object, Key, Value)    Deprecated!
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjGetBase
+BaseObject := ObjGetBase(Object)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjSetBase
+ObjSetBase(Object, BaseObject)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjGetCapacity
+Count := ObjOwnPropCount(Obj)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjSetCapacity
+ObjSetCapacity(Obj, MaxProps)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjOwnPropCount
+Count := ObjOwnPropCount(Obj)
+`
+/docs/objects/Object.htm#[MemberName]
+
+
+Function
+IL_Create
+IL_Create([InitialCount, GrowCount, LargeIcons])
+`
+/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+IL_Add
+IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon])
+`
+/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+IL_Destory
+IL_Destroy(ImageListID)
+`
+/docs/commands/ListView.htm#[MemberName]
