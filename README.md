@@ -35,3 +35,26 @@ For now, change user settings in the script.  GUI coming later.
 * parse classes
 * Add ListView / TreeView object definitions
 * Add more languages ... but that will take a while
+
+## AutoHotkey language - special cases
+
+Some cases require a "cheat code" to get the call tips working.  Here they are:
+
+AHK v1 and v2
+*InputHook Object from callback, example:
+```
+InputHook.OnKeyDown := Func("myFunc")
+myFunc(iHook, VK, SC) { ... } ; InputHookObject
+
+iHook is detected as an InputHook object.
+```
+
+AHK v2
+* Menu object from label/function
+```
+trayMenu := A_TrayMenu
+trayMenu.Add("menu item","iconMenu")
+iconMenu(ItemName, ItemPos, MenuObj) { ... } ; MenuObject
+
+MenuObj is detected as a Menu object.
+```
