@@ -185,10 +185,10 @@ list files.
 
 > RegExMatchStr must have 2 "back reference" sections specified in most cases.
 The other case is described later.  Be sure to NOT use literal braces \{ or \}
-in the regex as this will confuse the script.  Braces are used on level 1+ lines
-to indicated that a specific {ObjectType} must be substituted.  So, the list of
-all level 0 objects will be parsed to find a match.  All other levels are parsed
-the same way.
+in the regex as this will confuse the script.  Use \x7B and \x7D instead. Braces
+are used on level 1+ lines to indicated that a specific {ObjectType} must be
+substituted.  So, the list of all level 0 objects will be parsed to find a
+match.  All other levels are parsed the same way.
 
     ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
            (       )              (             )
