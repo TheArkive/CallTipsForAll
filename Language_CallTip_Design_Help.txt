@@ -94,17 +94,11 @@ This would match a function formatted like so:
 	|}
 	|
 	
-If you need a nested function in your function definition, then try this for the
-Begin line:
-	|
-	|Begin: ^([\w]+)(\(.+)[ \t]*\{
-	|
-	
 In the case of identifying a function with braces, any nested braces within a
 function MUST be indented.  The last brace signifying the end of the function
 should NOT be indented for the best simplicity.  But you can change the
 Begin/End lines to match any kind of function formatting you wish.
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 The format for Function and Command entries is the same.  All line batches must
 be separated by 2 blank lines (a total of 3 CRLFs). All entries are multi-line
 entries.
@@ -122,13 +116,13 @@ Example:
 
 The format for each "Entry" is as follows:
 	|
+	|Type                      <--- Function, Command, Flow, Operator, etc.
 	|Func/Cmd_Name
-	|`                      <--- Chr(96)
 	|multi-line_description
-	|`
+	|`                         <--- Chr(96)
 	|another_description...    <--- optional
 	|`
-	|help_link_to_chm_topic    <--- optional
+	|help_link_to_chm_topic    <--- optional, must be last
 	|
 
 The user will use Up/Down arrows to scroll between the various call tips.
@@ -154,7 +148,7 @@ CHM Help Link example:   /docs/folder/file.htm
 ================================================================================
 
 Ensure your object list files are placed in the proper folder as described
-above.  The structure is as follows:
+above.  The structure of each file is as follows:
 	|
 	|Regex matches (multi-line)  <-- first batch of lines
 	|`
@@ -169,7 +163,7 @@ above.  The structure is as follows:
 	|
 	|...
 	|
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 The "Regex matches (multi-line)" are formatted as follows:
 	|
 	|Level ObjType Label RegexMatchStr
@@ -190,11 +184,16 @@ do so.
 list files.
 
 > RegExMatchStr must have 2 "back reference" sections specified in most cases.
-The other case is described later.
+The other case is described later.  Be sure to NOT use literal braces \{ or \}
+in the regex as this will confuse the script.  Braces are used on level 1+ lines
+to indicated that a specific {ObjectType} must be substituted.  So, the list of
+all level 0 objects will be parsed to find a match.  All other levels are parsed
+the same way.
 
     ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
            (       )              (             )
-           backRef1                 backRef2
+           backRef1                  backRef2
+          object name           corresponding match
 
 This would match:
 
@@ -202,14 +201,19 @@ This would match:
 
 ... and thus would match "varName" as an InputHook object.
 
-Be sure to use ^ and $ as needed to get the most precise match possible.
+Be careful using ^ and $, otherwise your scope may be too specific.  The script
+will parse lines and still recognize cases of:
 
-Some objects are not set with := ... and must be detected differently.  You can
-identify an object with comments like so:
+    var := expression, var := expression
+
+Some objects are not set by assignment and must be detected differently.  You
+can identify an object in that case using comments:
 
 0 InputHookObject InputHookByComment ^[ \t]*[\w]+\(([\w]+).*(; InputHookObject)$
+                                                   (     )  (                 )
+                                                     BR1       BackReference2
 
-The above line would match the following in this InputHook example:
+The above line would match "iHook" in the following InputHook callback example:
 	|
 	|IH := InputHook("V I1","","")
 	|IH.OnKeyDown := Func("keyPress")
@@ -222,11 +226,12 @@ The above line would match the following in this InputHook example:
 In the above callback function example, this is a callback for the OnKeyDown
 property in an InputHook object in AutoHotkey.  You can see "; InputHookObject"
 as a comment at the end of the line.  The regex match string will match "iHook"
-in this case as an InputHookObject.
+in this case as an InputHookObject, and you can invoke the call tip for
+InputObjects on the phrase "iHook".
 
 Matching objects this way can be a bit dicey, since it requires specific
 instances that may be quite obsecure.  Use with caution.
-
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Each "Method or Property Entry" is formatted as follows:
 	|Format:         |Example:
 	|                |
@@ -256,8 +261,8 @@ you want to invoke a call tip for.
 CTRL + ALT + Space      =    invoke auto complete window
 > not implemented yet
 
-CTRL + SHIFT + F12      =    close script
-
 ESC                     =    closes call tip window
 > Clicking on the call tip window will also close it.  You can scroll wile the
 call tip window is active and it will remain.
+
+CTRL + SHIFT + F12      =    close script
