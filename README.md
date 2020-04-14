@@ -23,12 +23,11 @@ Click on call tips to invoke the CHM and link directly to the corresponding page
 ### User Settings
 For now, change user settings in the script.  GUI coming later.
 
+## Latest updates
+* AutoHotkey v1 and v2 call tips are ready!  Call Tips should be around 90% complete on both.
+* AHK v1 version of the script is now ready.
+
 ## To-Do List
-
-AutoHotkey v1 and v2 call tips are ready!  Call Tips should be around 90% complete on both.
-
-AHK v1 version of the script is now ready.
-
 * Add auto-complete as CTRL + ALT + Space or automatic
 * Add GUI to save user settings and easily switch languages
 * Improve support for `var := expr, var := expr`
