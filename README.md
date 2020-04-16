@@ -77,4 +77,4 @@ TvObj is detected as a TreeView object
 
 ## For Best Results...
 * Try not to use literal quotes within strings
-* Don't reuse a variable name if it is a diffeernt type/object
+* Don't reuse a variable name if the new assignment is a different type/object
