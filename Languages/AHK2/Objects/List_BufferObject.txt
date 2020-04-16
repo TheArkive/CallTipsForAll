@@ -2,21 +2,18 @@
 0 BufferObject BufferByClipboard ([\w\.]+)[ \t]*:=[ \t]*(ClipboardAll\x28)
 1 BufferObject BufferByRawRead ([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawRead\x28)
 1 BufferObject BufferByRawWrite ([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawWrite\x28)
-`
-/docs/objects/Buffer.htm
+`/docs/objects/Buffer.htm
 
 
 Property
 Ptr
-Buffer.Ptr
+`Buffer.Ptr
 /Retrieves the buffer's current memory address.
-`
-/docs/objects/Buffer.htm#[MemberName]
+`/docs/objects/Buffer.htm#[MemberName]
 
 
 Property
 Size
-Buffer.Size
+`Buffer.Size
 /Retrieves or sets the buffer's size, in bytes.
-`
-/docs/objects/Buffer.htm#[MemberName]
+`/docs/objects/Buffer.htm#[MemberName]

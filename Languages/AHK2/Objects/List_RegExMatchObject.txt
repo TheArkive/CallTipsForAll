@@ -1,52 +1,45 @@
 0 RegExMatchObject RegExMatchFunc [\w]+[ \t]*:=[ \t]*RegExMatch\([^,]*\,[^,]*\,([\w]+)
-`
-/docs/commands/RegExMatch.htm
+`/docs/commands/RegExMatch.htm
 
 
 Property
 Pos
-RgExObj.Pos(N)
+`RgExObj.Pos(N)
 /Returns the position of the Nth match or captured subpattern.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject
 
 
 Property
 Len
-RgExObj.Len(N)
+`RgExObj.Len(N)
 /Returns the length of the Nth match or captured subpattern.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject
 
 
 Property
 Value
-RgExObj.Value(N)
+`RgExObj.Value(N)
 /Returns the Nth match or captured subpattern.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject
 
 
 Property
 Name
-RgExObj.Name(N)
+`RgExObj.Name(N)
 /Returns the name of the Nth subpattern, if it has one.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject
 
 
 Property
 Count
-RgExObj.Count()
+`RgExObj.Count()
 /Returns the overall number of captured (subpatterns).
 If no (subpatterns) then this property returns zero.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject
 
 
 Property
 Mark
-RgExObj.Mark()
+`RgExObj.Mark()
 /Returns the NAME of the last encountered (*MARK:NAME), when applicable.
-`
-/docs/commands/RegExMatch.htm#MatchObject
+`/docs/commands/RegExMatch.htm#MatchObject

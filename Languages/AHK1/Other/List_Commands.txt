@@ -1,1772 +1,1529 @@
 ﻿Function
 Asc
-Number := Asc(String)
-`
-/docs/commands/Asc.htm
+`Number := Asc(String)
+`/docs/commands/Asc.htm
 
 
 Command
 AutoTrim
-AutoTrim, OnOff
-`
-/docs/commands/AutoTrim.htm
+`AutoTrim, OnOff
+`/docs/commands/AutoTrim.htm
 
 
 Command
 BlockInput
-BlockInput, OnOff
+`BlockInput, OnOff
 BlockInput, SendMouse
 BlockInput, MouseMove  
-`
-/docs/commands/BlockInput.htm
+`/docs/commands/BlockInput.htm
 
 
 Flow
 Break
-Break [, LoopLabel]
-`
-/docs/commands/Break.htm
+`Break [, LoopLabel]
+`/docs/commands/Break.htm
 
 
 Flow
 Catch
-Catch [, OutputVar] {
+`Catch [, OutputVar] {
     Statements
 }
-`
-/docs/commands/Catch.htm
+`/docs/commands/Catch.htm
 
 
 Function
 Chr
-String := Chr(Number)
-`
-/docs/commands/Chr.htm
+`String := Chr(Number)
+`/docs/commands/Chr.htm
 
 
 Command
 ClipWait
-ClipWait [, Timeout, WaitForAnyData]
-`
-/docs/commands/ClipWait.htm
+`ClipWait [, Timeout, WaitForAnyData]
+`/docs/commands/ClipWait.htm
 
 
 Function
 ComObjActive
-ComObject := ComObjActive(CLSID)                   |    ComObject := ComObjEnwrap(DispPtr)
+`ComObject := ComObjActive(CLSID)                   |    ComObject := ComObjEnwrap(DispPtr)
 ParamObj := ComObject(VarType, Value [, Flags])    |    DispPtr := ComObjUnwrap(ComObject)
 ParamObj := ComObjMissing()                        |
-`
-/docs/commands/ComObjActive.htm
+`/docs/commands/ComObjActive.htm
 
 
 Function
 ComObjArray
-ArrayObj := ComObjArray(VarType, Count1 [, Count2, ... Count8])
-`
-/docs/commands/ComObjArray.htm
+`ArrayObj := ComObjArray(VarType, Count1 [, Count2, ... Count8])
+`/docs/commands/ComObjArray.htm
 
 
 Function
 ComObjConnect
-ComObjConnect(ComObject [, Prefix])
-`
-/docs/commands/ComObjConnect.htm
+`ComObjConnect(ComObject [, Prefix])
+`/docs/commands/ComObjConnect.htm
 
 
 Function
 ComObjCreate
-ComObject := ComObjCreate(CLSID [, IID])
-`
-/docs/commands/ComObjCreate.htm
+`ComObject := ComObjCreate(CLSID [, IID])
+`/docs/commands/ComObjCreate.htm
 
 
 Function
 ComObjError
-Enabled := ComObjError([Enable])
-`
-/docs/commands/ComObjError.htm
+`Enabled := ComObjError([Enable])
+`/docs/commands/ComObjError.htm
 
 
 Function
 ComObjFlags
-Flags := ComObjFlags(ComObject [, NewFlags, Mask])
-`
-/docs/commands/ComObjFlags.htm
+`Flags := ComObjFlags(ComObject [, NewFlags, Mask])
+`/docs/commands/ComObjFlags.htm
 
 
 Function
 ComObjGet
-ComObject := ComObjGet(Name)
-`
-/docs/commands/ComObjGet.htm
+`ComObject := ComObjGet(Name)
+`/docs/commands/ComObjGet.htm
 
 
 Function
 ComObjQuery
-InterfacePointer := ComObjQuery(ComObject, [SID,] IID)
-`
-/docs/commands/ComObjQuery.htm
+`InterfacePointer := ComObjQuery(ComObject, [SID,] IID)
+`/docs/commands/ComObjQuery.htm
 
 
 Function
 ComObjType
-VarType := ComObjType(ComObject)            |    CName   := ComObjType(ComObject, "Class")
+`VarType := ComObjType(ComObject)            |    CName   := ComObjType(ComObject, "Class")
 IName   := ComObjType(ComObject, "Name")    |    CLSID   := ComObjType(ComObject, "CLSID")
 IID     := ComObjType(ComObject, "IID")     |    
-`
-/docs/commands/ComObjType.htm
+`/docs/commands/ComObjType.htm
 
 
 Function
 ComObjValue
-Value := ComObjValue(ComObject)
-`
-/docs/commands/ComObjValue.htm
+`Value := ComObjValue(ComObject)
+`/docs/commands/ComObjValue.htm
 
 
 Flow
 Continue
-Continue [, LoopLabel]
-`
-/docs/commands/Continue.htm
+`Continue [, LoopLabel]
+`/docs/commands/Continue.htm
 
 
 Command
 Control
-Control, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`Control, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 /SubCommands:  Check, Uncheck, Enable, Disable, Show, Hide, Style, ExStyle, ShowDropDown
                HideDropDown, TabLeft, TabRight, Add, Delete, Choose, ChooseString, EditPaste
-`
-/docs/commands/Control.htm
+`/docs/commands/Control.htm
 
 
 Command
 ControlClick
-ControlClick [, Control-or-Pos, WinTitle, WinText, WhichButton, ClickCount, Options, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlClick.htm
+`ControlClick [, Control-or-Pos, WinTitle, WinText, WhichButton, ClickCount, Options, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlClick.htm
 
 
 Command
 ControlFocus
-ControlFocus [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlFocus.htm
+`ControlFocus [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlFocus.htm
 
 
 Command
 ControlGet
-ControlGet, OutputVar, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`ControlGet, OutputVar, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 /SubCommands:  List, Checked, Enabled, Visible, Tab, FindString, Choice, LineCount, CurrentLine, Line
                Selected, Style, ExStyle, Hwnd
-`
-/docs/commands/ControlGet.htm
+`/docs/commands/ControlGet.htm
 
 
 Command
 ControlGetFocus
-ControlGetFocus, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlGetFocus.htm
+`ControlGetFocus, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetFocus.htm
 
 
 Command
 ControlGetPos
-ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlGetPos.htm
+`ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetPos.htm
 
 
 Command
 ControlGetText
-ControlGetText, OutputVar [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlGetText.htm
+`ControlGetText, OutputVar [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetText.htm
 
 
 Command
 ControlMove
-ControlMove, Control, X, Y, Width, Height [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlMove.htm
+`ControlMove, Control, X, Y, Width, Height [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlMove.htm
 
 
 Command
 ControlSend
-ControlSend [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlSend.htm
+`ControlSend [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSend.htm
 
 
 Command
 ControlSendRaw
-ControlSendRaw [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlSend.htm
+`ControlSendRaw [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSend.htm
 
 
 Command
 ControlSetText
-ControlSetText [, Control, NewText, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/ControlSetText.htm
+`ControlSetText [, Control, NewText, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSetText.htm
 
 
 Command
 CoordMode
-CoordMode, TargetType [, RelativeTo]
-`
-/docs/commands/CoordMode.htm
+`CoordMode, TargetType [, RelativeTo]
+`/docs/commands/CoordMode.htm
 
 
 Flow
 Critical
-Critical [, OnOffNumeric]
-`
-/docs/commands/Critical.htm
+`Critical [, OnOffNumeric]
+`/docs/commands/Critical.htm
 
 
 Command
 DetectHiddenText
-DetectHiddenText, OnOff
-`
-/docs/commands/DetectHiddenText.htm
+`DetectHiddenText, OnOff
+`/docs/commands/DetectHiddenText.htm
 
 
 Command
 DetectHiddenWindows
-DetectHiddenWindows, OnOff
-`
-/docs/commands/DetectHiddenWindows.htm
+`DetectHiddenWindows, OnOff
+`/docs/commands/DetectHiddenWindows.htm
 
 
 Function
 DllCall
-Result := DllCall("[DllFile\]Function" [, Type1, Arg1, Type2, Arg2, "Cdecl ReturnType"])
-`
-/docs/commands/DllCall.htm
+`Result := DllCall("[DllFile\]Function" [, Type1, Arg1, Type2, Arg2, "Cdecl ReturnType"])
+`/docs/commands/DllCall.htm
 
 
 Command
 Drive
-Drive, SubCommand [, Value1, Value2]
+`Drive, SubCommand [, Value1, Value2]
 /SubCommands:  Label, Lock, Unlock, Eject
-`
-/docs/commands/Drive.htm
+`/docs/commands/Drive.htm
 
 
 Command
 DriveGet
-DriveGet, OutputVar, SubCommand [, Value]
+`DriveGet, OutputVar, SubCommand [, Value]
 /SubCommands:  List, Capacity, FileSystem, Label, Serial, Type, Status, StatusCD
-`
-/docs/commands/DriveGet.htm
+`/docs/commands/DriveGet.htm
 
 
 Command
 DriveSpaceFree
-DriveSpaceFree, OutputVar, Path
-`
-/docs/commands/DriveSpaceFree.htm
+`DriveSpaceFree, OutputVar, Path
+`/docs/commands/DriveSpaceFree.htm
 
 
 Command
 Edit
-Edit
-`
-/docs/commands/Edit.htm
+`Edit
+`/docs/commands/Edit.htm
 
 
 Flow
 Else
-Else {
+`Else {
     Statements
 }
-`
-/docs/commands/Else.htm
+`/docs/commands/Else.htm
 
 
 Command
 EnvAdd
-EnvAdd, Var, Value [, TimeUnits]
-`
-/docs/commands/EnvAdd.htm
+`EnvAdd, Var, Value [, TimeUnits]
+`/docs/commands/EnvAdd.htm
 
 
 Command
 EnvDiv
-EnvDiv, Var, Value
-`
-/docs/commands/EnvDiv.htm
+`EnvDiv, Var, Value
+`/docs/commands/EnvDiv.htm
 
 
 Command
 EnvGet
-EnvGet, OutputVar, EnvVarName
-`
-/docs/commands/EnvGet.htm
+`EnvGet, OutputVar, EnvVarName
+`/docs/commands/EnvGet.htm
 
 
 Command
 EnvMult
-EnvMult, Var, Value
-`
-/docs/commands/EnvMult.htm
+`EnvMult, Var, Value
+`/docs/commands/EnvMult.htm
 
 
 Command
 EnvSet
-EnvSet, EnvVar, Value
-`
-/docs/commands/EnvSet.htm
+`EnvSet, EnvVar, Value
+`/docs/commands/EnvSet.htm
 
 
 Command
 EnvSub
-EnvSub, Var, Value [, TimeUnits]
-`
-/docs/commands/EnvSub.htm
+`EnvSub, Var, Value [, TimeUnits]
+`/docs/commands/EnvSub.htm
 
 
 Command
 EnvUpdate
-EnvUpdate
-`
-/docs/commands/EnvUpdate.htm
+`EnvUpdate
+`/docs/commands/EnvUpdate.htm
 
 
 Flow
 Exit
-Exit [, ExitCode]
-`
-/docs/commands/Exit.htm
+`Exit [, ExitCode]
+`/docs/commands/Exit.htm
 
 
 Flow
 ExitApp
-ExitApp [, ExitCode]
-`
-/docs/commands/ExitApp.htm
+`ExitApp [, ExitCode]
+`/docs/commands/ExitApp.htm
 
 
 Command
 FileAppend
-FileAppend [, Text, Filename, Encoding]
-`
-/docs/commands/FileAppend.htm
+`FileAppend [, Text, Filename, Encoding]
+`/docs/commands/FileAppend.htm
 
 
 Command
 FileCopy
-FileCopy, SourcePattern, DestPattern [, Overwrite]
-`
-/docs/commands/FileCopy.htm
+`FileCopy, SourcePattern, DestPattern [, Overwrite]
+`/docs/commands/FileCopy.htm
 
 
 Command
 FileCopyDir
-FileCopyDir, Source, Dest [, Overwrite]
-`
-/docs/commands/FileCopyDir.htm
+`FileCopyDir, Source, Dest [, Overwrite]
+`/docs/commands/FileCopyDir.htm
 
 
 Command
 FileCreateDir
-FileCreateDir, DirName
-`
-/docs/commands/FileCreateDir.htm
+`FileCreateDir, DirName
+`/docs/commands/FileCreateDir.htm
 
 
 Command
 FileCreateShortcut
-FileCreateShortcut, Target, LinkFile [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]
-`
-/docs/commands/FileCreateShortcut.htm
+`FileCreateShortcut, Target, LinkFile [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]
+`/docs/commands/FileCreateShortcut.htm
 
 
 Command
 FileDelete
-FileDelete, FilePattern
-`
-/docs/commands/FileDelete.htm
+`FileDelete, FilePattern
+`/docs/commands/FileDelete.htm
 
 
 Command
 FileEncoding
-FileEncoding [, Encoding]
-`
-/docs/commands/FileEncoding.htm
+`FileEncoding [, Encoding]
+`/docs/commands/FileEncoding.htm
 
 
 Function
 FileExist
-AttributeString := FileExist(FilePattern)
-`
-/docs/commands/FileExist.htm
+`AttributeString := FileExist(FilePattern)
+`/docs/commands/FileExist.htm
 
 
 Command
 FileGetAttrib
-FileGetAttrib, OutputVar [, Filename]
-`
-/docs/commands/FileGetAttrib.htm
+`FileGetAttrib, OutputVar [, Filename]
+`/docs/commands/FileGetAttrib.htm
 
 
 Command
 FileGetShortcut
-FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]
-`
-/docs/commands/FileGetShortcut.htm
+`FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]
+`/docs/commands/FileGetShortcut.htm
 
 
 Command
 FileGetSize
-FileGetSize, OutputVar [, Filename, Units]
-`
-/docs/commands/FileGetSize.htm
+`FileGetSize, OutputVar [, Filename, Units]
+`/docs/commands/FileGetSize.htm
 
 
 Command
 FileGetTime
-FileGetTime, OutputVar [, Filename, WhichTime]
-`
-/docs/commands/FileGetTime.htm
+`FileGetTime, OutputVar [, Filename, WhichTime]
+`/docs/commands/FileGetTime.htm
 
 
 Command
 FileGetVersion
-FileGetVersion, OutputVar [, Filename]
-`
-/docs/commands/FileGetVersion.htm
+`FileGetVersion, OutputVar [, Filename]
+`/docs/commands/FileGetVersion.htm
 
 
 Command
 FileInstall
-FileInstall, Source, Dest [, Overwrite]
-`
-/docs/commands/FileInstall.htm
+`FileInstall, Source, Dest [, Overwrite]
+`/docs/commands/FileInstall.htm
 
 
 Command
 FileMove
-FileMove, SourcePattern, DestPattern [, Overwrite]
-`
-/docs/commands/FileMove.htm
+`FileMove, SourcePattern, DestPattern [, Overwrite]
+`/docs/commands/FileMove.htm
 
 
 Command
 FileMoveDir
-FileMoveDir, Source, Dest [, Flag]
-`
-/docs/commands/FileMoveDir.htm
+`FileMoveDir, Source, Dest [, Flag]
+`/docs/commands/FileMoveDir.htm
 
 
 Function
 FileOpen
-file := FileOpen(Filename, Flags [, Encoding])
-`
-/docs/commands/FileOpen.htm
+`file := FileOpen(Filename, Flags [, Encoding])
+`/docs/commands/FileOpen.htm
 
 
 Command
 FileRead
-FileRead, OutputVar, Filename
-`
-/docs/commands/FileRead.htm
+`FileRead, OutputVar, Filename
+`/docs/commands/FileRead.htm
 
 
 Command
 FileReadLine
-FileReadLine, OutputVar, Filename, LineNum
-`
-/docs/commands/FileReadLine.htm
+`FileReadLine, OutputVar, Filename, LineNum
+`/docs/commands/FileReadLine.htm
 
 
 Command
 FileRecycle
-FileRecycle, FilePattern
-`
-/docs/commands/FileRecycle.htm
+`FileRecycle, FilePattern
+`/docs/commands/FileRecycle.htm
 
 
 Command
 FileRecycleEmpty
-FileRecycleEmpty [, DriveLetter]
-`
-/docs/commands/FileRecycleEmpty.htm
+`FileRecycleEmpty [, DriveLetter]
+`/docs/commands/FileRecycleEmpty.htm
 
 
 Command
 FileRemoveDir
-FileRemoveDir, DirName [, Recurse]
-`
-/docs/commands/FileRemoveDir.htm
+`FileRemoveDir, DirName [, Recurse]
+`/docs/commands/FileRemoveDir.htm
 
 
 Command
 FileSelectFile
-FileSelectFile, OutputVar [, Options, RootDir\Filename, Prompt, Filter]
-`
-/docs/commands/FileSelectFile.htm
+`FileSelectFile, OutputVar [, Options, RootDir\Filename, Prompt, Filter]
+`/docs/commands/FileSelectFile.htm
 
 
 Command
 FileSelectFolder
-FileSelectFolder, OutputVar [, StartingFolder, Options, Prompt]
-`
-/docs/commands/FileSelectFolder.htm
+`FileSelectFolder, OutputVar [, StartingFolder, Options, Prompt]
+`/docs/commands/FileSelectFolder.htm
 
 
 Command
 FileSetAttrib
-FileSetAttrib, Attributes [, FilePattern, OperateOnFolders?, Recurse?]
-`
-/docs/commands/FileSetAttrib.htm
+`FileSetAttrib, Attributes [, FilePattern, OperateOnFolders?, Recurse?]
+`/docs/commands/FileSetAttrib.htm
 
 
 Command
 FileSetTime
-FileSetTime [, YYYYMMDDHH24MISS, FilePattern, WhichTime, OperateOnFolders?, Recurse?]
-`
-/docs/commands/FileSetTime.htm
+`FileSetTime [, YYYYMMDDHH24MISS, FilePattern, WhichTime, OperateOnFolders?, Recurse?]
+`/docs/commands/FileSetTime.htm
 
 
 Flow
 Finally
-Finally {
+`Finally {
     Statements
 }
-`
-/docs/commands/Finally.htm
+`/docs/commands/Finally.htm
 
 
 Flow
 For
-For Key [, Value] in Expression
-`
-/docs/commands/For.htm
+`For Key [, Value] in Expression
+`/docs/commands/For.htm
 
 
 Function
 Format
-String := Format(FormatStr [, Values...])
+`String := Format(FormatStr [, Values...])
 Flags Width .Precision ULT Type
-`
-/docs/commands/Format.htm
+`/docs/commands/Format.htm
 
 
 Command
 FormatTime
-FormatTime, OutputVar [, YYYYMMDDHH24MISS, Format]
-`
-/docs/commands/FormatTime.htm
+`FormatTime, OutputVar [, YYYYMMDDHH24MISS, Format]
+`/docs/commands/FormatTime.htm
 
 
 Function
 Func
-FunctionReference := Func(FunctionName)
-`
-/docs/commands/Func.htm
+`FunctionReference := Func(FunctionName)
+`/docs/commands/Func.htm
 
 
 Function
 GetKeyName
-String := GetKeyName(Key)
-`
-/docs/commands/GetKey.htm
+`String := GetKeyName(Key)
+`/docs/commands/GetKey.htm
 
 
 Function
 GetKeyVK
-Number := GetKeyVK(Key)
-`
-/docs/commands/GetKey.htm
+`Number := GetKeyVK(Key)
+`/docs/commands/GetKey.htm
 
 
 Function
 GetKeySC
-Number := GetKeySC(Key)
-`
-/docs/commands/GetKey.htm
+`Number := GetKeySC(Key)
+`/docs/commands/GetKey.htm
 
 
 Function
 GetKeyState
-KeyIsDown := GetKeyState(KeyName [, Mode])
-`
-/docs/commands/GetKeyState.htm
+`KeyIsDown := GetKeyState(KeyName [, Mode])
+`/docs/commands/GetKeyState.htm
 
 
 Flow
 Gosub
-Gosub, Label
-`
-/docs/commands/Gosub.htm
+`Gosub, Label
+`/docs/commands/Gosub.htm
 
 
 Flow
 Goto
-Goto, Label
-`
-/docs/commands/Goto.htm
+`Goto, Label
+`/docs/commands/Goto.htm
 
 
 Command
 GroupActivate
-GroupActivate, GroupName [, Mode]
-`
-/docs/commands/GroupActivate.htm
+`GroupActivate, GroupName [, Mode]
+`/docs/commands/GroupActivate.htm
 
 
 Command
 GroupAdd
-GroupAdd, GroupName [, WinTitle, WinText, Label, ExcludeTitle, ExcludeText]
-`
-/docs/commands/GroupAdd.htm
+`GroupAdd, GroupName [, WinTitle, WinText, Label, ExcludeTitle, ExcludeText]
+`/docs/commands/GroupAdd.htm
 
 
 Command
 GroupClose
-GroupClose, GroupName [, Mode]
-`
-/docs/commands/GroupClose.htm
+`GroupClose, GroupName [, Mode]
+`/docs/commands/GroupClose.htm
 
 
 Command
 GroupDeactivate
-GroupDeactivate, GroupName [, Mode]
-`
-/docs/commands/GroupDeactivate.htm
+`GroupDeactivate, GroupName [, Mode]
+`/docs/commands/GroupDeactivate.htm
 
 
 Function
 GUI
-Gui, SubCommand [, Value1, Value2, Value3]
+`Gui, SubCommand [, Value1, Value2, Value3]
 /SubCommand:  GuiName:[SubCmd], New, Add, Show, Submit, Cancel, Hide, Destroy, Font
 Color, Margin, +/-Option, Menu, Minimize, Maximize, Restore, Flash, Default
 /CtrlEvent(CtrlHwnd, GuiEvent, EventInfo, ErrLevel:="")
 GuiSize(GuiHwnd, EventInfo, Width, Height)
 GuiContextMenu(GuiHwnd, CtrlHwnd, EventInfo, IsRightClick, X, Y)
-`
-/docs/commands/Gui.htm
+`/docs/commands/Gui.htm
 
 
 Command
 GuiControl
-GuiControl, SubCommand, ControlID [, Value]
+`GuiControl, SubCommand, ControlID [, Value]
 /SubCommands:  Text, Move, MoveDraw, Focus, Disable, Enable, Hide, Show, Choose
 ChooseString, Font, +/-Option
-`
-/docs/commands/GuiControl.htm
+`/docs/commands/GuiControl.htm
 
 
 Command
 GuiControlGet
-GuiControlGet, OutputVar [, SubCommand, ControlID, Value]
+`GuiControlGet, OutputVar [, SubCommand, ControlID, Value]
 /SubCommand:  Pos, Focus, FocusV, Enabled, Visible, Hwnd, Name
-`
-/docs/commands/GuiControlGet.htm
+`/docs/commands/GuiControlGet.htm
 
 
 Command
 Hotkey
-Hotkey, KeyName [, Label, Options]                 |    Hotkey, If [, Expression]
+`Hotkey, KeyName [, Label, Options]                 |    Hotkey, If [, Expression]
 Hotkey, IfWinActive/Exist [, WinTitle, WinText]    |    Hotkey, If, % FunctionObject
-`
-/docs/commands/Hotkey.htm
+`/docs/commands/Hotkey.htm
 
 
 Function
 Hotstring
-Hotstring(String [, Replacement, OnOffToggle])     |or|    Hotstring(NewOptions)
+`Hotstring(String [, Replacement, OnOffToggle])     |or|    Hotstring(NewOptions)
 OldValue := Hotstring("EndChars" [, NewValue])     |  |    Hotstring("Reset")
 OldValue := Hotstring("MouseReset" [, NewValue])   |  |    
-`
-/docs/commands/Hotstring.htm
+`/docs/commands/Hotstring.htm
 
 
 Flow
 Between
-If var [not] between LowerBound and UpperBound
-`
-/docs/commands/IfBetween.htm
+`If var [not] between LowerBound and UpperBound
+`/docs/commands/IfBetween.htm
 
 
 Flow
 IfEqual
-IfEqual, Var [, Value]          
-`
-/docs/commands/IfEqual.htm
+`IfEqual, Var [, Value]          
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfNotEqual
-IfNotEqual, Var [, Value]       
-`
-/docs/commands/IfEqual.htm
+`IfNotEqual, Var [, Value]       
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfLess
-IfLess, Var [, Value]           
-`
-/docs/commands/IfEqual.htm
+`IfLess, Var [, Value]           
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfLessOrEqual
-IfLessOrEqual, Var [, Value]    
-`
-/docs/commands/IfEqual.htm
+`IfLessOrEqual, Var [, Value]    
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfGreater
-IfGreater, Var [, Value]        
-`
-/docs/commands/IfEqual.htm
+`IfGreater, Var [, Value]        
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfGreaterOrEqual
-IfGreaterOrEqual, Var [, Value] 
-`
-/docs/commands/IfEqual.htm
+`IfGreaterOrEqual, Var [, Value] 
+`/docs/commands/IfEqual.htm
 
 
 Flow
 IfExist
-IfExist, FilePattern
-`
-/docs/commands/IfExist.htm
+`IfExist, FilePattern
+`/docs/commands/IfExist.htm
 
 
 Flow
 IfNotExist
-IfNotExist, FilePattern
-`
-/docs/commands/IfExist.htm
+`IfNotExist, FilePattern
+`/docs/commands/IfExist.htm
 
 
 Flow
 If
-If (Expression) {
+`If (Expression) {
     Statements
 }
-`
-/docs/commands/IfExpression.htm
+`/docs/commands/IfExpression.htm
 
 
 Flow
 In
-if Var in MatchList
+`if Var in MatchList
 if Var not in MatchList
-`
-/docs/commands/IfIn.htm
+`/docs/commands/IfIn.htm
 
 
 Flow
 Contains
-if Var contains MatchList
+`if Var contains MatchList
 if Var not contains MatchList
-`
-/docs/commands/IfIn.htm
+`/docs/commands/IfIn.htm
 
 
 Flow
 IfInString
-IfInString, Var, SearchString
-`
-/docs/commands/IfInString.htm
+`IfInString, Var, SearchString
+`/docs/commands/IfInString.htm
 
 
 Flow
 IfNotInString
-IfNotInString, Var, SearchString
-`
-/docs/commands/IfInString.htm
+`IfNotInString, Var, SearchString
+`/docs/commands/IfInString.htm
 
 
 Flow
 Is
-if Var is Type
+`if Var is Type
 if Var is not Type
-`
-/docs/commands/IfIs.htm
+`/docs/commands/IfIs.htm
 
 
 Flow
 IfMsgBox
-IfMsgBox, ButtonName
-`
-/docs/commands/IfMsgBox.htm
+`IfMsgBox, ButtonName
+`/docs/commands/IfMsgBox.htm
 
 
 Command
 ImageSearch
-ImageSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ImageFile
-`
-/docs/commands/ImageSearch.htm
+`ImageSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ImageFile
+`/docs/commands/ImageSearch.htm
 
 
 Command
 IniDelete
-IniDelete, Filename, Section [, Key]
-`
-/docs/commands/IniDelete.htm
+`IniDelete, Filename, Section [, Key]
+`/docs/commands/IniDelete.htm
 
 
 Command
 IniRead
-IniRead, OutputVar, Filename, Section, Key [, Default]
+`IniRead, OutputVar, Filename, Section, Key [, Default]
 IniRead, OutputVarSection, Filename, Section
 IniRead, OutputVarSectionNames, Filename
-`
-/docs/commands/IniRead.htm
+`/docs/commands/IniRead.htm
 
 
 Command
 IniWrite
-IniWrite, Value, Filename, Section, Key
+`IniWrite, Value, Filename, Section, Key
 IniWrite, Pairs, Filename, Section
-`
-/docs/commands/IniWrite.htm
+`/docs/commands/IniWrite.htm
 
 
 Command
 Input
-Input [, OutputVar, Options, EndKeys, MatchList]
-`
-/docs/commands/Input.htm
+`Input [, OutputVar, Options, EndKeys, MatchList]
+`/docs/commands/Input.htm
 
 
 Command
 InputBox
-InputBox, OutputVar [, Title, Prompt, HIDE, Width, Height, X, Y, Locale, Timeout, Default]
-`
-/docs/commands/InputBox.htm
+`InputBox, OutputVar [, Title, Prompt, HIDE, Width, Height, X, Y, Locale, Timeout, Default]
+`/docs/commands/InputBox.htm
 
 
 Function
 InputHook
-InputHook := InputHook([Options, EndKeys, MatchList])
-`
-/docs/commands/InputHook.htm
+`InputHook := InputHook([Options, EndKeys, MatchList])
+`/docs/commands/InputHook.htm
 
 
 Function
 InStr
-FoundPos := InStr(Haystack, Needle [, CaseSensitive := false, StartingPos := 1, Occurrence := 1])
-`
-/docs/commands/InStr.htm
+`FoundPos := InStr(Haystack, Needle [, CaseSensitive := false, StartingPos := 1, Occurrence := 1])
+`/docs/commands/InStr.htm
 
 
 Function
 IsByRef
-TrueOrFalse := IsByRef(ParameterVar)
-`
-/docs/commands/IsByRef.htm
+`TrueOrFalse := IsByRef(ParameterVar)
+`/docs/commands/IsByRef.htm
 
 
 Function
 IsFunc
-MinParamsPlus1 := IsFunc(FunctionName)
-`
-/docs/commands/IsFunc.htm
+`MinParamsPlus1 := IsFunc(FunctionName)
+`/docs/commands/IsFunc.htm
 
 
 Function
 IsLabel
-TrueOrFalse := IsLabel(LabelName)
-`
-/docs/commands/IsLabel.htm
+`TrueOrFalse := IsLabel(LabelName)
+`/docs/commands/IsLabel.htm
 
 
 Function
 IsObject
-TrueOrFalse := IsObject(ObjectValue)
-`
-/docs/commands/IsObject.htm
+`TrueOrFalse := IsObject(ObjectValue)
+`/docs/commands/IsObject.htm
 
 
 Command
 KeyHistory
-KeyHistory
-`
-/docs/commands/KeyHistory.htm
+`KeyHistory
+`/docs/commands/KeyHistory.htm
 
 
 Command
 KeyWait
-KeyWait, KeyName [, Options]
-`
-/docs/commands/KeyWait.htm
+`KeyWait, KeyName [, Options]
+`/docs/commands/KeyWait.htm
 
 
 Command
 ListHotkeys
-ListHotkeys
-`
-/docs/commands/ListHotkeys.htm
+`ListHotkeys
+`/docs/commands/ListHotkeys.htm
 
 
 Command
 ListLines
-ListLines [, OnOff]
-`
-/docs/commands/ListLines.htm
+`ListLines [, OnOff]
+`/docs/commands/ListLines.htm
 
 
 Command
 ListVars
-ListVars
-`
-/docs/commands/ListVars.htm
+`ListVars
+`/docs/commands/ListVars.htm
 
 
 Function
 LoadPicture
-Handle := LoadPicture(Filename [, Options, ByRef ImageType])
-`
-/docs/commands/LoadPicture.htm
+`Handle := LoadPicture(Filename [, Options, ByRef ImageType])
+`/docs/commands/LoadPicture.htm
 
 
 Flow
 Loop
-Loop [, Count]
-`
-/docs/commands/Loop.htm
+`Loop [, Count]
+`/docs/commands/Loop.htm
 
 
 Flow
 Files
-Loop, Files, FilePattern [, Mode]
-`
-/docs/commands/LoopFile.htm
+`Loop, Files, FilePattern [, Mode]
+`/docs/commands/LoopFile.htm
 
 
 Flow
 Parse
-Loop, Parse, InputVar [, Delimiters, OmitChars]
-`
-/docs/commands/LoopParse.htm
+`Loop, Parse, InputVar [, Delimiters, OmitChars]
+`/docs/commands/LoopParse.htm
 
 
 Flow
 Reg
-Loop, Reg, KeyName [, Mode]
-`
-/docs/commands/LoopReg.htm
+`Loop, Reg, KeyName [, Mode]
+`/docs/commands/LoopReg.htm
 
 
 Function
 Abs
-Value := Abs(Number)
-`
-/docs/commands/Math.htm#Abs
+`Value := Abs(Number)
+`/docs/commands/Math.htm#Abs
 
 
 Function
 Ceil
-Value := Ceil(Number)
-`
-/docs/commands/Math.htm#Ceil
+`Value := Ceil(Number)
+`/docs/commands/Math.htm#Ceil
 
 
 Function
 Exp
-Value := Exp(N)
-`
-/docs/commands/Math.htm#Exp
+`Value := Exp(N)
+`/docs/commands/Math.htm#Exp
 
 
 Function
 Floor
-Value := Floor(Number)
-`
-/docs/commands/Math.htm#Floor
+`Value := Floor(Number)
+`/docs/commands/Math.htm#Floor
 
 
 Function
 Log
-Value := Log(Number)
-`
-/docs/commands/Math.htm#Log
+`Value := Log(Number)
+`/docs/commands/Math.htm#Log
 
 
 Function
 Ln
-Value := Ln(Number)
-`
-/docs/commands/Math.htm#Ln
+`Value := Ln(Number)
+`/docs/commands/Math.htm#Ln
 
 
 Function
 Max
-Value := Max(Number1 [, Number2, ...])
-`
-/docs/commands/Math.htm#Max
+`Value := Max(Number1 [, Number2, ...])
+`/docs/commands/Math.htm#Max
 
 
 Function
 Min
-Value := Min(Number1 [, Number2, ...])
-`
-/docs/commands/Math.htm#Min
+`Value := Min(Number1 [, Number2, ...])
+`/docs/commands/Math.htm#Min
 
 
 Function
 Mod
-Value := Mod(Dividend, Divisor)
-`
-/docs/commands/Math.htm#Mod
+`Value := Mod(Dividend, Divisor)
+`/docs/commands/Math.htm#Mod
 
 
 Function
 Round
-Value := Round(Number [, N])
-`
-/docs/commands/Math.htm#Round
+`Value := Round(Number [, N])
+`/docs/commands/Math.htm#Round
 
 
 Function
 Sqrt
-Value := Sqrt(Number)
-`
-/docs/commands/Math.htm#Sqrt
+`Value := Sqrt(Number)
+`/docs/commands/Math.htm#Sqrt
 
 
 Function
 Sin
-Value := Sin(Number)
-`
-/docs/commands/Math.htm#Sin
+`Value := Sin(Number)
+`/docs/commands/Math.htm#Sin
 
 
 Function
 Cos
-Value := Cos(Number)
-`
-/docs/commands/Math.htm#Cos
+`Value := Cos(Number)
+`/docs/commands/Math.htm#Cos
 
 
 Function
 Tan
-Value := Tan(Number)
-`
-/docs/commands/Math.htm#Tan
+`Value := Tan(Number)
+`/docs/commands/Math.htm#Tan
 
 
 Function
 ASin
-Value := ASin(Number)
-`
-/docs/commands/Math.htm#ASin
+`Value := ASin(Number)
+`/docs/commands/Math.htm#ASin
 
 
 Function
 ACos
-Value := ACos(Number)
-`
-/docs/commands/Math.htm#ACos
+`Value := ACos(Number)
+`/docs/commands/Math.htm#ACos
 
 
 Function
 ATan
-Value := ATan(Number)
-`
-/docs/commands/Math.htm#ATan
+`Value := ATan(Number)
+`/docs/commands/Math.htm#ATan
 
 
 Command
 Menu
-Menu, MenuName, SubCommand [, Value1, Value2, Value3, Value4]
+`Menu, MenuName, SubCommand [, Value1, Value2, Value3, Value4]
 /SubCommands:  Add, Insert, Delete, DeleteAll, Rename, Check, Uncheck, ToggleCheck, Enable
 Disable, ToggleEnable, Default, NoDefault, Standard, NoStandard, Icon, NoIcon, Show, Color, UseErrorLevel
 /FunctionName(ItemName, ItemPos, MenuName)
 /Menu, Tray, SubCommand [, Value]
 /SubCommands:  Icon, NoIcon, Tip, Click, MainWindow, NoMainWindow
-`
-/docs/commands/Menu.htm
+`/docs/commands/Menu.htm
 
 
 Function
 MenuGetHandle
-Handle := MenuGetHandle(MenuName)
-`
-/docs/commands/MenuGetHandle.htm
+`Handle := MenuGetHandle(MenuName)
+`/docs/commands/MenuGetHandle.htm
 
 
 Function
 MenuGetName
-MenuName := MenuGetName(Handle)
-`
-/docs/commands/MenuGetName.htm
+`MenuName := MenuGetName(Handle)
+`/docs/commands/MenuGetName.htm
 
 
 Command
 MouseClick
-MouseClick [, WhichButton, X, Y, ClickCount, Speed, DownOrUp, Relative]
-`
-/docs/commands/MouseClick.htm
+`MouseClick [, WhichButton, X, Y, ClickCount, Speed, DownOrUp, Relative]
+`/docs/commands/MouseClick.htm
 
 
 Command
 MouseClickDrag
-MouseClickDrag, WhichButton, X1, Y1, X2, Y2 [, Speed, Relative]
-`
-/docs/commands/MouseClickDrag.htm
+`MouseClickDrag, WhichButton, X1, Y1, X2, Y2 [, Speed, Relative]
+`/docs/commands/MouseClickDrag.htm
 
 
 Command
 MouseGetPos
-MouseGetPos [, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, Flag]
-`
-/docs/commands/MouseGetPos.htm
+`MouseGetPos [, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, Flag]
+`/docs/commands/MouseGetPos.htm
 
 
 Command
 MouseMove
-MouseMove, X, Y [, Speed, Relative]
-`
-/docs/commands/MouseMove.htm
+`MouseMove, X, Y [, Speed, Relative]
+`/docs/commands/MouseMove.htm
 
 
 Command
 MsgBox
-MsgBox, Text
+`MsgBox, Text
 MsgBox [, Options, Title, Text, Timeout]
-`
-/docs/commands/MsgBox.htm
+`/docs/commands/MsgBox.htm
 
 
 Function
 NumGet
-Number := NumGet(VarOrAddress [, Offset := 0][, Type := "UPtr"])
-`
-/docs/commands/NumGet.htm
+`Number := NumGet(VarOrAddress [, Offset := 0][, Type := "UPtr"])
+`/docs/commands/NumGet.htm
 
 
 Function
 NumPut
-NumPut(Number, VarOrAddress [, Offset := 0][, Type := "UPtr"])
-`
-/docs/commands/NumPut.htm
+`NumPut(Number, VarOrAddress [, Offset := 0][, Type := "UPtr"])
+`/docs/commands/NumPut.htm
 
 
 Function
 ObjAddRef
-ObjAddRef(Ptr)
-`
-/docs/commands/ObjAddRef.htm
+`ObjAddRef(Ptr)
+`/docs/commands/ObjAddRef.htm
 
 
 Function
 ObjRelease
-ObjRelease(Ptr)
-`
-/docs/commands/ObjAddRef.htm
+`ObjRelease(Ptr)
+`/docs/commands/ObjAddRef.htm
 
 
 Function
 ObjBindMethod
-BoundFunc := ObjBindMethod(Obj, Method, Params)
-`
-/docs/commands/ObjBindMethod.htm
+`BoundFunc := ObjBindMethod(Obj, Method, Params)
+`/docs/commands/ObjBindMethod.htm
 
 
 Function
 OnClipboardChange
-OnClipboardChange(Func [, AddRemove])
+`OnClipboardChange(Func [, AddRemove])
 FunctionName(Type)
-`
-/docs/commands/OnClipboardChange.htm
+`/docs/commands/OnClipboardChange.htm
 
 
 Flow
 OnError
-OnError(Func [, AddRemove])
-`
-/docs/commands/OnError.htm
+`OnError(Func [, AddRemove])
+`/docs/commands/OnError.htm
 
 
 Flow
 OnExit
-OnExit(Func [, AddRemove])
+`OnExit(Func [, AddRemove])
 OnExit [, Label]
 ExitFunc(ExitReason, ExitCode)
-`
-/docs/commands/OnExit.htm
+`/docs/commands/OnExit.htm
 
 
 Function
 OnMessage
-OnMessage(MsgNumber [, Function, MaxThreads])    |    Name := OnMessage(MsgNumber, "FunctionName")
+`OnMessage(MsgNumber [, Function, MaxThreads])    |    Name := OnMessage(MsgNumber, "FunctionName")
 OnMessage(MsgNumber, FuncObj)                    |    Name := OnMessage(MsgNumber, "")
 OnMessage(MsgNumber, FuncObj, 1)                 |    Name := OnMessage(MsgNumber)
 OnMessage(MsgNumber, FuncObj, -1)                |    OnMessage(MsgNumber, FuncObj, 0)
-`
-/docs/commands/OnMessage.htm
+`/docs/commands/OnMessage.htm
 
 
 Function
 Ord
-Number := Ord(String)
-`
-/docs/commands/Ord.htm
+`Number := Ord(String)
+`/docs/commands/Ord.htm
 
 
 Command
 OutputDebug
-OutputDebug, Text
-`
-/docs/commands/OutputDebug.htm
+`OutputDebug, Text
+`/docs/commands/OutputDebug.htm
 
 
 Flow
 Pause
-#p::Pause 
+`#p::Pause 
 Pause [, OnOffToggle, OperateOnUnderlyingThread]
-`
-/docs/commands/Pause.htm
+`/docs/commands/Pause.htm
 
 
 Command
 PixelGetColor
-PixelGetColor, OutputVar, X, Y [, Mode]
-`
-/docs/commands/PixelGetColor.htm
+`PixelGetColor, OutputVar, X, Y [, Mode]
+`/docs/commands/PixelGetColor.htm
 
 
 Command
 PixelSearch
-PixelSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Mode]
-`
-/docs/commands/PixelSearch.htm
+`PixelSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Mode]
+`/docs/commands/PixelSearch.htm
 
 
 Command
 PostMessage
-PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/PostMessage.htm
+`PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/PostMessage.htm
 
 
 Command
 SendMessage
-SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText, Timeout]
-`
-/docs/commands/PostMessage.htm
+`SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText, Timeout]
+`/docs/commands/PostMessage.htm
 
 
 Command
 Process
-Process, SubCommand [, PIDOrName, Value]
+`Process, SubCommand [, PIDOrName, Value]
 /SubCommand:  Exist, Close, Priority, Wait, WaitClose
-`
-/docs/commands/Process.htm
+`/docs/commands/Process.htm
 
 
 Command
 Progress
-Progress, Off
+`Progress, Off
 Progress, ProgressParam1 [, SubText, MainText, WinTitle, FontName]
-`
-/docs/commands/Progress.htm
+`/docs/commands/Progress.htm
 
 
 Command
 SplashImage
-SplashImage, Off
+`SplashImage, Off
 SplashImage [, ImageFile, Options, SubText, MainText, WinTitle, FontName]
-`
-/docs/commands/Progress.htm
+`/docs/commands/Progress.htm
 
 
 Command
 Random
-Random, OutputVar [, Min, Max]
+`Random, OutputVar [, Min, Max]
 Random, , NewSeed
-`
-/docs/commands/Random.htm
+`/docs/commands/Random.htm
 
 
 Command
 RegDelete
-RegDelete, KeyName [, ValueName]
-`
-/docs/commands/RegDelete.htm
+`RegDelete, KeyName [, ValueName]
+`/docs/commands/RegDelete.htm
 
 
 Function
 RegExMatch
-FoundPos := RegExMatch(Haystack, NeedleRegEx [, OutputVar, StartingPosition := 1])
-`
-/docs/commands/RegExMatch.htm
+`FoundPos := RegExMatch(Haystack, NeedleRegEx [, OutputVar, StartingPosition := 1])
+`/docs/commands/RegExMatch.htm
 
 
 Function
 RegExReplace
-NewStr := RegExReplace(Haystack, NeedleRegEx [, Replacement := "", OutputVarCount := "", Limit := -1, StartingPosition := 1])
-`
-/docs/commands/RegExReplace.htm
+`NewStr := RegExReplace(Haystack, NeedleRegEx [, Replacement := "", OutputVarCount := "", Limit := -1, StartingPosition := 1])
+`test desc RegExReplace()
+`/docs/commands/RegExReplace.htm
 
 
 Function
 RegisterCallback
-Address := RegisterCallback("FunctionName" [, Options := "", ParamCount := FormalCount, EventInfo := Address])
-`
-/docs/commands/RegisterCallback.htm
+`Address := RegisterCallback("FunctionName" [, Options := "", ParamCount := FormalCount, EventInfo := Address])
+`/docs/commands/RegisterCallback.htm
 
 
 Command
 RegRead
-RegRead, OutputVar, KeyName [, ValueName]
-`
-/docs/commands/RegRead.htm
+`RegRead, OutputVar, KeyName [, ValueName]
+`/docs/commands/RegRead.htm
 
 
 Command
 RegWrite
-RegWrite, ValueType, KeyName [, ValueName, Value]
-`
-/docs/commands/RegWrite.htm
+`RegWrite, ValueType, KeyName [, ValueName, Value]
+`/docs/commands/RegWrite.htm
 
 
 Flow
 Reload
-Reload
-`
-/docs/commands/Reload.htm
+`Reload
+`/docs/commands/Reload.htm
 
 
 Flow
 Return
-Return [, Expression]
-`
-/docs/commands/Return.htm
+`Return [, Expression]
+`/docs/commands/Return.htm
 
 
 Command
 Run
-Run, Target [, WorkingDir, Options, OutputVarPID]
-`
-/docs/commands/Run.htm
+`Run, Target [, WorkingDir, Options, OutputVarPID]
+`/docs/commands/Run.htm
 
 
 Command
 RunWait
-RunWait, Target [, WorkingDir, Options, OutputVarPID]
-`
-/docs/commands/Run.htm
+`RunWait, Target [, WorkingDir, Options, OutputVarPID]
+`/docs/commands/Run.htm
 
 
 Command
 RunAs
-RunAs [, User, Password, Domain]
-`
-/docs/commands/RunAs.htm
+`RunAs [, User, Password, Domain]
+`/docs/commands/RunAs.htm
 
 
 Command
 Send
-Send Keys
-`
-/docs/commands/Send.htm
+`Send Keys
+`/docs/commands/Send.htm
 
 
 Command
 SendRaw
-SendRaw Keys
-`
-/docs/commands/Send.htm
+`SendRaw Keys
+`/docs/commands/Send.htm
 
 
 Command
 SendInput
-SendInput Keys
-`
-/docs/commands/Send.htm
+`SendInput Keys
+`/docs/commands/Send.htm
 
 
 Command
 SendPlay
-SendPlay Keys
-`
-/docs/commands/Send.htm
+`SendPlay Keys
+`/docs/commands/Send.htm
 
 
 Command
 SendEvent
-SendEvent Keys
-`
-/docs/commands/Send.htm
+`SendEvent Keys
+`/docs/commands/Send.htm
 
 
 Command
 SendLevel
-SendLevel, Level
-`
-/docs/commands/SendLevel.htm
+`SendLevel, Level
+`/docs/commands/SendLevel.htm
 
 
 Command
 SendMode
-SendMode Mode
-`
-/docs/commands/SendMode.htm
+`SendMode Mode
+`/docs/commands/SendMode.htm
 
 
 Flow
 SetBatchLines
-SetBatchLines, 20ms
+`SetBatchLines, 20ms
 SetBatchLines, LineCount
-`
-/docs/commands/SetBatchLines.htm
+`/docs/commands/SetBatchLines.htm
 
 
 Command
 SetControlDelay
-SetControlDelay, Delay
-`
-/docs/commands/SetControlDelay.htm
+`SetControlDelay, Delay
+`/docs/commands/SetControlDelay.htm
 
 
 Command
 SetDefaultMouseSpeed
-SetDefaultMouseSpeed, Speed
-`
-/docs/commands/SetDefaultMouseSpeed.htm
+`SetDefaultMouseSpeed, Speed
+`/docs/commands/SetDefaultMouseSpeed.htm
 
 
 Command
 SetEnv
-SetEnv, Var, Value
+`SetEnv, Var, Value
 Var = Value
-`
-/docs/commands/SetEnv.htm
+`/docs/commands/SetEnv.htm
 
 
 Command
 SetFormat
-SetFormat, NumberType, Format
-`
-/docs/commands/SetFormat.htm
+`SetFormat, NumberType, Format
+`/docs/commands/SetFormat.htm
 
 
 Command
 SetKeyDelay
-SetKeyDelay [, Delay, PressDuration, Play]
-`
-/docs/commands/SetKeyDelay.htm
+`SetKeyDelay [, Delay, PressDuration, Play]
+`/docs/commands/SetKeyDelay.htm
 
 
 Command
 SetMouseDelay
-SetMouseDelay, Delay [, Play]
-`
-/docs/commands/SetMouseDelay.htm
+`SetMouseDelay, Delay [, Play]
+`/docs/commands/SetMouseDelay.htm
 
 
 Command
 SetCapsLockState
-SetCapsLockState [, State]
-`
-/docs/commands/SetNumScrollCapsLockState.htm
+`SetCapsLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
 
 
 Command
 SetNumLockState
-SetNumLockState [, State]
-`
-/docs/commands/SetNumScrollCapsLockState.htm
+`SetNumLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
 
 
 Command
 SetScrollLockState
-SetScrollLockState [, State]
-`
-/docs/commands/SetNumScrollCapsLockState.htm
+`SetScrollLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
 
 
 Command
 SetRegView
-SetRegView, RegView
-`
-/docs/commands/SetRegView.htm
+`SetRegView, RegView
+`/docs/commands/SetRegView.htm
 
 
 Command
 SetStoreCapsLockMode
-SetStoreCapsLockMode, OnOff
-`
-/docs/commands/SetStoreCapslockMode.htm
+`SetStoreCapsLockMode, OnOff
+`/docs/commands/SetStoreCapslockMode.htm
 
 
 Flow
 SetTimer
-SetTimer [, Label, PeriodOnOffDelete, Priority]
-`
-/docs/commands/SetTimer.htm
+`SetTimer [, Label, PeriodOnOffDelete, Priority]
+`/docs/commands/SetTimer.htm
 
 
 Command
 SetTitleMatchMode
-SetTitleMatchMode, MatchMode    or    SetTitleMatchMode, Speed
-`
-/docs/commands/SetTitleMatchMode.htm
+`SetTitleMatchMode, MatchMode    or    SetTitleMatchMode, Speed
+`/docs/commands/SetTitleMatchMode.htm
 
 
 Command
 SetWinDelay
-SetWinDelay, Delay
-`
-/docs/commands/SetWinDelay.htm
+`SetWinDelay, Delay
+`/docs/commands/SetWinDelay.htm
 
 
 Command
 SetWorkingDir
-SetWorkingDir, DirName
-`
-/docs/commands/SetWorkingDir.htm
+`SetWorkingDir, DirName
+`/docs/commands/SetWorkingDir.htm
 
 
 Command
 Shutdown
-Shutdown, Code
-`
-/docs/commands/Shutdown.htm
+`Shutdown, Code
+`/docs/commands/Shutdown.htm
 
 
 Flow
 Sleep
-Sleep, DelayInMilliseconds
-`
-/docs/commands/Sleep.htm
+`Sleep, DelayInMilliseconds
+`/docs/commands/Sleep.htm
 
 
 Command
 Sort
-Sort, VarName [, Options]
-`
-/docs/commands/Sort.htm
+`Sort, VarName [, Options]
+`/docs/commands/Sort.htm
 
 
 Command
 SoundBeep
-SoundBeep [, Frequency, Duration]
-`
-/docs/commands/SoundBeep.htm
+`SoundBeep [, Frequency, Duration]
+`/docs/commands/SoundBeep.htm
 
 
 Command
 SoundGet
-SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]
-`
-/docs/commands/SoundGet.htm
+`SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]
+`/docs/commands/SoundGet.htm
 
 
 Command
 SoundGetWaveVolume
-SoundGetWaveVolume, OutputVar [, DeviceNumber]
-`
-/docs/commands/SoundGetWaveVolume.htm
+`SoundGetWaveVolume, OutputVar [, DeviceNumber]
+`/docs/commands/SoundGetWaveVolume.htm
 
 
 Command
 SoundPlay
-SoundPlay, Filename [, Wait]
-`
-/docs/commands/SoundPlay.htm
+`SoundPlay, Filename [, Wait]
+`/docs/commands/SoundPlay.htm
 
 
 Command
 SoundSet
-SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]
-`
-/docs/commands/SoundSet.htm
+`SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]
+`/docs/commands/SoundSet.htm
 
 
 Command
 SoundSetWaveVolume
-SoundSetWaveVolume, Percent [, DeviceNumber]
-`
-/docs/commands/SoundSetWaveVolume.htm
+`SoundSetWaveVolume, Percent [, DeviceNumber]
+`/docs/commands/SoundSetWaveVolume.htm
 
 
 Command
 SplashTextOn
-SplashTextOn [, Width, Height, Title, Text]
-`
-/docs/commands/SplashTextOn.htm
+`SplashTextOn [, Width, Height, Title, Text]
+`/docs/commands/SplashTextOn.htm
 
 
 Command
 SplashTextOff
-SplashTextOff
-`
-/docs/commands/SplashTextOn.htm
+`SplashTextOff
+`/docs/commands/SplashTextOn.htm
 
 
 Command
 SplitPath
-SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]
-`
-/docs/commands/SplitPath.htm
+`SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]
+`/docs/commands/SplitPath.htm
 
 
 Command
 StatusBarGetText
-StatusBarGetText, OutputVar [, Part#, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/StatusBarGetText.htm
+`StatusBarGetText, OutputVar [, Part#, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/StatusBarGetText.htm
 
 
 Command
 StatusBarWait
-StatusBarWait [, BarText, Timeout, Part#, WinTitle, WinText, Interval, ExcludeTitle, ExcludeText]
-`
-/docs/commands/StatusBarWait.htm
+`StatusBarWait [, BarText, Timeout, Part#, WinTitle, WinText, Interval, ExcludeTitle, ExcludeText]
+`/docs/commands/StatusBarWait.htm
 
 
 Function
 StrGet
-String := StrGet(Source [, Length] [, Encoding := None])
-`
-/docs/commands/StrGet.htm
+`String := StrGet(Source [, Length] [, Encoding := None])
+`/docs/commands/StrGet.htm
 
 
 Command
 StringCaseSense
-StringCaseSense, OnOffLocale
-`
-/docs/commands/StringCaseSense.htm
+`StringCaseSense, OnOffLocale
+`/docs/commands/StringCaseSense.htm
 
 
 Command
 StringGetPos
-StringGetPos, OutputVar, InputVar, SearchText [, Occurrence, Offset]
-`
-/docs/commands/StringGetPos.htm
+`StringGetPos, OutputVar, InputVar, SearchText [, Occurrence, Offset]
+`/docs/commands/StringGetPos.htm
 
 
 Command
 StringLeft
-StringLeft, OutputVar, InputVar, Count
-`
-/docs/commands/StringLeft.htm
+`StringLeft, OutputVar, InputVar, Count
+`/docs/commands/StringLeft.htm
 
 
 Command
 StringRight
-StringRight, OutputVar, InputVar, Count
-`
-/docs/commands/StringLeft.htm
+`StringRight, OutputVar, InputVar, Count
+`/docs/commands/StringLeft.htm
 
 
 Function
 StrLen
-Length := StrLen(String)
-`
-/docs/commands/StringLen.htm
+`Length := StrLen(String)
+`/docs/commands/StringLen.htm
 
 
 Function
 StringLen
-StringLen, OutputVar, InputVar
-`
-/docs/commands/StringLen.htm
+`StringLen, OutputVar, InputVar
+`/docs/commands/StringLen.htm
 
 
 Command
 StringLower
-StringLower, OutputVar, InputVar [, T]
-`
-/docs/commands/StringLower.htm
+`StringLower, OutputVar, InputVar [, T]
+`/docs/commands/StringLower.htm
 
 
 Command
 StringUpper
-StringUpper, OutputVar, InputVar [, T]
-`
-/docs/commands/StringLower.htm
+`StringUpper, OutputVar, InputVar [, T]
+`/docs/commands/StringLower.htm
 
 
 Command
 StringMid
-StringMid, OutputVar, InputVar, StartChar [, Count, L]
-`
-/docs/commands/StringMid.htm
+`StringMid, OutputVar, InputVar, StartChar [, Count, L]
+`/docs/commands/StringMid.htm
 
 
 Function
 StrReplace
-ReplacedStr := StrReplace(Haystack, SearchText [, ReplaceText, OutputVarCount, Limit := -1])
-`
-/docs/commands/StringReplace.htm
+`ReplacedStr := StrReplace(Haystack, SearchText [, ReplaceText, OutputVarCount, Limit := -1])
+`/docs/commands/StringReplace.htm
 
 
 Function
 StringReplace
-StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?]
-`
-/docs/commands/StringReplace.htm
+`StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?]
+`/docs/commands/StringReplace.htm
 
 
 Function
 StrSplit
-Array := StrSplit(String [, Delimiters, OmitChars, MaxParts := -1])  
-`
-/docs/commands/StringSplit.htm
+`Array := StrSplit(String [, Delimiters, OmitChars, MaxParts := -1])  
+`/docs/commands/StringSplit.htm
 
 
 Function
 StringSplit 
-StringSplit, OutputArray, InputVar [, Delimiters, OmitChars]
-`
-/docs/commands/StringSplit.htm
+`StringSplit, OutputArray, InputVar [, Delimiters, OmitChars]
+`/docs/commands/StringSplit.htm
 
 
 Command
 StringTrimLeft
-StringTrimLeft, OutputVar, InputVar, Count
-`
-/docs/commands/StringTrimLeft.htm
+`StringTrimLeft, OutputVar, InputVar, Count
+`/docs/commands/StringTrimLeft.htm
 
 
 Command
 StringTrimRight
-StringTrimRight, OutputVar, InputVar, Count
-`
-/docs/commands/StringTrimLeft.htm
+`StringTrimRight, OutputVar, InputVar, Count
+`/docs/commands/StringTrimLeft.htm
 
 
 Function
 StrPut
-StrPut(String [, Encoding := None])
+`StrPut(String [, Encoding := None])
 StrPut(String, Target [, Length] [, Encoding := None])
-`
-/docs/commands/StrPut.htm
+`/docs/commands/StrPut.htm
 
 
 Function
 SubStr
-NewStr := SubStr(String, StartingPos [, Length])
-`
-/docs/commands/SubStr.htm
+`NewStr := SubStr(String, StartingPos [, Length])
+`/docs/commands/SubStr.htm
 
 
 Flow
 Suspend
-Suspend [, Mode]
-`
-/docs/commands/Suspend.htm
+`Suspend [, Mode]
+`/docs/commands/Suspend.htm
 
 
 Flow
 Switch
-Switch [SwitchValue]
+`Switch [SwitchValue]
 {
     Case CaseValue1:
         Statements1
@@ -1775,298 +1532,258 @@ Switch [SwitchValue]
     Default:
         Statements3
 }
-`
-/docs/commands/Switch.htm
+`/docs/commands/Switch.htm
 
 
 Command
 SysGet
-SysGet, OutputVar, SubCommand [, Value]
+`SysGet, OutputVar, SubCommand [, Value]
 /SubCommands:  MonitorCount, MonitorPrimary, Monitor, MonitorWorkArea, MonitorName, N
-`
-/docs/commands/SysGet.htm
+`/docs/commands/SysGet.htm
 
 
 Flow
 Thread
-Thread, SubCommand [, Value1, Value2]
+`Thread, SubCommand [, Value1, Value2]
 /SubCommands:  NoTimers, Priority, Interrupt
-`
-/docs/commands/Thread.htm
+`/docs/commands/Thread.htm
 
 
 Flow
 Throw
-Throw [, Expression]
+`Throw [, Expression]
 Exception(Message [, What, Extra])
-`
-/docs/commands/Throw.htm
+`/docs/commands/Throw.htm
 
 
 Command
 ToolTip
-ToolTip [, Text, X, Y, WhichToolTip]
-`
-/docs/commands/ToolTip.htm
+`ToolTip [, Text, X, Y, WhichToolTip]
+`/docs/commands/ToolTip.htm
 
 
 Command
 Transform
-Transform, OutputVar, SubCommand, Value1 [, Value2]
+`Transform, OutputVar, SubCommand, Value1 [, Value2]
 /SubCommands:  Unicode, Deref, HTML, Asc, Chr, Mod, Exp, Sqrt, Log, Ln, Round, Ceil, Floor, Abs, Sin
 Cos, Tan, ASin, ACos, ATan, Pow, BitNot, BitAnd, BitOr, BitXOr, BitShiftLeft, BitShiftRight
-`
-/docs/commands/Transform.htm
+`/docs/commands/Transform.htm
 
 
 Command
 TrayTip
-TrayTip [, Title, Text, Seconds, Options]
-`
-/docs/commands/TrayTip.htm
+`TrayTip [, Title, Text, Seconds, Options]
+`/docs/commands/TrayTip.htm
 
 
 Function
 Trim
-Result :=  Trim(String, OmitChars := " `t")
-`
-/docs/commands/Trim.htm
+`Result :=  Trim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
 
 
 Function
 LTrim
-Result := LTrim(String, OmitChars := " `t")
-`
-/docs/commands/Trim.htm
+`Result := LTrim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
 
 
 Function
 RTrim
-Result := RTrim(String, OmitChars := " `t")
-`
-/docs/commands/Trim.htm
+`Result := RTrim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
 
 
 Flow
 Try
-Try {
+`Try {
     Statements
 }
-`
-/docs/commands/Try.htm
+`/docs/commands/Try.htm
 
 
 Flow
 Until
-Loop {
+`Loop {
     ...
 } Until Expression
-`
-/docs/commands/Until.htm
+`/docs/commands/Until.htm
 
 
 Command
 UrlDownloadToFile
-UrlDownloadToFile, URL, Filename
-`
-/docs/commands/URLDownloadToFile.htm
+`UrlDownloadToFile, URL, Filename
+`/docs/commands/URLDownloadToFile.htm
 
 
 Function
 VarSetCapacity
-GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity, FillByte])
-`
-/docs/commands/VarSetCapacity.htm
+`GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity, FillByte])
+`/docs/commands/VarSetCapacity.htm
 
 
 Flow
 While
-While Expression
+`While Expression
 While(Expression) { ... }
-`
-/docs/commands/While.htm
+`/docs/commands/While.htm
 
 
 Command
 WinActivate
-WinActivate [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinActivate.htm
+`WinActivate [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActivate.htm
 
 
 Command
 WinActivateBottom
-WinActivateBottom [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinActivateBottom.htm
+`WinActivateBottom [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActivateBottom.htm
 
 
 Function
 WinActive
-UniqueID := WinActive(WinTitle [, WinText, ExcludeTitle, ExcludeText])
-`
-/docs/commands/WinActive.htm
+`UniqueID := WinActive(WinTitle [, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/WinActive.htm
 
 
 Flow
 IfWinActive
-IfWinActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinActive.htm
+`IfWinActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActive.htm
 
 
 Flow
 IfWinNotActive
-IfWinNotActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinActive.htm
+`IfWinNotActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActive.htm
 
 
 Command
 WinClose
-WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinClose.htm
+`WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+`/docs/commands/WinClose.htm
 
 
 Function
 WinExist
-UniqueID := WinExist(WinTitle [, WinText, ExcludeTitle, ExcludeText])
-`
-/docs/commands/WinExist.htm
+`UniqueID := WinExist(WinTitle [, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/WinExist.htm
 
 
 Flow
 IfWinExist
-IfWinExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinExist.htm
+`IfWinExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinExist.htm
 
 
 Flow
 IfWinNotExist
-IfWinNotExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinExist.htm
+`IfWinNotExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinExist.htm
 
 
 Command
 WinGet
-WinGet, OutputVar [, SubCommand, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`WinGet, OutputVar [, SubCommand, WinTitle, WinText, ExcludeTitle, ExcludeText]
 /SubCommands:  ID, IDLast, PID, ProcessName, ProcessPath, Count, List, MinMax, ControlList
 ControlListHwnd, Transparent, TransColor, Style, ExStyle
-`
-/docs/commands/WinGet.htm
+`/docs/commands/WinGet.htm
 
 
 Command
 WinGetActiveStats
-WinGetActiveStats, Title, Width, Height, X, Y
-`
-/docs/commands/WinGetActiveStats.htm
+`WinGetActiveStats, Title, Width, Height, X, Y
+`/docs/commands/WinGetActiveStats.htm
 
 
 Command
 WinGetActiveTitle
-WinGetActiveTitle, OutputVar
-`
-/docs/commands/WinGetActiveTitle.htm
+`WinGetActiveTitle, OutputVar
+`/docs/commands/WinGetActiveTitle.htm
 
 
 Command
 WinGetClass
-WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinGetClass.htm
+`WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetClass.htm
 
 
 Command
 WinGetPos
-WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinGetPos.htm
+`WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetPos.htm
 
 
 Command
 WinGetText
-WinGetText, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinGetText.htm
+`WinGetText, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetText.htm
 
 
 Command
 WinGetTitle
-WinGetTitle, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinGetTitle.htm
+`WinGetTitle, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetTitle.htm
 
 
 Command
 WinHide
-WinHide [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinHide.htm
+`WinHide [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinHide.htm
 
 
 Command
 WinKill
-WinKill [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinKill.htm
+`WinKill [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+`/docs/commands/WinKill.htm
 
 
 Command
 WinMaximize
-WinMaximize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinMaximize.htm
+`WinMaximize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMaximize.htm
 
 
 Command
 WinMenuSelectItem
-WinMenuSelectItem, WinTitle, WinText, Menu [, SubMenu1, SubMenu2, SubMenu3, SubMenu4, SubMenu5, SubMenu6, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinMenuSelectItem.htm
+`WinMenuSelectItem, WinTitle, WinText, Menu [, SubMenu1, SubMenu2, SubMenu3, SubMenu4, SubMenu5, SubMenu6, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMenuSelectItem.htm
 
 
 Command
 WinMinimize
-WinMinimize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinMinimize.htm
+`WinMinimize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMinimize.htm
 
 
 Command
 WinMinimizeAll
-WinMinimizeAll
-`
-/docs/commands/WinMinimizeAll.htm
+`WinMinimizeAll
+`/docs/commands/WinMinimizeAll.htm
 
 
 Command
 WinMinimizeAllUndo
-WinMinimizeAllUndo
-`
-/docs/commands/WinMinimizeAll.htm
+`WinMinimizeAllUndo
+`/docs/commands/WinMinimizeAll.htm
 
 
 Command
 WinMove
-WinMove, WinTitle, WinText, X, Y [, Width, Height, ExcludeTitle, ExcludeText]    or    WinMove, X, Y
-`
-/docs/commands/WinMove.htm
+`WinMove, WinTitle, WinText, X, Y [, Width, Height, ExcludeTitle, ExcludeText]    or    WinMove, X, Y
+`/docs/commands/WinMove.htm
 
 
 Command
 WinRestore
-WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinRestore.htm
+`WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinRestore.htm
 
 
 Command
 WinSet
-WinSet, SubCommand, Value [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`WinSet, SubCommand, Value [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 /SubCommands:  AlwaysOnTop, Buttom, Top, Disable, Enable, Redraw, Style, ExStyle
               Region, Transparent, TransColor
 /docs/commands/WinSet.htm
@@ -2074,485 +1791,416 @@ WinSet, SubCommand, Value [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 
 Command
 WinSetTitle
-WinSetTitle, NewTitle
+`WinSetTitle, NewTitle
 WinSetTitle, WinTitle, WinText, NewTitle [, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinSetTitle.htm
+`/docs/commands/WinSetTitle.htm
 
 
 Command
 WinShow
-WinShow [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinShow.htm
+`WinShow [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinShow.htm
 
 
 Command
 WinWait
-WinWait [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinWait.htm
+`WinWait [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWait.htm
 
 
 Command
 WinWaitActive
-WinWaitActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinWaitActive.htm
+`WinWaitActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitActive.htm
 
 
 Command
 WinWaitNotActive
-WinWaitNotActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinWaitActive.htm
+`WinWaitNotActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitActive.htm
 
 
 Command
 WinWaitClose
-WinWaitClose [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
-`
-/docs/commands/WinWaitClose.htm
+`WinWaitClose [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitClose.htm
 
 
 Command
 #AllowSameLineComments
-#AllowSameLineComments
-`
-/docs/commands/_AllowSameLineComments.htm
+`#AllowSameLineComments
+`/docs/commands/_AllowSameLineComments.htm
 
 
 Command
 #ClipboardTimeout
-#ClipboardTimeout Milliseconds
-`
-/docs/commands/_ClipboardTimeout.htm
+`#ClipboardTimeout Milliseconds
+`/docs/commands/_ClipboardTimeout.htm
 
 
 Command
 #CommentFlag
-#CommentFlag NewString
-`
-/docs/commands/_CommentFlag.htm
+`#CommentFlag NewString
+`/docs/commands/_CommentFlag.htm
 
 
 Command
 #ErrorStdOut
-#ErrorStdOut
-`
-/docs/commands/_ErrorStdOut.htm
+`#ErrorStdOut
+`/docs/commands/_ErrorStdOut.htm
 
 
 Command
 #EscapeChar
-#EscapeChar NewChar
-`
-/docs/commands/_EscapeChar.htm
+`#EscapeChar NewChar
+`/docs/commands/_EscapeChar.htm
 
 
 Command
 #HotkeyInterval
-#HotkeyInterval Milliseconds
-`
-/docs/commands/_HotkeyInterval.htm
+`#HotkeyInterval Milliseconds
+`/docs/commands/_HotkeyInterval.htm
 
 
 Command
 #HotkeyModifierTimeout
-#HotkeyModifierTimeout Milliseconds
-`
-/docs/commands/_HotkeyModifierTimeout.htm
+`#HotkeyModifierTimeout Milliseconds
+`/docs/commands/_HotkeyModifierTimeout.htm
 
 
 Command
 #Hotstring
-#Hotstring NoMouse       |    #Hotstring EndChars NewChars
+`#Hotstring NoMouse       |    #Hotstring EndChars NewChars
 #Hotstring NewOptions    |
-`
-/docs/commands/_Hotstring.htm
+`/docs/commands/_Hotstring.htm
 
 
 Command
 #If
-#If [Expression]
-`
-/docs/commands/_If.htm
+`#If [Expression]
+`/docs/commands/_If.htm
 
 
 Command
 #IfTimeout
-#IfTimeout Timeout
-`
-/docs/commands/_IfTimeout.htm
+`#IfTimeout Timeout
+`/docs/commands/_IfTimeout.htm
 
 
 Command
 #IfWinActive
-#IfWinActive [WinTitle, WinText]
-`
-/docs/commands/_IfWinActive.htm
+`#IfWinActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
 
 
 Command
 #IfWinExist
-#IfWinExist [WinTitle, WinText]
-`
-/docs/commands/_IfWinActive.htm
+`#IfWinExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
 
 
 Command
 #IfWinNotActive
-#IfWinNotActive [WinTitle, WinText]
-`
-/docs/commands/_IfWinActive.htm
+`#IfWinNotActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
 
 
 Command
-#IfWinNotExist 
-#IfWinNotExist [WinTitle, WinText]
-`
-/docs/commands/_IfWinActive.htm
+#IfWinNotExist
+`#IfWinNotExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
 
 
 Flow
 #Include
-#Include FileOrDirName    or    #Include <LibName>
-`
-/docs/commands/_Include.htm
+`#Include FileOrDirName    or    #Include <LibName>
+`/docs/commands/_Include.htm
 
 
 Flow
 #IncludeAgain
-#IncludeAgain FileOrDirName
-`
-/docs/commands/_Include.htm
+`#IncludeAgain FileOrDirName
+`/docs/commands/_Include.htm
 
 
 Command
 #InputLevel
-#InputLevel [Level]
-`
-/docs/commands/_InputLevel.htm
+`#InputLevel [Level]
+`/docs/commands/_InputLevel.htm
 
 
 Command
 #InstallKeybdHook
-#InstallKeybdHook
-`
-/docs/commands/_InstallKeybdHook.htm
+`#InstallKeybdHook
+`/docs/commands/_InstallKeybdHook.htm
 
 
 Command
 #InstallMouseHook
-#InstallMouseHook
-`
-/docs/commands/_InstallMouseHook.htm
+`#InstallMouseHook
+`/docs/commands/_InstallMouseHook.htm
 
 
 Command
 #KeyHistory
-#KeyHistory MaxEvents
-`
-/docs/commands/_KeyHistory.htm
+`#KeyHistory MaxEvents
+`/docs/commands/_KeyHistory.htm
 
 
 Command
 #MaxHotkeysPerInterval
-#MaxHotkeysPerInterval Value
-`
-/docs/commands/_MaxHotkeysPerInterval.htm
+`#MaxHotkeysPerInterval Value
+`/docs/commands/_MaxHotkeysPerInterval.htm
 
 
 Command
 #MaxMem
-#MaxMem Megabytes
-`
-/docs/commands/_MaxMem.htm
+`#MaxMem Megabytes
+`/docs/commands/_MaxMem.htm
 
 
 Command
 #MaxThreads
-#MaxThreads Value
-`
-/docs/commands/_MaxThreads.htm
+`#MaxThreads Value
+`/docs/commands/_MaxThreads.htm
 
 
 Command
 #MaxThreadsBuffer
-#MaxThreadsBuffer OnOff
-`
-/docs/commands/_MaxThreadsBuffer.htm
+`#MaxThreadsBuffer OnOff
+`/docs/commands/_MaxThreadsBuffer.htm
 
 
 Command
 #MaxThreadsPerHotkey
-#MaxThreadsPerHotkey Value
-`
-/docs/commands/_MaxThreadsPerHotkey.htm
+`#MaxThreadsPerHotkey Value
+`/docs/commands/_MaxThreadsPerHotkey.htm
 
 
 Command
 #MenuMaskKey
-#MenuMaskKey KeyName
-`
-/docs/commands/_MenuMaskKey.htm
+`#MenuMaskKey KeyName
+`/docs/commands/_MenuMaskKey.htm
 
 
 Command
 #NoEnv
-#NoEnv
-`
-/docs/commands/_NoEnv.htm
+`#NoEnv
+`/docs/commands/_NoEnv.htm
 
 
 Command
 #NoTrayIcon
-#NoTrayIcon
-`
-/docs/commands/_NoTrayIcon.htm
+`#NoTrayIcon
+`/docs/commands/_NoTrayIcon.htm
 
 
 Command
 #Persistent
-#Persistent
-`
-/docs/commands/_Persistent.htm
+`#Persistent
+`/docs/commands/_Persistent.htm
 
 
 Command
 #SingleInstance
-#SingleInstance [ForceIgnoreOff]
-`
-/docs/commands/_SingleInstance.htm
+`#SingleInstance [ForceIgnoreOff]
+`/docs/commands/_SingleInstance.htm
 
 
 Command
 #UseHook
-#UseHook [OnOff]
-`
-/docs/commands/_UseHook.htm
+`#UseHook [OnOff]
+`/docs/commands/_UseHook.htm
 
 
 Command
 #Warn
-#Warn [WarningType, WarningMode]
-`
-/docs/commands/_Warn.htm
+`#Warn [WarningType, WarningMode]
+`/docs/commands/_Warn.htm
 
 
 Command
 #WinActivateForce
-#WinActivateForce
-`
-/docs/commands/_WinActivateForce.htm
+`#WinActivateForce
+`/docs/commands/_WinActivateForce.htm
 
 
 Function
 LV_Add
-LV_Add([Options, Field1, Field2, ...])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_Add([Options, Field1, Field2, ...])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_Insert
-LV_Insert(RowNumber [, Options, Col1, Col2, ...])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_Insert(RowNumber [, Options, Col1, Col2, ...])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_Modify
-LV_Modify(RowNumber [, Options, NewCol1, NewCol2, ...])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_Modify(RowNumber [, Options, NewCol1, NewCol2, ...])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_Delete
-LV_Delete([RowNumber])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_Delete([RowNumber])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_ModifyCol
-LV_ModifyCol([ColumnNumber, Options, ColumnTitle])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_ModifyCol([ColumnNumber, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_InsertCol
-LV_InsertCol(ColumnNumber [, Options, ColumnTitle])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_InsertCol(ColumnNumber [, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_DeleteCol
-LV_DeleteCol(ColumnNumber)
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_DeleteCol(ColumnNumber)
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_GetNext
-LV_GetNext([StartingRowNumber, RowType])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_GetNext([StartingRowNumber, RowType])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_GetText
-LV_GetText(OutputVar, RowNumber [, ColumnNumber])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_GetText(OutputVar, RowNumber [, ColumnNumber])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 LV_SetImageList
-LV_SetImageList(ImageListID [, IconType])
-`
-/docs/commands/ListView.htm#[MemberName]
+`LV_SetImageList(ImageListID [, IconType])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 IL_Create
-IL_Create([InitialCount, GrowCount, LargeIcons])
-`
-/docs/commands/ListView.htm#[MemberName]
+`IL_Create([InitialCount, GrowCount, LargeIcons])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 IL_Add
-IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon])
-`
-/docs/commands/ListView.htm#[MemberName]
+`IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon])
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 IL_Destory
-IL_Destroy(ImageListID)
-`
-/docs/commands/ListView.htm#[MemberName]
+`IL_Destroy(ImageListID)
+`/docs/commands/ListView.htm#[MemberName]
 
 
 Function
 TV_Add
-TV_Add(Name, [ParentItemID, Options])
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_Add(Name, [ParentItemID, Options])
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_Modify
-TV_Modify(ItemID [, Options, NewName])
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_Modify(ItemID [, Options, NewName])
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_Delete
-TV_Delete([ItemID])
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_Delete([ItemID])
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetSelection
-TV_GetSelection()
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetSelection()
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetCount
-TV_GetCount()
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetCount()
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetParent
-TV_GetParent(ItemID)
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetParent(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetChild
-TV_GetChild(ParentItemID)
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetChild(ParentItemID)
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetPrev
-TV_GetPrev(ItemID)
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetPrev(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_GetNext
-TV_GetNext([ItemID, ItemType])
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_GetNext([ItemID, ItemType])
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_Get
-TV_Get(ItemID, Attribute)
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_Get(ItemID, Attribute)
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 TV_SetImageList
-TV_SetImageList(ImageListID [, IconType])
-`
-/docs/commands/TreeView.htm#[MemberName]
+`TV_SetImageList(ImageListID [, IconType])
+`/docs/commands/TreeView.htm#[MemberName]
 
 
 Function
 ObjRawGet
-Value := ObjRawGet(Object, Key)
-`
-/docs/objects/Object.htm#[MemberName]
+`Value := ObjRawGet(Object, Key)
+`/docs/objects/Object.htm#[MemberName]
 
 
 Function
 ObjRawSet
-ObjRawSet(Object, Key, Value)
-`
-/docs/objects/Object.htm#[MemberName]
+`ObjRawSet(Object, Key, Value)
+`/docs/objects/Object.htm#[MemberName]
 
 
 Function
 ObjGetBase
-BaseObject := ObjGetBase(Object)
-`
-/docs/objects/Object.htm#[MemberName]
+`BaseObject := ObjGetBase(Object)
+`/docs/objects/Object.htm#[MemberName]
 
 
 Function
 ObjSetBase
-ObjSetBase(Object, BaseObject)
-`
-/docs/objects/Object.htm#[MemberName]
+`ObjSetBase(Object, BaseObject)
+`/docs/objects/Object.htm#[MemberName]
 
 
 Function
 Object
-AssocArray := Object("KeyA", ValueA, ...)
+`AssocArray := Object("KeyA", ValueA, ...)
 AssocArray := {KeyA: ValueA, ...)
-`
-/docs/Objects.htm#Usage_Associative_Arrays
+`/docs/Objects.htm#Usage_Associative_Arrays
 
 
 Function
 Array
-LinearArray := Array("Value1", "Value2", ...)
-`
-/docs/Objects.htm#Usage_Simple_Arrays
+`LinearArray := Array("Value1", "Value2", ...)
+`/docs/Objects.htm#Usage_Simple_Arrays

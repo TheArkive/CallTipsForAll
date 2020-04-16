@@ -1,240 +1,209 @@
 0 FileObject FileObjByFunc ([\w\.]+)[ \t]*:=[ \t]*(FileOpen\x28)
-`
-/docs/objects/File.htm
+`/docs/objects/File.htm
 
 
 Property
 Pos
-FileObj.Pos (R/W)
-`
-/docs/objects/File.htm#[MemberName]
+`FileObj.Pos (R/W)
+`/docs/objects/File.htm#[MemberName]
 
 
 Property
 Length
-FileObj.Length (R/W)
-`
-/docs/objects/File.htm#[MemberName]
+`FileObj.Length (R/W)
+`/docs/objects/File.htm#[MemberName]
 
 
 Property
 AtEOF
-FileObj.AtEOF (R/O)
-`
-/docs/objects/File.htm#[MemberName]
+`FileObj.AtEOF (R/O)
+`/docs/objects/File.htm#[MemberName]
 
 
 Property
 Encoding
-FileObj.Encoding (R/W)
-`
-/docs/objects/File.htm#[MemberName]
+`FileObj.Encoding (R/W)
+`/docs/objects/File.htm#[MemberName]
 
 
 Property
 __Handle
-FileObj.Handle (R/O)
-`
-/docs/objects/File.htm#Handle
+`FileObj.Handle (R/O)
+`/docs/objects/File.htm#Handle
 
 
 Method
 Close
-FileObj.Close()
+`FileObj.Close()
 /Closes FileObj and removes references to it.
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 Read
-FileObj.Read([Length])
+`FileObj.Read([Length])
 /Reads/returns specified number of characters and advances the file pointer.
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 Write
-FileObj.Write(String)
+`FileObj.Write(String)
 /Returns number of bytes (not characters) written.
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 ReadLine
-FileObj.ReadLine()
+`FileObj.ReadLine()
 /Reads a (current?) line of text and advances the file pointer.
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 WriteLine
-FileObj.WriteLine([String])
+`FileObj.WriteLine([String])
 /Writes a string of characters followed by ``n or ``r``n depending on the flags used to open the file. Advances the file pointer.
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 ReadUInt
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadInt
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadInt64
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadShort
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadUShort
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadChar
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadUChar
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadDouble
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 ReadFloat
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Reads the specified number type and advances the pointer.  Returns number of bytes read.
-`
-/docs/objects/File.htm#ReadNum
+`/docs/objects/File.htm#ReadNum
 
 
 Method
 WriteUInt
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteInt
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteInt64
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteShort
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteUShort
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteChar
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteUChar
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteDouble
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 WriteFloat
-FileObj.[MemberName]()
+`FileObj.[MemberName]()
 Writes a number to the file and advances the file pointer.  Returns number of bytes written.
-`
-/docs/objects/File.htm#WriteNum
+`/docs/objects/File.htm#WriteNum
 
 
 Method
 Seek
-File.Seek(Distance [, Origin := 0])
+`File.Seek(Distance [, Origin := 0])
 File.Position := Distance
 File.Pos := Distance
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
 
 
 Method
 Tell
-Pos := File.Tell()
+`Pos := File.Tell()
 Pos := File.Position
 Pos := File.Pos
-`
-/docs/objects/File.htm#[MemberName]
+`/docs/objects/File.htm#[MemberName]
