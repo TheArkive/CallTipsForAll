@@ -24,6 +24,10 @@ Click on call tips to invoke the CHM and link directly to the corresponding page
 For now, change user settings in the script.  GUI coming later.
 
 ## Latest updates
+* Reworked parsing objects, now more efficient and less lag
+* Now, keywords can have multiple call tips, use UP/DOWN arrows to scroll
+* reworked the call tip file format, now user can define multiple custom call tips per keyword
+
 * AutoHotkey v1 and v2 call tips are ready!  Call Tips should be around 90% complete on both.
 * AHK v1 version of the script is now ready.
 
@@ -59,7 +63,7 @@ iconMenu(ItemName, ItemPos, MenuObj) { ... } ; MenuObject
 MenuObj is detected as a Menu object.
 ```
 
-AHK v2 (in progress for next update)
+AHK v2
 * ListView object from `GuiObj["item"]`
 ```
 LvObj := GuiObj["item"] ; ListViewObject
@@ -67,7 +71,7 @@ LvObj := GuiObj["item"] ; ListViewObject
 LvObj is detected as a ListView object
 ```
 
-AHK v2 (in progress for next update)
+AHK v2
 * TreeView object from `GuiObj["item"]`
 ```
 TvObj := GuiObj["item"] ; TreeViewObject
