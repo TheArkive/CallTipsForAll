@@ -7,7 +7,7 @@ Currentlly only AHK v2 call tips have been created.  AHK v1 call tips will be av
 
 AutoHotkey CHM help files are included in this release, but you can of course replace them with your local copy if desired.
 
-If you find any info missing that should be added in the call tips please add an issue and I'll try to address it.  Keep in mind certain things are more tricky, like trying to regocnize ListView and TreeView objects in AHK v2.
+If you find any info missing that should be added in the call tips please add an issue and I'll try to address it.  Keep in mind certain things are more tricky, but I'll try my best.
 
 ## Basic Usage
 
