@@ -1556,12 +1556,11 @@ Return
 	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
 		
 	; }
-	If (useToolTip)
-		Tooltip
-	Else {
-		Gui, CallTip:Destroy
-		callTipGui := "", curIndex := "", fullDescArr := "", CallTipHwnd := ""
-	}
+	Gui, CallTip:Destroy
+	callTipGui := "", curIndex := "", fullDescArr := "", CallTipHwnd := ""
+	
+	
+	Tooltip
 return
 
 Up::

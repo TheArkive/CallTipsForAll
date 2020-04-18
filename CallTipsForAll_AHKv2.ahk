@@ -1231,7 +1231,7 @@ GetCustomFunctions(curDocArr) { ; v1
 }
 
 ; sillyFunc() {
-	; str := "asdf ```"  \" asdf" ;
+	; str := "asdf ```"  \" asdf" ; ArrayObject
 ; }
 
 ; ================================================================
@@ -1561,9 +1561,10 @@ Return
 	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
 		
 	; }
-	If (IsObject(callTipGui))
-		callTipGui.Destroy(), callTipGui := "", curIndex := "", fullDescArr := ""
-	; Else If (useToolTip)
+	If (IsObject(callTipGui)) {
+		callTipGui.Destroy()
+		callTipGui := "", curIndex := "", fullDescArr := ""
+	}
 	Tooltip
 return
 
@@ -1616,8 +1617,10 @@ return
 	} Else If (closeTipOnFocusChange) { ; close call tip when text editor loses focus
 		If (useToolTip)
 			ToolTip
-		Else If (IsObject(callTipGui))
-			callTipGui.Destroy(), callTipGui := "", curIndex := "", fullDescArr := ""
+		Else If (IsObject(callTipGui)) {
+			callTipGui.Destroy()
+			callTipGui := "", curIndex := "", fullDescArr := ""
+		}
 	}
 return
 
