@@ -62,21 +62,17 @@ iconMenu(ItemName, ItemPos, MenuObj) { ... } ; MenuObject
 MenuObj is detected as a Menu object.
 ```
 
-AHK v2
-* ListView object from `GuiObj["item"]`
+AHK v2 Language Definition Update
+* All defined objects in the call tip language files can now be detected by comments.  Examples:
 ```
-LvObj := GuiObj["item"] ; ListViewObject
+MapObj := UnknownObj["UnknownItem"] ; MapObject
+    ; MapObj is detected as a MapObject object
 
-LvObj is detected as a ListView object
+Array := KnownObject["UnknownItem"] ; ArrayObject
+    ; Array is detected as an ArrayObject
 ```
 
-AHK v2
-* TreeView object from `GuiObj["item"]`
-```
-TvObj := GuiObj["item"] ; TreeViewObject
-
-TvObj is detected as a TreeView object
-```
+This is a workaround for being able ot use call tips on objects that are extracted from user created objects, which is just a convention created by the user, and not an actual creation of the object as documented by the language.
 
 ## For Best Results...
 * Don't reuse a variable name as a different type or object than previously used
