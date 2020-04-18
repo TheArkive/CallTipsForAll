@@ -1,6 +1,6 @@
 2 ListViewObject ListViewByAdd ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28"ListView")
 2 ListViewObject ListViewByAddSpec ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.AddListView\x28)
-2 ListViewObject ListViewByItem ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B.*[ \t]+;[ \t]*ListViewObject)
+2 ListViewObject ListViewByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*ListViewObject)
 `/docs/commands/ListView.htm
 
 

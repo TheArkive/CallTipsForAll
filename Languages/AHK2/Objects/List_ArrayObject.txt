@@ -2,6 +2,7 @@
 0 ArrayObject ArrayByStrSplit ([\w\.]+)[ \t]*:=[ \t]*(StrSplit\x28)
 0 ArrayObject ArrayByShortHand ([\w\.]+)[ \t]*:=[ \t]*(\x5B)
 0 ArrayObject ArrayBySysGetIP ([\w\.]+)[ \t]*:=[ \t]*(SysGetIPAddresses\x28)
+0 ArrayObject ArrayByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*ArrayObject)
 `/docs/objects/Array.htm
 
 
