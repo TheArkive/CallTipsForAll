@@ -32,6 +32,7 @@ For now, change user settings in the script.  GUI coming later.
 * AHK v1 version of the script is now ready.
 
 ## To-Do List
+* Attempt to detect literal ``` `" and `\"` ``` in strings
 * Add auto-complete as CTRL + ALT + Space or automatic
 * Add GUI to save user settings and easily switch languages
 * enable #INCLUDE processing for custom functions and objects
@@ -78,5 +79,4 @@ TvObj is detected as a TreeView object
 ```
 
 ## For Best Results...
-* Try not to use literal quotes within strings
-* Don't reuse a variable name if the new assignment is a different type/object
+* Don't reuse a variable name as a different type or object than previously used
