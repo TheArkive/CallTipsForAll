@@ -827,7 +827,7 @@ paramData(lineText,curCol,funcName,funcStart,paramStr) {
 ; assists the script in identifying elements properly, since RegEx is used.
 ; ================================================================
 StringOutline(sInput) {
-	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" Chr(96) Chr(96),"**")		; blank out literal `" first
+	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" "\\" Chr(34),"**")			; blank out literal `" first
 	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
@@ -1231,7 +1231,7 @@ GetCustomFunctions(curDocArr) { ; v1
 }
 
 ; sillyFunc() {
-	; str := "asdf ```" asdf" ;
+	; str := "asdf ```"  \" asdf" ;
 ; }
 
 ; ================================================================
@@ -1591,7 +1591,7 @@ return
 
 ~LButton::
 	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		; debugToolTip()
+		debugToolTip()
 		
 		hCtl := editorCtlHwnd(hEditorWin,cType,cClassNN)
 		
