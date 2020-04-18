@@ -1591,7 +1591,7 @@ return
 
 ~LButton::
 	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		debugToolTip()
+		; debugToolTip()
 		
 		hCtl := editorCtlHwnd(hEditorWin,cType,cClassNN)
 		
