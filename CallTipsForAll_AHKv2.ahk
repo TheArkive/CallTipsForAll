@@ -648,6 +648,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		outX += -11, outY += 20
 		ctlHwnd := editorCtlHwnd(hEditorWin,eType,cClassNN)
 		
+		If (callTipGui)
+			callTipGui.Destroy()
+		
 		callTipGui := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin) ; Splitpath drive
 		callTipGui.SetFont("s" fontSize,fontFace)
 		maxW := (SysGet(78) < dims.w) ? "w" maxWidth : ""
@@ -824,8 +827,8 @@ paramData(lineText,curCol,funcName,funcStart,paramStr) {
 ; assists the script in identifying elements properly, since RegEx is used.
 ; ================================================================
 StringOutline(sInput) {
-	curLineNoStr := sInput
-	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {
+	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" Chr(96) Chr(96),"**")		; blank out literal `" first
+	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
 			Loop match.Len(1)
@@ -983,7 +986,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 										curPos := StrLen(curDocText)
 								} ; end while
 							}
-						}
+						} ; end for
 					} ; end for
 				}
 			
@@ -1227,6 +1230,10 @@ GetCustomFunctions(curDocArr) { ; v1
 	return funcList
 }
 
+; sillyFunc() {
+	; str := "asdf ```" asdf" ;
+; }
+
 ; ================================================================
 ; Reads current document and caret position and refreshes ObjectList, FunctionList,
 ; and CustomFunctions.
@@ -1256,6 +1263,10 @@ ProcInput() {
 	
 	curLineText := curDocArr[curLine]
 	curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
+	
+	; msgbox curLineNoStr
+	; WinActivate "ahk_id " hEditorWin
+	
 	curPhrase := getCurPhrase(curLineNoStr,curCol,curPhraseStart) ; curPhraseStart: ByRef
 	curPhraseObj := getCurPhraseObj(curLineNoStr,curCol,curPhraseObjStart)
 	parentObj := GetParentObj(curPhraseObj,curMethProp)
@@ -1552,8 +1563,8 @@ Return
 	; }
 	If (IsObject(callTipGui))
 		callTipGui.Destroy(), callTipGui := "", curIndex := "", fullDescArr := ""
-	Else If (useToolTip)
-		Tooltip
+	; Else If (useToolTip)
+	Tooltip
 return
 
 Up::

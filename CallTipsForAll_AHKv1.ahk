@@ -811,8 +811,8 @@ paramData(lineText,curCol,funcName,funcStart,paramStr) {
 ; assists the script in identifying elements properly, since RegEx is used.
 ; ================================================================
 StringOutline(sInput) {
-	curLineNoStr := sInput
-	While (result := RegExMatch(curLineNoStr,"O)(" Chr(34) ".*?" Chr(34) ")",match)) {
+	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" Chr(96) Chr(96),"**")		; blank out literal `" first
+	While (result := RegExMatch(curLineNoStr,"O)(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps to properly match strings
 		repStr := ""
 		If (IsObject(match)) {
 			Loop % match.Len(1)
