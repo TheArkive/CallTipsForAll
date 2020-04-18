@@ -24,6 +24,7 @@ Click on call tips to invoke the CHM and link directly to the corresponding page
 For now, change user settings in the script.  GUI coming later.
 
 ## Latest updates
+* Attempt to detect literal ``` `" and `\"` ``` in strings
 * Reworked parsing objects, now more efficient and less lag
 * Now, keywords can have multiple call tips, use UP/DOWN arrows to scroll
 * reworked the call tip file format, now user can define multiple custom call tips per keyword
@@ -32,7 +33,6 @@ For now, change user settings in the script.  GUI coming later.
 * AHK v1 version of the script is now ready.
 
 ## To-Do List
-* Attempt to detect literal ``` `" and `\"` ``` in strings
 * Add auto-complete as CTRL + ALT + Space or automatic
 * Add GUI to save user settings and easily switch languages
 * enable #INCLUDE processing for custom functions and objects
