@@ -33,7 +33,7 @@ Use Settings window from the system tray to change user settings.  Enter the mai
 
 Some matches require a "cheat code" to get the call tips working.  Here they are:
 
-AHK v2
+AHK v2 (this is planned for AHK v1 also)
 * Use comment to identify objects:
 ```
 ; Array
