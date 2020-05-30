@@ -57,3 +57,4 @@ This is a workaround for being able ot use call tips on objects that are extract
 
 ## For Best Results...
 * Don't reuse a variable name as a different type or object than previously used
+* Be sure to use some indenting on the body of your functions and classes
