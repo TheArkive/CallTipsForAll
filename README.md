@@ -21,7 +21,7 @@ CTRL+SHIFT+Space or Double-click   =   invoke call tip
 Click on call tips to invoke the CHM and link directly to the corresponding page.
 ```
 ### User Settings
-Use Settings window to change settings window for now.  Enter the main EXE of the program and the ClassNN of the control preferred for use (minus the number, ie. "scintilla", not "scintilla1").
+Use Settings window from the system tray to change user settings.  Enter the main EXE of the program and the ClassNN of the control preferred for use (minus the number, ie. "scintilla", not "scintilla1").
 
 ## To-Do List
 * Add auto-complete as CTRL + ALT + Space or automatic
