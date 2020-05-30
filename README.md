@@ -35,7 +35,8 @@ Some matches require a "cheat code" to get the call tips working.  Here they are
 
 AHK v2
 * Use comment to identify objects:
-```; Array
+```
+; Array
 ; Buffer
 ; File
 ; BoundFunc
