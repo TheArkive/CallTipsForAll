@@ -188,7 +188,7 @@ unwrapText() {
 }
 
 ; ======================================================================================
-; input hook - for processing during user input - i prefer hotkey to invoke call tip. é è
+; input hook - for processing during user input - i prefer hotkey to invoke call tip.
 ; ======================================================================================
 
 ; IH := InputHook("V I1","","") ; options , endKeys , matchList
