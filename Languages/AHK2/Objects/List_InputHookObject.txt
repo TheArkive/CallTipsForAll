@@ -1,6 +1,6 @@
 0 InputHookObject InputHookFunc ([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
-0 InputHookObject InputHookByComment [\w]+\(([\w]+).*(; InputHookObject)
-0 InputHookObject InputHookByComment2 ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*InputHookObject)
+0 InputHookObject InputHookByComment [\w]+\(([\w]+).*(; InputHook[\w ]*)
+0 InputHookObject InputHookByComment2 ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*InputHook[\w ]*)
 `/docs/commands/InputHook.htm
 
 

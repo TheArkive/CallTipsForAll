@@ -1,8 +1,8 @@
 0 MenuObject MenuCreate ([\w\.]+)[ \t]*:=[ \t]*(MenuCreate\x28)
 0 MenuObject MenuFromHandle ([\w\.]+)[ \t]*:=[ \t]*(MenuFromHandle\x28)
 0 MenuObject MenuFromVar ([\w\.]+)[ \t]*:=[ \t]*(A_TrayMenu)
-0 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; MenuObject)$
-0 MenuObject MenuByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*MenuObject)
+0 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; Menu[\w ]*)
+0 MenuObject MenuByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Menu[\w ]*)
 1 MenuObject MenuFromObj ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.MenuBar)
 `/docs/objects/Menu.htm
 

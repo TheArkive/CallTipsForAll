@@ -1,4 +1,4 @@
-0 Object BasicObj ([\w\.]+)[ \t]*:=[ \t]*(\x7B\x7D)
+0 Object BasicObj ([\w\.]+)[ \t]*:=[ \t]*(\x7B)
 0 Object ObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Object)
 `/docs/objects/Object.htm
 

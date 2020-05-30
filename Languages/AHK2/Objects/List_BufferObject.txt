@@ -1,6 +1,6 @@
 0 BufferObject BufferByAlloc ([\w\.]+)[ \t]*:=[ \t]*(BufferAlloc\x28)
 0 BufferObject BufferByClipboard ([\w\.]+)[ \t]*:=[ \t]*(ClipboardAll\x28)
-0 BufferObject BufferByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*BufferObject)
+0 BufferObject BufferByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Buffer[\w ]*)
 1 BufferObject BufferByRawRead ([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawRead\x28)
 1 BufferObject BufferByRawWrite ([\w\.]+)[ \t]*:=[ \t]*({FileObject}\.RawWrite\x28)
 `/docs/objects/Buffer.htm

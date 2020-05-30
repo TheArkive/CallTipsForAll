@@ -1,5 +1,6 @@
 0 GuiControlObject GuiControlFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiControlFromHwnd\x28)
-0 GuiControlObject GuiControlByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*GuiControlObject)
+0 GuiControlObject GuiControlByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*GuiControl[\w ]*)
+0 GuiControlObject GuiControlByCallback [\w]+\x28([\w]+).*?\x29(.*[ \t]+;[ \t]*GuiControl[\w ]*)
 1 GuiControlObject GuiControlByItem ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)
 1 GuiControlObject GuiControlByMethod ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28)
 `/docs/objects/GuiControl.htm

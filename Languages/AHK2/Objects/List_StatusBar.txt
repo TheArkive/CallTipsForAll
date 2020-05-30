@@ -1,6 +1,6 @@
 2 StatusBarObject StatusBarByAdd ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28"StatusBar")
 2 StatusBarObject StatusBarByAddSpec ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.AddStatusBar\x28)
-2 StatusBarObject StatusBarByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*StatusBarObject)
+0 StatusBarObject StatusBarByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*StatusBar[\w ]*)
 `/docs/commands/GuiControls.htm#StatusBar
 
 
