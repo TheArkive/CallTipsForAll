@@ -51,8 +51,6 @@ AHK v2
 ; RegExMatch
 ; StatusBar
 ; TreeView
-
-MenuObj is detected as a Menu object.
 ```
 
 This is a workaround for being able ot use call tips on objects that are extracted from user created objects, which is just a convention created by the user, and not an actual creation of the object as documented by the language.
