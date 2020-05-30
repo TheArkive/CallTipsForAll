@@ -35,8 +35,7 @@ Some matches require a "cheat code" to get the call tips working.  Here they are
 
 AHK v2
 * Use comment to identify objects:
-```
-; Array
+```; Array
 ; Buffer
 ; File
 ; BoundFunc
@@ -50,8 +49,7 @@ AHK v2
 ; Object
 ; RegExMatch
 ; StatusBar
-; TreeView
-```
+; TreeView```
 
 This is a workaround for being able ot use call tips on objects that are extracted from user created objects, which is just a convention created by the user, and not an actual creation of the object as documented by the language.
 
