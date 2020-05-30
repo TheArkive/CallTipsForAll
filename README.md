@@ -24,7 +24,7 @@ Click on call tips to invoke the CHM and link directly to the corresponding page
 Use Settings window from the system tray to change user settings.  Enter the main EXE of the program and the ClassNN of the control preferred for use (minus the number, ie. "scintilla", not "scintilla1").
 
 ## To-Do List
-* Add auto-complete as CTRL + ALT + Space or automatic
+* Add auto-complete support for keywords and object methods / properties
 * Support for user classes
 * enable #INCLUDE processing for custom functions and objects
 * Add more languages ... but that will take a while
