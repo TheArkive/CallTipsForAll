@@ -22,7 +22,155 @@ oCallTip.ctlClassNN := "", oCallTip.ctlHwnd := 0, oCallTip.progHwnd := 0
 oCallTip.curPhrase := ""
 
 Global ObjectCreateList
-Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList
+Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList, ClassesList
+
+class blah {
+
+}
+
+class progress2 extends blah {
+	__New(rangeStart := 0, rangeEnd := 100, sOptions := "") {
+		; ====================================================
+		; default options
+		; ====================================================
+		this.rangeStart := rangeStart, this.rangeEnd := rangeEnd
+		
+		this.fontFace := "Verdana", this.fontSize := 8
+		this.mainTextSize := this.fontSize + 2
+		this.mainTextAlign := "left", this.subTextAlign := "left"
+		
+		this.mainText := " ", this.subText := " ", this.title := ""
+		
+		this.start := 0
+		this.modal := false, this.hParent := 0
+		
+		this.width := 300
+		this.x := "", this.y := ""
+		
+		this.mainTextHwnd := 0, this.subTextHwnd := 0
+		
+		; ====================================================
+		; read user defined options
+		; ====================================================
+		optArr := StrSplit(sOptions,Chr(44))
+		Loop optArr.Length {
+			valArr := StrSplit(optArr[A_Index],":")
+			curOpt := valArr[1], curVal := valArr[2]
+			
+			If (curOpt = "fontFace")
+				this.fontFace := curVal ? curVal : fontFace
+			Else If (curOpt = "fontSize")
+				this.fontSize := curVal ? curVal : fontSize
+			Else If (curOpt = "mainText")
+				this.mainText := curVal
+			Else If (curOpt = "subText")
+				this.subText := curVal
+			Else If (curOpt = "start")
+				this.start := curVal ? curVal : start
+			Else if (curOpt = "title")
+				this.title := curVal
+			Else If (curOpt = "parent")
+				this.hParent := curVal ? curVal : 0
+			Else If (curOpt = "modal")
+				this.hParent := curVal ? curVal : 0, this.modal := curVal ? true : false
+			Else if (curOpt = "w")
+				this.width := curVal ? curVal : 300
+			Else If (curOpt = "mainTextSize")
+				this.mainTextSize := curVal ? curVal : this.mainTextSize
+			Else If (curOpt = "mainTextAlign")
+				this.mainTextAlign := curVal ? curVal : this.mainTextAlign
+			Else if (curOpt = "subTextAlign")
+				this.subTextAlign := curVal ? curVal : this.subTextAlign
+			Else If (curOpt = "x")
+				this.x := curVal ? curVal : ""
+			Else If (curOpt = "y")
+				this.y := curVal ? curVal : ""
+		}
+		
+		this.ShowProgress()
+	}
+	ShowProgress() {
+		showTitle := this.title ? "" : " -Caption +0x40000" ; 0x40000 = thick border
+		range := this.rangeStart "-" this.rangeEnd
+		g := GuiCreate("AlwaysOnTop -DPIScale -SysMenu" showTitle,this.title)
+		g.SetFont("s" this.fontSize,this.fontFace)
+		
+		align := this.mainTextAlign
+		mT := g.AddText("vMainText " align " w" this.width,this.mainText)
+		this.mainTextHwnd := mT.hwnd
+		mT.SetFont("s" this.mainTextSize)
+		
+		prog := g.AddProgress("vProgBar y+m xp w" this.width " Range" range,this.start)
+		this.progHwnd := prog.hwnd
+		
+		align := this.subTextAlign
+		sT := g.AddText("vSubText " align " w" this.width,this.subText)
+		this.subTextHwnd := sT.hwnd
+		
+		If (this.hParent) {
+			WinGetPos pX, pY, pW, pH, "ahk_id " this.hParent
+			Cx := pX + (pW/2), Cy := pY + (pH/2)
+			
+			borderW := SysGet(32)
+			captionH := SysGet(4)
+			captionH := this.title ? captionH : 0
+			borderH := SysGet(7)
+			
+			w := prog.pos.w + (g.MarginX * 2) + (borderW * 2)
+			h := g.pos.h + captionH + (borderH * 2) + mT.pos.h + sT.pos.h + (g.MarginY * 4)
+			x := Cx - (w/2), y := Cy - (h/2)
+			g.Opt("+Owner" this.hParent)
+			
+			If (this.modal)
+				WinSetEnabled 0, "ahk_id " this.hParent
+		}
+		If (this.x != "" And this.y != "")
+			x := this.x, y := this.y
+		
+		coords := ""
+		If (x And y)
+			coords := "x" x " y" y
+		
+		g.Show(coords)
+		this.guiHwnd := g.hwnd
+		this.gui := g
+	}
+	Update(value := "", mainText := "", subText := "")
+	{
+		If (value != "")
+			this.gui["ProgBar"].Value := value
+		If (this.mainTextHwnd And mainText)
+			this.gui["MainText"].Text := mainText
+		If (this.subTextHwnd And subText)
+			this.gui["SubText"].Text := subText
+	}
+	Close() {
+		If (IsObject(this.gui))
+			this.gui.Destroy()
+		
+		If (this.modal)
+			WinSetEnabled 0, "ahk_id " hParent
+		If (this.hParent)
+			WinActivate "ahk_id " hParent
+		
+		this.__Delete()
+	}
+	__Delete() {
+		this.gui := ""
+		this := ""
+	}
+	TestProp0 => blah 
+	TestProp1[] => blah
+	TestProp2[param1, ByRef param2] => Blah
+	TestProp3 {
+	
+	}
+	TestProp4[param1, param2]
+	{
+	
+	}
+	
+}
 
 ; ======================================================================================
 ; ==== user settings ===================================================================
@@ -86,7 +234,8 @@ trayMenu.Add("AHK Auto-Gen",subMenuAutoGen)
 trayMenu.Add("Reload","iconMenu")
 trayMenu.Add("Exit","iconMenu")
 
-iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
+iconMenu(ItemName, ItemPos, MenuObj)
+{ ; MenuObject
 	If (ItemName = "Settings") {
 		SettingsGUI()
 	} Else If (ItemName = "Generate Commands") {
@@ -101,7 +250,8 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 		ExitApp
 }
 
-WrapText(x) {
+WrapText(x)
+{
 	If (!StrLen(clipboard))
 		return ""
 	
@@ -234,7 +384,7 @@ LoadKeywordsList() {
 	}
 }
 ; ==================================================
-; Create function and command list for call tips
+; Create function and command list for call tips / and classes?
 ; ==================================================
 
 LoadFunctionsList() {
@@ -254,13 +404,25 @@ LoadFunctionsList() {
 			curLen := subStrEnd - curPos
 			curSubStr := SubStr(curList,curPos,curLen)
 			
-			If (curFileType = "BeginEnd") {
+			If (curFileType = "Regex") {
 				Loop Parse curSubStr, "`n", "`r"
 				{
 					If (A_Index = 1)
-						oCallTip.funcBeginStr := Trim(SubStr(A_LoopField,7))
+						oCallTip.funcStart := Trim(SubStr(A_LoopField,16))
 					Else If (A_Index = 2)
-						oCallTip.funcEndStr := Trim(SubStr(A_LoopField,5))
+						oCallTip.funcEnd := Trim(SubStr(A_LoopField,14))
+					Else if (A_Index = 3)
+						oCallTip.funcReturn := Trim(SubStr(A_LoopField,17))
+					Else If (A_Index = 4)
+						oCallTip.classStart := Trim(SubStr(A_LoopField,13))
+					Else If (A_Index = 5)
+						oCallTip.classEnd := Trim(SubStr(A_LoopField,11))
+					Else If (A_Index = 6)
+						oCallTip.classMethod := Trim(SubStr(A_LoopField,9))
+					Else If (A_Index = 7)
+						oCallTip.classProperty := Trim(SubStr(A_LoopField,11))
+					Else If (A_Index = 8)
+						oCallTip.classInstance := Trim(SubStr(A_LoopField,16))
 				}
 			} Else {
 				funcName := "", funcHelpLink := "", funcDescArr := Array()
@@ -576,6 +738,10 @@ LoadObjectCreateList(objMatchText) {
 ; ======================================================================================
 ; Load Call Tip
 ; ======================================================================================
+
+; prog2 := progress2.New(asdf,asdf)
+; prog2.Update(20,"blah1","blah2")
+
 LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
@@ -689,6 +855,49 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 		
 		curObj := "", listObj := "", memObj := "", descObj := ""
+	} Else If (curPhraseType = "Class" or curPhraseType = "Instance") {
+		obj := ClassesList.Has(curPhrase) ? ClassesList[curPhrase] : ""
+		If (!obj)
+			return
+		
+		If (curPhraseType = "Instance") {
+			className := obj["class"]
+			obj := ClassesList[className]
+			If (!obj)
+				return
+		}
+		
+		listObj := obj["members"]
+		fullDescArr := Map(), i := 1
+		For memName, memObj in listObj {
+			memType := memObj["type"]
+			If (memType = "method")
+				methList .= "." memName ", "
+			Else if (memType = "property")
+				propList .= "." memName ", "
+		}
+		methList := Trim(methList,", "), propList := Trim(propList,", ")
+		
+		tempDesc := "Class" (curPhraseType = "Instance" ? " Instance" : "") "`r`n`r`n"
+		tempDesc := "Methods: " methList "`r`n`r`nProperties: " propList
+		curObj := Map("desc",tempDesc,"helpLink","")
+		fullDescArr[1] := curObj
+	} Else If (curPhraseType = "class-method" or curPhraseType = "class-property") {
+		subType := StrReplace(curPhraseType,"class-",""), fullDescArr := Map()
+		parObjType := ClassesList[parentObj]["type"]
+		parObjName := (parObjType = "Instance") ? ClassesList[parentObj]["class"] : parentObj
+		memList := ClassesList[parObjName]["members"]
+		
+		For memName, memObj in memList {
+			memMatch := (memName = curPhrase) ? memName : (memName = "__" curPhrase) ? "__" curPhrase : ""
+			If (memMatch) {
+				params := memObj["params"]
+				tempDesc := "User Class " parObjName ":`r`n`r`n" parentObj "." memName params
+				curObj := Map("desc",tempDesc,"helpLink","")
+				fullDescArr[1] := curObj
+				break
+			}
+		}
 	} Else ; unrecognized keyword, so return
 		return
 	
@@ -968,6 +1177,8 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	
 	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
 	
+	; msgbox "func check : " phraseObj " / " curPhrase
+	
 	aStr := StrSplit(phraseObj,".")
 	Loop aStr.Length {
 		curBit := aStr[A_Index]
@@ -976,6 +1187,8 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 			Break
 	}
 	fullPhrase := Trim(fullPhrase,".")
+	
+	; msgbox "fullPhrase: " fullPhrase
 	
 	If (!phraseObj And !funcName)
 		return ""
@@ -991,6 +1204,8 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 		return sObj
 	Else If (ObjectList.Has(curPhrase))
 		return curPhrase
+	Else If (sObj)
+		return sObj
 	Else
 		return ""
 }
@@ -1141,51 +1356,117 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 ; Creates a list of user defined functions.  The call tip only shows FuncName(params...) and
 ; it is not currently possible to add extra help in the call tip for custom functions.
 ; ================================================================
-GetCustomFunctions(curDocArr) {
-	funcList := Map()
-	Loop curDocArr.Length {
-		curDocLine := curDocArr[A_Index]
-		
-		result := RegExMatch(curDocLine,oCallTip.funcBeginStr,match) ; funcBeginStr is defined in List_Functions.txt
+GetCustomFunctions(curDocText) {
+	funcList := Map(), curPos1 := 1
+	While (result := RegExMatch(curDocText,"m)" oCallTip.funcStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
 		If (IsObject(match) And match.Count()) {
+			curPos1 := match.Pos(2) + match.Len(2)
+			r2 := RegExMatch(curDocText,oCallTip.funcEnd,match2,curPos1)
 			funcName := match.Value(1)
 			params := match.Value(2)
+			body := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
+			
 			if (funcName != "") {
 				funcBody := curDocLine
-				obj := Map()
-				obj["type"] := "CustomFunction"
-				obj["desc"] := funcName params
-				obj["line"] := A_Index
+				obj := Map("type","CustomFunction","desc",funcName params,"funcBody",body)
 				funcList[funcName] := obj
 			}
-		} Else If (funcBody)
-			funcBody .= "`r`n" curDocLine
-		
-		If (RegExMatch(curDocLine,oCallTip.funcEndStr) And funcName) { ; funcEndStr is defined in List_Functions.txt
-			obj["funcBody"] := funcBody
 			
-			returnObj := Map()
-			funcBodyArr := StrSplit(funcBody,"`r","`n")
-			Loop funcBodyArr.Length { ; compile function body and search for "return" lines
-				fLine := funcBodyArr[A_Index]
-				If (RegExMatch(fLine,"return[ \t]+([\w]+)",match)) {
-					If (match.Count()) {
-						cMatch := match.Value(1)
-						returnObj[cMatch] := match.Pos(1)
-					}
+			returnObj := Map(), curPos2 := 1
+			While (r3 := RegExMatch(body,"m)" oCallTip.funcReturn,match3,curPos2)) {
+				If (match3.Count()) {
+					cMatch := match3.Value(1)
+					returnObj[cMatch] := match3.Pos(1)
 				}
+				curPos2 := match3.Pos(1) + match3.Len(1)
 			}
 			
 			If (returnObj.Count > 0)
 				obj["return"] := returnObj ; attach returnObj list of "return" lines if exist
-			
-			funcList[funcName] := obj
-			funcBody := "", funcName := "", match := "", params := "", returnObj := ""
 		}
+		
+		
+		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
 	}
 	
-	curDocArr := "", obj := ""
+	curDocText := "", obj := ""
 	return funcList
+}
+
+GetClasses(curDocText) {
+	; msgbox oCallTip.classStart "`r`n`r`n" oCallTIp.classEnd
+	classList := Map(), curPos1 := 1
+	While (result := RegExMatch(curDocText,"m)" oCallTip.classStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
+		If (IsObject(match) And match.Count()) {
+			If (match.Value(1) != "") {
+				className := match.Value(1), extends := ""
+				curPos1 := match.Pos(1) + match.Len(1)
+			} Else {
+				className := match.Value(2), extends := match.Value(3)
+				curPos1 := match.Pos(3) + match.Len(3)
+			}
+			
+			r2 := RegExMatch(curDocText,oCallTip.classEnd,match2,curPos1)
+			classBody := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
+			
+			; msgbox match.Value(1) " / " match.Value(2) " / " match.Value(3)
+			; msgbox classBody
+			
+			; msgbox oCallTip.classMethod "`r`n`r`n" oCallTip.classProperty
+			
+			memberList := Map(), curPos2 := 1, curPos3 := 1
+			While (r3 := RegExMatch(classBody,"m)" oCallTip.classMethod,match3,curPos2)) {
+				; msgbox match3.Value(1) " / " match3.Value(2)
+				memberName := match3.Value(1)
+				memberParams := match3.Value(2)
+				curPos2 := match3.Pos(2) + match3.Len(2)
+				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method")
+			}
+			
+			While (r4 := RegExMatch(classBody,"m)" oCallTip.classProperty,match4,curPos3)) {
+				memberName := match4.Value(1)
+				memberParams := match4.Value(2)
+				
+				curPos3 := match4.Pos(1) + match4.Len(1)
+				curPos3 := match4.Value(2) != "" ? match4.Pos(2) + match4.Len(2) : curPos3
+				
+				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property")
+				; msgbox match4.Value(1) " / " match4.Value(2) " / " curPos3
+			}
+			
+			if (className != "") {
+				obj := Map("type","Class","desc",className,"classBody",classBody,"extends",extends)
+				obj["members"] := memberList
+				classList[className] := obj
+			}
+			
+			; For k, v in memberList
+				; fullList .= k " / " v["params"] " / " v["type"] "`r`n"
+			; msgbox fullList
+		}
+		
+		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
+	}
+	
+	; msgbox classList.Count
+	
+	curDocText := "", obj := ""
+	return classList
+}
+
+ScanClasses(curDocArr) { ; scan doc for class instances
+	Loop curDocArr.Length {
+		curLine := curDocArr[A_Index]
+		For className, obj in ClassesList {
+			; msgbox className "`r`n`r`n" curLine "`r`n`r`n" oCallTip.classInstance
+			If (RegExMatch(curLine,StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
+				; msgbox match.Value(1) " / " match.Value(2)
+				instName := match.Value(1)
+				params := match.Value(2)
+				ClassesList[instName] := Map("type","Instance","name",instName,"params",params,"class",className)
+			}
+		}
+	}
 }
 
 ; ================================================================
@@ -1235,9 +1516,10 @@ ReloadElements() {
 	LoadFunctionsList()
 	
 	curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
-	; msgbox curDocText
 	curDocArr := StrSplit(curDocText,"`n","`r")
-	CustomFunctions := GetCustomFunctions(curDocArr)
+	CustomFunctions := GetCustomFunctions(curDocText)
+	ClassesList := GetClasses(curDocText)
+	ScanClasses(curDocArr)
 
 	objMatchText := LoadMethPropList()
 	LoadObjectCreateList(objMatchText)
@@ -1336,6 +1618,32 @@ ProcInput() {
 					curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
 					parentObjType := objType, oCallTip.parentObjType := parentObjType
 					Break
+				}
+			}
+		}
+	}
+	
+	If (!curPhraseType And ClassesList.Count) {
+		For instName, obj in ClassesList {
+			If (instName = curPhrase) { ; catch classname and instances
+				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
+				Break
+			}
+		}
+	}
+	
+	If (!curPhraseType And ClassesList.Count) { ; class methods and properties
+		For instName, obj in ClassesList {
+			If (instName = parentObj) {
+				If (obj["type"] = "Instance")
+					obj := ClassesList[obj["class"]]
+				
+				memList := obj["members"]
+				For memName, memObj in memList {
+					If (memName = curPhrase Or memName = "__" curPhrase) {
+						curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
+						break
+					}
 				}
 			}
 		}
@@ -1674,6 +1982,9 @@ ClickCheck(curKey) {
 		
 		If (c = 2 And Settings["LoadCallTipOnClick"])
 			DisplayCallTip()
+		
+		If (c = 3)
+			closeCallTip()
 	}
 }
 
