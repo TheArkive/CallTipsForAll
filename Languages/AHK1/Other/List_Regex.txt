@@ -1,8 +1,9 @@
 FunctionStart: ^([\w]+)(\x28.*?\x29)[ \t\r\n]*\{
-FunctionEnd: \r?\n(\})\r?\n
+FunctionEnd: \r?\n(\})
 FunctionReturn: ^[ \t]*return[ \t]+([\w]+)
-ClassStart: ^class ([\w]+)[ \t\r\n]*\{$|^class ([\w]+) extends ([\w]+)[ \t\r\n]*\{$
-ClassEnd: \r?\n(\})\r?\n
-Method: ^[ \t]*([\w]+)(\(.*\))([ \t\r\n]*\{)?
+ClassStart: ^class ([\w]+)[ \t\r\n]*\{|^class ([\w]+) extends ([\w\.]+)[ \t\r\n]*\{
+ClassEnd: \r?\n(\})
+Method: ^[ \t]*([\w]+)(\(.*\))([ \t\r\n]*\{)
 Property: ^[ \t]*([\w]+)(\[.*?\])?[ \t\r\n]*(\=\>|\{)
 ClassInstance: ^[ \t]*([\w\.]+)[ \t]*\:\=[ \t]*new {Class}(\x28.*?\x29)
+Includes: ^(#Include(Again)?[ \t]+.*)

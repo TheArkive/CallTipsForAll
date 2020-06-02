@@ -1,0 +1,14 @@
+﻿{
+    "ActiveLanguage": "AHK2",
+    "BaseFile": "",
+    "CallTipSelectable": "0",
+    "CloseTipOnFocusChange": 1,
+    "DebugToolTip": "0",
+    "LoadCallTipOnClick": 1,
+    "ProgClassNN": "scintilla",
+    "ProgExe": "notepad++.exe",
+    "bgColor": 2763306,
+    "fontColor": "0xFFFF00",
+    "fontFace": "Courier New",
+    "fontSize": 10
+}

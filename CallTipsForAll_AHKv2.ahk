@@ -4,10 +4,22 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ; =======================================================================================
 
+; #INCLUDE %A_ScriptDir%\Lib
+; #INCLUDE _Jxon_v2.ahk
+; #INCLUDE _Font_Picker_Dialog_v2.ahk
+; #INCLUDE _Color_Picker_Dialog_v2.ahk
+; #INCLUDE *i TheArkive_Debug.ahk
+
+; #INCLUDE <_scintilla_class>
+
 #INCLUDE <_Jxon_v2>
 #INCLUDE <_Font_Picker_Dialog_v2>
 #INCLUDE <_Color_Picker_Dialog_v2>
-#INCLUDE <TheArkive_Debug>
+#INCLUDE *i <TheArkive_Debug>
+
+; #INCLUDE <_scintilla_class>
+
+; #INCLUDE ..\_INCLUDE\_LibraryV2\TheArkive_Progress2.ahk
 
 FileEncoding "UTF-8"
 
@@ -23,154 +35,6 @@ oCallTip.curPhrase := ""
 
 Global ObjectCreateList
 Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList, ClassesList
-
-class blah {
-
-}
-
-class progress2 extends blah {
-	__New(rangeStart := 0, rangeEnd := 100, sOptions := "") {
-		; ====================================================
-		; default options
-		; ====================================================
-		this.rangeStart := rangeStart, this.rangeEnd := rangeEnd
-		
-		this.fontFace := "Verdana", this.fontSize := 8
-		this.mainTextSize := this.fontSize + 2
-		this.mainTextAlign := "left", this.subTextAlign := "left"
-		
-		this.mainText := " ", this.subText := " ", this.title := ""
-		
-		this.start := 0
-		this.modal := false, this.hParent := 0
-		
-		this.width := 300
-		this.x := "", this.y := ""
-		
-		this.mainTextHwnd := 0, this.subTextHwnd := 0
-		
-		; ====================================================
-		; read user defined options
-		; ====================================================
-		optArr := StrSplit(sOptions,Chr(44))
-		Loop optArr.Length {
-			valArr := StrSplit(optArr[A_Index],":")
-			curOpt := valArr[1], curVal := valArr[2]
-			
-			If (curOpt = "fontFace")
-				this.fontFace := curVal ? curVal : fontFace
-			Else If (curOpt = "fontSize")
-				this.fontSize := curVal ? curVal : fontSize
-			Else If (curOpt = "mainText")
-				this.mainText := curVal
-			Else If (curOpt = "subText")
-				this.subText := curVal
-			Else If (curOpt = "start")
-				this.start := curVal ? curVal : start
-			Else if (curOpt = "title")
-				this.title := curVal
-			Else If (curOpt = "parent")
-				this.hParent := curVal ? curVal : 0
-			Else If (curOpt = "modal")
-				this.hParent := curVal ? curVal : 0, this.modal := curVal ? true : false
-			Else if (curOpt = "w")
-				this.width := curVal ? curVal : 300
-			Else If (curOpt = "mainTextSize")
-				this.mainTextSize := curVal ? curVal : this.mainTextSize
-			Else If (curOpt = "mainTextAlign")
-				this.mainTextAlign := curVal ? curVal : this.mainTextAlign
-			Else if (curOpt = "subTextAlign")
-				this.subTextAlign := curVal ? curVal : this.subTextAlign
-			Else If (curOpt = "x")
-				this.x := curVal ? curVal : ""
-			Else If (curOpt = "y")
-				this.y := curVal ? curVal : ""
-		}
-		
-		this.ShowProgress()
-	}
-	ShowProgress() {
-		showTitle := this.title ? "" : " -Caption +0x40000" ; 0x40000 = thick border
-		range := this.rangeStart "-" this.rangeEnd
-		g := GuiCreate("AlwaysOnTop -DPIScale -SysMenu" showTitle,this.title)
-		g.SetFont("s" this.fontSize,this.fontFace)
-		
-		align := this.mainTextAlign
-		mT := g.AddText("vMainText " align " w" this.width,this.mainText)
-		this.mainTextHwnd := mT.hwnd
-		mT.SetFont("s" this.mainTextSize)
-		
-		prog := g.AddProgress("vProgBar y+m xp w" this.width " Range" range,this.start)
-		this.progHwnd := prog.hwnd
-		
-		align := this.subTextAlign
-		sT := g.AddText("vSubText " align " w" this.width,this.subText)
-		this.subTextHwnd := sT.hwnd
-		
-		If (this.hParent) {
-			WinGetPos pX, pY, pW, pH, "ahk_id " this.hParent
-			Cx := pX + (pW/2), Cy := pY + (pH/2)
-			
-			borderW := SysGet(32)
-			captionH := SysGet(4)
-			captionH := this.title ? captionH : 0
-			borderH := SysGet(7)
-			
-			w := prog.pos.w + (g.MarginX * 2) + (borderW * 2)
-			h := g.pos.h + captionH + (borderH * 2) + mT.pos.h + sT.pos.h + (g.MarginY * 4)
-			x := Cx - (w/2), y := Cy - (h/2)
-			g.Opt("+Owner" this.hParent)
-			
-			If (this.modal)
-				WinSetEnabled 0, "ahk_id " this.hParent
-		}
-		If (this.x != "" And this.y != "")
-			x := this.x, y := this.y
-		
-		coords := ""
-		If (x And y)
-			coords := "x" x " y" y
-		
-		g.Show(coords)
-		this.guiHwnd := g.hwnd
-		this.gui := g
-	}
-	Update(value := "", mainText := "", subText := "")
-	{
-		If (value != "")
-			this.gui["ProgBar"].Value := value
-		If (this.mainTextHwnd And mainText)
-			this.gui["MainText"].Text := mainText
-		If (this.subTextHwnd And subText)
-			this.gui["SubText"].Text := subText
-	}
-	Close() {
-		If (IsObject(this.gui))
-			this.gui.Destroy()
-		
-		If (this.modal)
-			WinSetEnabled 0, "ahk_id " hParent
-		If (this.hParent)
-			WinActivate "ahk_id " hParent
-		
-		this.__Delete()
-	}
-	__Delete() {
-		this.gui := ""
-		this := ""
-	}
-	TestProp0 => blah 
-	TestProp1[] => blah
-	TestProp2[param1, ByRef param2] => Blah
-	TestProp3 {
-	
-	}
-	TestProp4[param1, param2]
-	{
-	
-	}
-	
-}
 
 ; ======================================================================================
 ; ==== user settings ===================================================================
@@ -205,8 +69,12 @@ closeTipOnClick := false		; close call tip when clicked on
 ; Script Vars
 ; ======================================================================================
 
-Global entryEnd, Settings, exeList
+Global entryEnd, Settings
 entryEnd := "`r`n`r`n`r`n"
+
+If (FileExist("Settings.txt.blank") And !FileExist("Settings.txt")) ; load default settings on first run
+	FileMove "Settings.txt.blank", "Settings.txt"
+
 settingsText := FileRead("Settings.txt")
 Settings := Jxon_Load(settingsText) ; MapObject
 
@@ -215,8 +83,12 @@ If (hCtl.progHwnd) {
 	oCallTip.ctlHwnd := hCtl.ctlHwnd
 	oCallTip.ctlClassNN := hCtl.ctlClassNN
 	oCallTip.progHwnd := hCtl.progHwnd
+	oCallTip.progTitle := hCtl.progTitle
 	ReParseText() ; initial loading of functions, custom functions, objects
 }
+
+If (!Settings["ProgClassNN"] Or !Settings["ProgExe"])
+	SettingsGUI()
 
 ; ======================================================================================
 ; Tray Menu
@@ -234,8 +106,7 @@ trayMenu.Add("AHK Auto-Gen",subMenuAutoGen)
 trayMenu.Add("Reload","iconMenu")
 trayMenu.Add("Exit","iconMenu")
 
-iconMenu(ItemName, ItemPos, MenuObj)
-{ ; MenuObject
+iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	If (ItemName = "Settings") {
 		SettingsGUI()
 	} Else If (ItemName = "Generate Commands") {
@@ -250,8 +121,7 @@ iconMenu(ItemName, ItemPos, MenuObj)
 		ExitApp
 }
 
-WrapText(x)
-{
+WrapText(x) {
 	If (!StrLen(clipboard))
 		return ""
 	
@@ -423,6 +293,8 @@ LoadFunctionsList() {
 						oCallTip.classProperty := Trim(SubStr(A_LoopField,11))
 					Else If (A_Index = 8)
 						oCallTip.classInstance := Trim(SubStr(A_LoopField,16))
+					Else If (A_Index = 9)
+						oCallTip.includes := Trim(SubStr(A_LoopField,11))
 				}
 			} Else {
 				funcName := "", funcHelpLink := "", funcDescArr := Array()
@@ -739,8 +611,7 @@ LoadObjectCreateList(objMatchText) {
 ; Load Call Tip
 ; ======================================================================================
 
-; prog2 := progress2.New(asdf,asdf)
-; prog2.Update(20,"blah1","blah2")
+
 
 LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	fontFace := Settings["fontFace"]
@@ -749,6 +620,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	bgColor := Settings["bgColor"]
 	
 	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
+	If (!oCallTip.HasOwnProp("curPhraseObj"))
+		return
+	
 	curPhraseObj := oCallTip.curPhraseObj
 	curPhraseType := oCallTip.curPhraseType
 	parentObj := oCallTip.parentObj
@@ -856,7 +730,17 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		
 		curObj := "", listObj := "", memObj := "", descObj := ""
 	} Else If (curPhraseType = "Class" or curPhraseType = "Instance") {
-		obj := ClassesList.Has(curPhrase) ? ClassesList[curPhrase] : ""
+		For clName in ClassesList {
+			If (clName = curPhrase) {
+				className := clName ; correct case for lookup
+				break
+			}
+		}
+		
+		If (!className)
+			return
+		
+		obj := ClassesList[className] ; obj := ClassesList.Has(className) ? ClassesList[className] : ""
 		If (!obj)
 			return
 		
@@ -878,21 +762,34 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 		methList := Trim(methList,", "), propList := Trim(propList,", ")
 		
-		tempDesc := "Class" (curPhraseType = "Instance" ? " Instance" : "") "`r`n`r`n"
-		tempDesc := "Methods: " methList "`r`n`r`nProperties: " propList
+		tempDesc := className " Class" (curPhraseType = "Instance" ? " Instance" : "") ":`r`n`r`n"
+		tempDesc .= methList ? "Methods: " methList "`r`n`r`n" : "`r`n`r`n"
+		tempDesc .= propList ? "Properties: " propList : ""
+		tempDesc := Trim(tempDesc," `t`r`n")
 		curObj := Map("desc",tempDesc,"helpLink","")
 		fullDescArr[1] := curObj
 	} Else If (curPhraseType = "class-method" or curPhraseType = "class-property") {
 		subType := StrReplace(curPhraseType,"class-",""), fullDescArr := Map()
-		parObjType := ClassesList[parentObj]["type"]
-		parObjName := (parObjType = "Instance") ? ClassesList[parentObj]["class"] : parentObj
+		
+		For clName in ClassesList {
+			If (clName = parentObj) {
+				className := clName ; correct case for lookup
+				break
+			}
+		}
+		
+		If (!className)
+			return
+		
+		parObjType := ClassesList[className]["type"]
+		parObjName := (parObjType = "Instance") ? ClassesList[className]["class"] : className
 		memList := ClassesList[parObjName]["members"]
 		
 		For memName, memObj in memList {
 			memMatch := (memName = curPhrase) ? memName : (memName = "__" curPhrase) ? "__" curPhrase : ""
 			If (memMatch) {
 				params := memObj["params"]
-				tempDesc := "User Class " parObjName ":`r`n`r`n" parentObj "." memName params
+				tempDesc := parObjName " Class:`r`n`r`n" parentObj "." memName params
 				curObj := Map("desc",tempDesc,"helpLink","")
 				fullDescArr[1] := curObj
 				break
@@ -1227,7 +1124,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 				curPos := 1
 				
 				If (direct) {
-					While(result := RegExMatch(curDocText,regex,match,curPos)) {
+					While(result := RegExMatch(curDocText,"i)" regex,match,curPos)) {
 						c := match.Count()
 						If (IsObject(match) And c >= 1) {
 							typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -1265,7 +1162,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 							If (curType = listType) {
 								newRegex := StrReplace(regex,"{" listType "}",curObjName)
 								
-								While (result := RegExMatch(curDocText,newRegex,match,curPos)) {
+								While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos)) {
 									c := match.Count()
 									If (IsObject(match) And c = 2) {
 										typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -1326,7 +1223,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 		}
 		
 		curPos := 1
-		While (result := RegExMatch(curDocText,newRegex,match,curPos) And doMatch) {
+		While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos) And doMatch) {
 			c := match.Count()
 			If (IsObject(match) And match.Count() = 2 and curRetStr) { ; if match add obj to list
 				obj := Map(), objName := match.Value(1)
@@ -1358,10 +1255,10 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 ; ================================================================
 GetCustomFunctions(curDocText) {
 	funcList := Map(), curPos1 := 1
-	While (result := RegExMatch(curDocText,"m)" oCallTip.funcStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
+	While (result := RegExMatch(curDocText,"mi)" oCallTip.funcStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
 		If (IsObject(match) And match.Count()) {
 			curPos1 := match.Pos(2) + match.Len(2)
-			r2 := RegExMatch(curDocText,oCallTip.funcEnd,match2,curPos1)
+			r2 := RegExMatch(curDocText,"i)" oCallTip.funcEnd,match2,curPos1)
 			funcName := match.Value(1)
 			params := match.Value(2)
 			body := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
@@ -1373,7 +1270,7 @@ GetCustomFunctions(curDocText) {
 			}
 			
 			returnObj := Map(), curPos2 := 1
-			While (r3 := RegExMatch(body,"m)" oCallTip.funcReturn,match3,curPos2)) {
+			While (r3 := RegExMatch(body,"mi)" oCallTip.funcReturn,match3,curPos2)) {
 				If (match3.Count()) {
 					cMatch := match3.Value(1)
 					returnObj[cMatch] := match3.Pos(1)
@@ -1396,7 +1293,8 @@ GetCustomFunctions(curDocText) {
 GetClasses(curDocText) {
 	; msgbox oCallTip.classStart "`r`n`r`n" oCallTIp.classEnd
 	classList := Map(), curPos1 := 1
-	While (result := RegExMatch(curDocText,"m)" oCallTip.classStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
+	While (result := RegExMatch(curDocText,"mi)" oCallTip.classStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
+		; msgbox "in"
 		If (IsObject(match) And match.Count()) {
 			If (match.Value(1) != "") {
 				className := match.Value(1), extends := ""
@@ -1405,17 +1303,13 @@ GetClasses(curDocText) {
 				className := match.Value(2), extends := match.Value(3)
 				curPos1 := match.Pos(3) + match.Len(3)
 			}
+			; msgbox "className: " className
 			
-			r2 := RegExMatch(curDocText,oCallTip.classEnd,match2,curPos1)
+			r2 := RegExMatch(curDocText,"i)" oCallTip.classEnd,match2,curPos1)
 			classBody := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
 			
-			; msgbox match.Value(1) " / " match.Value(2) " / " match.Value(3)
-			; msgbox classBody
-			
-			; msgbox oCallTip.classMethod "`r`n`r`n" oCallTip.classProperty
-			
 			memberList := Map(), curPos2 := 1, curPos3 := 1
-			While (r3 := RegExMatch(classBody,"m)" oCallTip.classMethod,match3,curPos2)) {
+			While (r3 := RegExMatch(classBody,"mi)" oCallTip.classMethod,match3,curPos2)) {
 				; msgbox match3.Value(1) " / " match3.Value(2)
 				memberName := match3.Value(1)
 				memberParams := match3.Value(2)
@@ -1423,7 +1317,7 @@ GetClasses(curDocText) {
 				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method")
 			}
 			
-			While (r4 := RegExMatch(classBody,"m)" oCallTip.classProperty,match4,curPos3)) {
+			While (r4 := RegExMatch(classBody,"mi)" oCallTip.classProperty,match4,curPos3)) {
 				memberName := match4.Value(1)
 				memberParams := match4.Value(2)
 				
@@ -1459,7 +1353,7 @@ ScanClasses(curDocArr) { ; scan doc for class instances
 		curLine := curDocArr[A_Index]
 		For className, obj in ClassesList {
 			; msgbox className "`r`n`r`n" curLine "`r`n`r`n" oCallTip.classInstance
-			If (RegExMatch(curLine,StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
+			If (RegExMatch(curLine,"i)" StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
 				; msgbox match.Value(1) " / " match.Value(2)
 				instName := match.Value(1)
 				params := match.Value(2)
@@ -1517,6 +1411,16 @@ ReloadElements() {
 	
 	curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
 	curDocArr := StrSplit(curDocText,"`n","`r")
+	
+	baseFile := Settings["BaseFile"]
+	If (FileExist(baseFile)) {
+		fileList := GetIncludes(curDocArr), curDocText := ""
+		Loop fileList.Length
+			curDocText .= FileRead(fileList[A_Index]) "`r`n`r`n"
+		; clipboard := curDocText
+		curDocArr := StrSplit(curDocText,"`n","`r")
+	}
+	
 	CustomFunctions := GetCustomFunctions(curDocText)
 	ClassesList := GetClasses(curDocText)
 	ScanClasses(curDocArr)
@@ -1526,6 +1430,112 @@ ReloadElements() {
 
 	ObjectList := CreateObjList(curDocText)
 	curDocArr := "", curDocText := ""
+}
+
+findFile(sInFile) {
+	result := ""
+	Loop Files sInFile ".*" ; do this for <libraries> without extension
+	{
+		If (A_LoopFileName) {
+			result := A_LoopFileFullPath
+			break
+		}
+	}
+	
+	If (!result) {
+		Loop Files sInFile ; do this for libraries including extension
+		{
+			If (A_LoopFileName) {
+				result := A_LoopFileFullPath
+				break
+			}
+		}
+	}
+	
+	return result
+}
+
+GetIncludes(curDocArr) {
+	baseFile := Settings["BaseFile"]
+	
+	SplitPath baseFile, , baseFolderP
+	curBaseFolder := baseFolderP
+	
+	includes := oCallTip.includes, includeArr := Array()
+	Loop curDocArr.Length {
+		curLine := curDocArr[A_Index]
+		If (RegExMatch(curLine,"mi)" includes,match))
+			includeArr.Push(match.Value(1))
+	}
+	
+	; Loop includeArr.Length
+		; firstList .= includeArr[A_Index] "`r`n`r`n"
+	; msgbox "baseFolder: " baseFolderP "`r`n`r`n" firstList
+	
+	FinalArr := Array(), FinalArr.Push(baseFile)
+	Loop includeArr.Length {
+		curInc := includeArr[A_Index], curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
+		curInclude := RegExReplace(curInc,"<|>","")
+		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP)
+		
+		If (SubStr(curInclude,1,3) = "..\") { ; processing includes starting with ..\
+			repInclude := SubStr(curInclude,4)
+			baseArr := StrSplit(baseFolderP,"\")
+			c := baseArr.Length - 1
+			Loop c
+				fullPath .= baseArr[A_Index] "\"
+			fullPath := Trim(fullPath,"\")
+			If (FileExist(fullPath "\" repInclude)) {
+				FinalArr.Push(fullPath "\" repInclude)
+				continue
+			}
+		}
+		
+		stdLib := (curInc = curInclude Or InStr(FileExist(curInclude),"D")) ? false : true
+		includeExist := FileExist(curInclude)
+		isDir := InStr(includeExist,"D") ? true : false
+		isFile := includeExist ? true : false
+		
+		If (stdLib) {
+			f1 := baseFolderP "\Lib\" curInclude, f1 := findFile(f1)
+			If (f1) {
+				FinalArr.Push(f1)
+				continue
+			}
+			f2 := A_MyDocuments "\AutoHotkey\Lib\" curInclude, f2 := findFile(f2)
+			If (f2) {
+				FinalArr.Push(f2)
+				continue
+			}
+			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\" curInclude, f3 := findFile(f3)
+			If (f3) {
+				FinalArr.Push(f3)
+				continue
+			}
+		}
+		
+		If (isDir) {
+			curBaseFolder := curInclude
+			continue
+		}
+		
+		If (isFile) {
+			FinalArr.Push(curInclude)
+			continue
+		}
+		
+		f4 := findFile(curBaseFolder "\" curInclude)
+		If (f4) {
+			FinalArr.Push(f4)
+			continue
+		}
+	}
+	
+	; Loop finalArr.Length
+		; finalList .= finalArr[A_Index] "`r`n`r`n"
+	; msgbox finalList
+	
+	return finalArr
 }
 
 ProcInput() {
@@ -1796,7 +1806,7 @@ AutoCmdFunc() {
 ; ================================================================
 
 SettingsGUI() {
-	SettingsGUI := GuiCreate("AlwaysOnTop","CallTipsForAll v2")
+	SettingsGUI := GuiCreate("+OwnDialogs","CallTipsForAll v2")
 	SettingsGUI.OnEvent("Close","gui_close")
 	SettingsGUI.OnEvent("escape","gui_close")
 	ActiveLanguage := Settings["ActiveLanguage"]
@@ -1832,27 +1842,27 @@ SettingsGUI() {
 	
 	ctl := SettingsGUI.AddButton("vPickFont xm y+8","Select Font")
 	ctl.OnEvent("click","gui_change_events")
-	textW := ctl.pos.w
 	
 	ctl := SettingsGUI.AddButton("vPickFontColor x+0","Select Font Color")
 	ctl.OnEvent("click","gui_change_events")
-	textW += ctl.pos.w
 	
 	ctl := SettingsGUI.AddButton("vPickBgColor x+0","Select Background Color")
 	ctl.OnEvent("click","gui_change_events")
 	
-	textW += ctl.pos.w + 30
-	
 	SettingsGUI.AddEdit("vFontDemo xm y+8 w330 h50 ReadOnly -E0x200 -VScroll","Call Tip Test")
 	
-	SettingsGUI.AddText("xm y+12","Editor EXE:")
+	SettingsGUI.AddText("xm y+12","Text Editor EXE:")
 	SettingsGUI.AddEdit("vProgExe xm y+2 w330")
-	
-	SettingsGUI.AddText("xm y+8","Editor Control ClassNN - no number:")
-	SettingsGUI.AddEdit("vProgClassNN xm y+2 w330")
-	
 	SettingsGUI["ProgExe"].Value := Settings["ProgExe"]
+	
+	SettingsGUI.AddText("xm y+8","Editor Control ClassNN - without number (ie. `"edit`" not `"edit1`"):")
+	SettingsGUI.AddEdit("vProgClassNN xm y+2 w330")
 	SettingsGUI["ProgClassNN"].Value := Settings["ProgClassNN"]
+	
+	SettingsGUI.AddText("xm y+8","Base File (only needed to process includes):")
+	SettingsGUI.AddEdit("vBaseFile xm y+2 w290 r1",Settings["BaseFile"])
+	SettingsGUI.AddButton("vSelBaseFile x+0 w20","...").OnEvent("click","gui_change_events")
+	SettingsGUI.AddButton("vClearBaseFile x+0 w20","X").OnEvent("click","gui_change_events")
 	
 	SetFontDemo()
 	SettingsGUI.Show()
@@ -1893,7 +1903,15 @@ gui_change_events(ctl, Info) { ; GuiControlObject
 			Settings["bgColor"] := bgColor
 			SetFontDemo()
 		}
-	}
+	} Else If (ctl.Name = "SelBaseFile") {
+		lastFile := Settings["BaseFile"], startDir := ""
+		If (FileExist(lastFile))
+			SplitPath lastFile, , startDir
+		
+		selFile := FileSelect("",startDir,"Select Base File:")
+		ctl.gui["BaseFile"].value := selFile ? selFile : ""
+	} Else If (ctl.Name = "ClearBaseFile")
+		ctl.gui["BaseFile"].value := ""
 }
 
 SetFontDemo() {
@@ -1909,6 +1927,8 @@ SetFontDemo() {
 gui_close(guiObj) {
 	SetTimer "ReParseText", -500
 	Settings["ProgExe"] := guiObj["ProgExe"].value
+	Settings["ProgClassNN"] := guiObj["ProgClassNN"].value
+	Settings["BaseFile"] := guiObj["BaseFile"].value
 	
 	settingsText := Jxon_Dump(Settings,4)
 	FileDelete "Settings.txt"
@@ -1941,13 +1961,12 @@ editorCtl(method:="") {
 			ClassNNcomp := ClassNN, found := true, hwndComp := hWnd
 	}
 	
-	; msgbox "found: " found " / " ClassNNcomp " / " hwndComp
-	
 	If (!found)
 		return {ctlClassNN: "", progHwnd: 0, ctlHwnd: 0}
 	
 	retVal := {ctlClassNN: ClassNNcomp, progHwnd: hwndComp}
 	ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " hwndComp)
+	retval.progTitle := WinGetTitle("ahk_id " hwndComp)
 	retVal.ctlHwnd := ctlHwnd
 	
 	return retVal
@@ -1975,6 +1994,7 @@ ClickCheck(curKey) {
 	oCallTip.ctlHwnd := hCtl.ctlHwnd
 	oCallTip.ctlClassNN := hCtl.ctlClassNN
 	oCallTip.progHwnd := hCtl.progHwnd
+	oCallTip.progTitle := hCtl.progTitle
 	
 	If (curKey = "~LButton") {
 		If (c = 1 and Settings["CloseTipOnFocusChange"] And !hCtl.progHwnd)
