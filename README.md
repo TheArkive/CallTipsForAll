@@ -19,8 +19,7 @@ CTRL+SHIFT+Space or Double-click   =   invoke call tip
              ESC or Middle-click   =   close call tip
                       CTRL+Space   =   reload functions / objects / classes
 
-NOTE: If you selected a Base File in the Settings window, then only SAVED file data
-is loaded.
+NOTE: If you selected a Base File in the Settings window, then only SAVED file data is loaded.
 
 Click on call tips to invoke the CHM and link directly to the corresponding page.
 ```
@@ -29,8 +28,6 @@ Use Settings window from the system tray to change user settings.  Enter the mai
 
 ## To-Do List
 * Add auto-complete support for keywords and object methods / properties
-* Support for user classes
-* enable #INCLUDE processing for custom functions and objects
 * Add more languages ... but that will take a while
 
 ## AutoHotkey language - special cases
@@ -62,3 +59,4 @@ This is a workaround for being able ot use call tips on objects that are extract
 ## For Best Results...
 * Don't reuse a variable name as a different type or object than previously used
 * Be sure to use some indenting on the body of your functions and classes
+* Set your settings first and then try to invoke call tips on your document
