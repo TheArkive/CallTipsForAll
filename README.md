@@ -3,7 +3,7 @@ External call tip solution for multiple text editors.  Currently Scintilla and e
 
 Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for help on how to design call tips for another language.
 
-AHK v1 and v2 call tips have been created, and are quite comprehensive, but not 100% complete.  AHK v2 is currently the most complete, howver basic commands and built-in functions should be complete for AHK v1 and v2.  Most of what remains is objects (mostly arrays) resulting from functions and/or commands.
+AHK v1 and v2 call tips have been created, and are quite comprehensive, but not 100% complete.  AHK v2 is currently the most complete.  At a minimum basic commands and built-in functions should be complete for AHK v1 and v2.  Most of what remains is objects (mostly arrays) resulting from functions and/or commands.
 
 AutoHotkey CHM help files are included in this release, but you can of course replace them with your local copy if desired.
 
