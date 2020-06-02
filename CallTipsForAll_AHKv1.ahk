@@ -1,35 +1,38 @@
+; AHK v1
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ; =======================================================================================
 
+#INCLUDE LibV1\_Jxon_v1.ahk
+#INCLUDE LibV1\_Font_Picker_Dialog_v1.ahk
+#INCLUDE LibV1\_Color_Picker_Dialog_v1.ahk
+
 FileEncoding, UTF-8
 
-Global callTipGui, curIndex, helpFile, fullDescArr, hCtl, hEditorWin, cClassNN, CallTipHwnd
+Global SettingsGUI, AutoCompleteGUI, callTipGui
+Global curIndex, helpFile, fullDescArr, hCtl, hEditorWin, cClassNN
 
-Global fontFace, fontSize, fontColor, bgColor, srcFiles
+Global srcFiles ; fontFace fontSize, fontColor, bgColor
 
-Global truncateTextChars, AutoCompleteLength, useTooltip, maxLines, maxWidth
-Global loadCallTipOnClick, callTipSelectable
-Global closeTipOnLButton, closeTipOnClick, closeTipOnFocusChange
+Global WrapTextChars, AutoCompleteLength, useTooltip, maxLines, maxWidth
+Global callTipSelectable
+
+Global oCallTips
 
 Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
 Global funcBeginStr, funcEndStr
+
 Global ObjectCreateList
 Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList
 
 ; ======================================================================================
 ; ==== user settings ===================================================================
 ; ======================================================================================
-srcFiles := A_ScriptDir "\Languages\AHK1"
-Loop Files, %srcFiles%\*.chm
-	If (A_Index = 1)
-		helpFile := A_LoopFileFullPath
-
-fontFace := "Courier New"
-fontSize := 10
-fontColor := "Yellow"
-bgColor := "202020"
+; fontFace := "Courier New"
+; fontSize := 10
+; fontColor := "Yellow"
+; bgColor := "202020"
 
 ; ==== gui behavior settings ===========================================================
 ; Some of these settings don't play well together.  Just think about what you enable.
@@ -38,7 +41,7 @@ bgColor := "202020"
 ; or closeTipOnClick settings.
 ; ======================================================================================
 
-truncateTextChars := 80
+WrapTextChars := 80
 
 AutoCompleteLength := 3			; Auto-Complete won't trigger until X chars have been typed
 
@@ -46,21 +49,21 @@ useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
 
 maxLines := 20
 
-loadCallTipOnClick := false		; loads call tip on click, if clicked keyword is recognized
-callTipSelectable := false		; make call tip text selectable, ignores closeTipOnLButton
+; CallTipSelectable := true		; make call tip text selectable, ignores closeTipOnLButton
 
 closeTipOnLButton := false		; close call tip on L click anywhere
 closeTipOnClick := false		; close call tip when clicked on
-closeTipOnFocusChange := true	; close call tip when text editor loses focus
-
 ; ======================================================================================
 ; Script Vars
 ; ======================================================================================
 
-Global entryEnd
+Global entryEnd, Settings, exeList
 entryEnd := "`r`n`r`n`r`n"
-SysGet, maxWidth, 78
-maxWidth := (maxWidth * 0.75)
+FileRead, settingsText, Settings.txt
+Settings := Jxon_Load(settingsText)
+; exeList := Settings["exeList"]
+
+ReParseText() ; initial loading of functions, custom functions, objects
 
 ; ======================================================================================
 ; Tray Menu
@@ -68,17 +71,20 @@ maxWidth := (maxWidth * 0.75)
 ; Menu, subMenuAutoGen, Add, Generate Commands, iconMenu
 
 Menu, Tray, NoStandard
+Menu, Tray, Add, Settings, iconMenu
 Menu, Tray, Add, ReWrap Text (CTL + ALT + W), iconMenu
 Menu, Tray, Add, UnWrap Text (CTL + ALT + U), iconMenu
 ; Menu, Tray, Add, AHK Auto-Gen, :subMenuAutoGen
 Menu, Tray, Add, Reload, iconMenu
 Menu, Tray, Add, Exit, iconMenu
 
-iconMenu(ItemName, ItemPos, MenuObj) {
-	If (ItemName = "Generate Commands") {
+iconMenu(ItemName, ItemPos, MenuName) {
+	If (ItemName = "Settings") {
+		SettingsGUI()
+	} Else If (ItemName = "Generate Commands") {
 		AutoCmdFunc()
 	} Else If (ItemName = "ReWrap Text (CTL + ALT + W)") {
-		clipboard := truncateTxt(truncateTextChars)
+		clipboard := WrapText(WrapTextChars)
 	} Else If (ItemName = "UnWrap Text (CTL + ALT + U)") {
 		clipboard := unwrapText()
 	} Else If (ItemName = "Reload")
@@ -87,10 +93,16 @@ iconMenu(ItemName, ItemPos, MenuObj) {
 		ExitApp
 }
 
-truncateTxt(x) {
+WrapText(x) {
+	hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
+	
 	If (!StrLen(clipboard))
 		return ""
 	
+	inText := clipboard
+	endCRLF := false
+	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
+		endCRLF := true
 	inText := StrReplace(clipboard,"`r`n",Chr(1))
 	a := StrSplit(inText,Chr(1))
 	
@@ -104,7 +116,7 @@ truncateTxt(x) {
 				
 				y := 0
 				lastChar := SubStr(curChunk,-1)
-				nextChar := SubStr(curLine,s+x)
+				nextChar := SubStr(curLine,s+x,1)
 				
 				nectCharStat := false, lastCharStat := false
 				If nextChar is not space
@@ -134,20 +146,37 @@ truncateTxt(x) {
 			newText .= "`r`n"
 	}
 	
-	return Trim(newText,"`r`n")
+	newText := Trim(newText,"`r`n")
+	
+	If (endCRLF)
+		return newText "`r`n"
+	return newText
 }
 
 unwrapText() {
 	If (!StrLen(clipboard))
 		return ""
 	
+	inText := clipboard
+	endCRLF := false
+	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
+		endCRLF := true
 	inText := StrReplace(clipboard,"`r`n`r`n",Chr(1))
 	a := StrSplit(inText,Chr(1))
 	
-	Loop % a.Length()
-		newText .= StrReplace(a[A_Index],"`r`n"," ") "`r`n`r`n"
+	Loop % a.Length() {
+		tempText := a[A_Index]
+		tempText := StrReplace(tempText,".`r`n",".  ")
+		tempText := StrReplace(tempText,"`r`n"," ")
+		
+		newText .= tempText "`r`n`r`n"
+	}
+	newText := Trim(newText,"`r`n")
+	newText := RegExReplace(newText,"\.  $",".")
 	
-	return Trim(newText,"`r`n")
+	If (endCRLF)
+		return newText "`r`n"
+	Else return newText
 }
 
 ; ======================================================================================
@@ -160,15 +189,24 @@ IH.OnKeyDown := Func("keyPress"), IH.KeyOpt("{All}","N"), IH.Start()
 keyPress(iHook, VK, SC) { ; InputHookObject
 	curKey := "sc" Format("{:X}",SC)
 	
-	state := GetKeyState(curKey,"P")
-	
-	if (state)
-		SetTimer, LoadAutoComplete, -500
-	
-	iHook.Stop()
-	IH := InputHook("V I1","","")
-	
-	IH.OnKeyDown := Func("keyPress"), IH.KeyOpt("{All}","N"), IH.Start()
+	If (curKey != "sc118" And curKey != "sc117") { ; laptop close / open
+		state := 0
+		Try {
+			state := GetKeyState(curKey,"P")
+		} Catch e {
+			msgbox % "State: " state "`r`n... is invalid.`r`n`r`n" curKey
+		}
+		
+		if (state) {
+			SetTimer LoadAutoComplete, -100
+			SetTimer ReParseText, -500
+		}
+		
+		iHook.Stop()
+		IH := InputHook("V I1","","")
+		
+		IH.OnKeyDown := Func("keyPress"), IH.KeyOpt("{All}","N"), IH.Start()
+	}
 }
 
 ; ==================================================
@@ -178,76 +216,87 @@ keyPress(iHook, VK, SC) { ; InputHookObject
 ;                much purpose yet.
 ; ==================================================
 
-KeywordList := Object()
-Loop Files srcFiles "Keywords\KW_*.txt"
-{
-	FileRead, curText, %A_LoopFileFullPath%
-	Loop Parse, curText, `r, `n
-		KeywordList[A_LoopField] := "keyword"
+LoadKeywordsList() {
+	KeywordList := Object()
+	Loop Files srcFiles "Keywords\KW_*.txt"
+	{
+		FileRead, curText, %A_LoopFileFullPath%
+		Loop Parse, curText, `n, `r
+			KeywordList[A_LoopField] := "keyword"
+	}
 }
-
 ; ==================================================
 ; Create function and command list for call tips
 ; ==================================================
 
-FunctionList := Object()
-Loop Files, %srcFiles%\Other\List_*.txt ; functions and commands are combined into one list => FunctionList[]
-{
-	a := StrSplit(A_LoopFileName,"_") ; comma (,) separator
-	fileName := A_LoopFileFullPath, curFileType := StrReplace(a[2],".txt")
-	
-	FileRead, curList, %fileName%
-	curList := Trim(curList,"`r`n") entryEnd
-	curPos := 1, subStrEnd := 1
-	len := StrLen(curList)
-
-	While (curPos <= len And subStrEnd) {
-		subStrEnd := InStr(curList,entryEnd,false,curPos)
-		curLen := subStrEnd - curPos
-		curSubStr := SubStr(curList,curPos,curLen)
+LoadFunctionsList() {
+	FunctionList := Object()
+	Loop Files, %srcFiles%\Other\List_*.txt ; functions and commands are combined into one list => FunctionList[]
+	{
+		a := StrSplit(A_LoopFileName,"_") ; comma (,) separator
+		fileName := A_LoopFileFullPath, curFileType := StrReplace(a[2],".txt")
 		
-		If (curFileType = "BeginEnd") {
-			Loop Parse, curSubStr, `n, `r
-			{
-				If (A_Index = 1)
-					funcBeginStr := Trim(SubStr(A_LoopField,7))
-				Else If (A_Index = 2)
-					funcEndStr := Trim(SubStr(A_LoopField,5))
-			}
-		} Else {
-			funcName := "", funcHelpLink := "", funcDescArr := Array()
-			funcArr := StrSplit(curSubStr,Chr(96)), i := funcArr.Length()
+		FileRead, curList, %fileName%
+		curList := Trim(curList,"`r`n") entryEnd
+		curPos := 1, subStrEnd := 1
+		len := StrLen(curList)
+
+		While (curPos <= len And subStrEnd) {
+			subStrEnd := InStr(curList,entryEnd,false,curPos)
+			curLen := subStrEnd - curPos
+			curSubStr := SubStr(curList,curPos,curLen)
 			
-			Loop % i {
-				t := Trim(funcArr[A_Index],"`r`n")
-				If (A_Index = 1) {
-					Loop Parse, t, `n, `r
-					{
-						If (A_Index = 1)
-							funcType := A_LoopField
-						Else If (A_Index = 2)
-							funcName := A_LoopField
-					}
-				} Else If (A_Index > 1 And A_Index < i) {
-					funcDescArr.Push(t)
-				} Else If (A_Index = i) {
-					funcHelpLink := t
+			If (curFileType = "BeginEnd") {
+				Loop Parse, curSubStr, `n, `r
+				{
+					If (A_Index = 1)
+						funcBeginStr := Trim(SubStr(A_LoopField,7))
+					Else If (A_Index = 2)
+						funcEndStr := Trim(SubStr(A_LoopField,5))
 				}
+			} Else {
+				funcName := "", funcHelpLink := "", funcDescArr := Array()
+				funcArr := StrSplit(curSubStr,Chr(96)), i := funcArr.Length()
+				
+				Loop % i {
+					t := Trim(funcArr[A_Index],"`r`n")
+					If (A_Index = 1) {
+						Loop Parse, t, `n, `r
+						{
+							If (A_Index = 1)
+								funcType := A_LoopField
+							Else If (A_Index = 2)
+								funcName := A_LoopField
+						}
+					} Else If (A_Index > 1 And A_Index < i) {
+						funcDescArr.Push(t)
+					} Else If (A_Index = i) {
+						funcHelpLink := t
+					}
+				}
+				
+				curObj := Object()
+				curObj["desc"] := funcDescArr
+				curObj["type"] := funcType ; "function" or "command"
+				curObj["helpLink"] := funcHelpLink
+				FunctionList[funcName] := curObj
+				KeywordList[funcName] := "function"
 			}
-			
-			curObj := Object()
-			curObj["desc"] := funcDescArr
-			curObj["type"] := funcType ; "function" or "command"
-			curObj["helpLink"] := funcHelpLink
-			FunctionList[funcName] := curObj
-			KeywordList[funcName] := "function"
+			curPos := subStrEnd + StrLen(entryEnd), curObj := ""
 		}
-		curPos := subStrEnd + StrLen(entryEnd), curObj := ""
 	}
 }
 
+; FunctionList Structure
+; ========================
+;	FunctionList
+;
+;		funcName / curObj
+;
+;			desc / descArr
+;			type / funcTypeStr
+;			helpLink / helpLinkStr
 ; msgbox "Begin:   " funcBeginStr "`r`nEnd:   " funcEndStr
-
 ; ==================================================
 ; for debug only
 ; ==================================================
@@ -263,122 +312,125 @@ Loop Files, %srcFiles%\Other\List_*.txt ; functions and commands are combined in
 ; ==================================================
 ; generate custom function list
 ; ==================================================
-hCtl := editorCtlHwnd(hEditorWin,eType,cClassNN)
-ControlGetText, curDocText, %cClassNN%, ahk_id %hEditorWin%
-curDocArr := StrSplit(curDocText,"`n","`r")
-CustomFunctions := GetCustomFunctions(curDocArr)
+; hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
+; ControlGetText, curDocText, %cClassNN%, ahk_id %hEditorWin%
+; curDocArr := StrSplit(curDocText,"`n","`r")
+; CustomFunctions := GetCustomFunctions(curDocArr)
 
 ; ==================================================
 ; Create Object Index by type for call tips
 ; ==================================================
-MethPropList := Object()
-Loop Files, %srcFiles%\Objects\*.txt
-{
-	a := StrSplit(A_LoopFileName,"_")
-	fnType := a.HasKey(2) ? a[2] : A_LoopFileName, fnType := StrReplace(fnType,".txt","")
-	FileRead, curList, %A_LoopFileFullPath%
-	curList := Trim(curList,"`r`n") entryEnd
-	objList := "", objListPre := "", lineSplit := "", curObjType := ""
-	curPos := 1, curHelpLink := "", propText := "", methText := ""
-	len := StrLen(curList)
-	
-	curObj := Object(), propList := Object(), methList := Object()
-
-	While (curPos <= len) {
-		subStrEnd := InStr(curList,entryEnd,false,curPos)
-		curLen := subStrEnd - curPos
-		curSubStr := SubStr(curList,curPos,curLen)
-		
-		curDesc := "", curMemType := "", curMem := ""
-		If (A_Index = 1) {
-			objMatchArr := StrSplit(curSubStr,Chr(96))
-			i := objMatchArr.Length()
-			
-			objDescArr := Array(), methPropArr := Array(), curHelpLink := ""
-			Loop % i {
-				t := Trim(objMatchArr[A_Index],"`r`n")
-				If (A_Index = 1) {
-					objListPre := t, objMatchText .= objListPre "`r`n"
-				} Else If (A_Index > 1 And A_Index < i) {
-					objDescArr.Push(t)
-				} Else If (A_Index = i) {
-					curHelpLink := t
-				}
-			}
-			
-			Loop Parse, objListPre, `n, `r ; create list of defined objTypes
-			{
-				lineSplit := StrSplit(A_LoopField," "), curObjType := lineSplit[2]
-				objList .= curObjType "`r`n"
-			}
-			Sort, objList, U
-			objList := Trim(objList,"`r`n")
-		} Else {
-			memMap := Object(), memDescArr := Array(), memHelpLink := ""
-			methPropArr := StrSplit(curSubStr,Chr(96)), i := methPropArr.Length()
-			Loop % i {
-				t := Trim(methPropArr[A_Index],"`r`n")
-				If (A_Index = 1) {
-					Loop Parse, t, `n, `r
-					{
-						If (A_Index = 1)
-							curMemType := A_LoopField
-						Else If (A_Index = 2)
-							curMem := A_LoopField
-					}
-				} Else if (A_Index > 1 And A_Index < i) {
-					memDescArr.Push(t)
-				} Else If (A_Index = i) {
-					memHelpLink := t
-				}
-			}
-			
-			memMap["desc"] := memDescArr
-			memMap["helpLink"] := memHelpLink
-			
-			StringLower, curMemType, curMemType
-			KeywordList[curMem] := curMemType
-			If (curMemType = "Method")
-				methList[curMem] := memMap
-			Else
-				propList[curMem] := memMap
-		}
-	
-		curPos := subStrEnd + StrLen(entryEnd)
-	}
-	
-	methTitle := "Methods: " ; create first desc as method/property list
-	For methName in methList
-		methText .= "." methName ", "
-	
-	methText := Trim(methText," ,`r`n")
-	If (methText)
-		methText := methTitle methText
-	
-	propTitle := "Properties: "
-	For propName in propList
-		propText .= "." propName ", "
-	
-	propText := Trim(propText," ,`r`n")
-	If (propText)
-		propText := propTitle propText
-	
-	firstDesc := Trim("[ObjectTypeName]`r`n`r`n" methText,"`r`n")
-	firstDesc := Trim(firstDesc "`r`n`r`n" propText,"`r`n")
-	
-	curObj["method"] := methList, curObj["property"] := propList
-	curObj["helpLink"] := curHelpLink
-	
-	Loop Parse, objList, `n, `r ; append methods/properties to all defined obj types
+LoadMethPropList() {
+	MethPropList := Object()
+	Loop Files, %srcFiles%\Objects\*.txt
 	{
-		curFirstDesc := StrReplace(firstDesc,"[ObjectTypeName]",A_LoopField)
-		objDescArr.InsertAt(1,curFirstDesc)
-		curObj["desc"] := objDescArr
-		MethPropList[A_LoopField] := curObj
-	}
-	curObj := "", methList := "", propList := ""
-}
+		a := StrSplit(A_LoopFileName,"_")
+		fnType := a.HasKey(2) ? a[2] : A_LoopFileName, fnType := StrReplace(fnType,".txt","")
+		FileRead, curList, %A_LoopFileFullPath%
+		curList := Trim(curList,"`r`n") entryEnd
+		objList := "", objListPre := "", lineSplit := "", curObjType := ""
+		curPos := 1, curHelpLink := "", propText := "", methText := ""
+		len := StrLen(curList)
+		
+		curObj := Object(), propList := Object(), methList := Object()
 
+		While (curPos <= len) {
+			subStrEnd := InStr(curList,entryEnd,false,curPos)
+			curLen := subStrEnd - curPos
+			curSubStr := SubStr(curList,curPos,curLen)
+			
+			curDesc := "", curMemType := "", curMem := ""
+			If (A_Index = 1) {
+				objMatchArr := StrSplit(curSubStr,Chr(96))
+				i := objMatchArr.Length()
+				
+				objDescArr := Array(), methPropArr := Array(), curHelpLink := ""
+				Loop % i {
+					t := Trim(objMatchArr[A_Index],"`r`n")
+					If (A_Index = 1) {
+						objListPre := t, objMatchText .= objListPre "`r`n"
+					} Else If (A_Index > 1 And A_Index < i) {
+						objDescArr.Push(t)
+					} Else If (A_Index = i) {
+						curHelpLink := t
+					}
+				}
+				
+				Loop Parse, objListPre, `n, `r ; create list of defined objTypes
+				{
+					lineSplit := StrSplit(A_LoopField," "), curObjType := lineSplit[2]
+					objList .= curObjType "`r`n"
+				}
+				Sort, objList, U
+				objList := Trim(objList,"`r`n")
+			} Else {
+				memMap := Object(), memDescArr := Array(), memHelpLink := ""
+				methPropArr := StrSplit(curSubStr,Chr(96)), i := methPropArr.Length()
+				Loop % i {
+					t := Trim(methPropArr[A_Index],"`r`n")
+					If (A_Index = 1) {
+						Loop Parse, t, `n, `r
+						{
+							If (A_Index = 1)
+								curMemType := A_LoopField
+							Else If (A_Index = 2)
+								curMem := A_LoopField
+						}
+					} Else if (A_Index > 1 And A_Index < i) {
+						memDescArr.Push(t)
+					} Else If (A_Index = i) {
+						memHelpLink := t
+					}
+				}
+				
+				memMap["desc"] := memDescArr
+				memMap["helpLink"] := memHelpLink
+				
+				StringLower, curMemType, curMemType
+				KeywordList[curMem] := curMemType
+				If (curMemType = "Method")
+					methList[curMem] := memMap
+				Else
+					propList[curMem] := memMap
+			}
+		
+			curPos := subStrEnd + StrLen(entryEnd)
+		}
+		
+		methTitle := "Methods: " ; create first desc as method/property list
+		For methName in methList
+			methText .= "." methName ", "
+		
+		methText := Trim(methText," ,`r`n")
+		If (methText)
+			methText := methTitle methText
+		
+		propTitle := "Properties: "
+		For propName in propList
+			propText .= "." propName ", "
+		
+		propText := Trim(propText," ,`r`n")
+		If (propText)
+			propText := propTitle propText
+		
+		firstDesc := Trim("[ObjectTypeName]`r`n`r`n" methText,"`r`n")
+		firstDesc := Trim(firstDesc "`r`n`r`n" propText,"`r`n")
+		
+		curObj["method"] := methList, curObj["property"] := propList
+		curObj["helpLink"] := curHelpLink
+		
+		Loop Parse, objList, `n, `r ; append methods/properties to all defined obj types
+		{
+			curFirstDesc := StrReplace(firstDesc,"[ObjectTypeName]",A_LoopField)
+			objDescArr.InsertAt(1,curFirstDesc)
+			curObj["desc"] := objDescArr
+			MethPropList[A_LoopField] := curObj
+		}
+		curObj := "", methList := "", propList := ""
+	}
+
+	return objMatchText
+}
 ; MethPropList Structure
 ; ==========================
 ;	MethPropList
@@ -427,37 +479,39 @@ Loop Files, %srcFiles%\Objects\*.txt
 ;                           Member: type   (string - object type)
 ;                           Member: direct (boolean - indicates if {substitution} in regex is required)
 ; ==================================================
-ObjectCreateList := Object()
-Sort, objMatchText, objMatchText
-objMatchText := Trim(objMatchText,"`r`n")
-curLevel := 0, prevLevel := 0, curLevelObj := Object()
+LoadObjectCreateList(objMatchText) {
+	ObjectCreateList := Object()
+	Sort, objMatchText, objMatchText
+	objMatchText := Trim(objMatchText,"`r`n")
+	curLevel := 0, prevLevel := 0, curLevelObj := Object()
 
-Loop Parse, objMatchText, `r, `n
-{
-	curObj := Object()
-	result := RegExMatch(A_LoopField,"O)([0-9]) ([\w]+) ([\w]+) (.*)",match)
-	
-	If (IsObject(match) And match.Count() = 4) {
-		curLevel := match.Value(1), curObjType := match.Value(2)
-		curLabel := match.Value(3), regex := match.Value(4)
-		isDirect := InStr(regex,"{") ? 0 : 1 ; reorganize with level sub object
-		
-		If (curLevel != prevLevel)
-			ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := Object()
-		
+	Loop Parse, objMatchText, `r, `n
+	{
 		curObj := Object()
-		curObj["regex"] := regex, curObj["type"] := curObjType, curObj["direct"] := isDirect
-		curLevelObj[curLabel] := curObj
+		result := RegExMatch(A_LoopField,"O)([0-9]) ([\w]+) ([\w]+) (.*)",match)
 		
-		prevLevel := curLevel
-	} Else {
-		msg := "Line:`r`n    " A_LoopField "`r`n`r`nObject File - improper format.`r`n`r`nLine Format:`r`n    Level ObjType Label RegExMatchString"
-		MsgBox % msg
-		ExitApp
+		If (IsObject(match) And match.Count() = 4) {
+			curLevel := match.Value(1), curObjType := match.Value(2)
+			curLabel := match.Value(3), regex := match.Value(4)
+			isDirect := InStr(regex,"{") ? 0 : 1 ; reorganize with level sub object
+			
+			If (curLevel != prevLevel)
+				ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := Object()
+			
+			curObj := Object()
+			curObj["regex"] := regex, curObj["type"] := curObjType, curObj["direct"] := isDirect
+			curLevelObj[curLabel] := curObj
+			
+			prevLevel := curLevel
+		} Else {
+			msg := "Line:`r`n    " A_LoopField "`r`n`r`nObject File - improper format.`r`n`r`nLine Format:`r`n    Level ObjType Label RegExMatchString"
+			MsgBox % msg
+			ExitApp
+		}
+		curObj := ""
 	}
-	curObj := ""
+	ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := ""
 }
-ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := ""
 
 ; ==================================================
 ; for debug only
@@ -475,10 +529,22 @@ ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := ""
 
 
 ; ============================================================
-; Parse document and gereate list of object names and other data.
+; Parse document and gereate list of object names and other data. - done in ReloadElements()
 ; ============================================================
-ObjectList := CreateObjList(curDocText)
-curDocArr := "", curDocText := "" ; these will be recreated on demand
+; ObjectList := CreateObjList(curDocText)
+; curDocArr := "", curDocText := "" ; these will be recreated on demand
+; ReloadElements()
+
+; ObjectList Structure
+;
+;	ObjectList
+;
+;		objName / typeObjList
+;
+;			typeObj / typeObj
+;
+;				label / labelStr
+;				match / matchStr
 
 ; ==================================================
 ; for debug only
@@ -497,6 +563,10 @@ curDocArr := "", curDocText := "" ; these will be recreated on demand
 ; Load Call Tip
 ; ======================================================================================
 LoadCallTip() { ; curPhrase, curPhraseType ---> globals
+	fontFace := Settings["fontFace"]
+	fontSize := Settings["fontSize"]
+	fontColor := Format("{:X}",Settings["fontColor"])
+	bgColor := Format("{:X}",Settings["bgColor"])
 	If (curPhrase = "")
 		return
 	
@@ -584,7 +654,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 					
 					For index, desc in descArr {
 						StringUpper, titleHeader, curPhraseType, T
-						desc := objType " " titleHeader ":`r`n`r`n" desc
+						desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
 						curObj := Object()
 						curObj["helpLink"] := helpLink, curObj["desc"] := desc
 						fullDescArr[i] := curObj
@@ -608,16 +678,14 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	
 	If (!fullDesc)
 		return
-	Else
-		dims := GetMsgDimensions(fullDesc,fontFace,fontSize)
 	
-	Loop Parse, fullDesc, `n, `r ; count lines in desc
-		tL := A_Index
+	curMon := GetMonitorData(outX,outY) ; get actvie monitor dims and L/R/T/B
+	dims := GetTextDims(fullDesc,fontFace,fontSize,maxWidth)
 	
-	If (tL > maxLines) ; set max lines
-		tL := maxLines, vscroll := ""
-	Else
-		vscroll := "-VScroll"
+	If (dims.w > curMon.w)
+		dims := GetTextDims(fullDesc,fontFace,fontSize,curMon.w * 0.75)
+		
+	vscroll := "-VScroll"
 	
 	CoordMode Caret, Screen
 	outX := A_CaretX, outY := A_CaretY
@@ -627,28 +695,27 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		Tooltip %fullDesc%, %outX%, %outY%
 	} Else {
 		outX += -11, outY += 20
-		ctlHwnd := editorCtlHwnd(hEditorWin,eType,cClassNN)
 		
-		Gui, CallTip:New, -Border AlwaysOnTop +Owner%hEditorWin% +HwndCallTipHwnd
+		If (callTipGui)
+			Gui, CallTip:Destroy
+		
+		Gui, CallTip:New, % "-Border AlwaysOnTop +Owner " hEditorWin " +HwndcallTipGui"
+		Gui, Color, %bgColor%
 		Gui, Font, s%fontSize%, %fontFace%
-		SysGet, maxW, 78
-		maxW := (maxW < dims.w) ? "w" maxWidth : ""
 		
-		If (!callTipSelectable) {
-			Gui, CallTip:Add, Text, %maxW% +c%fontColor% ggui_click r%tL% x5 y5 AltSubmit, %fullDesc%
+		If (!Settings["CallTipSelectable"]) {
+			Gui, CallTip:Add, Text, % "w" dims.w " h" dims.h " +c" fontColor " ggui_click x5 y5 AltSubmit", %fullDesc%
 			GuiControlGet, dCtl, Pos, Static1
-			Gui, Color, %bgColor%
 		} Else {
-			Gui, CallTip:Add, Edit, %maxW% +c%fontColor% r%tL% %vscroll% -E0x200 x5 y5 ReadOnly, %fullDesc%
+			SysGet, scrollW, 2
+			Gui, CallTip:Add, Edit, % "w" (dims.w+(scrollW*2)) " h" dims.h " x5 y5 +Background" bgColor " " vscroll "-E0x200 x5 y5 ReadOnly", %fullDesc%
 			GuiControlGet, dCtl, Pos, Edit1
-			Gui, Color, %bgColor%
 		}
 		
 		posTest := OutX + dCtlW
 		
-		SysGet, temp1, 78
-		If (posTest > temp1) {
-			offset := posTest - temp1
+		If (posTest > curMon.right) {
+			offset := posTest - curMon.right
 			OutX := OutX - offset - 20
 		}
 		
@@ -682,9 +749,22 @@ gui_click(CtrlHwnd, GuiEvent, EventInfo) {
 LoadAutoComplete() {
 	ProcInput() ; update cursor postion and curPhrase in global variables
 	
+	KeywordFilter := Object()
 	If (StrLen(curPhrase) >= AutoCompleteLength) { ; not done yet!
-	
+		For kw, type in KeywordList {
+			If (InStr(kw,curPhrase))
+				KeywordFilter[kw] := type
+		}
+		; msgbox KeywordFilter.Count
+		
 	}
+}
+
+AutoCompleteGUI(KeywordFilter) {
+	If (AutoCompleteGUI)
+		AutoCompleteGUI.Destroy()
+	
+	
 }
 
 
@@ -899,8 +979,6 @@ CreateObjList(curDocText) { ; v2 - hopefully uses less cpu
 			
 				curPos := 1
 				
-				; Msgbox % level " / " label " / " type "`r`n`r`n" regex
-				
 				If (direct) {
 					While(result := RegExMatch(curDocText,"O)" regex,match,curPos)) {
 						c := match.Count()
@@ -910,11 +988,11 @@ CreateObjList(curDocText) { ; v2 - hopefully uses less cpu
 							If (objNameArr.Length() > 1)
 								objName := objNameArr[2]
 							
-							If (!oList.HasKey(objName)) {
+							If (!oList.HasKey(objName))
 								obj := Object()
-							} Else {
+							Else
 								obj := oList[objName]
-							}
+							
 							
 							objMatch := (c = 2) ? match.Value(2) : match.Value(1)
 							typeObj["label"] := label
@@ -972,10 +1050,9 @@ CreateObjList(curDocText) { ; v2 - hopefully uses less cpu
 										curPos := StrLen(curDocText)
 								} ; end while
 							}
-						}
+						} ; end for
 					} ; end for
-				}
-			
+				} 
 		} ; end for
 	} ; end for
 	
@@ -992,7 +1069,7 @@ CreateObjList(curDocText) { ; v2 - hopefully uses less cpu
 						newRegex := StrReplace(newRegex,"{CustomFunction}",custFuncName)
 						
 						curRetStr := retStr ; return var in matched function
-						curObjType := curLblObj ; curLblObj["type"] ; obj type to save
+						curObjType := curLblObj
 						Break ; break on match
 					}
 				} ; end for
@@ -1028,145 +1105,6 @@ CreateObjList(curDocText) { ; v2 - hopefully uses less cpu
 	
 	return oList
 }
-
-
-; CreateObjList(curDocArr) { ; v1 - lags
-	; oList := Object()
-	
-	; For level, lvlObj in ObjectCreateList {
-		; For label, lblObj in lvlObj {
-			; i := 1, type := lblObj["type"], regex := lblObj["regex"], direct := lblObj["direct"]
-			
-			; count1 := curDocArr.Length()
-			; Loop %count1% {
-				; curLine := curDocArr[A_Index], i := A_Index
-				; curLine := StringOutline(curLine)
-				; curPos := 1
-				
-				; If (direct) {
-					; While (result := RegExMatch(curLine,"O)" regex,match,curPos)) {
-						
-						; c := match.Count()
-						; If (IsObject(match) And c >= 1) {
-							; obj := Object(), objName := match.Value(1)
-							; objNameArr := StrSplit(objName,".")
-							; If (objNameArr.Length() > 1)
-								; objName := objNameArr[2]
-							
-							; objMatch := (c = 2) ? match.Value(2) : match.Value(1)
-							
-							; obj["type"] := type
-							; obj["label"] := label
-							; obj["line"] := i
-							; obj["match"] := objMatch
-							
-							; quit := false
-							; If (KeywordList.HasKey(objName)) ; omit in ObjectList if objName is a keyword
-								; quit := true
-							
-							; If (!oList.HasKey(objName) And !quit)
-								; oList[objName] := obj
-							
-							; curPos := match.Pos(c) + match.Len(c)
-						; } Else
-							; curPos := StrLen(curLine)
-					; }
-				; } Else { ; perform {substitution} before doing regex match and adding to ObjectList
-					; r1 := RegExMatch(regex,"O)\{(.*?)\}",match), listType := match.Value(1)
-					
-					; For curObjName, curLblObj in oList {
-						; curType := curLblObj["type"]
-						; If (curType = listType) {
-							; newRegex := StrReplace(regex,"{" listType "}",curObjName)
-							
-							; While (result := RegExMatch(curLine,"O)" newRegex,match,curPos)) {
-								; c := match.Count()
-								; If (IsObject(match) And c = 2) {
-									; obj := Object(), objName := match.Value(1)
-									; objNameArr := StrSplit(objName,".")
-									; If (objNameArr.Length() > 1)
-										; objName := objNameArr[2]
-								
-									; objMatch := (match.Count() = 2) ? match.Value(2) : match.Value(1)
-									; obj["type"] := type
-									; obj["label"] := label
-									; obj["line"] := i
-									; obj["match"] := objMatch
-									
-									; quit := false
-									; If (KeywordList.HasKey(objName)) ; omit in ObjectList if objName is a keyword
-										; quit := true
-									
-									; If (!oList.HasKey(objName))
-										; oList[objName] := obj
-									
-									; curPos := match.Pos(c) + match.Len(c)
-								; } Else
-									; curPos := StrLen(curLine)
-							; } ; end while
-						; }
-					; } ; end for
-				; }
-			; } ; end loop
-		; } ; end for
-	; } ; end for
-	
-	; Loop % curDocArr.Length() { ; parse document one more time for custom functions returning objects
-		; curLine := curDocArr[A_Index], i := A_Index
-		; curLine := StringOutline(curLine)
-		
-		; For custFuncName, curLblObj in CustomFunctions {
-			; newRegex := "^[ \t]*([\w\.]+)[ \t]*:=[ \t]*({CustomFunction}\x28)"
-			; newRegex := StrReplace(newRegex,"{CustomFunction}",custFuncName)
-			; curRetStr := "", curObjType := ""
-			
-			; If (curLblObj.HasKey("return")) {
-				; returnObj := curLblObj["return"]
-				; For retStr, L in returnObj { ; loop through return entries in Func
-					; For curObjName, curLblObj in oList { ; loop through oList to find objMatch
-						; If (retStr = curObjName) {
-							; curRetStr := retStr ; return var in matched function
-							; curObjType := curLblObj["type"] ; obj type to save
-							; Break ; break on match
-						; }
-					; } ; end for
-					
-					; If (curRetStr)
-						; Break
-				; } ; end for
-			; }
-			
-			; curPos := 1
-			; While (result := RegExMatch(curLine,"O)" newRegex,match,curPos)) {
-				; c := match.Count()
-				; If (IsObject(match) And match.Count() = 2 and curRetStr) { ; if match add obj to list
-					; obj := Object(), objName := match.Value(1)
-					; objNameArr := StrSplit(objName,".")
-					; If (objNameArr.Length() > 1)
-						; objName := objNameArr[2]
-					
-					; objMatch := (match.Count() = 2) ? match.Value(2) : match.Value(1)
-					; obj["type"] := curObjType
-					; obj["label"] := "objByFunc"
-					; obj["line"] := i
-					; obj["match"] := objMatch
-					
-					; quit := false
-					; If (KeywordList.HasKey(objName)) ; omit in ObjectList if objName is a keyword
-						; quit := true
-					
-					; If (!oList.HasKey(objName))
-						; oList[objName] := obj
-					
-					; curPos := match.Pos(c) + match.Len(c)
-				; } Else
-					; curPos := StrLen(curLine)
-			; } ; end while
-		; } ; end for
-	; } ; end loop
-	
-	; return oList
-; }
 
 ; ================================================================
 ; Creates a list of user defined functions.  The call tip only shows FuncName(params...) and
@@ -1223,20 +1161,58 @@ GetCustomFunctions(curDocArr) {
 ; Reads current document and caret position and refreshes ObjectList, FunctionList,
 ; and CustomFunctions.
 ; ================================================================
-ProcInput() {
-	curPhrase := "", parentObjType := "", curPhraseType := ""
-	hCtl := editorCtlHwnd(hEditorWin,eType,cClassNN)
-	
-	If (!hCtl) ; if supported text editor inactive, return
+
+ReParseText() {
+	hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
+	If (cClassNN != "scintilla1" And cClassNN != "Edit1")
 		return
+		
+	If (WinActive("ahk_id " hEditorWin)) {
+		fontFace := Settings["fontFace"]
+		fontSize := Settings["fontSize"]
+		fontColor := Format("{:X}",Settings["fontColor"])
+		bgColor := Format("{:X}",Settings["bgColor"])
+		
+		Gui, Loading:New, -Caption AlwaysOnTop +Owner%hEditorWin%
+		Gui, Loading:Font, s%fontSize%, %fontFace%
+		Gui, Loading:Color, %bgColor%
+		Gui, Loading:Add, Text, x5 y5, Loading Objects / Custom Functions...
+		GUi, Loading:Show, y0 NA NoActivate
+		
+		; dims := g.Pos
+		; y := SysGet(79) - dims.h
+		; x := SysGet(78) - dims.w
+		; g.Show("x" x " y" y " NA NoActivate") ; move to lower right
+		
+		ReloadElements()
+		Gui Loading:Destroy
+	}
+}
+
+ReloadElements() {
+	srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"]
+	Loop Files srcFiles "\*.chm"
+		If (A_Index = 1)
+			helpFile := A_LoopFileFullPath
 	
-	ControlGetText, curDocText, %cClassNN%, ahk_id %hEditorWin%
-	If (!curDocText)
-		return
+	LoadKeywordsList()
+	LoadFunctionsList()
 	
+	ControlGetText, curDocText, %cClassNN%, % "ahk_id " hEditorWin
 	curDocArr := StrSplit(curDocText,"`n","`r")
 	CustomFunctions := GetCustomFunctions(curDocArr)
+
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
+
 	ObjectList := CreateObjList(curDocText)
+	curDocArr := "", curDocText := ""
+}
+
+ProcInput() {
+	curPhrase := "", parentObjType := "", curPhraseType := ""
+	ControlGetText, curDocText, %cClassNN%, % "ahk_id " hEditorWin
+	curDocArr := StrSplit(curDocText,"`n","`r")
 	
 	ControlGet, curCol, CurrentCol,,, ahk_id %hCtl%
 	ControlGet, curLine, CurrentLine,,, ahk_id %hCtl%
@@ -1315,37 +1291,18 @@ ProcInput() {
 			}
 		}
 	}
-	
-	; If (curPhrase) { ; for debugging while allowing user input - requires InputHook up top
-		; x := A_CaretX, y := A_CaretY
-		; Tooltip % "curPhrase :" curPhrase ": / curPhraseObj: " curPhraseObj " / funcName: " funcName " / curMethProp: " curMethProp "`r`nparentObj: " parentObj " / parentObjType: " parentObjType "`r`nphraseType: " curPhraseType "`r`nfuncText: " funcText, x, (y+30)
-	; } Else
-		; ToolTip
 }
 
 debugToolTip() {
 	ProcInput()
 	If (curPhrase) { ; for debugging while allowing user input - requires InputHook up top
-		x := A_CaretX, y := A_CaretY, y+30
+		x := A_CaretX, y := A_CaretY
 		Tooltip % "curPhrase :" curPhrase ": / curPhraseObj: " curPhraseObj
 		      . "`r`nfuncName: " funcName " / funcText: " funcText
 		      . "`r`nparentObj: " parentObj " / parentObjType: " parentObjType 
-			  . "`r`nphraseType: " curPhraseType, %x%, %y%
+			  . "`r`nphraseType: " curPhraseType, %x%, % (y+30)
 	} Else
 		ToolTip
-}
-
-editorCtlHwnd(ByRef eHwnd, ByRef cType, ByRef classNN) {
-	cType := "", eHwnd := "", classNN := "", hSci := 0
-	If (eHwnd := WinActive("ahk_exe notepad.exe")) {
-		ControlGet, hSci, Hwnd,, Edit1, ahk_class Notepad ; hSci
-		cType := "edit", classNN := "Edit1"
-	} Else If (eHwnd := WinActive("ahk_exe notepad++.exe")) {
-		ControlGet, hSci, Hwnd,, Scintilla1, ahk_exe notepad++.exe ; hSci
-		cType := "scintilla", classNN := "Scintilla1"
-	}
-	
-	return hSci
 }
 
 ; ===========================================
@@ -1473,59 +1430,363 @@ AutoCmdFunc() {
 
 
 
-; ======================================================================================
-; get text dimensions given a font face and size, also get line height
-; all dimensions and line height are measured in pixels
-; ======================================================================================
-GetMsgDimensions(sString,sFaceName,nHeight,maxW := 0) {
-	Loop Parse, sString, `n, `r
-	{
-		line1 := A_LoopField
-		break
+
+
+; ================================================================
+; Settings GUI
+; ================================================================
+
+SettingsGUI() {
+	Global
+	Gui, Settings:New, AlwaysOnTop +Labelgui_ +HwndSettingsGUI, CallTipsForAll v2
+	
+	
+	ActiveLanguage := Settings["ActiveLanguage"]
+	
+	If (callTipGui) {
+		Gui, CallTip:Destroy
+		callTipGui := "", curIndex := "", fullDescArr := ""
 	}
 	
-	;;;;;;; ==================================================== get line height
-	Gui, New
-	Gui, Font, s%nHeight%, %sFaceName%
-	Gui, Add, Text, , %line1%
-	GuiControlGet, curCtl, Pos, Static1
+	langList := ""
+	Loop, Files, %A_ScriptDir%\Languages\*, D
+		langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
 	
-	lineH := curCtlH
-	Gui, Destroy
-	;;;;;;; ====================================================
+	langList := (SubStr(langList,-1) = "||") ? langList : Trim(langList,"|")
 	
-	maxH := 0 ; maxW is already set
-	fullLen := StrLen(sString)
-	curPos := 1, len := 65535
+	Gui, Settings:Add, Text, x5 y10, Language:
+	Gui, Settings:Add, DropDownList, x+2 yp-4 w100 vPickLang ggui_change_events, %langList%
 	
-	While (curPos <= fullLen) {
-		tinyStr := SubStr(sString,curPos,len)
+	Gui, Settings:Add, Checkbox, xm y+8 vLoadCallTipOnClick ggui_change_events, Load call tip on click
+	GuiControl, Settings:, LoadCallTipOnClick, % Settings["LoadCallTipOnClick"]
+	
+	Gui, Settings:Add, Checkbox, x+8 vCloseTipOnFocusChange ggui_change_events, CLose call tip on focus change
+	GuiControl, Settings:, CloseTipOnFocusChange, % Settings["CloseTipOnFocusChange"]
+	
+	Gui, Settings:Add, Checkbox, xm y+8 vDebugToolTip ggui_change_events, Show Debug Tooltip
+	GuiControl, Settings:, DebugToolTip, % Settings["DebugToolTip"]
+	
+	Gui, Settings:Add, Checkbox, x+8 vCallTipSelectable ggui_change_events, Selectable call tips
+	GuiControl, Settings:, CallTipSelectable, % Settings["CallTipSelectable"]
+	
+	Gui, Settings:Add, Button, vPickFont xm y+8 ggui_change_events, Select Font
+	GuiControlGet, ctlpos, Settings:Pos, PickFont
+	textW := ctlposW
+	
+	Gui, Settings:Add, Button, vPickFontColor x+0 ggui_change_events, Select Font Color
+	GuiControlGet, ctlpos, Settings:Pos, PickFontColor
+	textW += ctlposW
+	
+	Gui, Settings:Add, Button, vPickBgColor x+0 ggui_change_events, Select Background Color
+	GuiControlGet, ctlpos, Settings:Pos, PickBgColor
+	textW += ctlposW
+	
+	Gui, Settings:Add, Edit, % "vFontDemo xm y+8 w" textW " h50 -E0x200 -VScroll", Call Tip Test ; ReadOnly
+	
+	SetFontDemo()
+	Gui, Settings:Show
+}
+
+gui_change_events(CtrlHwnd, GuiEvent, EventInfo) {
+	GuiControlGet, ctlName, Settings:Name, %CtrlHwnd%
+	GuiControlGet, ctlValue, , %CtrlHwnd%
+	
+	if (ctlName = "PickLang")
+		Settings["ActiveLanguage"] := ctlValue
+	else if (ctlName = "LoadCallTipOnClick")
+		Settings["LoadCallTipOnClick"] := ctlValue
+	else if (ctlName = "CloseTipOnFocusChange")
+		Settings["CloseTipOnFocusChange"] := ctlValue
+	else if (ctlName = "DebugToolTip")
+		Settings["DebugToolTip"] := ctlValue
+	else if (ctlName = "CallTipSelectable")
+		Settings["CallTipSelectable"] := ctlValue
+	Else If (ctlName = "PickFont") {
+		fName := Settings["fontFace"]
+		fSize := Settings["fontSize"]
+		fontObj := Object("name",fName,"size",fSize) ; ,"color",0xFF0000
+		fontObj := FontSelect(fontObj,SettingsGUI,0)
+		If (fontObj) {
+			Settings["fontFace"] := fontObj["name"]
+			Settings["fontSize"] := fontObj["size"]
+			SetFontDemo()
+		}
+	} Else if (ctlName = "PickFontColor") {
+		fontColor := Settings["fontColor"]
+		fontColor := ColorSelect(fontColor,SettingsGUI)
+		If (fontColor > -1) {
+			Settings["fontColor"] := fontColor
+			SetFontDemo()
+		}
+	} Else if (ctlName = "PickBgColor") {
+		bgColor := Settings["bgColor"]
+		bgColor := ColorSelect(bgColor,SettingsGUI)
+		If (bgColor > -1) {
+			Settings["bgColor"] := bgColor
+			SetFontDemo()
+		}
+	}
+}
+
+SetFontDemo() {
+	fontFace := Settings["fontFace"]
+	fontSize := Settings["fontSize"]
+	fontColor := Format("{:X}",Settings["fontColor"])
+	bgColor := Format("{:X}",Settings["bgColor"])
+	
+	Gui, Settings:Default
+	Gui, Font, s%fontSize% c%fontColor%, %fontFace%
+	GuiControl, Font, FontDemo
+	GUi, Color,, %bgColor%
+}
+
+gui_close(hwnd) {
+	ReParseText()
+	
+	settingsText := Jxon_Dump(Settings,4)
+	FileDelete Settings.txt
+	FileAppend %settingsText%, Settings.txt
+	Gui, Settings:Destroy
+	SettingsGUI := ""
+}
+
+gui_escape(hwnd) {
+	ReParseText()
+	
+	settingsText := Jxon_Dump(Settings,4)
+	FileDelete Settings.txt
+	FileAppend %settingsText%, Settings.txt
+	Gui, Settings:Destroy
+	SettingsGUI := ""
+}
+
+editorCtlHwnd(ByRef progHwnd, ByRef classNN, ByRef eType) {
+	MouseGetPos x,y,clickWinHwnd, clickCtlClassNN
+	ctlFound := false, startTicks := A_TickCount
+	
+	; msgbox clickCtlClassNN " / " cClassNN
+	
+	; If (IsObject(callTipGui) and clickWinHwnd = callTipGui.hwnd) {
+		; classNN := cClassNN, ctlHwnd := hCtl, progHwnd := hEditorWin, eType := -3
+	; } Else If (IsObject(SettingsGUI) and clickWinHwnd = SettingsGUI.hwnd) {
+		; classNN := cClassNN, ctlHwnd := hCtl, progHwnd := hEditorWin, eType := -4
+	; } Else If (!clickCtlClassNN)
+		; classNN := "", ctlHwnd := 0, progHwnd := 0, eType := -2
+	; Else If (hEditorWin = clickWinHwnd And InStr(clickCtlClassNN,"SysTreeView"))
+		; classNN := cClassNN, ctlHwnd := hCtl, progHwnd := hEditorWin, eType := 3
+	; Else If (cClassNN != clickCtlClassNN) { ; look for editor / tab change
+		; ctlFound := true
+		; While (!newCtlHwnd) {
+			; newCtlHwnd := ControlGetHwnd("scintilla1","A")
+			; newCtlHwnd := newCtlHwnd ? newCtlHwnd : ControlGetHwnd("Edit1","A")
+			; nextClassNN := ControlGetClassNN(newCtlHwnd,"A")
+			
+			; If (nextClassNN = "scintilla1" Or nextClassNN = "Edit1" And nextClassNN = clickCtlClassNN) {
+				; classNN := nextClassNN
+				; ctlHwnd := newCtlHwnd
+				; progHwnd := WinActive("A")
+				; eType := 1
+				; break
+			; } Else If (nextClassNN = "scintilla1" Or nextClassNN = "Edit1") {
+				; classNN := nextClassNN
+				; ctlHwnd := newCtlHwnd
+				; progHwnd := WinActive("A")
+				; eType := 2
+				; break
+			; } Else
+				; newCtlHwnd := ""
+			
+			; Sleep 100
+			; diff := A_TickCount - startTicks
+			; If (diff > 1000) {
+				; ctlFound := false
+				; ctlHwnd := 0, progHwnd := WinActive("A"), classNN := "", eType := -1
+				; break
+			; }
+		; }
+	; } Else ; reuse global vars if click is in same win / ctrl
+		; classNN := cClassNN, ctlHwnd := hCtl, progHwnd := hEditorWin, eType := 0
+	classNN := clickCtlClassNN
+	progHwnd := clickWinHwnd
+	ControlGet, ctlHwnd, Hwnd,, %classNN%, % "ahk_id " clickWinHwnd
+	eType := 0
+	
+	return ctlHwnd
+}
+
+closeCallTip(eType) {
+	doClose := (eType = -2 or eType = -1 or eType = 1 or eType = 2) ? true : false
+	If (doClose And Settings["CloseTipOnFocusChange"]) {
+		If (useToolTip)
+			ToolTip
+		Else If (callTipGui) {
+			Gui, CallTip:Destroy
+			callTipGui := "", curIndex := "", fullDescArr := ""
+		}
+	}
+}
+
+LeftClickCheck() {
+	hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
+	
+	closeCallTip(EventType)
+	
+	If (EventType = 1 Or EventType = 2) ; new control found, so reload
+		ReParseText()
+	Else If (EventType = -1 Or EventType = -2) {
+		Sleep 100
+		hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
 		
-		Gui, New
-		Gui, Font, s%nHeight%, %sFaceName%
-		If (!maxW)
-			Gui, Add, Text,, %tinyStr% ; curCtl
-		Else
-			Gui, Add, Text, w%maxW%, %tinyStr% ; curCtl
-		GuiControlGet, curCtl, Pos, Static1
-		
-		ctlSize := {}
-		ctlSize.w := curCtlW, ctlSize.h := curCtlH
-		ctlSize.x := curCtlX, ctlSize.y := curCtlY
-		If (!maxW)
-			maxW := ctlSize.w > maxW ? ctlSize.w : maxW
-		
-		maxH += ctlSize.h
-		Gui, Destroy
-		
-		curPos += len
+		If (EventType >= 1)
+			ReParseText()
 	}
 	
-	retVal := {}
-	retVal.w := maxW, retVal.h := maxH, retVal.lineHeight := lineH, retVal.x := ctlSize.x, retVal.y := ctlSize.y
+	return EventType
+}
+
+DisplayCallTip() {
+	If (cClassNN != "scintilla1" And cClassNN != "Edit1")
+		return
 	
-	guiObj := "", curCtl := "", ctlSize := ""
+	If (useToolTip)						; close call tip (tooltip version)
+		ToolTip
+	Else If (IsObject(callTipGui)) {	; close call tip (gui version)
+		Gui, CallTip:Destroy
+		callTipGui := "", curIndex := "", fullDescArr := ""
+	}
+	
+	If (Settings["DebugToolTip"])	; use debug tool tip if enabled
+		debugToolTip()
+	Else {				; load call tip
+		ProcInput()
+		LoadCallTip()
+	}
+}
+
+; ======================================================================
+; modified from Fnt_Library v3 posted by jballi
+; https://www.autohotkey.com/boards/viewtopic.php?f=6&t=4379
+; original function(s) = Fnt_CalculateSize() / Fnt_GetAverageCharWidth()
+; ======================================================================
+GetTextDims(r_Text, sFaceName, nHeight,maxWidth:=0) {
+	Static Dummy57788508, DEFAULT_GUI_FONT:=17, HWND_DESKTOP:=0, MAXINT:=0x7FFFFFFF, OBJ_FONT:=6, SIZE
+	
+	hDC := DllCall("GetDC", "Ptr", HWND_DESKTOP) ; "UInt" or "Ptr" ?
+	devCaps := DllCall("GetDeviceCaps", "Uint", hDC, "int", 90)
+	
+	nHeight := -DllCall("MulDiv", "int", nHeight, "int", devCaps, "int", 72)
+	
+	bBold := False, bItalic := False, bUnderline := False, bStrikeOut := False, nCharSet := 0
+	
+	hFont := DllCall("CreateFont", "int", nHeight, "int", 0 ; get specified font handle
+	               , "int", 0, "int", 0, "int", 400 + 300 * bBold
+				   , "Uint", bItalic, "Uint", bUnderline, "Uint"
+				   , bStrikeOut, "Uint", nCharSet, "Uint", 0, "Uint"
+				   , 0, "Uint", 0, "Uint", 0, "str", sFaceName)
+	
+	hFont := !hFont ? DllCall("GetStockObject","Int",DEFAULT_GUI_FONT) : hFont ; load default font if invalid
+	
+    l_LeftMargin:=0, l_RightMargin:=0, l_TabLength:=0, r_Width:=0, r_Height:=0
+	l_Width := (!maxWidth) ? MAXINT : maxWidth
+	l_DTFormat := 0x400|0x10 ; DT_CALCRECT (0x400) / DT_WORDBREAK (0x10)
+	
+    VarSetCapacity(DRAWTEXTPARAMS,20,0) ;-- Create and populate DRAWTEXTPARAMS structure
+    NumPut(20,           DRAWTEXTPARAMS,0,"UInt")       ;-- cbSize
+    NumPut(l_TabLength,  DRAWTEXTPARAMS,4,"Int")        ;-- iTabLength
+    NumPut(l_LeftMargin, DRAWTEXTPARAMS,8,"Int")        ;-- iLeftMargin
+    NumPut(l_RightMargin,DRAWTEXTPARAMS,12,"Int")       ;-- iRightMargin
+	
+    VarSetCapacity(RECT,16,0) ;-- Create and populate the RECT structure
+    NumPut(l_Width,RECT,8,"Int")                        ;-- right
+	
+    old_hFont:=DllCall("SelectObject","Ptr",hDC,"Ptr",hFont)
+	
+	VarSetCapacity(SIZE,8,0) ;-- Initialize
+	testW := "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz" ; taken from Fnt_GetAverageCharWidth()
+	RC := DllCall("GetTextExtentPoint32","Ptr",hDC,"Str",testW,"Int",StrLen(testW),"Ptr",&SIZE)
+	RC := RC ? NumGet(SIZE,0,"Int") : 0
+	avgCharWidth := Floor((RC/26+1)/2)
+	avgCharHeight := NumGet(SIZE,4,"Int")
+	
+    VarSetCapacity(l_Text,VarSetCapacity(r_Text)+16,0)
+	l_Text:=r_Text ;-- Create a buffer + 16 bytes
+	
+    DllCall("DrawTextEx"
+        ,"Ptr",hDC                                      ;-- hdc [in]
+        ,"Str",l_Text                                   ;-- lpchText [in, out]
+        ,"Int",-1                                       ;-- cchText [in]
+        ,"Ptr",&RECT                                    ;-- lprc [in, out]
+        ,"UInt",l_DTFormat                              ;-- dwDTFormat [in]
+        ,"Ptr",&DRAWTEXTPARAMS)                         ;-- lpDTParams [in]
+	
+    DllCall("SelectObject","Ptr",hDC,"Ptr",old_hFont)
+	DllCall("ReleaseDC","Ptr",HWND_DESKTOP,"Ptr",hDC) ; avoid memory leak
+	
+    NumPut(r_Width:=NumGet(RECT,8,"Int"),SIZE,0,"Int") ; get txt rect W
+    NumPut(r_Height:=NumGet(RECT,12,"Int"),SIZE,4,"Int") ; get txt rect H
+	
+	retVal := {}, retVal.h := r_Height, retVal.w := r_Width
+	retVal.avgW := avgCharWidth, retVal.avgH := avgCharHeight, retVal.addr := &SIZE
+	
 	return retVal
+}
+
+; ===========================================================================
+; created by TheArkive
+; Usage: Specify X/Y coords to get info on which monitor that point is on,
+;        and the bounds of that monitor.  If no X/Y is specified then the
+;        current mouse X/Y coords are used.
+; ===========================================================================
+GetMonitorData(x:="", y:="") {
+	CoordMode Mouse, Screen ; CoordMode Mouse, Screen ; AHK v1
+	If (x = "" Or y = "")
+		MouseGetPos x, y
+	actMon := 0
+	
+	SysGet, monCount, MonitorCount ; SysGet, monCount, MonitorCount ; AHK v1
+	Loop % monCount { ; Loop % monCount { ; AHK v1
+		SysGet, m, Monitor, %A_Index% ; SysGet, m, Monitor, A_Index ; AHK v1
+		
+		If (mLeft = "" And mTop = "" And mRight = "" And mBottom = "")
+			Continue
+		
+		If (x >= (mLeft) And x <= (mRight-1) And y >= mTop And y <= (mBottom-1)) {
+			monList := {}, monList.left := mLeft, monList.right := mRight
+			monList.top := mTop, monList.bottom := mBottom, monList.active := A_Index
+			monList.x := x, monList.y := y
+			monList.Cx := ((mRight - mLeft) / 2) + mLeft
+			monList.Cy := ((mBottom - mTop) / 2) + mTop
+			monList.w := mRight - mLeft, monList.h := mBottom - mTop
+			Break
+		}
+	}
+	
+	return monList
+}
+
+MultiClickDetect(ThisKey, delay:=300, CycleLimit:=0) {	; ThisKey = A_ThisHotKey, or whatever value you pass
+    Global MultiClickCount, MultiClickKey			; delay (ms) = expected delay between "clicks"
+    ct := MultiClickTickCount()
+    
+    If ((ct > delay And ct <> "" And ct <> 0) Or (ThisKey <> MultiClickKey And MultiClickKey <> ""))
+        MultiClickCount := 0
+    Else If (MultiClickCount >= CycleLimit And CycleLimit > 0) ; resets MultiClickCount to 1 on CycleLimit+1
+        MultiClickCount := 0 ; useful for firing multiple double/triple/etc clicks without a pause between.
+    
+    MultiClickKey := ThisKey, MultiClickCount++
+    return MultiClickCount
+}
+
+MultiClickTickCount() { ; returns the number of ticks (ms) since the last button event (any button)
+    Global MultiClickTicksPrev
+    CurTicks := A_TickCount
+    
+    If (MultiClickTicksPrev = "")
+        diff := 0, MultiClickTicksPrev := A_TickCount
+    Else
+        diff := A_TickCount - MultiClickTicksPrev, MultiClickTicksPrev := A_TickCount
+    
+    return diff
 }
 
 
@@ -1533,10 +1794,9 @@ GetMsgDimensions(sString,sFaceName,nHeight,maxW := 0) {
 ; hotkeys - global
 ; ================================================================
 ^+Space:: ; load call tip
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		ProcInput()
-		LoadCallTip()
-	}
+	DisplayCallTip()
+	; ProcInput()
+	; LoadCallTip()
 return
 
 ^!Space:: ; load auto-complete list
@@ -1546,81 +1806,65 @@ return
 return
 
 ^+F12:: ; close CallTipsForAll
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		MsgBox "Closing Call Tips For All!"
-		ExitApp
-	}
+	MsgBox "Closing Call Tips For All!"
+	ExitApp
 Return
 
 ~ESC:: ; close call tip window
-	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		
-	; }
-	Gui, CallTip:Destroy
-	callTipGui := "", curIndex := "", fullDescArr := "", CallTipHwnd := ""
-	
+	If (callTipGui) {
+		Gui, CallTip:Destroy
+		callTipGui := "", curIndex := "", fullDescArr := ""
+	}
 	
 	Tooltip
 return
 
 Up::
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		i := fullDescArr ? fullDescArr.Count() : 0
-		If (curIndex And (curIndex-1 != 0)) {
-			curIndex--
-			Gui, CallTip:Destroy
-			LoadCallTip()
-		} Else SendInput {Up}
+	i := fullDescArr ? fullDescArr.Count() : 0
+	If (curIndex And (curIndex-1 != 0)) {
+		curIndex--
+		Gui, CallTip:Destroy
+		callTipGui := ""
+		LoadCallTip()
 	} Else SendInput {Up}
 return
 
 Down::
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		i := fullDescArr ? fullDescArr.Count() : 0
-		If (curIndex And (curIndex+1) <= i) {
-			curIndex++
-			Gui, CallTip:Destroy
-			LoadCallTip()
-		} Else SendInput {Down}
+	i := fullDescArr ? fullDescArr.Count() : 0
+	If (curIndex And (curIndex+1) <= i) {
+		curIndex++
+		Gui, CallTip:Destroy
+		callTipGui := ""
+		LoadCallTip()
 	} Else SendInput {Down}
 return
 
 ~LButton::
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		; debugToolTip()
-		
-		hCtl := editorCtlHwnd(hEditorWin,cType,cClassNN)
-		
-		MouseGetPos,,,winHwnd
-		doSkip := false
-		If (IsObject(callTipGui)) {
-			if (winHwnd = callTipGui.hwnd)
-				doSkip := true
-		}
-		
-		If (loadCallTipOnClick And (winHwnd != CallTipHwnd)) {
-			If (useToolTip)
-				ToolTip
-			Else If (IsObject(callTipGui)) {
-				Gui, CallTip:Destroy
-				callTipGui := "", curIndex := "", fullDescArr := ""
-			}
-			
-			ProcInput()
-			LoadCallTip()
-		}
-	} Else If (closeTipOnFocusChange) { ; close call tip when text editor loses focus
-		If (useToolTip)
-			ToolTip
-		Else {
+	c := MultiClickDetect("LButton")
+	
+	hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
+	
+	If ((cClassNN = "scintilla1" Or "Edit1") And EventType = 0 And c = 1) { ; load calltip
+		If (!IsObject(ObjectList))
+			ReParseText()
+		If (Settings["LoadCallTipOnClick"]) ; load call tip on click if enabled
+			DisplayCallTip()
+	} Else If (Settings["CloseTipOnFocusChange"] And c = 1) {
+		If (callTipGui) {
 			Gui, CallTip:Destroy
-			callTipGui := "", curIndex := "", fullDescArr := "", CallTipHwnd := ""
+			callTipGui := "", curIndex := "", fullDescArr := ""
+		}
+	} Else If (c = 2) {
+		If (callTipGui) {
+			Gui, CallTip:Destroy
+			callTipGui := "", curIndex := "", fullDescArr := ""
+			ReParseText()
 		}
 	}
 return
 
 ^!w::
-	newText := truncateTxt(truncateTextChars)
+	newText := WrapText(WrapTextChars)
 	If (newText)
 		clipboard := newText
 return
@@ -1634,38 +1878,45 @@ return
 
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		testList := ""
-		For curName, obj in CustomFunctions {
-			desc := obj["desc"]
-			testList .= curName " / " desc "`r`n`r`n"
-		}
-			
-		msgbox % "Custom Functions:`r`n`r`n" testList
-		
-		testList := ""
-		For objName, obj in ObjectList {
-			For curType, obj2 in obj {
-				type := curType, label := obj2["label"], match := obj2["match"]
-				testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
-			}
-		}
-		msgbox % ObjectList.Count() "`r`nObjectList:`r`n`r`n" testList
+	testList := ""
+	For curName, obj in CustomFunctions {
+		desc := obj["desc"]
+		testList .= curName " / " desc "`r`n`r`n"
 	}
+		
+	msgbox % "Custom Functions:`r`n`r`n" testList
+	
+	testList := ""
+	For objName, obj in ObjectList {
+		For curType, obj2 in obj {
+			type := curType, label := obj2["label"], match := obj2["match"]
+			testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
+		}
+	}
+	msgbox % ObjectList.Count() "`r`nObjectList:`r`n`r`n" testList
 return
 
 F10:: ; list functions - for debugging List_*.txt files only
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		testList := ""
-		For curName, obj in FunctionList {
-			if (curName = "msgbox") {
-				desc := obj["desc"]
-				testList .= curName "`r`n" desc "`r`n`r`n"
-			}
+	; testList := ""
+	; For curName, obj in FunctionList {
+		; if (curName = "msgbox") {
+			; desc := obj["desc"]
+			; testList .= curName "`r`n" desc "`r`n`r`n"
+		; }
+	; }
+		
+	; msgbox % "Functions:`r`n`r`n" testList
+	
+	For level, lvlObj in ObjectCreateList { ; for debug only
+		For label, labelObj in lvlObj {
+			regex := labelObj["regex"]
+			type := labelObj["type"]
+			direct := labelObj["direct"]
+			testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
 		}
-			
-		msgbox % "Functions:`r`n`r`n" testList
 	}
+
+	msgbox % testList
 return
 
 

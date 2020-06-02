@@ -5,27 +5,21 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ; =======================================================================================
 
 ; #INCLUDE %A_ScriptDir%\Lib
-; #INCLUDE _Jxon_v2.ahk
-; #INCLUDE _Font_Picker_Dialog_v2.ahk
-; #INCLUDE _Color_Picker_Dialog_v2.ahk
-; #INCLUDE *i TheArkive_Debug.ahk
+#INCLUDE LibV2\_Jxon_v2.ahk
+#INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
+#INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
 
-; #INCLUDE <_scintilla_class>
+#INCLUDE LibV2\_LoadElements.ahk
+#INCLUDE LibV2\_ProcInfo.ahk
+#INCLUDE LibV2\_gui.ahk
+#INCLUDE *i LibV2\TheArkive_Debug.ahk
 
-#INCLUDE <_Jxon_v2>
-#INCLUDE <_Font_Picker_Dialog_v2>
-#INCLUDE <_Color_Picker_Dialog_v2>
-#INCLUDE *i <TheArkive_Debug>
-
-; #INCLUDE <_scintilla_class>
-
-; #INCLUDE ..\_INCLUDE\_LibraryV2\TheArkive_Progress2.ahk
+; #INCLUDE LibV2\_scintilla_class.ahk
 
 FileEncoding "UTF-8"
 
 Global SettingsGUI, AutoCompleteGUI, callTipGui
-Global WrapTextChars, AutoCompleteLength, useTooltip, maxLines ; , maxWidth
-Global callTipSelectable
+Global WrapTextChars, AutoCompleteLength, useTooltip, maxLines
 
 Global oCallTip
 oCallTip := {}
@@ -59,8 +53,6 @@ AutoCompleteLength := 3			; Auto-Complete won't trigger until X chars have been 
 useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
 
 maxLines := 20
-
-; CallTipSelectable := true		; make call tip text selectable, ignores closeTipOnLButton
 
 closeTipOnLButton := false		; close call tip on L click anywhere
 closeTipOnClick := false		; close call tip when clicked on
@@ -102,15 +94,15 @@ trayMenu.Add("Settings","iconMenu")
 trayMenu.Add()
 trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
 trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
-trayMenu.Add("AHK Auto-Gen",subMenuAutoGen)
+; trayMenu.Add("AHK Auto-Gen",subMenuAutoGen) ; not really useful for this script
 trayMenu.Add("Reload","iconMenu")
 trayMenu.Add("Exit","iconMenu")
 
 iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	If (ItemName = "Settings") {
 		SettingsGUI()
-	} Else If (ItemName = "Generate Commands") {
-		AutoCmdFunc()
+	; } Else If (ItemName = "Generate Commands") {
+		; AutoCmdFunc()
 	} Else If (ItemName = "ReWrap Text (CTL + ALT + W)") {
 		clipboard := WrapText(WrapTextChars)
 	} Else If (ItemName = "UnWrap Text (CTL + ALT + U)") {
@@ -121,6 +113,9 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 		ExitApp
 }
 
+; ======================================================================================
+; just a quick little tool to wrap text -- text must be copied to clipboard first
+; ======================================================================================
 WrapText(x) {
 	If (!StrLen(clipboard))
 		return ""
@@ -180,6 +175,10 @@ WrapText(x) {
 	return newText
 }
 
+; ======================================================================================
+; just a little tool to unwrap text copied to clipboard - removes CRLFs
+; ======================================================================================
+
 unwrapText() {
 	If (!StrLen(clipboard))
 		return ""
@@ -208,7 +207,7 @@ unwrapText() {
 }
 
 ; ======================================================================================
-; input hook - for processing during user input - i prefer hotkey to invoke call tip.
+; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
 
 ; IH := InputHook("V I1","","") ; options , endKeys , matchList
@@ -236,1132 +235,6 @@ unwrapText() {
 		; IH.OnKeyDown := Func("keyPress"), IH.KeyOpt("{All}","N"), IH.Start()
 	; }
 ; }
-
-; ==================================================
-; keyword list - These are also generated when functions, methods, and properties are
-;                enumerated from List_*.txt files.  This will be expanded for an auto
-;                complete function/hotkey.  KW_*.txt files are optional, and don't serve
-;                much purpose yet.
-; ==================================================
-
-LoadKeywordsList() {
-	KeywordList := Map(), srcFiles := oCallTip.srcFiles
-	Loop Files srcFiles "Keywords\KW_*.txt"
-	{
-		curText := FileRead(A_LoopFileFullPath)
-		Loop Parse curText, "`n", "`r"
-			KeywordList[A_LoopField] := "keyword"
-	}
-}
-; ==================================================
-; Create function and command list for call tips / and classes?
-; ==================================================
-
-LoadFunctionsList() {
-	FunctionList := Map(), srcFiles := oCallTip.srcFiles
-	Loop Files srcFiles "\Other\List_*.txt" ; functions and commands are combined into one list => FunctionList[]
-	{
-		a := StrSplit(A_LoopFileName,"_") ; comma (,) separator
-		fileName := A_LoopFileFullPath, curFileType := StrReplace(a[2],".txt")
-		
-		curList := FileRead(fileName)
-		curList := Trim(curList,"`r`n") entryEnd
-		curPos := 1, subStrEnd := 1
-		len := StrLen(curList)
-
-		While (curPos <= len And subStrEnd) {
-			subStrEnd := InStr(curList,entryEnd,false,curPos)
-			curLen := subStrEnd - curPos
-			curSubStr := SubStr(curList,curPos,curLen)
-			
-			If (curFileType = "Regex") {
-				Loop Parse curSubStr, "`n", "`r"
-				{
-					If (A_Index = 1)
-						oCallTip.funcStart := Trim(SubStr(A_LoopField,16))
-					Else If (A_Index = 2)
-						oCallTip.funcEnd := Trim(SubStr(A_LoopField,14))
-					Else if (A_Index = 3)
-						oCallTip.funcReturn := Trim(SubStr(A_LoopField,17))
-					Else If (A_Index = 4)
-						oCallTip.classStart := Trim(SubStr(A_LoopField,13))
-					Else If (A_Index = 5)
-						oCallTip.classEnd := Trim(SubStr(A_LoopField,11))
-					Else If (A_Index = 6)
-						oCallTip.classMethod := Trim(SubStr(A_LoopField,9))
-					Else If (A_Index = 7)
-						oCallTip.classProperty := Trim(SubStr(A_LoopField,11))
-					Else If (A_Index = 8)
-						oCallTip.classInstance := Trim(SubStr(A_LoopField,16))
-					Else If (A_Index = 9)
-						oCallTip.includes := Trim(SubStr(A_LoopField,11))
-				}
-			} Else {
-				funcName := "", funcHelpLink := "", funcDescArr := Array()
-				funcArr := StrSplit(curSubStr,Chr(96)), i := funcArr.Length
-				
-				Loop i {
-					t := Trim(funcArr[A_Index],"`r`n")
-					If (A_Index = 1) {
-						Loop Parse t, "`n", "`r"
-						{
-							If (A_Index = 1)
-								funcType := A_LoopField
-							Else If (A_Index = 2)
-								funcName := A_LoopField
-						}
-					} Else If (A_Index > 1 And A_Index < i) {
-						funcDescArr.Push(t)
-					} Else If (A_Index = i) {
-						funcHelpLink := t
-					}
-				}
-				
-				curObj := Map()
-				curObj["desc"] := funcDescArr
-				curObj["type"] := funcType ; "function" or "command"
-				curObj["helpLink"] := funcHelpLink
-				FunctionList[funcName] := curObj
-				KeywordList[funcName] := "function"
-			}
-			curPos := subStrEnd + StrLen(entryEnd), curObj := ""
-		}
-	}
-}
-
-; FunctionList Structure
-; ========================
-;	FunctionList
-;
-;		funcName / curObj
-;
-;			desc / descArr
-;			type / funcTypeStr
-;			helpLink / helpLinkStr
-
-
-; msgbox "Begin:   " funcBeginStr "`r`nEnd:   " funcEndStr
-; ==================================================
-; for debug only
-; ==================================================
-; For funcName, obj in FunctionList {
-	; type := obj["type"]
-	; desc := obj["desc"]
-	
-	; textList .= funcName " / " type "`r`n" desc "`r`n`r`n`r`n"
-; }
-; clipboard := textList
-; msgbox textList
-
-; ==================================================
-; generate custom function list - taken care of in ReloadElements()
-; ==================================================
-; hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
-; curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
-; curDocArr := StrSplit(curDocText,"`n","`r")
-; CustomFunctions := GetCustomFunctions(curDocArr)
-
-; ==================================================
-; Create Object Index by type for call tips
-; ==================================================
-
-LoadMethPropList() {
-	MethPropList := Map(), srcFiles := oCallTip.srcFiles
-	Loop Files srcFiles "\Objects\*.txt"
-	{
-		a := StrSplit(A_LoopFileName,"_")
-		fnType := a.Has(2) ? a[2] : A_LoopFileName, fnType := StrReplace(fnType,".txt","")
-		
-		curList := FileRead(A_LoopFileFullPath)
-		curList := Trim(curList,"`r`n") entryEnd
-		objList := "", objListPre := "", lineSplit := "", curObjType := ""
-		curPos := 1, curHelpLink := "", propText := "", methText := ""
-		len := StrLen(curList)
-		
-		curObj := Map(), propList := Map(), methList := Map()
-
-		While (curPos <= len) {
-			subStrEnd := InStr(curList,entryEnd,false,curPos)
-			curLen := subStrEnd - curPos
-			curSubStr := SubStr(curList,curPos,curLen)
-			
-			curDesc := "", curMemType := "", curMem := ""
-			If (A_Index = 1) {
-				objMatchArr := StrSplit(curSubStr,Chr(96))
-				i := objMatchArr.Length
-				
-				objDescArr := Array(), methPropArr := Array(), curHelpLink := ""
-				Loop i {
-					t := Trim(objMatchArr[A_Index],"`r`n")
-					If (A_Index = 1) {
-						objListPre := t, objMatchText .= objListPre "`r`n"
-					} Else If (A_Index > 1 And A_Index < i) {
-						objDescArr.Push(t)
-					} Else If (A_Index = i) {
-						curHelpLink := t
-					}
-				}
-				
-				Loop Parse objListPre, "`n", "`r" ; create list of defined objTypes
-				{
-					lineSplit := StrSplit(A_LoopField," "), curObjType := lineSplit[2]
-					objList .= curObjType "`r`n"
-				}
-				objList := Sort(objList,"U")
-				objList := Trim(objList,"`r`n")
-			} Else {
-				memMap := Map(), memDescArr := Array(), memHelpLink := ""
-				methPropArr := StrSplit(curSubStr,Chr(96)), i := methPropArr.Length
-				Loop i {
-					t := Trim(methPropArr[A_Index],"`r`n")
-					If (A_Index = 1) {
-						Loop Parse t, "`n", "`r"
-						{
-							If (A_Index = 1)
-								curMemType := A_LoopField
-							Else If (A_Index = 2)
-								curMem := A_LoopField
-						}
-					} Else if (A_Index > 1 And A_Index < i) {
-						memDescArr.Push(t)
-					} Else If (A_Index = i) {
-						memHelpLink := t
-					}
-				}
-				
-				memMap["desc"] := memDescArr
-				memMap["helpLink"] := memHelpLink
-				
-				curMemType := StrLower(curMemType)  
-				KeywordList[curMem] := curMemType
-				If (curMemType = "Method")
-					methList[curMem] := memMap
-				Else
-					propList[curMem] := memMap
-			}
-		
-			curPos := subStrEnd + StrLen(entryEnd)
-		}
-		
-		methTitle := "Methods: " ; create first desc as method/property list
-		For methName in methList
-			methText .= "." methName ", "
-		
-		methText := Trim(methText," ,`r`n")
-		If (methText)
-			methText := methTitle methText
-		
-		propTitle := "Properties: "
-		For propName in propList
-			propText .= "." propName ", "
-		
-		propText := Trim(propText," ,`r`n")
-		If (propText)
-			propText := propTitle propText
-		
-		firstDesc := Trim("[ObjectTypeName]`r`n`r`n" methText,"`r`n")
-		firstDesc := Trim(firstDesc "`r`n`r`n" propText,"`r`n")
-		
-		curObj["method"] := methList, curObj["property"] := propList
-		curObj["helpLink"] := curHelpLink
-		
-		Loop Parse objList, "`n", "`r" ; append methods/properties to all defined obj types
-		{
-			curFirstDesc := StrReplace(firstDesc,"[ObjectTypeName]",A_LoopField)
-			objDescArr.InsertAt(1,curFirstDesc)
-			curObj["desc"] := objDescArr
-			MethPropList[A_LoopField] := curObj
-		}
-		curObj := "", methList := "", propList := ""
-	}
-	
-	return objMatchText
-}
-; MethPropList Structure
-; ==========================
-;	MethPropList
-;
-;		objType / curObj
-;
-;			method / methObj
-;				helpLink / helpLinkStr
-;				desc     / descArr
-;
-;			prop / propObj
-;				helpLink / helpLinkStr
-;				desc     / descArr
-;
-;			helpLink / helpLinkStr
-;			desc / descArr
-
-; ==================================================
-; for debug only
-; ==================================================
-; For objType in MethPropList { ; list obj types
-	; testList .= objType "`r`n"
-; }
-; MsgBox testList
-
-; ==================================================
-; for debug only
-; ==================================================
-; objType := "ArrayObject" ; for debug only
-; testObj := MethPropList[objType]
-; mList := testObj["method"]
-
-; testList := objType "`r`n`r`n" ; specific object
-; For curMeth, curDesc in mList {
-	; testList .= "Memeber: " curMeth "`r`n" curDesc "`r`n`r`n"
-; }
-; MsgBox testList
-
-; ==================================================
-; Generates a heirarchical list of object match strings to be executed in a specific order.
-; Execution is done by CreateObjList()
-; Heirarchy:    List
-;                   Level / LevelObj
-;                       Label / LabelObj
-;                           Member: regex  (string - the regex string)
-;                           Member: type   (string - object type)
-;                           Member: direct (boolean - indicates if {substitution} in regex is required)
-; ==================================================
-LoadObjectCreateList(objMatchText) {
-	ObjectCreateList := Map()
-	objMatchText := Sort(objMatchText)
-	objMatchText := Trim(objMatchText,"`r`n")
-	curLevel := 0, prevLevel := 0, curLevelObj := Map()
-
-	Loop Parse objMatchText, "`r", "`n"
-	{
-		curObj := Map()
-		result := RegExMatch(A_LoopField,"([0-9]) ([\w]+) ([\w]+) (.*)",match)
-		
-		If (IsObject(match) And match.Count() = 4) {
-			curLevel := match.Value(1), curObjType := match.Value(2)
-			curLabel := match.Value(3), regex := match.Value(4)
-			isDirect := InStr(regex,"{") ? 0 : 1 ; reorganize with level sub object
-			
-			If (curLevel != prevLevel)
-				ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := Map()
-			
-			curObj := Map()
-			curObj["regex"] := regex, curObj["type"] := curObjType, curObj["direct"] := isDirect
-			curLevelObj[curLabel] := curObj
-			
-			prevLevel := curLevel
-		} Else {
-			msg := "Line:`r`n    " A_LoopField "`r`n`r`nObject File - improper format.`r`n`r`nLine Format:`r`n    Level ObjType Label RegExMatchString"
-			MsgBox msg
-			ExitApp
-		}
-		curObj := ""
-	}
-	ObjectCreateList[prevLevel] := curLevelObj, curLevelObj := ""
-}
-
-; ==================================================
-; for debug only
-; ==================================================
-; msgbox "isOb: " IsObject(ObjectCreateList) " / " ObjectCreateList.Count
-
-; For level, lvlObj in ObjectCreateList { ; for debug only
-	; For label, labelObj in lvlObj {
-		; regex := labelObj["regex"]
-		; type := labelObj["type"]
-		; direct := labelObj["direct"]
-		; testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
-	; }
-; }
-; msgbox testList
-
-
-
-; ============================================================
-; Parse document and gereate list of object names and other data. - done in ReloadElements()
-; ============================================================
-; ObjectList := CreateObjList(curDocText)
-; curDocArr := "", curDocText := "" ; these will be recreated on demand
-; ReloadElements()
-
-; ObjectList Structure
-;
-;	ObjectList
-;
-;		objName / typeObjList
-;
-;			typeObj / typeObj
-;
-;				label / labelStr
-;				match / matchStr
-
-; ==================================================
-; for debug only
-; ==================================================
-; For objName, obj in ObjectList { ; for debug only
-	; label := type := obj["type"], obj["label"], match := obj["match"]
-	; testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
-; }
-; msgbox "Final:`r`n`r`n" testList
-
-; ==================================================
-; end init =========================================
-; ==================================================
-
-; ======================================================================================
-; Load Call Tip
-; ======================================================================================
-
-
-
-LoadCallTip() { ; curPhrase, curPhraseType ---> globals
-	fontFace := Settings["fontFace"]
-	fontSize := Settings["fontSize"]
-	fontColor := Settings["fontColor"]
-	bgColor := Settings["bgColor"]
-	
-	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
-	If (!oCallTip.HasOwnProp("curPhraseObj"))
-		return
-	
-	curPhraseObj := oCallTip.curPhraseObj
-	curPhraseType := oCallTip.curPhraseType
-	parentObj := oCallTip.parentObj
-	parentObjType := oCallTip.parentObjType
-	
-	If (curPhrase = "")
-		return
-	
-	If (!oCallTip.curIndex)
-		oCallTip.curIndex := 1
-	curIndex := oCallTip.curIndex
-	fullDesc := "", phraseRedir := "", helpLink := "", descArr := Array()
-	
-	If (curPhraseType = "function")
-		phraseRedir := "function"
-	Else If (curPhraseType = "CustomFunction")
-		phraseRedir := "function"
-	Else if (curPhraseType = "Flow")
-		phraseRedir := "function"
-	Else If (curPhraseType = "Command")
-		phraseRedir := "function"
-	
-	if (phraseRedir = "function") {
-		For funcName, obj in FunctionList {
-			If (funcName = curPhrase) {
-				descArr := obj["desc"] ; desc array
-				helpLink := obj["helpLink"]
-				break
-			}
-		}
-		
-		If (!descArr.Length) {
-			For funcName, obj in CustomFunctions {
-				If (funcName = curPhrase) {
-					descStr := obj["desc"]
-					descArr.Push(descStr) ; make array from str
-					break
-				}
-			}
-		}
-		
-		If (!descArr.Length)
-			return
-		Else {
-			fullDescArr := Map()
-			For index, desc in descArr {
-				curDescObj := Map()
-				curDescObj["desc"] := desc
-				curDescObj["helpLink"] := helpLink
-				fullDescArr[index] := curDescObj
-			}
-			curDescObj := "", descArr := ""
-		}
-	} Else If (curPhraseType = "object") {
-		obj := ObjectList.Has(curPhrase) ? ObjectList[curPhrase] : ""
-		If (!obj)
-			return
-		
-		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
-			
-			If (listObj) {
-				descArr := listObj["desc"]
-				helpLink := listObj["helpLink"]
-				
-				For index, desc in descArr {
-					curObj := Map()
-					curObj["desc"] := desc, curObj["helpLink"] := helpLink
-					fullDescArr[i] := curObj
-					i++
-				}
-			}
-		}
-		curObj := "", listObj := "", obj := ""
-	} Else If (curPhraseType = "method" Or curPhraseType = "property") {
-		obj := ObjectList.Has(parentObj) ? ObjectList[parentObj] : ""
-		If (!obj)
-			return
-		
-		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
-			memObj := listObj[curPhraseType]
-			
-			For methPropName, descObj in memObj {
-				If (methPropName = curPhrase) {
-					descArr := descObj["desc"]
-					helpLink := descObj["helpLink"]
-					helpLink := StrReplace(helpLink,"[MemberName]",methPropName)
-					
-					For index, desc in descArr {
-						titleHeader := StrUpper(curPhraseType,"T")
-						desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
-						curObj := Map()
-						curObj["helpLink"] := helpLink, curObj["desc"] := desc
-						fullDescArr[i] := curObj
-						i++
-					}
-					
-					Break
-				}
-			}
-		}
-		
-		curObj := "", listObj := "", memObj := "", descObj := ""
-	} Else If (curPhraseType = "Class" or curPhraseType = "Instance") {
-		For clName in ClassesList {
-			If (clName = curPhrase) {
-				className := clName ; correct case for lookup
-				break
-			}
-		}
-		
-		If (!className)
-			return
-		
-		obj := ClassesList[className] ; obj := ClassesList.Has(className) ? ClassesList[className] : ""
-		If (!obj)
-			return
-		
-		If (curPhraseType = "Instance") {
-			className := obj["class"]
-			obj := ClassesList[className]
-			If (!obj)
-				return
-		}
-		
-		listObj := obj["members"]
-		fullDescArr := Map(), i := 1
-		For memName, memObj in listObj {
-			memType := memObj["type"]
-			If (memType = "method")
-				methList .= "." memName ", "
-			Else if (memType = "property")
-				propList .= "." memName ", "
-		}
-		methList := Trim(methList,", "), propList := Trim(propList,", ")
-		
-		tempDesc := className " Class" (curPhraseType = "Instance" ? " Instance" : "") ":`r`n`r`n"
-		tempDesc .= methList ? "Methods: " methList "`r`n`r`n" : "`r`n`r`n"
-		tempDesc .= propList ? "Properties: " propList : ""
-		tempDesc := Trim(tempDesc," `t`r`n")
-		curObj := Map("desc",tempDesc,"helpLink","")
-		fullDescArr[1] := curObj
-	} Else If (curPhraseType = "class-method" or curPhraseType = "class-property") {
-		subType := StrReplace(curPhraseType,"class-",""), fullDescArr := Map()
-		
-		For clName in ClassesList {
-			If (clName = parentObj) {
-				className := clName ; correct case for lookup
-				break
-			}
-		}
-		
-		If (!className)
-			return
-		
-		parObjType := ClassesList[className]["type"]
-		parObjName := (parObjType = "Instance") ? ClassesList[className]["class"] : className
-		memList := ClassesList[parObjName]["members"]
-		
-		For memName, memObj in memList {
-			memMatch := (memName = curPhrase) ? memName : (memName = "__" curPhrase) ? "__" curPhrase : ""
-			If (memMatch) {
-				params := memObj["params"]
-				tempDesc := parObjName " Class:`r`n`r`n" parentObj "." memName params
-				curObj := Map("desc",tempDesc,"helpLink","")
-				fullDescArr[1] := curObj
-				break
-			}
-		}
-	} Else ; unrecognized keyword, so return
-		return
-	
-	oCallTip.fullDescArr := fullDescArr
-	fullDescArrObj := fullDescArr[curIndex]
-	fullDesc := fullDescArrObj["desc"]
-	
-	Loop Parse fullDesc, "`n", "`r"
-		newFullDesc .= "`r`n" RegExReplace(A_LoopField,"^/","`r`n")
-	fullDesc := Trim(newFullDesc,"`r`n")
-	
-	If (!fullDesc)
-		return
-	
-	curMon := GetMonitorData(outX,outY) ; get actvie monitor dims and L/R/T/B
-	dims := GetTextDims(fullDesc,fontFace,fontSize,maxWidth)
-	
-	If (dims.w > curMon.w)
-		dims := GetTextDims(fullDesc,fontFace,fontSize,curMon.w * 0.75)
-	
-	vscroll := "-VScroll"
-	
-	CoordMode "Caret", "Screen"
-	CaretGetPos(outX, outY)
-	
-	If (useTooltip) {
-		outX += -70, outY += -25
-		Tooltip fullDesc, outX, outY
-	} Else {
-		outX += -11, outY += 20
-		
-		If (callTipGui)
-			callTipGui.Destroy()
-		
-		callTipGui := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin) ; Splitpath drive
-		callTipGui.BackColor := bgColor
-		callTipGui.SetFont("s" fontSize " c" fontColor,fontFace)
-		
-		If (!Settings["CallTipSelectable"]) {
-			ctl := callTipGui.Add("Text","w" dims.w " h" dims.h " x5 y5",fullDesc) ; " +c" fontColor 
-		} Else {
-			scrollW := SysGet(2)
-			ctl := callTipGui.Add("Edit","w" (dims.w+(scrollW*2)) " h" dims.h " x5 y5 +Background" bgColor " " vscroll " -E0x200 ReadOnly",fullDesc)
-		}
-		
-		If (!Settings["CallTipSelectable"])
-			ctl.OnEvent("Click","gui_click")
-		
-		dCtl := ctl.pos
-		posTest := OutX + dCtl.w
-		
-		If (posTest > curMon.right) {
-			offset := posTest - curMon.right
-			OutX := OutX - offset - 20
-		}
-		
-		h := dCtl.h + 10, w := dCtl.w + 10
-		callTipGui.Show("x" OutX " y" outY " h" h " w" w " NA NoActivate")
-	}
-}
-
-gui_click(ctlObj,info) {
-	curIndex := oCallTip.curIndex
-	fullDescArrObj := oCallTip.fullDescArr[curIndex]
-	fullDesc := fullDescArrObj["desc"]
-	link := fullDescArrObj["helpLink"]
-	helpFile := oCallTip.helpFile
-	
-	If (InStr(link,"/") = 1 And FileExist(helpFile)) {
-		helpFile := StrReplace(helpFile," ","%20")
-		cmd := "hh.exe mk:@MSITStore:" helpFile "::" Trim(link,"`r`n")
-		Run cmd			  
-		callTipGui.Destroy()
-		callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
-	}
-	
-	If (callTipGui And closeTipOnClick) {
-		callTipGui.Destroy()
-		callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
-	}
-}
-
-; ======================================================================================
-; Load auto-complete
-; ======================================================================================
-LoadAutoComplete() {
-	ProcInput() ; update cursor postion and curPhrase in global variables
-	
-	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
-	
-	KeywordFilter := Map()
-	If (StrLen(curPhrase) >= AutoCompleteLength) { ; not done yet!
-		For kw, type in KeywordList {
-			If (InStr(kw,curPhrase))
-				KeywordFilter[kw] := type
-		}
-		; msgbox KeywordFilter.Count
-		
-	}
-}
-
-AutoCompleteGUI(KeywordFilter) {
-	If (IsObject(AutoCompleteGUI))
-		AutoCompleteGUI.Destroy()
-	
-	
-}
-
-
-; ================================================================
-; Reads current line / cursor position and determines current top-level function.
-; Not currently used in any meaningful way.
-; ================================================================
-GetTopLevelFunc(sInput, curCol, ByRef funcStart, ByRef funcEnd) {
-	result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match)
-	curFunc := "", foundIt := 0
-	
-	Loop { ; isolate top-level function
-		If (IsObject(match)) {
-			curMatch := match.value(1), curFunc := curMatch
-			curLen := match.Len(1), funcStart := match.pos(1)
-			
-			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
-			
-			i := 1
-			While (RPar != LPar) {
-				curFunc := SubStr(sInput,funcStart,curLen + i)
-				w := StrReplace(curFunc,"(","(",LPar), w := StrReplace(curFunc,")",")",RPar)
-				i++
-			}
-			
-			funcEnd := funcStart + StrLen(curFunc) - 1
-			
-			If (curCol >= funcStart And curCol <= funcEnd) {
-				foundIt := 1
-				break
-			}
-			
-			result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match,funcStart + StrLen(curFunc) - 1)
-			if (!result)
-				break
-		} Else
-			break
-	}
-	
-	If (foundIt)
-		return curFunc
-	Else
-		return ""
-}
-
-; ================================================================
-; Replaces nested functions with ~~~~ ... meant to avoid confusion when using regex.
-; sInput is usually a single one-line function.
-; Not currently in use.
-; ================================================================
-FuncParamOutline(sInput,ByRef funcName) {
-	funcName := RegExMatch(sInput,"^([\w\.]*)",match), funcName := match.Value(1)
-	paramStrStart := StrLen(funcName) + 2, paramStr := SubStr(sInput,paramStrStart,-1)
-	result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match) ; similar to above
-	
-	Loop { ; blank out expressions in top-level function parameters
-		If (IsObject(match)) {
-			curMatch := match.value(1), curChunk := curMatch
-			curLen := match.Len(1), exprStart := match.pos(1)
-			
-			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
-			
-			i := 1
-			While (RPar != LPar) {
-				curChunk := SubStr(paramStr,exprStart,curLen + i), newCurLen := curLen + i
-				w := StrReplace(curChunk,"(","(",LPar), w := StrReplace(curChunk,")",")",RPar)
-				i++
-			}
-			
-			repStr := ""
-			Loop newCurLen
-				repStr .= "~"
-			
-			paramStr := StrReplace(paramStr,curChunk,repStr,,1)
-			result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match)
-			if (!result)
-				break
-		} Else
-			break
-	}
-	
-	return paramStr
-}
-
-; ================================================================
-; Not currently used.
-; Can be used to map out the parameters within a function, and to determine the
-; caret position's current parameter.  Needs work, processing nested functions
-; doesn't happen yet.
-; ================================================================
-paramData(lineText,curCol,funcName,funcStart,paramStr) {
-	curParamNum := 0
-	paramList := Map()
-	paramArr := StrSplit(paramStr,Chr(44))
-	paramBaseLine := funcStart + StrLen(funcName) + 1
-	paramStart := paramBaseLine
-	
-	Loop paramArr.Length {
-		curParam := paramArr[A_Index], curParamLen := StrLen(curParam)
-		curParamText := SubStr(lineText,paramStart,curParamLen)
-		
-		paramEnd := paramStart + curParamLen - 1
-		If (curCol >= paramStart And curCol <= paramEnd)
-			curParamNum := A_Index
-		
-		paramObj := Map()
-		paramObj["text"] := curParamText
-		paramObj["start"] := paramStart
-		paramObj["end"] := paramStart + curParamLen - 1
-		paramList["n" A_Index] := paramObj
-		paramList["total"] := A_Index
-		paramList["current"] := curParamNum
-		
-		paramStart += curParamLen + 1
-	}
-	paramObj := ""
-	
-	return paramList
-}
-
-; ================================================================
-; Replaces a "strings" in a single line (usually the current line) with *******.
-; Helps with determining function boundaries and creating object lists.  This also
-; assists the script in identifying elements properly, since RegEx is used.
-; ================================================================
-StringOutline(sInput) {
-	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" "\\" Chr(34),"**")			; blank out literal `" first
-	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
-		repStr := ""
-		If (IsObject(match)) {
-			Loop match.Len(1)
-				repStr .= "*"
-			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,1)
-			match := ""
-		}
-	}
-	
-	return curLineNoStr
-}
-
-; ================================================================
-; generates the current "phrase.Obj" with dots (.) where the caret is.
-; ================================================================
-getCurPhraseObj(curLineNoStr,curCol,ByRef curPhraseStartOut) {
-	Lhalf := SubStr(curLineNoStr,1,curCol-1), Rhalf := SubStr(curLineNoStr,curCol) ; split line at curCol
-	p1 := RegExMatch(Lhalf,"([#?\w\.]+)$",match), p1 := IsObject(match) ? Trim(match.Value(1)," `t") : ""
-	p2 := RegExMatch(Rhalf,"^(#?[\w\.]+)",match2), p2 := IsObject(match2) ? Trim(match2.Value(1)," `t") : ""
-	curPhraseOut := p1 p2 ? p1 p2 : ""
-	curPhraseStartOut := (p1 or p2) ? (p1 ? match.Pos(1) : curCol) : 0
-	return curPhraseOut
-}
-
-; ================================================================
-; Generates the current "phrase" without dots (.)
-; ================================================================
-getCurPhrase(curLineNoStr, curCol, ByRef curPhraseStartOut) {
-	Lhalf := SubStr(curLineNoStr,1,curCol-1), Rhalf := SubStr(curLineNoStr,curCol) ; split line at curCol
-	p1 := RegExMatch(Lhalf,"(#?[\w]+)$",match), p1 := IsObject(match) ? Trim(match.Value(1)," `t") : ""
-	p2 := RegExMatch(Rhalf,"^(#?[\w]+)",match2), p2 := IsObject(match2) ? Trim(match2.Value(1)," `t") : ""
-	curPhraseOut := p1 p2 ? p1 p2 : ""
-	curPhraseStartOut := (p1 or p2) ? (p1 ? match.Pos(1) : curCol) : 0
-	return curPhraseOut
-}
-
-; ================================================================
-; retrieves the parent object from phraseObj.  Usually phraseObj comes from getCurPhraseObj().
-; ================================================================
-GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
-	If (!phraseObj)
-		return ""
-	
-	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
-	
-	; msgbox "func check : " phraseObj " / " curPhrase
-	
-	aStr := StrSplit(phraseObj,".")
-	Loop aStr.Length {
-		curBit := aStr[A_Index]
-		fullPhrase .= curBit "."
-		If (curBit = curPhrase)
-			Break
-	}
-	fullPhrase := Trim(fullPhrase,".")
-	
-	; msgbox "fullPhrase: " fullPhrase
-	
-	If (!phraseObj And !funcName)
-		return ""
-	
-	aStr := StrSplit(fullPhrase,".")
-	If (!IsObject(aStr) Or aStr.Length = 0)
-		return ""
-	
-	pOn := aStr.Length - 1
-	sObj := aStr.Has(pOn) ? aStr[pOn] : ""
-	
-	If (ObjectList.Has(sObj))
-		return sObj
-	Else If (ObjectList.Has(curPhrase))
-		return curPhrase
-	Else If (sObj)
-		return sObj
-	Else
-		return ""
-}
-
-; ================================================================
-; Generates a list of objects in the document as defined by the user.
-; This will NOT do class objects (yet).
-; If an object in the code document is assigned to a member of an object,
-; and that member is a keyword (built-in method or property) then that entry
-; will not be added to this list.
-; ================================================================
-CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses less CPU
-	oList := Map()
-	
-	For level, lvlObj in ObjectCreateList {
-		For label, lblObj in lvlObj {
-			i := 1, type := lblObj["type"], regex := lblObj["regex"], direct := lblObj["direct"]
-			
-				curPos := 1
-				
-				If (direct) {
-					While(result := RegExMatch(curDocText,"i)" regex,match,curPos)) {
-						c := match.Count()
-						If (IsObject(match) And c >= 1) {
-							typeObj := Map(), objName := match.Value(1) ; obj := Map()
-							objNameArr := StrSplit(objName,".")
-							If (objNameArr.Length > 1)
-								objName := objNameArr[2]
-							
-							If (!oList.Has(objName))
-								obj := Map()
-							Else
-								obj := oList[objName]
-							
-							objMatch := (c = 2) ? match.Value(2) : match.Value(1)
-							typeObj["label"] := label
-							typeObj["match"] := objMatch
-							If (type)
-								obj[type] := typeObj
-							
-							quit := false
-							If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-								quit := true
-							
-							If (!quit) ; If (!oList.Has(objName))
-								oList[objName] := obj
-							
-							curPos := match.Pos(c) + match.Len(c)
-						} Else
-							curPos := StrLen(curDocText)
-					}
-				} Else { ; perform {substitution} before doing regex match and adding to ObjectList
-					r1 := RegExMatch(regex,"\{(.*?)\}",match), listType := match.Value(1)
-					
-					For curObjName, curLblObj in oList {
-						For curType, curTypeObj in curLblObj {
-							If (curType = listType) {
-								newRegex := StrReplace(regex,"{" listType "}",curObjName)
-								
-								While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos)) {
-									c := match.Count()
-									If (IsObject(match) And c = 2) {
-										typeObj := Map(), objName := match.Value(1) ; obj := Map()
-										objNameArr := StrSplit(objName,".")
-										If (objNameArr.Length > 1)
-											objName := objNameArr[2]
-										
-										If (!oList.Has(objName))
-											obj := Map()
-										Else
-											obj := oList[objName]
-										
-										objMatch := (match.Count() = 2) ? match.Value(2) : match.Value(1)
-										typeObj["label"] := label
-										typeObj["match"] := objMatch
-										If (type)
-											obj[type] := typeObj
-										
-										quit := false
-										If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-											quit := true
-										
-										If (!quit) ; If (!oList.Has(objName))
-											oList[objName] := obj
-										
-										curPos := match.Pos(c) + match.Len(c)
-									} Else
-										curPos := StrLen(curDocText)
-								} ; end while
-							}
-						} ; end for
-					} ; end for
-				}
-		} ; end for
-	} ; end for
-	
-	For custFuncName, curLblObj in CustomFunctions {
-		curRetStr := "", curObjType := "", newRegex := "", doMatch := false
-		
-		If (curLblObj.Has("return")) {
-			returnObj := curLblObj["return"]
-			For retStr, L in returnObj { ; loop through return entries in Func
-				For curObjName, curLblObj in oList { ; loop through oList to find objMatch
-					If (retStr = curObjName) {
-						doMatch := true
-						newRegex := "([\w\.]+)[ \t]*:=[ \t]*({CustomFunction}\x28)"
-						newRegex := StrReplace(newRegex,"{CustomFunction}",custFuncName)
-						
-						curRetStr := retStr ; return var in matched function
-						curObjType := curLblObj
-						Break ; break on match
-					}
-				} ; end for
-				
-				If (curRetStr)
-					Break
-			} ; end for
-		}
-		
-		curPos := 1
-		While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos) And doMatch) {
-			c := match.Count()
-			If (IsObject(match) And match.Count() = 2 and curRetStr) { ; if match add obj to list
-				obj := Map(), objName := match.Value(1)
-				objNameArr := StrSplit(objName,".")
-				If (objNameArr.Length > 1)
-					objName := objNameArr[2]
-				
-				objMatch := (match.Count() = 2) ? match.Value(2) : match.Value(1)
-				
-				quit := false
-				If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-					quit := true
-				
-				If (!quit) ; If (!oList.Has(objName))
-					oList[objName] := curObjType
-				
-				curPos := match.Pos(c) + match.Len(c)
-			} Else
-				curPos := StrLen(curDocText)
-		} ; end while
-	} ; end for
-	
-	return oList
-}
-
-; ================================================================
-; Creates a list of user defined functions.  The call tip only shows FuncName(params...) and
-; it is not currently possible to add extra help in the call tip for custom functions.
-; ================================================================
-GetCustomFunctions(curDocText) {
-	funcList := Map(), curPos1 := 1
-	While (result := RegExMatch(curDocText,"mi)" oCallTip.funcStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
-		If (IsObject(match) And match.Count()) {
-			curPos1 := match.Pos(2) + match.Len(2)
-			r2 := RegExMatch(curDocText,"i)" oCallTip.funcEnd,match2,curPos1)
-			funcName := match.Value(1)
-			params := match.Value(2)
-			body := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
-			
-			if (funcName != "") {
-				funcBody := curDocLine
-				obj := Map("type","CustomFunction","desc",funcName params,"funcBody",body)
-				funcList[funcName] := obj
-			}
-			
-			returnObj := Map(), curPos2 := 1
-			While (r3 := RegExMatch(body,"mi)" oCallTip.funcReturn,match3,curPos2)) {
-				If (match3.Count()) {
-					cMatch := match3.Value(1)
-					returnObj[cMatch] := match3.Pos(1)
-				}
-				curPos2 := match3.Pos(1) + match3.Len(1)
-			}
-			
-			If (returnObj.Count > 0)
-				obj["return"] := returnObj ; attach returnObj list of "return" lines if exist
-		}
-		
-		
-		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
-	}
-	
-	curDocText := "", obj := ""
-	return funcList
-}
-
-GetClasses(curDocText) {
-	; msgbox oCallTip.classStart "`r`n`r`n" oCallTIp.classEnd
-	classList := Map(), curPos1 := 1
-	While (result := RegExMatch(curDocText,"mi)" oCallTip.classStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
-		; msgbox "in"
-		If (IsObject(match) And match.Count()) {
-			If (match.Value(1) != "") {
-				className := match.Value(1), extends := ""
-				curPos1 := match.Pos(1) + match.Len(1)
-			} Else {
-				className := match.Value(2), extends := match.Value(3)
-				curPos1 := match.Pos(3) + match.Len(3)
-			}
-			; msgbox "className: " className
-			
-			r2 := RegExMatch(curDocText,"i)" oCallTip.classEnd,match2,curPos1)
-			classBody := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
-			
-			memberList := Map(), curPos2 := 1, curPos3 := 1
-			While (r3 := RegExMatch(classBody,"mi)" oCallTip.classMethod,match3,curPos2)) {
-				; msgbox match3.Value(1) " / " match3.Value(2)
-				memberName := match3.Value(1)
-				memberParams := match3.Value(2)
-				curPos2 := match3.Pos(2) + match3.Len(2)
-				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method")
-			}
-			
-			While (r4 := RegExMatch(classBody,"mi)" oCallTip.classProperty,match4,curPos3)) {
-				memberName := match4.Value(1)
-				memberParams := match4.Value(2)
-				
-				curPos3 := match4.Pos(1) + match4.Len(1)
-				curPos3 := match4.Value(2) != "" ? match4.Pos(2) + match4.Len(2) : curPos3
-				
-				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property")
-				; msgbox match4.Value(1) " / " match4.Value(2) " / " curPos3
-			}
-			
-			if (className != "") {
-				obj := Map("type","Class","desc",className,"classBody",classBody,"extends",extends)
-				obj["members"] := memberList
-				classList[className] := obj
-			}
-			
-			; For k, v in memberList
-				; fullList .= k " / " v["params"] " / " v["type"] "`r`n"
-			; msgbox fullList
-		}
-		
-		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
-	}
-	
-	; msgbox classList.Count
-	
-	curDocText := "", obj := ""
-	return classList
-}
-
-ScanClasses(curDocArr) { ; scan doc for class instances
-	Loop curDocArr.Length {
-		curLine := curDocArr[A_Index]
-		For className, obj in ClassesList {
-			; msgbox className "`r`n`r`n" curLine "`r`n`r`n" oCallTip.classInstance
-			If (RegExMatch(curLine,"i)" StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
-				; msgbox match.Value(1) " / " match.Value(2)
-				instName := match.Value(1)
-				params := match.Value(2)
-				ClassesList[instName] := Map("type","Instance","name",instName,"params",params,"class",className)
-			}
-		}
-	}
-}
 
 ; ================================================================
 ; Reads current document and caret position and refreshes ObjectList, FunctionList,
@@ -1414,10 +287,13 @@ ReloadElements() {
 	
 	baseFile := Settings["BaseFile"]
 	If (FileExist(baseFile)) {
-		fileList := GetIncludes(curDocArr), curDocText := ""
+		fileList := GetIncludes(curDocArr)
 		Loop fileList.Length
-			curDocText .= FileRead(fileList[A_Index]) "`r`n`r`n" ; load all includes into one var
-		curDocArr := StrSplit(curDocText,"`n","`r")
+			curDocText2 .= FileRead(fileList[A_Index]) "`r`n`r`n" ; load all includes into one var
+		If (curDocText2) {
+			curDocText := curDocText2, curDocText2 := ""
+			curDocArr := StrSplit(curDocText2,"`n","`r")
+		}
 	}
 	
 	CustomFunctions := GetCustomFunctions(curDocText)
@@ -1441,14 +317,16 @@ findFile(sInFile) {
 		}
 	}
 	
-	If (!result) {
-		Loop Files sInFile ; do this for libraries including extension
-		{
-			If (A_LoopFileName) {
-				result := A_LoopFileFullPath
-				break
-			}
-		}
+	If (!result And FileExist(sInFile)) {
+		result := sInFile
+		
+		; Loop Files sInFile ; do this for libraries including extension
+		; {
+			; If (A_LoopFileName) {
+				; result := A_LoopFileFullPath
+				; break
+			; }
+		; }
 	}
 	
 	return result
@@ -1537,126 +415,30 @@ GetIncludes(curDocArr) {
 	return finalArr
 }
 
-ProcInput() {
-	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
-		return
+; ======================================================================================
+; Functions related to hotkey events
+; ======================================================================================
+LoadAutoComplete() {
+	ProcInput() ; update cursor postion and curPhrase in global variables
 	
-	cClassNN := oCallTip.ctlClassNN, hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd
+	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
 	
-	curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
-	curDocArr := StrSplit(curDocText,"`n","`r")
-	
-	curCol := ControlGetCurrentCol(hCtl) ; global
-	curLine := ControlGetCurrentLine(hCtl) ; global
-	
-	If (!curLine)
-		return
-	If (!curDocArr.Has(curLine))
-		return
-	
-	curLineText := curDocArr[curLine]
-	curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
-	
-	curPhrase := getCurPhrase(curLineNoStr,curCol,curPhraseStart) ; curPhraseStart: ByRef
-	oCallTip.curPhrase := curPhrase
-	
-	curPhraseObj := getCurPhraseObj(curLineNoStr,curCol,curPhraseObjStart)
-	parentObj := GetParentObj(curPhraseObj,curMethProp) ; curMethProp: ByRef
-	
-	oCallTip.curPhraseObj := curPhraseObj
-	oCallTip.parentObj := parentObj
-	oCallTip.curPhraseType := ""
-	oCallTip.parentObjType := ""
-	
-	parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj] : Map()
-	
-	; parentObjType := (parentObj And ObjectList.Has(parentObj)) ? ObjectList[parentObj]["type"] : ""
-	
-	; topFunc := GetTopLevelFunc(curLineNoStr,curCol,funcStart,funcEnd) ; funcStart, funcEnd: ByRef - not currently used
-	; funcText := topFunc ? SubStr(curLineText,funcStart,StrLen(topFunc)) : ""
-	
-	; === primary data bits ===
-	; curPhrase, curPhraseStart, funcName
-	; curPhraseObj, curPhraseObjStart, parentObj, parentObjType
-	; curParamNum, curParamText
-	; arrays: CustomFunctions, ObjectList, MethPropList, paramList
-	
-	For curFuncName, obj in FunctionList {
-		If (curFuncName = curPhrase) {
-			curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-			Break
+	KeywordFilter := Map()
+	If (StrLen(curPhrase) >= AutoCompleteLength) { ; not done yet!
+		For kw, type in KeywordList {
+			If (InStr(kw,curPhrase))
+				KeywordFilter[kw] := type
 		}
+		; msgbox KeywordFilter.Count
+		
 	}
+}
+
+AutoCompleteGUI(KeywordFilter) {
+	If (IsObject(AutoCompleteGUI))
+		AutoCompleteGUI.Destroy()
 	
-	If (!curPhraseType) {
-		For curFuncName, obj in CustomFunctions {
-			If (curFuncName = curPhrase) {
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-				Break
-			}
-		}
-	}
 	
-	If (!curPhraseType) {
-		For curObjName in ObjectList {
-			If (curObjName = curPhrase) {
-				curPhraseType := "object", oCallTip.curPhraseType := curPhraseType
-				Break
-			}
-		}
-	}
-	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			methList := MethPropList[objType]["method"]
-			For methName in methList { ; MethPropList.count
-				If (methName = curPhrase) {
-					curPhraseType := "method", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
-					Break
-				}
-			}
-		}
-	}
-	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			propList := MethPropList[objType]["property"]
-			For propName in propList {
-				If (propName = curPhrase) {
-					curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
-					Break
-				}
-			}
-		}
-	}
-	
-	If (!curPhraseType And ClassesList.Count) {
-		For instName, obj in ClassesList {
-			If (instName = curPhrase) { ; catch classname and instances
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-				Break
-			}
-		}
-	}
-	
-	If (!curPhraseType And ClassesList.Count) { ; class methods and properties
-		For instName, obj in ClassesList {
-			If (instName = parentObj) {
-				If (obj["type"] = "Instance")
-					obj := ClassesList[obj["class"]]
-				
-				memList := obj["members"]
-				For memName, memObj in memList {
-					If (memName = curPhrase Or memName = "__" curPhrase) {
-						curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
-						break
-					}
-				}
-			}
-		}
-	}
 }
 
 debugToolTip() {
@@ -1675,300 +457,6 @@ debugToolTip() {
 			  . "`r`nphraseType: " curPhraseType, x, (y+30)
 	} Else
 		ToolTip
-}
-
-; ===========================================
-; posted by Algumist - gets line text from scintilla control
-; no longer needed
-; https://www.autohotkey.com/boards/viewtopic.php?p=241297#p241297
-; ============================================
-
-; SCI_LINELENGTH(Line,hSci) {
-	; len := hSci ? DllCall("SendMessage", "Ptr", hSci, "UInt", 2350 , "Int", Line-1, "Int", 0) : 0
-	; return len
-; }
-
-; SCI_GETLINE(Line,hSci) {
-	; If !Line
-		; Return ""
-	
-    ; PID := WinGetPID("ahk_id " hSci)
-    ; If !(hProc := DllCall("OpenProcess", "UInt", 0x438, "Int", False, "UInt", PID, "Ptr"))
-        ; Return
-
-    ; Len := SCI_LINELENGTH(Line,hSci)
-    ; Address := DllCall("VirtualAllocEx", "Ptr", hProc, "Ptr", 0, "UPtr", Len, "UInt", 0x1000, "UInt", 4, "Ptr")
-
-    ; Len := DllCall("SendMessage", "Ptr", hSci, "UInt", 2153 , "Int", Line-1, "Ptr", Address) ; orig = Line - 1
-    ; VarSetCapacity(LineText, Len, 0)
-    ; DllCall("ReadProcessMemory", "Ptr", hProc, "Ptr", Address, "Ptr", &LineText, "UPtr", Len, "Ptr", 0)
-    ; LineText := StrGet(&LineText, "UTF-8")
-
-    ; DllCall("VirtualFreeEx", "Ptr", hProc, "Ptr", Address, "UPtr", 0, "UInt", 0x8000) ; MEM_RELEASE
-    ; DllCall("CloseHandle", "Ptr", hProc)
-
-    ; Return LineText
-; }
-
-; ================================================================
-; scan help docs - auto generate
-; ================================================================
-
-AutoCmdFunc() {
-	curFolder := DirSelect("","","Select COMMANDS folder:")
-	If (curFolder = "")
-		return
-	
-	Loop Files curFolder "\*.htm"
-	{
-		curFile := A_LoopFileName, doSkip := false, multiSyntax := false, multiSyntaxArr := Array()
-		If (curFile = "Block.htm" Or curFile = "GuiControls.htm")
-			doSkip := true
-		If (curFile = "ListView.htm" Or curFile = "TreeView.htm")
-			doSkip := true
-		If (curFile = "Math.htm")
-			multiSyntax := true
-		
-		If (!doSkip) {
-			curTitle := "" curSyntax := "", fullSyntax := "", match := ""
-			curText := FileRead(A_LoopFileFullPath)
-			curType := "Command"
-			
-			curTitleMatch1 := "<h1>(.*?)</h1>"
-			result := RegExMatch(curText,curTitleMatch1,match)
-			If (IsObject(match) And match.Count()) {
-				curTitle := match.Value(1)
-				If (curTitle = "{...} (block)")
-					curTitle := "Block"
-			}
-			curTitle := Trim(RegExReplace(curTitle,"<span class=`"ver`">.*?</span>",""))
-			curTitle := StrReplace(curTitle,"("), curTitle := StrReplace(curTitle,")")
-			
-			curMatch1 := "s)<pre class=`"Syntax`"[^>]*>(.*?)\Q</pre>\E", curPos := 1
-			While (result := RegExMatch(curText,curMatch1,match,curPos)) {
-				If (IsObject(match) And match.Count()) {
-					curSyntax := match.Value(1)
-					curSyntax := RegExReplace(curSyntax,"s)(<span class=`"optional`"[^>]*>)(.*?)(\Q</span>\E)","[$2]")
-					curSyntax := RegExReplace(curSyntax,"s)<span class=`"func`"[^>]*>(.*?)\Q</span>\E","$1")
-					curSyntax := RegExReplace(curSyntax,"s)<i>(.*?)\Q</i>\E","$1")
-					curSyntax := RegExReplace(curSyntax,"s)<a href[^>]*>(.*?)\Q</a>\E","$1")
-					curSyntax := RegExReplace(curSyntax,"<span class=`"ver`">.*?\Q</span>\E","")
-					curSyntax := RegExReplace(curSyntax,"<em>.*?\Q</em>\E","")
-					
-					If (!multiSyntax)
-						fullSyntax .= Trim(curSyntax,"`r`n") "`r`n"
-					Else
-						multiSyntaxArr.Push(curSyntax)
-					
-					curPos := match.Pos(1) + match.Len(1)
-				}
-			}
-			
-			If (curTitle and (fullSyntax Or multiSyntaxArr.Length)) {
-				curTitle := RegExReplace(curTitle,"<em>(.*?)\Q</em>\E","$1")
-				curTitleArr := StrSplit(curTitle,"/")
-				curHelpLink := "/docs/commands/" A_LoopFileName
-				
-				If (!multiSyntaxArr.Length) {
-					If (InStr(fullSyntax,"(") And InStr(fullSyntax,")"))
-						curType := "Function"
-					Loop curTitleArr.Length {
-						curEntry := curType "`r`n" Trim(curTitleArr[A_Index]) "`r`n" Chr(96) Trim(fullSyntax,"`r`n") "`r`n" Chr(96) curHelpLink
-						fullList .= curEntry "`r`n`r`n`r`n"
-					}
-				} Else {
-					Loop multiSyntaxArr.Length {
-						curLine := multiSyntaxArr[A_Index]
-						If (InStr(curLine,"(") And InStr(curLine,")"))
-							curType := "Function"
-						result := RegExMatch(curLine,"[\w]+ := ([\w]+)\(",match)
-						If (IsObject(match) And match.Count()) {
-							curTitle := match.Value(1)
-							curEntry := curType "`r`n" Trim(curTitle) "`r`n" Chr(96) Trim(curLine,"`r`n") "`r`n" Chr(96) curHelpLink "#" curTitle
-							fullList .= curEntry "`r`n`r`n`r`n"
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	destFile := A_Desktop "\List_Commands.txt"
-	FileDelete destFile
-	FileAppend fullList, destFile
-	MsgBox "Commands list complete."
-	Run "notepad.exe " Chr(34) destFile Chr(34)
-}
-
-; ================================================================
-; Settings GUI
-; ================================================================
-
-SettingsGUI() {
-	SettingsGUI := GuiCreate("+OwnDialogs","CallTipsForAll v2")
-	SettingsGUI.OnEvent("Close","gui_close")
-	SettingsGUI.OnEvent("escape","gui_close")
-	ActiveLanguage := Settings["ActiveLanguage"]
-	
-	If (IsObject(callTipGui)) {
-		callTipGui.Destroy()
-		callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
-	}
-	
-	Loop Files A_ScriptDir "\Languages\*", "D"
-		langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
-	
-	langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
-	
-	SettingsGUI.AddText("x5 y10","Language:")
-	SettingsGUI.AddDropDownList("x+2 yp-4 w100 vPickLang",langList).OnEvent("change","gui_change_events")
-	
-	ctl := SettingsGUI.AddCheckbox("xm y+8 vLoadCallTipOnClick","Load call tip on double-click")
-	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["LoadCallTipOnClick"]
-	
-	ctl := SettingsGUI.AddCheckbox("x+8 vCloseTipOnFocusChange Section","Close call tip on focus change")
-	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["CloseTipOnFocusChange"]
-	
-	ctl := SettingsGUI.AddCheckbox("xm y+8 vDebugToolTip","Show Debug Tooltip")
-	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["DebugToolTip"]
-	
-	ctl := SettingsGUI.AddCheckbox("xs yp vCallTipSelectable","Selectable call tips")
-	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["CallTipSelectable"]
-	
-	ctl := SettingsGUI.AddButton("vPickFont xm y+8","Select Font")
-	ctl.OnEvent("click","gui_change_events")
-	
-	ctl := SettingsGUI.AddButton("vPickFontColor x+0","Select Font Color")
-	ctl.OnEvent("click","gui_change_events")
-	
-	ctl := SettingsGUI.AddButton("vPickBgColor x+0","Select Background Color")
-	ctl.OnEvent("click","gui_change_events")
-	
-	SettingsGUI.AddEdit("vFontDemo xm y+8 w330 h50 ReadOnly -E0x200 -VScroll","Call Tip Test")
-	
-	SettingsGUI.AddText("xm y+12","Text Editor EXE:")
-	SettingsGUI.AddEdit("vProgExe xm y+2 w330")
-	SettingsGUI["ProgExe"].Value := Settings["ProgExe"]
-	
-	SettingsGUI.AddText("xm y+8","Editor Control ClassNN - without number (ie. `"edit`" not `"edit1`"):")
-	SettingsGUI.AddEdit("vProgClassNN xm y+2 w330")
-	SettingsGUI["ProgClassNN"].Value := Settings["ProgClassNN"]
-	
-	SettingsGUI.AddText("xm y+8","Base File (only needed to process includes):")
-	SettingsGUI.AddEdit("vBaseFile xm y+2 w290 r1",Settings["BaseFile"])
-	SettingsGUI.AddButton("vSelBaseFile x+0 w20","...").OnEvent("click","gui_change_events")
-	SettingsGUI.AddButton("vClearBaseFile x+0 w20","X").OnEvent("click","gui_change_events")
-	
-	SetFontDemo()
-	SettingsGUI.Show()
-}
-
-gui_change_events(ctl, Info) { ; GuiControlObject
-	if (ctl.Name = "PickLang")
-		Settings["ActiveLanguage"] := ctl.Text
-	else if (ctl.Name = "LoadCallTipOnClick")
-		Settings["LoadCallTipOnClick"] := ctl.Value
-	else if (ctl.Name = "CloseTipOnFocusChange")
-		Settings["CloseTipOnFocusChange"] := ctl.Value
-	else if (ctl.Name = "DebugToolTip")
-		Settings["DebugToolTip"] := ctl.Value
-	else if (ctl.Name = "CallTipSelectable")
-		Settings["CallTipSelectable"] := ctl.Value
-	Else If (ctl.Name = "PickFont") {
-		fName := Settings["fontFace"]
-		fSize := Settings["fontSize"]
-		fontObj := Map("name",fName,"size",fSize) ; ,"color",0xFF0000
-		fontObj := FontSelect(fontObj,ctl.gui.hwnd,0)
-		If (fontObj) {
-			Settings["fontFace"] := fontObj["name"]
-			Settings["fontSize"] := fontObj["size"]
-			SetFontDemo()
-		}
-	} Else If (ctl.Name = "PickFontColor") {
-		fontColor := Settings["fontColor"]
-		fontColor := ColorSelect(fontColor,ctl.gui.hwnd)
-		If (fontColor > -1) {
-			Settings["fontColor"] := fontColor
-			SetFontDemo()
-		}
-	} Else If (ctl.Name = "PickBgColor") {
-		bgColor := Settings["bgColor"]
-		bgColor := ColorSelect(bgColor,ctl.gui.hwnd)
-		If (bgColor > -1) {
-			Settings["bgColor"] := bgColor
-			SetFontDemo()
-		}
-	} Else If (ctl.Name = "SelBaseFile") {
-		lastFile := Settings["BaseFile"], startDir := ""
-		If (FileExist(lastFile))
-			SplitPath lastFile, , startDir
-		
-		selFile := FileSelect("",startDir,"Select Base File:")
-		ctl.gui["BaseFile"].value := selFile ? selFile : ""
-	} Else If (ctl.Name = "ClearBaseFile")
-		ctl.gui["BaseFile"].value := ""
-}
-
-SetFontDemo() {
-	fontFace := Settings["fontFace"]
-	fontSize := Settings["fontSize"]
-	fontColor := Format("{:X}",Settings["fontColor"])
-	bgColor := Format("{:X}",Settings["bgColor"])
-	
-	SettingsGUI["FontDemo"].SetFont("s" fontSize " c" fontColor,fontFace)
-	SettingsGUI["FontDemo"].Opt("+Background" bgColor)
-}
-
-gui_close(guiObj) {
-	SetTimer "ReParseText", -500
-	Settings["ProgExe"] := guiObj["ProgExe"].value
-	Settings["ProgClassNN"] := guiObj["ProgClassNN"].value
-	Settings["BaseFile"] := guiObj["BaseFile"].value
-	
-	settingsText := Jxon_Dump(Settings,4)
-	FileDelete "Settings.txt"
-	FileAppend settingsText, "Settings.txt"
-	SettingsGUI.Destroy(), SettingsGUI := ""
-}
-
-editorCtl(method:="") {
-	curExe := Settings["ProgExe"], curClassNN := Settings["ProgClassNN"], ClassNNcomp := curClassNN "1"
-	
-	If (!oCallTip.progHwnd Or method = "") {
-		winList := WinGetList("ahk_exe " curExe)
-		
-		Loop winList.Length {
-			curHwnd := winList[A_Index]
-			ctlArr := WinGetControls("ahk_id " curHwnd)
-			
-			Loop ctlArr.Length {
-				If (ClassNNcomp = ctlArr[A_Index]) {
-					found := true, hwndComp := curHwnd
-					Break
-				}
-			}
-		}
-	} Else If (method = "click") {
-		MouseGetPos  x,y,hWnd, ClassNN
-		If (!InStr(ClassNN,curClassNN))
-			return {ctlClassNN: "", progHwnd: 0, ctlHwnd: 0}
-		Else
-			ClassNNcomp := ClassNN, found := true, hwndComp := hWnd
-	}
-	
-	If (!found)
-		return {ctlClassNN: "", progHwnd: 0, ctlHwnd: 0}
-	
-	retVal := {ctlClassNN: ClassNNcomp, progHwnd: hwndComp}
-	ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " hwndComp)
-	retval.progTitle := WinGetTitle("ahk_id " hwndComp)
-	retVal.ctlHwnd := ctlHwnd
-	
-	return retVal
 }
 
 closeCallTip() {
@@ -2017,9 +505,9 @@ DisplayCallTip() {
 	
 	If (Settings["DebugToolTip"])	; use debug tool tip if enabled
 		debugToolTip()
-	Else {				; load call tip
-		ProcInput()
-		LoadCallTip()
+	Else {
+		ProcInput() ; process data near caret to determin call tip contents
+		LoadCallTip() ; load call tip
 	}
 }
 
@@ -2122,6 +610,9 @@ GetMonitorData(x:="", y:="") {
 	return monList
 }
 
+; ======================================================================================
+; Detects a multi-click event, given a specified delay and specified key, between clicks
+; ======================================================================================
 MultiClickDetect(ThisKey, delay:=300, CycleLimit:=0) {	; ThisKey = A_ThisHotKey, or whatever value you pass
     Global MultiClickCount, MultiClickKey			; delay (ms) = expected delay between "clicks"
     ct := MultiClickTickCount()
@@ -2154,17 +645,12 @@ MultiClickTickCount() { ; returns the number of ticks (ms) since the last button
 
 ^Space::ReParseText()
 
-^+Space:: ; load call tip
-	DisplayCallTip()
-
-	; ProcInput()
-	; LoadCallTip()
-return
+^+Space::DisplayCallTip()
 
 ^!Space:: ; load auto-complete list
-	If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		msgbox "yee haw!"
-	}
+	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
+		; msgbox "yee haw!"
+	; }
 return
 
 ^+F12:: ; close CallTipsForAll
@@ -2174,7 +660,7 @@ Return
 
 ~ESC::closeCallTip()
 
-Up::
+Up:: ; scroll when multiple records are available for call tips
 	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
 	If (oCallTip.curIndex And (oCallTip.curIndex-1 != 0)) {
 		oCallTip.curIndex--
@@ -2184,7 +670,7 @@ Up::
 	} Else SendInput "{Up}"
 return
 
-Down::
+Down:: ; scroll when multiple records are available for call tips
 	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
 	If (oCallTip.curIndex And (oCallTip.curIndex+1) <= i) {
 		oCallTip.curIndex++
@@ -2197,17 +683,13 @@ return
 ~LButton::ClickCheck(A_ThisHotkey)
 ~MButton::closeCallTip()
 
-; ^LButton::ClickCheck(A_ThisHotkey)
-	
-return
-
-^!w::
+^!w:: ; hotkey to wrap text in clipboard
 	newText := WrapText(WrapTextChars)
 	If (newText)
 		clipboard := newText
 return
 
-^!u::
+^!u:: ; hotkey to unwrap text in clipboard
 	newText := unwrapText()
 	If (newText)
 		clipboard := newText
@@ -2232,6 +714,11 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 		}
 	}
 	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
+	
+	testList := ""
+	For className in ClassesList
+		testList .= className "`r`n"
+	MsgBox "Classes loaded:`r`n`r`n" testList
 return
 
 F10:: ; list functions - for debugging List_*.txt files only
@@ -2264,3 +751,126 @@ return
 ; ==================================================
 ; #If WinActive("ahk_exe notepad++.exe") ; WinActive("ahk_exe notepad.exe") Or 
 
+
+; ===========================================
+; posted by Algumist - gets line text from scintilla control
+; no longer needed
+; https://www.autohotkey.com/boards/viewtopic.php?p=241297#p241297
+; ============================================
+
+; SCI_LINELENGTH(Line,hSci) {
+	; len := hSci ? DllCall("SendMessage", "Ptr", hSci, "UInt", 2350 , "Int", Line-1, "Int", 0) : 0
+	; return len
+; }
+
+; SCI_GETLINE(Line,hSci) {
+	; If !Line
+		; Return ""
+	
+    ; PID := WinGetPID("ahk_id " hSci)
+    ; If !(hProc := DllCall("OpenProcess", "UInt", 0x438, "Int", False, "UInt", PID, "Ptr"))
+        ; Return
+
+    ; Len := SCI_LINELENGTH(Line,hSci)
+    ; Address := DllCall("VirtualAllocEx", "Ptr", hProc, "Ptr", 0, "UPtr", Len, "UInt", 0x1000, "UInt", 4, "Ptr")
+
+    ; Len := DllCall("SendMessage", "Ptr", hSci, "UInt", 2153 , "Int", Line-1, "Ptr", Address) ; orig = Line - 1
+    ; VarSetCapacity(LineText, Len, 0)
+    ; DllCall("ReadProcessMemory", "Ptr", hProc, "Ptr", Address, "Ptr", &LineText, "UPtr", Len, "Ptr", 0)
+    ; LineText := StrGet(&LineText, "UTF-8")
+
+    ; DllCall("VirtualFreeEx", "Ptr", hProc, "Ptr", Address, "UPtr", 0, "UInt", 0x8000) ; MEM_RELEASE
+    ; DllCall("CloseHandle", "Ptr", hProc)
+
+    ; Return LineText
+; }
+
+; ================================================================
+; scan help docs - auto generate
+; ================================================================
+
+; AutoCmdFunc() {
+	; curFolder := DirSelect("","","Select COMMANDS folder:")
+	; If (curFolder = "")
+		; return
+	
+	; Loop Files curFolder "\*.htm"
+	; {
+		; curFile := A_LoopFileName, doSkip := false, multiSyntax := false, multiSyntaxArr := Array()
+		; If (curFile = "Block.htm" Or curFile = "GuiControls.htm")
+			; doSkip := true
+		; If (curFile = "ListView.htm" Or curFile = "TreeView.htm")
+			; doSkip := true
+		; If (curFile = "Math.htm")
+			; multiSyntax := true
+		
+		; If (!doSkip) {
+			; curTitle := "" curSyntax := "", fullSyntax := "", match := ""
+			; curText := FileRead(A_LoopFileFullPath)
+			; curType := "Command"
+			
+			; curTitleMatch1 := "<h1>(.*?)</h1>"
+			; result := RegExMatch(curText,curTitleMatch1,match)
+			; If (IsObject(match) And match.Count()) {
+				; curTitle := match.Value(1)
+				; If (curTitle = "{...} (block)")
+					; curTitle := "Block"
+			; }
+			; curTitle := Trim(RegExReplace(curTitle,"<span class=`"ver`">.*?</span>",""))
+			; curTitle := StrReplace(curTitle,"("), curTitle := StrReplace(curTitle,")")
+			
+			; curMatch1 := "s)<pre class=`"Syntax`"[^>]*>(.*?)\Q</pre>\E", curPos := 1
+			; While (result := RegExMatch(curText,curMatch1,match,curPos)) {
+				; If (IsObject(match) And match.Count()) {
+					; curSyntax := match.Value(1)
+					; curSyntax := RegExReplace(curSyntax,"s)(<span class=`"optional`"[^>]*>)(.*?)(\Q</span>\E)","[$2]")
+					; curSyntax := RegExReplace(curSyntax,"s)<span class=`"func`"[^>]*>(.*?)\Q</span>\E","$1")
+					; curSyntax := RegExReplace(curSyntax,"s)<i>(.*?)\Q</i>\E","$1")
+					; curSyntax := RegExReplace(curSyntax,"s)<a href[^>]*>(.*?)\Q</a>\E","$1")
+					; curSyntax := RegExReplace(curSyntax,"<span class=`"ver`">.*?\Q</span>\E","")
+					; curSyntax := RegExReplace(curSyntax,"<em>.*?\Q</em>\E","")
+					
+					; If (!multiSyntax)
+						; fullSyntax .= Trim(curSyntax,"`r`n") "`r`n"
+					; Else
+						; multiSyntaxArr.Push(curSyntax)
+					
+					; curPos := match.Pos(1) + match.Len(1)
+				; }
+			; }
+			
+			; If (curTitle and (fullSyntax Or multiSyntaxArr.Length)) {
+				; curTitle := RegExReplace(curTitle,"<em>(.*?)\Q</em>\E","$1")
+				; curTitleArr := StrSplit(curTitle,"/")
+				; curHelpLink := "/docs/commands/" A_LoopFileName
+				
+				; If (!multiSyntaxArr.Length) {
+					; If (InStr(fullSyntax,"(") And InStr(fullSyntax,")"))
+						; curType := "Function"
+					; Loop curTitleArr.Length {
+						; curEntry := curType "`r`n" Trim(curTitleArr[A_Index]) "`r`n" Chr(96) Trim(fullSyntax,"`r`n") "`r`n" Chr(96) curHelpLink
+						; fullList .= curEntry "`r`n`r`n`r`n"
+					; }
+				; } Else {
+					; Loop multiSyntaxArr.Length {
+						; curLine := multiSyntaxArr[A_Index]
+						; If (InStr(curLine,"(") And InStr(curLine,")"))
+							; curType := "Function"
+						; result := RegExMatch(curLine,"[\w]+ := ([\w]+)\(",match)
+						; If (IsObject(match) And match.Count()) {
+							; curTitle := match.Value(1)
+							; curEntry := curType "`r`n" Trim(curTitle) "`r`n" Chr(96) Trim(curLine,"`r`n") "`r`n" Chr(96) curHelpLink "#" curTitle
+							; fullList .= curEntry "`r`n`r`n`r`n"
+						; }
+					; }
+				; }
+			; }
+		; }
+	; }
+	
+	; destFile := A_Desktop "\List_Commands.txt"
+	; FileDelete destFile
+	; FileAppend fullList, destFile
+	; MsgBox "Commands list complete."
+	; Run "notepad.exe " Chr(34) destFile Chr(34)
+; }
