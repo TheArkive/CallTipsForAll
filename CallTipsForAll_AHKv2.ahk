@@ -1416,8 +1416,7 @@ ReloadElements() {
 	If (FileExist(baseFile)) {
 		fileList := GetIncludes(curDocArr), curDocText := ""
 		Loop fileList.Length
-			curDocText .= FileRead(fileList[A_Index]) "`r`n`r`n"
-		; clipboard := curDocText
+			curDocText .= FileRead(fileList[A_Index]) "`r`n`r`n" ; load all includes into one var
 		curDocArr := StrSplit(curDocText,"`n","`r")
 	}
 	
