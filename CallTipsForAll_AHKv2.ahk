@@ -1495,7 +1495,7 @@ GetIncludes(curDocArr) {
 		isDir := InStr(includeExist,"D") ? true : false
 		isFile := includeExist ? true : false
 		
-		If (stdLib) {
+		If (stdLib) { ; check stdLib locations
 			f1 := baseFolderP "\Lib\" curInclude, f1 := findFile(f1)
 			If (f1) {
 				FinalArr.Push(f1)
@@ -1506,7 +1506,7 @@ GetIncludes(curDocArr) {
 				FinalArr.Push(f2)
 				continue
 			}
-			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\" curInclude, f3 := findFile(f3)
+			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\" curInclude, f3 := findFile(f3)
 			If (f3) {
 				FinalArr.Push(f3)
 				continue
