@@ -70,12 +70,12 @@ If (FileExist("Settings.txt.blank") And !FileExist("Settings.txt")) ; load defau
 settingsText := FileRead("Settings.txt")
 Settings := Jxon_Load(settingsText) ; MapObject
 
-hCtl := editorCtl()
-If (hCtl.progHwnd) {
-	oCallTip.ctlHwnd := hCtl.ctlHwnd
-	oCallTip.ctlClassNN := hCtl.ctlClassNN
-	oCallTip.progHwnd := hCtl.progHwnd
-	oCallTip.progTitle := hCtl.progTitle
+editorCtl() ; check active window and populate oCalLTip properties
+If (oCallTip.progHwnd) {
+	; oCallTip.ctlHwnd := hCtl.ctlHwnd
+	; oCallTip.ctlClassNN := hCtl.ctlClassNN
+	; oCallTip.progHwnd := hCtl.progHwnd
+	; oCallTip.progTitle := hCtl.progTitle
 	ReParseText() ; initial loading of functions, custom functions, objects
 }
 
@@ -287,12 +287,13 @@ ReloadElements() {
 	
 	baseFile := Settings["BaseFile"]
 	If (FileExist(baseFile)) {
-		fileList := GetIncludes(curDocArr)
+		fileList := GetIncludes()
 		Loop fileList.Length
 			curDocText2 .= FileRead(fileList[A_Index]) "`r`n`r`n" ; load all includes into one var
+		
 		If (curDocText2) {
 			curDocText := curDocText2, curDocText2 := ""
-			curDocArr := StrSplit(curDocText2,"`n","`r")
+			curDocArr := StrSplit(curDocText,"`n","`r")
 		}
 	}
 	
@@ -307,121 +308,13 @@ ReloadElements() {
 	curDocArr := "", curDocText := ""
 }
 
-findFile(sInFile) {
-	result := ""
-	Loop Files sInFile ".*" ; do this for <libraries> without extension
-	{
-		If (A_LoopFileName) {
-			result := A_LoopFileFullPath
-			break
-		}
-	}
-	
-	If (!result And FileExist(sInFile)) {
-		result := sInFile
-		
-		; Loop Files sInFile ; do this for libraries including extension
-		; {
-			; If (A_LoopFileName) {
-				; result := A_LoopFileFullPath
-				; break
-			; }
-		; }
-	}
-	
-	return result
-}
-
-GetIncludes(curDocArr) {
-	baseFile := Settings["BaseFile"]
-	
-	SplitPath baseFile, , baseFolderP
-	curBaseFolder := baseFolderP
-	
-	includes := oCallTip.includes, includeArr := Array()
-	Loop curDocArr.Length {
-		curLine := curDocArr[A_Index]
-		If (RegExMatch(curLine,"mi)" includes,match))
-			includeArr.Push(match.Value(1))
-	}
-	
-	; Loop includeArr.Length
-		; firstList .= includeArr[A_Index] "`r`n`r`n"
-	; msgbox "baseFolder: " baseFolderP "`r`n`r`n" firstList
-	
-	FinalArr := Array(), FinalArr.Push(baseFile)
-	Loop includeArr.Length {
-		curInc := includeArr[A_Index], curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
-		curInclude := RegExReplace(curInc,"<|>","")
-		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP)
-		
-		If (SubStr(curInclude,1,3) = "..\") { ; processing includes starting with ..\
-			repInclude := SubStr(curInclude,4)
-			baseArr := StrSplit(baseFolderP,"\")
-			c := baseArr.Length - 1
-			Loop c
-				fullPath .= baseArr[A_Index] "\"
-			fullPath := Trim(fullPath,"\")
-			If (FileExist(fullPath "\" repInclude)) {
-				FinalArr.Push(fullPath "\" repInclude)
-				continue
-			}
-		}
-		
-		stdLib := (curInc = curInclude Or InStr(FileExist(curInclude),"D")) ? false : true
-		includeExist := FileExist(curInclude)
-		isDir := InStr(includeExist,"D") ? true : false
-		isFile := includeExist ? true : false
-		
-		If (stdLib) { ; check stdLib locations
-			f1 := baseFolderP "\Lib\" curInclude, f1 := findFile(f1)
-			If (f1) {
-				FinalArr.Push(f1)
-				continue
-			}
-			f2 := A_MyDocuments "\AutoHotkey\Lib\" curInclude, f2 := findFile(f2)
-			If (f2) {
-				FinalArr.Push(f2)
-				continue
-			}
-			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\" curInclude, f3 := findFile(f3)
-			If (f3) {
-				FinalArr.Push(f3)
-				continue
-			}
-		}
-		
-		If (isDir) {
-			curBaseFolder := curInclude
-			continue
-		}
-		
-		If (isFile) {
-			FinalArr.Push(curInclude)
-			continue
-		}
-		
-		f4 := findFile(curBaseFolder "\" curInclude)
-		If (f4) {
-			FinalArr.Push(f4)
-			continue
-		}
-	}
-	
-	; Loop finalArr.Length
-		; finalList .= finalArr[A_Index] "`r`n`r`n"
-	; msgbox finalList
-	
-	return finalArr
-}
-
 ; ======================================================================================
 ; Functions related to hotkey events
 ; ======================================================================================
 LoadAutoComplete() {
 	ProcInput() ; update cursor postion and curPhrase in global variables
 	
-	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
+	curPhrase := oCallTip.curPhrase
 	
 	KeywordFilter := Map()
 	If (StrLen(curPhrase) >= AutoCompleteLength) { ; not done yet!
@@ -442,7 +335,7 @@ AutoCompleteGUI(KeywordFilter) {
 }
 
 debugToolTip() {
-	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
+	curPhrase := oCallTip.curPhrase
 	curPhraseObj := oCallTip.curPhraseObj
 	curPhraseType := oCallTip.curPhraseType
 	parentObj := oCallTip.parentObj
@@ -470,45 +363,41 @@ closeCallTip() {
 }
 
 ClickCheck(curKey) {
-	hCtl := editorCtl("click")
-	If (!hCtl.progHwnd Or !hCtl.ctlHwnd) {
+	editorCtl("click")
+	If (!oCallTip.progHwnd Or !oCallTip.ctlHwnd) {
 		closeCallTip()
 		return
 	}
 	
 	c := MultiClickDetect(curKey)
 	
-	oCallTip.ctlHwnd := hCtl.ctlHwnd
-	oCallTip.ctlClassNN := hCtl.ctlClassNN
-	oCallTip.progHwnd := hCtl.progHwnd
-	oCallTip.progTitle := hCtl.progTitle
-	
-	If (curKey = "~LButton") {
-		If (c = 1 and Settings["CloseTipOnFocusChange"] And !hCtl.progHwnd)
-			closeCallTip()
-		
-		If (c = 2 And Settings["LoadCallTipOnClick"])
-			DisplayCallTip()
-		
-		If (c = 3)
-			closeCallTip()
+	If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
+		DisplayCallTip()
+	} Else If (curKey = "^Space") {
+		oCallTip.c := c
+		SetTimer "MakeItEasy", -300
+	}
+}
+
+MakeItEasy() {
+	If (oCallTip.c = 1) {
+		ReParseText()
+	} Else If (oCallTip.c = 2) {
+		QuickReloadGUI()
 	}
 }
 
 DisplayCallTip() {
-	cClassNN := oCallTip.ctlClassNN
-	
-	If (cClassNN != "scintilla1" And cClassNN != "Edit1")
+	If (oCallTip.ctlClassNN != "scintilla1" And oCallTip.ctlClassNN != "Edit1")
 		return
 	
 	closeCallTip()
+	ProcInput() ; process data near caret to determin call tip contents
 	
 	If (Settings["DebugToolTip"])	; use debug tool tip if enabled
 		debugToolTip()
-	Else {
-		ProcInput() ; process data near caret to determin call tip contents
-		LoadCallTip() ; load call tip
-	}
+	Else
+		LoadCallTip()
 }
 
 ; ======================================================================
@@ -643,9 +532,9 @@ MultiClickTickCount() { ; returns the number of ticks (ms) since the last button
 ; hotkeys - global ; 
 ; ================================================================
 
-^Space::ReParseText()
+^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
 
-^+Space::DisplayCallTip()
+^+Space::DisplayCallTip() ; ClickCheck("LButton")
 
 ^!Space:: ; load auto-complete list
 	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
@@ -716,8 +605,8 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
 	
 	testList := ""
-	For className in ClassesList
-		testList .= className "`r`n"
+	For className, obj in ClassesList
+		testList .= className " / " obj["type"] "`r`n"
 	MsgBox "Classes loaded:`r`n`r`n" testList
 return
 

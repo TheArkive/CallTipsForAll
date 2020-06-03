@@ -405,3 +405,47 @@ gui_close(guiObj) {
 	
 	SetTimer "ReParseText", -1
 }
+
+; ================================================================
+; Base File Quick Select
+; ================================================================
+
+QuickReloadGUI() {
+	; CaretGetPos(x,y)
+	; msgbox x " / " y
+	m := GetMonitorData()
+	
+	g := GuiCreate("+OwnDialogs","Base File Quick Reload")
+	g.OnEvent("close","quick_reload_close")
+	g.OnEvent("escape","quick_reload_close")
+	
+	g.AddText("xm y8","Base File:")
+	g.AddEdit("vBaseFile x+2 yp-4 w400 ReadOnly r1",Settings["BaseFile"])
+	g.AddButton("vPickBaseFile x+0","...").OnEvent("click","quick_reload_gui")
+	g.AddButton("vClearBaseFile x+0","X").OnEvent("click","quick_reload_gui")
+	
+	g.Show("Hide")
+	showDims := "x" (m.Cx - (g.Pos.w/2)) " y" (m.Cy - (g.Pos.h/2))
+	g.Show(showDims)
+}
+
+quick_reload_gui(ctl, info) {
+	If (ctl.Name = "PickBaseFile") {
+		newFile := FileSelect("",Settings["BaseFile"],"Select Base File:")
+		If (newFile)
+			ctl.gui["BaseFile"].value := newFile
+	} Else If (ctl.Name = "ClearBaseFile")
+		ctl.gui["BaseFile"].value := ""
+	Settings["BaseFile"] := ctl.gui["BaseFile"].value
+	
+	settingsText := Jxon_Dump(Settings,4)
+	FileDelete "Settings.txt"
+	FileAppend settingsText, "Settings.txt"
+	
+	ReParseText()
+	ctl.gui.Destroy()
+}
+
+quick_reload_close(g) {
+	g.Destroy()
+}

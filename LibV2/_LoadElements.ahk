@@ -13,6 +13,8 @@ editorCtl(method:="") {
 		Loop winList.Length {
 			curHwnd := winList[A_Index]
 			ctlArr := WinGetControls("ahk_id " curHwnd)
+			If (!ctlArr)
+				Break
 			
 			Loop ctlArr.Length {
 				If (ClassNNcomp = ctlArr[A_Index]) {
@@ -24,20 +26,29 @@ editorCtl(method:="") {
 	} Else If (method = "click") {
 		MouseGetPos  x,y,hWnd, ClassNN
 		If (!InStr(ClassNN,curClassNN))
-			return {ctlClassNN: "", progHwnd: 0, ctlHwnd: 0}
+			found := false
 		Else
 			ClassNNcomp := ClassNN, found := true, hwndComp := hWnd
 	}
 	
-	If (!found)
-		return {ctlClassNN: "", progHwnd: 0, ctlHwnd: 0}
+	If (!found) {
+		oCallTip.ctlHwnd := 0
+		oCallTip.ctlClassNN := ""
+		oCallTip.progHwnd := 0
+		oCallTip.progTitle := ""
+	} Else {
+		ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " hwndComp)
+		oCallTip.ctlHwnd := ctlHwnd
+		oCallTip.ctlClassNN := ClassNNcomp
+		oCallTip.progHwnd := hwndComp
+		oCallTip.progTitle := WinGetTitle("ahk_id " hwndComp)
+	}
+	; retVal := {ctlClassNN: ClassNNcomp, progHwnd: hwndComp}
+	; ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " hwndComp)
+	; retval.progTitle := WinGetTitle("ahk_id " hwndComp)
+	; retVal.ctlHwnd := ctlHwnd
 	
-	retVal := {ctlClassNN: ClassNNcomp, progHwnd: hwndComp}
-	ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " hwndComp)
-	retval.progTitle := WinGetTitle("ahk_id " hwndComp)
-	retVal.ctlHwnd := ctlHwnd
-	
-	return retVal
+	; return retVal
 }
 
 ; ==================================================
@@ -608,7 +619,7 @@ GetClasses(curDocText) {
 			}
 			; msgbox "className: " className
 			
-			r2 := RegExMatch(curDocText,"i)" oCallTip.classEnd,match2,curPos1)
+			r2 := RegExMatch(curDocText,"mi)" oCallTip.classEnd,match2,curPos1)
 			classBody := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
 			
 			memberList := Map(), curPos2 := 1, curPos3 := 1
@@ -627,7 +638,8 @@ GetClasses(curDocText) {
 				curPos3 := match4.Pos(1) + match4.Len(1)
 				curPos3 := match4.Value(2) != "" ? match4.Pos(2) + match4.Len(2) : curPos3
 				
-				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property")
+				If (memberName != "Else" And memberName != "Loop" And memberName != "For" And memberName != "while")
+					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property")
 				; msgbox match4.Value(1) " / " match4.Value(2) " / " curPos3
 			}
 			
@@ -656,7 +668,7 @@ ScanClasses(curDocArr) { ; scan doc for class instances
 		curLine := curDocArr[A_Index]
 		For className, obj in ClassesList {
 			; msgbox className "`r`n`r`n" curLine "`r`n`r`n" oCallTip.classInstance
-			If (RegExMatch(curLine,"i)" StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
+			If (RegExMatch(curLine,"mi)" StrReplace(oCallTip.classInstance,"{Class}",className),match)) {
 				; msgbox match.Value(1) " / " match.Value(2)
 				instName := match.Value(1)
 				params := match.Value(2)
@@ -664,4 +676,115 @@ ScanClasses(curDocArr) { ; scan doc for class instances
 			}
 		}
 	}
+}
+
+GetIncludes() {
+	baseFile := Settings["BaseFile"]
+	curDocText := FileRead(baseFile)
+	curDocArr := StrSplit(curDocText,"`n","`r")
+	
+	SplitPath baseFile, , baseFolderP
+	curBaseFolder := baseFolderP
+	
+	includes := oCallTip.includes, includeArr := Array()
+	Loop curDocArr.Length {
+		curLine := curDocArr[A_Index]
+		If (RegExMatch(curLine,"mi)" includes,match))
+			includeArr.Push(match.Value(1))
+	}
+	curDocArr := "" ; free memory
+	
+	; Loop includeArr.Length
+		; firstList .= includeArr[A_Index] "`r`n`r`n"
+	; msgbox "baseFolder: " baseFolderP "`r`n`r`n" firstList
+	
+	FinalArr := Array(), FinalArr.Push(baseFile)
+	Loop includeArr.Length {
+		curInc := includeArr[A_Index], curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
+		curInclude := RegExReplace(curInc,"<|>","")
+		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP)
+		
+		If (SubStr(curInclude,1,3) = "..\") { ; processing includes starting with ..\
+			repInclude := SubStr(curInclude,4)
+			baseArr := StrSplit(baseFolderP,"\")
+			c := baseArr.Length - 1
+			Loop c
+				fullPath .= baseArr[A_Index] "\"
+			fullPath := Trim(fullPath,"\")
+			If (FileExist(fullPath "\" repInclude)) {
+				FinalArr.Push(fullPath "\" repInclude)
+				continue
+			}
+		}
+		
+		stdLib := (curInc = curInclude Or InStr(FileExist(curInclude),"D")) ? false : true
+		includeExist := FileExist(curInclude)
+		isDir := InStr(includeExist,"D") ? true : false
+		isFile := includeExist ? true : false
+		
+		If (stdLib) { ; check stdLib locations
+			f1 := baseFolderP "\Lib\" curInclude, f1 := findFile(f1)
+			If (f1) {
+				FinalArr.Push(f1)
+				continue
+			}
+			f2 := A_MyDocuments "\AutoHotkey\Lib\" curInclude, f2 := findFile(f2)
+			If (f2) {
+				FinalArr.Push(f2)
+				continue
+			}
+			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\" curInclude, f3 := findFile(f3)
+			If (f3) {
+				FinalArr.Push(f3)
+				continue
+			}
+		}
+		
+		If (isDir) {
+			curBaseFolder := curInclude
+			continue
+		}
+		
+		If (isFile) {
+			FinalArr.Push(curInclude)
+			continue
+		}
+		
+		f4 := findFile(curBaseFolder "\" curInclude)
+		If (f4) {
+			FinalArr.Push(f4)
+			continue
+		}
+	}
+	
+	; Loop finalArr.Length
+		; finalList .= finalArr[A_Index] "`r`n`r`n"
+	; msgbox finalList
+	
+	return finalArr
+}
+
+findFile(sInFile) {
+	result := ""
+	Loop Files sInFile ".*" ; do this for <libraries> without extension
+	{
+		If (A_LoopFileName) {
+			result := A_LoopFileFullPath
+			break
+		}
+	}
+	
+	If (!result And FileExist(sInFile)) {
+		result := sInFile
+		
+		; Loop Files sInFile ; do this for libraries including extension
+		; {
+			; If (A_LoopFileName) {
+				; result := A_LoopFileFullPath
+				; break
+			; }
+		; }
+	}
+	
+	return result
 }

@@ -6,123 +6,6 @@
 ; for more fancy call tips.
 
 ; ================================================================
-; Reads current line / cursor position and determines current top-level function.
-; Not currently used in any meaningful way.
-; ================================================================
-GetTopLevelFunc(sInput, curCol, ByRef funcStart, ByRef funcEnd) {
-	result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match)
-	curFunc := "", foundIt := 0
-	
-	Loop { ; isolate top-level function
-		If (IsObject(match)) {
-			curMatch := match.value(1), curFunc := curMatch
-			curLen := match.Len(1), funcStart := match.pos(1)
-			
-			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
-			
-			i := 1
-			While (RPar != LPar) {
-				curFunc := SubStr(sInput,funcStart,curLen + i)
-				w := StrReplace(curFunc,"(","(",LPar), w := StrReplace(curFunc,")",")",RPar)
-				i++
-			}
-			
-			funcEnd := funcStart + StrLen(curFunc) - 1
-			
-			If (curCol >= funcStart And curCol <= funcEnd) {
-				foundIt := 1
-				break
-			}
-			
-			result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match,funcStart + StrLen(curFunc) - 1)
-			if (!result)
-				break
-		} Else
-			break
-	}
-	
-	If (foundIt)
-		return curFunc
-	Else
-		return ""
-}
-
-; ================================================================
-; Replaces nested functions with ~~~~ ... meant to avoid confusion when using regex.
-; sInput is usually a single one-line function.
-; Not currently in use.
-; ================================================================
-FuncParamOutline(sInput,ByRef funcName) {
-	funcName := RegExMatch(sInput,"^([\w\.]*)",match), funcName := match.Value(1)
-	paramStrStart := StrLen(funcName) + 2, paramStr := SubStr(sInput,paramStrStart,-1)
-	result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match) ; similar to above
-	
-	Loop { ; blank out expressions in top-level function parameters
-		If (IsObject(match)) {
-			curMatch := match.value(1), curChunk := curMatch
-			curLen := match.Len(1), exprStart := match.pos(1)
-			
-			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
-			
-			i := 1
-			While (RPar != LPar) {
-				curChunk := SubStr(paramStr,exprStart,curLen + i), newCurLen := curLen + i
-				w := StrReplace(curChunk,"(","(",LPar), w := StrReplace(curChunk,")",")",RPar)
-				i++
-			}
-			
-			repStr := ""
-			Loop newCurLen
-				repStr .= "~"
-			
-			paramStr := StrReplace(paramStr,curChunk,repStr,,1)
-			result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match)
-			if (!result)
-				break
-		} Else
-			break
-	}
-	
-	return paramStr
-}
-
-; ================================================================
-; Not currently used.
-; Can be used to map out the parameters within a function, and to determine the
-; caret position's current parameter.  Needs work, processing nested functions
-; doesn't happen yet.
-; ================================================================
-paramData(lineText,curCol,funcName,funcStart,paramStr) {
-	curParamNum := 0
-	paramList := Map()
-	paramArr := StrSplit(paramStr,Chr(44))
-	paramBaseLine := funcStart + StrLen(funcName) + 1
-	paramStart := paramBaseLine
-	
-	Loop paramArr.Length {
-		curParam := paramArr[A_Index], curParamLen := StrLen(curParam)
-		curParamText := SubStr(lineText,paramStart,curParamLen)
-		
-		paramEnd := paramStart + curParamLen - 1
-		If (curCol >= paramStart And curCol <= paramEnd)
-			curParamNum := A_Index
-		
-		paramObj := Map()
-		paramObj["text"] := curParamText
-		paramObj["start"] := paramStart
-		paramObj["end"] := paramStart + curParamLen - 1
-		paramList["n" A_Index] := paramObj
-		paramList["total"] := A_Index
-		paramList["current"] := curParamNum
-		
-		paramStart += curParamLen + 1
-	}
-	paramObj := ""
-	
-	return paramList
-}
-
-; ================================================================
 ; Replaces a "strings" in a single line (usually the current line) with *******.
 ; Helps with determining function boundaries and creating object lists.  This also
 ; assists the script in identifying elements properly, since RegEx is used.
@@ -322,4 +205,121 @@ ProcInput() {
 			}
 		}
 	}
+}
+
+; ================================================================
+; Reads current line / cursor position and determines current top-level function.
+; Not currently used in any meaningful way.
+; ================================================================
+GetTopLevelFunc(sInput, curCol, ByRef funcStart, ByRef funcEnd) {
+	result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match)
+	curFunc := "", foundIt := 0
+	
+	Loop { ; isolate top-level function
+		If (IsObject(match)) {
+			curMatch := match.value(1), curFunc := curMatch
+			curLen := match.Len(1), funcStart := match.pos(1)
+			
+			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
+			
+			i := 1
+			While (RPar != LPar) {
+				curFunc := SubStr(sInput,funcStart,curLen + i)
+				w := StrReplace(curFunc,"(","(",LPar), w := StrReplace(curFunc,")",")",RPar)
+				i++
+			}
+			
+			funcEnd := funcStart + StrLen(curFunc) - 1
+			
+			If (curCol >= funcStart And curCol <= funcEnd) {
+				foundIt := 1
+				break
+			}
+			
+			result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match,funcStart + StrLen(curFunc) - 1)
+			if (!result)
+				break
+		} Else
+			break
+	}
+	
+	If (foundIt)
+		return curFunc
+	Else
+		return ""
+}
+
+; ================================================================
+; Replaces nested functions with ~~~~ ... meant to avoid confusion when using regex.
+; sInput is usually a single one-line function.
+; Not currently in use.
+; ================================================================
+FuncParamOutline(sInput,ByRef funcName) {
+	funcName := RegExMatch(sInput,"^([\w\.]*)",match), funcName := match.Value(1)
+	paramStrStart := StrLen(funcName) + 2, paramStr := SubStr(sInput,paramStrStart,-1)
+	result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match) ; similar to above
+	
+	Loop { ; blank out expressions in top-level function parameters
+		If (IsObject(match)) {
+			curMatch := match.value(1), curChunk := curMatch
+			curLen := match.Len(1), exprStart := match.pos(1)
+			
+			w := StrReplace(curMatch,"(","(",LPar), w := StrReplace(curMatch,")",")",RPar)
+			
+			i := 1
+			While (RPar != LPar) {
+				curChunk := SubStr(paramStr,exprStart,curLen + i), newCurLen := curLen + i
+				w := StrReplace(curChunk,"(","(",LPar), w := StrReplace(curChunk,")",")",RPar)
+				i++
+			}
+			
+			repStr := ""
+			Loop newCurLen
+				repStr .= "~"
+			
+			paramStr := StrReplace(paramStr,curChunk,repStr,,1)
+			result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match)
+			if (!result)
+				break
+		} Else
+			break
+	}
+	
+	return paramStr
+}
+
+; ================================================================
+; Not currently used.
+; Can be used to map out the parameters within a function, and to determine the
+; caret position's current parameter.  Needs work, processing nested functions
+; doesn't happen yet.
+; ================================================================
+paramData(lineText,curCol,funcName,funcStart,paramStr) {
+	curParamNum := 0
+	paramList := Map()
+	paramArr := StrSplit(paramStr,Chr(44))
+	paramBaseLine := funcStart + StrLen(funcName) + 1
+	paramStart := paramBaseLine
+	
+	Loop paramArr.Length {
+		curParam := paramArr[A_Index], curParamLen := StrLen(curParam)
+		curParamText := SubStr(lineText,paramStart,curParamLen)
+		
+		paramEnd := paramStart + curParamLen - 1
+		If (curCol >= paramStart And curCol <= paramEnd)
+			curParamNum := A_Index
+		
+		paramObj := Map()
+		paramObj["text"] := curParamText
+		paramObj["start"] := paramStart
+		paramObj["end"] := paramStart + curParamLen - 1
+		paramList["n" A_Index] := paramObj
+		paramList["total"] := A_Index
+		paramList["current"] := curParamNum
+		
+		paramStart += curParamLen + 1
+	}
+	paramObj := ""
+	
+	return paramList
 }
