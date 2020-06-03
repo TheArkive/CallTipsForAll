@@ -74,6 +74,7 @@ AHK v2 (this is planned for AHK v1 also)
 This is a workaround for being able ot use call tips on objects that are extracted from user created objects, which is just a convention created by the user, and not an actual creation of the object as documented by the language.
 
 ## For Best Results...
+* Besure to use the `Static` prefix in your classes to make sure that only the properties and methods that should be shown are displayed in the call tips
 * Don't reuse a variable name as a different type or object than previously used
 * Be sure to use some indenting on the body of your functions and classes
 * Set your settings first and then try to invoke call tips on your document
