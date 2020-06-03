@@ -25,7 +25,13 @@ NOTE: If you selected a Base File in the Settings window, then only SAVED file d
 Click on call tips to invoke the CHM and link directly to the corresponding page.
 ```
 ### User Settings
-Use Settings window from the system tray to change user settings.  Enter the main EXE of the program and the ClassNN of the control preferred for use (minus the number, ie. "scintilla", not "scintilla1").
+Use Settings window from the system tray to change user settings.
+
+For basic operation, at a minimum, enter the main EXE of the program and the ClassNN of the control preferred for use (minus the number, ie. "scintilla", not "scintilla1").
+
+You can set the font, font color, font size, and background color of the call tip window in settings as well.
+
+If you want to process #INCLUDES, then specify the "Base File" in the Settings window or double-tap `CTRL+Space` to quickly call up a dialog to do the same.  This hotkey was made to quickly and easily change the "Base File" and load the defined #INCLUDES and libraries.
 
 ## To-Do List
 * Add auto-complete support for keywords and object methods / properties
