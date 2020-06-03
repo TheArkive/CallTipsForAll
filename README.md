@@ -18,6 +18,7 @@ Run script and use hotkeys to invoke call tips.
 CTRL+SHIFT+Space or Double-click   =   invoke call tip
              ESC or Middle-click   =   close call tip
                       CTRL+Space   =   reload functions / objects / classes
+         (double-tap) CTRL+Space   =   call dialog to change base file
 
 NOTE: If you selected a Base File in the Settings window, then only SAVED file data is loaded.
 
