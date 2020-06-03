@@ -46,6 +46,8 @@ If you want to process #INCLUDES, then specify the "Base File" in the Settings w
 ## To-Do List
 * Add auto-complete support for keywords and object methods / properties
 * Add more languages ... but that will take a while
+* Enable full customization of hotkeys to invoke / close call tips
+* Index line numbers for custom functions, classes, and class instances
 
 ## AutoHotkey language - special cases
 
@@ -72,6 +74,19 @@ AHK v2 (this is planned for AHK v1 also)
 ```
 
 This is a workaround for being able ot use call tips on objects that are extracted from user created objects, which is just a convention created by the user, and not an actual creation of the object as documented by the language.
+
+## Features (Basic)
+* Clickable call tips that auto-close and bring up an associated help page (currently only CHM)
+* Language file format allows for making call tips for more languages than just AHK
+* In `Languages\{lang}\Other` define how functions and classes are formatted with regex
+* Call tip records can contain several pages, navigate these pages with `Up` and `Down` keys when call tip is visible.
+* Easily invoke and close call tips with keyboard and mouse
+* Quickly change "base file" (same as a "project file") with double-tap CTRL+Space
+
+## Technical Details
+* Internal lists of custom functions and classes is maintained, and useful for a "function list" panel, similar to notepad++
+* no index for which file or line number each function/class/class instance is on yet, but this is planned to be added
+* All loaded info is distilled into an internal "keyword list", which will facilitate auto-complete for functions, classes, class methods, and class properties
 
 ## For Best Results...
 * Besure to use the `Static` prefix in your classes to make sure that only the properties and methods that should be shown are displayed in the call tips
