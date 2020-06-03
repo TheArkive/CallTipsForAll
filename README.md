@@ -92,4 +92,8 @@ This is a workaround for being able ot use call tips on objects that are extract
 * Besure to use the `Static` prefix in your classes to make sure that only the properties and methods that should be shown are displayed in the call tips
 * Don't reuse a variable name as a different type or object than previously used
 * Be sure to use some indenting on the body of your functions and classes
+* don't try to create an instance of a class with the same name as the class
+    * Example:  `msgbox2 := msgbox2.New(...)   <-- do NOT do this`
+    * In AHK v2 attempting to do this i think throws an error
+    * I think you can do this in AHK v1, but it is highly NOT recommended
 * Set your settings first and then try to invoke call tips on your document
