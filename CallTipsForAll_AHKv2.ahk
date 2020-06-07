@@ -9,11 +9,8 @@ FileEncoding "UTF-8"
 
 Global SettingsGUI, AutoCompleteGUI, callTipGui
 
-Global oCallTip
-oCallTip := {}
-oCallTip.curIndex := "", oCallTip.fullDescArr := "", oCallTip.helpFile := ""
-oCallTip.ctlClassNN := "", oCallTip.ctlHwnd := 0, oCallTip.progHwnd := 0
-oCallTip.curPhrase := ""
+Global oCallTip := {curIndex: "", fullDescArr: "", helpFile: ""
+                  , ctlClassNN: "", ctlHwnd: 0, progHwnd: 0, curPhrase: ""}
 
 Global ObjectCreateList
 Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList, ClassesList
