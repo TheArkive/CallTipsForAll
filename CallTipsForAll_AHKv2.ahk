@@ -48,10 +48,7 @@ closeTipOnClick := false		; close call tip when clicked on
 
 Global entryEnd := "`r`n`r`n`r`n", Settings
 
-If (FileExist("Settings.txt.blank") And !FileExist("Settings.txt")) ; load default settings on first run
-	FileMove "Settings.txt.blank", "Settings.txt"
-
-Settings := Jxon_Load(FileRead("Settings.txt")) ; MapObject
+Settings := ReadSettingsFromFile()
 
 editorCtl() ; check active window and populate oCalLTip properties
 If (oCallTip.progHwnd) {
@@ -92,6 +89,13 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 }
 
 Return ;end of Autoexec Section
+
+ReadSettingsFromFile(){
+  Filename = Settings.txt
+  If (FileExist(Filename ".blank") And !FileExist(Filename)) ; load default settings on first run
+    FileMove Filename ".blank", Filename
+  return Jxon_Load(FileRead(Filename)) ; MapObject
+}
 
 #INCLUDE LibV2\_Jxon_v2.ahk
 #INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
