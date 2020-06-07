@@ -51,8 +51,7 @@ Global entryEnd := "`r`n`r`n`r`n", Settings
 If (FileExist("Settings.txt.blank") And !FileExist("Settings.txt")) ; load default settings on first run
 	FileMove "Settings.txt.blank", "Settings.txt"
 
-settingsText := FileRead("Settings.txt")
-Settings := Jxon_Load(settingsText) ; MapObject
+Settings := Jxon_Load(FileRead("Settings.txt")) ; MapObject
 
 editorCtl() ; check active window and populate oCalLTip properties
 If (oCallTip.progHwnd) {
