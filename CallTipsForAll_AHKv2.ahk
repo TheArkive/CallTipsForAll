@@ -46,8 +46,7 @@ closeTipOnClick := false		; close call tip when clicked on
 ; Script Vars
 ; ======================================================================================
 
-Global entryEnd, Settings
-entryEnd := "`r`n`r`n`r`n"
+Global entryEnd := "`r`n`r`n`r`n", Settings
 
 If (FileExist("Settings.txt.blank") And !FileExist("Settings.txt")) ; load default settings on first run
 	FileMove "Settings.txt.blank", "Settings.txt"
