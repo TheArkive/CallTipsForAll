@@ -114,13 +114,9 @@ WrapText(x) {
 	If (!StrLen(clipboard))
 		return ""
 	
-	inText := clipboard
-	endCRLF := false
-	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
-		endCRLF := true
+	endCRLF := RegExMatch(clipboard,"(.*[\r\n]+$)",match) ? true : false
 	
-	inText := StrReplace(clipboard,"`r`n",Chr(1))
-	a := StrSplit(inText,Chr(1))
+	a := StrSplit(StrReplace(clipboard,"`r`n",Chr(1)),Chr(1))
 	
 	Loop a.Length {
 		curLine := a[A_Index]
@@ -177,13 +173,9 @@ unwrapText() {
 	If (!StrLen(clipboard))
 		return ""
 	
-	inText := clipboard
-	endCRLF := false
-	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
-		endCRLF := true
+	endCRLF := RegExMatch(clipboard,"(.*[\r\n]+$)",match) ? true : false
 	
-	inText := StrReplace(clipboard,"`r`n`r`n",Chr(1))
-	a := StrSplit(inText,Chr(1))
+	a := StrSplit(StrReplace(clipboard,"`r`n`r`n",Chr(1)),Chr(1))
 	
 	Loop a.Length {
 		tempText := a[A_Index]
