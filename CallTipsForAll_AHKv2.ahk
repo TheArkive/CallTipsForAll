@@ -4,17 +4,6 @@ SendMode Input  ; Recommended for new scripts due to its superior speed and reli
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ; =======================================================================================
 
-; #INCLUDE %A_ScriptDir%\Lib
-#INCLUDE LibV2\_Jxon_v2.ahk
-#INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
-#INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
-
-#INCLUDE LibV2\_LoadElements.ahk
-#INCLUDE LibV2\_ProcInfo.ahk
-#INCLUDE LibV2\_gui.ahk
-#INCLUDE *i LibV2\TheArkive_Debug.ahk
-
-; #INCLUDE LibV2\_scintilla_class.ahk
 
 FileEncoding "UTF-8"
 
@@ -112,6 +101,21 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	Else If (ItemName = "Exit")
 		ExitApp
 }
+
+Return ;end of Autoexec Section
+
+; #INCLUDE %A_ScriptDir%\Lib
+#INCLUDE LibV2\_Jxon_v2.ahk
+#INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
+#INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
+
+#INCLUDE LibV2\_LoadElements.ahk
+#INCLUDE LibV2\_ProcInfo.ahk
+#INCLUDE LibV2\_gui.ahk
+#INCLUDE *i LibV2\TheArkive_Debug.ahk
+
+; #INCLUDE LibV2\_scintilla_class.ahk
+
 
 ; ======================================================================================
 ; just a quick little tool to wrap text -- text must be copied to clipboard first
