@@ -82,6 +82,109 @@ ReadSettingsFromFile(){
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE *i LibV2\TheArkive_Debug.ahk
 
+; ================================================================
+; hotkeys - global ; 
+; ================================================================
+
+^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
+
+^+Space::DisplayCallTip() ; ClickCheck("LButton")
+
+^!Space:: ; load auto-complete list
+	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
+		; msgbox "yee haw!"
+	; }
+return
+
+^+F12:: ; close CallTipsForAll
+	MsgBox "Closing Call Tips For All!"
+	ExitApp
+Return
+
+~ESC::closeCallTip()
+
+Up:: ; scroll when multiple records are available for call tips
+	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
+	If (oCallTip.curIndex And (oCallTip.curIndex-1 != 0)) {
+		oCallTip.curIndex--
+		callTipGui.Destroy()
+		callTipGui := ""
+		LoadCallTip()
+	} Else SendInput "{Up}"
+return
+
+Down:: ; scroll when multiple records are available for call tips
+	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
+	If (oCallTip.curIndex And (oCallTip.curIndex+1) <= i) {
+		oCallTip.curIndex++
+		callTipGui.Destroy()
+		callTipGui := ""
+		LoadCallTip()
+	} Else SendInput "{Down}"
+return
+
+~LButton::ClickCheck(A_ThisHotkey)
+~MButton::closeCallTip()
+
+^!w:: ; hotkey to wrap text in clipboard
+	newText := WrapText(WrapTextChars)
+	If (newText)
+		clipboard := newText
+return
+
+^!u:: ; hotkey to unwrap text in clipboard
+	newText := unwrapText()
+	If (newText)
+		clipboard := newText
+return
+
+F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
+	testList := ""
+	For curName, obj in CustomFunctions {
+		desc := obj["desc"]
+		testList .= curName " / " desc "`r`n`r`n"
+	}
+		
+	msgbox "Custom Functions:`r`n`r`n" testList
+	
+	testList := ""
+	For objName, obj in ObjectList {
+		For curType, obj2 in obj {
+			type := curType, label := obj2["label"], match := obj2["match"]
+			testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
+		}
+	}
+	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
+	
+	testList := ""
+	For className, obj in ClassesList
+		testList .= className " / " obj["type"] "`r`n"
+	MsgBox "Classes loaded:`r`n`r`n" testList
+return
+
+F10:: ; list functions - for debugging List_*.txt files only
+	; testList := ""
+	; For curName, obj in FunctionList {
+		; if (curName = "msgbox") {
+			; desc := obj["desc"]
+			; testList .= curName "`r`n" desc "`r`n`r`n"
+		; }
+	; }
+		
+	; msgbox "Functions:`r`n`r`n" testList
+	
+	For level, lvlObj in ObjectCreateList { ; for debug only
+		For label, labelObj in lvlObj {
+			regex := labelObj["regex"]
+			type := labelObj["type"]
+			direct := labelObj["direct"]
+			testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
+		}
+	}
+	msgbox testList
+return
+
+
 AddTrayMenu(){
 ; ======================================================================================
 ; Tray Menu
@@ -480,107 +583,4 @@ MultiClickTickCount() { ; returns the number of ticks (ms) since the last button
     return diff
 }
 
-; ================================================================
-; hotkeys - global ; 
-; ================================================================
-
-^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
-
-^+Space::DisplayCallTip() ; ClickCheck("LButton")
-
-^!Space:: ; load auto-complete list
-	; If (WinActive("ahk_exe notepad++.exe") Or WinActive("ahk_exe notepad.exe")) {
-		; msgbox "yee haw!"
-	; }
-return
-
-^+F12:: ; close CallTipsForAll
-	MsgBox "Closing Call Tips For All!"
-	ExitApp
-Return
-
-~ESC::closeCallTip()
-
-Up:: ; scroll when multiple records are available for call tips
-	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
-	If (oCallTip.curIndex And (oCallTip.curIndex-1 != 0)) {
-		oCallTip.curIndex--
-		callTipGui.Destroy()
-		callTipGui := ""
-		LoadCallTip()
-	} Else SendInput "{Up}"
-return
-
-Down:: ; scroll when multiple records are available for call tips
-	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
-	If (oCallTip.curIndex And (oCallTip.curIndex+1) <= i) {
-		oCallTip.curIndex++
-		callTipGui.Destroy()
-		callTipGui := ""
-		LoadCallTip()
-	} Else SendInput "{Down}"
-return
-
-~LButton::ClickCheck(A_ThisHotkey)
-~MButton::closeCallTip()
-
-^!w:: ; hotkey to wrap text in clipboard
-	newText := WrapText(WrapTextChars)
-	If (newText)
-		clipboard := newText
-return
-
-^!u:: ; hotkey to unwrap text in clipboard
-	newText := unwrapText()
-	If (newText)
-		clipboard := newText
-return
-
-
-
-F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
-	testList := ""
-	For curName, obj in CustomFunctions {
-		desc := obj["desc"]
-		testList .= curName " / " desc "`r`n`r`n"
-	}
-		
-	msgbox "Custom Functions:`r`n`r`n" testList
-	
-	testList := ""
-	For objName, obj in ObjectList {
-		For curType, obj2 in obj {
-			type := curType, label := obj2["label"], match := obj2["match"]
-			testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
-		}
-	}
-	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
-	
-	testList := ""
-	For className, obj in ClassesList
-		testList .= className " / " obj["type"] "`r`n"
-	MsgBox "Classes loaded:`r`n`r`n" testList
-return
-
-F10:: ; list functions - for debugging List_*.txt files only
-	; testList := ""
-	; For curName, obj in FunctionList {
-		; if (curName = "msgbox") {
-			; desc := obj["desc"]
-			; testList .= curName "`r`n" desc "`r`n`r`n"
-		; }
-	; }
-		
-	; msgbox "Functions:`r`n`r`n" testList
-	
-	For level, lvlObj in ObjectCreateList { ; for debug only
-		For label, labelObj in lvlObj {
-			regex := labelObj["regex"]
-			type := labelObj["type"]
-			direct := labelObj["direct"]
-			testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
-		}
-	}
-	msgbox testList
-return
 
