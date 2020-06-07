@@ -62,6 +62,8 @@ If (oCallTip.progHwnd) {
 If (!Settings["ProgClassNN"] Or !Settings["ProgExe"])
 	SettingsGUI()
 
+AddTrayMenu()
+AddTrayMenu(){
 ; ======================================================================================
 ; Tray Menu
 ; ======================================================================================
@@ -74,6 +76,7 @@ trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
 trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
 trayMenu.Add("Reload","iconMenu")
 trayMenu.Add("Exit","iconMenu")
+}
 
 iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	If (ItemName = "Settings") {
