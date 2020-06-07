@@ -158,11 +158,7 @@ WrapText(x) {
 			newText .= "`r`n"
 	}
 	
-	newText := Trim(newText,"`r`n")
-	
-	If (endCRLF)
-		return newText "`r`n"
-	return newText
+	return Trim(newText,"`r`n") ( endCRLF ? "`r`n" : "" )
 }
 
 ; ======================================================================================
@@ -185,11 +181,7 @@ unwrapText() {
 		newText .= tempText "`r`n`r`n"
 	}
 	newText := Trim(newText,"`r`n")
-	newText := RegExReplace(newText,"\.  $",".")
-	
-	If (endCRLF)
-		return newText "`r`n"
-	Else return newText
+	return RegExReplace(newText,"\.  $",".") ( endCRLF ? "`r`n" : "" )
 }
 
 ; ======================================================================================
