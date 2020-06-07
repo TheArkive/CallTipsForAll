@@ -63,6 +63,25 @@ If (!Settings["ProgClassNN"] Or !Settings["ProgExe"])
 	SettingsGUI()
 
 AddTrayMenu()
+
+Return ;end of Autoexec Section
+
+ReadSettingsFromFile(){
+  Filename = Settings.txt
+  If (FileExist(Filename ".blank") And !FileExist(Filename)) ; load default settings on first run
+    FileMove Filename ".blank", Filename
+  return Jxon_Load(FileRead(Filename)) ; MapObject
+}
+
+#INCLUDE LibV2\_Jxon_v2.ahk
+#INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
+#INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
+
+#INCLUDE LibV2\_LoadElements.ahk
+#INCLUDE LibV2\_ProcInfo.ahk
+#INCLUDE LibV2\_gui.ahk
+#INCLUDE *i LibV2\TheArkive_Debug.ahk
+
 AddTrayMenu(){
 ; ======================================================================================
 ; Tray Menu
@@ -90,25 +109,6 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	Else If (ItemName = "Exit")
 		ExitApp
 }
-
-Return ;end of Autoexec Section
-
-ReadSettingsFromFile(){
-  Filename = Settings.txt
-  If (FileExist(Filename ".blank") And !FileExist(Filename)) ; load default settings on first run
-    FileMove Filename ".blank", Filename
-  return Jxon_Load(FileRead(Filename)) ; MapObject
-}
-
-#INCLUDE LibV2\_Jxon_v2.ahk
-#INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
-#INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
-
-#INCLUDE LibV2\_LoadElements.ahk
-#INCLUDE LibV2\_ProcInfo.ahk
-#INCLUDE LibV2\_gui.ahk
-#INCLUDE *i LibV2\TheArkive_Debug.ahk
-
 
 ; ======================================================================================
 ; just a quick little tool to wrap text -- text must be copied to clipboard first
