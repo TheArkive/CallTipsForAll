@@ -68,8 +68,6 @@ If (!Settings["ProgClassNN"] Or !Settings["ProgExe"])
 ; ======================================================================================
 ; Tray Menu
 ; ======================================================================================
-subMenuAutoGen := MenuCreate()
-subMenuAutoGen.Add("Generate Commands","iconMenu")
 
 trayMenu := A_TrayMenu
 trayMenu.Delete()
@@ -77,15 +75,12 @@ trayMenu.Add("Settings","iconMenu")
 trayMenu.Add()
 trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
 trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
-; trayMenu.Add("AHK Auto-Gen",subMenuAutoGen) ; not really useful for this script
 trayMenu.Add("Reload","iconMenu")
 trayMenu.Add("Exit","iconMenu")
 
 iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 	If (ItemName = "Settings") {
 		SettingsGUI()
-	; } Else If (ItemName = "Generate Commands") {
-		; AutoCmdFunc()
 	} Else If (ItemName = "ReWrap Text (CTL + ALT + W)") {
 		clipboard := WrapText(WrapTextChars)
 	} Else If (ItemName = "UnWrap Text (CTL + ALT + U)") {
@@ -98,7 +93,6 @@ iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 
 Return ;end of Autoexec Section
 
-; #INCLUDE %A_ScriptDir%\Lib
 #INCLUDE LibV2\_Jxon_v2.ahk
 #INCLUDE LibV2\_Font_Picker_Dialog_v2.ahk
 #INCLUDE LibV2\_Color_Picker_Dialog_v2.ahk
@@ -107,8 +101,6 @@ Return ;end of Autoexec Section
 #INCLUDE LibV2\_ProcInfo.ahk
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE *i LibV2\TheArkive_Debug.ahk
-
-; #INCLUDE LibV2\_scintilla_class.ahk
 
 
 ; ======================================================================================
