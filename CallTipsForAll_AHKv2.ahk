@@ -8,7 +8,6 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 FileEncoding "UTF-8"
 
 Global SettingsGUI, AutoCompleteGUI, callTipGui
-Global WrapTextChars, AutoCompleteLength, useTooltip, maxLines
 
 Global oCallTip
 oCallTip := {}
@@ -35,13 +34,13 @@ Global ObjectList, MethPropList, FunctionList, CustomFunctions, KeywordList, Cla
 ; or closeTipOnClick settings.
 ; ======================================================================================
 
-WrapTextChars := 80
+Global WrapTextChars := 80
 
-AutoCompleteLength := 3			; Auto-Complete won't trigger until X chars have been typed
+Global AutoCompleteLength := 3			; Auto-Complete won't trigger until X chars have been typed
 
-useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
+Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
 
-maxLines := 20
+Global maxLines := 20
 
 closeTipOnLButton := false		; close call tip on L click anywhere
 closeTipOnClick := false		; close call tip when clicked on
