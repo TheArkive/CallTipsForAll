@@ -1,6 +1,78 @@
 ; Contains functions for parsing the active window, language files, and/or includes
 ; in order to load data for call tips.
 
+; ================================================================
+; Reads current document and caret position and refreshes ObjectList, FunctionList,
+; and CustomFunctions.
+; ================================================================
+
+ReParseText() {
+	If (!oCallTip.progHwnd Or !oCallTip.ctlHwnd)
+		return
+	
+	curHwnd := oCallTip.progHwnd
+	
+	curMon := GetMonitorData()
+	
+	fontFace := Settings["fontFace"], fontSize := Settings["fontSize"]
+	fontColor := Settings["fontColor"], bgColor := Settings["bgColor"]
+	
+	g := GuiCreate("-Caption AlwaysOnTop +Owner" curHwnd)
+	g.SetFont("s" fontSize,fontFace)
+	g.BackColor := bgColor
+	ctl := g.AddText("+c" fontColor " x5 y5","Loading Objects / Custom Functions...")
+	; xVal := curMon.Cx - (g.ClientPos.w/2)
+	xVal := curMon.left
+	strShow := "y0 x" xVal " NA NoActivate"
+	g.Show(strShow)
+	
+	; dims := g.Pos
+	; y := SysGet(79) - dims.h
+	; x := SysGet(78) - dims.w
+	; g.Show("x" x " y" y " NA NoActivate") ; move to lower right
+	
+	ReloadElements()
+	g.Destroy()
+}
+
+ReloadElements() {
+	srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"]
+	oCallTip.srcFiles := srcFiles
+	cClassNN := oCallTip.ctlClassNN, hEditorWin := oCallTip.progHwnd
+	
+	Loop Files srcFiles "\*.chm"
+		If (A_Index = 1)
+			oCallTip.helpFile := A_LoopFileFullPath
+	
+	LoadKeywordsList()
+	LoadFunctionsList()
+	
+	curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
+	curDocArr := StrSplit(curDocText,"`n","`r")
+	
+	baseFile := Settings["BaseFile"]
+	If (FileExist(baseFile)) {
+		fileList := GetIncludes()
+		Loop fileList.Length
+			curDocText2 .= FileRead(fileList[A_Index]) "`r`n`r`n" ; load all includes into one var
+		
+		If (curDocText2) {
+			curDocText := curDocText2, curDocText2 := ""
+			curDocArr := StrSplit(curDocText,"`n","`r")
+		}
+	}
+	
+	CustomFunctions := GetCustomFunctions(curDocText)
+	ClassesList := GetClasses(curDocText)
+	ScanClasses(curDocArr)
+
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
+
+	ObjectList := CreateObjList(curDocText)
+	curDocArr := "", curDocText := ""
+}
+
 ; ==================================================
 ; Determines parent window based on user settings.
 ; ==================================================
@@ -102,12 +174,24 @@ LoadFunctionsList() {
 					Else If (A_Index = 5)
 						oCallTip.classEnd := Trim(SubStr(A_LoopField,11))
 					Else If (A_Index = 6)
-						oCallTip.classMethod := Trim(SubStr(A_LoopField,9))
+						oCallTip.classMethodStart := Trim(SubStr(A_LoopField,14))
 					Else If (A_Index = 7)
-						oCallTip.classProperty := Trim(SubStr(A_LoopField,11))
+						oCallTip.classMethodEnd := Trim(SubStr(A_LoopField,12))
 					Else If (A_Index = 8)
-						oCallTip.classInstance := Trim(SubStr(A_LoopField,16))
+						oCallTip.classMethodOneLine := Trim(SubStr(A_LoopField,16))
 					Else If (A_Index = 9)
+						oCallTip.classPropertyStart := Trim(SubStr(A_LoopField,16))
+					Else If (A_Index = 10)
+						oCallTip.classPropertyEnd := Trim(SubStr(A_LoopField,14))
+					Else If (A_Index = 11)
+						oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,18))
+					Else If (A_Index = 12)
+						oCallTip.classSmallPropExt := Trim(SubStr(A_LoopField,15))
+					Else If (A_Index = 13)
+						oCallTip.classSmallPropInt := Trim(SubStr(A_LoopField,15))
+					Else If (A_Index = 14)
+						oCallTip.classInstance := Trim(SubStr(A_LoopField,16))
+					Else If (A_Index = 15)
 						oCallTip.includes := Trim(SubStr(A_LoopField,11))
 				}
 			} Else {
@@ -605,59 +689,151 @@ GetCustomFunctions(curDocText) {
 }
 
 GetClasses(curDocText) {
-	; msgbox oCallTip.classStart "`r`n`r`n" oCallTIp.classEnd
+	curDocTextNoStr := StringOutline(curDocText)
 	classList := Map(), curPos1 := 1
-	While (result := RegExMatch(curDocText,"mi)" oCallTip.classStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
-		; msgbox "in"
+	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classStart,match,curPos1)) { ; parse classes
 		If (IsObject(match) And match.Count()) {
-			If (match.Value(1) != "") {
-				className := match.Value(1), extends := ""
-				curPos1 := match.Pos(1) + match.Len(1)
-			} Else {
-				className := match.Value(2), extends := match.Value(3)
-				curPos1 := match.Pos(3) + match.Len(3)
-			}
-			; msgbox "className: " className
+			; If (match.Value(1) != "")
+				; className := match.Value(1), extends := ""
+			; Else
+				; className := match.Value(2), extends := match.Value(3)
 			
-			r2 := RegExMatch(curDocText,"mi)" oCallTip.classEnd,match2,curPos1)
-			classBody := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
+			className := match.Value(1)
+			extends := match.Value(3)
+			classShowStyle := Trim(match.Value(4)," `t;")
+			; msgbox className " / " extends " / " showStyle
 			
-			memberList := Map(), curPos2 := 1, curPos3 := 1
-			While (r3 := RegExMatch(classBody,"mi)" oCallTip.classMethod,match3,curPos2)) {
-				; msgbox match3.Value(1) " / " match3.Value(2)
-				memberName := match3.Value(1)
-				memberParams := match3.Value(2)
-				curPos2 := match3.Pos(2) + match3.Len(2)
-				memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method")
-			}
+			r2 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classEnd,match2,match.Pos(0)) ; curPos1
+			curPos1 := match2.Pos(0) + match2.Len(0)
+			classBody := SubStr(curDocText,match.Pos(0),match2.Pos(0)+match2.Len(0)-match.Pos(0))
+			classBodyNoStr := StringOutline(classBody)
 			
-			While (r4 := RegExMatch(classBody,"mi)" oCallTip.classProperty,match4,curPos3)) {
-				memberName := match4.Value(1)
-				memberParams := match4.Value(2)
+			memberList := Map(), curPos2 := 1
+			While (r3 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classMethodStart,match3,curPos2)) { ; parse methods - multi-line
+				If (A_Index = 1) {
+					startPos := 1 + match.Len(0), endPos := match3.Pos(0)
+					init := Trim(SubStr(classBody,startPos,endPos-startPos)," `t`r`n")
+					SmallPropExt := oCallTip.classSmallPropExt
+					
+					Loop Parse init, "`n", "`r"
+					{
+						curLine := Trim(A_LoopField," `t")
+						isStatic := (InStr(curLine,"Static ")) ? true : false
+						
+						curPos8 := 1
+						While (r11 := RegExMatch(curLine,oCallTip.classSmallPropExt,match11,curPos8)) {
+							memberName := match11.Value(2)
+							showStyle := Trim(match11.Value(3)," `t;")
+							
+							If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+								memberList[memberName] := Map("name",memberName,"params","","type","property","body","","static",isStatic)
+							; msgbox "memName: " memberName " / " showStyle "`r`n`r`n" match11.Value(0)
+							
+							curPos8 := match11.Pos(1) + match11.Len(1)
+						}
+					}
+				}
 				
-				curPos3 := match4.Pos(1) + match4.Len(1)
-				curPos3 := match4.Value(2) != "" ? match4.Pos(2) + match4.Len(2) : curPos3
+				isStatic := match3.Value(1) ? true : false
+				memberName := match3.Value(2)
+				memberParams := match3.Value(3)
+				showStyle := Trim(match3.Value(4)," `t;")
+				curPos2 := match3.Pos(0)
 				
-				If (memberName != "Else" And memberName != "Loop" And memberName != "For" And memberName != "while")
-					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property")
-				; msgbox match4.Value(1) " / " match4.Value(2) " / " curPos3
+				; msgbox memberName " / " memberParams " / " showStyle
+				
+				While (r5 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassMethodEnd,match5,curPos2)) {
+					methBody .= SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2)
+					curPos2 := match5.Pos(0) + match5.Len(0)
+					w := StrReplace(StrReplace(methBody,"{","{",lB),"}","}",rB)
+					
+					If (lB = rB) {
+						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","body",Trim(methBody,"`r`n"),"static",isStatic)
+						methBodyNoStr := StringOutline(methBody)
+						
+						curPos6 := 1
+						While (r9 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match9,curPos6)) {
+							tinyProp := match9.Value(1)
+							showStyle := Trim(match9.Value(2)," `t;")
+							curPos6 := match9.Pos(1) + match9.Len(1)
+							
+							If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+								memberList[tinyProp] := Map("name",tinyProp,"params","","type","property","body",match9.Value(0),"static",false)
+						}
+						
+						methBody := ""
+						break
+					}
+				}
+			}
+			
+			curPos3 := 1
+			While (r4 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classPropertyStart,match4,curPos3)) {
+				isStatic := match4.Value(1) ? true : false
+				memberName := match4.Value(2)
+				memberParams := match4.Value(3)
+				showStyle := Trim(match4.Value(4)," `t;")
+				curPos3 := match4.Pos(0)
+				
+				While (r6 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassPropertyEnd,match6,curPos3)) {
+					propBody .= SubStr(classBody,curPos3,match6.Pos(0)+match6.Len(0)-curPos3)
+					curPos3 := match6.Pos(0) + match6.Len(0)
+					w := StrReplace(StrReplace(propBody,"{","{",lB),"}","}",rB)
+					
+					If (lB = rB) {
+						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","body",Trim(propBody,"`r`n"),"static",isStatic)
+						propBody := ""
+						
+						curPos7 := 1
+						While (r10 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match10,curPos7)) {
+							tinyProp := match10.Value(1)
+							showStyle := Trim(match10.Value(2)," `t;")
+							curPos7 := match10.Pos(0) + match10.Len(0)
+							
+							If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+								memberList[tinyProp] := Map("name",tinyProp,"params","","type","property","body",match10.Value(0),"static",false)
+						}
+						
+						break
+					}
+				}
+			}
+			
+			curPos4 := 1
+			While (r7 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classMethodOneLine,match7,curPos4)) {
+				isStatic := match7.Value(1) ? true : false
+				memberName := match7.Value(2)
+				memberParams := match7.Value(3)
+				showStyle := Trim(match7.Value(4)," `t;")
+				curPos4 := match7.Pos(0) + match7.Len(0)
+				
+				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","body",Trim(match7.Value(0),"`r`n"),"static",isStatic)
+			}
+			
+			curPos5 := 1
+			While (r8 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classPropertyOneLine,match8,curPos5)) {
+				isStatic := match8.Value(1) ? true : false
+				memberName := match8.Value(2)
+				memberParams := match8.Value(3)
+				showStyle := Trim(match8.Value(4)," `t;")
+				curPos5 := match8.Pos(0) + match8.Len(0)
+				
+				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","body",Trim(match8.Value(0),"`r`n"),"static",isStatic)
 			}
 			
 			if (className != "") {
-				obj := Map("type","Class","desc",className,"classBody",classBody,"extends",extends)
+				obj := Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends)
 				obj["members"] := memberList
 				classList[className] := obj
 			}
-			
-			; For k, v in memberList
-				; fullList .= k " / " v["params"] " / " v["type"] "`r`n"
-			; msgbox fullList
 		}
 		
 		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
 	}
-	
-	; msgbox classList.Count
 	
 	curDocText := "", obj := ""
 	return classList

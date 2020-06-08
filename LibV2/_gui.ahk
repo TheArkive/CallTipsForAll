@@ -449,3 +449,13 @@ quick_reload_gui(ctl, info) {
 quick_reload_close(g) {
 	g.Destroy()
 }
+
+; ================================================================
+; Auto-Complete
+; ================================================================
+AutoCompleteGUI(KeywordFilter) {
+	If (IsObject(AutoCompleteGUI))
+		AutoCompleteGUI.Destroy()
+	
+	
+}

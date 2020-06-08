@@ -1,9 +1,15 @@
 FunctionStart: ^([\w]+)(\x28.*?\x29)[ \t\r\n]*\{
 FunctionEnd: \r?\n(\})
 FunctionReturn: ^[ \t]*return[ \t]+([\w]+)
-ClassStart: ^class ([\w]+)[ \t\r\n]*\{|^class ([\w]+) extends ([\w\.]+)[ \t\r\n]*\{
+ClassStart: ^class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{[ \t]*(\;.*)?
 ClassEnd: \r?\n(\})
-Method: ^[ \t]*([\w]+)(\(.*\))([ \t\r\n]*\{)
-Property: ^[ \t]*([\w]+)(\[.*?\])?[ \t\r\n]*(\=\>|\{)
+MethodStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t\r\n]*\{[ \t]*(\;.*)?
+MethodEnd: \}
+MethodOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t]*\=\>[^\;\r\n]*(\;.*)?
+PropertyStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t\r\n]*\{[ \t]*(\;.*)?
+PropertyEnd: \}
+PropertyOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t]*\=\>[^\;\r\n]*(\;.*)?
+SmallPropExt: (([\w]+)[ \t]*\:\=)[^\;\r\n]*(\;.*)?
+SmallPropInt: this\.([\w]+)[ \t]*\:\=[^\;\r\n]*(\;.*)?
 ClassInstance: ^[ \t]*([\w\.]+)[ \t]*\:\=[ \t]*{Class}\.New(\x28.*?\x29)
 Includes: ^(#Include(Again)?[ \t]+.*)
