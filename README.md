@@ -55,6 +55,7 @@ class myClass { ; show
 In the above example, only the properties `var3 and var4` will show, and only `method1()` will show.
 
 ## To-Do List
+* show static meths / props for class, non-static meths / props for instance
 * Add auto-complete support for keywords and object methods / properties
 * Add more languages ... but that will take a while
 * Enable full customization of hotkeys to invoke / close call tips
