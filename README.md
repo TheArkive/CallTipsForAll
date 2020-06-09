@@ -114,7 +114,7 @@ This is a workaround for being able ot use call tips on objects that are extract
 ## Contributors
 From the AHK forums:
 * robodesign
-* torlaf
+* toralf
 
 ## Languages -- status
 
