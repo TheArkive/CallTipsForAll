@@ -70,6 +70,8 @@ Current parsing pattern is as follows:
 
 I feel like this isn't ideal, but at least all this happens in under a second, and I'm frequently finding ways to add to the flexibility without sacrificing accuracy.  The primary down-side now is that when parsing user objects, all "data members" will be identified as "properties" or just "data members", because I'm not yet sure how one adds methods to an object that is not a class.
 
+Nested user objects aren't tracked very well.  Currently when an object is assigned to be nested inside another object, the script actually reads the last element in a nested object structure, and simply stores the "object name" as the last nested element, instead of the full `obj.obj.member` match.  I'll probably try to fix this first before I go on to actually attempt to store lists of properties of user created objects.  Needless to say, tracking this kind of nesting and being accurate with each sub-object's type and list of properties is not going to be easy.
+
 ## To-Do List
 * Parse the script for `.properties` defined in user objects (not classes)
 * Add auto-complete support for keywords and object methods / properties
