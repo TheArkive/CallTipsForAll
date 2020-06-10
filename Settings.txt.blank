@@ -1,9 +1,10 @@
 ﻿{
     "ActiveLanguage": "AHK2",
+    "AutoComplete": 1,
     "BaseFile": "",
     "CallTipSelectable": "0",
     "CloseTipOnFocusChange": 1,
-    "DebugToolTip": "0",
+    "DebugToolTip": 0,
     "LoadCallTipOnClick": 1,
     "ProgClassNN": "",
     "ProgExe": "",

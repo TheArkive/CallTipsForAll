@@ -11,5 +11,6 @@ PropertyEnd: \}
 PropertyOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t]*\=\>[^\;\r\n]*(\;.*)?
 SmallPropExt: (([\w]+)[ \t]*\:\=)[^\;\r\n]*(\;.*)?
 SmallPropInt: this\.([\w]+)[ \t]*\:\=[^\;\r\n]*(\;.*)?
-ClassInstance: ^[ \t]*([\w\.]+)[ \t]*\:\=[ \t]*{Class}\.New(\x28.*?\x29)
+ClassInstance: ([\w\.]+)[ \t]*\:\=[ \t]*{Class}\.New(\x28.*?\x29)
 Includes: ^(#Include(Again)?[ \t]+.*)
+UserObjMembers: ([\w\.]+)[ \t]*\:\=

@@ -13,10 +13,11 @@ Run script and use hotkeys to invoke / close call tips.
 
 ### Hotkeys
 ```
-CTRL+SHIFT+Space or Double-click   =   invoke call tip
-             ESC or Middle-click   =   close call tip
+CTRL+SHIFT+Space or Double-click   =   invoke Call-Tip
+             ESC or Middle-click   =   close Call-Tip and Auto-Complete
                       CTRL+Space   =   reload functions / objects / classes
          (double-tap) CTRL+Space   =   call dialog to change base file
+                  CTRL+ALT+Space   =   invoke Auto-Complete window manually
 ```
 
 NOTE: If you selected a Base File in the Settings window, then only SAVED file data is loaded.
@@ -24,6 +25,8 @@ NOTE: If you selected a Base File in the Settings window, then only SAVED file d
 Click on call tips to invoke the CHM and link directly to the corresponding page.
 
 You can disable double-click to open call tip in Settings window from tray menu.
+
+Toggle Auto-Complete while typing in the Settings window.
 
 ### Classes - special note
 
@@ -55,26 +58,22 @@ class myClass { ; show
 In the above example, only the properties `var3 and var4` will show, and only `method1()` will show.
 
 ## Current Status
-Adding code to parse the script for properties / methods defined in user objects (not classes).
+Auto-Complete v1 is now finished and working.  It can also be toggled in the Settings gui in the tray icon menu.  Performance is quite good.
 
-* Currently only user object type and name is added to a list.  Only user classes actually parse methods and properties to list them.  Adding this ability isn't hard, but adds another parsing of the full document (including #INCLUDEs)
+If users want objects to be "explorable", then make classes instead of constructing objects.properties := value
 
 Current parsing pattern is as follows:
 
 * 1st parse for #INCLUDEs (if enabled in user settings) - then concatenate all documents
 * 2nd parse for user defined functions
 * 3rd parse for user classes, properties, and methods
-* 4th parse for instances of classes
+* 4th parse for instances of classes (multiply by number of classes found)
 * 5th parse for user defined objects
 * ... this will add a 6th parse to be able to list props/methods attached to user objects
 
-I feel like this isn't ideal, but at least all this happens in under a second, and I'm frequently finding ways to add to the flexibility without sacrificing accuracy.  The primary down-side now is that when parsing user objects, all "data members" will be identified as "properties" or just "data members", because I'm not yet sure how one adds methods to an object that is not a class.
-
-Nested user objects aren't tracked very well.  Currently when an object is assigned to be nested inside another object, the script actually reads the last element in a nested object structure, and simply stores the "object name" as the last nested element, instead of the full `obj.obj.member` match.  I'll probably try to fix this first before I go on to actually attempt to store lists of properties of user created objects.  Needless to say, tracking this kind of nesting and being accurate with each sub-object's type and list of properties is not going to be easy.
+I feel like this isn't ideal, but at least all this happens in about a second, and I'm frequently finding ways to add to the flexibility without sacrificing accuracy.
 
 ## To-Do List
-* Parse the script for `.properties` defined in user objects (not classes)
-* Add auto-complete support for keywords and object methods / properties
 * Add more languages ... but that will take a while
 * Enable full customization of hotkeys to invoke / close call tips
 * Index line numbers for custom functions, classes, and class instances
@@ -114,7 +113,7 @@ Best bits:
 * User defined classes are defined with a full list of properties and methods
 * User class methods and properties can be filtered with `; hide` and `; show` comments, see above
 
-Access to help files:
+Quick Access to help file topics:
 * Most call tips for an element of the AHK language links to a help page in the corresponding CHM help file
 * Click call tips to bring up an associated help page
 
@@ -129,6 +128,7 @@ Misc:
 * Access user settings from tray icon menu
 
 ## For Best Results...
+* Start a supported text editor first, then start this script.  Note that if you search in multiple files in Notepad++, then the main editor ClassNN will change from "scintilla1" to "scintilla2".  If you have issues, close Notepad++ and this script, then start Notepad++, then the script.  When starting Notepad++ fresh, the main editor control is "scintilla1".  The script can record the hwnd of the control so subsequent use of multi-file search won't hinder the script if Notepad++ is started fresh before the script is started.
 * Besure to use the `Static` prefix in your classes to make sure that only the properties and methods that should be shown are displayed in the call tips
 * Don't reuse a variable name as a different type or object than previously used
 * Be sure to use some indenting on the body of your functions and classes

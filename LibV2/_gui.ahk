@@ -150,13 +150,13 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			memType := memObj["type"]
 			If (memType = "method")
 				methList .= "." memName ", "
-			Else if (memType = "property")
+			Else if (memType = "property" Or memType = "propertySmall")
 				propList .= "." memName ", "
 		}
 		methList := Trim(methList,", "), propList := Trim(propList,", ")
 		
 		tempDesc := className " Class" (curPhraseType = "Instance" ? " Instance" : "") ":`r`n`r`n"
-		tempDesc .= methList ? "Methods: " methList "`r`n`r`n" : "`r`n`r`n"
+		tempDesc .= methList ? "Methods: " methList "`r`n`r`n" : ""
 		tempDesc .= propList ? "Properties: " propList : ""
 		tempDesc := Trim(tempDesc," `t`r`n")
 		curObj := Map("desc",tempDesc,"helpLink","")
@@ -217,7 +217,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		outX += -70, outY += -25
 		Tooltip fullDesc, outX, outY
 	} Else {
-		outX += -11, outY += 20
+		outX += -11, outY += dims.avgH
 		
 		If (callTipGui)
 			callTipGui.Destroy()
@@ -256,10 +256,12 @@ gui_click(ctlObj,info) {
 	link := fullDescArrObj["helpLink"]
 	helpFile := oCallTip.helpFile
 	
+	; msgbox link "`r`n`r`n" helpFile
+	
 	If (InStr(link,"/") = 1 And FileExist(helpFile)) {
 		helpFile := StrReplace(helpFile," ","%20")
 		cmd := "hh.exe mk:@MSITStore:" helpFile "::" Trim(link,"`r`n")
-		Run cmd			  
+		Run cmd,, "maximize"
 		callTipGui.Destroy()
 		callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
 	}
@@ -275,6 +277,9 @@ gui_click(ctlObj,info) {
 ; ================================================================
 
 SettingsGUI() {
+	closeCallTip()
+	closeAutoComplete()
+	
 	SettingsGUI := GuiCreate("+OwnDialogs","CallTipsForAll v2")
 	SettingsGUI.OnEvent("Close","gui_close")
 	SettingsGUI.OnEvent("escape","gui_close")
@@ -290,48 +295,52 @@ SettingsGUI() {
 	
 	langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
 	
-	SettingsGUI.AddText("x5 y10","Language:")
-	SettingsGUI.AddDropDownList("x+2 yp-4 w100 vPickLang",langList).OnEvent("change","gui_change_events")
+	SettingsGUI.Add("Text","x5 y10","Language:")
+	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vPickLang",langList).OnEvent("change","gui_change_events")
 	
-	ctl := SettingsGUI.AddCheckbox("xm y+8 vLoadCallTipOnClick","Load call tip on double-click")
+	ctl := SettingsGUI.Add("Checkbox","xm y+8 vLoadCallTipOnClick","Load call tip on double-click") ; ListView
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["LoadCallTipOnClick"]
 	
-	ctl := SettingsGUI.AddCheckbox("x+8 vCloseTipOnFocusChange Section","Close call tip on focus change")
+	ctl := SettingsGUI.Add("Checkbox","x+8 vCloseTipOnFocusChange Section","Close call tip on focus change")
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["CloseTipOnFocusChange"]
 	
-	ctl := SettingsGUI.AddCheckbox("xm y+8 vDebugToolTip","Show Debug Tooltip")
+	ctl := SettingsGUI.Add("Checkbox","xm y+8 vDebugToolTip","Show Debug Tooltip")
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["DebugToolTip"]
 	
-	ctl := SettingsGUI.AddCheckbox("xs yp vCallTipSelectable","Selectable call tips")
+	ctl := SettingsGUI.Add("Checkbox","xs yp vCallTipSelectable","Selectable call tips")
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["CallTipSelectable"]
 	
-	ctl := SettingsGUI.AddButton("vPickFont xm y+8","Select Font")
+	ctl := SettingsGUI.Add("Checkbox","xm y+8 vAutoComplete","Auto-Complete while typing")
+	ctl.OnEvent("click","gui_change_events")
+	ctl.Value := Settings["AutoComplete"]
+	
+	ctl := SettingsGUI.Add("Button","vPickFont xm y+8","Select Font")
 	ctl.OnEvent("click","gui_change_events")
 	
-	ctl := SettingsGUI.AddButton("vPickFontColor x+0","Select Font Color")
+	ctl := SettingsGUI.Add("Button","vPickFontColor x+0","Select Font Color")
 	ctl.OnEvent("click","gui_change_events")
 	
-	ctl := SettingsGUI.AddButton("vPickBgColor x+0","Select Background Color")
+	ctl := SettingsGUI.Add("Button","vPickBgColor x+0","Select Background Color")
 	ctl.OnEvent("click","gui_change_events")
 	
-	SettingsGUI.AddEdit("vFontDemo xm y+8 w330 h50 ReadOnly -E0x200 -VScroll","Call Tip Test")
+	SettingsGUI.Add("Edit","vFontDemo xm y+8 w330 h50 ReadOnly -E0x200 -VScroll","Call Tip Test")
 	
-	SettingsGUI.AddText("xm y+12","Text Editor EXE:")
-	SettingsGUI.AddEdit("vProgExe xm y+2 w330")
+	SettingsGUI.Add("Text","xm y+12","Text Editor EXE:")
+	SettingsGUI.Add("Edit","vProgExe xm y+2 w330")
 	SettingsGUI["ProgExe"].Value := Settings["ProgExe"]
 	
-	SettingsGUI.AddText("xm y+8","Editor Control ClassNN - without number (ie. `"edit`" not `"edit1`"):")
-	SettingsGUI.AddEdit("vProgClassNN xm y+2 w330")
+	SettingsGUI.Add("Text","xm y+8","Editor Control ClassNN - without number (ie. `"edit`" not `"edit1`"):")
+	SettingsGUI.Add("Edit","vProgClassNN xm y+2 w330")
 	SettingsGUI["ProgClassNN"].Value := Settings["ProgClassNN"]
 	
-	SettingsGUI.AddText("xm y+8","Base File (only needed to process includes):")
-	SettingsGUI.AddEdit("vBaseFile xm y+2 w290 r1",Settings["BaseFile"])
-	SettingsGUI.AddButton("vSelBaseFile x+0 w20","...").OnEvent("click","gui_change_events")
-	SettingsGUI.AddButton("vClearBaseFile x+0 w20","X").OnEvent("click","gui_change_events")
+	SettingsGUI.Add("Text","xm y+8","Base File (only needed to process includes):")
+	SettingsGUI.Add("Edit","vBaseFile xm y+2 w290 r1",Settings["BaseFile"])
+	SettingsGUI.Add("Button","vSelBaseFile x+0 w20","...").OnEvent("click","gui_change_events")
+	SettingsGUI.Add("Button","vClearBaseFile x+0 w20","X").OnEvent("click","gui_change_events")
 	
 	SetFontDemo()
 	SettingsGUI.Show()
@@ -348,6 +357,8 @@ gui_change_events(ctl, Info) { ; GuiControlObject
 		Settings["DebugToolTip"] := ctl.Value
 	else if (ctl.Name = "CallTipSelectable")
 		Settings["CallTipSelectable"] := ctl.Value
+	Else If (ctl.Name = "AutoComplete")
+		Settings["AutoComplete"] := ctl.Value
 	Else If (ctl.Name = "PickFont") {
 		fName := Settings["fontFace"]
 		fSize := Settings["fontSize"]
@@ -411,18 +422,16 @@ gui_close(guiObj) {
 ; ================================================================
 
 QuickReloadGUI() {
-	; CaretGetPos(x,y)
-	; msgbox x " / " y
 	m := GetMonitorData()
 	
 	g := GuiCreate("+OwnDialogs","Base File Quick Reload")
 	g.OnEvent("close","quick_reload_close")
 	g.OnEvent("escape","quick_reload_close")
 	
-	g.AddText("xm y8","Base File:")
-	g.AddEdit("vBaseFile x+2 yp-4 w400 ReadOnly r1",Settings["BaseFile"])
-	g.AddButton("vPickBaseFile x+0","...").OnEvent("click","quick_reload_gui")
-	g.AddButton("vClearBaseFile x+0","X").OnEvent("click","quick_reload_gui")
+	g.Add("Text","xm y8","Base File:")
+	g.Add("Edit","vBaseFile x+2 yp-4 w400 ReadOnly r1",Settings["BaseFile"])
+	g.Add("Button","vPickBaseFile x+0","...").OnEvent("click","quick_reload_gui")
+	g.Add("Button","vClearBaseFile x+0","X").OnEvent("click","quick_reload_gui")
 	
 	g.Show("Hide")
 	showDims := "x" (m.Cx - (g.Pos.w/2)) " y" (m.Cy - (g.Pos.h/2))
@@ -453,9 +462,64 @@ quick_reload_close(g) {
 ; ================================================================
 ; Auto-Complete
 ; ================================================================
-AutoCompleteGUI(KeywordFilter) {
+LoadAutoCompleteGUI(KeywordFilter) {
 	If (IsObject(AutoCompleteGUI))
-		AutoCompleteGUI.Destroy()
+		AutoCompleteGUI.Destroy(), AutoCompleteGUI := ""
 	
+	dispList := [], endList := [], curPhrase := oCallTip.curPhrase, kwBlock := ""
+	For kw, kwType in KeywordFilter {
+		addon := "", prefix := ""
+		If (inStr(kwType,"method"))
+			addon := "(m)"
+		Else If (inStr(kwType,"function"))
+			addon := "(f)"
+		
+		If (InStr(kwType,"property") Or InStr(kwType,"method"))
+			prefix := "."
+		
+		kwBlock .= prefix kw addon "`r`n"
+		If (InStr(kw,curPhrase) = 1)
+			dispList.Push(prefix kw addon)
+		Else
+			endList.Push(prefix kw addon)
+	}
 	
+	fontFace := Settings["fontFace"]
+	fontSize := Settings["fontSize"]
+	fontColor := Settings["fontColor"]
+	hEditorWin := oCallTip.progHwnd
+	
+	kwDims := GetTextDims(kwBlock,fontFace,fontSize)
+	
+	w := kwDims.w + (kwDims.avgW * 4) ; add VScroll width
+	maxR := (KeywordFilter.Count > 10) ? 10 : KeywordFilter.Count
+	
+	CoordMode "Caret", "Screen"
+	CaretGetPos(outX, outY)
+	
+	AutoCompleteGUI := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin)
+	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
+	
+	ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR)
+	ctl.Add(dispList), ctl.Add(endList)
+	
+	AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" ctl.pos.h " hide")
+	AutoCompleteGUI.Show("h" ctl.pos.h " NA NoActivate")
 }
+
+; WM_KEYDOWN(wParam, lParam, msg, hwnd) {
+	; If (IsObject(AutoCompleteGUI) And AutoCompleteGUI["KwList"].hwnd = hwnd) {
+		; ctl := AutoCompleteGUI["KwList"]
+		; curPhrase := oCallTip.curPhrase
+		; kwSel := ctl.Text
+		
+		; kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
+		
+		; If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
+			; remainder := StrReplace(kwSel,curPhrase,"",,1)
+			; Loop Parse remainder
+				; ControlEditPaste A_LoopField, oCallTip.ctlHwnd ; not ideal but works
+		; }
+		; closeAutoComplete()
+	; }
+; }

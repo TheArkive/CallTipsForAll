@@ -44,3 +44,10 @@ Capacity
 `Map.Capacity
 /Retrieves or sets the current capacity of the map.
 `/docs/objects/Map.htm#[MemberName]
+
+
+Property
+CaseSense
+`Map.CaseSense
+/Retrieves or sets the map's case sensitivity setting.
+`/docs/objects/Map.htm#[MemberName]

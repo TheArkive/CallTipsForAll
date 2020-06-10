@@ -58,42 +58,46 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	
 	curPhrase := oCallTip.curPhrase
 	
+	fullPhrase := ""
 	aStr := StrSplit(phraseObj,".")
-	Loop aStr.Length {
+	Loop (aStr.Length-1) {
 		curBit := aStr[A_Index]
 		fullPhrase .= curBit "."
-		If (curBit = curPhrase)
-			Break
+		; If (curBit = curPhrase)
+			; Break
 	}
 	fullPhrase := Trim(fullPhrase,".")
 	
 	If (!phraseObj And !funcName)
 		return ""
 	
-	aStr := StrSplit(fullPhrase,".")
-	If (!IsObject(aStr) Or aStr.Length = 0)
-		return ""
+	If (fullPhrase)
+		return fullPhrase
 	
-	pOn := aStr.Length - 1
-	sObj := aStr.Has(pOn) ? aStr[pOn] : ""
+	; aStr := StrSplit(fullPhrase,".")
+	; If (!IsObject(aStr) Or aStr.Length = 0)
+		; return ""
 	
-	If (ObjectList.Has(sObj))
-		return sObj
-	Else If (ObjectList.Has(curPhrase))
-		return curPhrase
-	Else If (sObj)
-		return sObj
-	Else
-		return ""
+	; pOn := aStr.Length - 1
+	; sObj := aStr.Has(pOn) ? aStr[pOn] : ""
+	
+	; If (ObjectList.Has(sObj))
+		; return sObj
+	; Else If (ObjectList.Has(curPhrase))
+		; return curPhrase
+	; Else If (sObj)
+		; return sObj
+	; Else
+		; return ""
 }
 
 ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	cClassNN := oCallTip.ctlClassNN, hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd
+	hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd
 	
-	curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
+	curDocText := ControlGetText(oCallTip.ctlHwnd) ; ,"ahk_id " hEditorWin)
 	curDocArr := StrSplit(curDocText,"`n","`r")
 	
 	curCol := ControlGetCurrentCol(hCtl) ; global
