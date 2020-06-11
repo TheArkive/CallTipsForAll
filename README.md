@@ -129,7 +129,6 @@ Misc:
 
 ## For Best Results...
 * Start a supported text editor first, then start this script.  Note that if you search in multiple files in Notepad++, then the main editor ClassNN will change from "scintilla1" to "scintilla2".  If you have issues, close Notepad++ and this script, then start Notepad++, then the script.  When starting Notepad++ fresh, the main editor control is "scintilla1".  The script can record the hwnd of the control so subsequent use of multi-file search won't hinder the script if Notepad++ is started fresh before the script is started.
-* Besure to use the `Static` prefix in your classes to make sure that only the properties and methods that should be shown are displayed in the call tips
 * Don't reuse a variable name as a different type or object than previously used
 * Be sure to use some indenting on the body of your functions and classes
 * don't try to create an instance of a class with the same name as the class
