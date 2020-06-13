@@ -36,7 +36,12 @@ RemoveDefaultDefinitions(Line){
   For k,q in chars
   {
     ;Replace quoted literal strings             1) replace two consecutive quotes with dots
-    CleanLine := StrReplace(CleanLine, q.open . q.close , "..")
+    ; CleanLine := StrReplace(CleanLine, q.open . q.close , "..")
+    CleanLine := RemoveQuotedStrings(CleanLine)
+    MsgBox %CleanLine%
+    ; param1 := { 1:"Test" , "Key {2": .. } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
+    ; param1 := { 1:------ , --------: .. } , Param3 := [ {--------------: {1:--------------,--------------: [4 ] }}]
+
 
     Pos := 1                                 ;  2) replace ungreedy strings in quotes with dashes
     Needle := q.open . "[^" q.open "]*?" . q.close
