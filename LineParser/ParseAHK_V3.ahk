@@ -4,7 +4,7 @@
   FileStructure := ScanFiles(File, SearchRE, DocComment)
   ot(FileStructure)
 
-  #Include RemoveDefaultDefinitions.ahk
+  ; #Include RemoveDefaultDefinitions.ahk
 
 Return
 
