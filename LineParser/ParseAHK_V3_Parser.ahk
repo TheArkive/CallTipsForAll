@@ -187,6 +187,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         AllowComments := False
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
+      
+      If AllowTrimLeft
+        OriginalLine := LTrim(OriginalLine)
+      If AllowTrimRight
+        OriginalLine := RTrim(OriginalLine)
+      
       If !AllowComments                          ;check if comments are allowed literally
         OriginalLine := RemoveComments(OriginalLine)
       ;when still in continuation section concatenate the line with the JoinString,
