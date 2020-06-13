@@ -426,6 +426,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Else
           Type := "Function"
         tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName,"Type":Type,"Inside":[]}
+        If (Type = "Function" or Type = "Method"){
+          Params := GetParameterOfFunctionDef(Line)
+          tn[PhysicalLineNum, "Parameter"] := Params
+        }
         tnCurrentFuncDef := tn[PhysicalLineNum, "Inside"]
         ; tnCurrentFuncDef := ParseAndAddNode(Tree, tn, IM, Line, "(.*)", "$1", PhysicalLineNum)
         Continue
@@ -506,3 +510,37 @@ RemoveQuotedStrings(Line){
   Return CleanLine
 }
 
+GetParameterOfFunctionDef(Line){
+  static ParamsStringNeedle := "
+               ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    ^[\w#$@]+                 ;at the start of line the function name
+                    \(                        ;a opening brace
+                    (.*?)                     ;$1 the parameter string
+                    \)                        ;a closing brace
+                    \{?$                      ;optionally an opening curled brace
+              )"
+       , ParamNeedle:="
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    ^(?P<ByRef>ByRef)?        ;at the start of string optionally the word ByRef
+                    \s*                       ;optionally whitespace
+                    (?P<ParamName>[\w#$@]+)   ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    (?P<Variadic>\*)?         ;optionally a * for a variadic function
+                    \s*(?:=|:=)?\s*           ;optionally whitespace, = or := and whitespace
+                    (?P<DefaultValue>.*)      ;optionally a default value
+              )"
+
+  ParamsString := RegExReplace(Line, ParamsStringNeedle, "$1")
+  CleanSting := RemoveQuotedStrings(ParamsString)
+  Pos := 1
+  Params := []
+  While (Pos < StrLen(CleanSting) + 1) {
+    If !(NextPos := InStr(CleanSting, ",", , Pos))
+      NextPos := StrLen(CleanSting) + 1
+    If RegExMatch(Trim(SubStr(ParamsString, Pos, NextPos - Pos)), ParamNeedle, Match) 
+      Params.push( {ByRef: Match.ByRef, ParamName: Match.ParamName, Variadic: Match.Variadic, DefaultValue: Match.DefaultValue} )
+    Pos := NextPos + 1
+  }
+  Return Params
+}
