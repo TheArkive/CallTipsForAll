@@ -68,4 +68,3 @@ ReplaceVars(v, OutFileName, CurrentOutDir){
     v := StrReplace(v, var, value) 
   Return v  
 }
-    Text .= Var ": " Value "`n"   ;>>> _D("end of line", {i:i, Line:Line, FuncBlockLevel:FuncBlockLevel}*)
