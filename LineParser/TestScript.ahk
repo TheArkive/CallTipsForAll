@@ -1,37 +1,75 @@
-/*
-Target of this function is to get the "real" parameters of a function definition.
-
-when literal strings are removed from the string, splitting by comma should work
-Then regex to get all the values
-*/
-
 Return    ;comment this line for testing
 ; with the above Return active it is the end of the auto-Exec Section.
 
-; Text = Byref   param1   :=    { 1:"Test" , "Key {2": "" }  ,   param2*  ,   Param3   :=   [ {"t,e[a]s:t{b}":  {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
-; Text = param1 := { 1:"Test" , "Key {2": "" } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
-; MsgBox % "Test RemoveDefaultDefinitions:`n`n>" Text "<`n`n>" RemoveDefaultDefinitions(Text) "<"
-Text = Byref Int  :=   1  , Floating = 1.0 , Bool := True, text  :=   "te,xt" , emptypara = "",  variadic*
-ot(GetParameterOfFunctionDef(Text))
-ot(GetParameterOfFunctionDef(""))
-MsgBox wait
-MsgBox % "Test GetParameterOfFunctionDef:`n`n>" Text "<`n`n>" GetParameterOfFunctionDef(Text) "<"
+
+a := 1,               b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+; Msgbox %a%
+    a  = 1,               b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+; Msgbox %a%
+(a = 1) ? a:=2 : a:=4, b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+; Msgbox %a%
+;       123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+;                1         2         3         4         5         6         7         8         9         0         1         2         3         4         5         6         7         8
+Line1 = a := 1, b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+Line2 = a  = 1, b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+Line3 = (a = 1) ? a:=2 : a:=4, b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+ot(testfunc(Line1))
+ot(testfunc(Line2))
+ot(testfunc(Line3))
+MsgBox wait testfunc(Line)
 ExitApp
 
-/*
-;input 
->param1 := { 1:"Test" , "Key {2": "" } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]<
-;this is the current result
->param1 .. --------------------------- , Param3 .. [ {--------------: ----------------------------------------}]<
-;this is what I would like to achieve
->param1 .. --------------------------- , Param3 .. -------------------------------------------------------------<
-*/
-
-a(Byref Int  :=   1  , Floating = 1.0 , Bool := True, text  :=   "te,xt" , emptypara = "", variadic*){
+testfunc(Line){
+  static VarLegacyAssignRE := "
+               ( Join LTrim Comment
+                    OS)(*UCP)                 ;Study and Unicode (for \s and \w)
+                    ^\s*                      ;optionally whitespace at start of lien
+                    (?P<VarName>[\w#$@]+)     ;a variable name
+                    \s*                       ;optionally whitespace
+                    =                         ;legacy assignment operator
+              )"
+         VarExprAssignRE := "
+               ( Join LTrim Comment
+                    OS)(*UCP)                 ;Study and Unicode (for \s and \w)
+                    (?P<VarName>[\w#$@]+)     ;a variable name
+                    \s*                       ;optionally whitespace
+                    :=                        ;expression assignment operator
+              )"
+  
+  If RegExMatch(Line, VarLegacyAssignRE, Match)
+    Return [{Name: Match.VarName, Position: Match.Pos, Type: "Legacy"}]
+  CleanLine := RemoveQuotedStrings(Line)
+  Pos := 1
+  Vars := []
+  While (Pos := RegExMatch(CleanLine, VarExprAssignRE, Match, Pos)) {
+    Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Expression"} )
+    Pos := Pos + Match.Len
+  }
+  Return Vars
 }
 
+/*
 
-RemoveDefaultDefinitions(Line){
+  If (InStr(CleanLine, ":=") And InStr(CleanLine, ",")){
+    rb := cb := sb := 0
+    Loop Parse, CleanLine
+    {
+      Switch A_LoopField 
+      {
+        Case "(": cb++
+        Case ")": cb--
+        Case "{": rb++
+        Case "}": rb--
+        Case "[": sb++
+        Case "]": sb--
+        Case ":": colnum := A_Index
+        Case "=": 
+        Case ",":
+      }
+    }
+  }
+
+
   static chars := [{"open":Chr(34),"close":Chr(34)}        ; quote character
                   ; ,{"open":"{",    "close":"}"}
                   ,{"open":"\[",    "close":"]"}   
@@ -66,4 +104,4 @@ RemoveDefaultDefinitions(Line){
     }
   }
   Return CleanLine
-}
+*/
