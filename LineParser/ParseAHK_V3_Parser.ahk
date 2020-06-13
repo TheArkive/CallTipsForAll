@@ -521,7 +521,7 @@ RemoveQuotedStrings(Line){
 GetParameterOfFunctionDef(Line){
   static ParamsStringRE := "
                ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    OS)(*UCP)                 ;Study and Unicode (for \d, \D, \s, \S, \w, \W, \b and \B)
                     ^[\w#$@]+                 ;at the start of line the function name
                     \(                        ;a opening brace
                     (.*?)                     ;$1 the parameter string
@@ -530,7 +530,7 @@ GetParameterOfFunctionDef(Line){
               )"
        , ParamRE:="
               ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    OiS)(*UCP)                ;case insensitive (for 'ByRef'), Study and Unicode (for \d, \D, \s, \S, \w, \W, \b and \B)
                     ^(?P<ByRef>ByRef)?        ;at the start of string optionally the word ByRef
                     \s*                       ;optionally whitespace
                     (?P<ParamName>[\w#$@]+)   ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
