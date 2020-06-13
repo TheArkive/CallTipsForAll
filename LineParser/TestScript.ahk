@@ -1,14 +1,21 @@
 /*
 Target of this function is to get the "real" parameters of a function definition.
 
-Even when literal strings are removed from the line, splitting by comma is not an option, because arrays and objects can have comma in them.
-
-Approach: robustly remove the default values of the function parameters.
+when literal strings are removed from the string, splitting by comma should work
+Then regex to get all the values
 */
 
+Return    ;comment this line for testing
+; with the above Return active it is the end of the auto-Exec Section.
+
 ; Text = Byref   param1   :=    { 1:"Test" , "Key {2": "" }  ,   param2*  ,   Param3   :=   [ {"t,e[a]s:t{b}":  {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
-Text = param1 := { 1:"Test" , "Key {2": "" } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
-MsgBox % "Test RemoveDefaultDefinitions:`n`n>" Text "<`n`n>" RemoveDefaultDefinitions(Text) "<"
+; Text = param1 := { 1:"Test" , "Key {2": "" } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
+; MsgBox % "Test RemoveDefaultDefinitions:`n`n>" Text "<`n`n>" RemoveDefaultDefinitions(Text) "<"
+Text = Byref Int  :=   1  , Floating = 1.0 , Bool := True, text  :=   "te,xt" , emptypara = "",  variadic*
+ot(GetParameterOfFunctionDef(Text))
+ot(GetParameterOfFunctionDef(""))
+MsgBox wait
+MsgBox % "Test GetParameterOfFunctionDef:`n`n>" Text "<`n`n>" GetParameterOfFunctionDef(Text) "<"
 ExitApp
 
 /*
@@ -19,6 +26,10 @@ ExitApp
 ;this is what I would like to achieve
 >param1 .. --------------------------- , Param3 .. -------------------------------------------------------------<
 */
+
+a(Byref Int  :=   1  , Floating = 1.0 , Bool := True, text  :=   "te,xt" , emptypara = "", variadic*){
+}
+
 
 RemoveDefaultDefinitions(Line){
   static chars := [{"open":Chr(34),"close":Chr(34)}        ; quote character
@@ -41,7 +52,6 @@ RemoveDefaultDefinitions(Line){
     MsgBox %CleanLine%
     ; param1 := { 1:"Test" , "Key {2": .. } , Param3 := [ {"t,e[a]s:t{b}": {1:"t,e[a]s:t{b}","t,e[a]s:t{b}": [4 ] }}]
     ; param1 := { 1:------ , --------: .. } , Param3 := [ {--------------: {1:--------------,--------------: [4 ] }}]
-
 
     Pos := 1                                 ;  2) replace ungreedy strings in quotes with dashes
     Needle := q.open . "[^" q.open "]*?" . q.close
