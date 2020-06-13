@@ -137,7 +137,7 @@ Return
 LabelAroundFuncDef:
   D := 2
   MyFuncA() {
-     MyFuncB(A, B)
+     MyFuncB(A, B, C)
      LabelInsideFunction:
      MsgBox, %A% - %B%
   }
@@ -145,12 +145,34 @@ Return
 
 ;function with multiline and label
 MyFuncB(ByRef A
-       , ByRef B)
+       , ByRef B,C)
 ;Test for comment between func def and {
 { LabelWithoutBrace:
    A := B := 10
    HotKey,#c,MySub
    HotKey !c,MySub
+}
+
+ComplexFunctionDef(a
+; a comment
+, ByRef b ; a comment
+, d = 123, e := "
+(LTrim C
+	a
+		b
+		  c ; d
+/*
+	not a comment
+*/	
+	e
+
+)"
+/*
+	a comment
+*/, Byref Int  :=   1  , Floating = 1.0 , Bool := True, text  :=   "te,xt" , emptypara = "", variadic*)
+
+{
+  ;the definition block of ComplexFunctionDef
 }
 
 ;class
