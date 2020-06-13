@@ -169,11 +169,14 @@ ComplexFunctionDef(a
 ; a comment
 , ByRef b ; a comment
 , d = 123, e := "
-(LTrim C
+(Join| C RTrim0 
 	a
 		b
 		  c ; d
 /*
+   123   
+   456   
+   789   
 	not a comment
 */	
 	e
