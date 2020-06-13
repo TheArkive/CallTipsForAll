@@ -179,6 +179,22 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         oResult.Notes[PhysicalLineNum] := Match.2
 
     ;>>> Remove all comments and skip empty lines ----------------------------------------------------------------------
+    ;when InContinuationBlock2 empty lines matter and maybe even comments and block comments
+    ;hence, this has to be done before comments are stripped off and empty lines are skipped
+    If (InContinuationBlock2) {
+      If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
+        InContinuationBlock2 := False
+        AllowComments := False
+        Line := SubStr(Line, 2)                  ;remove ) from line
+      }
+      If !AllowComments                          ;check if comments are allowed literally
+        Line := RemoveComments(Line)
+      ;when still in continuation section concatenate the line with the JoinString,
+      ;otherwise the code after the ) will be concatenated without any string
+      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . Line
+      Continue                                   ;go to next line
+    }
+
     ;Skip comment section
     ;the /* and */ symbols comment out an entire section, but only if the symbols appear at the beginning of a line
     ;code after the */ is not part of the comment section
@@ -188,25 +204,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Line := Trim(SubStr(Line, 3))   ;remove the /* from the beginning of the line and continue checking
       }Else
         Continue                        ;discard this line, it is in a Comment Section
-    }Else If (SubStr(Line, 1, 2) = "/*") {
+    }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
       Continue
-    }
-
-    ;when InContinuationBlock2 empty lines matter and maybe even comments
-    ;hence, this has to be done before comments are stipped off and empty lines are skipped
-    If (InContinuationBlock2) {
-      If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
-        InContinuationBlock2 := False
-        AllowComments := False
-        Line := SubStr(Line, 2)                  ;remove ) from line
-      }
-      If !AllowComments                          ;check if comments are allowed literaly
-        Line := RemoveComments(Line)
-      ;when still in continuation section concatenate the line with the JoinString,
-      ;otherwise the code after the ) will be concatenated without any string
-      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . Line
-      Continue                                   ;go to next line
     }
 
     ;Remove any comment and skip empty lines (If not the last line)
