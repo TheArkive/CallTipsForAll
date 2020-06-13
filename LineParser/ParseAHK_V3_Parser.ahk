@@ -188,10 +188,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       If !AllowComments                          ;check if comments are allowed literally
-        Line := RemoveComments(Line)
+        OriginalLine := RemoveComments(OriginalLine)
       ;when still in continuation section concatenate the line with the JoinString,
       ;otherwise the code after the ) will be concatenated without any string
-      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . Line
+      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . OriginalLine
       Continue                                   ;go to next line
     }
 
