@@ -188,13 +188,17 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       
-      If AllowTrimLeft
-        OriginalLine := LTrim(OriginalLine)
-      If AllowTrimRight
-        OriginalLine := RTrim(OriginalLine)
-      
-      If !AllowComments                          ;check if comments are allowed literally
-        OriginalLine := RemoveComments(OriginalLine)
+      ;when still in continuation section trim or strip the original line
+      If InContinuationBlock2 {
+        If AllowTrimLeft
+          OriginalLine := LTrim(OriginalLine)
+        If AllowTrimRight
+          OriginalLine := RTrim(OriginalLine)
+        If !AllowComments                               ;check if comments are allowed literally
+          OriginalLine := RemoveComments(OriginalLine)
+      } Else
+          OriginalLine := Line                          ;line is stripped and trimmed before the ) got removed
+        
       ;when still in continuation section concatenate the line with the JoinString,
       ;otherwise the code after the ) will be concatenated without any string
       ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . OriginalLine
