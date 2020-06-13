@@ -3,6 +3,9 @@
   DocComment = ???
   FileStructure := ScanFiles(File, SearchRE, DocComment)
   ot(FileStructure)
+
+  #Include RemoveDefaultDefinitions.ahk
+
 Return
 
 #Include AHK_V1_SyntaxTestParcour.ahk
