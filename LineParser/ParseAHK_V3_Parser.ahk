@@ -519,7 +519,7 @@ RemoveQuotedStrings(Line){
 }
 
 GetParameterOfFunctionDef(Line){
-  static ParamsStringNeedle := "
+  static ParamsStringRE := "
                ( Join LTrim Comment
                     OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
                     ^[\w#$@]+                 ;at the start of line the function name
@@ -528,7 +528,7 @@ GetParameterOfFunctionDef(Line){
                     \)                        ;a closing brace
                     \{?$                      ;optionally an opening curled brace
               )"
-       , ParamNeedle:="
+       , ParamRE:="
               ( Join LTrim Comment
                     OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
                     ^(?P<ByRef>ByRef)?        ;at the start of string optionally the word ByRef
@@ -539,14 +539,14 @@ GetParameterOfFunctionDef(Line){
                     (?P<DefaultValue>.*)      ;optionally a default value
               )"
 
-  ParamsString := RegExReplace(Line, ParamsStringNeedle, "$1")
+  ParamsString := RegExReplace(Line, ParamsStringRE, "$1")
   CleanSting := RemoveQuotedStrings(ParamsString)
   Pos := 1
   Params := []
   While (Pos < StrLen(CleanSting) + 1) {
     If !(NextPos := InStr(CleanSting, ",", , Pos))
       NextPos := StrLen(CleanSting) + 1
-    If RegExMatch(Trim(SubStr(ParamsString, Pos, NextPos - Pos)), ParamNeedle, Match) 
+    If RegExMatch(Trim(SubStr(ParamsString, Pos, NextPos - Pos)), ParamRE, Match) 
       Params.push( {ByRef: Match.ByRef, ParamName: Match.ParamName, Variadic: Match.Variadic, DefaultValue: Match.DefaultValue} )
     Pos := NextPos + 1
   }
