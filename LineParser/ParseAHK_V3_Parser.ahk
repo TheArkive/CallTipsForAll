@@ -167,6 +167,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   Lines := StrSplit(FileContent, "`n", "`r")
   TotalNumberOfLine := Lines.MaxIndex()
   For PhysicalLineNum, Line In Lines {
+    OriginalLine := Line
     Line := Trim(Line)        ;remove leading/trailing whitespaces
 
     ;search for SearchRE
