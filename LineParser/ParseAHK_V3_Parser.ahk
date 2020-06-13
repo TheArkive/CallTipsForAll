@@ -213,6 +213,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If ((!Line := RemoveComments(Line)) AND PhysicalLineNum <> TotalNumberOfLine)
       Continue
 
+    ;>>> Variables ----------------------------------------------------------------------------------------
+    ;Get Variable Names when something gets assigned to them
+    ;in case of function parameters with default values, these will be captured as vars as well as function parameters
+    Vars := GetVarAssignments(RemoveComments(OriginalLine))
+    If Vars.Length()
+      oResult.Vars[PhysicalLineNum] := Vars
+
     ;>>> HotStrings & HotKeys ----------------------------------------------------------------------------------------
     ;HotStrings & HotKeys are not allowed inside of functions or classes or on the same line as the } of a {} block
     ;but AHK takes care of it, so I will not worry and assume that the code provided is valid AHK code.
@@ -544,4 +551,33 @@ GetParameterOfFunctionDef(Line){
     Pos := NextPos + 1
   }
   Return Params
+}
+
+GetVarAssignments(Line){
+  static VarLegacyAssignRE := "
+               ( Join LTrim Comment
+                    OS)(*UCP)                 ;Study and Unicode (for \s and \w)
+                    ^\s*                      ;optionally whitespace at start of lien
+                    (?P<VarName>[\w#$@]+)     ;a variable name
+                    \s*                       ;optionally whitespace
+                    =                         ;legacy assignment operator
+              )"
+         VarExprAssignRE := "
+               ( Join LTrim Comment
+                    OS)(*UCP)                 ;Study and Unicode (for \s and \w)
+                    (?P<VarName>[\w#$@]+)     ;a variable name
+                    \s*                       ;optionally whitespace
+                    :=                        ;expression assignment operator
+              )"
+  
+  If RegExMatch(Line, VarLegacyAssignRE, Match)
+    Return [{Name: Match.VarName, Position: Match.Pos, Type: "Legacy"}]
+  CleanLine := RemoveQuotedStrings(Line)
+  Pos := 1
+  Vars := []
+  While (Pos := RegExMatch(CleanLine, VarExprAssignRE, Match, Pos)) {
+    Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Expression"} )
+    Pos := Pos + Match.Len
+  }
+  Return Vars
 }
