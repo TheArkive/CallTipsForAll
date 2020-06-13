@@ -75,13 +75,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                           (Join)                       ;the option Join (Match3)
                           (\S{0,15})                   ;and an optional joinstring (up to 15 characters long) (Match4)
                           |(LTrim)                     ;or the option LTrim (Match5)
-                          |(L|R)Trim0                  ;or the option LTrim0 and RTrim0
+                          |(L|R)Trim0                  ;or the option LTrim0 and RTrim0 (Match6)
                           |(C\S*)                      ;or the option Comments (a string that starts with a 'C') (Match7)
                           |(Q\S*)                      ;or the option Quotes (for AHK v2; a string that starts with a 'Q')
                           |(`%)                        ;or the option %
                           |(,)                         ;or the option ,
                           |(``))                       ;or the option `
-                   `)*                         ;the above items are optional and can exits multiple times
+                    `)*                        ;the above items are optional and can exits multiple times ( the brace needs to be backticked to not close the continuation section)
                     (?!                        ;and the following items are not to exist to the right
                         .*?                        ;any optional text (ungreedy)
                         (
@@ -256,14 +256,14 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;       { Label:    ;this label would not be catched correctly here
 ;
 ;       }
-      ;or when it is following immediatly a {} block  (within in a function body or outside)
+      ;or when it is following immediately a {} block  (within in a function body or outside)
 ;       If(  )
 ;       {
 ;
 ;       } Label:    ;this label would not be catched correctly here
 
       ;thus do nothing just now, it will be catched later
-      ;within functions first the {} blocks have to be analysed and the barces trimmed off,
+      ;within functions first the {} blocks have to be analyzed and the braces trimmed off,
       ;then the line has to be scanned again, but re-scanning can not start before the swap of lines
       ; (due to check for continuation) since this might screw up the order of lines
       ;thus, everything that is relevant within the function body has to be processed after the swap of lines
@@ -322,7 +322,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
     ;>>> Open block counter for classes and functions ------------------------------------------------------------------
     ;Process braces at the start of a line
-    ;the concept with InStr() was taken from CoCo's ListClasses scipt (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
+    ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
     While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {
       If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
         BlockLevel[ClassLevel] += i - 2
@@ -344,7 +344,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> Class definitions ===========================================================================================
     ;a Class definition starts with the keyword "class"
     ;Class definitions can contain variable declarations, method and property definitions, Meta-Functions and nested class definitions
-    ;they are not alowed inside a function definition
+    ;they are not allowed inside a function definition
     tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Classes
     If (RegExMatch(Line, ClassRE, Match)) {
       tn[PhysicalLineNum] := {"Name":Match.1,"Type":"Class","Inside":[]}
@@ -378,10 +378,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If (!isObject(tnCurrentFuncDef) AND (ClassLevel = 0 Or BlockLevel[ClassLevel] = 1)){
     ; we are not in another function definition and (outside of a class or at the base level of a class)
       ;>>> Check for a new function/method/metaFunction definition
-      If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty linep
+      If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty line
         If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
           OR (SubStr(Line, 0) = "{" ))                                            ;case 2 & 4: function definition with OTB
-          tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd os misused as a flag)
+          tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd is misused as a flag)
       }
 
       ;class property definitions are only allowed on base level of a class
@@ -408,16 +408,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;          prop[]{   ;case 4
 ;          }
 ;       }
-             ;"ClassLevel > 0" is redundant because BlockLevel[0] would not be 1, but for clearity I leave it in
+             ;"ClassLevel > 0" is redundant because BlockLevel[0] would not be 1, but for clarity I leave it in
       Else If (ClassLevel > 0 AND BlockLevel[ClassLevel] = 1){
       ;we are not in another function definition and in a class and at the base level of a class
 
         ;>>> Check for a new class property definition
-        If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty linep
+        If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty line
            If (SubStr(FuncName, 0) = "["
                AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
             Or SubStr(Line, 0) = "{" )                                                                                                       ;case 1 & 2
-              tnCurrentFuncDef := ["dummy"]              ;set that something was found, (the var for the hwnd os misused as a flag)
+              tnCurrentFuncDef := ["dummy"]              ;set that something was found, (the var for the hwnd is misused as a flag)
         }
       }
 
@@ -479,7 +479,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       GoTo ProcessLastLine
 
     ;every line that makes it through to this point is a 'normal' command
-    ;in the case of the code explorer nothig needs to be done
+    ;in the case of the code explorer nothing needs to be done
    }
   Return oResult
 }
@@ -500,7 +500,7 @@ RemoveComments(Line){
 }
 
 RemoveQuotedStrings(Line){
-  ;the concept how to remove quoted strings was taken from CoCo's ListClasses scipt (line 77; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
+  ;the concept how to remove quoted strings was taken from CoCo's ListClasses script (line 77; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
   ;replace quoted strings with dots and dashes to keep length of line constant, and that other character positions do not change
   static q := Chr(34)       ; quote character
 
