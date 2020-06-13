@@ -95,7 +95,19 @@ FillTreeView(File){
 
 ;labels
 MySub:
-   MyFuncA()
+  MyFuncA()
+
+  ;line with multiple assignments
+  a := 1,               b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+  Msgbox %a%
+  
+  ;line with legacy assignment to var a, rest is literal
+  a  = 1,               b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+  Msgbox %a%
+
+  ;line with multiple assignments that start with tenary operator
+  (a = 1) ? a:=2 : a:=4, b := "te,st", c := 1.2, d := "", e:=Mod(10,(100-10)*10), f:={h:[a,a,b,b],i:[c,d]}, g:=[e,e,e],h:=RTrim(Chr(34) "-" i := Mod(ceil(a),round(c, 0)), OmitChar := "1"), t := s ? u : w
+  Msgbox %a%
 Return
 
 (:                    ;>>> if this label is after the '(' hotkey, AHK throws error  ==> Duplicate label.
