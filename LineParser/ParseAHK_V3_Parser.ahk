@@ -26,8 +26,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ;>>> define RegEx Needles
       , DocCommRE :="
               ( Join LTrim Comment       ; DocComment allows comments to show up in Code Explorer as Notes
-                    OiS)(*UCP)                  ;case insensitive (for the DocComment string), Study and Unicode (for \s and DocComment)
-                    (^|.*\s);                  ;a ';' either at start of line or with some code and a whitespace infront, thus it is an AHK comment
+                    OiS)(*UCP)                 ;case insensitive (for the DocComment string), Study and Unicode (for \s and DocComment)
+                    (^|.*\s);                  ;a ';' either at start of line or with some code and a whitespace in front, thus it is an AHK comment
                     \s*                        ;optional whitespace
                     \Q" DocComment "\E         ;the literal DocComment string
                     \s*                        ;optional whitespace
@@ -35,7 +35,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , HotStringRE :="
               ( Comment Join LTrim
-                    OS)                         ;Study
+                    OS)                        ;Study
                     ^:                         ;a ':' at start of line
                     .*?                        ;options (ungreedy)
                     :                          ;a ':'
@@ -46,7 +46,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , HotKeyRE :="
               ( LTrim Join Comment
-                    OS)                         ;Study
+                    OS)                        ;Study
                     ^                          ;at start of line
                     (.+)                       ;$1 the hotkey at least one character (but including whitespace)
                     ::                         ;two ':'s
@@ -55,7 +55,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , HotKeyCommandRE :="
               ( LTrim Join Comment
-                    OiS)(*UCP)                  ;case insensitive (for the Hotkey texts), Study and Unicode (for \s)
+                    OiS)(*UCP)                 ;case insensitive (for the Hotkey texts), Study and Unicode (for \s)
                     ^Hotkey                    ;the text 'Hotkey' at start of line
                     (\s*,\s*|\s+)              ;a comma or space
                     (?!If)                     ;not the text 'If'
@@ -67,7 +67,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , ContinuationBlock2RE :="
               ( Comment LTrim Join         ; for Continuation Block Method 2
-                    OiS)(*UCP)                  ;case insensitive (for the option texts), Study and Unicode (for \s and JoinString)
+                    OiS)(*UCP)                 ;case insensitive (for the option texts), Study and Unicode (for \s and JoinString)
                     ^\(                        ;a '(' at start of line
                     (
                         \s*                         ;optional white space(s)
@@ -82,7 +82,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                           |(,)                         ;or the option ,
                           |(``))                       ;or the option `
                    `)*                         ;the above items are optional and can exits multiple times
-                    (?!                        ;and the following itmes are not to exist to the right
+                    (?!                        ;and the following items are not to exist to the right
                         .*?                        ;any optional text (ungreedy)
                         (
                           \)                          ;and a ')'
@@ -90,7 +90,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , LabelRE :="
               ( Join LTrim Comment
-                    OS)(*UCP)                  ;Study and Unicode (for \s)
+                    OS)(*UCP)                 ;Study and Unicode (for \s)
                     ^([^\s,`:]+)              ;$1 some characters at the start of the line (but no whitespace, comma, backtick or colon)
                     :$                        ;a ':' at the end of line
               )"
@@ -104,7 +104,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , DllCallRE :="
               ( Join LTrim Comment
-                    Oi)                        ;case insensitive (for 'DllCall')
+                    Oi)                       ;case insensitive (for 'DllCall')
                     .*                        ;some code
                     (                         ;$1
                        DllCall                ;the text 'DllCall'
@@ -114,24 +114,24 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , ClassRE :="
               ( Join LTrim Comment
-                    OiS)(*UCP)                 ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
                     ^Class                    ;the text 'Class' at the start of line
                     \s+                       ;at least one whitespace
-                    ([\w#$@]+)                ;$1 one ore more chracters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    ([\w#$@]+)                ;$1 one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
                     .*                        ;rest of the line
               )"
       , FunctionRE :="
               ( Join LTrim Comment            ;$1 the whole line will be a match
                     S)(*UCP)                  ;Study and Unicode (for \w)
                     ^                         ;at the start of line
-                    [\w$#@]+                  ;one ore more chracters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    [\w$#@]+                  ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
                     \(                        ;a '('
               )"
       , PropertyRE :="
               ( Join LTrim Comment            ;$1 the whole line will be a match
                     S)(*UCP)                  ;Study and Unicode (for \w)
                     ^                         ;at the start of line
-                    [\w$#@]+                  ;one ore more chracters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    [\w$#@]+                  ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
               )"
       , OTBCommandsRE :="
               ( Join LTrim Comment
@@ -145,16 +145,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , IncludeRE :="
               ( Join LTrim Comment
-                    OiS)(*UCP)                 ;case insensitive
+                    OiS)(*UCP)                ;case insensitive
                     ^#Include                 ;the text '#Include' at the start of line
                     \s+                       ;at least one whitespace
                     (\*i\s)?                  ;maybe the option "*i" and at least a single whitespace
-                    \s*                       ;potentially more whitespaces
+                    \s*                       ;potentially more whitespace
                     (?P<File>.*)              ;rest of the line
               )"
       , GlobalVarsRE :=" 
               ( Join LTrim Comment
-                    OiS)(*UCP)                 ;case insensitive
+                    OiS)(*UCP)                ;case insensitive
                     ^global                   ;the text 'global' at the start of line
                     \s+                       ;at least one whitespace
                     (.*)                      ;rest of the line
