@@ -68,10 +68,3 @@ ReplaceVars(v, OutFileName, CurrentOutDir){
     v := StrReplace(v, var, value) 
   Return v  
 }
-
-_D(Title := "Debug", Vars*){      ;small helper to Debug
-  local Var,Value,Text := ""
-  For Var,Value in Vars           ;call it like this
-    Text .= Var ": " Value "`n"   ;>>> _D("end of line", {i:i, Line:Line, FuncBlockLevel:FuncBlockLevel}*)
-  MsgBox, 0, %Title%, %Text%
-}
