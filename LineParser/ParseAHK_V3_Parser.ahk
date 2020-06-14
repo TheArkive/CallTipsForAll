@@ -149,8 +149,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
                     IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
                     Else|Try|Catch|Finally|                               ; or
-                    Loop|While|For)                                       ; or
-                    [,\s(]                                                ; followed by an ',' space or '('
+                    Loop|While|For|Switch)                                ; or
+                    [,\s({]                                               ; followed by an ',' space or '(' (for expression) or '{' (in case of loop until)
               )"
       , IncludeRE :="
               ( Join LTrim Comment
