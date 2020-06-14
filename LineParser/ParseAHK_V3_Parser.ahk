@@ -574,7 +574,7 @@ GetVarAssignments(Line){
                     \s*                       ;optionally whitespace
                     =                         ;legacy assignment operator
               )"
-         VarExprAssignRE := "
+       , VarExprAssignRE := "
                ( Join LTrim Comment
                     OS)(*UCP)                 ;Study and Unicode (for \s and \w)
                     (?P<VarName>[\w#$@]+)     ;a variable name
