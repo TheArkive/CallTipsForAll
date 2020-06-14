@@ -94,6 +94,7 @@ FillTreeView(File){
 ::btw::by the way
 ::mfg:: t:="text"    ;this is just a text, not a var assignment
 
+
 ;labels
 MySub:
   MyFuncA()
@@ -115,9 +116,14 @@ Return
   MsgBox, This is a label %A_ThisLabel%
 Return
 
+
 F1:: MsgBox, "Help me " %t%
-F3:: MsgBox % t := "test"  ;this is a var assignment
-F4:: t .= "test"           ;this is a var assignment
+F3:: MsgBox % t .= "test"  ;this is a var assignment
+F4:: t := "est"           ;this is a var assignment
+F5::
+t
+:= "----"                  ;this is a var assignment to t
+Return
  
 ;hotkeys
 (::
