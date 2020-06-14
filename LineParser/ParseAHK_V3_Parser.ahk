@@ -337,7 +337,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       AllowTrimLeft  :=  Match.Value(5) ? True : False                ;with LTrim all spaces and tabs at the beginning of each line are omitted
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
       AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
-      Continue                   ;go to next line     ;other parameters are ignored, because they do not matter for code explorer, e.g. LTRIM or `s
+      Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
 
     ;>>> Collect continuation lines Method 1
     ;A line that starts with the following operators is automatically merged with the line directly above it
