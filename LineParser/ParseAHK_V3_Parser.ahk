@@ -9,8 +9,9 @@
 ; ================================================================================================
 /*
 Potential Enhancements 
-- look for Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
+- detect Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
   with default value as "AutoExec" till first Return outside of function/class defs
+  - Return can be inside a multiline statement (mostlikely the last, but AHK doesn't care)
   
 - detect scope of variables|methods|properties (super-global, global, local, static)
 
@@ -29,6 +30,8 @@ Potential Enhancements
   - rename tn... vars
   - have one object to hold the different status vars
   - extract WithinName and Level documentation for each line inside a body and move it to a new function
+
+- refactor the object to return (oResult), only required information, well structured
 
 - scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
 
