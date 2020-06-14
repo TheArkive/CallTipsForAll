@@ -1,8 +1,12 @@
   File := A_ScriptFullPath
   SearchRE = i)\Qparse\E
   DocComment = ???
+StartTC := A_TickCount
   FileStructure := ScanFiles(File, SearchRE, DocComment)
+EndTC := A_TickCount
   ot(FileStructure)
+ 
+MsgBox % EndTC - StartTC
 
   #Include TestScript.ahk
 
