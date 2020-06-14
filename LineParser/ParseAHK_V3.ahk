@@ -8,8 +8,9 @@ EndTC := A_TickCount
  
 MsgBox % EndTC - StartTC
 
-  #Include TestScript.ahk
+  ; ListVars   ;for this to show correctly the vars includes for TestScript and SyntaxTestParcour  have to be commented out
 
+  #Include TestScript.ahk
 Return
 
 #Include AHK_V1_SyntaxTestParcour.ahk

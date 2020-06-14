@@ -9,6 +9,7 @@
 ; ================================================================================================
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ; internal vars with default values
+  ;local enforces assume global; this is usually not needed, since all variables should be local anyway. But this is how I can check with ListVars in main script which variables have not been initialized. In the final script local could be removed
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
@@ -183,7 +184,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       ;distinguish super globals and globals?        
       ;local variable without initialization
-      , TotalNumberOfLine, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
+      , TotalNumberOfLine, OriginalLine, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
