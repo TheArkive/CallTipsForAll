@@ -559,7 +559,7 @@ GetParameterOfFunctionDef(Line){
     If !(NextPos := InStr(CleanSting, ",", , Pos))
       NextPos := StrLen(CleanSting) + 1
     If RegExMatch(Trim(SubStr(ParamsString, Pos, NextPos - Pos)), ParamRE, Match) 
-      Params.push( {ByRef: Match.ByRef, ParamName: Match.ParamName, Variadic: Match.Variadic, DefaultValue: Match.DefaultValue} )
+      Params.push( {ByRef: Match.ByRef, ParamName: Match.ParamName, Variadic: Match.Variadic, DefaultValue: Match.DefaultValue, Scope: "Local"} )
     Pos := NextPos + 1
   }
   Return Params
