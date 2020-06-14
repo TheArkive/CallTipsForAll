@@ -18,6 +18,12 @@ Return
 #Include Attach.ahk
 #Include ObjTree.ahk
 
+/*
+Potential Enhancements to capture all potential information for call tips or auto-completion
+- scan also all library files in the 3 lib locations
+- scan also active document when not already covered by the files scanned
+*/
+
 ScanFiles(File, SearchRE, DocComment){
   ;read file
   FileRead, FileContent, %File%
