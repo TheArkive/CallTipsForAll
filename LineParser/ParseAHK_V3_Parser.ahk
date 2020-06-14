@@ -50,7 +50,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     ^                          ;at start of line
                     (.+)                       ;$1 the hotkey at least one character (but including whitespace)
                     ::                         ;two ':'s
-                    .*                         ;rest of line
+                    (.*)                       ;$2 rest of line
                     $                          ;end of line
               )"
       , HotKeyCommandRE :="
