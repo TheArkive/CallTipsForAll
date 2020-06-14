@@ -640,7 +640,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         ; tn either points to the base array for function results (oResult.Functions)
         ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
         tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Functions   ;distinguish Functions from methods/meta functions/ClassProperties
-        ; Type := InStr(FuncName, "(") ? "Function" : "Property"             ;distinguish ClassProperties from methods/meta functions
         If (ClassLevel > 0)
           Type := InStr(FuncName.0, "(") ? "Method" : "Property" 
         Else
@@ -655,7 +654,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         
         ;tnCurrentFuncDef now becomes the new parent class/function/method/parameter that can contain something (or has something inside)
         tnCurrentFuncDef := tn[PhysicalLineNum, "Inside"]
-        ; tnCurrentFuncDef := ParseAndAddNode(Tree, tn, IM, Line, "(.*)", "$1", PhysicalLineNum)
         Continue
       }
     }
