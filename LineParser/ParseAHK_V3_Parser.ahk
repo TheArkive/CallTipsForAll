@@ -131,16 +131,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , FunctionRE :="
               ( Join LTrim Comment            ;$1 the whole line will be a match
-                    S)(*UCP)                  ;Study and Unicode (for \w)
+                    OS)(*UCP)                 ;Study and Unicode (for \w)
                     ^                         ;at the start of line
-                    [\w$#@]+                  ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
                     \(                        ;a '('
               )"
       , PropertyRE :="
               ( Join LTrim Comment            ;$1 the whole line will be a match
-                    S)(*UCP)                  ;Study and Unicode (for \w)
+                    OS)(*UCP)                 ;Study and Unicode (for \w)
                     ^                         ;at the start of line
-                    [\w$#@]+                  ;one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
               )"
       , OTBCommandsRE :="
               ( Join LTrim Comment
@@ -480,7 +480,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
         ;>>> Check for a new class property definition
         If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty line
-           If (SubStr(FuncName, 0) = "["
+           If (SubStr(FuncName.0, 0) = "["
                AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
             Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
               tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
@@ -500,10 +500,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Functions   ;distinguish Functions from methods/meta functions/ClassProperties
         ; Type := InStr(FuncName, "(") ? "Function" : "Property"             ;distinguish ClassProperties from methods/meta functions
         If (ClassLevel > 0)
-          Type := InStr(FuncName, "(") ? "Method" : "Property" 
+          Type := InStr(FuncName.0, "(") ? "Method" : "Property" 
         Else
           Type := "Function"
-        tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName,"Type":Type,"Inside":[]}
+        tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName.0,"Type":Type,"Inside":[]}
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
