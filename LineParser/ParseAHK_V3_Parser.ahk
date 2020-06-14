@@ -7,6 +7,31 @@
 ;       comments that start with a DocComment string
 ;       files to include
 ; ================================================================================================
+/*
+Potential Enhancements 
+- look for Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
+  with default value as "AutoExec" till first Return outside of function/class defs
+  
+- detect scope of variables|methods|properties (super-global, global, local, static)
+
+- do not capture function/method parameter with default values also as variables with assignment
+
+- detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
+  
+- detect 'correct' indentation level (curly braces block do work in function bodies, but oneliner after Loop/For/If etc are missing or outside of function bodies)
+
+- detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
+
+- refactor function (currently ~700 lines)
+  - rename tn... vars
+  - have one object to hold the different status vars
+  - extract WithinName and Level documentation for each line inside a body and move it to a new function
+
+- scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
+
+*/
+
+
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ; internal vars with default values
   ;local enforces assume global; this is usually not needed, since all variables should be local anyway. But this is how I can check with ListVars in main script which variables have not been initialized. In the final script local could be removed
@@ -25,9 +50,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       , FuncBlockLevel := 0                   ; number of open blocks '{ ... }' in the current function definition
       , tnCurrentFuncDef := ""                ; tree node of function while in definition, 0 if not
       , WithinName := 0                       ; Name of function, class, method, property that line is in
-
-  ;>>> potential: look for Return to find lines within label or hotkey, Hotstring and detect return value of function/methods
-  ;>>> with default value as "AutoExec" till first Return outside of function/class defs
 
   ;object to store results                    ;keys for classes, functions and labels have to be defined, rest is just for documentation. Each is empty when nothing is found in FileContent. 
                                               ;to change this behavior, empty keys could be removed before Return of this function
@@ -197,6 +219,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     (static|global|local)     ;one of the 3 words
                     $                         ;end of line
               )"
+
       ;local variable without initialization
       , TotalNumberOfLine, OriginalLine, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
