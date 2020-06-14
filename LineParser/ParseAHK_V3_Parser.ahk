@@ -237,6 +237,20 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       Continue
 
     ;>>> Variables ----------------------------------------------------------------------------------------
+    
+    ;outside of functions "global" makes a variable super-global
+      ;local and static are not allowed outside of functions
+    ;within a function body 
+      ;without any word all vars are assume-local 
+      ;if first line is just "local" it is Force-local mode 
+      ;if first line is "local var" var is local and it is Assume-GLOBAL mode
+      ;if first line is just "local" and second line is just "static" it is Force-local mode with Assume-static mode
+      ;if first line is just "static" it is Assume-static mode
+      ;if first line is just "global" it is Assume-global mode
+      ;with "global var" that var is global
+      ;with "local var" that var is local
+      ;with "static var" that var is static
+    ;parameters or functions are local
     ;Get Variable Names when something gets assigned to them
     ;in case of function parameters with default values, these will be captured as vars as well as function parameters
     Vars := GetVarAssignments(RemoveComments(OriginalLine))
