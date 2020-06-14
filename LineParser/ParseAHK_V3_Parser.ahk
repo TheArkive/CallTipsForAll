@@ -70,8 +70,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                    ,"GlobalVars":[]           ; lines that have "global" as a first word
                    ,"SearchResults":[]        ; lines found with SearchRE
                    ,"Notes":[]                ; comments found with DocComment
-                   ,"Vars":[]
-                   ,"LineInfo":[] }
+                   ,"Vars":[]                 ; lines with variable assignments
+                   ,"LineInfo":[] }           ; 'status' info per line; for debug and for new features to be based on that info, e.g. indentation, of for AutoCompletion to know when in function which variables are visible in this function (local/global to function and super-global)
 
   ;>>> define RegEx Needles
       , DocCommRE :="
