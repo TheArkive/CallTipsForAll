@@ -606,7 +606,7 @@ GetVarAssignments(Line){
                     OS)(*UCP)                 ;Study and Unicode (for \s and \w)
                     (?P<VarName>[\w#$@]+)     ;a variable name
                     \s*                       ;optionally whitespace
-                    (:|\+|-|\*|/|//|\.|||&|\^|>>|<<)=             ;expression assignment operator
+                    (:|\+|-|\*|/|//|\.|\||&|\^|>>|<<)=             ;expression assignment operator
               )"
   
   If RegExMatch(Line, VarLegacyAssignRE, Match)
