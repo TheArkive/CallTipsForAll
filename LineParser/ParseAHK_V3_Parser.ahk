@@ -17,10 +17,13 @@ Potential Enhancements
 - do not capture function/method parameter with default values also as variables with assignment
 
 - detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
+ - brute force: scan for all text with length > 3 and remove keywords
   
 - detect 'correct' indentation level (curly braces block do work in function bodies, but oneliner after Loop/For/If etc are missing or outside of function bodies)
 
 - detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
+
+- detect if a variable points to an object (associative/linear array, class, file, COM, function and in V2: inputhook) to inherit it's methods and properties
 
 - refactor function (currently ~700 lines)
   - rename tn... vars
