@@ -15,9 +15,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
       , InContinuationBlock2 := False         ; true if within a continuation block of method 2 '( ... )'
       , AllowComments := 0                    ; true if comments are allowed within a continuation block of method 2
-      , Match3 := ""                          ; variable names for subpatterns of options for continuation block of method 2
-      , Match4 := ""
-      , Match7 := ""
+      , AllowTrimLeft := 0                    ; true if lines in a continuation block of method 2 should be trimmed on the left
+      , AllowTrimRight := 0                   ; true if lines in a continuation block of method 2 should be trimmed on the right
+      , JoinString := " n"                    ; the string to Join lines in a continuation block of method 2
+      , Match := ""                           ; Object for subpatterns matching in RegExMatch
       , ClassLevel := 0                       ; current class level, 0 if none
       , tnClasses := []                       ; array of tree nodes of classes, index is class Level
       , BlockLevel := []                      ; number of open blocks '{ ... }' per class level, index is class Level
