@@ -242,9 +242,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       Continue
     }
 
-    ;Remove any comment and skip empty lines (If not the last line)
-    If ((!Line := RemoveComments(Line)) AND PhysicalLineNum <> TotalNumberOfLine)
+   ;Remove any comment and skip empty lines (If not the last line)
+    If ((!Line := RemoveComments(Line)) AND PhysicalLineNum <> TotalNumberOfLine){
       Continue
+    }
 
     ;>>> Variables ----------------------------------------------------------------------------------------
     
@@ -375,21 +376,22 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> Open block counter for classes and functions ------------------------------------------------------------------
     ;Process braces at the start of a line
     ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
-    While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {
+    While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {          ;i will be 1 or 3 depending on which brace is found
       If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
-        BlockLevel[ClassLevel] += i - 2
+        BlockLevel[ClassLevel] += i - 2                       ;in- or decrease BlockLevel
         If (BlockLevel[ClassLevel] < 1)
           ClassLevel--
       }Else If (isObject(tnCurrentFuncDef)){                  ;we are in a function definition
-        FuncBlockLevel += i - 2
-        If (FuncBlockLevel < 1){
+        FuncBlockLevel += i - 2                               ;in- or decrease FuncBlockLevel
+        If (FuncBlockLevel < 1){                              ;end of function body
           FuncBlockLevel = 0
           tnCurrentFuncDef := ""
         }
       }Else                                         ;neither in a class nor function definition
         Break                                         ;don't trim line and break loop
-      If !(Line := LTrim(SubStr(Line, 2), " `t"))
+      If !(Line := LTrim(SubStr(Line, 2), " `t")){    ;trim off first char which is a brace and remove whitespace
         Continue, 2             ;when no more braces and line is empty go to next line
+      }
     }
 
 
@@ -397,6 +399,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;a Class definition starts with the keyword "class"
     ;Class definitions can contain variable declarations, method and property definitions, Meta-Functions and nested class definitions
     ;they are not allowed inside a function definition
+    
+    ;tn is short for TreeNode, as this function was designed for a for code explorer in PSPad with a tree view
+    ; it either points to the base array for class results (oResult.Classes)
+    ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
+    ; tnClasses might be better called parent class
+    ; and Inside might be better called contains
+    
     tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Classes
     If (RegExMatch(Line, ClassRE, Match)) {
       tn[PhysicalLineNum] := {"Name":Match.1,"Type":"Class","Inside":[]}
@@ -414,7 +423,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;     {
 ;     }
 ;
-;     func(){     ;case 2
+;     func(){     ;case 2 OTB
 ;     }
 ;
 ;     class classname
@@ -423,17 +432,22 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;        {
 ;        }
 ;
-;        MethodOrMetaFunction(){   ;case 4
+;        MethodOrMetaFunction(){   ;case 4 OTB
 ;        }
 ;     }
+
+    ;tnCurrentFuncDef was designed to hold a hwnd of a TreeNode for function definitions, as this function was designed for a for code explorer in PSPad with a tree view
+    ; currently it is purely used as a flag and could potentially be simplified
+    ; it might be better called InFunctionDef or InFunctionBody
 
     If (!isObject(tnCurrentFuncDef) AND (ClassLevel = 0 Or BlockLevel[ClassLevel] = 1)){
     ; we are not in another function definition and (outside of a class or at the base level of a class)
       ;>>> Check for a new function/method/metaFunction definition
       If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty line
         If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
-          OR (SubStr(Line, 0) = "{" ))                                            ;case 2 & 4: function definition with OTB
+          OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
           tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd is misused as a flag)
+        }
       }
 
       ;class property definitions are only allowed on base level of a class
@@ -468,8 +482,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty line
            If (SubStr(FuncName, 0) = "["
                AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
-            Or SubStr(Line, 0) = "{" )                                                                                                       ;case 1 & 2
-              tnCurrentFuncDef := ["dummy"]              ;set that something was found, (the var for the hwnd is misused as a flag)
+            Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
+              tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
+            }
         }
       }
 
@@ -477,9 +492,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (isObject(tnCurrentFuncDef)){
         If (SubStr(Line, 0) = "{"){       ;check again for OTB
           FuncBlockLevel++
-          Line := RTrim(Line , " {")
+          Line := RTrim(Line , " {")      ;trim the brace
         }
-        tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Functions   ;distinguish Functions       from methods/meta functions/ClassProperties
+        
+        ; tn either points to the base array for function results (oResult.Functions)
+        ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
+        tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Functions   ;distinguish Functions from methods/meta functions/ClassProperties
         ; Type := InStr(FuncName, "(") ? "Function" : "Property"             ;distinguish ClassProperties from methods/meta functions
         If (ClassLevel > 0)
           Type := InStr(FuncName, "(") ? "Method" : "Property" 
@@ -490,6 +508,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
         }
+        
+        ;tnCurrentFuncDef now becomes the new parent class/function/method/parameter that can contain something (or has something inside)
         tnCurrentFuncDef := tn[PhysicalLineNum, "Inside"]
         ; tnCurrentFuncDef := ParseAndAddNode(Tree, tn, IM, Line, "(.*)", "$1", PhysicalLineNum)
         Continue
