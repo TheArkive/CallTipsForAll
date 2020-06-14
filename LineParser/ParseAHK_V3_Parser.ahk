@@ -145,7 +145,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , IncludeRE :="
               ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
                     ^#Include                 ;the text '#Include' at the start of line
                     \s+                       ;at least one whitespace
                     (\*i\s)?                  ;maybe the option "*i" and at least a single whitespace
@@ -154,7 +154,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
       , GlobalVarsRE :=" 
               ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
                     ^global                   ;the text 'global' at the start of line
                     \s+                       ;at least one whitespace
                     (.*)                      ;rest of the line
@@ -320,7 +320,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     PhysicalLineNum           := TempLineNum
 
     ;>>> GlobalVars ----------------------------------------------------------------------------------------------------
-    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RefgExMatch should be enough, check speed before and after removal
+    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal
       If RegExMatch(Line, GlobalVarsRE, Match){
         ; oResult.GlobalVars[PhysicalLineNum] := StrSplit(Match.1,",", " ")  ;>>> problem with comma in strings or in objects and arrays
         oResult.GlobalVars[PhysicalLineNum] := Match.1
