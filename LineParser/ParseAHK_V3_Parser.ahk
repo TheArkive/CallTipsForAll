@@ -138,7 +138,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
                     ^Class                    ;the text 'Class' at the start of line
                     \s+                       ;at least one whitespace
-                    ([\w#$@]+)                ;$1 one ore more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    ([\w#$@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
                     .*                        ;rest of the line
               )"
       , FunctionRE :="
