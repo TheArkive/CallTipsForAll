@@ -40,6 +40,10 @@ _D(Title := "Debug", Vars*){      ;small helper to Debug
   For Var,Value in Vars           ;call it like this
     Text .= Var ": " Value "`n"   ;>>> _D("end of line", {i:i, Line:Line, FuncBlockLevel:FuncBlockLevel}*)
   MsgBox, 0, %Title%, %Text%
+  If x
+    Return 1
+  Else  
+    x++, Return i+1, y++
 }
 
 ;>>> Gui ---------------------------------------------------------------------------------------------------------------
