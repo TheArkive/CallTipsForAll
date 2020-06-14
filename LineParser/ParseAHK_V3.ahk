@@ -1,12 +1,12 @@
   File := A_ScriptFullPath
   SearchRE = i)\Qparse\E
   DocComment = ???
-StartTC := A_TickCount
+  ; StartTC := A_TickCount
   FileStructure := ScanFiles(File, SearchRE, DocComment)
-EndTC := A_TickCount
+  ; EndTC := A_TickCount
   ot(FileStructure)
- 
-MsgBox % EndTC - StartTC
+
+  ; MsgBox % EndTC - StartTC
 
   ; ListVars   ;for this to show correctly the vars includes for TestScript and SyntaxTestParcour  have to be commented out
 
