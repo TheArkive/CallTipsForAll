@@ -608,7 +608,8 @@ GetVarAssignments(Line){
                     \s*                       ;optionally whitespace
                     (:|\+|-|\*|/|//|\.|\||&|\^|>>|<<)=             ;expression assignment operator
               )"
-  
+  ;Note: the docs state on Comma (multi-statement) that "[v1.0.46.01+]: When a comma is followed immediately by a variable and an equal sign, that equal sign is automatically treated as an assignment (:=). For example, all of the following are assignments: x:=1, y=2, a=b=c. New scripts should not rely on this behavior as it may change."
+  ;these assignments are not captured by this function.
   If RegExMatch(Line, VarLegacyAssignRE, Match)
     Return [{Name: Match.VarName, Position: Match.Pos, Type: "Legacy"}]
   CleanLine := RemoveQuotedStrings(Line)
