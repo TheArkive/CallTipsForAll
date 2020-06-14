@@ -198,7 +198,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If (InContinuationBlock2) {
       If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
         InContinuationBlock2 := False
-        AllowComments := False
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       
