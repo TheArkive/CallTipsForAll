@@ -92,6 +92,7 @@ FillTreeView(File){
 ::abc```::::Replacement String
   ::afk::away from keyboard
 ::btw::by the way
+::mfg:: t:="text"    ;this is just a text, not a var assignment
 
 ;labels
 MySub:
@@ -114,8 +115,10 @@ Return
   MsgBox, This is a label %A_ThisLabel%
 Return
 
-F1:: MsgBox, "Help me"
-
+F1:: MsgBox, "Help me " %t%
+F3:: MsgBox % t := "test"  ;this is a var assignment
+F4:: t .= "test"           ;this is a var assignment
+ 
 ;hotkeys
 (::
   MsgBox, This is a Hotkey %A_ThisHotkey%
@@ -149,6 +152,7 @@ Return
 LabelAroundFuncDef:
   D := 2
   MyFuncA() {
+     local
      MyFuncB(A, B, C)
      LabelInsideFunction:
      MsgBox, %A% - %B%
