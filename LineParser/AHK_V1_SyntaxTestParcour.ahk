@@ -173,6 +173,15 @@ MyFuncB(ByRef A
    A := B := 10
    HotKey,#c,MySub
    HotKey !c,MySub
+
+   Diff := "B"
+   Switch Diff {          ;OTB on Switch
+    Case "A":
+      x := "A"
+    Case "B":
+      x := "B"
+   }
+
 }
 
 ComplexFunctionDef(a
