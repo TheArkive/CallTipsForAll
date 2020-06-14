@@ -168,6 +168,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     \s+                       ;at least one whitespace
                     (.*)                      ;rest of the line
               )"
+      ;distinguish super globals and globals?        
+      
       , VarScopeRE :=" 
               ( Join LTrim Comment
                     OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
@@ -182,7 +184,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     (static|global|local)     ;one of the 3 words
                     $                         ;end of line
               )"
-      ;distinguish super globals and globals?        
       ;local variable without initialization
       , TotalNumberOfLine, OriginalLine, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
