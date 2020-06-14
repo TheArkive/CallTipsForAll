@@ -232,7 +232,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   For PhysicalLineNum, Line In Lines {
     OriginalLine := Line
     Line := Trim(Line)        ;remove leading/trailing whitespaces
-    oResult.LineInfo[PhysicalLineNum] := {LineOrig: OriginalLine, LineTrim: Line}
+    oResult.LineInfo[PhysicalLineNum] := {LineOrig: OriginalLine, LineTrim: Line, LineNoComment: i := RemoveComments(Line) , LineNoLiteralString: RemoveQuotedStrings(i)}
     
     ;search for SearchRE
     If RegExMatch(Line, SearchRE)
