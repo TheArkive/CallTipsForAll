@@ -1,6 +1,14 @@
-;>>> Parse AHK Function ================================================================================================
+;>>> Parse AHK to detect ...
+;       definitions of classes (including nested), methods, properties, functions, labels, hotkeys, hotstrings
+;       function parameters
+;       variables that get assigned something
+;       lines on which variables are defined as global
+;       lines on which DllCalls are used
+;       comments that start with a DocComment string
+;       files to include
+; ================================================================================================
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
-  ; internal vars
+  ; internal vars with default values
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
@@ -177,7 +185,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       ;local variable without initialization
       , TotalNumberOfLine, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
-  ;>>> Begin to parse script line by line
+  ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
   TotalNumberOfLine := Lines.MaxIndex()
   For PhysicalLineNum, Line In Lines {
@@ -269,6 +277,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If RegExMatch(Line, HotKeyRE, Match){
         oResult.HotKeys[PhysicalLineNum] := Match.1
         Continue                                   ;>>> to fix: DLLCalls on same line will not be shown, but it should be rare
+                                     ;>>> to fix: capture var assignments or function calls (etc) on same line
       }
     }
     
@@ -281,7 +290,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> Collect continuation lines ==================================================================================
 
     ;>>> Check for Labels And/Or Start collecting continuation lines
-    ;Label names are not case sensitive, and may consist of any characters other than space, tab, comma and the escape character (`).
+    ;Label names are not case sensitive, and may consist of any characters other than space, tab, comma and the escape character (`). No other code can be written on the same line.
     ;they are allowed inside of functions definitions, thus they are detected here but will be used later (detected again)
     If (RegExMatch(Line, LabelRE) or ContinuationBuffer = "") {
       ;this is not a continuation line. It is a label or the first line to be put into the buffer.
@@ -290,16 +299,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       ;Since labels are allowed within a function body, they might be preceded with a brace,
       ;e.g. when a label is the first line after a multiline function definition without OTB
 ;       FuncDef()
-;       { Label:    ;this label would not be catched correctly here
+;       { Label:    ;this label would not be caught correctly here
 ;
 ;       }
-      ;or when it is following immediately a {} block  (within in a function body or outside)
+      ;or when it is following immediately a {} block  (within a function body or outside)
 ;       If(  )
 ;       {
 ;
-;       } Label:    ;this label would not be catched correctly here
+;       } Label:    ;this label would not be caught correctly here
 
-      ;thus do nothing just now, it will be catched later
+      ;thus do nothing just now, it will be caught later
       ;within functions first the {} blocks have to be analyzed and the braces trimmed off,
       ;then the line has to be scanned again, but re-scanning can not start before the swap of lines
       ; (due to check for continuation) since this might screw up the order of lines
@@ -317,6 +326,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> Collect continuation section Method 2
     ;used to merge a large number of lines; can also be used with any command or expression (assignment)
     ;in most cases there shouldn't be any valuable info for the code explorer on any of these lines (including any code on last line after ")")
+    ;but these lines may contain var assignments or class or function calls
     }Else If (RegExMatch(Line, ContinuationBlock2RE, Match)) {  ;it's the start of the continuation section when it starts with (
       InContinuationBlock2 := True                              ;but doesn't have a ), exception is after Join; it could be an expressions like (x.y)[z]()
                                                                 ;and doesn't have a : at it's start or end, exception is after Join; it could be a label, hotkey or hotstring
@@ -337,8 +347,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Continue                       ;go to next line, but not in case of last line
     }
 
+    ProcessLastLine:                       ;label to jump to to process last line
+
     ;>>> Swap buffer with current line
-    ProcessLastLine:
     TempLine           := ContinuationBuffer
     ContinuationBuffer := Line             ;the current line is now buffered to be checked later
     Line               := TempLine         ;Line is now the previously buffered line
@@ -347,7 +358,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     PhysicalLineNum           := TempLineNum
 
     ;>>> GlobalVars ----------------------------------------------------------------------------------------------------
-    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal
+    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal: Check 2020-06: only minimal effect, maybe even positive effect to keep line
       If RegExMatch(Line, GlobalVarsRE, Match){
         ; oResult.GlobalVars[PhysicalLineNum] := StrSplit(Match.1,",", " ")  ;>>> problem with comma in strings or in objects and arrays
         oResult.GlobalVars[PhysicalLineNum] := Match.1
