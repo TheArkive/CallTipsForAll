@@ -10,8 +10,8 @@
 ; Helps with determining function boundaries and creating object lists.  This also
 ; assists the script in identifying elements properly, since RegEx is used.
 ; ================================================================
-StringOutline(sInput) {
-	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34) "|" "\\" Chr(34),"**")			; blank out literal `" first
+StringOutline(sInput,pruneComments := true) {
+	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34),"**")			; blank out literal `" first
 	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
@@ -21,6 +21,12 @@ StringOutline(sInput) {
 			match := ""
 		}
 	}
+	
+	If (pruneComments)
+		curLineNoStr := RegExReplace(curLineNoStr,";.*","")
+	
+	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
+	; curLineNoStr := RegExReplace(curLineNoStr,"\" Chr(34),"*")
 	
 	return curLineNoStr
 }

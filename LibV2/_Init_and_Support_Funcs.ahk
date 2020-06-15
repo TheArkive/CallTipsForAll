@@ -203,32 +203,29 @@ GetTextDims(r_Text, sFaceName, nHeight,maxWidth:=0) {
 ; Usage: Specify X/Y coords to get info on which monitor that point is on,
 ;        and the bounds of that monitor.  If no X/Y is specified then the
 ;        current mouse X/Y coords are used.
+;        returns a map with data of that monitor or nothing on error
 ; ===========================================================================
 GetMonitorData(x:="", y:="") {
 	CoordMode "Mouse", "Screen" ; CoordMode Mouse, Screen ; AHK v1
 	If (x = "" Or y = "")
 		MouseGetPos x, y
-	actMon := 0
 	
 	monCount := MonitorGetCount() ; SysGet, monCount, MonitorCount ; AHK v1
-	Loop monCount { ; Loop % monCount { ; AHK v1
+	Loop monCount {
 		MonitorGet(A_Index,mLeft,mTop,mRight,mBottom) ; SysGet, m, Monitor, A_Index ; AHK v1
 		
 		If (mLeft = "" And mTop = "" And mRight = "" And mBottom = "")
 			Continue
 		
 		If (x >= (mLeft) And x <= (mRight-1) And y >= mTop And y <= (mBottom-1)) {
-			monList := {}, monList.left := mLeft, monList.right := mRight
-			monList.top := mTop, monList.bottom := mBottom, monList.active := A_Index
-			monList.x := x, monList.y := y
-			monList.Cx := ((mRight - mLeft) / 2) + mLeft
-			monList.Cy := ((mBottom - mTop) / 2) + mTop
-			monList.w := mRight - mLeft, monList.h := mBottom - mTop
-			Break
+			return MonData := {left: mLeft, right: mRight
+			                 , top: mTop, bottom: mBottom
+			                 , w: mRight - mLeft, h: mBottom - mTop
+			                 , x: x, y: y, active: A_Index
+			                 , Cx: (mRight - mLeft) / 2 + mLeft
+			                 , Cy: (mBottom - mTop) / 2 + mTop }
 		}
 	}
-	
-	return monList
 }
 
 ; ======================================================================================
