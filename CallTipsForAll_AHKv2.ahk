@@ -6,9 +6,48 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 FileEncoding "UTF-8"
 
+Global SettingsGUI, AutoCompleteGUI, callTipGui
+
+Global ClassesList, ObjectCreateList, ObjectList ; internal list for keeping track of objects and obj types
+Global MethPropList, UserObjMethProp, FunctionList, CustomFunctions, KeywordList ; internal lists for indicated types
+Global Settings ; user settings object
+Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
+
+; eventually move these to settings GUI
+Global WrapTextChars := 80
+Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
+Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
+Global maxLines := 20
+
+; OnMessage 0x0100, "WM_KEYDOWN" ; WM_KEYDOWN control
+
+SetupInputHook()
+
+Settings := ReadSettingsFromFile() ; Map
+AddTrayMenu() ; modify tray menu
+
+If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
+	SettingsGUI()
+
+GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
+If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
+	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
+	LoadKeywordsList()
+	LoadFunctionsList()
+	
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
+	
+	ReParseText()
+}
+
+return ; end of auto execute section
+
 class oCallTip {
 	Static srcFiles := "", c := ""
 	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Enter}{Tab}"
+	Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings
+	Static docTextNoComments := "" ;ZZZ - do this to prune comments
 	
 	; properties for call display and help link
 	Static curIndex := "", fullDescArr := Map(), helpFile := ""
@@ -26,38 +65,6 @@ class oCallTip {
 	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
 }
 
-Global SettingsGUI, AutoCompleteGUI, callTipGui
-
-Global ClassesList, ObjectCreateList, ObjectList ; internal list for keeping track of objects and obj types
-Global MethPropList, UserObjMethProp, FunctionList, CustomFunctions, KeywordList ; internal lists for indicated types
-Global Settings ; user settings object
-Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
-
-; eventually move these to settings GUI
-Global WrapTextChars := 80
-Global AutoCompleteLength := 0			; Auto-Complete won't trigger until X chars have been typed
-Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
-Global maxLines := 20
-
-; OnMessage 0x0100, "WM_KEYDOWN" ; WM_KEYDOWN control
-
-IH := InputHook("V I1","","") ; options , endKeys , matchList
-IH.OnKeyDown := Func("keyPress")
-IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
-IH.Start()
-
-Settings := ReadSettingsFromFile() ; Map
-AddTrayMenu() ; modify tray menu
-
-If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
-	SettingsGUI()
-
-editorCtl() ; check active window and populate oCalLTip properties
-If (oCallTip.progHwnd)
-	ReParseText() ; initial loading of functions, custom functions, objects, if matching window found
-
-return ; end of auto execute section
-
 ; ================================================================
 ; INCLUDES
 ; ================================================================
@@ -70,7 +77,7 @@ return ; end of auto execute section
 #INCLUDE LibV2\_ProcInfo.ahk
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
-#INCLUDE *i LibV2\TheArkive_Debug.ahk
+#INCLUDE *i ..\..\TheArkive_Debug.ahk ;ZZZ - this functions as it should now
 ; #INCLUDE LibV2\_scintilla_class.ahk
 
 ; ================================================================
@@ -186,39 +193,42 @@ F10:: ; list functions - for debugging List_*.txt files only
 	msgbox testList
 return
 
-; F9::
-	; ControlEditPaste "test1234", oCallTip.ctlHwnd
+F9::
+	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
+	LoadKeywordsList()
+	LoadFunctionsList()
 	
-	; oCallTip.test := ["a","b","c"] ; control
-	; oCallTip.test2 := {d:"d1",e:"e2",f:"f3"}
-	; crazyTest := Jxon_Dump2(oCallTip,4)
-	; clipboard := crazyTest
-	; msgbox crazyTest
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
 	
-	; newTest := Jxon_Load2(crazyTest)
-	; testAgain := Jxon_Dump2(newText,4)
-	; clipboard := testAgain
-	; msgbox testAgain
-; return
+	ReParseText()
+return
 
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
-keyPress(iHook, VK, SC) { ; InputHookObject
-	If (IsObject(CallTipGUI) Or GetKeyState("Ctrl"))
+SetupInputHook(){
+	IH := InputHook("V I1","","") ; options , endKeys , matchList
+	IH.OnKeyDown := Func("keyPress")
+	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
+	IH.Start()
+}
+
+keyPress(iHook,VK,SC) { ; InputHookObject
+	If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or IsObject(SettingsGUI))
 		return
 	
 	acON := false ; auto-complete GUI active
-	curPhrase := oCallTip.curPhrase, ctl := ""
+	ctl := ""
 	
 	If (IsObject(AutoCompleteGUI)) {
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
 		If (ctl)
-			acON := true 
+			acON := true
 	}
 	
-	If (!acOn And !Settings["AutoComplete"])
-		return
+	If (!acOn And !Settings["AutoComplete"])  ;??? are you sure that AND is correct? when Settings["AutoComplete"] is false than it should not run, correct? Then I guess the whole acOn handling above and below could be simplified. Need to know what is intended. Should the input hook not only be active when Settings["AutoComplete"] is true?
+		return ;AAA - I think you might be right.  I think "!acON" can be removed actually.  I'll review these questions again and make changes after reading them all first.
 	
 	If (vk = 9) {
 		If (acON) {
@@ -232,7 +242,8 @@ keyPress(iHook, VK, SC) { ; InputHookObject
 			kwSel := ctl.Text
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
-			If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
+			curPhrase := oCallTip.curPhrase
+      If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
 				remainder := StrReplace(kwSel,curPhrase,"",,1)
 				Loop Parse remainder
 					ControlEditPaste A_LoopField, oCallTip.ctlHwnd ; not ideal but works
@@ -247,10 +258,7 @@ keyPress(iHook, VK, SC) { ; InputHookObject
 	
 	iHook.Stop()
 	
-	IH := InputHook("V I1","","")
-	IH.OnKeyDown := Func("keyPress")
-	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
-	IH.Start()
+  SetupInputHook()
 }
 
 ; ======================================================================================
@@ -258,7 +266,7 @@ keyPress(iHook, VK, SC) { ; InputHookObject
 ; ======================================================================================
 LoadAutoComplete() {
 	KeywordFilter := ""
-	editorCtl("")
+	GetEditorHwnd()
 	If (!oCallTip.ctlActive Or !KeywordList.Count) {
 		closeAutoComplete()
 		return
@@ -277,7 +285,11 @@ LoadAutoComplete() {
 		If (StrLen(curPhrase) >= AutoCompleteLength) {
 			KeywordFilter := KwSearchDeep(curPhrase, parentObj)
 			
-			If (KeywordFilter.Count)
+			If (KeywordFilter.Count = 1)
+				For kw in KeywordFilter
+					testWord := kw
+			
+			If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
 				LoadAutoCompleteGUI(KeywordFilter)
 			Else
 				closeAutoComplete()
@@ -377,7 +389,7 @@ debugToolTip() {
 }
 
 ClickCheck(curKey) {
-	editorCtl("click")
+	CheckMouseLocation()
 	If (!oCallTip.ctlActive) {
 		closeCallTip()
 		return

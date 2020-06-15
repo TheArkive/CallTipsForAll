@@ -10,7 +10,7 @@ ReParseText() {
 	If (!oCallTip.progHwnd Or !oCallTip.ctlHwnd)
 		return
 	
-	;show a gui that elements are loaded
+  ;show a gui that elements are loaded
 	g := GuiCreate("-Caption AlwaysOnTop +Owner" oCallTip.progHwnd)
 	g.SetFont("s" Settings["fontSize"], Settings["fontFace"])
 	g.BackColor := Settings["bgColor"]
@@ -23,16 +23,23 @@ ReParseText() {
 }
 
 ReloadElements() {
-	srcFiles := oCallTip.srcFiles
+	srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"]
+	oCallTip.srcFiles := srcFiles
+	hEditorWin := oCallTip.progHwnd
 	
 	Loop Files srcFiles "\*.chm"
 		If (A_Index = 1)
 			oCallTip.helpFile := A_LoopFileFullPath
 	
-	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
-						;ZZZ - Removed LoadKeywordsList() and LoadFunctionsList(), put in auto exec section, added F9 hotkey
+	LoadKeywordsList()    ;??? does this have to be reloaded each time ReParseText() is called? I would it only load once at start or when AHK Version changes
+	LoadFunctionsList()   ;??? does this have to be reloaded each time ReParseText() is called? I would it only load once at start or when AHK Version
+							;AAA - This kind of reload is useful when developing the lang files to be able to quickly test regex on-the-fly.  But this reload only happens at script start, and when user presses CTRL+Space, or when the user changes base file.  For a normal user who may not be editing the lang files, then yes this can be loaded just once at script start.
 	
-	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
+	;get text from current doc in editor
+	curDocText := ControlGetText(oCallTip.ctlHwnd) ; , "ahk_id " hEditorWin
+
+  ;or use content of base file and all its includes instead
+  If (FileExist(Settings["BaseFile"])) {
 		For i, File in GetIncludes()
 			tmp .= FileRead(File) "`r`n`r`n" ; load all includes into one var
 		
@@ -40,12 +47,15 @@ ReloadElements() {
 			curDocText := tmp
 	}
 	
-	oCallTip.docTextNoStr := StringOutline(curDocText) ;ZZZ this should only be done once per load/reload (for full text + includes)
-							;ZZZ - Removed LoadMethPropList() and LoadObjectCreateList(), put in auto exec section, added F9 hotkey
 	CustomFunctions := GetCustomFunctions(curDocText)
 	ClassesList := GetClasses(curDocText)
 	ScanClasses(curDocText)
+
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
+
 	ObjectList := CreateObjList(curDocText)
+	; UserObjMethProp := GetUserObjMethProp(curDocText) ; gotta think about this one some more
 }
 
 ; ==================================================
@@ -56,18 +66,25 @@ GetEditorHwnd() {
 	If (!oCallTip.ctlConfirmed) { ; should only be run at script start, generally... cont
 		winList := WinGetList("ahk_exe " Settings["ProgExe"])
 		
-		Loop winList.Length { ;ZZZ - you didn't askf or this, but this is to filter out the FIND window, or any other child window if active in text editor
-			if (oCallTip.ctlConfirmed)
-				break ;ZZZ - no need to keep looking after control is found
-			
+		Loop winList.Length {
 			curHwnd := winList[A_Index]
 			ctlArr := WinGetControls("ahk_id " curHwnd)
 			If (!ctlArr)
 				Break
 			
 			ClassNNcomp := Settings["ProgClassNN"] . 1
-			Loop ctlArr.Length {
-				If (ClassNNcomp = ctlArr[A_Index]) {
+      Loop ctlArr.Length {
+				If (ClassNNcomp = ctlArr[A_Index]) {                      ;??? this loop just check if the window has the specified ctrl, isn't it easier to just to get the control directly from the gui
+																		;AAA - actually you are right.  I was trying to use a more broad approach, but now, as you can see below, I'm recording the main control HWND on startup, so there isn't much need for this loop really.
+																		
+					curDocText := ControlGetText(ClassNNcomp,"ahk_id " curHwnd)  ;??? what are you using the Text for? The following regex doesn't seem to do anything. Or is this supposed to check if is is not an empty string? Then you could just check "If (!curDocText)"
+					;AAA - oops, forgot to take that out!
+					
+					
+					; regex := "Search .+? \([\d]+ hits in [\d]+ files\)"   ;??? this is never used, what is it for?
+					; If (!RegExMatch(curDocText,""))                       ;??? regex without a needle doesn't do anything, what is it's purpose?
+						; Continue
+																			;AAA - I found that when you choose the "Find All in All Opened Documents" button in Notepad++, the scintilla1 control changes to scintilla2, and the scintilla1 control is a panel that lists search results in all open files in Notepad++.  I struggled with this for a bit before I decided that the user must run this script immedaitely after starting a fresh session on Notepad++.  If the user uses this button and THEN starts this script, the scintilla1 control is the default to be found, and in this case is the wrong control.  I've been trying to figure out how to ensure the proper control is always detected, but I'm not so sure this is easily possible.
 					ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " curHwnd)
 					oCallTip.ctlHwnd := ctlHwnd
 					oCallTip.progHwnd := curHwnd
@@ -75,7 +92,7 @@ GetEditorHwnd() {
 					oCallTip.ctlConfirmed := true
 					
 					Break  ;??? - this will only break the first loop, hence it will find other instances of the editor and will use the last one found.
-				} ;ZZZ - i tried addressing a proper loop break above
+				}			;AAA - yah, since i settled on requiring the user to start NPP fresh before starting the script, at least one of these loops isn't necessary
 			}
 		}
 	} 
@@ -83,7 +100,7 @@ GetEditorHwnd() {
 		MsgBox "Editor control not found!"
 }  
   
-CheckMouseLocation() { ;ZZZ - I like how you split these up, thanks!  This works better and makes more sense.
+CheckMouseLocation() {
   MouseGetPos  x,y,hWnd, ctlHwndCheck, 2 ;ZZZ - it's better to use HWND directly - i get errors on my end
   ; ctlHwndCheck := ControlGetHwnd(ClassNN,"ahk_id " hWnd) ;ZZZ - it's better to use HWND directly - i get errors on my end
   
@@ -112,7 +129,7 @@ LoadKeywordsList() {
 		Loop Parse curText, "`n", "`r"
 			KeywordList[A_LoopField] := "keyword"
 	}
-	KeywordList.Has("") ? KeywordList.Delete("") : ""
+	KeywordList.Delete("")
 }
 ; ==================================================
 ; Create function and command list for call tips / and classes?
@@ -128,30 +145,30 @@ LoadFunctionsList() {
 		curList := FileRead(fileName)
 		curList := Trim(curList,"`r`n") entryEnd
 
-    If (curFileType = "Regex") {
-      Loop Parse curList, "`n", "`r"
-      {
-        Switch A_Index	;AAA - LOL wasn't thinking of that at the time, but yah you are right!
-        {                     ;??? this could be further simplified if the lines in the regex file start with the right property name
-          case 1:  oCallTip.funcStart            := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 2:  oCallTip.funcEnd              := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 3:  oCallTip.funcReturn           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 4:  oCallTip.classStart           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 5:  oCallTip.classEnd             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 6:  oCallTip.classMethodStart     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 7:  oCallTip.classMethodEnd       := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 8:  oCallTip.classMethodOneLine   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 9:  oCallTip.classPropertyStart   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 10: oCallTip.classPropertyEnd     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 11: oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 12: oCallTip.classSmallPropExt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 13: oCallTip.classSmallPropInt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 14: oCallTip.classInstance        := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 15: oCallTip.includes             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-        }      ;??? UserObjMembers from file is left out, why?
-      }			;AAA - i ended up dropping this property because it pertained to making objects "explorable", which I didn't actually come up with a solution for
-      Continue ;jump to next file
-    }
+		If (curFileType = "Regex") {
+		  Loop Parse curList, "`n", "`r"
+		  {
+			Switch A_Index	;AAA - LOL wasn't thinking of that at the time, but yah you are right!
+			{                     ;??? this could be further simplified if the lines in the regex file start with the right property name
+			  case 1:  oCallTip.funcStart            := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 2:  oCallTip.funcEnd              := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 3:  oCallTip.funcReturn           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 4:  oCallTip.classStart           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 5:  oCallTip.classEnd             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 6:  oCallTip.classMethodStart     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 7:  oCallTip.classMethodEnd       := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 8:  oCallTip.classMethodOneLine   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 9:  oCallTip.classPropertyStart   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 10: oCallTip.classPropertyEnd     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 11: oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 12: oCallTip.classSmallPropExt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 13: oCallTip.classSmallPropInt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 14: oCallTip.classInstance        := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			  case 15: oCallTip.includes             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+			}      ;??? UserObjMembers from file is left out, why?
+		  }			;AAA - i ended up dropping this property because it pertained to making objects "explorable", which I didn't actually come up with a solution for
+		  Continue ;jump to next file
+		}
 
 		curPos := 1, subStrEnd := 1
 		len := StrLen(curList)
@@ -162,6 +179,7 @@ LoadFunctionsList() {
 			curSubStr := SubStr(curList,curPos,curLen)
 			curPos := subStrEnd + StrLen(entryEnd)              ;prepare for next iteration
       
+
 			funcArr := StrSplit(curSubStr,Chr(96))
 
 			curObj := Map()
@@ -170,20 +188,45 @@ LoadFunctionsList() {
 			{
 				textblock := Trim(funcDef,"`r`n")
 				If (i = 1) {
-					tmp := StrSplit(textblock,"`n", "`r")
-					curObj["type"] := tmp[1]  ; "function" or "command" ... mostly
-					funcName := tmp[2]
-				} Else {
-					LastBlock := textblock
-					(A_Index < funcArr.Length) ? DescArr.Push(LastBlock) : ""
+				  tmp := StrSplit(textblock,"`n", "`r")
+				  curObj["type"] := tmp[1]  ; "function" or "command"
+				  funcName := tmp[2] ;ZZZ - must use arr[N] in AHK2 for Array type
+				} Else { ;ZZZ capture middle substrings, and omit the last one as help link
+					LastBlock := textblock ;ZZZ - set this first
+					(A_Index < funcArr.Length) ? DescArr.Push(textblock) : "" ;ZZZ - omit last item / AHK2 requires full [ a ? b : c ]
 				}
+					
 			}		
 			curObj["desc"]     := DescArr
 			curObj["helpLink"] := LastBlock
 
 			FunctionList[funcName] := curObj
 			KeywordList[funcName] := "function"
+				curObj := ""
+
+      funcArr := StrSplit(curSubStr,Chr(96))  ; Chr(96) = `
+      
+      curObj := Map()
+      DescArr := Array()
+      For i, funcDef in funcArr
+      {
+        textblock := Trim(funcDef,"`r`n")
+        If (i = 1) {
+          tmp := StrSplit(textblock,"`n", "`r")
+          curObj["type"] := tmp.1  ; "function" or "command"
+          funcName := tmp.2
+        } Else {
+          LastBlock ? DescArr.Push(LastBlock)
+          LastBlock := textblock
+        }
+      }		
+      curObj["desc"]     := DescArr
+      curObj["helpLink"] := LastBlock
+
+      FunctionList[funcName] := curObj
+      KeywordList[funcName] := "function"
 			curObj := ""
+
 		}
 	}
 }
@@ -252,12 +295,13 @@ LoadMethPropList() {
 				objDescArr := Array(), methPropArr := Array(), curHelpLink := ""
 				Loop i {
 					t := Trim(objMatchArr[A_Index],"`r`n")
-					If (A_Index = 1)
+					If (A_Index = 1) {
 						objListPre := t, objMatchText .= objListPre "`r`n"
-					Else If (A_Index > 1 And A_Index < i)
+					} Else If (A_Index > 1 And A_Index < i) {
 						objDescArr.Push(t)
-					Else If (A_Index = i)
+					} Else If (A_Index = i) {
 						curHelpLink := t
+					}
 				}
 				
 				Loop Parse objListPre, "`n", "`r" ; create list of defined objTypes
@@ -374,9 +418,9 @@ LoadMethPropList() {
 ; MsgBox testList
 
 ; ==================================================
-; Generates a hierarchical list of object match strings to be executed in a specific order.
+; Generates a heirarchical list of object match strings to be executed in a specific order.
 ; Execution is done by CreateObjList()
-; Hierarchy:    List
+; Heirarchy:    List
 ;                   Level / LevelObj
 ;                       Label / LabelObj
 ;                           Member: regex  (string - the regex string)
@@ -611,80 +655,54 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 ; Creates a list of user defined functions.  The call tip only shows FuncName(params...) and
 ; it is not currently possible to add extra help in the call tip for custom functions.
 ; ================================================================
-
-GetCustomFunctions(curDocText) { ;ZZZ - this should work better
-	curDocTextNoStr := oCallTip.docTextNoStr
+GetCustomFunctions(curDocText) {
 	funcList := Map(), curPos1 := 1
-	
-	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcStart,match,curPos1)) {
-		funcName := "", bodyText := ""
+	While (result := RegExMatch(curDocText,"mi)" oCallTip.funcStart,match,curPos1)) { ; funcBeginStr is defined in List_Functions.txt
 		If (IsObject(match) And match.Count()) {
-			curPos1 := match.Pos(0)
+			curPos1 := match.Pos(2) + match.Len(2)
+			r2 := RegExMatch(curDocText,"i)" oCallTip.funcEnd,match2,curPos1)
 			funcName := match.Value(1)
-			params := RegExReplace(match.Value(2),"`t|`r|`n","")
-			If (funcName = "")
-				Continue
+			params := match.Value(2)
+			body := Trim(SubStr(curDocText,curPos1,match2.Pos(1)-curPos1+1)," `t`r`n")
 			
-			curPos2 := curPos1
-			While (r2 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcEnd,match2,curPos2)) {
-				bodyText := SubStr(curDocTextNoStr,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-				curPos2 := match2.Pos(0) + match2.Len(0)
-				w := StrReplace(StrReplace(bodyText,"{","{",lB),"}","}",rB)
-				
-				If (lB = rB) {
-					bodyText := SubStr(curDocText,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText)
-					curPos1 := curPos2
-					Break
-				}
+			if (funcName != "") {
+				funcBody := curDocLine
+				obj := Map("type","CustomFunction","desc",funcName params,"funcBody",body)
+				funcList[funcName] := obj
 			}
 			
-			returnObj := Map(), curPos3 := 1
-			While (r3 := RegExMatch(bodyText,"mi)" oCallTip.funcReturn,match3,curPos3)) {
+			returnObj := Map(), curPos2 := 1
+			While (r3 := RegExMatch(body,"mi)" oCallTip.funcReturn,match3,curPos2)) {
 				If (match3.Count()) {
 					cMatch := match3.Value(1)
 					returnObj[cMatch] := match3.Pos(1)
 				}
-				curPos3 := match3.Pos(1) + match3.Len(1)
+				curPos2 := match3.Pos(1) + match3.Len(1)
 			}
 			
 			If (returnObj.Count > 0)
 				obj["return"] := returnObj ; attach returnObj list of "return" lines if exist
-			
-			funcList[funcName] := obj
 		}
+		
+		funcBody := "", funcName := "", match := "", params := "", returnObj := ""
 	}
 	
+	curDocText := "", obj := ""
 	return funcList
 }
 
 GetClasses(curDocText) {
-	curDocTextNoStr := oCallTip.docTextNoStr ; pull this from oCallTip so it only has to be done once
-	classList := Map(), curPos1 := 1 ;??? oCallTip.classStart is not robust, see comments on function needle   ;ZZZ - do you mainly mean that it doesn't include #@$ ?  I thought class parsing was easier to write (imho).  Can classes include #@$ ?
+	curDocTextNoStr := StringOutline(curDocText)
+	classList := Map(), curPos1 := 1
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classStart,match,curPos1)) { ; parse classes
 		If (IsObject(match) And match.Count()) {
 			className := match.Value(1)
-			curPos1 := match.Pos(1)
-			
-			If (className = "")
-				Continue
-			
 			extends := match.Value(3)
 			classShowStyle := Trim(match.Value(4)," `t;")
 			
-			curPos12 := curPos1 ;ZZZ - now closing brace can be caught even if not using proper indentation
-			While (r12 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classEnd,match12,curPos12)) {
-				classBody := SubStr(curDocTextNoStr,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
-				curPos12 := match12.Pos(0) + match12.Len(0)
-				w := StrReplace(StrReplace(classBody,"{","{",lB),"}","}",rB)
-				
-				If (lB = rB) {
-					classBody := SubStr(curDocText,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
-					curPos1 := curPos12
-					Break
-				}
-			}
-			
+			r2 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classEnd,match2,match.Pos(0)) ; curPos1
+			curPos1 := match2.Pos(0) + match2.Len(0)
+			classBody := SubStr(curDocText,match.Pos(0),match2.Pos(0)+match2.Len(0)-match.Pos(0))
 			classBodyNoStr := StringOutline(classBody)
 			
 			memberList := Map(), curPos2 := 1
@@ -692,11 +710,11 @@ GetClasses(curDocText) {
 				isStatic := match3.Value(1) ? true : false
 				memberName := match3.Value(2)
 				memberParams := match3.Value(3)
-				showStyle := Trim(match3.Value(4)," `t;") ;ZZZ - this is temporarily broken
+				showStyle := Trim(match3.Value(4)," `t;")
 				curPos2 := match3.Pos(0)
 				
 				While (r5 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassMethodEnd,match5,curPos2)) {
-					methBody .= SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2) ; this needs to be fixed, should be parsing the "NoStr" var
+					methBody .= SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2)
 					curPos2 := match5.Pos(0) + match5.Len(0)
 					w := StrReplace(StrReplace(methBody,"{","{",lB),"}","}",rB)
 					
@@ -785,6 +803,8 @@ GetClasses(curDocText) {
 				classBodyRemain := StrReplace(classBodyRemain,memBody)
 			}
 			
+			; SmallPropExt := oCallTip.classSmallPropExt
+			
 			Loop Parse classBodyRemain, "`n", "`r"
 			{
 				curLine := Trim(A_LoopField," `t")
@@ -802,9 +822,11 @@ GetClasses(curDocText) {
 				}
 			}
 			
-			obj := Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends)
-			obj["members"] := memberList
-			classList[className] := obj
+			if (className != "") {
+				obj := Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends)
+				obj["members"] := memberList
+				classList[className] := obj
+			}
 		}
 		
 		funcBody := "", funcName := "", match := "", params := "", returnObj := "", className := ""
@@ -816,7 +838,7 @@ GetClasses(curDocText) {
 
 ScanClasses(curDocText) { ; scan doc for class instances
 	For className, obj in ClassesList {
-		curPos := 1 ;??? oCallTip.classInstance is most likely not robust enough   ;ZZZ - do you mean not accounting for #$@ in class names?
+		curPos := 1
 		While (RegExMatch(curDocText,"mi)" StrReplace(oCallTip.classInstance,"{Class}",className),match,curPos)) {
 			instName := match.Value(1)
 			params := match.Value(2)
@@ -826,36 +848,73 @@ ScanClasses(curDocText) { ; scan doc for class instances
 	}
 }
 
-GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you said they shouldn't have to be #INCLUDED, but...
-	baseFile := Settings["BaseFile"] ;ZZZ - this still has to be dependent on having a "BaseFile" defined of course.
-	curDocText := FileRead(baseFile) ;ZZZ - So there are several changes that need to happen here, but I'll address the other smaller ones first.
-	curDocArr := StrSplit(curDocText,"`n","`r") ;ZZZ - I think i can do more good with fixing the function parser first, that one is more clear in my head.
+GetIncludes() {
+	baseFile := Settings["BaseFile"]
+	curDocText := FileRead(baseFile)
 	
 	SplitPath baseFile, , baseFolderP
 	curBaseFolder := baseFolderP
 	
-	includes := oCallTip.includes, includeArr := Array() ;ZZZ - includes regex are not being loaded, gotta check that out now before fixing GetCustomFunctions()
-	Loop curDocArr.Length {
-		curLine := curDocArr[A_Index]
-		If (r1 := RegExMatch(curLine,"mi)" includes,match))
+	includes := oCallTip.includes, includeArr := Array()
+	For i, curLine in StrSplit(curDocText,"`n","`r") {
+		If (RegExMatch(curLine,"mi)" includes,match))
+
+	;get lines of includes
+  includeArr := Array()
+	For i, curLine in StrSplit(curDocText,"`n","`r") {
+		If (RegExMatch(curLine,"mi)" oCallTip.includes ,match))
+
 			includeArr.Push(match.Value(1))
-	}
-	curDocArr := "" ; free memory
+  }
+	
+	; Loop includeArr.Length
+		; firstList .= includeArr[A_Index] "`r`n`r`n"
+	; msgbox "baseFolder: " baseFolderP "`r`n`r`n" firstList
 	
 	FinalArr := Array(), FinalArr.Push(baseFile)
-	Loop includeArr.Length { ;??? what is "curInc = curInclude" checking? curInc is the line of code including "#Include". Hence it will never be equal
-							;??? isn't "OR includeExist" missing, because if it is a file that exists it is most likely not a lib
-							;??? the benefit of libraries is that one doesn't have to include them. It is sufficient to just use a function. AHK will search for these files in these 3 locations. Thus these should be checked anyway at start of script any could be ignored afterwards.
-		curInc := includeArr[A_Index]
-		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")","")) ;ZZZ - curInc won't have "#Include", this was concatenated with "," in the line above.
-		curInclude := RegExReplace(curInc,"<|>","")
-		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP) ;??? all other built-in variables are not handled, why? I have a small function for it in ahk project manager (ReplaceVars())    ;ZZZ - we should include your function!
+	For i, curInc in includeArr {
+		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))  ; Chr(34) = "   ;??? The #Include(Again)?|\*i could have been removed by the needle in oCallTip.includes, e.g. (not tested) ^#Include(Again)?[ \t]+(\*i )?"(?P<File>.*?)([ \t]+;.*)?$  should return Match.File as the file and strip off any comment
+                                                                                                     ;??? When will there be a " in the file name
+		curInclude := RegExReplace(curInc,"<|>","")                                                      
+		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP)
 		
-		includeExist := FileExist(curInclude)  ;??? I'm not sure if this captures a pure/relative dir name , e.g. "#INCLUDE LibV2"
-		isDir := InStr(includeExist,"D") ? true : false ;ZZZ - relative dir #INCLUDEs are handled with f4 below.
-		isFile := (includeExist And !InStr(includeExist,"D")) ? true : false
+		If (SubStr(curInclude,1,3) = "..\") { ; processing includes starting with ..\   ;??? But only if it has only one ..\, not for multiple. But why, baseFolderP\..\..\otherDir\file.txt should work anyway; this could be further improved, even made recursive to find a "clean" path
+			repInclude := SubStr(curInclude,4)
+			baseArr := StrSplit(baseFolderP,"\")
+			c := baseArr.Length - 1
+			Loop c
+				fullPath .= baseArr[A_Index] "\"
+			fullPath := Trim(fullPath,"\")
+			If (FileExist(fullPath "\" repInclude)) {
+				FinalArr.Push(fullPath "\" repInclude)
+				continue
+			}
+		}
 		
-		If (isDir) { ;ZZZ - we can probably do case here?
+		stdLib := (curInc = curInclude Or InStr(FileExist(curInclude),"D")) ? false : true
+		includeExist := FileExist(curInclude)
+		isDir := InStr(includeExist,"D") ? true : false
+		isFile := includeExist ? true : false
+		
+		If (stdLib) { ; check stdLib locations
+			f1 := baseFolderP "\Lib\" curInclude, f1 := findFile(f1)
+			If (f1) {
+				FinalArr.Push(f1)
+				continue
+			}
+			f2 := A_MyDocuments "\AutoHotkey\Lib\" curInclude, f2 := findFile(f2)
+			If (f2) {
+				FinalArr.Push(f2)
+				continue
+			}
+			f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\" curInclude, f3 := findFile(f3)
+			If (f3) {
+				FinalArr.Push(f3)
+				continue
+			}
+		}
+		
+		If (isDir) {
 			curBaseFolder := curInclude
 			continue
 		}
@@ -865,34 +924,23 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 			continue
 		}
 		
-		f4 := findFile(curBaseFolder "\" curInclude) ;ZZZ - should handle all relative located files.
+		f4 := findFile(curBaseFolder "\" curInclude)
 		If (f4) {
 			FinalArr.Push(f4)
 			continue
 		}
 	}
 	
-	
-	f1 := baseFolderP "\Lib\*" ;??? - simplified handling of 3 lib locations   ;ZZZ - yes finally simplified!
-	Loop Files f1
-		FinalArr.Push(A_LoopFileFullPath)
-	
-	f2 := A_MyDocuments "\AutoHotkey\Lib\*"
-	Loop Files f2
-		FinalArr.Push(A_LoopFileFullPath)
-	
-	;??? This will not work on my (toralf) machine, because I have not entry in the registry for AHK.
-	;ZZZ - makes sense, but should still be checked i think.  I'm not aware of any var that shows the script can be aware of the location of AutoHotkey.exe without the reg entry.
-	f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\*"
-	Loop Files f3
-		FinalArr.Push(A_LoopFileFullPath)
+	; Loop finalArr.Length
+		; finalList .= finalArr[A_Index] "`r`n`r`n"
+	; msgbox finalList
 	
 	return finalArr
 }
 
 findFile(sInFile) {
 	result := ""
-	Loop Files sInFile ".*" ;??? the dot might be too much, shouldn't it be just "*"; then the loop following If is not needed
+	Loop Files sInFile ".*" ; do this for <libraries> without extension
 	{
 		If (A_LoopFileName) {
 			result := A_LoopFileFullPath
@@ -900,9 +948,14 @@ findFile(sInFile) {
 		}
 	}
 	
-	If (!result)
-		result := !FileExist(sInFile) ? "" : sInFile ;ZZZ - simplified
+	If (!result And FileExist(sInFile)) {
+		result := sInFile
+	}
 	
 	return result
 }
-;ZZZ - good point, but exact file match is handled at the bottom of the function.  This whole thing is trying to account for includes using <lib> that excludes the .ahk extension, while also trying to capture other includes (perhaps in other languages).  Other languags that i have seen (I only glanced honestly) seem to mostly always have the full file name spelled out.  This can probably be improved, i agree.  Or i need to give up on other langs and just focus on AHK :p
+
+GetUserObjMethProp(curDocText) {
+	curPos := 1
+	; While (r1 := RegExMatch(curDocText,"mi)" oCallTip.userObjMembers
+}
