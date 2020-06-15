@@ -144,19 +144,13 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 	static q := Chr(34)
 	
 	if IsObject(obj) {
-		If (A_AhkVersion < 2) {							; ahk v1
-			; is_array := 0
-			; for k in obj
-				; is_array := k == A_Index
-			; until !is_array
-			; memType := is_array ? "Array" : "Map"
-		} Else {										; ahk v2
-			memType := Type(obj) ; Type.Call(obj)
-			is_array := (memType = "Array") ? 1 : 0
-		}
+		memType := Type(obj) ; Type.Call(obj)
+		is_array := (memType = "Array") ? 1 : 0
+		
+		msgbox "type: " memType
 		
 		if (memType ? (memType != "Object" And memType != "Map" And memType != "Array") : (ObjGetCapacity(obj) == ""))
-			throw Exception("Object type not supported.", -1, Format("<Object at 0x{:p}>", &obj))
+			throw Exception("Object type not supported.", -1, Format("<Object at 0x{:p}>", ObjPtr(obj)))
 		
 		static integer := "integer"
 		if indent is integer ; %integer%
@@ -164,28 +158,19 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 			if (indent < 0)
 				throw Exception("Indent parameter must be a postive integer.", -1, indent)
 			spaces := indent, indent := ""
-			If (A_AhkVersion < 2) {
-				Loop %spaces% ; ===> changed
-					indent .= " "
-			} Else {
-				Loop spaces ; ===> changed
-					indent .= " "
-			}
+			
+			Loop spaces ; ===> changed
+				indent .= " "
 		}
 		indt := ""
-		If (A_AhkVersion < 2) {
-			lpCount := indent ? lvl : 0
-			Loop %lpCount%
-				indt .= indent
-		} Else {
-			Loop indent ? lvl : 0
-				indt .= indent
-		}
+		
+		Loop indent ? lvl : 0
+			indt .= indent
 
 		lvl += 1, out := "" ; Make #Warn happy
 		for k, v in obj {
 			if IsObject(k) || (k == "")
-				throw Exception("Invalid object key.", -1, k ? Format("<Object at 0x{:p}>", &obj) : "<blank>")
+				throw Exception("Invalid object key.", -1, k ? Format("<Object at 0x{:p}>", ObjPtr(obj)) : "<blank>")
 			
 			if !is_array ;// key ; ObjGetCapacity([k], 1)
 				out .= (ObjGetCapacity([k]) ? Jxon_Dump(k) : q k q) (indent ? ": " : ":") ; token + padding
