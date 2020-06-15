@@ -32,7 +32,7 @@ Focus
 
 Method
 Move
-`Move(Pos, [Draw := false])
+`Move(x,y,w,h)
 `/docs/objects/GuiControl.htm#[MemberName]
 
 
@@ -57,6 +57,18 @@ OnNotify
 Method
 Opt
 `Opt(Options)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Pos(x,y,w,h)
+`GuiCtlObj.Pos (Obj)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Redraw
+`GuiCtrl.Redraw()
 `/docs/objects/GuiControl.htm#[MemberName]
 
 
@@ -135,10 +147,4 @@ Visible
 Property
 Gui
 `GuiCtlObj.Gui (Obj)
-`/docs/objects/GuiControl.htm#[MemberName]
-
-
-Property
-Pos
-`GuiCtlObj.Pos (Obj)
 `/docs/objects/GuiControl.htm#[MemberName]
