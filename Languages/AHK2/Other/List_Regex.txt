@@ -1,8 +1,8 @@
-FunctionStart: ^([\w]+)(\x28.*?\x29)[ \t\r\n]*\{
-FunctionEnd: \r?\n(\})
+FunctionStart: ^([\w]+)(\x28[^\x29]*\x29)[ \t\r\n]*\{
+FunctionEnd: (\})
 FunctionReturn: ^[ \t]*return[ \t]+([\w]+)
 ClassStart: ^class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{[ \t]*(\;.*)?
-ClassEnd: \r?\n(\})
+ClassEnd: (\})
 MethodStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t\r\n]*\{[ \t]*(\;.*)?
 MethodEnd: \}
 MethodOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t]*\=\>[^\;\r\n]*(\;.*)?

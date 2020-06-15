@@ -777,7 +777,7 @@ Goto
 
 Command
 GroupActivate
-`GroupActivate GroupName [, Mode]
+`HWND := GroupActivate(GroupName [, Mode])
 `/docs/commands/GroupActivate.htm
 
 
@@ -837,10 +837,7 @@ HasProp
 
 Command
 Hotkey
-`
-Hotkey KeyName [, Label, Options]    |or|    Hotkey "If", "Expression"
-Hotkey  [, WinTitle, WinText]        |  |    Hotkey "If", FunctionObject
-Hotkey "If"                          |  |    Hotkey "IfWinActive/Exist" [, WinTitle, WinText]
+`Hotkey KeyName [, Callback, Options]
 `/docs/commands/Hotkey.htm
 
 
@@ -852,6 +849,30 @@ OldValue := Hotstring("" [, NewValue])           |  |    OldValue := Hotstring("
 OldValue := Hotstring("" [, NewValue])           |  |    OldValue := Hotstring("MouseReset" [, NewValue])
 Hotstring "Reset"                                |  |    Hotstring NewOptions
 `/docs/commands/Hotstring.htm
+
+
+Command
+HotIfWinActive
+`HotIfWinActive [WinTitle, WinText]
+`/docs/commands/HotIf.htm#IfWin
+
+
+Command
+HotIfWinExist
+`HotIfWinExist [WinTitle, WinText]
+`/docs/commands/HotIf.htm#IfWin
+
+
+Command
+HotIfWinNotActive
+`HotIfWinNotActive [WinTitle, WinText]
+`/docs/commands/HotIf.htm#IfWin
+
+
+Command
+HotIfWinNotExist
+`HotIfWinNotExist [WinTitle, WinText]
+`/docs/commands/HotIf.htm#IfWin
 
 
 Flow
@@ -887,18 +908,6 @@ Command
 IniWrite
 `IniWrite Value, Filename, Section, Key    or    IniWrite Pairs, Filename, Section
 `/docs/commands/IniWrite.htm
-
-
-Function
-Input
-`Text := Input([Options, EndKeys, MatchList]) 
-`/docs/commands/Input.htm
-
-
-Command
-InputEnd
-`InputEnd
-`/docs/commands/Input.htm#InputEnd
 
 
 Function
@@ -1150,7 +1159,7 @@ MenuSelect
 
 Function
 MonitorGet
-`IsExisting := MonitorGet([N, Left, Top, Right, Bottom])
+`ActualN := MonitorGet([N, Left, Top, Right, Bottom])
 `/docs/commands/MonitorGet.htm
 
 
@@ -1174,7 +1183,7 @@ MonitorGetPrimary
 
 Function
 MonitorGetWorkArea
-`IsExisting := MonitorGetWorkArea([N, Left, Top, Right, Bottom])
+`ActualN := MonitorGetWorkArea([N, Left, Top, Right, Bottom])
 `/docs/commands/MonitorGetWorkArea.htm
 
 
@@ -1291,7 +1300,7 @@ PixelGetColor
 
 Command
 PixelSearch
-`PixelSearch OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Mode]
+`PixelSearch OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation]
 `/docs/commands/PixelSearch.htm
 
 
@@ -1797,9 +1806,9 @@ Until
 
 
 Function
-VarSetCapacity
-GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity, FillByte])
-`/docs/commands/VarSetCapacity.htm
+VarSetStrCapacity
+GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity])
+`/docs/commands/VarSetStrCapacity.htm
 
 
 Flow
@@ -2135,15 +2144,15 @@ Command
 
 
 Command
-#If
-`#If [Expression]
-`/docs/commands/_If.htm
+#HotIf
+`#HotIf [Expression]
+`/docs/commands/_HotIf.htm
 
 
 Command
-#IfTimeout
-`#IfTimeout Timeout
-`/docs/commands/_IfTimeout.htm
+#HotIfTimeout
+`#HotIfTimeout Timeout
+`/docs/commands/_HotIfTimeout.htm
 
 
 Command
@@ -2253,6 +2262,36 @@ Command
 #WinActivateForce
 `#WinActivateForce
 `/docs/commands/_WinActivateForce.htm
+
+
+Function
+StrPtr
+`Address := StrPtr(var)
+`/docs/commands/StrPtr.htm
+
+
+Function
+ObjPtr
+`Address := (myObject)
+`/docs/Objects.htm#ObjPtr
+
+
+Function
+ObjPtrAddRef
+`address := ObjPtrAddRef(myObject)
+`/docs/Objects.htm#ObjPtr
+
+
+Function
+ObjFromPtr
+`myObject := ObjFromPtr(address)
+`/docs/Objects.htm#ObjPtr
+
+
+Function
+ObjFromPtrAddRef
+`myObject := ObjFromPtrAddRef(address)
+`/docs/Objects.htm#ObjPtr
 
 
 Function

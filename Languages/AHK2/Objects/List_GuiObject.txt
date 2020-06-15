@@ -23,6 +23,18 @@ Flash
 
 
 Method
+GetClientPos(x,y,w,h)
+`GuiObj.ClientPos (Obj)
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+GetPos(x,y,w,h)
+`GuiObj.Pos (Obj)
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
 Hide
 `GuiObj.Hide()
 `/docs/objects/Gui.htm#[MemberName]
@@ -113,12 +125,6 @@ Title
 
 
 Property
-ClientPos
-`GuiObj.ClientPos (Obj)
-`/docs/objects/Gui.htm#[MemberName]
-
-
-Property
 FocusedCtrl
 `GuiObj.FocusedCtrl (Obj)
 `/docs/objects/Gui.htm#[MemberName]
@@ -127,12 +133,6 @@ FocusedCtrl
 Property
 MenuBar
 `GuiObj.MenuBar (Obj)
-`/docs/objects/Gui.htm#[MemberName]
-
-
-Property
-Pos
-`GuiObj.Pos (Obj)
 `/docs/objects/Gui.htm#[MemberName]
 
 
