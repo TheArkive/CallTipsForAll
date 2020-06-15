@@ -91,16 +91,19 @@ class oCallTip {
 ^!Space::LoadAutoComplete()
 
 ^+F12:: ; close CallTipsForAll
+{
 	MsgBox "Closing Call Tips For All!"
 	ExitApp
-Return
+}
 
 ~ESC::
+{
 	closeCallTip()
 	closeAutoComplete()
-return
+}
 
 Up:: ; scroll when multiple records are available for call tips
+{
 	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
 	If (oCallTip.curIndex And (oCallTip.curIndex-1 != 0)) {
 		oCallTip.curIndex--
@@ -112,9 +115,10 @@ Up:: ; scroll when multiple records are available for call tips
 			AutoCompleteGUI["KwList"].Focus()
 		SendInput "{Up}"
 	} Else SendInput "{Up}"
-return
+}
 
 Down:: ; scroll when multiple records are available for call tips
+{
 	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
 	If (oCallTip.curIndex And (oCallTip.curIndex+1) <= i) {
 		oCallTip.curIndex++
@@ -127,27 +131,31 @@ Down:: ; scroll when multiple records are available for call tips
 			AutoCompleteGUI["KwList"].Focus()
 		SendInput "{Down}"
 	} Else SendInput "{Down}"
-return
+}
 
 ~LButton::ClickCheck(A_ThisHotkey)
 ~MButton::
+{
 	closeCallTip()
 	closeAutoComplete()
-return
+}
 
 ^!w:: ; hotkey to wrap text in clipboard
+{
 	newText := WrapText(WrapTextChars)
 	If (newText)
 		clipboard := newText
-return
+}
 
 ^!u:: ; hotkey to unwrap text in clipboard
+{
 	newText := unwrapText()
 	If (newText)
 		clipboard := newText
-return
+}
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
+{
 	testList := ""
 	For curName, obj in CustomFunctions {
 		desc := obj["desc"]
@@ -169,9 +177,10 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 	For className, obj in ClassesList
 		testList .= className " / " obj["type"] "`r`n"
 	MsgBox "Classes loaded:`r`n`r`n" testList
-return
+}
 
 F10:: ; list functions - for debugging List_*.txt files only
+{
 	; testList := ""
 	; For curName, obj in FunctionList {
 		; if (curName = "msgbox") {
@@ -191,9 +200,10 @@ F10:: ; list functions - for debugging List_*.txt files only
 		}
 	}
 	msgbox testList
-return
+}
 
 F9::
+{
 	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	LoadKeywordsList()
 	LoadFunctionsList()
@@ -202,7 +212,7 @@ F9::
 	LoadObjectCreateList(objMatchText)
 	
 	ReParseText()
-return
+}
 
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
