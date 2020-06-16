@@ -8,10 +8,21 @@
 ;       files to include
 ; ================================================================================================
 /*
+Known Issues
+- Return statements in multi-line statements are not recognized. (most likely the last of the statements, but AHK doesn't care)
+- function/method parameter with default values are also captured as variables with assignment
+- HotStrings: escaped characters are not escaped in code explorer
+- HotKeys: DLLCalls on same line will not be shown, but it should be rare
+           capture var assignments or function calls (etc) on same line
+           
+           
 Potential Enhancements 
 - detect Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
   with default value as "AutoExec" till first Return outside of function/class defs
-  - Return can be inside a multiline statement (mostlikely the last, but AHK doesn't care)
+  WithinName will become a stack (n array with pop() and push())
+  multiple labels/hotkeys/hotstrings could share the same Return. What value has WithinName for the statements in the block? first/last/stacked/all combined to one?
+  "combined to one" sounds possible, also for labels within functions. when a label is detected instead of push() the label gets appended to MaxIndex(). But then it also needs to be removed instead of just pop().
+  How many pop() when one Return is found? to know that the position of Return within blocks needs to be known, e.g. the code after a Return within an IF statement is still within the same function/label. And if not burried in blocks how many of multiple labels/hotkeys/hotstrings need to be poped? To allow this the type of WithinName needs to be stored. Then it can be poped till function/class type etc is ontop of WithinName stack
   
 - detect scope of variables|methods|properties (super-global, global, local, static)
 
@@ -21,6 +32,7 @@ Potential Enhancements
  - brute force: scan for all text with length > 3 and remove keywords
   
 - detect 'correct' indentation level (curly braces block do work in function bodies, but oneliner after Loop/For/If etc are missing or outside of function bodies)
+  to later be able to define different styles not only indentation level needs to be known but also if the line starts with an opening or closing brace
 
 - detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
 
@@ -34,7 +46,14 @@ Potential Enhancements
 - refactor the object to return (oResult), only required information, well structured
 
 - scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
-
+  then FileName or FileContent should be the incoming parameter to ParseAHK() with detection on which is provided.
+  
+- callMAP or dependencyMap: 
+  detect within label/function which label or function is called/gosub/goto 
+  later a map could be created from it (currently I do not know how to find roots except for AutoExec, but maybe with brute force to count how often a label/function was called, and then the roots are without a direct call e.g. hotkeys, hotstrings, autoexec)
+  if it is the identical name it is a recursive label/function.
+ 
+- detect potential DocComment strings. Collect all first words (till first white) of comments and count occurrences. When all char in word identical or only [^\w] or ( Len() > 4 and occurrences > 4 ) it might be a DocComment
 */
 
 
@@ -352,6 +371,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;HotStrings & HotKeys are not allowed inside of functions or classes or on the same line as the } of a {} block
     ;but AHK takes care of it, so I will not worry and assume that the code provided is valid AHK code.
     ;potential HotKeys and HotStrings contain a double colon
+    ;in case there is code right of the double colon it is either a HotKey with implicit Return or a auto-replace HotString.
+    ;without code to the right they start a block to the next Return statement
     If (InStr(RemoveQuotedStrings(Line), "::")){
       If RegExMatch(Line, HotStringRE, Match){
         oResult.HotStrings[PhysicalLineNum] := Match.1,  oResult.LineInfo[PhysicalLineNum, "HotString"] := True
@@ -386,7 +407,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
       ;Labels checked here to avoid false positives in checks below
       ;Since labels are allowed within a function body, they might be preceded with a brace,
-      ;e.g. when a label is the first line after a multiline function definition without OTB
+      ;e.g. when a label is the first line after a multi-line function definition without OTB
 ;       FuncDef()
 ;       { Label:    ;this label would not be caught correctly here
 ;
