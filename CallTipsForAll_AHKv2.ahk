@@ -1,3 +1,4 @@
+
 ; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -31,16 +32,7 @@ If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for importan
 
 GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
 If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
-	FullReload()
-	; oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
-	
-	; LoadKeywordsList()
-	; LoadFunctionsList()
-	
-	; objMatchText := LoadMethPropList()
-	; LoadObjectCreateList(objMatchText)
-	
-	; ReParseText()
+	FullReload() ; conditional for language elements
 }
 
 return ; end of auto execute section
@@ -80,7 +72,7 @@ class oCallTip {
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
 #INCLUDE LibV2\TheArkive_Debug.ahk
-; #INCLUDE LibV2\_scintilla_class.ahk
+#INCLUDE LibV2\_scintilla_class_ext.ahk
 
 ; ================================================================
 ; hotkeys - global ; 
@@ -220,11 +212,23 @@ F9::
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
 FullReload() {
-	GetEditorHwnd()
+	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
+		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
+	
+	If (oCallTip.ctlHwnd) {
+		; df := SendMessage(ScintillaExt.SCI_GETDIRECTFUNCTION, 0, 0, oCallTip.ctlHwnd)
+		; dp := SendMessage(ScintillaExt.SCI_GETDIRECTPOINTER, 0, 0, oCallTip.ctlHwnd)
+		
+		; ScintillaExt.df := df
+		; ScintillaExt.dp := dp
+		
+		ScintillaExt.pid := oCallTip.progPID
+	}
+	
 	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	
-	If (!KeywordList)
-		LoadKeywordsList()
+	If (!KeywordList)		;ZZZ - only load these if they don't already exist
+		LoadKeywordsList()	;ZZZ - this is good for first run, or initial startup
 	If (!FunctionsList)
 		LoadFunctionsList()
 	If (!MethPropList) {
@@ -235,7 +239,7 @@ FullReload() {
 	ReParseText()
 }
 
-SetupInputHook(){
+SetupInputHook() {
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
@@ -246,16 +250,13 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 	If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or IsObject(SettingsGUI))
 		return
 	
-	acON := false ; auto-complete GUI active
-	ctl := ""
+	ctl := "", acON := false ; auto-complete GUI active
 	
 	If (IsObject(AutoCompleteGUI)) {
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
-		If (ctl)
-			acON := true
+		acON := (ctl) ? true : acON
 	}
 	
-	; If (!acOn And !Settings["AutoComplete"])
 	If (!Settings["AutoComplete"])
 		return
 	
@@ -272,30 +273,62 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
 			curPhrase := oCallTip.curPhrase
+			parentObj := oCallTip.parentObj
 			If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
-				remainder := StrReplace(kwSel,curPhrase,"",,1)
-				Loop Parse remainder
-					ControlEditPaste A_LoopField, oCallTip.ctlHwnd ; not ideal but works
+				hwnd := oCallTip.ctlHwnd
+				
+				If (kwSel) {
+					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
+					newPos := curPos - StrLen(curPhrase)
+					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
+					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
+				}
 			}
 			closeAutoComplete()
+			
+			t := GetPhraseType(kwSel,parentObj)
+			If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property")
+				DisplayCallTip()
+			
+			return ; try to suppress carriage return
 		}
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
 		If (acON) ; make sure auto-complete GUI is visible
 			closeAutoComplete()
 	} Else
-		SetTimer "LoadAutoComplete", -100
+		SetTimer "LoadAutoComplete", -10
 	
 	iHook.Stop()
 	
 	SetupInputHook()
 }
 
+GetPhraseType(inPhrase,parentObj := "") { ; oCallTip.curPhraseType is not populated when using auto-complete, so we get curPhrase type this way
+	If (KeywordList.Has(inPhrase))
+		return KeywordList[inPhrase]
+	Else If (ObjectList.Has(inPhrase))
+		return "object"
+	Else If (ClassesList.Has(inPhrase))
+		return ClassesList[inPhrase]["type"]
+	Else If (MethPropList.Has(parentObj)) {
+		methList := MethPropList[parentObj]["method"]
+		propList := MethPropList[parentObj]["property"]
+		
+		If methList.Has(inPhrase)
+			return "method"
+		Else If propList.Has(inPhrase)
+			return "property"
+	}
+}
+
 ; ======================================================================================
 ; Functions related to hotkey events
 ; ======================================================================================
-LoadAutoComplete(force:=false) {
+LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly)
 	KeywordFilter := ""
-	GetEditorHwnd()
+	If (!oCallTip.progHwnd) ; this should be conditional
+		GetEditorHwnd()
+	
 	If (!oCallTip.ctlActive Or !KeywordList.Count) {
 		closeAutoComplete()
 		return
@@ -316,9 +349,9 @@ LoadAutoComplete(force:=false) {
 			
 			If (KeywordFilter.Count = 1)
 				For kw in KeywordFilter
-					testWord := kw
+					testWord := RegExreplace(kw,"\(m\)|\(f\)|\.","")
 			
-			If (force) { ; for manual invocation, particularly with calling up member list of an object
+			If (force Or (parentObj And !curPhrase)) { ; for manual invocation, or after typing "object."
 				LoadAutoCompleteGUI(KeywordFilter)
 			} Else {
 				If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
@@ -387,14 +420,15 @@ KwSearchDeep(curPhrase, parentObj) {
 					
 					curPropList := curMethPropList["property"]
 					For propName in curPropList
-						If (inStr(methName,curPhrase))
+						If (inStr(propName,curPhrase))
 							resultList[propName] := curType " Property"
 				}
 			} Else If (thisList = "ClassesList") {
 				classObj := ClassesList[curObj]
 				memList := classObj["members"]
 				For memName, obj in memList
-					resultList[memName] := obj["type"]
+					If (InStr(memName,curPhrase))
+						resultList[memName] := obj["type"]
 			}
 		}
 	}

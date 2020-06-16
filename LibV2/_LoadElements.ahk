@@ -71,6 +71,7 @@ GetEditorHwnd() {
 					ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " curHwnd)
 					oCallTip.ctlHwnd := ctlHwnd
 					oCallTip.progHwnd := curHwnd
+					oCallTip.progPID := WinGetPID("ahk_id " curHwnd)
 					oCallTip.progTitle := WinGetTitle("ahk_id " curHwnd)
 					oCallTip.ctlConfirmed := true
 					
@@ -105,7 +106,7 @@ CheckMouseLocation() { ;ZZZ - I like how you split these up, thanks!  This works
 ; ==================================================
 
 LoadKeywordsList() {
-	KeywordList := Map()
+	KeywordList := Map() ; , KeywordList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	Loop Files oCallTip.srcFiles "\Keywords\KW_*.txt"
 	{
 		curText := FileRead(A_LoopFileFullPath)
@@ -119,7 +120,7 @@ LoadKeywordsList() {
 ; ==================================================
 
 LoadFunctionsList() {
-	FunctionList := Map()
+	FunctionList := Map() ; , FunctionList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	Loop Files oCallTip.srcFiles "\Other\List_*.txt" ; functions and commands are combined into one list => FunctionList[]
 	{
 		a := StrSplit(A_LoopFileName,"_") ; comma (,) separator
@@ -225,7 +226,8 @@ LoadFunctionsList() {
 ; ==================================================
 
 LoadMethPropList() {
-	MethPropList := Map(), srcFiles := oCallTip.srcFiles
+	MethPropList := Map() ; , MethPropList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	srcFiles := oCallTip.srcFiles
 	Loop Files srcFiles "\Objects\*.txt"
 	{
 		a := StrSplit(A_LoopFileName,"_")
@@ -473,7 +475,7 @@ LoadObjectCreateList(objMatchText) {
 ; will not be added to this list.
 ; ================================================================
 CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses less CPU
-	oList := Map()
+	oList := Map() ; , oList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	
 	For level, lvlObj in ObjectCreateList {
 		For label, lblObj in lvlObj {
@@ -614,7 +616,8 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 
 GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 	curDocTextNoStr := oCallTip.docTextNoStr
-	funcList := Map(), curPos1 := 1
+	funcList := Map() ; , funcList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcStart,match,curPos1)) {
 		funcName := "", bodyText := ""
@@ -660,7 +663,8 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 
 GetClasses(curDocText) {
 	curDocTextNoStr := oCallTip.docTextNoStr ; pull this from oCallTip so it only has to be done once
-	classList := Map(), curPos1 := 1 ;??? oCallTip.classStart is not robust, see comments on function needle   ;ZZZ - do you mainly mean that it doesn't include #@$ ?  I thought class parsing was easier to write (imho).  Can classes include #@$ ?
+	classList := Map() ; , classList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	curPos1 := 1 ;??? oCallTip.classStart is not robust, see comments on function needle   ;ZZZ - do you mainly mean that it doesn't include #@$ ?  I thought class parsing was easier to write (imho).  Can classes include #@$ ?
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classStart,match,curPos1)) { ; parse classes
 		If (IsObject(match) And match.Count()) {
 			className := match.Value(1)
@@ -843,9 +847,7 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 	curDocArr := "" ; free memory
 	
 	FinalArr := Array(), FinalArr.Push(baseFile)
-	Loop includeArr.Length { ;??? what is "curInc = curInclude" checking? curInc is the line of code including "#Include". Hence it will never be equal
-							;??? isn't "OR includeExist" missing, because if it is a file that exists it is most likely not a lib
-							;??? the benefit of libraries is that one doesn't have to include them. It is sufficient to just use a function. AHK will search for these files in these 3 locations. Thus these should be checked anyway at start of script any could be ignored afterwards.
+	Loop includeArr.Length {
 		curInc := includeArr[A_Index]
 		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")","")) ;ZZZ - curInc won't have "#Include", this was concatenated with "," in the line above.
 		curInclude := RegExReplace(curInc,"<|>","")

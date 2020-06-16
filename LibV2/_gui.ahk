@@ -70,7 +70,14 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			curDescObj := "", descArr := ""
 		}
 	} Else If (curPhraseType = "object") {
-		obj := ObjectList.Has(curPhrase) ? ObjectList[curPhrase] : ""
+		For objName, objobj in ObjectList { ; find element and correct case
+			If (objName = curPhrase) {
+				obj := objobj
+				Break
+			}
+		}
+		
+		; obj := ObjectList.Has(curPhrase) ? ObjectList[curPhrase] : ""
 		If (!obj)
 			return
 		
@@ -92,7 +99,14 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 		curObj := "", listObj := "", obj := ""
 	} Else If (curPhraseType = "method" Or curPhraseType = "property") {
-		obj := ObjectList.Has(parentObj) ? ObjectList[parentObj] : ""
+		For objName, objobj in ObjectList { ; find element and correct case
+			If (objName = curPhrase) {
+				obj := objobj
+				Break
+			}
+		}
+		
+		; obj := ObjectList.Has(parentObj) ? ObjectList[parentObj] : ""
 		If (!obj)
 			return
 		
@@ -497,6 +511,7 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
 	fontColor := Settings["fontColor"]
+	bgColor := Settings["bgColor"]
 	hEditorWin := oCallTip.progHwnd
 	
 	kwDims := GetTextDims(kwBlock,fontFace,fontSize)
@@ -508,9 +523,10 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	CaretGetPos(outX, outY)
 	
 	AutoCompleteGUI := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin)
+	AutoCompleteGUI.BackColor := bgColor
 	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
 	
-	ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR)
+	ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR " +Background" bgColor)
 	ctl.Add(dispList), ctl.Add(endList)
 	
 	ctl.GetPos(,,,h)

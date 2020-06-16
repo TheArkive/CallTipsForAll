@@ -16,8 +16,6 @@ StringOutline(sInput,pruneComments := true) {
 		repStr := ""
 		If (IsObject(match)) {
 			repStr := StrRepeat("*",match.Len(1))
-			; Loop match.Len(1)
-				; repStr .= "*"
 			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,1)
 			match := ""
 		}
@@ -79,11 +77,10 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	
 	fullPhrase := ""
 	aStr := StrSplit(phraseObj,".")
+	; fullPhrase := aStr[aStr.Length]
 	Loop (aStr.Length-1) {
 		curBit := aStr[A_Index]
 		fullPhrase .= curBit "."
-		; If (curBit = curPhrase)
-			; Break
 	}
 	fullPhrase := Trim(fullPhrase,".")
 	
