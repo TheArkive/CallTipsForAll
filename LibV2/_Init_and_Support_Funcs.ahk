@@ -25,7 +25,7 @@ AddTrayMenu() {
 
 	iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 		If (ItemName = "Settings") {
-			SettingsGUI()
+			SettingsGUILoad()
 		; } Else If (ItemName = "Generate Commands") {
 			; AutoCmdFunc()
 		} Else If (ItemName = "ReWrap Text (CTL + ALT + W)") {

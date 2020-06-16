@@ -15,20 +15,33 @@ StringOutline(sInput,pruneComments := true) {
 	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
-			Loop match.Len(1)
-				repStr .= "*"
+			repStr := StrRepeat("*",match.Len(1))
+			; Loop match.Len(1)
+				; repStr .= "*"
 			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,1)
 			match := ""
 		}
 	}
 	
-	If (pruneComments)
-		curLineNoStr := RegExReplace(curLineNoStr,";.*","")
+	If (pruneComments) {
+		While (r := RegExMatch(curLineNoStr,"(;.*)",match)) { ;ZZZ - this doesn't work ... need to replace comments with spaces to keep POS accurate
+			If (IsObject(match)) {
+				repStr := StrRepeat(" ",match.Len(0)) ;ZZZ - this will be slightly less annoying than below
+				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,1)
+			}
+		} ;ZZZ - when finished this will allow the "body" property to be populated with comment data, even if there are single { braces } but it won't throw off the parsing, needed for special handling of "; hide" and "; show" in classes
+	}
 	
 	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
 	; curLineNoStr := RegExReplace(curLineNoStr,"\" Chr(34),"*")
 	
 	return curLineNoStr
+}
+
+StrRepeat(str,num) {
+	Loop num
+		result .= str
+	return result
 }
 
 ; ================================================================

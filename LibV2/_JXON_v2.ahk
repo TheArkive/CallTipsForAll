@@ -147,8 +147,6 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 		memType := Type(obj) ; Type.Call(obj)
 		is_array := (memType = "Array") ? 1 : 0
 		
-		msgbox "type: " memType
-		
 		if (memType ? (memType != "Object" And memType != "Map" And memType != "Array") : (ObjGetCapacity(obj) == ""))
 			throw Exception("Object type not supported.", -1, Format("<Object at 0x{:p}>", ObjPtr(obj)))
 		

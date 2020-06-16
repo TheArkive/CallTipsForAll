@@ -27,18 +27,20 @@ Settings := ReadSettingsFromFile() ; Map
 AddTrayMenu() ; modify tray menu
 
 If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
-	SettingsGUI()
+	SettingsGUILoad()
 
 GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
 If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
-	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
-	LoadKeywordsList()
-	LoadFunctionsList()
+	FullReload()
+	; oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	
-	objMatchText := LoadMethPropList()
-	LoadObjectCreateList(objMatchText)
+	; LoadKeywordsList()
+	; LoadFunctionsList()
 	
-	ReParseText()
+	; objMatchText := LoadMethPropList()
+	; LoadObjectCreateList(objMatchText)
+	
+	; ReParseText()
 }
 
 return ; end of auto execute section
@@ -77,7 +79,7 @@ class oCallTip {
 #INCLUDE LibV2\_ProcInfo.ahk
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
-#INCLUDE *i ..\..\TheArkive_Debug.ahk ;ZZZ - this functions as it should now
+#INCLUDE LibV2\TheArkive_Debug.ahk
 ; #INCLUDE LibV2\_scintilla_class.ahk
 
 ; ================================================================
@@ -88,7 +90,7 @@ class oCallTip {
 
 ^+Space::DisplayCallTip() ; ClickCheck("LButton")
 
-^!Space::LoadAutoComplete()
+^!Space::LoadAutoComplete(true) ; force Auto-Complete gui to show
 
 ^+F12:: ; close CallTipsForAll
 {
@@ -217,6 +219,22 @@ F9::
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
+FullReload() {
+	GetEditorHwnd()
+	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
+	
+	If (!KeywordList)
+		LoadKeywordsList()
+	If (!FunctionsList)
+		LoadFunctionsList()
+	If (!MethPropList) {
+		objMatchText := LoadMethPropList()
+		LoadObjectCreateList(objMatchText)
+	}
+	
+	ReParseText()
+}
+
 SetupInputHook(){
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
@@ -237,8 +255,9 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			acON := true
 	}
 	
-	If (!acOn And !Settings["AutoComplete"])  ;??? are you sure that AND is correct? when Settings["AutoComplete"] is false than it should not run, correct? Then I guess the whole acOn handling above and below could be simplified. Need to know what is intended. Should the input hook not only be active when Settings["AutoComplete"] is true?
-		return ;AAA - I think you might be right.  I think "!acON" can be removed actually.  I'll review these questions again and make changes after reading them all first.
+	; If (!acOn And !Settings["AutoComplete"])
+	If (!Settings["AutoComplete"])
+		return
 	
 	If (vk = 9) {
 		If (acON) {
@@ -253,7 +272,7 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
 			curPhrase := oCallTip.curPhrase
-      If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
+			If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
 				remainder := StrReplace(kwSel,curPhrase,"",,1)
 				Loop Parse remainder
 					ControlEditPaste A_LoopField, oCallTip.ctlHwnd ; not ideal but works
@@ -268,13 +287,13 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 	
 	iHook.Stop()
 	
-  SetupInputHook()
+	SetupInputHook()
 }
 
 ; ======================================================================================
 ; Functions related to hotkey events
 ; ======================================================================================
-LoadAutoComplete() {
+LoadAutoComplete(force:=false) {
 	KeywordFilter := ""
 	GetEditorHwnd()
 	If (!oCallTip.ctlActive Or !KeywordList.Count) {
@@ -299,10 +318,14 @@ LoadAutoComplete() {
 				For kw in KeywordFilter
 					testWord := kw
 			
-			If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
+			If (force) { ; for manual invocation, particularly with calling up member list of an object
 				LoadAutoCompleteGUI(KeywordFilter)
-			Else
-				closeAutoComplete()
+			} Else {
+				If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
+					LoadAutoCompleteGUI(KeywordFilter)
+				Else
+					closeAutoComplete()
+			}
 		} Else
 			closeAutoComplete()
 	} Else

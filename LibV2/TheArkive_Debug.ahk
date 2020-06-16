@@ -6,7 +6,7 @@ DebugMsg(str,sOrder:="top",TimeStamp:=true) {
     If (TimeStamp) ; append timestamp + str
         str := "[" A_Hour ":" A_Min ":" A_Sec "] " str "`r`n"
 	
-	AppendTxt(ArkDebugOutputHwnd,&str)
+	AppendTxt(ArkDebugOutputHwnd,StrPtr(str))
 }
 
 ArkDebugCheck() {
@@ -37,8 +37,8 @@ ArkDebugClear(oCtl,*) { ; button
 }
 
 ArkDebugGuiSize(obj, MinMax, Width, Height) {
-	w := Width - 10, h := Height - 10 - 40, ctl := GuiCtrlFromHwnd(ArkDebugOutputHwnd), pos := ctl.pos
-	ctl.Move("x" pos.x " y" pos.y " w" w " h" h,true)
+	w := Width - 10, h := Height - 10 - 40, ctl := GuiCtrlFromHwnd(ArkDebugOutputHwnd), ctl.GetPos(x,y,w,h)
+	ctl.Move(x,y,w,h)
 }
 
 ArkDebugClose(oGui,*) {

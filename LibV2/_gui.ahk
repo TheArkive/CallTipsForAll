@@ -236,15 +236,15 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		If (!Settings["CallTipSelectable"])
 			ctl.OnEvent("Click","gui_click")
 		
-		dCtl := ctl.pos
-		posTest := OutX + dCtl.w
+		dCtl := ctl.GetPos(,,dCtlw,dCtlh)
+		posTest := OutX + dCtlw
 		
 		If (posTest > curMon.right) {
 			offset := posTest - curMon.right
 			OutX := OutX - offset - 20
 		}
 		
-		h := dCtl.h + 10, w := dCtl.w + 10
+		h := dCtlh + 10, w := dCtlw + 10
 		callTipGui.Show("x" OutX " y" outY " h" h " w" w " NA NoActivate")
 	}
 }
@@ -276,7 +276,7 @@ gui_click(ctlObj,info) {
 ; Settings GUI
 ; ================================================================
 
-SettingsGUI() {
+SettingsGUILoad() {
 	closeCallTip()
 	closeAutoComplete()
 	
@@ -290,13 +290,18 @@ SettingsGUI() {
 		callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
 	}
 	
+	langList := [], choose := 1
 	Loop Files A_ScriptDir "\Languages\*", "D"
-		langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
+	{
+		; langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
+		langList.Push(A_LoopFileName)
+		choose := (A_LoopFileName = ActiveLanguage) ? A_Index : chooose
+	}
 	
-	langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
+	; langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
 	
 	SettingsGUI.Add("Text","x5 y10","Language:")
-	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vPickLang",langList).OnEvent("change","gui_change_events")
+	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vPickLang Choose" choose,langList).OnEvent("change","gui_change_events")
 	
 	ctl := SettingsGUI.Add("Checkbox","xm y+8 vLoadCallTipOnClick","Load call tip on double-click") ; ListView
 	ctl.OnEvent("click","gui_change_events")
@@ -414,7 +419,8 @@ gui_close(guiObj) {
 	FileAppend settingsText, "Settings.txt"
 	SettingsGUI.Destroy(), SettingsGUI := ""
 	
-	SetTimer "ReParseText", -1
+	; SetTimer "ReParseText", -1
+	SetTimer "FullReload", -1
 }
 
 ; ================================================================
@@ -434,7 +440,9 @@ QuickReloadGUI() {
 	g.Add("Button","vClearBaseFile x+0","X").OnEvent("click","quick_reload_gui")
 	
 	g.Show("Hide")
-	showDims := "x" (m.Cx - (g.Pos.w/2)) " y" (m.Cy - (g.Pos.h/2))
+	
+	g.GetPos(,,w,h)
+	showDims := "x" (m.Cx - (w/2)) " y" (m.Cy - (h/2))
 	g.Show(showDims)
 }
 
@@ -484,6 +492,8 @@ LoadAutoCompleteGUI(KeywordFilter) {
 			endList.Push(prefix kw addon)
 	}
 	
+	; DebugMsg("dispList: " dispList.Length " / endList: " endList.Length)
+	
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
 	fontColor := Settings["fontColor"]
@@ -503,8 +513,10 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR)
 	ctl.Add(dispList), ctl.Add(endList)
 	
-	AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" ctl.pos.h " hide")
-	AutoCompleteGUI.Show("h" ctl.pos.h " NA NoActivate")
+	ctl.GetPos(,,,h)
+	
+	AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
+	AutoCompleteGUI.Show("h" h " NA NoActivate")
 }
 
 ; WM_KEYDOWN(wParam, lParam, msg, hwnd) {

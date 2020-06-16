@@ -79,22 +79,22 @@ GetEditorHwnd() {
 			}
 		}
 	} 
-	If (!oCallTip.ctlConfirmed)
+	If (!oCallTip.ctlConfirmed And Settings["ProgExe"] And Settings["ProgClassNN"])
 		MsgBox "Editor control not found!"
-}  
+}
   
 CheckMouseLocation() { ;ZZZ - I like how you split these up, thanks!  This works better and makes more sense.
-  MouseGetPos  x,y,hWnd, ctlHwndCheck, 2 ;ZZZ - it's better to use HWND directly - i get errors on my end
-  ; ctlHwndCheck := ControlGetHwnd(ClassNN,"ahk_id " hWnd) ;ZZZ - it's better to use HWND directly - i get errors on my end
+	MouseGetPos  x,y,hWnd, ctlHwndCheck, 2 ;ZZZ - it's better to use HWND directly - i get errors on my end
+	; ctlHwndCheck := ControlGetHwnd(ClassNN,"ahk_id " hWnd) ;ZZZ - it's better to use HWND directly - i get errors on my end
   
-  If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
-    oCallTip.ctlActive := true
-  Else If (IsObject(callTipGui) And callTipGui.hwnd = hwnd)
-    oCallTip.ctlActive := true
-  Else If (oCallTip.progHwnd != hWnd Or ctlHwndCheck != oCallTip.ctlHwnd)
-    oCallTip.ctlActive := false
-  Else
-    oCallTip.ctlActive := true
+	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
+		oCallTip.ctlActive := true
+	Else If (IsObject(callTipGui) And callTipGui.hwnd = hwnd)
+		oCallTip.ctlActive := true
+	Else If (oCallTip.progHwnd != hWnd Or ctlHwndCheck != oCallTip.ctlHwnd)
+		oCallTip.ctlActive := false
+	Else
+		oCallTip.ctlActive := true
 }
 
 ; ==================================================
