@@ -54,9 +54,7 @@ Potential Enhancements
   later a map could be created from it (currently I do not know how to find roots except for AutoExec, but maybe with brute force to count how often a label/function was called, and then the roots are without a direct call e.g. hotkeys, hotstrings, autoexec)
   if it is the identical name it is a recursive label/function.
  
-- detect potential DocComment strings. Collect all first words (till first white) of comments and count occurrences. When all char in word identical or only [^\w] or ( Len() > 4 and occurrences > 4 ) it might be a DocComment
 */
-
 
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ; internal vars with default values
