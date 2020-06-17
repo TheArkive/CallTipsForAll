@@ -87,7 +87,6 @@ Exitapp
 
 Class LineInfo {
 
-  _File := ""
   File[]{
     get{
       return this._File
@@ -284,7 +283,6 @@ Class LineInfo {
     Return DocComments
   }
   
-  Comments := {}
   Comment(line, code){
     StrippedCode := this.RemoveComments(code)
     Comment := LTrim(StrReplace(code, StrippedCode,,1), " `t;")
