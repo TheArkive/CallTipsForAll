@@ -52,6 +52,7 @@ ScanFiles(File, SearchRE, DocComment){
 
   LineInfo.File := File
   Result := ParseAHK(FileContent, SearchRE, DocComment)
+  Result[File, "GuessDocComment"] := LineInfo.GuessDocComment()
   LineInfo.DeleteAll()
   SplitPath, File, OutFileName, CurrentOutDir, OutExtension, OutNameNoExt, OutDrive
 
