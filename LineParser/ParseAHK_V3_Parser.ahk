@@ -16,6 +16,7 @@ Known Issues
            capture var assignments or function calls (etc) on same line
 - DllCall: takes string up to the last ) in the line, not necessary the correct one.         
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
+- Since LineInfo was introduced functions, classes etc are not detected any more.
            
 Potential Enhancements 
 - detect Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
