@@ -246,10 +246,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   For PhysicalLineNum, Line In Lines {
     OriginalLine := Line
     Line := Trim(Line)        ;remove leading/trailing whitespaces
-    LineInfo.set(PhysicalLineNum, { LineOrig: OriginalLine
-                                  , LineTrim: Line
-                                  , LineNoComment: i := LineInfo.Comment(Line) 
-                                  , LineNoLiteralString: RemoveQuotedStrings(i) })
+    LineInfo.Line(PhysicalLineNum, { _LineOrig: OriginalLine
+                                   , _LineTrim: Line
+                                   , _LineNoComment: i := LineInfo.Comment(PhysicalLineNum, Line) 
+                                   , _LineNoLiteralString: RemoveQuotedStrings(i) })
     
     ;search for SearchRE
     If RegExMatch(Line, SearchRE)
