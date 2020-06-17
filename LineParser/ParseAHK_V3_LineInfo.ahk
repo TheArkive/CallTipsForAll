@@ -264,9 +264,9 @@ Class LineInfo {
         For i, Comment in CommentData {
           If RegExMatch(Comment, "[^\s]*", Match){
             If tmp.HasKey(Match)
-              tmp[Match].push( { File: file, Line: line } )
+              tmp[Match].push( { File: file, Line: line, Comment: Comment} )
             Else
-              tmp[Match] := [ { File: file, Line: line } ]
+              tmp[Match] := [ { File: file, Line: line, Comment: Comment } ]
           }
         }
       }
