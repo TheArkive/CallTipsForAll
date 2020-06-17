@@ -279,7 +279,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       } Else
           OriginalLine := Line                          ;line is stripped and trimmed before the ) got removed
 
-      LineInfo.set(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
+      LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
                                  , AllowTrimLeft: AllowTrimLeft
                                  , AllowTrimRight: AllowTrimRight
                                  , AllowComments: AllowComments
@@ -302,7 +302,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;the /* and */ symbols comment out an entire section, but only if the symbols appear at the beginning of a line
     ;code after the */ is not part of the comment section
     If (InCommentSection) {
-      LineInfo.set(PhysicalLineNum, { CommentSection: InCommentSection })
+      LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
       If WithinName {
         oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
         oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
@@ -312,12 +312,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (SubStr(Line, 1, 2) = "*/"){
         InCommentSection := False
         Line := Trim(SubStr(Line, 3))   ;remove the /* from the beginning of the line and continue checking
-        LineInfo.set(PhysicalLineNum, { CommentSection: InCommentSection, LineAfter: Line })
+        LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection, LineAfter: Line })
       }Else
         Continue                        ;discard this line, it is in a Comment Section
     }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
-      LineInfo.set(PhysicalLineNum, { CommentSection: InCommentSection })
+      LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
       If WithinName {
         oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
         oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
@@ -329,7 +329,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
    ;Remove any comment and skip empty lines (If not the last line)
     If ((!Line := RemoveComments(Line)) AND PhysicalLineNum <> TotalNumberOfLine){
-      LineInfo.set(PhysicalLineNum, { BlankOrComment: True })
+      LineInfo.Line(PhysicalLineNum, { BlankOrComment: True })
       If WithinName {
         oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
         oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
@@ -455,7 +455,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
       AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
 
-      LineInfo.set(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
+      LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
                                    , AllowTrimLeft: AllowTrimLeft
                                    , AllowTrimRight: AllowTrimRight
                                    , AllowComments: AllowComments
@@ -475,7 +475,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;AHK ignores also ::, but since hotstrings are caught above I see no need in this script
     }Else If (RegExMatch(Line, ContinuationOperatorsRE)){
       ContinuationBuffer .= " " Line   ;merge lines with a space
-      LineInfo.set( PhysicalLineNum, {ContiBlock1: True, Line: Line} )
+      LineInfo.Line( PhysicalLineNum, {ContiBlock1: True, Line: Line} )
       If WithinName {
         oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
         oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
@@ -541,7 +541,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       }Else                                         ;neither in a class nor function definition
         Break                                         ;don't trim line and break loop
       If !(Line := LTrim(SubStr(Line, 2), " `t")){    ;trim off first char which is a brace and remove whitespace
-        LineInfo.set(PhysicalLineNum, {OnlyBraces: True })
+        LineInfo.Line(PhysicalLineNum, {OnlyBraces: True })
         Continue, 2             ;when no more braces and line is empty go to next line
       }
     }
@@ -572,7 +572,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       
       If RegExMatch(Line, "\{$"){      ;check OTB
         BlockLevel[ClassLevel]++
-        LineInfo.set(PhysicalLineNum, {OTB: True })
+        LineInfo.Line(PhysicalLineNum, {OTB: True })
       }
       Continue
     }
@@ -663,7 +663,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If (SubStr(Line, 0) = "{"){       ;check again for OTB
           FuncBlockLevel++
           oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-          LineInfo.set(PhysicalLineNum, {OTB: True })
+          LineInfo.Line(PhysicalLineNum, {OTB: True })
           Line := RTrim(Line , " {")      ;trim the brace
         }
         
@@ -675,11 +675,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Else
           Type := "Function"
         tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName.0,"Type":Type,"Inside":[]}
-        LineInfo.set(PhysicalLineNum, {Type: Type })
+        LineInfo.Line(PhysicalLineNum, {Type: Type })
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
-          LineInfo.set(PhysicalLineNum, {NumParams: Params.Length(), Params: Params})
+          LineInfo.Line(PhysicalLineNum, {NumParams: Params.Length(), Params: Params})
         }
         
         ;tnCurrentFuncDef now becomes the new parent class/function/method/parameter that can contain something (or has something inside)
@@ -701,7 +701,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           FuncBlockLevel++
           oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
           oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-          LineInfo.set(PhysicalLineNum, {OTB: True })
+          LineInfo.Line(PhysicalLineNum, {OTB: True })
           Continue
         }
     }    
@@ -732,7 +732,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }
 
     If (PhysicalLineNum = TotalNumberOfLine - 1 ) {
-      LineInfo.set(TotalNumberOfLine, {"LastLine in File": True })
+      LineInfo.Line(TotalNumberOfLine, {"LastLine in File": True })
       GoTo ProcessLastLine
     }
 
