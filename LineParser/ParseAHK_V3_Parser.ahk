@@ -37,7 +37,7 @@ Potential Enhancements
 
 - detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
 
-- detect if a variable points to an object (associative/linear array, class, file, COM, function and in V2: inputhook) to inherit it's methods and properties
+- detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
 
 - refactor function (currently ~700 lines)
   - rename tn... vars
@@ -69,7 +69,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       , AllowTrimLeft := 0                    ; true if lines in a continuation block of method 2 should be trimmed on the left
       , AllowTrimRight := 0                   ; true if lines in a continuation block of method 2 should be trimmed on the right
       , JoinString := " n"                    ; the string to Join lines in a continuation block of method 2
-      , Match := ""                           ; Object for subpatterns matching in RegExMatch
+      , Match := ""                           ; Object for sub-patterns matching in RegExMatch
       , ClassLevel := 0                       ; current class level, 0 if none
       , tnClasses := []                       ; array of tree nodes of classes, index is class Level
       , BlockLevel := []                      ; number of open blocks '{ ... }' per class level, index is class Level
