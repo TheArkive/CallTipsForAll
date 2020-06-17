@@ -15,6 +15,7 @@ Return
 
 #Include AHK_V1_SyntaxTestParcour.ahk
 #Include ParseAHK_V3_Parser.ahk
+#Include ParseAHK_V3_LineInfo.ahk
 #Include Attach.ahk
 #Include ObjTree.ahk
 
