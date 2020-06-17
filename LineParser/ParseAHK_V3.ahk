@@ -28,14 +28,36 @@ Potential Enhancements to capture all potential information for call tips or aut
 ScanFiles(File, SearchRE, DocComment){
   ;read file
   FileRead, FileContent, %File%
+
+  ; Result := ParseAHK(FileContent, SearchRE, DocComment)
+  ; SplitPath, File, OutFileName, CurrentOutDir, OutExtension, OutNameNoExt, OutDrive
+
+  ;recurse into Includes
+  ; IncludeDir := CurrentOutDir
+  ; FileStructure := {"File":OutFileName, "Result":Result, "Path": CurrentOutDir, "IncludeFiles":[]} 
+  ; For k,v in Result.Includes {
+    ; v := ReplaceVars(v, OutFileName, CurrentOutDir)
+    ; If InStr(FileExist(CurrentOutDir "\" v),"D")
+      ; IncludeDir := CurrentOutDir "\" v
+    ; Else If InStr(FileExist(v),"D")
+      ; IncludeDir := v
+    ; Else {
+      ; If FileExist(v) 
+        ; FileStructure.IncludeFiles.Push(ScanFiles(v, SearchRE, DocComment))
+      ; Else If FileExist(IncludeDir "\" v) 
+        ; FileStructure.IncludeFiles.Push(ScanFiles(IncludeDir "\" v, SearchRE, DocComment))
+    ; }
+  ; } 
+  ; Return FileStructure                    
+
+  LineInfo.File := File
   Result := ParseAHK(FileContent, SearchRE, DocComment)
-  SplitPath, File, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive
-  CurrentOutDir := OutDir ? OutDir : CurrentOutDir
+  LineInfo.DeleteAll()
+  SplitPath, File, OutFileName, CurrentOutDir, OutExtension, OutNameNoExt, OutDrive
 
   ;recurse into Includes
   IncludeDir := CurrentOutDir
-  FileStructure := {"File":OutFileName, "Result":Result, "Path": CurrentOutDir, "IncludeFiles":[]}                                                                        
-  For k,v in Result.Includes {
+  For line, v in Result[File, "Includes"] {
     v := ReplaceVars(v, OutFileName, CurrentOutDir)
     If InStr(FileExist(CurrentOutDir "\" v),"D")
       IncludeDir := CurrentOutDir "\" v
@@ -43,12 +65,15 @@ ScanFiles(File, SearchRE, DocComment){
       IncludeDir := v
     Else {
       If FileExist(v) 
-        FileStructure.IncludeFiles.Push(ScanFiles(v, SearchRE, DocComment))
+        Result[File, "Includes", line] := ScanFiles(v, SearchRE, DocComment)
+        ; ScanFiles(v, SearchRE, DocComment)
       Else If FileExist(IncludeDir "\" v) 
-        FileStructure.IncludeFiles.Push(ScanFiles(IncludeDir "\" v, SearchRE, DocComment))
+        Result[File, "Includes", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment)
+        ; ScanFiles(IncludeDir "\" v, SearchRE, DocComment)
     }
   } 
-  Return FileStructure                    
+  Return Result                    
+
 }
 
 ReplaceVars(v, OutFileName, CurrentOutDir){
