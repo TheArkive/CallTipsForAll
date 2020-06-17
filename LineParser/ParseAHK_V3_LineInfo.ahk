@@ -2,20 +2,23 @@
 ; when info is set it either gets added or if key exists overwritten
 
 /*
-LineInfo.File                           ;property to set or return a filename (until next filename is set)
-LineInfo.has(line#, keys*)              ;returns True/False if line has the key(s) of set file
-LineInfo.has(line#)                     ;returns True/False if line info has been set for set file
-LineInfo.set(line#, {key1: info, ... }) ;set info (object with keys) for a line of set file, it returns to 
-LineInfo.getAll()                       ;return all info 
-LineInfo.get()                          ;return all info of set file
-LineInfo.get(line#)                     ;return all info of line of set file
-LineInfo.get(line#, keys*)              ;return one value for one key or an object of {key: value, ...} for multiple keys of a line of set file
-LineInfo.deleteAll()                    ;delete all info 
-LineInfo.delete()                       ;delete all info of set file
-LineInfo.delete(line#)                  ;delete all info of line of set file
-LineInfo.delete(line#, keys*)           ;delete one or more keys of a line of set file
+LineInfo.File                          ;property to set or return a filename (until next filename is set)
+LineInfo.has(type, line#, keys*)       ;returns True/False if type on line has the key(s) of set file
+LineInfo.has(type, line#)              ;returns True/False if type has line info for set file
+LineInfo.has(type)                     ;returns True/False if type info has been set for set file
+LineInfo.set(type, line#, StringOrObject) ;set info for Type and line of set file
+LineInfo.getAll()                      ;return all info 
+LineInfo.get()                         ;return all info of set file
+LineInfo.get(type)                     ;return all info of type of set file
+LineInfo.get(type, line#)              ;return all info of type of line of set file
+LineInfo.get(type, line#, keys*)       ;return one value for one key or an object of {key: value, ...} for multiple keys of type of line of set file
+LineInfo.deleteAll()                   ;delete all info 
+LineInfo.delete()                      ;delete all info of set file
+LineInfo.delete(type)                  ;delete all info of type of set file
+LineInfo.delete(type, line#)           ;delete all info of type of line of set file
+LineInfo.delete(type, line#, keys*)    ;delete one or more keys of a type of a line of set file
 
-                                     Properties are one object with keys; {key1: info, ... } 
+                           Properties are one object with keys; {key1: info, ... } 
 LineInfo.Function(line#, Name, properties)   ;store a function and it's properties 
 LineInfo.Property(line#, Name, properties)   ;store a function and it's properties 
 LineInfo.Class(line#, Name, properties)      ;store a class and it's properties 
@@ -24,11 +27,11 @@ LineInfo.Hotkey(line#, Name, properties)     ;store a Hotkey and it's properties
 LineInfo.HotString(line#, Name, properties)  ;store a HotString and it's properties
 LineInfo.Search(line#, SearchRE, properties) ;store properties of SearchRE 
 
-LineInfo.Var(line#, VarArray)                ;store an array of vars 
-LineInfo.DllCall(line#, properties)          ;store properties of DllCall 
-LineInfo.Include(line#, properties)          ;store properties of #Include
-LineInfo.Global(line#, properties)           ;store lines that start with global
-LineInfo.Line(line#, properties)             ;store properties of a line
+LineInfo.Var(line#, StringOrObject)          ;store an array of vars 
+LineInfo.DllCall(line#, StringOrObject)      ;store properties of DllCall 
+LineInfo.Include(line#, StringOrObject)      ;store properties of #Include
+LineInfo.Global(line#, StringOrObject)       ;store lines that start with global
+LineInfo.Line(line#, StringOrObject)         ;store properties of a line
 
 LineInfo.Comment(line#, code)                ;removes comments from code, stores the comment internally and returns code without comment
 LineInfo.DocComment(line#, DocComment, properties) ;store a DocComment and it's properties 
