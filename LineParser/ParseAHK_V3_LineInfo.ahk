@@ -96,49 +96,52 @@ Class LineInfo {
     }
   }
   
-  set(LineOrType, keyObject){
-    If !IsObject(this.Info[ this._File, LineOrType])
-      this.Info[ this._File, LineOrType ] := {}
-    For KeyOrLine, value in keyObject {
-      If isObject(value)
-        For key, v in value
-          this.Info[ this._File, LineOrType, KeyOrLine, key ] := v
+  set(Type, Line, StringOrObject){
+    If !IsObject(StringOrObject)
+      Return this.Info[ this._File, Type, Line] := StringOrObject
+    For key, value in StringOrObject {
+      If isObject(value)   ;>>> make this more robust by going as deep as possible into object.
+        For k, v in value
+          this.Info[ this._File, Type, Line, key, k ] := v
       Else
-        this.Info[ this._File, LineOrType, KeyOrLine ] := value
+        this.Info[ this._File, Type, Line, key ] := value
       i := A_Index
     }
     Return i
   }
   
-  has(line, keys*){
+  has(Type, line, keys*){
     Exist := true
     If keys.MaxIndex() {
       For i, key in keys
         If isObject(key)
           For j, k in key
-            Exist := this.Info[ this._File, line ].Haskey( k ) ? Exist := False
+            Exist := this.Info[ this._File, Type, line ].Haskey( k ) ? Exist : False
         Else
-          Exist := this.Info[ this._File, line ].Haskey( key ) ? Exist := False
-    } Else {
-        Exist := this.Info[ this._File ].Haskey( line ) ? Exist := False
-    }
-    Return Exist
+          Exist := this.Info[ this._File, Type, line ].Haskey( key ) ? Exist : False
+      Return Exist
+    } 
+    If line
+        Return this.Info[ this._File, Type ].Haskey( line )
+    Return this.Info[ this._File ].Haskey( Type )
   }
   
-  get(line, keys*){
+  get(Type, line, keys*){
     If keys.MaxIndex() {
       If (keys.MaxIndex() = 1 AND !isObject(keys[1]))
-        Return this.Info[ this._File, line, keys[1] ]
+        Return this.Info[ this._File, Type, line, keys[1] ]
       obj := {}
       For i, key in keys
         If isObject(key)
           For j, k in key
-            obj[key] := this.Info[ this._File, line, k ]
+            obj[key] := this.Info[ this._File, Type, line, k ]
         Else
-          obj[key] := this.Info[ this._File, line, key ]
+          obj[key] := this.Info[ this._File, Type, line, key ]
       Return obj
     } Else If line {
-      Return this.Info[ this._File, line ]
+      Return this.Info[ this._File, Type, line ]
+    } Else If Type {
+      Return this.Info[ this._File, Type ]
     } Else {
       Return this.Info[ this._File ]
     }
@@ -148,21 +151,23 @@ Class LineInfo {
     Return this.Info
   }
   
-  delete(line, keys*){
+  delete(Type, line, keys*){
     If keys.MaxIndex() {
       If (keys.MaxIndex() = 1 AND !isObject(keys[1]))
-        Return this.Info[ this._File, line ].Delete( keys[1] )
+        Return this.Info[ this._File, Type, line ].Delete( keys[1] )
       For i, key in keys {
         If isObject(key)
           For j, k in key
-            obj[key] := this.Info[ this._File, line ].Delete( k )
+            obj[key] := this.Info[ this._File, Type, line ].Delete( k )
         Else
-          this.Info[ this._File, line ].Delete( key )
+          this.Info[ this._File, Type, line ].Delete( key )
         i := A_Index
       }
       Return i
     } Else If line {
-      Return this.Info[ this._File ].Delete( line )
+      Return this.Info[ this._File, Type ].Delete( line )
+    } Else If Type {
+      Return this.Info[ this._File ].Delete( Type )
     } Else {
       Return this.Info.Delete( this._File )
     }
@@ -172,6 +177,34 @@ Class LineInfo {
     Return this.Info := {}
   }
 
+
+  Var(line, StringOrObject){
+    Return this.Set("Vars", line, StringOrObject)
+  }
+  
+  DllCall(line, StringOrObject){
+    Return this.Set("DllCalls", line, StringOrObject)
+  }
+  
+  Include(line, StringOrObject){
+    Return this.Set("Includes", line, StringOrObject)
+  }
+  
+  Global(line, StringOrObject){
+    Return this.Set("Globals", line, StringOrObject)
+  }
+  
+  Line(line, StringOrObject){
+    Return this.Set("Lines", line, StringOrObject)
+  }
+
+
+  SetItem(Type, line, Name, Props){
+    If StrLen(Name)
+      Props["Name"]:= Name
+    this.Line(line, {(Type): True})
+    Return this.set(Type, line, Props)
+  }
   
   Function(line, Name, Props){
     Return this.SetItem("Functions", line, Name, Props)
@@ -204,35 +237,7 @@ Class LineInfo {
   DocComment(line, Name, Props){
     Return this.SetItem("DocComments", line, Name, Props)
   }
-  
-  Var(line, VarArray){
-    Return this.SetItem("Vars", line, "", VarArray)
-  }
-  
-  DllCall(line, Props){
-    Return this.SetItem("DllCalls", line, "", Props)
-  }
-  
-  Include(line, Props){
-    Return this.SetItem("Includes", line, "", Props)
-  }
-  
-  Global(line, Props){
-    Return this.SetItem("Globals", line, "", Props)
-  }
-  
-  Line(line, Props){
-    Return this.SetItem("Lines", line, "", Props)
-  }
-
-  SetItem(Type, line, Name, Props){
-    If StrLen(Name)
-      Props["Name"]:= Name
-    arr := []
-    arr[line] := Props
-    this.set(line, {(Type): True})
-    Return this.set(Type, arr)
-  }
+ 
   
   ; GetItem(Type, line){
     ; Return this.get( Type, line )
