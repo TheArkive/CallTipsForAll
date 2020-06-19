@@ -23,6 +23,7 @@ ReParseText() {
 }
 
 ReloadElements() {
+	DocumentMap := Array() ; this should be reset every reload, even if no baseFile
 	srcFiles := oCallTip.srcFiles
 	
 	Loop Files srcFiles "\*.chm"
@@ -30,18 +31,37 @@ ReloadElements() {
 			oCallTip.helpFile := A_LoopFileFullPath
 	
 	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
-						;ZZZ - Removed LoadKeywordsList() and LoadFunctionsList(), put in auto exec section, added F9 hotkey
 	
 	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
-		For i, File in GetIncludes()
-			tmp .= FileRead(File) "`r`n`r`n" ; load all includes into one var
+		pos := 0
+		For i, File in GetIncludes() {
+			curFileText := FileRead(File), curFileLen := StrLen(curFileText)
+			curFileArr := StrSplit(curFileText,"`n","`r")
+			
+			For lineNum, lineText in curFileArr { ; create DocumentMap so regex pos can correspond to a file and line number
+				lineLen := StrLen(lineText)
+				start := (lineLen > 0) ? pos++ : pos
+				end := (lineLen > 0) ? pos + (lineLen - 1) : pos
+				pos := end ; sync pos
+				DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "start",start, "end",end, "length",lineLen,"text",lineText))
+				pos += 2 ; add length of CRLF
+			}
+			
+			tmp .= curFileText "`r`n`r`n" ; load all includes into one var
+			pos += 4 ; add length of CRLF x 2
+		}
 		
-		If tmp
-			curDocText := tmp
+		curDocText := tmp ? tmp : curDocText
+		
+		; For i, obj in DocumentMap ; quick test of DocumentMap
+			; testStr .= obj["fileName"] "`r`nLine: " obj["lineNum"] " / " obj["start"] " / " obj["end"] "`r`n`r`n"
+		
+		; msgbox testStr
 	}
 	
-	oCallTip.docTextNoStr := StringOutline(curDocText) ;ZZZ this should only be done once per load/reload (for full text + includes)
-							;ZZZ - Removed LoadMethPropList() and LoadObjectCreateList(), put in auto exec section, added F9 hotkey
+	oCallTip.docTextNoStr := StringOutline(curDocText) ; this should only be done once per load/reload (for full text + includes)
+	oCallTip.docText := curDocText
+	
 	CustomFunctions := GetCustomFunctions(curDocText)
 	ClassesList := GetClasses(curDocText)
 	ScanClasses(curDocText)
@@ -129,30 +149,31 @@ LoadFunctionsList() {
 		curList := FileRead(fileName)
 		curList := Trim(curList,"`r`n") entryEnd
 
-    If (curFileType = "Regex") {
-      Loop Parse curList, "`n", "`r"
-      {
-        Switch A_Index	;AAA - LOL wasn't thinking of that at the time, but yah you are right!
-        {                     ;??? this could be further simplified if the lines in the regex file start with the right property name
-          case 1:  oCallTip.funcStart            := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 2:  oCallTip.funcEnd              := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 3:  oCallTip.funcReturn           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 4:  oCallTip.classStart           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 5:  oCallTip.classEnd             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 6:  oCallTip.classMethodStart     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 7:  oCallTip.classMethodEnd       := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 8:  oCallTip.classMethodOneLine   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 9:  oCallTip.classPropertyStart   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 10: oCallTip.classPropertyEnd     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 11: oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 12: oCallTip.classSmallPropExt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 13: oCallTip.classSmallPropInt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 14: oCallTip.classInstance        := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-          case 15: oCallTip.includes             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-        }      ;??? UserObjMembers from file is left out, why?
-      }			;AAA - i ended up dropping this property because it pertained to making objects "explorable", which I didn't actually come up with a solution for
-      Continue ;jump to next file
-    }
+		If (curFileType = "Regex") {
+			Loop Parse curList, "`n", "`r"
+			{
+				Switch A_Index	;AAA - LOL wasn't thinking of that at the time, but yah you are right!
+				{                     ;??? this could be further simplified if the lines in the regex file start with the right property name
+					case 1:  oCallTip.funcStart            := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 2:  oCallTip.funcEnd              := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 3:  oCallTip.funcReturn           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 4:  oCallTip.classStart           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 5:  oCallTip.classEnd             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 6:  oCallTip.classMethodStart     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 7:  oCallTip.classMethodEnd       := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 8:  oCallTip.classMethodOneLine   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 9:  oCallTip.classPropertyStart   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 10: oCallTip.classPropertyEnd     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 11: oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 12: oCallTip.classSmallPropExt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 13: oCallTip.classSmallPropInt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 14: oCallTip.classInstance        := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 15: oCallTip.includes             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+					case 16: oCallTip.lineComment          := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
+				}
+			}
+			Continue ;jump to next file
+		}
 
 		curPos := 1, subStrEnd := 1
 		len := StrLen(curList)
@@ -493,7 +514,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 								objName := objNameArr[objNameArr.Length]
 							
 							If (!oList.Has(objName))
-								obj := Map()
+								obj := Map(), obj["types"] := Map()
 							Else
 								obj := oList[objName]
 							
@@ -501,14 +522,16 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 							typeObj["label"] := label
 							typeObj["match"] := objMatch
 							If (type)
-								obj[type] := typeObj
+								obj["types"][type] := typeObj
 							
 							quit := false
 							If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
 								quit := true
 							
-							If (!quit) ; If (!oList.Has(objName))
+							If (!quit) { ; If (!oList.Has(objName))
+								obj["index"] := GetLineNum(match.Pos(0))
 								oList[objName] := obj
+							}
 							
 							curPos := match.Pos(c) + match.Len(c)
 						} Else
@@ -531,7 +554,7 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 											objName := objNameArr[objNameArr.Length]
 										
 										If (!oList.Has(objName))
-											obj := Map()
+											obj := Map(), obj["types"] := Map()
 										Else
 											obj := oList[objName]
 										
@@ -539,14 +562,16 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 										typeObj["label"] := label
 										typeObj["match"] := objMatch
 										If (type)
-											obj[type] := typeObj
+											obj["types"][type] := typeObj
 										
 										quit := false
 										If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
 											quit := true
 										
-										If (!quit) ; If (!oList.Has(objName))
+										If (!quit) { ; If (!oList.Has(objName))
+											obj["index"] := GetLineNum(match.Pos(0))
 											oList[objName] := obj
+										}
 										
 										curPos := match.Pos(c) + match.Len(c)
 									} Else
@@ -597,8 +622,10 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 				If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
 					quit := true
 				
-				If (!quit) ; If (!oList.Has(objName))
+				If (!quit) { ; If (!oList.Has(objName))
+					curObjType["index"] := match.Pos(0) ; hope this works
 					oList[objName] := curObjType
+				}
 				
 				curPos := match.Pos(c) + match.Len(c)
 			} Else
@@ -614,9 +641,22 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 ; it is not currently possible to add extra help in the call tip for custom functions.
 ; ================================================================
 
+GetLineNum(inPos) { ; DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "start",start, "end",end, "length",lineLen))
+	retVal := ""
+	For i, obj in DocumentMap {
+		start := obj["start"], end := obj["end"]
+		If (inPos >= start And inPos <= end) {
+			retVal := i
+			Break
+		}
+	}
+	
+	return retVal
+}
+
 GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 	curDocTextNoStr := oCallTip.docTextNoStr
-	funcList := Map() ; , funcList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	funcList := Map(), funcList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcStart,match,curPos1)) {
@@ -636,7 +676,7 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 				
 				If (lB = rB) {
 					bodyText := SubStr(curDocText,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText)
+					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText,"index",fileLine)
 					curPos1 := curPos2
 					Break
 				}
@@ -661,63 +701,124 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 	return funcList
 }
 
-GetClasses(curDocText) {
-	curDocTextNoStr := oCallTip.docTextNoStr ; pull this from oCallTip so it only has to be done once
-	classList := Map() ; , classList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+CheckShowMode(strBody,helper:="") { ; checks class, methods, properties for "; show" or "; hide" comment
+	showStyle := ""
+	arr := StrSplit(strBody,"`n","`r"), firstLine := StringOutline(arr[1],false) ; blank out strings, but not comments
+	r := RegExMatch(firstLine,oCallTip.lineComment,match)
+	
+	If (IsObject(match)) {
+		showStyle := Trim(match.Value(1)," `t;")
+		showStyle := (InStr(showStyle,"hide") = 1) ? "hide" : (InStr(showStyle,"show") = 1) ? "show" : ""
+	}
+	
+	return showStyle
+}
+
+PruneFirstLast(strBody) {
+	testArr := StrSplit(strBody,"`n","`r"), output := ""
+	Loop testArr.Length {
+		If (A_Index > 1 And A_Index < testArr.Length)
+			output .= testArr[A_Index] "`r`n"
+	}
+	return output
+}
+
+GetClasses(curDocText, parent := "") {
+	curDocTextNoStr := StringOutline(curDocText) ; pull this from oCallTip so it only has to be done once
+	static classList := Map()
+	If (!classList.Count)
+		classList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	curPos1 := 1 ;??? oCallTip.classStart is not robust, see comments on function needle   ;ZZZ - do you mainly mean that it doesn't include #@$ ?  I thought class parsing was easier to write (imho).  Can classes include #@$ ?
+	
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classStart,match,curPos1)) { ; parse classes
 		If (IsObject(match) And match.Count()) {
+			innerClassBody := ""
 			className := match.Value(1)
+			
+			If (match.Pos(1) < curPos1)
+				break
+			
 			curPos1 := match.Pos(1)
+			extends := match.Value(3)
 			
 			If (className = "")
 				Continue
 			
-			extends := match.Value(3)
-			classShowStyle := Trim(match.Value(4)," `t;")
-			
 			curPos12 := curPos1 ;ZZZ - now closing brace can be caught even if not using proper indentation
 			While (r12 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.classEnd,match12,curPos12)) {
 				classBody := SubStr(curDocTextNoStr,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
+				
 				curPos12 := match12.Pos(0) + match12.Len(0)
 				w := StrReplace(StrReplace(classBody,"{","{",lB),"}","}",rB)
 				
 				If (lB = rB) {
 					classBody := SubStr(curDocText,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
 					curPos1 := curPos12
+					classShowStyle := CheckShowMode(classBody,"normal class - " className)
 					Break
 				}
 			}
 			
+			obj := Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends,"index",GetLineNum(match.Pos(0)),"parent",parent)
+			classBody := PruneFirstLast(classBody) ; prune first and last lines
+			memberList := Map()
 			classBodyNoStr := StringOutline(classBody)
 			
-			memberList := Map(), curPos2 := 1
-			While (r3 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classMethodStart,match3,curPos2)) { ; parse methods - multi-line
-				isStatic := match3.Value(1) ? true : false
-				memberName := match3.Value(2)
-				memberParams := match3.Value(3)
-				showStyle := Trim(match3.Value(4)," `t;") ;ZZZ - this is temporarily broken
-				curPos2 := match3.Pos(0)
+			curPos14 := 1
+			While (r14 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classStart,match14,curPos14)) { ; try to get sub classes
+				curPos14 := match14.Pos(0)
 				
-				While (r5 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassMethodEnd,match5,curPos2)) {
-					methBody .= SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2) ; this needs to be fixed, should be parsing the "NoStr" var
-					curPos2 := match5.Pos(0) + match5.Len(0)
+				curPos13 := curPos14
+				While (r13 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classEnd,match13,curPos13)) {
+					innerClassBody := SubStr(classBodyNoStr,curPos14,match13.Pos(0)+match13.Len(0)-curPos14)
+					curPos13 := match13.Pos(0) + match13.Len(0)
+					w := StrReplace(StrReplace(innerClassBody,"{","{",lB),"}","}",rB)
+					
+					If (lB = rB) {
+						innerClassBody := SubStr(classBody,curPos14,match13.Pos(0)+match13.Len(0)-curPos14)
+						
+						GetClasses(innerClassBody,className)
+						blankReplace := RegExReplace(innerClassBody,".*"," ")
+						classBody := StrReplace(classBody,innerClassBody,blankReplace) ; blank out the sub class after parsing it
+						classBodyNoStr := StringOutline(classBody)
+						; curPos1 := curPos13
+						
+						Break
+					}
+				}
+			}
+			
+			curPos2 := 1
+			While (r2 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classMethodStart,match2,curPos2)) { ; parse methods - multi-line
+				isStatic := match2.Value(1) ? true : false
+				memberName := match2.Value(2)
+				memberParams := match2.Value(3)
+				curPos2 := match2.Pos(0)
+				
+				curPos5 := curPos2
+				While (r5 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassMethodEnd,match5,curPos5)) {
+					methBody := SubStr(classBodyNoStr,curPos2,match5.Pos(0)+match5.Len(0)-curPos2) ; this needs to be fixed, should be parsing the "NoStr" var
+					curPos5 := match5.Pos(0) + match5.Len(0)
 					w := StrReplace(StrReplace(methBody,"{","{",lB),"}","}",rB)
 					
 					If (lB = rB) {
+						methBody := SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2)
+						curPos2 := curPos5
+						showStyle := CheckShowMode(methBody,"method - " memberName)
+						
 						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
 							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","body",Trim(methBody,"`r`n"),"static",isStatic)
 						methBodyNoStr := StringOutline(methBody)
 						
-						curPos6 := 1
-						While (r9 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match9,curPos6)) {
-							tinyProp := match9.Value(1)
-							showStyle := Trim(match9.Value(2)," `t;")
-							curPos6 := match9.Pos(1) + match9.Len(1)
+						; curPos9 := 1
+						; While (r9 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match9,curPos9)) {
+							; tinyProp := match9.Value(1)
+							; showStyle := Trim(match9.Value(2)," `t;")
+							; curPos9 := match9.Pos(1) + match9.Len(1)
 							
-							If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-								memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match9.Value(0),"static",false)
-						}
+							; If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+								; memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match9.Value(0),"static",false)
+						; }
 						
 						methBody := ""
 						break
@@ -725,64 +826,72 @@ GetClasses(curDocText) {
 				}
 			}
 			
-			curPos3 := 1
-			While (r4 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classPropertyStart,match4,curPos3)) {
+			curPos4 := 1
+			While (r4 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classPropertyStart,match4,curPos4)) {
+				If (r15 := RegExMatch(match4.Value(0),"mi)" oCallTip.classStart))
+					continue
+				
 				isStatic := match4.Value(1) ? true : false
 				memberName := match4.Value(2)
 				memberParams := match4.Value(3)
-				showStyle := Trim(match4.Value(4)," `t;")
-				curPos3 := match4.Pos(0)
+				curPos4 := match4.Pos(0)
 				
-				While (r6 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassPropertyEnd,match6,curPos3)) {
-					propBody .= SubStr(classBody,curPos3,match6.Pos(0)+match6.Len(0)-curPos3)
-					curPos3 := match6.Pos(0) + match6.Len(0)
+				curPos6 := curPos4
+				While (r6 := RegExMatch(classBodyNoStr,"mi)" oCallTip.ClassPropertyEnd,match6,curPos6)) {
+					propBody := SubStr(classBodyNoStr,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
+					curPos6 := match6.Pos(0)
 					w := StrReplace(StrReplace(propBody,"{","{",lB),"}","}",rB)
 					
 					If (lB = rB) {
+						propBody := SubStr(classBody,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
+						curPos4 := curPos6
+						showStyle := CheckShowMode(propBody,"property - " memberName)
+						
 						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
 							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","body",Trim(propBody,"`r`n"),"static",isStatic)
-						propBody := ""
+						propBodyNoStr := StringOutline(propBody)
 						
-						curPos7 := 1
-						While (r10 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match10,curPos7)) {
-							tinyProp := match10.Value(1)
-							showStyle := Trim(match10.Value(2)," `t;")
-							curPos7 := match10.Pos(0) + match10.Len(0)
+						; curPos10 := 1
+						; While (r10 := RegExMatch(propBodyNoStr,"mi)" oCallTip.classSmallPropInt,match10,curPos10)) {
+							; tinyProp := match10.Value(1)
+							; showStyle := Trim(match10.Value(2)," `t;")
+							; curPos10 := match10.Pos(1) + match10.Len(1)
 							
-							If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-								memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match10.Value(0),"static",false)
-						}
+							; If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
+								; memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match10.Value(0),"static",false)
+						; }
 						
+						propBody := ""
 						break
 					}
 				}
 			}
 			
-			curPos4 := 1
-			While (r7 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classMethodOneLine,match7,curPos4)) {
+			curPos7 := 1
+			While (r7 := RegExMatch(StringOutline(classBody,false),"im)" oCallTip.classMethodOneLine,match7,curPos7)) {
 				isStatic := match7.Value(1) ? true : false
 				memberName := match7.Value(2)
 				memberParams := match7.Value(3)
-				showStyle := Trim(match7.Value(4)," `t;")
-				curPos4 := match7.Pos(0) + match7.Len(0)
+				showStyle := CheckShowMode(match7.Value(0))
+				curPos7 := match7.Pos(0) + match7.Len(0)
 				
 				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
 					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","body",Trim(match7.Value(0),"`r`n"),"static",isStatic)
 			}
 			
-			curPos5 := 1
-			While (r8 := RegExMatch(classBodyNoStr,"mi)" oCallTip.classPropertyOneLine,match8,curPos5)) {
+			curPos8 := 1
+			While (r8 := RegExMatch(StringOutline(classBody,false),"mi)" oCallTip.classPropertyOneLine,match8,curPos8)) {
 				isStatic := match8.Value(1) ? true : false
 				memberName := match8.Value(2)
 				memberParams := match8.Value(3)
-				showStyle := Trim(match8.Value(4)," `t;")
-				curPos5 := match8.Pos(0) + match8.Len(0)
+				showStyle := CheckShowMode(match8.Value(0))
+				curPos8 := match8.Pos(0) + match8.Len(0)
 				
 				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
 					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","body",Trim(match8.Value(0),"`r`n"),"static",isStatic)
 			}
 		
-			classBodyRemain := Trim(RegExReplace(classBody,"^[\w\. ]+\{.*|\}$",""),"`r`n")
+			classBodyRemain := classBody
 			
 			For memName, memObj in memberList {
 				memBody := memObj["body"]
@@ -794,19 +903,18 @@ GetClasses(curDocText) {
 				curLine := Trim(A_LoopField," `t")
 				isStatic := (InStr(curLine,"Static ")) ? true : false
 				
-				curPos8 := 1
-				While (r11 := RegExMatch(curLine,oCallTip.classSmallPropExt,match11,curPos8)) {
+				curPos11 := 1
+				While (r11 := RegExMatch(curLine,oCallTip.classSmallPropExt,match11,curPos11)) {
 					memberName := match11.Value(2)
 					showStyle := Trim(match11.Value(3)," `t;")
 					
 					If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
 						memberList[memberName] := Map("name",memberName,"params","","type","property","body","","static",isStatic)
 					
-					curPos8 := match11.Pos(1) + match11.Len(1)
+					curPos11 := match11.Pos(1) + match11.Len(1)
 				}
 			}
 			
-			obj := Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends)
 			obj["members"] := memberList
 			classList[className] := obj
 		}
@@ -825,7 +933,7 @@ ScanClasses(curDocText) { ; scan doc for class instances
 			instName := match.Value(1)
 			params := match.Value(2)
 			curPos := match.Pos(0) + match.Len(0)
-			ClassesList[instName] := Map("type","Instance","name",instName,"params",params,"class",className)
+			ClassesList[instName] := Map("type","Instance","name",instName,"params",params,"class",className,"index",GetLineNum(match.Pos(1)))
 		}
 	}
 }
@@ -849,7 +957,7 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 	FinalArr := Array(), FinalArr.Push(baseFile)
 	Loop includeArr.Length {
 		curInc := includeArr[A_Index]
-		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")","")) ;ZZZ - curInc won't have "#Include", this was concatenated with "," in the line above.
+		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
 		curInclude := RegExReplace(curInc,"<|>","")
 		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP) ;??? all other built-in variables are not handled, why? I have a small function for it in ahk project manager (ReplaceVars())    ;ZZZ - we should include your function!
 		
@@ -883,8 +991,6 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 	Loop Files f2
 		FinalArr.Push(A_LoopFileFullPath)
 	
-	;??? This will not work on my (toralf) machine, because I have not entry in the registry for AHK.
-	;ZZZ - makes sense, but should still be checked i think.  I'm not aware of any var that shows the script can be aware of the location of AutoHotkey.exe without the reg entry.
 	f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\*"
 	Loop Files f3
 		FinalArr.Push(A_LoopFileFullPath)
@@ -892,9 +998,42 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 	return finalArr
 }
 
+; ReplaceVars(v, OutFileName, CurrentOutDir){
+  ; AHKVars := {"%A_AhkPath%":         A_AhkPath
+            ; , "%A_AhkVersion%":      A_AhkVersion
+            ; , "%A_ComputerName%":    A_ComputerName
+            ; , "%A_ComSpec%":         A_ComSpec
+            ; , "%A_Desktop%":         A_Desktop
+            ; , "%A_DesktopCommon%":   A_DesktopCommon
+            ; , "%A_IsCompiled%":      A_IsCompiled
+            ; , "%A_IsUnicode%":       A_IsUnicode
+            ; , "%A_MyDocuments%":     A_MyDocuments
+            ; , "%A_ProgramFiles%":    A_ProgramFiles
+            ; , "%A_Programs%":        A_Programs
+            ; , "%A_ProgramsCommon%":  A_ProgramsCommon
+            ; , "%A_PtrSize%":         A_PtrSize
+            ; , "%A_ScriptFullPath%":    CurrentOutDir "\" OutFileName
+            ; , "%A_LineFile%":          CurrentOutDir "\" OutFileName
+            ; , "%A_ScriptDir%":         CurrentOutDir
+            ; , "%A_ScriptName%":        OutFileName
+            ; , "%A_Space%":           A_Space
+            ; , "%A_StartMenu%":       A_StartMenu
+            ; , "%A_StartMenuCommon%": A_StartMenuCommon
+            ; , "%A_Startup%":         A_Startup
+            ; , "%A_StartupCommon%":   A_StartupCommon
+            ; , "%A_Tab%":             A_Tab
+            ; , "%A_Temp%":            A_Temp
+            ; , "%A_UserName%":        A_UserName
+            ; , "%A_WinDir%":          A_WinDir }
+
+  ; For var,value in AHKVars
+    ; v := StrReplace(v, var, value) 
+  ; Return v  
+; }
+
 findFile(sInFile) {
 	result := ""
-	Loop Files sInFile ".*" ;??? the dot might be too much, shouldn't it be just "*"; then the loop following If is not needed
+	Loop Files sInFile ".*" ; this gets <Lib> references
 	{
 		If (A_LoopFileName) {
 			result := A_LoopFileFullPath
@@ -907,4 +1046,3 @@ findFile(sInFile) {
 	
 	return result
 }
-;ZZZ - good point, but exact file match is handled at the bottom of the function.  This whole thing is trying to account for includes using <lib> that excludes the .ahk extension, while also trying to capture other includes (perhaps in other languages).  Other languags that i have seen (I only glanced honestly) seem to mostly always have the full file name spelled out.  This can probably be improved, i agree.  Or i need to give up on other langs and just focus on AHK :p

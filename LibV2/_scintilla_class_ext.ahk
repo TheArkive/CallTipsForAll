@@ -45,56 +45,51 @@ Class ScintillaExt {
 	static SC_WRAP_NONE:=0,SC_WRAP_WORD:=1,SC_WRAP_CHAR:=2,SC_WRAPVISUALFLAG_NONE:=0x0000,SC_WRAPVISUALFLAG_END:=0x0001,SC_WRAPVISUALFLAG_START:=0x0002,SC_WRAPVISUALFLAG_MARGIN:=0x0004, SC_WRAPVISUALFLAGLOC_DEFAULT:=0x0000,SC_WRAPVISUALFLAGLOC_END_BY_TEXT:=0x0001,SC_WRAPVISUALFLAGLOC_START_BY_TEXT:=0x0002,SC_CACHE_NONE:=0,SC_CACHE_CARET:=1,SC_CACHE_PAGE:=2,SC_CACHE_DOCUMENT:=3,EDGE_NONE:=0,EDGE_LINE:=1,EDGE_BACKGROUND:=2,SC_CURSORNORMAL:=-1,SC_CURSORWAIT:=4,VISIBLE_SLOP:=0x01,VISIBLE_STRICT:=0x04,CARET_SLOP:=0x01,CARET_STRICT:=0x04,CARET_JUMPS:=0x10,CARET_EVEN:=0x08,SC_SEL_STREAM:=0,SC_SEL_RECTANGLE:=1,SC_SEL_LINES:=2,SC_ALPHA_TRANSPARENT:=0,SC_ALPHA_OPAQUE:=255,SC_ALPHA_NOALPHA:=256,KEYWORDSET_MAX:=8
 	static SC_MOD_INSERTTEXT:=0x1,SC_MOD_DELETETEXT:=0x2,SC_MOD_CHANGESTYLE:=0x4,SC_MOD_CHANGEFOLD:=0x8,SC_PERFORMED_USER:=0x10,SC_PERFORMED_UNDO:=0x20,SC_PERFORMED_REDO:=0x40,SC_MULTISTEPUNDOREDO:=0x80,SC_LASTSTEPINUNDOREDO:=0x100,SC_MOD_CHANGEMARKER:=0x200,SC_MOD_BEFOREINSERT:=0x400,SC_MOD_BEFOREDELETE:=0x800,SC_MULTILINEUNDOREDO:=0x1000,SC_MODEVENTMASKALL:=0x1FFF,SC_WEIGHT_NORMAL:=400, SC_WEIGHT_SEMIBOLD:=600, SC_WEIGHT_BOLD:=700
 	
-	Static SendMsg(msgName,wParam:=0,lParam:=0,hwnd:=0) {
+	Static SendMsg(msgName,wParam:=0,lParam:=0,hwnd:=0,bufSize:=0) {
 		If (!hwnd)
 			return 0
 		Else If (this.HasOwnProp(msgName)) {
+			retVal := "", r := 0
 			curMsg := this.%msgName%
 			pid := this.pid
 			
 			If (Type(wParam) = "Integer" And Type(lParam) = "String") {
-				bufSize := StrPut(lParam,"UTF-8")
+				bufSize := !bufSize ? StrPut(lParam,"UTF-8") : bufSize
 				kwSelBuf := BufferAlloc(bufSize,0)
-				StrPut lParam, kwSelBuf, "UTF-8"
+				if (lParam)
+					StrPut lParam, kwSelBuf, "UTF-8" ; write string if lParam is not ""
 				
 				hProc := DllCall("OpenProcess", "UInt", 0x438, "Int", False, "UInt", pid, "Ptr") ; get proccess handle
 				If (!hProc)
 					return 0
 				
-				BufAddress := DllCall("VirtualAllocEx"
-									, "Ptr", hProc
-									, "Ptr", 0
-									, "UInt", bufSize
-									, "UInt", 0x1000
-									, "UInt", 4
-									, "Ptr") ; allocate memory in process
+				BufAddress := DllCall("VirtualAllocEx", "Ptr", hProc, "Ptr", 0, "UInt", bufSize, "UInt", 0x1000, "UInt", 4, "Ptr") ; allocate memory in process
 				If (!BufAddress)
 					return 0
 				
-				written := BufferAlloc(4,0)
-				r := DllCall("kernel32\WriteProcessMemory"
-							, "Ptr" , hProc
-							, "Ptr" , BufAddress
-							, "Ptr" , kwSelBuf.ptr
-							, "UInt", bufSize ; bufSize = UPtr?
-							, "Ptr" , written.ptr) ; write
-				
+				If (lParam) { ; write to buffer
+					; written := BufferAlloc(4,0) ; to check bytes written
+					r2 := DllCall("kernel32\WriteProcessMemory", "Ptr" , hProc, "Ptr" , BufAddress, "Ptr" , kwSelBuf.ptr, "UInt", bufSize, "Ptr" , 0)
+					r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Ptr", BufAddress)
+				} Else { ; read from buffer
+					; written := BufferAlloc(4,0) ; to check bytes written
+					r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Ptr", BufAddress)
+					r2 := DllCall("ReadProcessMemory", "Ptr", hProc, "Ptr", BufAddress, "Ptr", kwSelBuf.ptr, "UInt", bufSize, "Ptr", 0)
+					retVal := StrGet(kwSelBuf,"UTF-8") ; , writ := NumGet(written,"UInt")
+				}
 				If (!r)
-					return 0
-				
-				; DebugMsg("hProc: " hProc " / BufAddress: " BufAddress " / r: " r " / lParam: " lParam " / bufSize: " bufSize " / written: " NumGet(written,"UInt"))
-				
-				r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Ptr", BufAddress)
+					return {dll:0, str:""}
 				
 				DllCall("VirtualFreeEx", "Ptr", hProc, "Ptr", BufAddress, "UPtr", 0, "UInt", 0x8000) ; MEM_RELEASE
 				DllCall("CloseHandle", "Ptr", hProc)
 				
-				return r
-			} Else If (Type(wParam) = "Integer" And Type(lParam) = "Integer")
-				return DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Int", lParam)
-			Else
-				return "oops"
+				return {dll:r, str:retVal}
+			} Else If (Type(wParam) = "Integer" And Type(lParam) = "Integer") {
+				r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Int", lParam)
+				return {dll:r, str:""}
+			} Else
+				return {dll:0, str:""}
 		} Else
-			return -1 ; unknown message specified
+			return {dll:-1, str:""} ; unknown message specified
 	}
 }

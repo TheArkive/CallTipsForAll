@@ -27,7 +27,7 @@ StringOutline(sInput,pruneComments := true) {
 				repStr := StrRepeat(" ",match.Len(0)) ;ZZZ - this will be slightly less annoying than below
 				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,1)
 			}
-		} ;ZZZ - when finished this will allow the "body" property to be populated with comment data, even if there are single { braces } but it won't throw off the parsing, needed for special handling of "; hide" and "; show" in classes
+		}
 	}
 	
 	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
@@ -58,6 +58,7 @@ getCurPhraseObj(curLineNoStr,curCol,ByRef curPhraseStartOut) {
 ; Generates the current "phrase" without dots (.)
 ; ================================================================
 getCurPhrase(curLineNoStr, curCol, ByRef curPhraseStartOut) {
+	; msgbox "curLine:`r`n`t" curLineNoStr
 	Lhalf := SubStr(curLineNoStr,1,curCol-1), Rhalf := SubStr(curLineNoStr,curCol) ; split line at curCol
 	p1 := RegExMatch(Lhalf,"(#?[\w]+)$",match), p1 := IsObject(match) ? Trim(match.Value(1)," `t") : ""
 	p2 := RegExMatch(Rhalf,"^(#?[\w]+)",match2), p2 := IsObject(match2) ? Trim(match2.Value(1)," `t") : ""
@@ -78,6 +79,7 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	fullPhrase := ""
 	aStr := StrSplit(phraseObj,".")
 	; fullPhrase := aStr[aStr.Length]
+	
 	Loop (aStr.Length-1) {
 		curBit := aStr[A_Index]
 		fullPhrase .= curBit "."
@@ -111,21 +113,26 @@ ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd
+	hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd, ctlClassNN := Settings["ProgClassNN"]
 	
-	curDocText := ControlGetText(oCallTip.ctlHwnd) ; ,"ahk_id " hEditorWin)
-	curDocArr := StrSplit(curDocText,"`n","`r")
+	If (ctlClassNN = "edit") { ; specific for edit control (notepad.exe)
+		curLine := ControlGetCurrentLine(hCtl) ; global
+		curCol := ControlGetCurrentCol(hCtl) ; global
+		curLineText := ControlGetLine(curLine,hCtl)
+	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control
+		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hCtl)
+		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
+		scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll,0,hCtl)
+		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll,"",hCtl,scintBufferLen.dll)
+		curCol := curLineText.dll + 1
+		
+		oCallTip.scintBufferLen := scintBufferLen.dll
+		oCallTip.lineText := curLineText.str
+	}
 	
-	curCol := ControlGetCurrentCol(hCtl) ; global
-	curLine := ControlGetCurrentLine(hCtl) ; global
+	oCallTip.colNum := curCol, oCallTip.lineNum := curLine.dll, oCallTip.lineText := curLineText.str
 	
-	If (!curLine)
-		return
-	If (!curDocArr.Has(curLine))
-		return
-	
-	curLineText := curDocArr[curLine]
-	curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
+	curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
 	
 	curPhrase := getCurPhrase(curLineNoStr,curCol,curPhraseStart) ; curPhraseStart: ByRef
 	oCallTip.curPhrase := curPhrase
@@ -138,7 +145,7 @@ ProcInput() {
 	oCallTip.curPhraseType := ""
 	oCallTip.parentObjType := ""
 	
-	parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj] : Map()
+	parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj]["types"] : Map()
 	
 	; topFunc := GetTopLevelFunc(curLineNoStr,curCol,funcStart,funcEnd) ; funcStart, funcEnd: ByRef - not currently used
 	; funcText := topFunc ? SubStr(curLineText,funcStart,StrLen(topFunc)) : ""

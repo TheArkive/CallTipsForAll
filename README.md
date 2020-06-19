@@ -5,7 +5,7 @@ Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for
 
 ## Languages Supported
 * AutoHotkey v1.1.32
-* AutoHotkey v2.0-a108
+* AutoHotkey v2.0-a111
 
 ## Basic Usage
 
@@ -20,42 +20,63 @@ CTRL+SHIFT+Space or Double-click   =   invoke Call-Tip
                   CTRL+ALT+Space   =   invoke Auto-Complete window manually
 ```
 
-NOTE: If you selected a Base File in the Settings window, then only SAVED file data is loaded.
-
-Click on call tips to invoke the CHM and link directly to the corresponding page.
-
-You can disable double-click to open call tip in Settings window from tray menu.
-
-Toggle Auto-Complete while typing in the Settings window.
+If you selected a Base File in the Settings window, then only SAVED file data is loaded.  Click on call tips to invoke the CHM and link directly to the corresponding page.
 
 ### Classes - special note
 
 The default mode for classes is to show all methods and properties parsed.  You can selectively hide these methods / properties by adding a `; hide` comment to the end of the line.
 
-You can reverse this mode by adding a `; show` comment after the brace `{` that starts a class.  This will hide all elements except those that have a `; show` comment.
+You can reverse this mode by adding a `; show` comment after the first line that starts the class (the opening brace `{` can be on the next line).  This will hide all elements except those that have a `; show` comment.
 
-All comments should be on the first line of the element, after a brace `{` if applicable.
+All comments should be on the first line of the element, even if the opening brace `{` is on the next line.
 
 Example:
 
 ```
+; show mode hides all methods properties, except those marked by "; show"
 class myClass { ; show
     var1 := 1, var2 := 2
     Static var3 := 3, var4 := 4 ; show
 	
     __New() {
-		
+		...
     }
     method1(x,y) { ; show
-	
+		...
     }
-    method2(a,b) {
+    method2(a,b) ; show
+	{
+		...
+    }
+}
+
+
+
+; the brace can be on the next line, the "; show" comment should be on the first line of the class
+class myClass ; show
+{
+	...
+}
+
+
+; hide mode is the default, it shows all methods / properties except those marked by "; hide"
+class myClass
+{
+var1 := 1, var2 := 2
+    Static var3 := 3, var4 := 4 ; hide
 	
+    __New() {
+		
+    }
+    method1(x,y) { ; hide
+		...
+    }
+    method2(a,b) ; show
+	{
+		...
     }
 }
 ```
-
-In the above example, only the properties `var3 and var4` will show, and only `method1()` will show.
 
 ## Current Status
 Auto-Complete v1 is now finished and working.  It can also be toggled in the Settings gui in the tray icon menu.  Performance is quite good.
@@ -151,7 +172,7 @@ For AHK v1:
 Most of what remains for AHK v1 is objects (mostly arrays) resulting from functions and/or commands.
 
 For AHK v2:
-Little things like the `Pos` and `ClientPos` object related to GUI objects are unfinished in AHK v2, and a few more instances of built-in functions returning arrays needs to be added as well.
+Much further along.  Almost done!
 
 AutoHotkey CHM help files are included in this release, but you can of course replace them with your local copy if desired.
 

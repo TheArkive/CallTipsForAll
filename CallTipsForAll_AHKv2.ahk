@@ -1,4 +1,3 @@
-
 ; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -9,7 +8,7 @@ FileEncoding "UTF-8"
 
 Global SettingsGUI, AutoCompleteGUI, callTipGui
 
-Global ClassesList, ObjectCreateList, ObjectList ; internal list for keeping track of objects and obj types
+Global ClassesList, ObjectCreateList, ObjectList, DocumentMap ; internal list for keeping track of objects and obj types
 Global MethPropList, UserObjMethProp, FunctionList, CustomFunctions, KeywordList ; internal lists for indicated types
 Global Settings ; user settings object
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
@@ -19,8 +18,6 @@ Global WrapTextChars := 80
 Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
 Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
 Global maxLines := 20
-
-; OnMessage 0x0100, "WM_KEYDOWN" ; WM_KEYDOWN control
 
 SetupInputHook()
 
@@ -37,14 +34,17 @@ If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, obje
 
 return ; end of auto execute section
 
-class oCallTip {
+class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Enter}{Tab}"
-	Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}"
+	Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
+	Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
 	Static docTextNoComments := "" ;ZZZ - do this to prune comments
+	Static colNum := 0, lineNum := 0, lineText := "" ; hide
+	Static scintBufferLen := 0
 	
 	; properties for call display and help link
-	Static curIndex := "", fullDescArr := Map(), helpFile := ""
+	Static curIndex := "", fullDescArr := Map(), helpFile := "" ; hide
 	
 	; properties for parent window and editor control
 	Static ctlHwnd := 0, progHwnd := 0, progTitle := "", ctlActive := false, ctlConfirmed := false
@@ -57,6 +57,39 @@ class oCallTip {
 	Static classMethodStart := "", classMethodEnd := "", classMethodOneLine := ""
 	Static classPropertyStart := "", classPropertyEnd := "", classPropertyOneLine := ""
 	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
+	Static lineComment := ""
+	
+	; property1[a,b] { ; show
+	
+	; }
+	; property2[c,d] ; show
+	; {
+	
+	; }
+	; property3 {
+	
+	; }
+	; property4 ; show
+	; {
+	
+	; }
+	; property5 => a + b ; show
+	
+	; method1(a,b) { ; show
+	
+	; }
+	; method2(c,d) ; show
+	; {
+	
+	; }
+	; method3() {
+	
+	; }
+	; method4() ; show
+	; {
+	
+	; }
+	; method5() => a * b ; show
 }
 
 ; ================================================================
@@ -73,6 +106,7 @@ class oCallTip {
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
 #INCLUDE LibV2\TheArkive_Debug.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
+#INCLUDE LibV2\_scintilla_class_kczx3.ahk
 
 ; ================================================================
 ; hotkeys - global ; 
@@ -160,16 +194,24 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 	
 	testList := ""
 	For objName, obj in ObjectList {
-		For curType, obj2 in obj {
+		For curType, obj2 in obj["types"] {
 			type := curType, label := obj2["label"], match := obj2["match"]
 			testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
 		}
 	}
 	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
 	
+	
+	; Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends,"index",GetLineNum(match.Pos(0)),"parent",parent)
+	; and Map("members",list)
 	testList := ""
-	For className, obj in ClassesList
-		testList .= className " / " obj["type"] "`r`n"
+	For className, obj in ClassesList {
+		testList .= "`r`n" className " / " obj["type"] "`r`n"
+		For member, memObj in obj["members"] {
+			testList .= "`t" member " / " memObj["type"] "`r`n"
+		}
+	}
+	A_Clipboard := testList
 	MsgBox "Classes loaded:`r`n`r`n" testList
 }
 
@@ -215,26 +257,15 @@ FullReload() {
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
 	
-	If (oCallTip.ctlHwnd) {
-		; df := SendMessage(ScintillaExt.SCI_GETDIRECTFUNCTION, 0, 0, oCallTip.ctlHwnd)
-		; dp := SendMessage(ScintillaExt.SCI_GETDIRECTPOINTER, 0, 0, oCallTip.ctlHwnd)
-		
-		; ScintillaExt.df := df
-		; ScintillaExt.dp := dp
-		
-		ScintillaExt.pid := oCallTip.progPID
-	}
+	If (oCallTip.ctlHwnd)
+		ScintillaExt.pid := oCallTip.progPID ; need PID for sending messages to edit control in some cases
 	
 	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	
-	If (!KeywordList)		;ZZZ - only load these if they don't already exist
-		LoadKeywordsList()	;ZZZ - this is good for first run, or initial startup
-	If (!FunctionsList)
-		LoadFunctionsList()
-	If (!MethPropList) {
-		objMatchText := LoadMethPropList()
-		LoadObjectCreateList(objMatchText)
-	}
+	LoadKeywordsList()
+	LoadFunctionsList()
+	objMatchText := LoadMethPropList()
+	LoadObjectCreateList(objMatchText)
 	
 	ReParseText()
 }
@@ -243,6 +274,7 @@ SetupInputHook() {
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
+	IH.KeyOpt("{Enter}","N S") ; handle {Enter} differently, block until it needs to be sent
 	IH.Start()
 }
 
@@ -266,9 +298,10 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			ctl.Focus(), ctl.Value := 1
 		}
 	} Else If (vk = 13) { ; enter key
-		If (acON and !ctl.Focused)
+		If (acON and !ctl.Focused) {
 			closeAutoComplete()
-		Else If (acON and ctl.Focused) {
+			SendInput "{Enter}"
+		} Else If (acON and ctl.Focused) {
 			kwSel := ctl.Text
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
@@ -276,12 +309,21 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			parentObj := oCallTip.parentObj
 			If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
 				hwnd := oCallTip.ctlHwnd
+				ctlClassNN := Settings["ProgClassNN"]
 				
 				If (kwSel) {
-					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
-					newPos := curPos - StrLen(curPhrase)
-					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
-					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
+					If (ctlClassNN = "edit") { ; edit specific, ie. notepad.exe
+						sPos := BufferAlloc(4,0) 
+						SendMessage 176, sPos.ptr, 0, hwnd ; EM_GETSEL - used this way it gets the carat position
+						curPos := NumGet(sPos,"UInt"), newPos := curPos - StrLen(curPhrase)
+						SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
+						ControlEditPaste kwSel, hwnd
+					} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
+						curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
+						newPos := curPos.dll - StrLen(curPhrase)
+						r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
+						r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
+					}
 				}
 			}
 			closeAutoComplete()
@@ -289,14 +331,15 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			t := GetPhraseType(kwSel,parentObj)
 			If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property")
 				DisplayCallTip()
-			
-			return ; try to suppress carriage return
+		} Else {
+			SendInput "{Enter}"
 		}
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
 		If (acON) ; make sure auto-complete GUI is visible
 			closeAutoComplete()
-	} Else
+	} Else {
 		SetTimer "LoadAutoComplete", -10
+	}
 	
 	iHook.Stop()
 	
@@ -342,27 +385,21 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 	parentObjType := oCallTip.parentObjType
 	curPhraseType := oCallTip.curPhraseType
 	
-	If (StrLen(curPhrase) >= AutoCompleteLength) {
-		KeywordFilter := Map()
-		If (StrLen(curPhrase) >= AutoCompleteLength) {
-			KeywordFilter := KwSearchDeep(curPhrase, parentObj)
-			
-			If (KeywordFilter.Count = 1)
-				For kw in KeywordFilter
-					testWord := RegExreplace(kw,"\(m\)|\(f\)|\.","")
-			
-			If (force Or (parentObj And !curPhrase)) { ; for manual invocation, or after typing "object."
-				LoadAutoCompleteGUI(KeywordFilter)
-			} Else {
-				If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
-					LoadAutoCompleteGUI(KeywordFilter)
-				Else
-					closeAutoComplete()
-			}
-		} Else
+	KeywordFilter := Map()
+	KeywordFilter := KwSearchDeep(curPhrase, parentObj)
+	
+	If (KeywordFilter.Count = 1)
+		For kw in KeywordFilter
+			testWord := RegExReplace(kw,"\(m\)|\(f\)|\.","")
+	
+	If ((KeywordFilter.Count And parentObj And !curPhrase) Or force) { ; for manual invocation, or after typing "object."
+		LoadAutoCompleteGUI(KeywordFilter)
+	} Else {
+		If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
+			LoadAutoCompleteGUI(KeywordFilter)
+		Else
 			closeAutoComplete()
-	} Else
-		closeAutoComplete()
+	}
 }
 
 KwSearchDeep(curPhrase, parentObj) {
@@ -399,7 +436,7 @@ KwSearchDeep(curPhrase, parentObj) {
 			
 			For objName in curList {
 				If (parentObj = objName) {
-					curObj := objName
+					curObj := parentObj
 					foundObj := true
 					Break
 				}
@@ -409,8 +446,8 @@ KwSearchDeep(curPhrase, parentObj) {
 		}
 		
 		If (curObj) {
-			curObject := curList[curObj]
 			If (thisList = "ObjectList") {
+				curObject := ObjectList[curObj]["types"]
 				For curType in curObject {
 					curMethPropList := MethPropList[curType]
 					curMethList := curMethPropList["method"]
@@ -444,15 +481,21 @@ debugToolTip() {
 	curPhraseType := oCallTip.curPhraseType
 	parentObj := oCallTip.parentObj
 	parentObjType := oCallTip.parentObjType
+	scintBufferLen := oCallTip.scintBufferLen
+	lineText := oCallTip.lineText
 	
-	If (curPhrase) { ; for debugging while allowing user input - requires InputHook up top
-		CaretGetPos(x,y)
-		Tooltip "curPhrase :" curPhrase ": / curPhraseObj: " curPhraseObj
-		      . "`r`nfuncName: " funcName " / funcText: " funcText
-		      . "`r`nparentObj: " parentObj " / parentObjType: " parentObjType 
-			  . "`r`nphraseType: " curPhraseType, x, (y+30)
-	} Else
-		ToolTip
+	lineNum := oCallTip.lineNum
+	colNum := oCalltip.colNum
+	
+	CaretGetPos(x,y)
+	Tooltip "curPhrase :" curPhrase ": / curPhraseObj: " curPhraseObj
+		  . "`r`nfuncName: " funcName " / funcText: " funcText
+		  . "`r`nparentObj: " parentObj " / parentObjType: " parentObjType 
+		  . "`r`nphraseType: " curPhraseType
+		  . "`r`nLine: " lineNum " / Col: " colNum
+		  . "`r`nLineText: " lineTExt
+		  . "`r`nscintBufferLen: " scintBufferLen
+		  , x, (y+30) 
 }
 
 ClickCheck(curKey) {
@@ -484,6 +527,7 @@ CallTipsReload() {
 }
 
 DisplayCallTip() {
+	closeAutoComplete()
 	If (!oCallTip.ctlActive)
 		return
 	

@@ -875,6 +875,12 @@ HotIfWinNotExist
 `/docs/commands/HotIf.htm#IfWin
 
 
+Command
+HotIf
+`HotIf ["Expression"]   or   HotIf [FunctionObject]
+`/docs/commands/HotIf.htm#If
+
+
 Flow
 If
 `

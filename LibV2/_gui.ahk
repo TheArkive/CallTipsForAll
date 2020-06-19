@@ -72,12 +72,11 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	} Else If (curPhraseType = "object") {
 		For objName, objobj in ObjectList { ; find element and correct case
 			If (objName = curPhrase) {
-				obj := objobj
+				obj := objobj["types"]
 				Break
 			}
 		}
 		
-		; obj := ObjectList.Has(curPhrase) ? ObjectList[curPhrase] : ""
 		If (!obj)
 			return
 		
@@ -106,7 +105,6 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			}
 		}
 		
-		; obj := ObjectList.Has(parentObj) ? ObjectList[parentObj] : ""
 		If (!obj)
 			return
 		
@@ -137,9 +135,11 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		
 		curObj := "", listObj := "", memObj := "", descObj := ""
 	} Else If (curPhraseType = "Class" or curPhraseType = "Instance") {
-		For clName in ClassesList {
+		For clName, cObj in ClassesList {
 			If (clName = curPhrase) {
 				className := clName ; correct case for lookup
+				extends := cObj["extends"] ? " extends " cObj["extends"] : ""
+				classParent := cObj["parent"]
 				break
 			}
 		}
@@ -158,20 +158,41 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 				return
 		}
 		
+		For clName, cObj in ClassesList {
+			parent := cObj["parent"]
+			subClasses .= (cObj["parent"] = className) ? clName ", " : ""
+		}
+		subClasses := Trim(subClasses,", ")
+		
+		m := 0, p := 0
 		listObj := obj["members"]
 		fullDescArr := Map(), i := 1
 		For memName, memObj in listObj {
 			memType := memObj["type"]
-			If (memType = "method")
-				methList .= "." memName ", "
-			Else if (memType = "property" Or memType = "propertySmall")
-				propList .= "." memName ", "
+			stat := memObj["static"] ? " (S)" : ""
+			If (memType = "method") {
+				m++
+				If (m <= 20)
+					methList .= "." memName stat ", "
+				Else If (m = 21)
+					methList .= "..."
+				
+			} Else if (memType = "property" Or memType = "propertySmall") {
+				p++
+				If (p <= 20)
+					propList .= "." memName stat ", "
+				Else If (p = 21)
+					propList .= "..."
+			}
 		}
 		methList := Trim(methList,", "), propList := Trim(propList,", ")
 		
-		tempDesc := className " Class" (curPhraseType = "Instance" ? " Instance" : "") ":`r`n`r`n"
-		tempDesc .= methList ? "Methods: " methList "`r`n`r`n" : ""
-		tempDesc .= propList ? "Properties: " propList : ""
+		tempDesc := className " Class" (curPhraseType = "Instance" ? " Instance" : "") extends "`r`n" ; ":`r`n`r`n"
+		tempDesc .= !subClasses ? "" : "    Sub Classes: " subClasses "`r`n"
+		tempDesc .= !classParent ? "" : "    Parent: " classParent "`r`n"
+		tempDesc .= "`r`n"
+		tempDesc .= methList ? "Methods (" m "): " methList "`r`n`r`n" : ""
+		tempDesc .= propList ? "Properties (" p "): " propList : ""
 		tempDesc := Trim(tempDesc," `t`r`n")
 		curObj := Map("desc",tempDesc,"helpLink","")
 		fullDescArr[1] := curObj
@@ -269,8 +290,6 @@ gui_click(ctlObj,info) {
 	fullDesc := fullDescArrObj["desc"]
 	link := fullDescArrObj["helpLink"]
 	helpFile := oCallTip.helpFile
-	
-	; msgbox link "`r`n`r`n" helpFile
 	
 	If (InStr(link,"/") = 1 And FileExist(helpFile)) {
 		helpFile := StrReplace(helpFile," ","%20")
@@ -506,8 +525,6 @@ LoadAutoCompleteGUI(KeywordFilter) {
 			endList.Push(prefix kw addon)
 	}
 	
-	; DebugMsg("dispList: " dispList.Length " / endList: " endList.Length)
-	
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
 	fontColor := Settings["fontColor"]
@@ -534,20 +551,3 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
 	AutoCompleteGUI.Show("h" h " NA NoActivate")
 }
-
-; WM_KEYDOWN(wParam, lParam, msg, hwnd) {
-	; If (IsObject(AutoCompleteGUI) And AutoCompleteGUI["KwList"].hwnd = hwnd) {
-		; ctl := AutoCompleteGUI["KwList"]
-		; curPhrase := oCallTip.curPhrase
-		; kwSel := ctl.Text
-		
-		; kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
-		
-		; If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
-			; remainder := StrReplace(kwSel,curPhrase,"",,1)
-			; Loop Parse remainder
-				; ControlEditPaste A_LoopField, oCallTip.ctlHwnd ; not ideal but works
-		; }
-		; closeAutoComplete()
-	; }
-; }
