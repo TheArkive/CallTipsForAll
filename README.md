@@ -45,7 +45,7 @@ class myClass { ; show
 		...
     }
     method2(a,b) ; show
-	{
+    {
 		...
     }
 }
@@ -72,7 +72,7 @@ var1 := 1, var2 := 2
 		...
     }
     method2(a,b) ; show
-	{
+    {
 		...
     }
 }
