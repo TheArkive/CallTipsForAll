@@ -201,23 +201,7 @@ Class LineInfo {
   DocComment(line, Name, Props){
     Return this.SetItem("DocComments", line, Name, Props)
   }
- 
   
-  ; GetItem(Type, line){
-    ; Return this.get( Type, line )
-  ; }
-
-  ; WithinStack := []
-  ; WithinProp(line, inc, Name := ""){
-    
-    ; Return this.SetItem("Within", line, Name, Props)
-  ; }
-  ; WithinClass(line, inc, Name := ""){
-  
-  ; }
-  ; WithinFunc(line, inc, Name := ""){
-  
-  ; }
   
   GuessDocComment(){
     tmpobj := {}
