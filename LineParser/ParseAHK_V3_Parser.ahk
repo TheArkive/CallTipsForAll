@@ -456,6 +456,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ContinuationBufferLineNum := PhysicalLineNum
     PhysicalLineNum           := TempLineNum
 
+    LineInfo.Line(PhysicalLineNum, { _LineFull: Line
+                                   , _LineFullNoLiteralString: RemoveQuotedStrings(Line) })
+
     ;>>> GlobalVars ----------------------------------------------------------------------------------------------------
     If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal: Check 2020-06: only minimal effect, maybe even positive effect to keep line
       If RegExMatch(Line, GlobalVarsRE, Match)
