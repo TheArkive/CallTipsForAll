@@ -25,10 +25,10 @@ Potential Enhancements to capture all potential information for call tips or aut
 - scan also active document when not already covered by the files scanned
 */
 
-ScanFiles(File, SearchRE, DocComment){
   ;read file
+ScanFiles(File, SearchRE, DocComment, WithInStack := ""){
   FileRead, FileContent, %File%
-  LineInfo.File := File
+  LineInfo.File(File, WithInStack)
   Result := ParseAHK(FileContent, SearchRE, DocComment)
   Result[File, "GuessDocComment"] := LineInfo.GuessDocComment()
   LineInfo.DeleteAll()
@@ -44,11 +44,11 @@ ScanFiles(File, SearchRE, DocComment){
       IncludeDir := v
     Else {
       If FileExist(v) 
-        Result[File, "Includes", line] := ScanFiles(v, SearchRE, DocComment)
         ; ScanFiles(v, SearchRE, DocComment)
+        Result[File, "Includes", line] := ScanFiles(CurrentOutDir "\" v, SearchRE, DocComment, [])
       Else If FileExist(IncludeDir "\" v) 
-        Result[File, "Includes", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment)
         ; ScanFiles(IncludeDir "\" v, SearchRE, DocComment)
+        Result[File, "Includes", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment, [])
     }
   } 
   Return Result                    
