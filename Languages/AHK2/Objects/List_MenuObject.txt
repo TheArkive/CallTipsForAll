@@ -1,4 +1,7 @@
-0 MenuObject MenuCreate ([\w\.]+)[ \t]*:=[ \t]*(MenuCreate\x28)
+0 MenuObject MenuNew [ \t\.]*(menu)\.[\w]+
+0 MenuBarObject MenuBarNew [ \t\.]*(menubar)\.[\w]+
+0 MenuObject MenuCreate ([\w\.]+)[ \t]*:=[ \t]*(Menu\.New\x28)
+0 MenuBarObject MenuBarCreate ([\w\.]+)[ \t]*:=[ \t]*(MenuBar\.New\x28)
 0 MenuObject MenuFromHandle ([\w\.]+)[ \t]*:=[ \t]*(MenuFromHandle\x28)
 0 MenuObject MenuFromVar ([\w\.]+)[ \t]*:=[ \t]*(A_TrayMenu)
 0 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; Menu[\w ]*)
@@ -112,4 +115,10 @@ Method
 AddStandard
 `MenuObj.AddStandard()
 /Adds the standard tray menu items.
+`/docs/objects/Menu.htm#[MemberName]
+
+
+Method
+New
+`MenuObj.New()
 `/docs/objects/Menu.htm#[MemberName]

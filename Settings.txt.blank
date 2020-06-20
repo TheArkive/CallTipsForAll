@@ -10,6 +10,6 @@
     "ProgExe": "notepad++.exe",
     "bgColor": "0x444444",
     "fontColor": "0xFFFF00",
-    "fontFace": "Courier New",
-    "fontSize": 10
+    "fontFace": "Consolas",
+    "fontSize": 10.0
 }

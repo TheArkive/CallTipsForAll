@@ -1,12 +1,13 @@
 ; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 ; =======================================================================================
 
 FileEncoding "UTF-8"
 
 Global SettingsGUI, AutoCompleteGUI, callTipGui
+SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
 Global ClassesList, ObjectCreateList, ObjectList, DocumentMap ; internal list for keeping track of objects and obj types
 Global MethPropList, UserObjMethProp, FunctionList, CustomFunctions, KeywordList ; internal lists for indicated types
@@ -36,7 +37,7 @@ return ; end of auto execute section
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}"
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}" Chr(34)
 	Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
 	Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
 	Static docTextNoComments := "" ;ZZZ - do this to prune comments
@@ -106,7 +107,6 @@ class oCallTip { ; testing
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
 #INCLUDE LibV2\TheArkive_Debug.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
-#INCLUDE LibV2\_scintilla_class_kczx3.ahk
 
 ; ================================================================
 ; hotkeys - global ; 
@@ -185,6 +185,15 @@ Down:: ; scroll when multiple records are available for call tips
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
 	testList := ""
+	For curFunc, obj in FunctionList {
+		params := obj["desc"]
+		testList .= curFunc " / " (params.Has(1) ? params[1] : "") "`r`n`r`n"
+	}
+	A_Clipboard := testList
+	msgbox "Function List:`r`n`r`n" testList
+	
+	
+	testList := ""
 	For curName, obj in CustomFunctions {
 		desc := obj["desc"]
 		testList .= curName " / " desc "`r`n`r`n"
@@ -227,6 +236,7 @@ F10:: ; list functions - for debugging List_*.txt files only
 		
 	; msgbox "Functions:`r`n`r`n" testList
 	
+	testList := ""
 	For level, lvlObj in ObjectCreateList { ; for debug only
 		For label, labelObj in lvlObj {
 			regex := labelObj["regex"]
@@ -279,18 +289,12 @@ SetupInputHook() {
 }
 
 keyPress(iHook,VK,SC) { ; InputHookObject
-	If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or IsObject(SettingsGUI))
-		return
-	
 	ctl := "", acON := false ; auto-complete GUI active
 	
 	If (IsObject(AutoCompleteGUI)) {
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
 		acON := (ctl) ? true : acON
 	}
-	
-	If (!Settings["AutoComplete"])
-		return
 	
 	If (vk = 9) {
 		If (acON) {
@@ -337,12 +341,14 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
 		If (acON) ; make sure auto-complete GUI is visible
 			closeAutoComplete()
-	} Else {
+	} Else { ; skip autocomplete if...
+		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI))
+			return
+		
 		SetTimer "LoadAutoComplete", -10
 	}
 	
 	iHook.Stop()
-	
 	SetupInputHook()
 }
 
@@ -387,6 +393,7 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 	
 	KeywordFilter := Map()
 	KeywordFilter := KwSearchDeep(curPhrase, parentObj)
+	testWord := ""
 	
 	If (KeywordFilter.Count = 1)
 		For kw in KeywordFilter
@@ -436,7 +443,7 @@ KwSearchDeep(curPhrase, parentObj) {
 			
 			For objName in curList {
 				If (parentObj = objName) {
-					curObj := parentObj
+					curObj := objName
 					foundObj := true
 					Break
 				}
@@ -451,21 +458,30 @@ KwSearchDeep(curPhrase, parentObj) {
 				For curType in curObject {
 					curMethPropList := MethPropList[curType]
 					curMethList := curMethPropList["method"]
-					For methName in curMethList
-						If (inStr(methName,curPhrase))
+					For methName in curMethList {
+						If (!curPhrase)
 							resultList[methName] := curType " Method"
+						Else If (InStr(methName,curPhrase))
+							resultList[methName] := curType " Method"
+					}
 					
 					curPropList := curMethPropList["property"]
-					For propName in curPropList
-						If (inStr(propName,curPhrase))
+					For propName in curPropList {
+						If (!curPhrase)
 							resultList[propName] := curType " Property"
+						Else If (inStr(propName,curPhrase))
+							resultList[propName] := curType " Property"
+					}
 				}
 			} Else If (thisList = "ClassesList") {
 				classObj := ClassesList[curObj]
 				memList := classObj["members"]
-				For memName, obj in memList
-					If (InStr(memName,curPhrase))
+				For memName, obj in memList {
+					If (!curPhrase)
 						resultList[memName] := obj["type"]
+					Else If (InStr(memName,curPhrase))
+						resultList[memName] := obj["type"]
+				}
 			}
 		}
 	}
@@ -505,7 +521,8 @@ ClickCheck(curKey) {
 		return
 	}
 	
-	c := MultiClickDetect(curKey)
+	MultiClick.Detect(curKey)
+	c := MultiClick.Count
 	
 	If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
 		If (!oCallTip.ctlActive)

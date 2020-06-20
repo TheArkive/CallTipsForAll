@@ -10,10 +10,12 @@
 ; === can be Array(), [], or Map()
 ; defColor := Array(0xFF0000,0,0x00FF00,0,0x0000FF)
 ; ===============================================================
-; Global cc
-; cc := 0x00FF00 ; green
 
-; oGui := GuiCreate("-MinimizeBox -MaximizeBox","Choose Color")
+; global cc, defColor
+; cc := 0x00FF00 ; green
+; defColor := [0xAA0000,0x00AA00,0x0000AA]
+
+; oGui := Gui.New("-MinimizeBox -MaximizeBox","Choose Color")
 ; oGui.OnEvent("close","close_event")
 ; oGui.OnEvent("escape","close_event")
 ; oGui.AddButton("w150","Choose Color").OnEvent("click","choose_event")
@@ -23,7 +25,8 @@
 
 
 ; choose_event(ctl,info) {
-	; hwnd := ctl.gui.hwnd ; grab hwnd ; cc := "0x" ctl.gui.BackColor ; pre-select color from gui background (optional)
+	; hwnd := ctl.gui.hwnd ; grab hwnd
+	; cc := "0x" ctl.gui.BackColor ; pre-select color from gui background (optional)
 	
 	; cc := ColorSelect(cc,hwnd,defColor,0) ; hwnd and defColor are optional
 	

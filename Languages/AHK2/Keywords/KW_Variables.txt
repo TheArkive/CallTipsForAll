@@ -8,6 +8,7 @@ A_AutoTrim
 A_BatchLines
 A_CaretX
 A_CaretY
+A_Clipboard
 A_ComputerName
 A_ComSpec
 A_ControlDelay
@@ -144,8 +145,12 @@ A_WorkingDir
 A_YDay
 A_YWeek
 A_YYYY
-A_Clipboard
-ComSpec
 False
-ProgramFiles
 True
+unset
+this
+super
+base
+Menu
+MenuBar
+Gui

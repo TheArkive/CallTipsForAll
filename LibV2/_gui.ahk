@@ -13,13 +13,12 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	bgColor := Settings["bgColor"]
 	
 	curPhrase := oCallTip.curPhrase ; Global curPhrase, curPhraseObj, curPhraseType, parentObj, parentObjType
-	If (!oCallTip.HasOwnProp("curPhraseObj"))
-		return
-	
 	curPhraseObj := oCallTip.curPhraseObj
 	curPhraseType := oCallTip.curPhraseType
 	parentObj := oCallTip.parentObj
 	parentObjType := oCallTip.parentObjType
+	
+	; msgbox curPhrase " / " parentObj
 	
 	If (curPhrase = "")
 		return
@@ -39,8 +38,10 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		phraseRedir := "function"
 	
 	if (phraseRedir = "function") {
+		; msgbox curPhrase " / " curPhraseObj " / " parentObj
+		
 		For funcName, obj in FunctionList {
-			If (funcName = curPhrase) {
+			If (funcName = curPhrase) { ; Or funcName = curPhraseObj ??
 				descArr := obj["desc"] ; desc array
 				helpLink := obj["helpLink"]
 				break
@@ -70,14 +71,16 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			curDescObj := "", descArr := ""
 		}
 	} Else If (curPhraseType = "object") {
+		found := false
 		For objName, objobj in ObjectList { ; find element and correct case
 			If (objName = curPhrase) {
 				obj := objobj["types"]
+				found := true
 				Break
 			}
 		}
 		
-		If (!obj)
+		If (!found)
 			return
 		
 		fullDescArr := Map(), i := 1
@@ -98,14 +101,16 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 		curObj := "", listObj := "", obj := ""
 	} Else If (curPhraseType = "method" Or curPhraseType = "property") {
+		found := false
 		For objName, objobj in ObjectList { ; find element and correct case
-			If (objName = curPhrase) {
-				obj := objobj
+			If (objName = parentObj) {
+				obj := objobj["types"]
+				found := true
 				Break
 			}
 		}
 		
-		If (!obj)
+		If (!found)
 			return
 		
 		fullDescArr := Map(), i := 1
@@ -158,6 +163,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 				return
 		}
 		
+		subClasses := ""
 		For clName, cObj in ClassesList {
 			parent := cObj["parent"]
 			subClasses .= (cObj["parent"] = className) ? clName ", " : ""
@@ -166,7 +172,8 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		
 		m := 0, p := 0
 		listObj := obj["members"]
-		fullDescArr := Map(), i := 1
+		fullDescArr := Map(), i := 1, propList := "", methList := ""
+		
 		For memName, memObj in listObj {
 			memType := memObj["type"]
 			stat := memObj["static"] ? " (S)" : ""
@@ -229,6 +236,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	oCallTip.fullDescArr := fullDescArr
 	fullDescArrObj := fullDescArr[curIndex]
 	fullDesc := fullDescArrObj["desc"]
+	newFullDesc := ""
 	
 	Loop Parse fullDesc, "`n", "`r"
 		newFullDesc .= "`r`n" RegExReplace(A_LoopField,"^/","`r`n")
@@ -237,11 +245,8 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	If (!fullDesc)
 		return
 	
-	curMon := GetMonitorData(outX,outY) ; get actvie monitor dims and L/R/T/B
-	dims := GetTextDims(fullDesc,fontFace,fontSize,maxWidth)
-	
-	If (dims.w > curMon.w)
-		dims := GetTextDims(fullDesc,fontFace,fontSize,curMon.w * 0.75)
+	curMon := GetMonitorData() ; was using > outX,outY ; get actvie monitor dims and L/R/T/B
+	dims := GetTextDims(fullDesc,fontFace,fontSize,curMon.w * 0.75) ; no maxWidth, get full dims
 	
 	vscroll := "-VScroll"
 	
@@ -257,7 +262,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		If (callTipGui)
 			callTipGui.Destroy()
 		
-		callTipGui := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin) ; Splitpath drive
+		callTipGui := Gui.New("-Border AlwaysOnTop +Owner" oCallTip.progHwnd) ; Splitpath drive
 		callTipGui.BackColor := bgColor
 		callTipGui.SetFont("s" fontSize " c" fontColor,fontFace)
 		
@@ -313,7 +318,7 @@ SettingsGUILoad() {
 	closeCallTip()
 	closeAutoComplete()
 	
-	SettingsGUI := GuiCreate("+OwnDialogs","CallTipsForAll v2")
+	SettingsGUI := Gui.New("+OwnDialogs","CallTipsForAll v2")
 	SettingsGUI.OnEvent("Close","gui_close")
 	SettingsGUI.OnEvent("escape","gui_close")
 	ActiveLanguage := Settings["ActiveLanguage"]
@@ -328,7 +333,7 @@ SettingsGUILoad() {
 	{
 		; langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
 		langList.Push(A_LoopFileName)
-		choose := (A_LoopFileName = ActiveLanguage) ? A_Index : chooose
+		choose := (A_LoopFileName = ActiveLanguage) ? A_Index : choose
 	}
 	
 	; langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
@@ -463,7 +468,7 @@ gui_close(guiObj) {
 QuickReloadGUI() {
 	m := GetMonitorData()
 	
-	g := GuiCreate("+OwnDialogs","Base File Quick Reload")
+	g := Gui.New("+OwnDialogs","Base File Quick Reload")
 	g.OnEvent("close","quick_reload_close")
 	g.OnEvent("escape","quick_reload_close")
 	
@@ -519,10 +524,11 @@ LoadAutoCompleteGUI(KeywordFilter) {
 			prefix := "."
 		
 		kwBlock .= prefix kw addon "`r`n"
-		If (InStr(kw,curPhrase) = 1)
-			dispList.Push(prefix kw addon)
-		Else
+		
+		If (!curPhrase Or InStr(kw,curPhrase) != 1)
 			endList.Push(prefix kw addon)
+		Else If (InStr(kw,curPhrase) = 1)
+			dispList.Push(prefix kw addon)
 	}
 	
 	fontFace := Settings["fontFace"]
@@ -539,7 +545,7 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	CoordMode "Caret", "Screen"
 	CaretGetPos(outX, outY)
 	
-	AutoCompleteGUI := GuiCreate("-Border AlwaysOnTop +Owner" hEditorWin)
+	AutoCompleteGUI := Gui.New("-Border AlwaysOnTop +Owner" hEditorWin)
 	AutoCompleteGUI.BackColor := bgColor
 	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
 	

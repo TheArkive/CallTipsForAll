@@ -60,8 +60,7 @@ Jxon_Load(ByRef src, args*) {
 				i := pos
 				while i := InStr(src, q,, i+1) {
 					val := StrReplace(SubStr(src, pos+1, i-pos-1), "\\", "\u005C")
-					static end := A_AhkVersion<"2" ? 0 : -1
-					if (SubStr(val, end) != "\")
+					if (SubStr(val, -1) != "\")
 						break
 				}
 				if !i ? (pos--, next := "'") : 0
@@ -83,7 +82,7 @@ Jxon_Load(ByRef src, args*) {
 						continue 2
 
 					xxxx := Abs("0x" . SubStr(val, i+2, 4)) ; \uXXXX - JSON unicode escape sequence
-					if (A_IsUnicode || xxxx < 0x100)
+					if (xxxx < 0x100)
 						val := SubStr(val, 1, i-1) . Chr(xxxx) . SubStr(val, i+6)
 				}
 				
@@ -94,38 +93,19 @@ Jxon_Load(ByRef src, args*) {
 			} else { ; number | true | false | null
 				val := SubStr(src, pos, i := RegExMatch(src, "[\]\},\s]|$",, pos)-pos)
 				
-				static number := "number", integer := "integer", float := "float"
-				If (A_AhkVersion < 2) {
-					if val is %number%
-					{
-						if val is %integer%
-							val += 0
-						if val is %float%
-							val += 0
-						else if (val == "true" || val == "false")
-							val := %value% + 0
-						else if (val == "null")
-							val := ""
-						else if is_key {					; else if (pos--, next := "#")
-							pos--, next := "#"					; continue
-							continue
-						}
-					}
-				} Else {
-					if val is number
-					{
-						if val is integer
-							val += 0
-						else if val is float
-							val += 0
-						else if (val == "true" || val == "false")
-							val := %value% + 0
-						else if (val == "null")
-							val := ""
-						else if is_key {			; Else if (pos--, next := "#")
-							pos--, next := "#"			; continue
-							continue
-						}
+				if IsNumber(val)
+				{
+					if IsInteger(val)
+						val += 0
+					else if IsFloat(val)
+						val += 0
+					else if (val == "true" || val == "false")
+						val := %value% + 0
+					else if (val == "null")
+						val := ""
+					else if is_key {			; Else if (pos--, next := "#")
+						pos--, next := "#"			; continue
+						continue
 					}
 				}
 				
@@ -150,8 +130,7 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 		if (memType ? (memType != "Object" And memType != "Map" And memType != "Array") : (ObjGetCapacity(obj) == ""))
 			throw Exception("Object type not supported.", -1, Format("<Object at 0x{:p}>", ObjPtr(obj)))
 		
-		static integer := "integer"
-		if indent is integer ; %integer%
+		if IsInteger(indent)
 		{
 			if (indent < 0)
 				throw Exception("Indent parameter must be a postive integer.", -1, indent)
@@ -185,7 +164,7 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 		
 		return is_array ? "[" . out . "]" : "{" . out . "}"
 	} else { ; Number
-		number := "number", string := "string"
+		number := "number"
 		If (Type(obj) != "String")
 			return obj
 		Else {

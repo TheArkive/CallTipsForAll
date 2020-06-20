@@ -38,7 +38,7 @@ Move
 
 Method
 OnCommand
-`GuiControl.OnCommand(NotifyCode, Callback , AddRemove := 1)
+`GuiControl.OnCommand(NotifyCode, Callback [, AddRemove := 1])
 `/docs/objects/GuiOnCommand.htm
 
 
@@ -61,8 +61,8 @@ Opt
 
 
 Method
-Pos(x,y,w,h)
-`GuiCtlObj.Pos (Obj)
+GetPos
+`GuiCtlObj.GetPos(x,y,w,h)
 `/docs/objects/GuiControl.htm#[MemberName]
 
 

@@ -15,7 +15,7 @@ ArkDebugCheck() {
 }
 
 ArkDebugOpen() {
-	ArkDebugObj := GuiCreate("+Resize","TheArkyTekt Debug Window"), ArkDebugWinHwnd := ArkDebugObj.Hwnd
+	ArkDebugObj := Gui.New("+Resize","TheArkyTekt Debug Window"), ArkDebugWinHwnd := ArkDebugObj.Hwnd
 	ArkDebugObj.OnEvent("size", "ArkDebugGuiSize"), ArkDebugObj.OnEvent("close","ArkDebugClose")
 	
 	ArkDebugObj.SetFont("s11","Courier New")

@@ -37,6 +37,7 @@ StringOutline(sInput,pruneComments := true) {
 }
 
 StrRepeat(str,num) {
+	result := ""
 	Loop num
 		result .= str
 	return result
@@ -78,7 +79,6 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	
 	fullPhrase := ""
 	aStr := StrSplit(phraseObj,".")
-	; fullPhrase := aStr[aStr.Length]
 	
 	Loop (aStr.Length-1) {
 		curBit := aStr[A_Index]
@@ -113,7 +113,7 @@ ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd, ctlClassNN := Settings["ProgClassNN"]
+	hCtl := oCallTip.ctlHwnd, ctlClassNN := Settings["ProgClassNN"]
 	
 	If (ctlClassNN = "edit") { ; specific for edit control (notepad.exe)
 		curLine := ControlGetCurrentLine(hCtl) ; global
@@ -142,10 +142,18 @@ ProcInput() {
 	
 	oCallTip.curPhraseObj := curPhraseObj
 	oCallTip.parentObj := parentObj
-	oCallTip.curPhraseType := ""
-	oCallTip.parentObjType := ""
+	oCallTip.curPhraseType := "", curPhraseType := ""
+	oCallTip.parentObjType := "", parentObjType := ""
 	
-	parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj]["types"] : Map()
+	parentObjTypeList := Map()
+	For objName in ObjectList {
+		If (parentObj = objName) {
+			parentObjTypeList := ObjectList[objName]["types"]
+			Break
+		}
+	}
+	
+	; parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj]["types"] : Map()
 	
 	; topFunc := GetTopLevelFunc(curLineNoStr,curCol,funcStart,funcEnd) ; funcStart, funcEnd: ByRef - not currently used
 	; funcText := topFunc ? SubStr(curLineText,funcStart,StrLen(topFunc)) : ""

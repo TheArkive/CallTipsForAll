@@ -11,7 +11,7 @@ ReParseText() {
 		return
 	
 	;show a gui that elements are loaded
-	g := GuiCreate("-Caption AlwaysOnTop +Owner" oCallTip.progHwnd)
+	g := Gui.New("-Caption AlwaysOnTop +Owner" oCallTip.progHwnd)
 	g.SetFont("s" Settings["fontSize"], Settings["fontFace"])
 	g.BackColor := Settings["bgColor"]
 	ctl := g.AddText("+c" Settings["fontColor"] " x5 y5", "Loading Objects / Custom Functions...")
@@ -33,7 +33,7 @@ ReloadElements() {
 	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
 	
 	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
-		pos := 0
+		pos := 0, tmp := ""
 		For i, File in GetIncludes() {
 			curFileText := FileRead(File), curFileLen := StrLen(curFileText)
 			curFileArr := StrSplit(curFileText,"`n","`r")
@@ -248,7 +248,7 @@ LoadFunctionsList() {
 
 LoadMethPropList() {
 	MethPropList := Map() ; , MethPropList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
-	srcFiles := oCallTip.srcFiles
+	srcFiles := oCallTip.srcFiles, objMatchText := ""
 	Loop Files srcFiles "\Objects\*.txt"
 	{
 		a := StrSplit(A_LoopFileName,"_")
@@ -675,8 +675,9 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 				w := StrReplace(StrReplace(bodyText,"{","{",lB),"}","}",rB)
 				
 				If (lB = rB) {
+					index := GetLineNum(curPos1)
 					bodyText := SubStr(curDocText,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText,"index",fileLine)
+					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText,"index",index)
 					curPos1 := curPos2
 					Break
 				}
