@@ -261,6 +261,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If (InContinuationBlock2) {
       If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
         InContinuationBlock2 := False
+        LineInfo.PopWithin(PhysicalLineNum)
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       
@@ -296,12 +297,14 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (SubStr(Line, 1, 2) = "*/"){
         InCommentSection := False
         Line := Trim(SubStr(Line, 3))   ;remove the /* from the beginning of the line and continue checking
+        LineInfo.PopWithin( PhysicalLineNum)
         LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection, LineAfter: Line })
       }Else
         Continue                        ;discard this line, it is in a Comment Section
     }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
       LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
+      LineInfo.SetWithin("CommentSection", PhysicalLineNum, "/*")
       Continue
     }
 
@@ -351,10 +354,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If (InStr(RemoveQuotedStrings(Line), "::")){
       If RegExMatch(Line, HotStringRE, Match){
         LineInfo.HotString(PhysicalLineNum, Match.1)
+        LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
+
         Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
       }
       If RegExMatch(Line, HotKeyRE, Match){
         LineInfo.HotKey(PhysicalLineNum, Match.1)
+        LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
         Continue                                   ;>>> to fix: DLLCalls on same line will not be shown, but it should be rare
                                      ;>>> to fix: capture var assignments or function calls (etc) on same line
       }
@@ -420,6 +426,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                                    , AllowTrimRight: AllowTrimRight
                                    , AllowComments: AllowComments
                                    , JoinString: ">" JoinString "<" })
+      LineInfo.SetWithin("ContinuationBlock2", PhysicalLineNum, "(")
       Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
 
     ;>>> Collect continuation lines Method 1
@@ -457,6 +464,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;Process braces at the start of a line
     ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
     While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {          ;i will be 1 or 3 depending on which brace is found
+      If (i = 1)
+        LineInfo.PopWithin(PhysicalLineNum)
+      Else
+        LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
 
       If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
         BlockLevel[ClassLevel] += i - 2                       ;in- or decrease BlockLevel
@@ -495,9 +506,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       tnClasses[ClassLevel] := tn[PhysicalLineNum, "Inside"]
       BlockLevel[ClassLevel] := 0
 
+      LineInfo.SetWithin("Class", PhysicalLineNum, Match.1)
       
       If RegExMatch(Line, "\{$"){      ;check OTB
         BlockLevel[ClassLevel]++
+        LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
         LineInfo.Line(PhysicalLineNum, {OTB: True })
       }
       Continue
@@ -596,6 +609,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           Type := "Function"
         tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName.0,"Type":Type,"Inside":[]}
         LineInfo.Line(PhysicalLineNum, {Type: Type })
+        LineInfo.SetWithin(Type, PhysicalLineNum, FuncName.1)
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
@@ -619,8 +633,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         ;it is still not 100% robust but close, e.g. "IfEqual, var, {" would still be a false positive.
         If (RegExMatch(Line, OTBCommandsRE)){
           FuncBlockLevel++
-          oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-          oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
+          LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
           LineInfo.Line(PhysicalLineNum, {OTB: True })
           Continue
         }
@@ -635,6 +648,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     tn := isObject(tnCurrentFuncDef) ? tnCurrentFuncDef : oResult.Labels
     If RegExMatch(Line, LabelRE, Match){
       tn[PhysicalLineNum] := Match.1 
+      LineInfo.SetWithin("Label", PhysicalLineNum, Match.1)
       LineInfo.Label(PhysicalLineNum, Match.1)
      Continue
     }
