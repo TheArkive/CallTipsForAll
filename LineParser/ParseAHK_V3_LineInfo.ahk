@@ -183,6 +183,9 @@ Class LineInfo {
   Property(line, Name, Props){
     Return this.SetItem("Property", line, Name, Props)
   }
+  Method(line, Name, Props){
+    Return this.SetItem("Method", line, Name, Props)
+  }
   Class(line, Name, Props){
     Return this.SetItem("Class", line, Name, Props)
   }
