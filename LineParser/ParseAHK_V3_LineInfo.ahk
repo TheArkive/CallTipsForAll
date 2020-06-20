@@ -233,9 +233,7 @@ Class LineInfo {
     StrippedCode := this.RemoveComments(code)
     Comment := LTrim(StrReplace(code, StrippedCode,,1), " `t;")
     If StrLen(Comment){
-      If !isObject( this.Comments[ this.File ] )
-        this.Comments[ this.File ] := {(line): [ Comment ]}
-      Else If !isObject( this.Comments[ this.File, line ] )
+      If !isObject( this.Comments[ this.File, line ] )
         this.Comments[ this.File , line ] := [ Comment ]
       Else  
         this.Comments[ this.File , line ].push( Comment )
