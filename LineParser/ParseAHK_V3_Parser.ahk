@@ -16,13 +16,12 @@ Known Issues
            capture var assignments or function calls (etc) on same line
 - DllCall: takes string up to the last ) in the line, not necessary the correct one.         
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
-- Since LineInfo was introduced functions, classes etc are not detected any more.
+- Classes: Functions are not detected as Methods, but STack is correct
            
 Potential Enhancements 
-- detect Return to find lines within label or hotkey, Hotstring, AutoExecSection and detect return value of function/methods
-  with default value as "AutoExec" till first Return outside of function/class defs
-  WithinName will become a stack (n array with pop() and push())
-  multiple labels/hotkeys/hotstrings could share the same Return. What value has WithinName for the statements in the block? first/last/stacked/all combined to one?
+- detect Return in oneline statements
+- detect oneline hotkey and Hotstring vs multiline
+- multiple labels/hotkeys/hotstrings could share the same Return. What value has WithinName for the statements in the block? first/last/stacked/all combined to one?
   "combined to one" sounds possible, also for labels within functions. when a label is detected instead of push() the label gets appended to MaxIndex(). But then it also needs to be removed instead of just pop().
   How many pop() when one Return is found? to know that the position of Return within blocks needs to be known, e.g. the code after a Return within an IF statement is still within the same function/label. And if not burried in blocks how many of multiple labels/hotkeys/hotstrings need to be poped? To allow this the type of WithinName needs to be stored. Then it can be poped till function/class type etc is ontop of WithinName stack
   
@@ -43,9 +42,8 @@ Potential Enhancements
 - refactor function (currently ~700 lines)
   - rename tn... vars
   - have one object to hold the different status vars
-  - extract WithinName and Level documentation for each line inside a body and move it to a new function
-
-- refactor the object to return (oResult), only required information, well structured
+  
+- add push() method to LineInfo parallel to set()
 
 - scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
   then FileName or FileContent should be the incoming parameter to ParseAHK() with detection on which is provided.
