@@ -43,47 +43,6 @@ LineInfo.Indent(line#, increment, Type)      ;in- or decrease the stack of inden
 
 */
 
-; Area to test the class
-
-LineInfo.File := "txt1"
-LineofCode := "global string" " " ";test4 text"
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 3, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-LineofCode := "global string" " " ";? text"
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 3, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-LineofCode := "global string" " " ";III text"
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 2, LineofCode )
-LineInfo.Comment( 3, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-LineInfo.Comment( 4, LineofCode )
-ot(LineInfo.GuessDocComment())
-
-; LineInfo.Function(2, "MyFunc", {type: "some", paracount: 4, xz: "test"})
-; LineInfo.Function(2, "MyFunc", {more: "more", paracount: 8})
-; MsgBox % LineInfo.File := "txt2"
-; r1 := LineInfo.set(2, {name: "First", Type: "Test"})
-; r2 := LineInfo.set(4, {name: "Last", Type: "Texxxt"})
-; r3 := LineInfo.set(4, {func: "my", sub: 3})
-; r4 := LineInfo.set(4)
-; r5 := LineInfo.set()
-; ot(LineInfo.get(2))
-; ot(LineInfo.get(4, "Type", "sub"))
-; ot(LineInfo.getAll())
-; LineInfo.DeleteAll()
-; ot(LineInfo.getAll())
-MsgBox % "File = " LineInfo.File "`n" r1 "`n" r2 "`n" r3 "`n" r4 "`n" r5 "`n" LineInfo.get(4, "Name") "`n"  "`n" "`n" "`n"
-Exitapp
-
-#Include Attach.ahk
-#Include ObjTree.ahk
 
   File(filename, WithinStack){
     old := this._File
