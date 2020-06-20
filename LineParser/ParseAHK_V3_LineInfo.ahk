@@ -146,19 +146,19 @@ Class LineInfo {
 
 
   Var(line, StringOrObject){
-    Return this.Set("Vars", line, StringOrObject)
+    Return this.Set("Var", line, StringOrObject)
   }
   DllCall(line, StringOrObject){
-    Return this.Set("DllCalls", line, StringOrObject)
+    Return this.Set("DllCall", line, StringOrObject)
   }
   Include(line, StringOrObject){
-    Return this.Set("Includes", line, StringOrObject)
+    Return this.Set("Include", line, StringOrObject)
   }
   Global(line, StringOrObject){
-    Return this.Set("Globals", line, StringOrObject)
+    Return this.Set("Global", line, StringOrObject)
   }
   Line(line, StringOrObject){
-    Return this.Set("Lines", line, StringOrObject)
+    Return this.Set("Line", line, StringOrObject)
   }
 
 
@@ -170,7 +170,7 @@ Class LineInfo {
   }
   
   Function(line, Name, Props){
-    Return this.SetItem("Functions", line, Name, Props)
+    Return this.SetItem("Function", line, Name, Props)
   }
   FuncReturn(line, Props){
     If this.has("Functions", Line, "ReturnValues")
@@ -184,22 +184,22 @@ Class LineInfo {
     Return this.SetItem("Property", line, Name, Props)
   }
   Class(line, Name, Props){
-    Return this.SetItem("Classes", line, Name, Props)
+    Return this.SetItem("Class", line, Name, Props)
   }
   Label(line, Name, Props){
-    Return this.SetItem("Labels", line, Name, Props)
+    Return this.SetItem("Label", line, Name, Props)
   }
   Hotkey(line, Name, Props){
-    Return this.SetItem("Hotkeys", line, Name, Props)
+    Return this.SetItem("Hotkey", line, Name, Props)
   }
   HotString(line, Name, Props){
-    Return this.SetItem("HotStrings", line, Name, Props)
+    Return this.SetItem("HotString", line, Name, Props)
   }
   Search(line, Name, Props){
-    Return this.SetItem("Searches", line, Name, Props)
+    Return this.SetItem("Search", line, Name, Props)
   }
   DocComment(line, Name, Props){
-    Return this.SetItem("DocComments", line, Name, Props)
+    Return this.SetItem("DocComment", line, Name, Props)
   }
   
   SetWithin(Type, line, Name){
@@ -220,7 +220,7 @@ Class LineInfo {
     Loop, % line - Block.Line + 1
     {
       LineID := A_Index + Block.Line - 1
-      If !this.has("Lines", LineID, "WithinType")  ;only if line doesn't have the info yet, all others are nested within current block
+      If !this.has("Line", LineID, "WithinType")  ;only if line doesn't have the info yet, all others are nested within current block
         this.Line( LineID, {WithinType: Block.Type ,WithinName: Block.Name ,WithinStack: Stack} )  
     }
   }
