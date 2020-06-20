@@ -45,11 +45,11 @@ LineInfo.DocComment(line#, DocComment, properties) ;store a DocComment and it's 
 LineInfo.GuessDocComment()                   ;returns an object of best guess DocComments in the stored comments 
 */
 
+Class LineInfo {
 
   File(filename, WithinStack){
     old := this._File
 
-Class LineInfo {
     this.Info[ this._File := filename ] := {}
     this.Comments[ this._File ] := {}
     
@@ -59,15 +59,15 @@ Class LineInfo {
 
     return old
   }
-  
+
   set(Type, Line, StringOrObject){
     If !IsObject(StringOrObject)
       Return this.Info[ this._File, Type, Line] := StringOrObject
     For key, value in StringOrObject {
-      If isObject(value)   ;>>> make this more robust by going as deep as possible into object.
+      If isObject(value) {  ;>>> make this more robust by going as deep as possible into object.
         For k, v in value
           this.Info[ this._File, Type, Line, key, k ] := v
-      Else
+     } Else
         this.Info[ this._File, Type, Line, key ] := value
       i := A_Index
     }
@@ -145,19 +145,15 @@ Class LineInfo {
   Var(line, StringOrObject){
     Return this.Set("Vars", line, StringOrObject)
   }
-  
   DllCall(line, StringOrObject){
     Return this.Set("DllCalls", line, StringOrObject)
   }
-  
   Include(line, StringOrObject){
     Return this.Set("Includes", line, StringOrObject)
   }
-  
   Global(line, StringOrObject){
     Return this.Set("Globals", line, StringOrObject)
   }
-  
   Line(line, StringOrObject){
     Return this.Set("Lines", line, StringOrObject)
   }
@@ -177,27 +173,21 @@ Class LineInfo {
   Property(line, Name, Props){
     Return this.SetItem("Property", line, Name, Props)
   }
-  
   Class(line, Name, Props){
     Return this.SetItem("Classes", line, Name, Props)
   }
-  
   Label(line, Name, Props){
     Return this.SetItem("Labels", line, Name, Props)
   }
-  
   Hotkey(line, Name, Props){
     Return this.SetItem("Hotkeys", line, Name, Props)
   }
-  
   HotString(line, Name, Props){
     Return this.SetItem("HotStrings", line, Name, Props)
   }
-  
   Search(line, Name, Props){
     Return this.SetItem("Searches", line, Name, Props)
   }
-  
   DocComment(line, Name, Props){
     Return this.SetItem("DocComments", line, Name, Props)
   }
