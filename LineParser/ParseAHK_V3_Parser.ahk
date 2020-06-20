@@ -209,6 +209,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     \s*                       ;potentially more whitespace
                     (?P<File>.*)              ;rest of the line
               )"
+      , ReturnRE :=" 
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
+                    ^Return                   ;the text 'return' at the start of line
+                    \s*                       ;optionally whitespace
+                    (.*)                      ;rest of the line
+              )"
       , GlobalVarsRE :=" 
               ( Join LTrim Comment
                     OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
@@ -637,8 +644,35 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           LineInfo.Line(PhysicalLineNum, {OTB: True })
           Continue
         }
-    }    
+    }
 
+    ;>>> Search for Return at start of a line
+    ;    for classes no check at end of the line is done, because only definitions are allowed inside a class definition,
+    ;    no flow commands that would allow OTB
+    If (RegExMatch(Line, ReturnRE, Match)){
+      ;we found a Return, this can be
+      ;  the end of one or several label, hotkey or hotstring Blocks or end of autoexec section
+      ;     then it should end that block
+      ;  on a one line e.g. If statement
+      ;     then it should not end the current block
+      ;  inside of barces (e.g. return of a function)
+      ;     then it should not end the current block
+      Switch LineInfo.GetWithin( i := 0).Type
+      {
+        Case "AutoExec", "Label", "HotKey", "HotString":
+          LineInfo.PopWithin(PhysicalLineNum)
+        Case "Brace":
+          While ( isObject(Block := LineInfo.GetWithin(++i)) ){
+            Type := Block.Type
+            If Type in Function,Method
+            {
+              LineInfo.Line(PhysicalLineNum, {Return: True, Value: Match.1, For: Block.Name " (" Block.Type ")"})
+              If StrLen(Match.1)
+                LineInfo.FuncReturn(Block.Line, {Line: PhysicalLineNum, Value: Match.1})
+              Break
+            }
+          }
+      }
     }
 
     ;>>> Labels ----------------------------------------------------------------------------------------------------
