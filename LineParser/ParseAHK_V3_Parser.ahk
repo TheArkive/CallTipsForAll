@@ -443,6 +443,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }Else If (RegExMatch(Line, ContinuationOperatorsRE)){
       ContinuationBuffer .= " " Line   ;merge lines with a space
       LineInfo.Line( PhysicalLineNum, {ContiBlock1: True, Line: Line} )
+      If (PhysicalLineNum <> TotalNumberOfLine)
         Continue                       ;go to next line, but not in case of last line
     }
 
@@ -516,6 +517,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       tnClasses[ClassLevel] := tn[PhysicalLineNum, "Inside"]
       BlockLevel[ClassLevel] := 0
 
+      LineInfo.Class(PhysicalLineNum, Match.1, [])
       LineInfo.SetWithin("Class", PhysicalLineNum, Match.1)
       
       If (SubStr(Line, 0) = "{"){      ;check OTB
@@ -556,8 +558,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
           OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
           tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd is misused as a flag)
-            
-          LineInfo.Function(PhysicalLineNum, FuncName.1)
         }
       }
 
@@ -591,13 +591,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
         ;>>> Check for a new class property definition
         If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty line
-           If (SubStr(FuncName.0, 0) = "["
-               AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
-            Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
-              tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
-              oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName := FuncName.1
-              LineInfo.Property(PhysicalLineNum, FuncName.1)
-            }
+          If (SubStr(FuncName.0, 0) = "["
+              AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
+              Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
+            tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
+            LineInfo.Property(PhysicalLineNum, FuncName.1)
+           }
         }
       }
 
@@ -623,7 +622,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
-          LineInfo.Line(PhysicalLineNum, {NumParams: Params.Length(), Params: Params})
+          LineInfo.Line( PhysicalLineNum, {NumParams: Params.Length(), Params: Params} )
         }
         
         ;tnCurrentFuncDef now becomes the new parent class/function/method/parameter that can contain something (or has something inside)
