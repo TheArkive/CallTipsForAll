@@ -210,21 +210,21 @@ Class LineInfo {
   ; }
   
   GuessDocComment(){
-    tmp := {}
+    tmpobj := {}
     For file, FileData in this.Comments {
       For line, CommentData in FileData {
         For i, Comment in CommentData {
           If RegExMatch(Comment, "[^\s]*", Match){
-            If tmp.HasKey(Match)
-              tmp[Match].push( { File: file, Line: line, Comment: Comment} )
+            If tmpobj.HasKey(Match)
+              tmpobj[Match].push( { File: file, Line: line, Comment: Comment} )
             Else
-              tmp[Match] := [ { File: file, Line: line, Comment: Comment } ]
+              tmpobj[Match] := [ { File: file, Line: line, Comment: Comment } ]
           }
         }
       }
     }
     DocComments := {}
-    For DC, DCData in tmp {
+    For DC, DCData in tmpobj {
       If ( StrLen(DC) > 2 AND ! StrReplace(DC, SubStr(DC, 1, 1)) )  ;minimum 3 chars and all identical
         DocComments[DC] := DCData
       Else If ( RegExMatch(DC, "^[^a-zA-Z0-9]*$") )                 ;completely no word character 
