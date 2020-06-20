@@ -673,7 +673,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
             {
               LineInfo.Line(PhysicalLineNum, {Return: True, Value: Match.1, For: Block.Name " (" Block.Type ")"})
               If StrLen(Match.1)
-                LineInfo.FuncReturn(Block.Line, {Line: PhysicalLineNum, Value: Match.1})
+                LineInfo.FuncReturn(Block.Type, Block.Line, {Line: PhysicalLineNum, Value: Match.1})
               Break
             }
           }
