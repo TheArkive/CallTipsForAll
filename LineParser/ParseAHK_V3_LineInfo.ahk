@@ -33,14 +33,16 @@ LineInfo.DllCall(line#, StringOrObject)      ;store properties of DllCall
 LineInfo.Include(line#, StringOrObject)      ;store properties of #Include
 LineInfo.Global(line#, StringOrObject)       ;store lines that start with global
 LineInfo.Line(line#, StringOrObject)         ;store properties of a line
+ 
+LineInfo.SetWithin(Type, line#, Name)      ;add Name to stack of within
+LineInfo.PopWithin(line#)                  ;remove Name from stack of within
+LineInfo.StoreWithin(line#)                ;stores Within info on all line in Block
+LineInfo.GetWithin(Level)                  ;get Block Info (Level 0 is head, Level 1 the one below, etc)
+LineInfo.GetWithinStack()                  ;get Stack as a string
 
 LineInfo.Comment(line#, code)                ;removes comments from code, stores the comment internally and returns code without comment
 LineInfo.DocComment(line#, DocComment, properties) ;store a DocComment and it's properties 
 LineInfo.GuessDocComment()                   ;returns an object of best guess DocComments in the stored comments 
- 
-LineInfo.Within(line#, increment, Name)      ;in- or decrease the stack of within
-LineInfo.Indent(line#, increment, Type)      ;in- or decrease the stack of indent
-
 */
 
 
