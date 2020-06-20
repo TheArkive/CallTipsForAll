@@ -78,9 +78,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                                               ;to change this behavior, empty keys could be removed before Return of this function
       , oResult := {"Classes":[]          
                    ,"Functions":[]
-                   ,"Labels":[]
-
-                   ,"LineInfo":[] }           ; 'status' info per line; for debug and for new features to be based on that info, e.g. indentation, of for AutoCompletion to know when in function which variables are visible in this function (local/global to function and super-global)
+                   ,"Labels":[]}
 
   ;>>> define RegEx Needles
       , DocCommRE :="
@@ -283,13 +281,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                                  , AllowComments: AllowComments
                                  , LineContiBlock2: ">" OriginalLine "<"
                                  , JoinString: ">" JoinString "<" })
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
-        
+
       ;when still in continuation section concatenate the line with the JoinString,
       ;otherwise the code after the ) will be concatenated without any string
       ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . OriginalLine
@@ -301,12 +293,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;code after the */ is not part of the comment section
     If (InCommentSection) {
       LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
       If (SubStr(Line, 1, 2) = "*/"){
         InCommentSection := False
         Line := Trim(SubStr(Line, 3))   ;remove the /* from the beginning of the line and continue checking
@@ -316,24 +302,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
       LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
       Continue
     }
 
    ;Remove any comment and skip empty lines (If not the last line)
     If ((!Line := RemoveComments(Line)) AND PhysicalLineNum <> TotalNumberOfLine){
       LineInfo.Line(PhysicalLineNum, { BlankOrComment: True })
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
       Continue
     }
 
@@ -389,12 +363,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> #Include ----------------------------------------------------------------------------------------------------
     If RegExMatch(Line, IncludeRE, Match){
         LineInfo.Include(PhysicalLineNum, Match.File)          
-        If WithinName {
-          oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-          oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-          oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-          oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-        }
         Continue                                   
     }
 
@@ -430,12 +398,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (ContinuationBuffer = ""){
         ContinuationBuffer := Line
         ContinuationBufferLineNum := PhysicalLineNum
-        If WithinName {
-          oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-          oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-          oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-          oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-        }
         If (PhysicalLineNum <> TotalNumberOfLine)
           Continue                    ;go to next line, but not in case of last line
       }
@@ -458,13 +420,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                                    , AllowTrimRight: AllowTrimRight
                                    , AllowComments: AllowComments
                                    , JoinString: ">" JoinString "<" })
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
-
       Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
 
     ;>>> Collect continuation lines Method 1
@@ -474,14 +429,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }Else If (RegExMatch(Line, ContinuationOperatorsRE)){
       ContinuationBuffer .= " " Line   ;merge lines with a space
       LineInfo.Line( PhysicalLineNum, {ContiBlock1: True, Line: Line} )
-      If WithinName {
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
-
-     If (PhysicalLineNum <> TotalNumberOfLine)
         Continue                       ;go to next line, but not in case of last line
     }
 
@@ -510,31 +457,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;Process braces at the start of a line
     ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
     While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {          ;i will be 1 or 3 depending on which brace is found
-      If WithinName{
-        oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-      }
 
       If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
         BlockLevel[ClassLevel] += i - 2                       ;in- or decrease BlockLevel
-        oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-        oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
         If (BlockLevel[ClassLevel] < 1)
           ClassLevel--
       }Else If (isObject(tnCurrentFuncDef)){                  ;we are in a function definition
         FuncBlockLevel += i - 2                               ;in- or decrease FuncBlockLevel
-        oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
         If (FuncBlockLevel < 1){                              ;end of function body
           FuncBlockLevel = 0
           tnCurrentFuncDef := ""
-          WithinName := 0
-
-          ;in case blank or comment lines were skipped between the end of the function body an the next line of code, these lines get WithinName removed
-          Loop % oResult.LineInfo.MaxIndex() - PhysicalLineNum - 1
-            oResult.LineInfo[PhysicalLineNum + A_Index].Delete("WithinName")
-
         }
       }Else                                         ;neither in a class nor function definition
         Break                                         ;don't trim line and break loop
@@ -563,10 +495,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       tnClasses[ClassLevel] := tn[PhysicalLineNum, "Inside"]
       BlockLevel[ClassLevel] := 0
 
-      oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName := Match.1
-      oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-      oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-      LineInfo.Class(PhysicalLineNum, Match.1)
       
       If RegExMatch(Line, "\{$"){      ;check OTB
         BlockLevel[ClassLevel]++
@@ -605,12 +533,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
           OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
           tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd is misused as a flag)
-          oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName := FuncName.1
-                               ;ot(oResult) shows WithinName as [Func] because it is a function name
-                               ; this can be avoided by prefixing the function name or changing it in some other way, but in general it is correct
-          ;in case blank or comment lines were skipped between the definition of the function an it's first line of body, these lines get WithinName set 
-          Loop % oResult.LineInfo.MaxIndex() - PhysicalLineNum - 1
-            oResult.LineInfo[PhysicalLineNum + A_Index, "WithinName"] := WithinName
             
           LineInfo.Function(PhysicalLineNum, FuncName.1)
         }
@@ -704,11 +626,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         }
     }    
 
-    If WithinName{
-      oResult.LineInfo[PhysicalLineNum, "WithinName"] := WithinName
-      oResult.LineInfo[PhysicalLineNum, "ClassLevel"] := ClassLevel
-      oResult.LineInfo[PhysicalLineNum, "BlockLevel" ClassLevel ] := BlockLevel[ClassLevel]
-      oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
     }
 
     ;>>> Labels ----------------------------------------------------------------------------------------------------
@@ -724,7 +641,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
     ;>>> Hotkey Command
     If RegExMatch(Line, HotKeyCommandRE, Match){
-      ; oResult.HotKeys[PhysicalLineNum] := Match.2 
       LineInfo.Hotkey(PhysicalLineNum, Match.2)
       Continue
     }
@@ -737,7 +653,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;every line that makes it through to this point is a 'normal' command
     ;in the case of the code explorer nothing needs to be done
    }
-  ; Return oResult
   Return LineInfo.getAll()
 }
 
