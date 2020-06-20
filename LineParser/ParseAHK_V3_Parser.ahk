@@ -602,12 +602,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
       ;>>> Previous checks found a function, method, meta function or class property
       If (isObject(tnCurrentFuncDef)){
-        If (SubStr(Line, 0) = "{"){       ;check again for OTB
-          FuncBlockLevel++
-          oResult.LineInfo[PhysicalLineNum, "FuncBlockLevel"] := FuncBlockLevel
-          LineInfo.Line(PhysicalLineNum, {OTB: True })
-          Line := RTrim(Line , " {")      ;trim the brace
-        }
         
         ; tn either points to the base array for function results (oResult.Functions)
         ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
@@ -621,6 +615,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Params := GetParameterOfFunctionDef(Line)
         LineInfo.Function(PhysicalLineNum, FuncName.1, {NumParams: Params.Length(), Params: Params} )
         LineInfo.SetWithin(Type, PhysicalLineNum, FuncName.1)
+
+        If (SubStr(Line, 0) = "{"){       ;check again for OTB
+          FuncBlockLevel++
+          LineInfo.Line(PhysicalLineNum, {OTB: True })
+          LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
+          Line := RTrim(Line , " {")      ;trim the brace
+        }
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
           tn[PhysicalLineNum, "Parameter"] := Params
