@@ -2,7 +2,8 @@
 ; when info is set it either gets added or if key exists overwritten
 
 /*
-LineInfo.File                          ;property to set or return a filename (until next filename is set)
+LineInfo.File(filename)                ;set filename (until next filename is set)
+LineInfo.File(filename, WithinStack)   ;set filename with WithinStack (until next filename is set)
 LineInfo.has(type, line#, keys*)       ;returns True/False if type on line has the key(s) of set file
 LineInfo.has(type, line#)              ;returns True/False if type has line info for set file
 LineInfo.has(type)                     ;returns True/False if type info has been set for set file
@@ -84,18 +85,18 @@ Exitapp
 #Include Attach.ahk
 #Include ObjTree.ahk
 
+  File(filename, WithinStack){
+    old := this._File
 
 Class LineInfo {
+    this.Info[ this._File := filename ] := {}
+    this.Comments[ this._File ] := {}
+    
+    If !isObject(WithinStack)
+      WithinStack := [ {Type: "AutoExec", Line: 1, Name: "AutoExec"} ]
+    this.WithinStack[ this._File ] := WithinStack
 
-  File[]{
-    get{
-      return this._File
-    }
-    set{
-      old := this._File
-      this.Info[ this._File := value ] := {}
-      return old
-    }
+    return old
   }
   
   set(Type, Line, StringOrObject){
