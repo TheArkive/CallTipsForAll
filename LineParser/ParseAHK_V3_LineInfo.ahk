@@ -172,6 +172,13 @@ Class LineInfo {
   Function(line, Name, Props){
     Return this.SetItem("Functions", line, Name, Props)
   }
+  FuncReturn(line, Props){
+    If this.has("Functions", Line, "ReturnValues")
+      this.Info[ this._File, "Functions", Line, "ReturnValues"].push( Props )
+    Else
+      this.Info[ this._File, "Functions", Line, "ReturnValues"] := [ Props ]
+    Return 
+  }
   
   Property(line, Name, Props){
     Return this.SetItem("Property", line, Name, Props)
