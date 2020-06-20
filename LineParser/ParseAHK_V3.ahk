@@ -25,7 +25,6 @@ Potential Enhancements to capture all potential information for call tips or aut
 - scan also active document when not already covered by the files scanned
 */
 
-  ;read file
 ScanFiles(File, SearchRE, DocComment, WithInStack := ""){
   FileRead, FileContent, %File%
   LineInfo.File(File, WithInStack)
@@ -44,10 +43,8 @@ ScanFiles(File, SearchRE, DocComment, WithInStack := ""){
       IncludeDir := v
     Else {
       If FileExist(v) 
-        ; ScanFiles(v, SearchRE, DocComment)
         Result[File, "Includes", line] := ScanFiles(CurrentOutDir "\" v, SearchRE, DocComment, [])
       Else If FileExist(IncludeDir "\" v) 
-        ; ScanFiles(IncludeDir "\" v, SearchRE, DocComment)
         Result[File, "Includes", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment, [])
     }
   } 
