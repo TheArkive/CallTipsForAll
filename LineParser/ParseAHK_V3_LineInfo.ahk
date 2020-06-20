@@ -132,12 +132,15 @@ Class LineInfo {
       Return this.Info[ this._File, Type ].Delete( line )
     } Else If Type {
       Return this.Info[ this._File ].Delete( Type )
-    } Else {
-      Return this.Info.Delete( this._File )
-    }
-  }
+    } 
+    this.Comments.Delete( this.File )
+    this.WithinStack.Delete( this._File )
+    Return this.Info.Delete( this._File )
+}
   
   deleteAll(){
+    this.Comments := {}
+    this.WithinStack := {}
     Return this.Info := {}
   }
 
