@@ -518,7 +518,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
       LineInfo.SetWithin("Class", PhysicalLineNum, Match.1)
       
-      If RegExMatch(Line, "\{$"){      ;check OTB
+      If (SubStr(Line, 0) = "{"){      ;check OTB
         BlockLevel[ClassLevel]++
         LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
         LineInfo.Line(PhysicalLineNum, {OTB: True })
