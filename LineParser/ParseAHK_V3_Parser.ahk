@@ -618,6 +618,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           Type := "Function"
         tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName.0,"Type":Type,"Inside":[]}
         LineInfo.Line(PhysicalLineNum, {Type: Type })
+        Params := GetParameterOfFunctionDef(Line)
+        LineInfo.Function(PhysicalLineNum, FuncName.1, {NumParams: Params.Length(), Params: Params} )
         LineInfo.SetWithin(Type, PhysicalLineNum, FuncName.1)
         If (Type = "Function" or Type = "Method"){
           Params := GetParameterOfFunctionDef(Line)
