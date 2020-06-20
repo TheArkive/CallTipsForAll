@@ -202,6 +202,37 @@ Class LineInfo {
     Return this.SetItem("DocComments", line, Name, Props)
   }
   
+  SetWithin(Type, line, Name){
+    Return this.WithinStack[ this._File ].push( {Type: Type, Line: Line, Name: Name} )
+  }
+  PopWithin(line){
+    prev := this.GetWithinStack()
+    this.StoreWithin(line)
+    Block := this.WithinStack[ this._File ].pop()
+    Type := LineInfo.GetWithin(0).Type
+    If Type in Function,Class,Method,Property
+      Block := this.WithinStack[ this._File ].pop()
+    Return Block
+  }
+  StoreWithin(line){
+    Block := this.GetWithin(0)
+    Stack := this.GetWithinStack()
+    Loop, % line - Block.Line + 1
+    {
+      LineID := A_Index + Block.Line - 1
+      If !this.has("Lines", LineID, "WithinType")  ;only if line doesn't have the info yet, all others are nested within current block
+        this.Line( LineID, {WithinType: Block.Type ,WithinName: Block.Name ,WithinStack: Stack} )  
+    }
+  }
+  GetWithin(Level){
+    Return this.WithinStack[ this._File, this.WithinStack[this._File].MaxIndex() - Level ]
+  }
+  GetWithinStack(){
+    For i, Data in this.WithinStack[ this._File ] {
+      tmpstr .= (Data.Name ? Data.Name : Data.Type) "\"
+    }
+    Return Trim(tmpstr, "\")
+  }
   
   GuessDocComment(){
     tmpobj := {}
