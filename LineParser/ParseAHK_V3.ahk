@@ -35,7 +35,7 @@ ScanFiles(File, SearchRE, DocComment, WithInStack := ""){
 
   ;recurse into Includes
   IncludeDir := CurrentOutDir
-  For line, v in Result[File, "Includes"] {
+  For line, v in Result[File, "Include"] {
     v := ReplaceVars(v, OutFileName, CurrentOutDir)
     If InStr(FileExist(CurrentOutDir "\" v),"D")
       IncludeDir := CurrentOutDir "\" v
@@ -43,9 +43,9 @@ ScanFiles(File, SearchRE, DocComment, WithInStack := ""){
       IncludeDir := v
     Else {
       If FileExist(v) 
-        Result[File, "Includes", line] := ScanFiles(CurrentOutDir "\" v, SearchRE, DocComment, [])
+        Result[File, "Include", line] := ScanFiles(CurrentOutDir "\" v, SearchRE, DocComment, [])
       Else If FileExist(IncludeDir "\" v) 
-        Result[File, "Includes", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment, [])
+        Result[File, "Include", line] := ScanFiles(IncludeDir "\" v, SearchRE, DocComment, [])
     }
   } 
   Return Result                    
