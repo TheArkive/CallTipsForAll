@@ -18,8 +18,6 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 	parentObj := oCallTip.parentObj
 	parentObjType := oCallTip.parentObjType
 	
-	; msgbox curPhrase " / " parentObj
-	
 	If (curPhrase = "")
 		return
 	
@@ -38,8 +36,6 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		phraseRedir := "function"
 	
 	if (phraseRedir = "function") {
-		; msgbox curPhrase " / " curPhraseObj " / " parentObj
-		
 		For funcName, obj in FunctionList {
 			If (funcName = curPhrase) { ; Or funcName = curPhraseObj ??
 				descArr := obj["desc"] ; desc array
@@ -331,12 +327,9 @@ SettingsGUILoad() {
 	langList := [], choose := 1
 	Loop Files A_ScriptDir "\Languages\*", "D"
 	{
-		; langList .= (A_LoopFileName = ActiveLanguage) ? A_LoopFileName "||" : A_LoopFileName "|"
 		langList.Push(A_LoopFileName)
 		choose := (A_LoopFileName = ActiveLanguage) ? A_Index : choose
 	}
-	
-	; langList := (SubStr(langList,-2) = "||") ? langList : Trim(langList,"|")
 	
 	SettingsGUI.Add("Text","x5 y10","Language:")
 	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vPickLang Choose" choose,langList).OnEvent("change","gui_change_events")
@@ -457,7 +450,6 @@ gui_close(guiObj) {
 	FileAppend settingsText, "Settings.txt"
 	SettingsGUI.Destroy(), SettingsGUI := ""
 	
-	; SetTimer "ReParseText", -1
 	SetTimer "FullReload", -1
 }
 

@@ -105,9 +105,8 @@ GetEditorHwnd() {
 		MsgBox "Editor control not found!"
 }
   
-CheckMouseLocation() { ;ZZZ - I like how you split these up, thanks!  This works better and makes more sense.
-	MouseGetPos  x,y,hWnd, ctlHwndCheck, 2 ;ZZZ - it's better to use HWND directly - i get errors on my end
-	; ctlHwndCheck := ControlGetHwnd(ClassNN,"ahk_id " hWnd) ;ZZZ - it's better to use HWND directly - i get errors on my end
+CheckMouseLocation() {
+	MouseGetPos  x,y,hWnd, ctlHwndCheck, 2
   
 	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
 		oCallTip.ctlActive := true
@@ -507,8 +506,6 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 				
 				If (direct) {
 					While(result := RegExMatch(curDocText,"i)" regex,match,curPos)) {
-						; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
-						
 						c := match.Count()
 						If (IsObject(match) And c >= 1) {
 							typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -527,19 +524,8 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 							If (type)
 								obj["types"][type] := typeObj
 							
-							; quit := false
-							; If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-								; quit := true
-							
-							; If (!quit) { ; If (!oList.Has(objName))
-								obj["index"] := GetLineNum(match.Pos(0))
-								oList[objName] := obj
-								If (objName = "A_Args")
-									msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
-							; }
-							
-							; If (objName = "A_Args")
-								; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
+							obj["index"] := GetLineNum(match.Pos(0))
+							oList[objName] := obj
 							
 							curPos := match.Pos(c) + match.Len(c)
 						} Else
@@ -555,8 +541,6 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 								newRegex := StrReplace(regex,"{" listType "}",curObjName)
 								
 								While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos)) {	
-									; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
-									
 									c := match.Count()
 									If (IsObject(match) And c = 2) {
 										typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -575,14 +559,8 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 										If (type)
 											obj["types"][type] := typeObj
 										
-										; quit := false
-										; If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-											; quit := true
-										
-										; If (!quit) { ; If (!oList.Has(objName))
-											obj["index"] := GetLineNum(match.Pos(0))
-											oList[objName] := obj
-										; }
+										obj["index"] := GetLineNum(match.Pos(0))
+										oList[objName] := obj
 										
 										curPos := match.Pos(c) + match.Len(c)
 									} Else
@@ -977,7 +955,7 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 		isDir := InStr(includeExist,"D") ? true : false ;ZZZ - relative dir #INCLUDEs are handled with f4 below.
 		isFile := (includeExist And !InStr(includeExist,"D")) ? true : false
 		
-		If (isDir) { ;ZZZ - we can probably do case here?
+		If (isDir) {
 			curBaseFolder := curInclude
 			continue
 		}
@@ -993,7 +971,6 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 			continue
 		}
 	}
-	
 	
 	f1 := baseFolderP "\Lib\*" ;??? - simplified handling of 3 lib locations   ;ZZZ - yes finally simplified!
 	Loop Files f1
