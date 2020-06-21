@@ -710,7 +710,8 @@ RemoveComments(Line){
     Return                  ; whole line is pure comment
 
   ;remove comments (first clean line of quotes strings)
-  If (Pos := RegExMatch(RemoveQuotedStrings(Line), "\s+;.*$"))
+  ; If (Pos := RegExMatch(this.RemoveQuotedStrings(Line), "\s+;.*$"))    ;AHK interpreter removes everything with " ;" even when within     var := "string with ; semi colon"     AHK will detect a comment
+  If (Pos := RegExMatch(Line, "\s+;.*$"))
     Line := SubStr(Line, 1, Pos - 1)
 
   Return Line
