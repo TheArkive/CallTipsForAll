@@ -407,72 +407,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Continue                                   
     }
 
-    ;>>> Variables ----------------------------------------------------------------------------------------
-    
-    ;outside of functions "global" makes a variable super-global
-      ;local and static are not allowed outside of functions
-    ;within a function body 
-      ;without any word all vars are assume-local 
-      ;if first line is just "local" it is Force-local mode 
-      ;if first line is "local var" var is local and it is Assume-GLOBAL mode
-      ;if first line is just "local" and second line is just "static" it is Force-local mode with Assume-static mode
-      ;if first line is just "static" it is Assume-static mode
-      ;if first line is just "global" it is Assume-global mode
-      ;with "global var" that var is global
-      ;with "local var" that var is local
-      ;with "static var" that var is static
-    ;parameters or functions are local
-          
-    If RegExMatch(Line, VarScopeRE, Match) {
-      Switch Match.Value(1)
-      {
-        Case "global":
-        Case "local":
-        Case "static":
-      }
-    }
-    
-    ;Get Variable Names when something gets assigned to them
-    ;in case of function parameters with default values, these will be captured as vars as well as function parameters
-    Vars := GetVarAssignments(RemoveComments(OriginalLine))
-    If (i := Vars.Length())
-      LineInfo.Var(PhysicalLineNum, Vars)
-
-    ;>>> HotStrings & HotKeys ----------------------------------------------------------------------------------------
-    ;HotStrings & HotKeys are not allowed inside of functions or classes or on the same line as the } of a {} block
-    ;but AHK takes care of it, so I will not worry and assume that the code provided is valid AHK code.
-    ;potential HotKeys and HotStrings contain a double colon
-    ;in case there is code right of the double colon it is either a HotKey with implicit Return or a auto-replace HotString.
-    ;without code to the right they start a block to the next Return statement
-    If (InStr(RemoveQuotedStrings(Line), "::")){
-      If RegExMatch(Line, HotStringRE, Match){
-        LineInfo.HotString(PhysicalLineNum, Match.1, {} )
-        LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
-        If StrLen(Match.2)
-          LineInfo.PopWithin(PhysicalLineNum)
-        Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
-      }
-      If RegExMatch(Line, HotKeyRE, Match){
-        LineInfo.HotKey(PhysicalLineNum, Match.1, {} )
-        LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
-        If StrLen(Match.2)
-          LineInfo.PopWithin(PhysicalLineNum)
-        Continue                                   ;>>> to fix: DLLCalls on same line will not be shown, but it should be rare
-                                     ;>>> to fix: capture var assignments or function calls (etc) on same line
-      }
-    }
-    
-    ;>>> GlobalVars ----------------------------------------------------------------------------------------------------
-    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal: Check 2020-06: only minimal effect, maybe even positive effect to keep line
-      If RegExMatch(Line, GlobalVarsRE, Match)
-        LineInfo.Global(PhysicalLineNum, {vars: Match.1})  ;>>> problem to split into vars due to comma in objects and arrays
-
-    ;>>> DllCalls ----------------------------------------------------------------------------------------------------
-    ;>>> who has a need for showing DllCall in code explorer?
-    If InStr(Line, "DllCall")                ;>>> this line can potentially be removed the RefgExMatch should be enough, check speed before and after removal
-      If RegExMatch(Line, DllCallRE, Match)
-        LineInfo.DllCall(PhysicalLineNum, {Call: Match.1})
-
     ;>>> Open block counter for classes and functions ------------------------------------------------------------------
     ;Process braces at the start of a line
     ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
@@ -682,6 +616,71 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       }
     }
 
+    ;>>> GlobalVars ----------------------------------------------------------------------------------------------------
+    If InStr(Line, "global")                 ;>>> this line can potentially be removed the RegExMatch should be enough, check speed before and after removal: Check 2020-06: only minimal effect, maybe even positive effect to keep line
+      If RegExMatch(Line, GlobalVarsRE, Match)
+        LineInfo.Global(PhysicalLineNum, {vars: Match.1})  ;>>> problem to split into vars due to comma in objects and arrays
+
+    ;>>> DllCalls ----------------------------------------------------------------------------------------------------
+    ;>>> who has a need for showing DllCall in code explorer?
+    If InStr(Line, "DllCall")                ;>>> this line can potentially be removed the RefgExMatch should be enough, check speed before and after removal
+      If RegExMatch(Line, DllCallRE, Match)
+        LineInfo.DllCall(PhysicalLineNum, {Call: Match.1})
+
+    ;>>> Variables ----------------------------------------------------------------------------------------
+    
+    ;outside of functions "global" makes a variable super-global
+      ;local and static are not allowed outside of functions
+    ;within a function body 
+      ;without any word all vars are assume-local 
+      ;if first line is just "local" it is Force-local mode 
+      ;if first line is "local var" var is local and it is Assume-GLOBAL mode
+      ;if first line is just "local" and second line is just "static" it is Force-local mode with Assume-static mode
+      ;if first line is just "static" it is Assume-static mode
+      ;if first line is just "global" it is Assume-global mode
+      ;with "global var" that var is global
+      ;with "local var" that var is local
+      ;with "static var" that var is static
+    ;parameters or functions are local
+          
+    If RegExMatch(Line, VarScopeRE, Match) {
+      Switch Match.Value(1)
+      {
+        Case "global":
+        Case "local":
+        Case "static":
+      }
+    }
+    
+    ;Get Variable Names when something gets assigned to them
+    ;in case of function parameters with default values, these will be captured as vars as well as function parameters
+    Vars := GetVarAssignments(RemoveComments(OriginalLine))
+    If (i := Vars.Length())
+      LineInfo.Var(PhysicalLineNum, Vars)
+
+    ;>>> HotStrings & HotKeys ----------------------------------------------------------------------------------------
+    ;HotStrings & HotKeys are not allowed inside of functions or classes or on the same line as the } of a {} block
+    ;but AHK takes care of it, so I will not worry and assume that the code provided is valid AHK code.
+    ;potential HotKeys and HotStrings contain a double colon
+    ;in case there is code right of the double colon it is either a HotKey with implicit Return or a auto-replace HotString.
+    ;without code to the right they start a block to the next Return statement
+    If (InStr(RemoveQuotedStrings(Line), "::")){
+      If RegExMatch(Line, HotStringRE, Match){
+        LineInfo.HotString(PhysicalLineNum, Match.1, {} )
+        LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
+        If StrLen(Match.2)
+          LineInfo.PopWithin(PhysicalLineNum)
+        Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
+      }
+      If RegExMatch(Line, HotKeyRE, Match){
+        LineInfo.HotKey(PhysicalLineNum, Match.1, {} )
+        LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
+        If StrLen(Match.2)
+          LineInfo.PopWithin(PhysicalLineNum)
+        Continue
+      }
+    }
+    
     ;>>> Labels ----------------------------------------------------------------------------------------------------
     ;Label names are not case sensitive, and may consist of any characters other than space, tab, comma and the escape character (`).
     ;they are allowed inside of functions definitions, in this case they are 'belonging' to the function definitions
