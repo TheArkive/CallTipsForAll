@@ -98,7 +98,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     :                          ;a ':'
                     (.+)                       ;$1 the hotstring
                     ::                         ;two ':'s
-                    .*                         ;rest of line
+                    (.*)                       ;$2 rest of line
                     $                          ;end of line
               )"
       , HotKeyRE :="
@@ -362,12 +362,15 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If RegExMatch(Line, HotStringRE, Match){
         LineInfo.HotString(PhysicalLineNum, Match.1, {} )
         LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
-
+        If StrLen(Match.2)
+          LineInfo.PopWithin(PhysicalLineNum)
         Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
       }
       If RegExMatch(Line, HotKeyRE, Match){
         LineInfo.HotKey(PhysicalLineNum, Match.1, {} )
         LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
+        If StrLen(Match.2)
+          LineInfo.PopWithin(PhysicalLineNum)
         Continue                                   ;>>> to fix: DLLCalls on same line will not be shown, but it should be rare
                                      ;>>> to fix: capture var assignments or function calls (etc) on same line
       }
