@@ -209,7 +209,6 @@ Class LineInfo {
     Return this.WithinStack[ this._File ].push( {Type: Type, Line: Line, Name: Name} )
   }
   PopWithin(line){
-    prev := this.GetWithinStack()
     this.StoreWithin(line)
     Block := this.WithinStack[ this._File ].pop()
     Type := LineInfo.GetWithin(0).Type
