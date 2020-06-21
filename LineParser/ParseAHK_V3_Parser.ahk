@@ -375,7 +375,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     
     ;>>> #Include ----------------------------------------------------------------------------------------------------
     If RegExMatch(Line, IncludeRE, Match){
-        LineInfo.Include(PhysicalLineNum, Match.File, {} )          
+        LineInfo.Include(PhysicalLineNum, Match.File )          
         Continue                                   
     }
 
