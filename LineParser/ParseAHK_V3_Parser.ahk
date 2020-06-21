@@ -246,13 +246,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
   TotalNumberOfLine := Lines.MaxIndex()
-  For PhysicalLineNum, Line In Lines {
-    OriginalLine := Line
-    Line := Trim(Line)        ;remove leading/trailing whitespaces
-    LineInfo.Line(PhysicalLineNum, { _LineOrig: OriginalLine
-                                   , _LineTrim: Line
-                                   , _LineNoComment: i := LineInfo.Comment(PhysicalLineNum, Line) 
-                                   , _LineNoLiteralString: RemoveQuotedStrings(i) })
+  For PhysicalLineNum, OriginalLine In Lines {
+    LineInfo.Line(PhysicalLineNum, { _LineOrig: OriginalLine                                   ;the original line 
+                                   , _LineTrim: Line := Trim(OriginalLine)                     ;remove leading/trailing whitespaces
+                                   , _LineNoCo: i := LineInfo.Comment(PhysicalLineNum, Line)   ;line without comment
+                                   , _LineNoLi: RemoveQuotedStrings(i) })                      ;line without literal strings
     
     ;search for SearchRE
     If RegExMatch(Line, SearchRE)
