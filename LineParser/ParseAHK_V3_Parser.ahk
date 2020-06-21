@@ -191,6 +191,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     Loop|While|For|Switch)                                ; or
                     [,\s({]                                               ; followed by an ',' space or '(' (for expression) or '{' (in case of loop until)
               )"
+      , OneLineFlowRE :="
+              ( Join LTrim Comment
+                    iS)(*UCP)^(                                           ;case insensitive and at start of line
+                    If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
+                    If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
+                    IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
+                    Else|Catch|                                           ; or
+                    Loop|While|For)                                       ; or
+                    [,\s(]                                                ; followed by an ',' space or '(' (for expression) 
+              )"
       , IncludeRE :="
               ( Join LTrim Comment
                     OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
