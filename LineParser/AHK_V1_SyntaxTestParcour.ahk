@@ -22,7 +22,7 @@ Return
 
 ;>>> PSPad functions to populate its code explorer ---------------------------------------------------------------------
 ;the following three functions try to mimik PSPad functions, but the real code or function is unknown
-AddBaseNode(Tree, Caption, Image) {
+AddBaseNode(Tree, Caption, Image := 23) {
    Return TV_Add(Caption, 0, "Sort")
 }ParseAndAddNode(Tree, ParentID, Image, Line, Needle, Replacement, LineNumber)  {
    If RegExMatch(Line, Needle)
