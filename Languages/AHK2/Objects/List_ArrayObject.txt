@@ -1,3 +1,4 @@
+0 ArrayObject ArrayByArgs (A_Args)(\x5B|[ \t]*)?
 0 ArrayObject ArrayByFunc ([\w\.]+)[ \t]*:=[ \t]*(Array\x28)
 0 ArrayObject ArrayByWinGetControls ([\w\.]+)[ \t]*:=[ \t]*(WinGetControls\x28)
 0 ArrayObject ArrayByWinGetList ([\w\.]+)[ \t]*:=[ \t]*(WinGetList\x28)

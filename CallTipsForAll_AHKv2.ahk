@@ -205,8 +205,9 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 	For objName, obj in ObjectList {
 		For curType, obj2 in obj["types"] {
 			type := curType, label := obj2["label"], match := obj2["match"]
-			testList .= objName " / " label " / " type "`r`n" match "`r`n`r`n"
+			testList .= objName " / " label " / " type "`r`n" A_Index ": " match "`r`n"
 		}
+		testList .= "`r`n"
 	}
 	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
 	

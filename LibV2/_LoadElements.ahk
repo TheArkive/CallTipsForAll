@@ -52,6 +52,7 @@ ReloadElements() {
 		}
 		
 		curDocText := tmp ? tmp : curDocText
+		A_Clipboard := curDocText
 		
 		; For i, obj in DocumentMap ; quick test of DocumentMap
 			; testStr .= obj["fileName"] "`r`nLine: " obj["lineNum"] " / " obj["start"] " / " obj["end"] "`r`n`r`n"
@@ -506,6 +507,8 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 				
 				If (direct) {
 					While(result := RegExMatch(curDocText,"i)" regex,match,curPos)) {
+						; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
+						
 						c := match.Count()
 						If (IsObject(match) And c >= 1) {
 							typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -524,14 +527,19 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 							If (type)
 								obj["types"][type] := typeObj
 							
-							quit := false
-							If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-								quit := true
+							; quit := false
+							; If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
+								; quit := true
 							
-							If (!quit) { ; If (!oList.Has(objName))
+							; If (!quit) { ; If (!oList.Has(objName))
 								obj["index"] := GetLineNum(match.Pos(0))
 								oList[objName] := obj
-							}
+								If (objName = "A_Args")
+									msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
+							; }
+							
+							; If (objName = "A_Args")
+								; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
 							
 							curPos := match.Pos(c) + match.Len(c)
 						} Else
@@ -541,11 +549,14 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 					r1 := RegExMatch(regex,"\{(.*?)\}",match), listType := match.Value(1)
 					
 					For curObjName, curLblObj in oList {
+						curLblObj := curLblObj["types"]
 						For curType, curTypeObj in curLblObj {
 							If (curType = listType) {
 								newRegex := StrReplace(regex,"{" listType "}",curObjName)
 								
-								While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos)) {
+								While (result := RegExMatch(curDocText,"i)" newRegex,match,curPos)) {	
+									; msgbox level ", " label ", " type "`r`n" regex "`r`n" match.Value(1)
+									
 									c := match.Count()
 									If (IsObject(match) And c = 2) {
 										typeObj := Map(), objName := match.Value(1) ; obj := Map()
@@ -564,14 +575,14 @@ CreateObjList(curDocText) { ; v2 - loops full text in one chunk, hopefully uses 
 										If (type)
 											obj["types"][type] := typeObj
 										
-										quit := false
-										If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
-											quit := true
+										; quit := false
+										; If (KeywordList.Has(objName)) ; omit in ObjectList if objName is a keyword
+											; quit := true
 										
-										If (!quit) { ; If (!oList.Has(objName))
+										; If (!quit) { ; If (!oList.Has(objName))
 											obj["index"] := GetLineNum(match.Pos(0))
 											oList[objName] := obj
-										}
+										; }
 										
 										curPos := match.Pos(c) + match.Len(c)
 									} Else
