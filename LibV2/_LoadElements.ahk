@@ -955,7 +955,7 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 		isDir := InStr(includeExist,"D") ? true : false ;ZZZ - relative dir #INCLUDEs are handled with f4 below.
 		isFile := (includeExist And !InStr(includeExist,"D")) ? true : false
 		
-		If (isDir) { ;ZZZ - we can probably do case here?
+		If (isDir) {
 			curBaseFolder := curInclude
 			continue
 		}
