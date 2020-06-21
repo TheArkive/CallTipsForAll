@@ -752,6 +752,7 @@ GetParameterOfFunctionDef(Line){
                     \(                        ;a opening brace
                     (.*?)                     ;$1 the parameter string
                     \)                        ;a closing brace
+                    \s?                       ;optionally whitespace
                     \{?$                      ;optionally an opening curled brace
               )"
        , ParamRE:="
