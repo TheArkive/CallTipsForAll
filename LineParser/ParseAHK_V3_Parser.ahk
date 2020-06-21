@@ -232,16 +232,16 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
 
       ;local variable without initialization
-      , TotalNumberOfLine, OriginalLine, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
+      , TotalNumberOfLine, LineOrig, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
   TotalNumberOfLine := Lines.MaxIndex()
-  For PhysicalLineNum, OriginalLine In Lines {
-    LineInfo.Line(PhysicalLineNum, { _LineOrig: OriginalLine                                   ;the original line 
-                                   , _LineTrim: Line := Trim(OriginalLine)                     ;remove leading/trailing whitespaces
-                                   , _LineNoCo: i := LineInfo.Comment(PhysicalLineNum, Line)   ;line without comment
-                                   , _LineNoLi: RemoveQuotedStrings(i) })                      ;line without literal strings
+  For PhysicalLineNum, LineOrig In Lines {
+    LineInfo.Line(PhysicalLineNum, { _LineOrig: LineOrig                                            ;the original line 
+                                   , _LineTrim: Line := Trim(LineOrig)                              ;remove leading/trailing whitespaces
+                                   , _LineNoCo: LineNoCo := LineInfo.Comment(PhysicalLineNum, Line) ;line without comment
+                                   , _LineNoLi: LineNoLi := RemoveQuotedStrings(LineNoCo) })        ;line without literal strings
     
     ;search for SearchRE
     If RegExMatch(Line, SearchRE)
@@ -263,25 +263,25 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       
       ;when still in continuation section trim or strip the original line
       If InContinuationBlock2 {
+        If !AllowComments                           ;check if comments are allowed literally
+          LineOrig := RemoveComments(LineOrig)      ;can not use LineNoCo, because it doesn't have original indentation (LineNoCo is trimmed)
         If AllowTrimLeft
-          OriginalLine := LTrim(OriginalLine)
+          LineOrig := LTrim(LineOrig)
         If AllowTrimRight
-          OriginalLine := RTrim(OriginalLine)
-        If !AllowComments                               ;check if comments are allowed literally
-          OriginalLine := RemoveComments(OriginalLine)
+          LineOrig := RTrim(LineOrig)
       } Else
-          OriginalLine := Line                          ;line is stripped and trimmed before the ) got removed
+          LineOrig := LineNoCo                      ;line is stripped and trimmed before the ) got removed
 
       LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
                                  , AllowTrimLeft: AllowTrimLeft
                                  , AllowTrimRight: AllowTrimRight
                                  , AllowComments: AllowComments
-                                 , LineContiBlock2: ">" OriginalLine "<"
+                                 , LineContiBlock2: ">" LineOrig "<"
                                  , JoinString: ">" JoinString "<" })
 
       ;when still in continuation section concatenate the line with the JoinString,
       ;otherwise the code after the ) will be concatenated without any string
-      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . OriginalLine
+      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . LineOrig
       Continue                                   ;go to next line
     }
 
@@ -389,8 +389,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ContinuationBufferLineNum := PhysicalLineNum
     PhysicalLineNum           := TempLineNum
 
-    LineInfo.Line(PhysicalLineNum, { _LineFull: Line
-                                   , _LineFullNoLiteralString: RemoveQuotedStrings(Line) })
+    LineInfo.Line(PhysicalLineNum, { _LineFull:     Line
+                                   , _LineFullNoLi: LineNoLi := RemoveQuotedStrings(Line) })
 
     ;>>> #Include ----------------------------------------------------------------------------------------------------
     If RegExMatch(Line, IncludeRE, Match){
@@ -644,8 +644,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }
     
     ;Get Variable Names when something gets assigned to them
-    ;in case of function parameters with default values, these will be captured as vars as well as function parameters
-    Vars := GetVarAssignments(RemoveComments(OriginalLine))
+    ;function parameters with default values will only be captured as function parameters
+    Vars := GetVarAssignments(Line)
     If (i := Vars.Length())
       LineInfo.Var(PhysicalLineNum, Vars)
 
@@ -655,7 +655,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;potential HotKeys and HotStrings contain a double colon
     ;in case there is code right of the double colon it is either a HotKey with implicit Return or a auto-replace HotString.
     ;without code to the right they start a block to the next Return statement
-    If (InStr(RemoveQuotedStrings(Line), "::")){
+    If (InStr(LineNoLi, "::")){
       If RegExMatch(Line, HotStringRE, Match){
         LineInfo.HotString(PhysicalLineNum, Match.1, {} )
         LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
