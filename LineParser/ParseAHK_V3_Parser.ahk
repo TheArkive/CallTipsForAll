@@ -10,24 +10,15 @@
 /*
 Known Issues
 - Return statements in multi-line statements are not recognized. (most likely the last of the statements, but AHK doesn't care)
-- function/method parameter with default values are also captured as variables with assignment
 - HotStrings: escaped characters are not escaped in code explorer
-- HotKeys: DLLCalls on same line will not be shown, but it should be rare
-           capture var assignments or function calls (etc) on same line
 - DllCall: takes string up to the last ) in the line, not necessary the correct one.         
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
-- Classes: Functions are not detected as Methods, but STack is correct
+- Classes: Methods/etc are not nested in classes, but stack is correct
            
 Potential Enhancements 
 - detect Return in oneline statements
-- detect oneline hotkey and Hotstring vs multiline
-- multiple labels/hotkeys/hotstrings could share the same Return. What value has WithinName for the statements in the block? first/last/stacked/all combined to one?
-  "combined to one" sounds possible, also for labels within functions. when a label is detected instead of push() the label gets appended to MaxIndex(). But then it also needs to be removed instead of just pop().
-  How many pop() when one Return is found? to know that the position of Return within blocks needs to be known, e.g. the code after a Return within an IF statement is still within the same function/label. And if not burried in blocks how many of multiple labels/hotkeys/hotstrings need to be poped? To allow this the type of WithinName needs to be stored. Then it can be poped till function/class type etc is ontop of WithinName stack
   
 - detect scope of variables|methods|properties (super-global, global, local, static)
-
-- do not capture function/method parameter with default values also as variables with assignment
 
 - detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
  - brute force: scan for all text with length > 3 and remove keywords
@@ -407,7 +398,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Continue                                   
     }
 
-    ;>>> Open block counter for classes and functions ------------------------------------------------------------------
+    ;>>> Open block counter curled braces ------------------------------------------------------------------
     ;Process braces at the start of a line
     ;the concept with InStr() was taken from CoCo's ListClasses script (line 52; http://ahkscript.org/boards/viewtopic.php?p=43349#p42793)
     While (i := InStr("}}{", SubStr(Line, 1, 1)) ) {          ;i will be 1 or 3 depending on which brace is found
