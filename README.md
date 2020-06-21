@@ -162,7 +162,7 @@ Misc:
 ## Contributors
 From the AHK forums:
 * robodesign - he helps me think when my brain is tied in knotts
-* toralf - suggested a better structure, since the code was getting messy
+* toralf - suggested a better structure, and working on a better parser to incorporate more debug info
 
 ## Languages -- status
 
