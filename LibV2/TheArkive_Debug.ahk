@@ -1,4 +1,4 @@
-﻿Global ArkDebugObj, ArkDebugWinHwnd, ArkDebugOutputHwnd
+﻿Global ArkDebugObj := "", ArkDebugWinHwnd := "", ArkDebugOutputHwnd := ""
 
 DebugMsg(str,sOrder:="top",TimeStamp:=true) {
     ArkDebugCheck() ; check if debug window open
@@ -10,7 +10,9 @@ DebugMsg(str,sOrder:="top",TimeStamp:=true) {
 }
 
 ArkDebugCheck() {
-	If (!WinExist("ahk_id " ArkDebugWinHwnd))
+	If (!IsSet(ArkDebugWinHwnd))
+		ArkDebugOpen()
+	Else If (!WinExist("ahk_id " ArkDebugWinHwnd))
         ArkDebugOpen()
 }
 
