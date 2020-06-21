@@ -360,13 +360,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;without code to the right they start a block to the next Return statement
     If (InStr(RemoveQuotedStrings(Line), "::")){
       If RegExMatch(Line, HotStringRE, Match){
-        LineInfo.HotString(PhysicalLineNum, Match.1)
+        LineInfo.HotString(PhysicalLineNum, Match.1, {} )
         LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
 
         Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
       }
       If RegExMatch(Line, HotKeyRE, Match){
-        LineInfo.HotKey(PhysicalLineNum, Match.1)
+        LineInfo.HotKey(PhysicalLineNum, Match.1, {} )
         LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
         Continue                                   ;>>> to fix: DLLCalls on same line will not be shown, but it should be rare
                                      ;>>> to fix: capture var assignments or function calls (etc) on same line
@@ -375,7 +375,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     
     ;>>> #Include ----------------------------------------------------------------------------------------------------
     If RegExMatch(Line, IncludeRE, Match){
-        LineInfo.Include(PhysicalLineNum, Match.File)          
+        LineInfo.Include(PhysicalLineNum, Match.File, {} )          
         Continue                                   
     }
 
@@ -517,7 +517,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       tnClasses[ClassLevel] := tn[PhysicalLineNum, "Inside"]
       BlockLevel[ClassLevel] := 0
 
-      LineInfo.Class(PhysicalLineNum, Match.1, [])
+      LineInfo.Class(PhysicalLineNum, Match.1, {} )
       LineInfo.SetWithin("Class", PhysicalLineNum, Match.1)
       
       If (SubStr(Line, 0) = "{"){      ;check OTB
@@ -688,13 +688,13 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If RegExMatch(Line, LabelRE, Match){
       tn[PhysicalLineNum] := Match.1 
       LineInfo.SetWithin("Label", PhysicalLineNum, Match.1)
-      LineInfo.Label(PhysicalLineNum, Match.1)
+      LineInfo.Label(PhysicalLineNum, Match.1, {} )
      Continue
     }
 
     ;>>> Hotkey Command
     If RegExMatch(Line, HotKeyCommandRE, Match){
-      LineInfo.Hotkey(PhysicalLineNum, Match.2)
+      LineInfo.Hotkey(PhysicalLineNum, Match.2, {Type: "HotKeyCommand"})
       Continue
     }
 
