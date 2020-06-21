@@ -596,7 +596,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Case "Brace":
           While ( isObject(Block := LineInfo.GetWithin(++i)) ){
             Type := Block.Type
-            If Type in Function,Method
+            If Type in Function,Method,Property
             {
               LineInfo.Line(PhysicalLineNum, {Return: True, Value: Match.1, For: Block.Name " (" Block.Type ")"})
               If StrLen(Match.1)
