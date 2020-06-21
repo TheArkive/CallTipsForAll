@@ -5,7 +5,7 @@ Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for
 
 ## Languages Supported
 * AutoHotkey v1.1.32
-* AutoHotkey v2.0-a111
+* AutoHotkey v2.0-a112
 
 ## Basic Usage
 
