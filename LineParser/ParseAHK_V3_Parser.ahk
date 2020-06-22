@@ -52,13 +52,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
-      , Match := ""                           ; Object for sub-patterns matching in RegExMatch
+
       , ClassLevel := 0                       ; current class level, 0 if none
       , tnClasses := []                       ; array of tree nodes of classes, index is class Level
       , BlockLevel := []                      ; number of open blocks '{ ... }' per class level, index is class Level
       , FuncBlockLevel := 0                   ; number of open blocks '{ ... }' in the current function definition
       , tnCurrentFuncDef := ""                ; tree node of function while in definition, 0 if not
-      , WithinName := 0                       ; Name of function, class, method, property that line is in
 
   ;object to store results                    ;keys for classes, functions and labels have to be defined, rest is just for documentation. Each is empty when nothing is found in FileContent. 
                                               ;to change this behavior, empty keys could be removed before Return of this function
@@ -237,7 +236,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
 
       ;local variable without initialization
-      , ContiBlock2Settings, TotalNumberOfLine, LineOrig, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
+      , ContiBlock2Settings, AllowComments, AllowTrimLeft, AllowTrimRight, JoinString
+      , Lines, FuncName, Match, i, Line, LineNoCo, LineNoLi, TotalNumberOfLine, LineOrig, Params, PhysicalLineNum, TempLine, TempLineNum, Type
+      , Block, Vars, tn
 
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
