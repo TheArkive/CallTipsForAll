@@ -2,47 +2,47 @@
 ; when info is set it either gets added or if key exists overwritten
 
 /*
-LineInfo.File(filename)                ;set filename (until next filename is set)
-LineInfo.File(filename, WithinStack)   ;set filename with WithinStack (until next filename is set)
-LineInfo.has(type, line#, keys*)       ;returns True/False if type on line has the key(s) of set file
-LineInfo.has(type, line#)              ;returns True/False if type has line info for set file
-LineInfo.has(type)                     ;returns True/False if type info has been set for set file
-LineInfo.set(type, line#, StringOrObject) ;set info for Type and line of set file
-LineInfo.getAll()                      ;return all info 
-LineInfo.get()                         ;return all info of set file
-LineInfo.get(type)                     ;return all info of type of set file
-LineInfo.get(type, line#)              ;return all info of type of line of set file
-LineInfo.get(type, line#, keys*)       ;return one value for one key or an object of {key: value, ...} for multiple keys of type of line of set file
-LineInfo.deleteAll()                   ;delete all info 
-LineInfo.delete()                      ;delete all info of set file
-LineInfo.delete(type)                  ;delete all info of type of set file
-LineInfo.delete(type, line#)           ;delete all info of type of line of set file
-LineInfo.delete(type, line#, keys*)    ;delete one or more keys of a type of a line of set file
+.File(filename)                ;set filename (until next filename is set)
+.File(filename, WithinStack)   ;set filename with WithinStack (until next filename is set)
+.has(type, line#, keys*)       ;returns True/False if type on line has the key(s) of set file
+.has(type, line#)              ;returns True/False if type has line info for set file
+.has(type)                     ;returns True/False if type info has been set for set file
+.set(type, line#, StringOrObject) ;set info for Type and line of set file
+.getAll()                      ;return all info 
+.get()                         ;return all info of set file
+.get(type)                     ;return all info of type of set file
+.get(type, line#)              ;return all info of type of line of set file
+.get(type, line#, keys*)       ;return one value for one key or an object of {key: value, ...} for multiple keys of type of line of set file
+.deleteAll()                   ;delete all info 
+.delete()                      ;delete all info of set file
+.delete(type)                  ;delete all info of type of set file
+.delete(type, line#)           ;delete all info of type of line of set file
+.delete(type, line#, keys*)    ;delete one or more keys of a type of a line of set file
 
-                           Properties are one object with keys; {key1: info, ... } 
-LineInfo.Function(line#, Name, properties)   ;store a function and it's properties 
-LineInfo.Property(line#, Name, properties)   ;store a function and it's properties 
-LineInfo.Class(line#, Name, properties)      ;store a class and it's properties 
-LineInfo.Label(line#, Name, properties)      ;store a Label and it's properties 
-LineInfo.Hotkey(line#, Name, properties)     ;store a Hotkey and it's properties 
-LineInfo.HotString(line#, Name, properties)  ;store a HotString and it's properties
-LineInfo.Search(line#, SearchRE, properties) ;store properties of SearchRE 
+                   Properties are one object with keys; {key1: info, ... } 
+.Function(line#, Name, properties)   ;store a function and it's properties 
+.Property(line#, Name, properties)   ;store a function and it's properties 
+.Class(line#, Name, properties)      ;store a class and it's properties 
+.Label(line#, Name, properties)      ;store a Label and it's properties 
+.Hotkey(line#, Name, properties)     ;store a Hotkey and it's properties 
+.HotString(line#, Name, properties)  ;store a HotString and it's properties
+.Search(line#, SearchRE, properties) ;store properties of SearchRE 
 
-LineInfo.Var(line#, StringOrObject)          ;store an array of vars 
-LineInfo.DllCall(line#, StringOrObject)      ;store properties of DllCall 
-LineInfo.Include(line#, StringOrObject)      ;store properties of #Include
-LineInfo.Global(line#, StringOrObject)       ;store lines that start with global
-LineInfo.Line(line#, StringOrObject)         ;store properties of a line
- 
-LineInfo.SetWithin(Type, line#, Name)      ;add Name to stack of within
-LineInfo.PopWithin(line#)                  ;remove Name from stack of within
-LineInfo.StoreWithin(line#)                ;stores Within info on all line in Block
-LineInfo.GetWithin(Level)                  ;get Block Info (Level 0 is head, Level 1 the one below, etc)
-LineInfo.GetWithinStack()                  ;get Stack as a string
+.Var(line#, StringOrObject)          ;store an array of vars 
+.DllCall(line#, StringOrObject)      ;store properties of DllCall 
+.Include(line#, StringOrObject)      ;store properties of #Include
+.Global(line#, StringOrObject)       ;store lines that start with global
+.Line(line#, StringOrObject)         ;store properties of a line
 
-LineInfo.Comment(line#, code)                ;removes comments from code, stores the comment internally and returns code without comment
-LineInfo.DocComment(line#, DocComment, properties) ;store a DocComment and it's properties 
-LineInfo.GuessDocComment()                   ;returns an object of best guess DocComments in the stored comments 
+.SetWithin(Type, line#, Name)      ;add Name to stack of within
+.PopWithin(line#)                  ;remove Name from stack of within
+.StoreWithin(line#)                ;stores Within info on all line in Block
+.GetWithin(Level)                  ;get Block Info (Level 0 is head, Level 1 the one below, etc)
+.GetWithinStack()                  ;get Stack as a string
+
+.Comment(line#, code)                ;removes comments from code, stores the comment internally and returns code without comment
+.DocComment(line#, DocComment, properties) ;store a DocComment and it's properties 
+.GuessDocComment()                   ;returns an object of best guess DocComments in the stored comments 
 */
 
 Class LineInfo {
