@@ -13,7 +13,6 @@ Known Issues
 - HotStrings: escaped characters are not escaped in code explorer
 - DllCall: takes string up to the last ) in the line, not necessary the correct one.         
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
-- Classes: Methods/etc are not nested in classes, but stack is correct
            
 Potential Enhancements 
 - detect Return in oneline statements
@@ -32,7 +31,6 @@ Potential Enhancements
 
 - refactor function (currently ~700 lines)
   - rename tn... vars
-  - have one object to hold the different status vars
   - get rid of the swapping of lines: One loop to get full lines without comments, then a second loop over remaining full lines to parse the code
       see if this is faster
   
