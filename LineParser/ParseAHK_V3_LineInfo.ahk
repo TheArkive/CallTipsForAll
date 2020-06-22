@@ -4,10 +4,10 @@
 /*
 .File(filename)                ;set filename (until next filename is set)
 .File(filename, WithinStack)   ;set filename with WithinStack (until next filename is set)
+.set(type, line#, StringOrObject) ;set info for Type and line of set file
 .has(type, line#, keys*)       ;returns True/False if type on line has the key(s) of set file
 .has(type, line#)              ;returns True/False if type has line info for set file
 .has(type)                     ;returns True/False if type info has been set for set file
-.set(type, line#, StringOrObject) ;set info for Type and line of set file
 .getAll()                      ;return all info 
 .get()                         ;return all info of set file
 .get(type)                     ;return all info of type of set file
@@ -19,30 +19,45 @@
 .delete(type, line#)           ;delete all info of type of line of set file
 .delete(type, line#, keys*)    ;delete one or more keys of a type of a line of set file
 
-                   Properties are one object with keys; {key1: info, ... } 
-.Function(line#, Name, properties)   ;store a function and it's properties 
-.Property(line#, Name, properties)   ;store a function and it's properties 
-.Class(line#, Name, properties)      ;store a class and it's properties 
-.Label(line#, Name, properties)      ;store a Label and it's properties 
-.Hotkey(line#, Name, properties)     ;store a Hotkey and it's properties 
-.HotString(line#, Name, properties)  ;store a HotString and it's properties
-.Search(line#, SearchRE, properties) ;store properties of SearchRE 
-
 .Var(line#, StringOrObject)          ;store an array of vars 
 .DllCall(line#, StringOrObject)      ;store properties of DllCall 
 .Include(line#, StringOrObject)      ;store properties of #Include
 .Global(line#, StringOrObject)       ;store lines that start with global
 .Line(line#, StringOrObject)         ;store properties of a line
 
+.SetItem(Type, line#, Name, Props)           ;helper function to store properties by type
+.Search(line#, SearchRE, properties)         ;store properties of SearchRE 
+.DocComment(line#, DocComment, properties)   ;store a DocComment and it's properties 
+
 .SetWithin(Type, line#, Name)      ;add Name to stack of within
-.PopWithin(line#)                  ;remove Name from stack of within
+.PopWithin(line#)                  ;remove Block from stack of within
 .StoreWithin(line#)                ;stores Within info on all line in Block
 .GetWithin(Level)                  ;get Block Info (Level 0 is head, Level 1 the one below, etc)
 .GetWithinStack()                  ;get Stack as a string
 
+.Hotkey(line#, Name, properties)     ;store a Hotkey and it's properties 
+.HotString(line#, Name, properties)  ;store a HotString and it's properties
+.Brace(line#, Name, StringOrObject)          ;set within and stores info to line
+.CommentSection(line#, Name, StringOrObject) ;set within and stores info to line
+.ContiBlock2(line#, Name, StringOrObject)    ;set within and stores info to line
+
+.SetNesting(Type, line#, Name, Props) ;store current nest
+.isNested()                           ;returns level of nesting, "" for no nesting
+.getNest(Level)                       ;get Nest Info (Level 0 is head, Level 1 the one below, etc)
+.PopNesting(line#)                    ;remove Nest from stack of Nesting
+
+                   Properties are one object with keys; {key1: info, ... } 
+.Function(line#, Name, properties)   ;store a function and it's properties 
+.Property(line#, Name, properties)   ;store a property and it's properties 
+.Method(line#, Name, properties)     ;store a method and it's properties 
+.Class(line#, Name, properties)      ;store a class and it's properties 
+.Label(line#, Name, properties)      ;store a Label and it's properties 
+.FuncReturn(Type, line#, Props)      ;store the return values of a function/method
+
 .Comment(line#, code)                ;removes comments from code, stores the comment internally and returns code without comment
-.DocComment(line#, DocComment, properties) ;store a DocComment and it's properties 
 .GuessDocComment()                   ;returns an object of best guess DocComments in the stored comments 
+.RemoveComments(LineOfCode)          ;remove comments from line of code
+.RemoveQuotedStrings(LineOfCode)     ;remove literal strings from line of code
 */
 
 Class LineInfo {
