@@ -33,7 +33,14 @@ If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, obje
 	FullReload() ; conditional for language elements
 }
 
+; OnMessage(0x0100,"OnKeyDown") ; WM_KEYDOWN
+
 return ; end of auto execute section
+
+; OnKeyDown(wParam, lParam, msg, hwnd) { ; wParam = keycode in decimal
+    
+    ; DebugMsg("YAH: " wParam " / " Format("{:x}",lParam) " / " Format("{:x}",wParam))
+; }
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
