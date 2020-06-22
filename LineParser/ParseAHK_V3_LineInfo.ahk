@@ -194,34 +194,6 @@ differences between SetItem, Within and Nesting:
     Return this.set(Type, line, Props)
   }
   
-  Function(line, Name, Props){
-    this.SetWithin("Function", line, Name)
-    Return this.SetItem("Function", line, Name, Props)
-  }
-  FuncReturn(Type, line, Props){
-    If this.has(Type, Line, "ReturnValue")
-      this.Info[ this._File, Type, Line, "ReturnValue"].push( Props )
-    Else
-      this.Info[ this._File, Type, Line, "ReturnValue"] := [ Props ]
-    Return 
-  }
-  
-  Property(line, Name, Props){
-    this.SetWithin("Property", line, Name)
-    Return this.SetItem("Property", line, Name, Props)
-  }
-  Method(line, Name, Props){
-    this.SetWithin("Method", line, Name)
-    Return this.SetItem("Method", line, Name, Props)
-  }
-  Class(line, Name, Props){
-    this.SetWithin("Class", line, Name)
-    Return this.SetItem("Class", line, Name, Props)
-  }
-  Label(line, Name, Props){
-    this.SetWithin("Label", line, Name)
-    Return this.SetItem("Label", line, Name, Props)
-  }
   Search(line, Name, Props){
     Return this.SetItem("Search", line, Name, Props)
   }
@@ -331,6 +303,34 @@ differences between SetItem, Within and Nesting:
     Return Nest
   }
 
+  Function(line, Name, Props){
+    Return this.SetNesting("Function", line, Name, Props)
+  }
+  Property(line, Name, Props){
+    Return this.SetNesting("Property", line, Name, Props)
+  }
+  Method(line, Name, Props){
+    Return this.SetNesting("Method", line, Name, Props)
+  }
+  Class(line, Name, Props){
+    Return this.SetNesting("Class", line, Name, Props)
+  }
+  Label(line, Name, Props){
+    Return this.SetNesting("Label", line, Name, Props)
+  }
+  
+  FuncReturn(Type, line, Props){       
+    If this.isNested() {
+      Pointer := this.getNest(0).Pointer
+    } Else {
+      Pointer := this.Info[ this._File, Type, Line ]
+    }
+    If Pointer.HasKey("ReturnValue")
+      Pointer["ReturnValue"].push( Props )
+    Else
+      Pointer["ReturnValue"] := [ Props ]
+    Return 
+  }
   
 ;####### Comments
   
