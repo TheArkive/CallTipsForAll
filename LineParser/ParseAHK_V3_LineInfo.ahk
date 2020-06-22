@@ -130,7 +130,7 @@ Class LineInfo {
     Return this.Info
   }
   
-  delete(Type, line, keys*){
+  delete(Type, line, keys*){            ;currently not used at all
     If keys.MaxIndex() {
       If (keys.MaxIndex() = 1 AND !isObject(keys[1]))
         Return this.Info[ this._File, Type, line ].Delete( keys[1] )
@@ -152,7 +152,7 @@ Class LineInfo {
     this.WithinStack.Delete( this._File )
     this.NestingStack := []
     Return this.Info.Delete( this._File )
-}
+  }
   
   deleteAll(){
     this.Comments := {}
@@ -250,6 +250,9 @@ differences between SetItem, Within and Nesting:
   }
   
   SetWithin(Type, line, Name){
+
+;####### Within
+
     Return this.WithinStack[ this._File ].push( {Type: Type, Line: Line, Name: Name} )
   }
   PopWithin(line){
@@ -323,6 +326,9 @@ differences between SetItem, Within and Nesting:
     Return Nest
   }
 
+  
+;####### Comments
+  
   GuessDocComment(){
     tmpobj := {}
     For file, FileData in this.Comments {
