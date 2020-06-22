@@ -209,8 +209,8 @@ differences between SetItem, Within and Nesting:
   PopWithin(line){
     this.StoreWithin(line)
     Block := this.WithinStack[ this._File ].pop()
-    NextType := LineInfo.GetWithin(0).Type
     ; Msgbox % Block.Type
+    NextType := this.GetWithin(0).Type
     Switch Block.Type
     {
       Case "Brace":    ;it's a curled brace block, if it belongs to a Function,Class,Method,Property, they should be closed as well
@@ -220,7 +220,7 @@ differences between SetItem, Within and Nesting:
         While (NextType = "Label" Or NextType = "HotKey" Or NextType = "HotString") {
           this.StoreWithin(line)
           Block := this.WithinStack[ this._File ].pop()
-          NextType := LineInfo.GetWithin(0).Type
+          NextType := this.GetWithin(0).Type
         }
     }
     Return Block
