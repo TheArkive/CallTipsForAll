@@ -71,7 +71,7 @@ Class LineInfo {
     If !isObject(WithinStack)
       WithinStack := [ {Type: "AutoExec", Line: 1, Name: "AutoExec"} ]
     this.WithinStack[ this._File ] := WithinStack
-
+    this.NestingStack := []
     return old
   }
 
@@ -150,12 +150,14 @@ Class LineInfo {
     } 
     this.Comments.Delete( this.File )
     this.WithinStack.Delete( this._File )
+    this.NestingStack := []
     Return this.Info.Delete( this._File )
 }
   
   deleteAll(){
     this.Comments := {}
     this.WithinStack := {}
+    this.NestingStack := []
     Return this.Info := {}
   }
 
@@ -189,6 +191,12 @@ Class LineInfo {
     this.SetWithin("ContiBlock2", line, Name)
     Return this.Line(line, StringOrObject)
   }
+/*
+differences between SetItem, Within and Nesting:
+"Nesting" is only for Function, Classes, Methods and Properties (and Labels, Return within), it is purely to nest these at the correct place
+"Within" is keeping track of all braces and indentations as well as documenting the WithIn properties for each line (from set to pop)
+"SetItem" is documenting the provided properties for a line 
+*/
 
 
   SetItem(Type, line, Name, Props){
@@ -283,6 +291,38 @@ Class LineInfo {
     Return Trim(tmpstr, "\")
   }
   
+;####### Nesting
+
+  SetNesting(Type, line, Name, Props){
+    this.SetWithin(Type, line, Name, Props)
+    If this.isNested() {
+      
+      ;these 3 lines are identical to SetItem, but then Props is stored at a different node
+      this.Line(line, {(Type): True})
+      If StrLen(Name)
+        Props["Name"]:= Name
+        
+      Nest := this.getNest(0)
+      Nest.Pointer[ Type, line ] := Props
+      this.NestingStack.push( {Type: Type, line: line, Pointer: Nest.Pointer[ Type, line ] } )
+    } Else {
+      this.SetItem(Type, line, Name, Props)
+      this.NestingStack.push( {Type: Type, line: line, Pointer: this.Info[ this._File, Type, line ] } )
+    }
+    Return 
+  }
+  isNested(){
+    Return this.NestingStack.MaxIndex()
+  }
+  getNest(Level){
+    Return this.NestingStack[ this.Nesting.MaxIndex() - Level ]
+  }
+  PopNesting(line){
+    Nest := this.NestingStack.pop()
+    Nest.Pointer["LineEndOfBody"] := line
+    Return Nest
+  }
+
   GuessDocComment(){
     tmpobj := {}
     For file, FileData in this.Comments {
