@@ -256,7 +256,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If RegExMatch(Line, DocCommRE, Match)
         LineInfo.DocComment(PhysicalLineNum, DocComment, {Line: Match.2})
 
-    ;>>> Remove all comments and skip empty lines ----------------------------------------------------------------------
     ;when InContinuationBlock2 empty lines matter and maybe even comments and block comments
     ;hence, this has to be done before comments are stripped off and empty lines are skipped
     If isObject(ContiBlock2Settings) {
@@ -285,6 +284,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       Continue                                   ;go to next line
     }
 
+    ;>>> Remove all comments and skip empty lines ----------------------------------------------------------------------
     ;Skip comment section
     ;the /* and */ symbols comment out an entire section, but only if the symbols appear at the beginning of a line
     ;code after the */ is not part of the comment section
