@@ -52,11 +52,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
-      , InContinuationBlock2 := False         ; true if within a continuation block of method 2 '( ... )'
-      , AllowComments := 0                    ; true if comments are allowed within a continuation block of method 2
-      , AllowTrimLeft := 0                    ; true if lines in a continuation block of method 2 should be trimmed on the left
-      , AllowTrimRight := 0                   ; true if lines in a continuation block of method 2 should be trimmed on the right
-      , JoinString := " n"                    ; the string to Join lines in a continuation block of method 2
       , Match := ""                           ; Object for sub-patterns matching in RegExMatch
       , ClassLevel := 0                       ; current class level, 0 if none
       , tnClasses := []                       ; array of tree nodes of classes, index is class Level
@@ -242,7 +237,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               )"
 
       ;local variable without initialization
-      , TotalNumberOfLine, LineOrig, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
+      , ContiBlock2Settings, TotalNumberOfLine, LineOrig, Params, Vars, PhysicalLineNum, Line, Lines, TempLine, TempLineNum, FuncName, IM, Count, JoinString, Match, tn, Type, i
 
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
@@ -264,20 +259,20 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;>>> Remove all comments and skip empty lines ----------------------------------------------------------------------
     ;when InContinuationBlock2 empty lines matter and maybe even comments and block comments
     ;hence, this has to be done before comments are stripped off and empty lines are skipped
-    If (InContinuationBlock2) {
+    If isObject(ContiBlock2Settings) {
       If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
-        InContinuationBlock2 := False
+        ContiBlock2Settings := ""
         LineInfo.PopWithin(PhysicalLineNum)
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       
       ;when still in continuation section trim or strip the original line
-      If InContinuationBlock2 {
-        If !AllowComments                           ;check if comments are allowed literally
+      If isObject(ContiBlock2Settings) {
+        If !ContiBlock2Settings.AllowComments                           ;check if comments are allowed literally
           LineOrig := RemoveComments(LineOrig)      ;can not use LineNoCo, because it doesn't have original indentation (LineNoCo is trimmed)
-        If AllowTrimLeft
+        If ContiBlock2Settings.AllowTrimLeft
           LineOrig := LTrim(LineOrig)
-        If AllowTrimRight
+        If ContiBlock2Settings.AllowTrimRight
           LineOrig := RTrim(LineOrig)
       } Else
           LineOrig := LineNoCo                      ;line is stripped and trimmed before the ) got removed
@@ -307,7 +302,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection, LineAfter: Line })
       }Else
         Continue                        ;discard this line, it is in a Comment Section
-    }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
+    }Else If (! isObject(ContiBlock2Settings) AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
       LineInfo.CommentSection(PhysicalLineNum, "/*", { CommentSection: InCommentSection } )
       Continue
@@ -368,12 +363,14 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       AllowTrimLeft  :=  Match.Value(5) ? True : False                ;with LTrim all spaces and tabs at the beginning of each line are omitted
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
       AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
-
-      LineInfo.ContiBlock2(PhysicalLineNum, "(", {ContiBlock2: InContinuationBlock2
-                                                , AllowTrimLeft: AllowTrimLeft
-                                                , AllowTrimRight: AllowTrimRight
-                                                , AllowComments: AllowComments
-                                                , JoinString: ">" JoinString "<" })
+      
+      ContiBlock2Settings := {ContiBlock2: InContinuationBlock2
+                            , AllowTrimLeft: AllowTrimLeft
+                            , AllowTrimRight: AllowTrimRight
+                            , AllowComments: AllowComments
+                            , JoinString: ">" JoinString "<" }
+      
+      LineInfo.ContiBlock2(PhysicalLineNum, "(", ContiBlock2Settings )
       Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
 
     ;>>> Collect continuation lines Method 1
