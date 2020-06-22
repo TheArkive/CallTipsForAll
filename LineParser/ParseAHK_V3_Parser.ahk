@@ -283,11 +283,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           LineOrig := LineNoCo                      ;line is stripped and trimmed before the ) got removed
 
       LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
-                                 , AllowTrimLeft: AllowTrimLeft
-                                 , AllowTrimRight: AllowTrimRight
-                                 , AllowComments: AllowComments
-                                 , LineContiBlock2: ">" LineOrig "<"
-                                 , JoinString: ">" JoinString "<" })
+                                    , AllowTrimLeft: AllowTrimLeft
+                                    , AllowTrimRight: AllowTrimRight
+                                    , AllowComments: AllowComments
+                                    , LineContiBlock2: ">" LineOrig "<"
+                                    , JoinString: ">" JoinString "<" })
 
       ;when still in continuation section concatenate the line with the JoinString,
       ;otherwise the code after the ) will be concatenated without any string
