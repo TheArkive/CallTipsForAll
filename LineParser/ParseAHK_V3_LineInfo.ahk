@@ -228,11 +228,10 @@ differences between SetItem, Within and Nesting:
   DocComment(line, Name, Props){
     Return this.SetItem("DocComment", line, Name, Props)
   }
-  
-  SetWithin(Type, line, Name){
 
 ;####### Within
 
+  SetWithin(Type, line, Name, Props){
     Return this.WithinStack[ this._File ].push( {Type: Type, Line: Line, Name: Name} )
   }
   PopWithin(line){
