@@ -188,9 +188,9 @@ differences between SetItem, Within and Nesting:
 
 
   SetItem(Type, line, Name, Props){
+    this.Line(line, {(Type): True})
     If StrLen(Name)
       Props["Name"]:= Name
-    this.Line(line, {(Type): True})
     Return this.set(Type, line, Props)
   }
   
