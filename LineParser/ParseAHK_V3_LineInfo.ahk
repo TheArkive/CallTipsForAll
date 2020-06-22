@@ -162,6 +162,20 @@ Class LineInfo {
   }
 
 
+  Brace(line, Name, StringOrObject){
+    this.SetWithin("Brace", line, Name)
+    Return this.Line(line, StringOrObject)
+  }
+  CommentSection(line, Name, StringOrObject){
+    this.SetWithin("CommentSection", line, Name)
+    Return this.Line(line, StringOrObject)
+  }
+  ContiBlock2(line, Name, StringOrObject){
+    this.SetWithin("ContiBlock2", line, Name)
+    Return this.Line(line, StringOrObject)
+  }
+
+
   SetItem(Type, line, Name, Props){
     If StrLen(Name)
       Props["Name"]:= Name
