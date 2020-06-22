@@ -9,9 +9,9 @@ FileEncoding "UTF-8"
 Global SettingsGUI, AutoCompleteGUI, callTipGui
 SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
-Global ClassesList, ObjectCreateList, ObjectList, DocumentMap ; internal list for keeping track of objects and obj types
-Global MethPropList, UserObjMethProp, FunctionList, CustomFunctions, KeywordList ; internal lists for indicated types
-Global Settings ; user settings object
+Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "" ; internal list for keeping track of objects and obj types
+Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists for indicated types
+Global Settings := "" ; user settings object
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
 
 ; eventually move these to settings GUI
@@ -44,10 +44,9 @@ return ; end of auto execute section
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}" Chr(34)
-	Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
-	Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
-	Static docTextNoComments := "" ;ZZZ - do this to prune comments
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}{Enter}" Chr(34)
+	; Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
+	; Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
 	Static colNum := 0, lineNum := 0, lineText := "" ; hide
 	Static scintBufferLen := 0
 	
@@ -292,7 +291,7 @@ SetupInputHook() {
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
-	IH.KeyOpt("{Enter}","N S") ; handle {Enter} differently, block until it needs to be sent
+	; IH.KeyOpt("{Enter}","N S") ; handle {Enter} differently, block until it needs to be sent
 	IH.Start()
 }
 
@@ -304,16 +303,23 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 		acON := (ctl) ? true : acON
 	}
 	
-	If (vk = 9) {
+	If (vk = 9) { ; tab key
 		If (acON) {
-			SendInput "{Backspace}"
-			ctl.Focus(), ctl.Value := 1
+			; SendInput "{Backspace}"
+			ctl.Focus()
+			
+			If (!ctl.Value)
+				ctl.Value := 1 ; select first row if no selection
+			Else
+				ctl.Value++ ; increment selection on subsequent key presses
+			
+			return ; suppress tab ke in this context
 		}
 	} Else If (vk = 13) { ; enter key
 		If (acON and !ctl.Focused) {
 			closeAutoComplete()
-			SendInput "{Enter}"
 		} Else If (acON and ctl.Focused) {
+			; SendInput "{Backspace}"
 			kwSel := ctl.Text
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
@@ -332,19 +338,19 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 						ControlEditPaste kwSel, hwnd
 					} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
 						curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
-						newPos := curPos.dll - StrLen(curPhrase)
+						newPos := curPos.dll - StrLen(curPhrase) - 1
 						r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
 						r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
 					}
+					closeAutoComplete()
+					
+					t := GetPhraseType(kwSel,parentObj)
+					If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property")
+						DisplayCallTip()
 				}
 			}
-			closeAutoComplete()
 			
-			t := GetPhraseType(kwSel,parentObj)
-			If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property")
-				DisplayCallTip()
-		} Else {
-			SendInput "{Enter}"
+			return
 		}
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
 		If (acON) ; make sure auto-complete GUI is visible
@@ -353,7 +359,7 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI))
 			return
 		
-		SetTimer "LoadAutoComplete", -10
+		SetTimer "LoadAutoComplete", -5
 	}
 	
 	iHook.Stop()

@@ -541,11 +541,16 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	AutoCompleteGUI.BackColor := bgColor
 	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
 	
-	ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR " +Background" bgColor)
-	ctl.Add(dispList), ctl.Add(endList)
+	If (AutoCompleteGUI)
+		ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR " +Background" bgColor)
+	If (AutoCompleteGUI)
+		ctl.Add(dispList), ctl.Add(endList)
 	
-	ctl.GetPos(,,,h)
+	If (AutoCompleteGUI)
+		ctl.GetPos(,,,h)
 	
-	AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
-	AutoCompleteGUI.Show("h" h " NA NoActivate")
+	If (AutoCompleteGUI) {
+		AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
+		AutoCompleteGUI.Show("h" h " NA NoActivate")
+	}
 }
