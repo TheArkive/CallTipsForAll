@@ -209,7 +209,6 @@ differences between SetItem, Within and Nesting:
   PopWithin(line){
     this.StoreWithin(line)
     Block := this.WithinStack[ this._File ].pop()
-    ; Msgbox % Block.Type
     NextType := this.GetWithin(0).Type
     Switch Block.Type
     {
