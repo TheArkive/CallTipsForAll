@@ -170,6 +170,7 @@ Class LineInfo {
   }
   
   Function(line, Name, Props){
+    this.SetWithin("Function", line, Name)
     Return this.SetItem("Function", line, Name, Props)
   }
   FuncReturn(Type, line, Props){
@@ -181,21 +182,27 @@ Class LineInfo {
   }
   
   Property(line, Name, Props){
+    this.SetWithin("Property", line, Name)
     Return this.SetItem("Property", line, Name, Props)
   }
   Method(line, Name, Props){
+    this.SetWithin("Method", line, Name)
     Return this.SetItem("Method", line, Name, Props)
   }
   Class(line, Name, Props){
+    this.SetWithin("Class", line, Name)
     Return this.SetItem("Class", line, Name, Props)
   }
   Label(line, Name, Props){
+    this.SetWithin("Label", line, Name)
     Return this.SetItem("Label", line, Name, Props)
   }
   Hotkey(line, Name, Props){
+    this.SetWithin("Hotkey", line, Name)
     Return this.SetItem("Hotkey", line, Name, Props)
   }
   HotString(line, Name, Props){
+    this.SetWithin("HotString", line, Name)
     Return this.SetItem("HotString", line, Name, Props)
   }
   Search(line, Name, Props){

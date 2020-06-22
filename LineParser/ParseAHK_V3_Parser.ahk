@@ -455,7 +455,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       BlockLevel[ClassLevel] := 0
 
       LineInfo.Class(PhysicalLineNum, Match.1, {} )
-      LineInfo.SetWithin("Class", PhysicalLineNum, Match.1)
       
       If (SubStr(Line, 0) = "{"){      ;check OTB
         BlockLevel[ClassLevel]++
@@ -551,7 +550,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         LineInfo.Line(PhysicalLineNum, {Type: Type })
         Params := GetParameterOfFunctionDef(Line)
         LineInfo[Type](PhysicalLineNum, FuncName.1, {NumParams: Params.Length(), Params: Params} )
-        LineInfo.SetWithin(Type, PhysicalLineNum, FuncName.1)
 
         If (SubStr(Line, 0) = "{"){       ;check again for OTB
           FuncBlockLevel++
@@ -668,14 +666,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If (InStr(LineNoLi, "::")){
       If RegExMatch(Line, HotStringRE, Match){
         LineInfo.HotString(PhysicalLineNum, Match.1, {} )
-        LineInfo.SetWithin("HotString", PhysicalLineNum, Match.1)
         If StrLen(Match.2)
           LineInfo.PopWithin(PhysicalLineNum)
         Continue                                   ;>>> to fix: escaped characters are not escaped in code explorer
       }
       If RegExMatch(Line, HotKeyRE, Match){
         LineInfo.HotKey(PhysicalLineNum, Match.1, {} )
-        LineInfo.SetWithin("HotKey", PhysicalLineNum, Match.1)
         If StrLen(Match.2)
           LineInfo.PopWithin(PhysicalLineNum)
         Continue
@@ -689,7 +685,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     tn := isObject(tnCurrentFuncDef) ? tnCurrentFuncDef : oResult.Labels
     If RegExMatch(Line, LabelRE, Match){
       tn[PhysicalLineNum] := Match.1 
-      LineInfo.SetWithin("Label", PhysicalLineNum, Match.1)
       LineInfo.Label(PhysicalLineNum, Match.1, {} )
      Continue
     }
