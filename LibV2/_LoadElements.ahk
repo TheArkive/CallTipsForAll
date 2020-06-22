@@ -116,6 +116,11 @@ CheckMouseLocation() {
 		oCallTip.ctlActive := false
 	Else
 		oCallTip.ctlActive := true
+	
+	If (!oCallTip.ctlActive) {
+		IH.Stop()
+		SetupInputHook(false)
+	}
 }
 
 ; ==================================================

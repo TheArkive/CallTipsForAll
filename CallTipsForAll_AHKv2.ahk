@@ -39,11 +39,11 @@ return ; end of auto execute section
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
 	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}"
-	Static colNum := 0, lineNum := 0, lineText := "" ; hide
+	Static colNum := 0, lineNum := 0, lineText := ""
 	Static scintBufferLen := 0, suppressEnter := false
 	
 	; properties for call display and help link
-	Static curIndex := "", fullDescArr := Map(), helpFile := "" ; hide
+	Static curIndex := "", fullDescArr := Map(), helpFile := ""
 	
 	; properties for parent window and editor control
 	Static ctlHwnd := 0, progHwnd := 0, progTitle := "", ctlActive := false, ctlConfirmed := false
