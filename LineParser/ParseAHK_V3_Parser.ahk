@@ -528,7 +528,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
               AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
               Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
             tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
-            LineInfo.Property(PhysicalLineNum, FuncName.1)
            }
         }
       }
