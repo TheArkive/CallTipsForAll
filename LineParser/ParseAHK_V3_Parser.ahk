@@ -266,6 +266,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Line := SubStr(Line, 2)                  ;remove ) from line
       }
       
+      LineInfo.Line(PhysicalLineNum, ContiBlock2Settings)
+
       ;when still in continuation section trim or strip the original line
       If isObject(ContiBlock2Settings) {
         If !ContiBlock2Settings.AllowComments                           ;check if comments are allowed literally
@@ -274,19 +276,12 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           LineOrig := LTrim(LineOrig)
         If ContiBlock2Settings.AllowTrimRight
           LineOrig := RTrim(LineOrig)
+        ;when still in continuation section concatenate the line with the JoinString,
+        ContinuationBuffer .= JoinString . LineOrig
       } Else
-          LineOrig := LineNoCo                      ;line is stripped and trimmed before the ) got removed
+        ;otherwise the code after the ) will be concatenated without any string
+        ContinuationBuffer .= LineNoCo       ;line is stripped and trimmed before the ) got removed
 
-      LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
-                                    , AllowTrimLeft: AllowTrimLeft
-                                    , AllowTrimRight: AllowTrimRight
-                                    , AllowComments: AllowComments
-                                    , LineContiBlock2: ">" LineOrig "<"
-                                    , JoinString: ">" JoinString "<" })
-
-      ;when still in continuation section concatenate the line with the JoinString,
-      ;otherwise the code after the ) will be concatenated without any string
-      ContinuationBuffer .= (InContinuationBlock2 ? JoinString : "") . LineOrig
       Continue                                   ;go to next line
     }
 
