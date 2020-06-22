@@ -9,9 +9,10 @@ FileEncoding "UTF-8"
 Global SettingsGUI, AutoCompleteGUI, callTipGui
 SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
-Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := "" ; internal list for keeping track of objects and obj types
-Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists for indicated types
+Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
+Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
 Global Settings := "" ; user settings object
+Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
 
 ; eventually move these to settings GUI
@@ -20,7 +21,7 @@ Global AutoCompleteLength := 0			; this actually needs to be zero for actual int
 Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
 Global maxLines := 20
 
-SetupInputHook()
+SetupInputHook(false) ; suppress enter - true/false
 
 Settings := ReadSettingsFromFile() ; Map
 AddTrayMenu() ; modify tray menu
@@ -33,22 +34,13 @@ If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, obje
 	FullReload() ; conditional for language elements
 }
 
-; OnMessage(0x0100,"OnKeyDown") ; WM_KEYDOWN
-
 return ; end of auto execute section
-
-; OnKeyDown(wParam, lParam, msg, hwnd) { ; wParam = keycode in decimal
-    
-    ; DebugMsg("YAH: " wParam " / " Format("{:x}",lParam) " / " Format("{:x}",wParam))
-; }
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=<>[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}{Enter}" Chr(34)
-	; Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
-	; Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}"
 	Static colNum := 0, lineNum := 0, lineText := "" ; hide
-	Static scintBufferLen := 0
+	Static scintBufferLen := 0, suppressEnter := false
 	
 	; properties for call display and help link
 	Static curIndex := "", fullDescArr := Map(), helpFile := "" ; hide
@@ -66,13 +58,13 @@ class oCallTip { ; testing
 	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
 	Static lineComment := ""
 	
-	property1[a,b] { ; show
+	; property1[a,b] { ; show
 	
-	}
-	property2[c,d] ; show
-	{
+	; }
+	; property2[c,d] ; show
+	; {
 	
-	}
+	; }
 	; property3 {
 	
 	; }
@@ -287,30 +279,50 @@ FullReload() {
 	ReParseText()
 }
 
-SetupInputHook() {
+SetupInputHook(suppressEnter) {
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
-	; IH.KeyOpt("{Enter}","N S") ; maybe don't do this...
+	
+	If (suppressEnter)
+		IH.KeyOpt("{Enter}{Tab}","N S")
+	Else
+		IH.KeyOpt("{Enter}{Tab}","N")
+	
 	IH.Start()
 }
 
-keyPress(iHook,VK,SC) { ; InputHookObject
-	ctl := "", acON := false ; auto-complete GUI active
+keyPress(iHook,VK,SC) { ; InputHook
+	ProcInput()
+	curPhrase := oCallTip.curPhrase
+	parentObj := oCallTip.parentObj
+	
+	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter
+		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
+	} Else
+		KeywordFilter.Clear()
+	
+	If (KeywordFilter.Count) ; set {Enter} suppression
+		oCallTip.suppressEnter := true
+	Else
+		oCallTip.suppressEnter := false
 	
 	If (IsObject(AutoCompleteGUI)) {
+		oCallTIp.suppressEnter := true, ctl := ""
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
 		acON := (ctl) ? true : acON
-	}
+	} Else
+		acON := false, ctl := ""
 	
+	If (vk = 8 And !KeywordFilter.Count)
+		oCallTIp.suppressEnter := false
 	If (vk = 9) { ; tab key
 		If (acON) {
-			SendInput "{Backspace}" ; this seems to be the best way to handle tabbing to auto-complete
 			ctl.Focus()
 			
-			If (!ctl.Value)
+			If (!ctl.Value Or ctl.Value = KeywordFilter.Count)
 				ctl.Value := 1 ; select first row if no selection or not active
-			Else
+			Else If (ctl.Value < KeywordFilter.Count)
 				ctl.Value++ ; increment selection on subsequent key presses
 		}
 	} Else If (vk = 13) { ; enter key
@@ -320,54 +332,57 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 			kwSel := ctl.Text
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
-			curPhrase := oCallTip.curPhrase
-			parentObj := oCallTip.parentObj
-			If (!curPhrase Or InStr(kwSel,curPhrase) = 1) {
-				hwnd := oCallTip.ctlHwnd
-				ctlClassNN := Settings["ProgClassNN"]
-				
-				If (kwSel) {
-					If (ctlClassNN = "edit") { ; edit specific, ie. notepad.exe
-						sPos := BufferAlloc(4,0) 
-						SendMessage 176, sPos.ptr, 0, hwnd ; EM_GETSEL - used this way it gets the carat position
-						curPos := NumGet(sPos,"UInt"), newPos := curPos - StrLen(curPhrase)
-						SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
-						ControlEditPaste kwSel, hwnd
-					} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
-						curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
-						newPos := curPos.dll - StrLen(curPhrase)
-						r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
-						r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
-					}
-					closeAutoComplete()
-					
-					t := KeywordFilter[kwSel]
-					If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property-params")
-						DisplayCallTip()
-				}
-			}
+			hwnd := oCallTip.ctlHwnd
+			ctlClassNN := Settings["ProgClassNN"]
 			
-			return
+			If (kwSel) {
+				If (ctlClassNN = "edit") { ; edit specific, ie. notepad.exe
+					sPos := BufferAlloc(4,0) 
+					SendMessage 176, sPos.ptr, 0, hwnd ; EM_GETSEL - used this way it gets the carat position
+					curPos := NumGet(sPos,"UInt"), newPos := curPos - StrLen(curPhrase)
+					SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
+					ControlEditPaste kwSel, hwnd
+				} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
+					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
+					newPos := curPos.dll - StrLen(curPhrase)
+					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
+					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
+				}
+				closeAutoComplete()
+				
+				t := KeywordFilter[kwSel]
+				If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property-params")
+					DisplayCallTip()
+				
+				KeywordFilter.Clear()
+			}
 		}
+		
+		oCallTip.suppressEnter := false
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
+		ocallTIp.suppressEnter := false
 		If (acON) ; make sure auto-complete GUI is visible
 			closeAutoComplete()
 	} Else { ; skip autocomplete if...
-		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI))
+		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI)) {
+			ocallTIp.suppressEnter := false
 			return
+		}
 		
-		SetTimer "LoadAutoComplete", -5 ; ... otherwise load auto-complete
+		SetTimer "LoadAutoComplete", -30 ; ... otherwise load auto-complete
 	}
 	
-	iHook.Stop()
-	SetupInputHook()
+	; If (oCallTip.ctlActive)
+		; debugmsg(ocallTIp.suppressEnter " / kw: " KeywordFilter.Count " / curPhrase: " curPhrase)
+	
+	IH.Stop()
+	SetupInputHook(oCallTip.suppressEnter)
 }
 
 ; ======================================================================================
 ; Functions related to hotkey events
 ; ======================================================================================
 LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly)
-	KeywordFilter := ""
 	If (!oCallTip.progHwnd) ; this should be conditional
 		GetEditorHwnd()
 	
@@ -376,29 +391,29 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 		return
 	}
 	
-	ProcInput() ; update cursor postion and curPhrase in global variables
-	
 	curPhrase := oCallTip.curPhrase
 	curPhraseObj := oCallTip.curPhraseObj
 	parentObj := oCallTip.parentObj
 	parentObjType := oCallTip.parentObjType
 	curPhraseType := oCallTip.curPhraseType
 	
-	KeywordFilter := Map()
-	KeywordFilter := KwSearchDeep(curPhrase, parentObj)
 	testWord := ""
-	
 	If (KeywordFilter.Count = 1)
 		For kw in KeywordFilter
 			testWord := RegExReplace(kw,"\(m\)|\(f\)|\.","")
 	
 	If ((KeywordFilter.Count And parentObj And !curPhrase) Or force) { ; for manual invocation, or after typing "object."
+		ocallTIp.suppressEnter := true
 		LoadAutoCompleteGUI(KeywordFilter)
 	} Else {
-		If (KeywordFilter.Count And curPhrase != testWord) ;ZZZ - if user manually finishes typing word, close AutoComplete
+		If (KeywordFilter.Count And curPhrase != testWord) { ;ZZZ - if user manually finishes typing word, close AutoComplete
+			ocallTIp.suppressEnter := true
 			LoadAutoCompleteGUI(KeywordFilter)
-		Else
+		} Else {
+			ocallTIp.suppressEnter := false
+			KeywordFilter.Clear
 			closeAutoComplete()
+		}
 	}
 }
 
@@ -453,17 +468,17 @@ KwSearchDeep(curPhrase, parentObj) {
 					curMethList := curMethPropList["method"]
 					For methName in curMethList {
 						If (!curPhrase)
-							resultList[methName] := curType " Method"
+							resultList[methName] := "Method"
 						Else If (InStr(methName,curPhrase))
-							resultList[methName] := curType " Method"
+							resultList[methName] := "Method"
 					}
 					
 					curPropList := curMethPropList["property"]
 					For propName in curPropList {
 						If (!curPhrase)
-							resultList[propName] := curType " Property"
+							resultList[propName] := "Property"
 						Else If (inStr(propName,curPhrase))
-							resultList[propName] := curType " Property"
+							resultList[propName] := "Property"
 					}
 				}
 			} Else If (thisList = "ClassesList") {
@@ -471,7 +486,7 @@ KwSearchDeep(curPhrase, parentObj) {
 				memList := classObj["members"]
 				For memName, obj in memList {
 					params := obj["params"], curType := obj["type"]
-					curType := (curType = "property" And params) ? "property-params" : curType ; improvement?
+					curType := (curType = "property" And params) ? "property-params" : curType
 					If (!curPhrase)
 						resultList[memName] := curType
 					Else If (InStr(memName,curPhrase))
