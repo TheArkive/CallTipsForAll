@@ -9,7 +9,7 @@ FileEncoding "UTF-8"
 Global SettingsGUI, AutoCompleteGUI, callTipGui
 SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
-Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "" ; internal list for keeping track of objects and obj types
+Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := "" ; internal list for keeping track of objects and obj types
 Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists for indicated types
 Global Settings := "" ; user settings object
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
@@ -44,7 +44,7 @@ return ; end of auto execute section
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=[]{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}{Enter}" Chr(34)
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=<>[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}{Tab}{Enter}" Chr(34)
 	; Static docText := "" ;ZZZ - trying this, maybe it can be useful for diagnostics
 	; Static docTextNoStr := "" ;ZZZ - do this to store blanked out strings, and replaced ;comments with " " spaces
 	Static colNum := 0, lineNum := 0, lineText := "" ; hide
@@ -66,13 +66,13 @@ class oCallTip { ; testing
 	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
 	Static lineComment := ""
 	
-	; property1[a,b] { ; show
+	property1[a,b] { ; show
 	
-	; }
-	; property2[c,d] ; show
-	; {
+	}
+	property2[c,d] ; show
+	{
 	
-	; }
+	}
 	; property3 {
 	
 	; }
@@ -291,7 +291,7 @@ SetupInputHook() {
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
-	; IH.KeyOpt("{Enter}","N S") ; handle {Enter} differently, block until it needs to be sent
+	; IH.KeyOpt("{Enter}","N S") ; maybe don't do this...
 	IH.Start()
 }
 
@@ -305,27 +305,24 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 	
 	If (vk = 9) { ; tab key
 		If (acON) {
-			; SendInput "{Backspace}"
+			SendInput "{Backspace}" ; this seems to be the best way to handle tabbing to auto-complete
 			ctl.Focus()
 			
 			If (!ctl.Value)
-				ctl.Value := 1 ; select first row if no selection
+				ctl.Value := 1 ; select first row if no selection or not active
 			Else
 				ctl.Value++ ; increment selection on subsequent key presses
-			
-			return ; suppress tab ke in this context
 		}
 	} Else If (vk = 13) { ; enter key
 		If (acON and !ctl.Focused) {
 			closeAutoComplete()
 		} Else If (acON and ctl.Focused) {
-			; SendInput "{Backspace}"
 			kwSel := ctl.Text
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
 			curPhrase := oCallTip.curPhrase
 			parentObj := oCallTip.parentObj
-			If (InStr(kwSel,curPhrase) = 1 Or !curPhrase) {
+			If (!curPhrase Or InStr(kwSel,curPhrase) = 1) {
 				hwnd := oCallTip.ctlHwnd
 				ctlClassNN := Settings["ProgClassNN"]
 				
@@ -338,14 +335,14 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 						ControlEditPaste kwSel, hwnd
 					} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
 						curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
-						newPos := curPos.dll - StrLen(curPhrase) - 1
+						newPos := curPos.dll - StrLen(curPhrase)
 						r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
 						r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
 					}
 					closeAutoComplete()
 					
-					t := GetPhraseType(kwSel,parentObj)
-					If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property")
+					t := KeywordFilter[kwSel]
+					If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property-params")
 						DisplayCallTip()
 				}
 			}
@@ -359,29 +356,11 @@ keyPress(iHook,VK,SC) { ; InputHookObject
 		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI))
 			return
 		
-		SetTimer "LoadAutoComplete", -5
+		SetTimer "LoadAutoComplete", -5 ; ... otherwise load auto-complete
 	}
 	
 	iHook.Stop()
 	SetupInputHook()
-}
-
-GetPhraseType(inPhrase,parentObj := "") { ; oCallTip.curPhraseType is not populated when using auto-complete, so we get curPhrase type this way
-	If (KeywordList.Has(inPhrase))
-		return KeywordList[inPhrase]
-	Else If (ObjectList.Has(inPhrase))
-		return "object"
-	Else If (ClassesList.Has(inPhrase))
-		return ClassesList[inPhrase]["type"]
-	Else If (MethPropList.Has(parentObj)) {
-		methList := MethPropList[parentObj]["method"]
-		propList := MethPropList[parentObj]["property"]
-		
-		If methList.Has(inPhrase)
-			return "method"
-		Else If propList.Has(inPhrase)
-			return "property"
-	}
 }
 
 ; ======================================================================================
@@ -491,10 +470,12 @@ KwSearchDeep(curPhrase, parentObj) {
 				classObj := ClassesList[curObj]
 				memList := classObj["members"]
 				For memName, obj in memList {
+					params := obj["params"], curType := obj["type"]
+					curType := (curType = "property" And params) ? "property-params" : curType ; improvement?
 					If (!curPhrase)
-						resultList[memName] := obj["type"]
+						resultList[memName] := curType
 					Else If (InStr(memName,curPhrase))
-						resultList[memName] := obj["type"]
+						resultList[memName] := curType
 				}
 			}
 		}
