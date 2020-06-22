@@ -309,8 +309,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         Continue                        ;discard this line, it is in a Comment Section
     }Else If (! InContinuationBlock2 AND SubStr(Line, 1, 2) = "/*") {
       InCommentSection := True
-      LineInfo.Line(PhysicalLineNum, { CommentSection: InCommentSection })
-      LineInfo.SetWithin("CommentSection", PhysicalLineNum, "/*")
+      LineInfo.CommentSection(PhysicalLineNum, "/*", { CommentSection: InCommentSection } )
       Continue
     }
 
@@ -370,12 +369,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
       AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
 
-      LineInfo.Line(PhysicalLineNum, {ContiBlock2: InContinuationBlock2
-                                   , AllowTrimLeft: AllowTrimLeft
-                                   , AllowTrimRight: AllowTrimRight
-                                   , AllowComments: AllowComments
-                                   , JoinString: ">" JoinString "<" })
-      LineInfo.SetWithin("ContinuationBlock2", PhysicalLineNum, "(")
+      LineInfo.ContiBlock2(PhysicalLineNum, "(", {ContiBlock2: InContinuationBlock2
+                                                , AllowTrimLeft: AllowTrimLeft
+                                                , AllowTrimRight: AllowTrimRight
+                                                , AllowComments: AllowComments
+                                                , JoinString: ">" JoinString "<" })
       Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
 
     ;>>> Collect continuation lines Method 1
@@ -415,7 +413,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (i = 1)
         LineInfo.PopWithin(PhysicalLineNum)
       Else
-        LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
+        LineInfo.Brace(PhysicalLineNum, "{", { Brace: True } )
 
       If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
         BlockLevel[ClassLevel] += i - 2                       ;in- or decrease BlockLevel
@@ -458,8 +456,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       
       If (SubStr(Line, 0) = "{"){      ;check OTB
         BlockLevel[ClassLevel]++
-        LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
-        LineInfo.Line(PhysicalLineNum, {OTB: True })
+        LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
       }
       Continue
     }
@@ -553,8 +550,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
         If (SubStr(Line, 0) = "{"){       ;check again for OTB
           FuncBlockLevel++
-          LineInfo.Line(PhysicalLineNum, {OTB: True })
-          LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
+          LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
           Line := RTrim(Line , " {")      ;trim the brace
         }
         If (Type = "Function" or Type = "Method"){
@@ -580,8 +576,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         ;it is still not 100% robust but close, e.g. "IfEqual, var, {" would still be a false positive.
         If (RegExMatch(Line, OTBCommandsRE)){
           FuncBlockLevel++
-          LineInfo.SetWithin("Brace", PhysicalLineNum, "{")
-          LineInfo.Line(PhysicalLineNum, {OTB: True })
+          LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
           Continue
         }
     }

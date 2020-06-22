@@ -233,9 +233,10 @@ Class LineInfo {
     this.StoreWithin(line)
     Block := this.WithinStack[ this._File ].pop()
     NextType := LineInfo.GetWithin(0).Type
+    ; Msgbox % Block.Type
     Switch Block.Type
     {
-      Case "{":    ;it's a curled brace block, if it belongs to a Function,Class,Method,Property, they should be closed as well
+      Case "Brace":    ;it's a curled brace block, if it belongs to a Function,Class,Method,Property, they should be closed as well
         If NextType in Function,Class,Method,Property
           Block := this.WithinStack[ this._File ].pop()
       Case "AutoExec", "Label", "HotKey", "HotString":   ;If was a Return, check if it also closes other "Labels"
