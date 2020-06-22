@@ -260,10 +260,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;when InContinuationBlock2 empty lines matter and maybe even comments and block comments
     ;hence, this has to be done before comments are stripped off and empty lines are skipped
     If isObject(ContiBlock2Settings) {
-      If (SubStr(Line, 1, 1) = ")"){             ;it's the end of the continuation section
+      If (SubStr(LineNoCo, 1, 1) = ")"){             ;it's the end of the continuation section
         ContiBlock2Settings := ""
         LineInfo.PopWithin(PhysicalLineNum)
-        Line := SubStr(Line, 2)                  ;remove ) from line
+        LineNoCo := SubStr(LineNoCo, 2)                  ;remove ) from line
       }
       
       LineInfo.Line(PhysicalLineNum, ContiBlock2Settings)
