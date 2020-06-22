@@ -277,7 +277,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
         If ContiBlock2Settings.AllowTrimRight
           LineOrig := RTrim(LineOrig)
         ;when still in continuation section concatenate the line with the JoinString,
-        ContinuationBuffer .= JoinString . LineOrig
+        ContinuationBuffer .= ContiBlock2Settings.JoinString . LineOrig
       } Else
         ;otherwise the code after the ) will be concatenated without any string
         ContinuationBuffer .= LineNoCo       ;line is stripped and trimmed before the ) got removed
@@ -352,7 +352,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;in most cases there shouldn't be any valuable info for the code explorer on any of these lines (including any code on last line after ")")
     ;but these lines may contain var assignments or class or function calls
     }Else If (RegExMatch(Line, ContinuationBlock2RE, Match)) {  ;it's the start of the continuation section when it starts with (
-      InContinuationBlock2 := True                              ;but doesn't have a ), exception is after Join; it could be an expressions like (x.y)[z]()
+                                                                ;but doesn't have a ), exception is after Join; it could be an expressions like (x.y)[z]()
                                                                 ;and doesn't have a : at it's start or end, exception is after Join; it could be a label, hotkey or hotstring
       JoinString := Match.Value(3) ? "`n" : ""                        ;JoinString is by default `n, when Join is present it is 'no space'
       JoinString := Match.Value(4) ? Match.Value(4) : JoinString      ;when a string is given right after Join, it is used instead
@@ -360,11 +360,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
       AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
       
-      ContiBlock2Settings := {ContiBlock2: InContinuationBlock2
+      ContiBlock2Settings := {ContiBlock2: True
                             , AllowTrimLeft: AllowTrimLeft
                             , AllowTrimRight: AllowTrimRight
                             , AllowComments: AllowComments
-                            , JoinString: ">" JoinString "<" }
+                            , JoinString: JoinString }
       
       LineInfo.ContiBlock2(PhysicalLineNum, "(", ContiBlock2Settings )
       Continue                   ;go to next line     ;other parameters are ignored, because they currently do not matter for code explorer, e.g. % or , or ` or )
