@@ -214,9 +214,21 @@ differences between SetItem, Within and Nesting:
     Switch Block.Type
     {
       Case "Brace":    ;it's a curled brace block, if it belongs to a Function,Class,Method,Property, they should be closed as well
-        If NextType in Function,Class,Method,Property
+        While (NextType = "Label") {     ;a function can have labels within, they end with the Brace that closes the function. 
+                                         ;The current code might not be robust (doesn't check if function really ends with this brace) but seems ok for now. 
+                                         ;      Otherwise a GoTo or GoSub would be jumping into a curled brace Block, which would be pretty bad coding.
+          this.StoreWithin(line)
           Block := this.WithinStack[ this._File ].pop()
-      Case "AutoExec", "Label", "HotKey", "HotString":   ;If was a Return, check if it also closes other "Labels"
+          this.PopNesting(line)
+          NextType := this.GetWithin(0).Type
+        }
+        If NextType in Function,Class,Method,Property 
+        {
+          this.StoreWithin(line)
+          Block := this.WithinStack[ this._File ].pop()
+          this.PopNesting(line)
+        }
+      Case "Label", "HotKey", "HotString":   ;If was a Return, check if it also closes other "Labels"
         While (NextType = "Label" Or NextType = "HotKey" Or NextType = "HotString") {
           this.StoreWithin(line)
           Block := this.WithinStack[ this._File ].pop()
