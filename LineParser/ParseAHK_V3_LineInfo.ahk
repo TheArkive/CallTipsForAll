@@ -179,18 +179,6 @@ Class LineInfo {
   }
 
 
-  Brace(line, Name, StringOrObject){
-    this.SetWithin("Brace", line, Name)
-    Return this.Line(line, StringOrObject)
-  }
-  CommentSection(line, Name, StringOrObject){
-    this.SetWithin("CommentSection", line, Name)
-    Return this.Line(line, StringOrObject)
-  }
-  ContiBlock2(line, Name, StringOrObject){
-    this.SetWithin("ContiBlock2", line, Name)
-    Return this.Line(line, StringOrObject)
-  }
 /*
 differences between SetItem, Within and Nesting:
 "Nesting" is only for Function, Classes, Methods and Properties (and Labels, Return within), it is purely to nest these at the correct place
@@ -233,14 +221,6 @@ differences between SetItem, Within and Nesting:
   Label(line, Name, Props){
     this.SetWithin("Label", line, Name)
     Return this.SetItem("Label", line, Name, Props)
-  }
-  Hotkey(line, Name, Props){
-    this.SetWithin("Hotkey", line, Name)
-    Return this.SetItem("Hotkey", line, Name, Props)
-  }
-  HotString(line, Name, Props){
-    this.SetWithin("HotString", line, Name)
-    Return this.SetItem("HotString", line, Name, Props)
   }
   Search(line, Name, Props){
     Return this.SetItem("Search", line, Name, Props)
@@ -294,6 +274,32 @@ differences between SetItem, Within and Nesting:
     Return Trim(tmpstr, "\")
   }
   
+
+  Hotkey(line, Name, Props){
+    this.SetItem("Hotkey", line, Name, Props)
+    If (Props.Type = "HotKeyCommand")
+      Return
+    Return this.SetWithin("Hotkey", line, Name, Props)
+  }
+  HotString(line, Name, Props){
+    this.SetItem("HotString", line, Name, Props)
+    Return this.SetWithin("HotString", line, Name, Props)
+  }
+
+  Brace(line, Name, StringOrObject){
+    this.Line(line, StringOrObject)
+    Return this.SetWithin("Brace", line, Name, {})
+  }
+  CommentSection(line, Name, StringOrObject){
+    this.Line(line, StringOrObject)
+    Return this.SetWithin("CommentSection", line, Name, {})
+  }
+  ContiBlock2(line, Name, StringOrObject){
+    this.Line(line, StringOrObject)
+    Return this.SetWithin("ContiBlock2", line, Name, {})
+  }
+
+
 ;####### Nesting
 
   SetNesting(Type, line, Name, Props){
