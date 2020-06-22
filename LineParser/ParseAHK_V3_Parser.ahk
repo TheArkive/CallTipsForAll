@@ -33,6 +33,8 @@ Potential Enhancements
 - refactor function (currently ~700 lines)
   - rename tn... vars
   - have one object to hold the different status vars
+  - get rid of the swapping of lines: One loop to get full lines without comments, then a second loop over remaining full lines to parse the code
+      see if this is faster
   
 - add push() method to LineInfo parallel to set()
 
