@@ -38,7 +38,7 @@ return ; end of auto execute section
 
 class oCallTip { ; testing
 	Static srcFiles := "", c := ""
-	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}"
+	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}{Escape}~"
 	Static colNum := 0, lineNum := 0, lineText := ""
 	Static scintBufferLen := 0, suppressEnter := false
 	
@@ -122,11 +122,11 @@ class oCallTip { ; testing
 	ExitApp
 }
 
-~ESC::
-{
-	closeCallTip()
-	closeAutoComplete()
-}
+; ~ESC::
+; {
+	; closeCallTip()
+	; closeAutoComplete()
+; }
 
 Up:: ; scroll when multiple records are available for call tips
 {
@@ -187,7 +187,7 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 		params := obj["desc"]
 		testList .= curFunc " / " (params.Has(1) ? params[1] : "") "`r`n`r`n"
 	}
-	A_Clipboard := testList
+	; A_Clipboard := testList
 	msgbox "Function List:`r`n`r`n" testList
 	
 	
@@ -219,7 +219,7 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 			testList .= "`t" member " / " memObj["type"] "`r`n"
 		}
 	}
-	A_Clipboard := testList
+	; A_Clipboard := testList
 	MsgBox "Classes loaded:`r`n`r`n" testList
 }
 
@@ -292,31 +292,46 @@ SetupInputHook(suppressEnter) {
 	IH.Start()
 }
 
-keyPress(iHook,VK,SC) { ; InputHook
+keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
+	a := WinActive("ahk_id " oCallTip.progHwnd)
+	
+	If (vk = 9 And GetKeyState("Alt") Or !a)	; if alt-tab editor control is inactive
+		oCallTip.ctlActive := false
+	Else If (a) 								; if a > 0 then editor control is active
+		oCallTip.ctlActive := true
+	
 	ProcInput()
-	curPhrase := oCallTip.curPhrase
-	parentObj := oCallTip.parentObj
+	curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
 	
-	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter
+	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter based on .ctlActive
 		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
-	} Else
+	} Else {
 		KeywordFilter.Clear()
-	
-	If (KeywordFilter.Count) ; set {Enter} suppression
-		oCallTip.suppressEnter := true
-	Else
 		oCallTip.suppressEnter := false
+		IH.Stop(), SetupInputHook(oCallTip.suppressEnter) ; no need to continue processing
+		return
+	}
+	
+	If (KeywordFilter.Count) ; set {Enter} and {Tab} suppression
+		oCallTip.suppressEnter := true
+	Else					; disable {Enter}/{Tab} suppression if KeywordFilter is empty
+		oCallTip.suppressEnter := false, closeAutoComplete()
 	
 	If (IsObject(AutoCompleteGUI)) {
 		oCallTIp.suppressEnter := true, ctl := ""
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
-		acON := (ctl) ? true : acON
+		acON := (ctl) ? true : false
 	} Else
 		acON := false, ctl := ""
 	
-	If (vk = 8 And !KeywordFilter.Count)
-		oCallTIp.suppressEnter := false
-	If (vk = 9) { ; tab key
+	If (vk = 27) { ; escape key
+		closeCallTip()
+		closeAutoComplete()
+		oCallTip.suppressEnter := false
+	} Else If (vk = 8 And !KeywordFilter.Count) { ; backspace key
+		oCallTip.suppressEnter := false
+		closeAutoComplete()
+	} Else If (vk = 9) { ; tab key
 		If (acON) {
 			ctl.Focus()
 			
@@ -350,7 +365,7 @@ keyPress(iHook,VK,SC) { ; InputHook
 				}
 				closeAutoComplete()
 				
-				t := KeywordFilter[kwSel]
+				t := KeywordFilter.Has(kwSel) ? KeywordFilter[kwSel] : ""
 				If (t = "command" Or t = "Function" Or t = "Object" Or t = "method" Or t = "property-params")
 					DisplayCallTip()
 				
@@ -373,9 +388,9 @@ keyPress(iHook,VK,SC) { ; InputHook
 	}
 	
 	; If (oCallTip.ctlActive)
-		; debugmsg(ocallTIp.suppressEnter " / kw: " KeywordFilter.Count " / curPhrase: " curPhrase)
+		; debugmsg("suppress: " ocallTIp.suppressEnter " / kw: " KeywordFilter.Count " / curPhrase: " curPhrase)
 	
-	IH.Stop()
+	IH.Stop() ; global InputHook prevents duplicate IH objects on rapid key entry, ie. holding a key down.
 	SetupInputHook(oCallTip.suppressEnter)
 }
 
@@ -388,8 +403,12 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 	
 	If (!oCallTip.ctlActive Or !KeywordList.Count) {
 		closeAutoComplete()
+		oCallTip.suppressEnter := false
 		return
 	}
+	
+	If (force) ; this is normally done on keyPress() callback
+		ProcInput()
 	
 	curPhrase := oCallTip.curPhrase
 	curPhraseObj := oCallTip.curPhraseObj
@@ -397,20 +416,23 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 	parentObjType := oCallTip.parentObjType
 	curPhraseType := oCallTip.curPhraseType
 	
+	If (force) ; this is normally done on keyPress() callback
+		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
+	
 	testWord := ""
 	If (KeywordFilter.Count = 1)
 		For kw in KeywordFilter
 			testWord := RegExReplace(kw,"\(m\)|\(f\)|\.","")
 	
-	If ((KeywordFilter.Count And parentObj And !curPhrase) Or force) { ; for manual invocation, or after typing "object."
-		ocallTIp.suppressEnter := true
+	If ((KeywordFilter.Count And parentObj And !curPhrase) Or force) { ; for automatic invocation, or after typing "object."
+		oCallTip.suppressEnter := true
 		LoadAutoCompleteGUI(KeywordFilter)
 	} Else {
-		If (KeywordFilter.Count And curPhrase != testWord) { ;ZZZ - if user manually finishes typing word, close AutoComplete
-			ocallTIp.suppressEnter := true
+		If (KeywordFilter.Count And curPhrase != testWord) { ;ZZZ - normally .Count will be > 1
+			oCallTip.suppressEnter := true
 			LoadAutoCompleteGUI(KeywordFilter)
-		} Else {
-			ocallTIp.suppressEnter := false
+		} Else {								;ZZZ - if user manually finishes typing word, close AutoComplete
+			oCallTip.suppressEnter := false
 			KeywordFilter.Clear
 			closeAutoComplete()
 		}
@@ -528,6 +550,7 @@ ClickCheck(curKey) {
 	CheckMouseLocation()
 	If (!oCallTip.ctlActive) {
 		closeCallTip()
+		closeAutoComplete()
 		return
 	}
 	

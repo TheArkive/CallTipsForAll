@@ -52,7 +52,7 @@ ReloadElements() {
 		}
 		
 		curDocText := tmp ? tmp : curDocText
-		A_Clipboard := curDocText
+		; A_Clipboard := curDocText
 		
 		; For i, obj in DocumentMap ; quick test of DocumentMap
 			; testStr .= obj["fileName"] "`r`nLine: " obj["lineNum"] " / " obj["start"] " / " obj["end"] "`r`n`r`n"
@@ -106,7 +106,7 @@ GetEditorHwnd() {
 }
   
 CheckMouseLocation() {
-	MouseGetPos  x,y,hWnd, ctlHwndCheck, 2
+	MouseGetPos x,y,hWnd, ctlHwndCheck, 2
   
 	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
 		oCallTip.ctlActive := true

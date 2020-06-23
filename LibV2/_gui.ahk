@@ -441,6 +441,8 @@ SetFontDemo() {
 }
 
 gui_close(guiObj) {
+	; newLang := Settings["ActiveLanguage"].Text
+	
 	Settings["ProgExe"] := guiObj["ProgExe"].value
 	Settings["ProgClassNN"] := guiObj["ProgClassNN"].value
 	Settings["BaseFile"] := guiObj["BaseFile"].value
@@ -537,7 +539,7 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	CoordMode "Caret", "Screen"
 	CaretGetPos(outX, outY)
 	
-	AutoCompleteGUI := Gui.New("-Border AlwaysOnTop +Owner" hEditorWin)
+	AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
 	AutoCompleteGUI.BackColor := bgColor
 	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
 	
