@@ -944,8 +944,10 @@ GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you sai
 	includes := oCallTip.includes, includeArr := Array() ;ZZZ - includes regex are not being loaded, gotta check that out now before fixing GetCustomFunctions()
 	Loop curDocArr.Length {
 		curLine := curDocArr[A_Index]
-		If (r1 := RegExMatch(curLine,"mi)" includes,match))
+		If (r1 := RegExMatch(curLine,"mi)" includes,match)) {
+			; msgbox "curLine: " curLine "`r`nregex: " includes "`r`ncurMatch: " match.Value(0)
 			includeArr.Push(match.Value(1))
+		}
 	}
 	curDocArr := "" ; free memory
 	

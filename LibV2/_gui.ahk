@@ -311,6 +311,7 @@ gui_click(ctlObj,info) {
 ; ================================================================
 
 SettingsGUILoad() {
+	KillAllHotkeys()
 	closeCallTip()
 	closeAutoComplete()
 	
@@ -332,15 +333,23 @@ SettingsGUILoad() {
 	}
 	
 	SettingsGUI.Add("Text","x5 y10","Language:")
-	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vPickLang Choose" choose,langList).OnEvent("change","gui_change_events")
+	SettingsGUI.Add("DropDownList","x+2 yp-4 w100 vActiveLanguage Choose" choose,langList).OnEvent("change","gui_change_events")
 	
 	ctl := SettingsGUI.Add("Checkbox","xm y+8 vLoadCallTipOnClick","Load call tip on double-click") ; ListView
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["LoadCallTipOnClick"]
 	
-	ctl := SettingsGUI.Add("Checkbox","x+8 vCloseTipOnFocusChange Section","Close call tip on focus change")
+	ctl := SettingsGUI.Add("Checkbox","x+8 vAutoComplete Section","Auto-Complete while typing")
 	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["CloseTipOnFocusChange"]
+	ctl.Value := Settings["AutoComplete"]
+	
+	; ctl := SettingsGUI.Add("Checkbox","xm y+8 vAutoComplete","Auto-Complete while typing")
+	; ctl.OnEvent("click","gui_change_events")
+	; ctl.Value := Settings["AutoComplete"]
+	
+	; ctl := SettingsGUI.Add("Checkbox","x+8 vCloseTipOnFocusChange Section","Close call tip on focus change")
+	; ctl.OnEvent("click","gui_change_events")
+	; ctl.Value := Settings["CloseTipOnFocusChange"]
 	
 	ctl := SettingsGUI.Add("Checkbox","xm y+8 vDebugToolTip","Show Debug Tooltip")
 	ctl.OnEvent("click","gui_change_events")
@@ -349,10 +358,6 @@ SettingsGUILoad() {
 	ctl := SettingsGUI.Add("Checkbox","xs yp vCallTipSelectable","Selectable call tips")
 	ctl.OnEvent("click","gui_change_events")
 	ctl.Value := Settings["CallTipSelectable"]
-	
-	ctl := SettingsGUI.Add("Checkbox","xm y+8 vAutoComplete","Auto-Complete while typing")
-	ctl.OnEvent("click","gui_change_events")
-	ctl.Value := Settings["AutoComplete"]
 	
 	ctl := SettingsGUI.Add("Button","vPickFont xm y+8","Select Font")
 	ctl.OnEvent("click","gui_change_events")
@@ -378,24 +383,46 @@ SettingsGUILoad() {
 	SettingsGUI.Add("Button","vSelBaseFile x+0 w20","...").OnEvent("click","gui_change_events")
 	SettingsGUI.Add("Button","vClearBaseFile x+0 w20","X").OnEvent("click","gui_change_events")
 	
+	w := 130
+	SettingsGUI.Add("Text","xm y+8","Call-Tip Hotkey:")
+	SettingsGUI.Add("Hotkey","vCallTipInvoke xm y+2 w" w,Settings["CallTipInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["CallTipInvoke"]
+	
+	SettingsGUI.Add("Text","xs yp-15","Auto-Complete Hotkey:")
+	SettingsGUI.Add("Hotkey","vAutoCompleteInvoke xs y+2 w" w,Settings["AutoCompleteInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["AutoCompleteInvoke"]
+	
+	SettingsGUI.Add("Text","xm y+8","Reload/Base File Hotkey:`r`n(double-tap for Base File)")
+	SettingsGUI.Add("Hotkey","vReloadInvoke xm y+2 w" w,Settings["ReloadInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["ReloadInvoke"]
+	
+	SettingsGUI.Add("Text","xs yp-28","`r`nClose CallTipsForAll Hotkey:")
+	SettingsGUI.Add("Hotkey","vCloseInvoke xs y+2 w" w,Settings["CloseInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["CloseInvoke"]
+	
 	SetFontDemo()
 	SettingsGUI.Show()
 }
 
+gui_hotkey_events(ctl, info) {
+	result := ""
+	If (GetKeyState("Ctrl") And GetKeyState("Space"))
+		result := "^Space"
+	
+	If (ctl.Name = "CallTipInvoke") {
+		
+			; msgbox "CTRL+Space"
+	}
+}
+
 gui_change_events(ctl, Info) { ; GuiControlObject
-	if (ctl.Name = "PickLang")
-		Settings["ActiveLanguage"] := ctl.Text
-	else if (ctl.Name = "LoadCallTipOnClick")
+	; if (ctl.Name = "ActiveLanguage")
+		; Settings["ActiveLanguage"] := ctl.Text
+	if (ctl.Name = "LoadCallTipOnClick")
 		Settings["LoadCallTipOnClick"] := ctl.Value
 	else if (ctl.Name = "CloseTipOnFocusChange")
 		Settings["CloseTipOnFocusChange"] := ctl.Value
 	else if (ctl.Name = "DebugToolTip")
 		Settings["DebugToolTip"] := ctl.Value
-	else if (ctl.Name = "CallTipSelectable")
-		Settings["CallTipSelectable"] := ctl.Value
 	Else If (ctl.Name = "AutoComplete")
 		Settings["AutoComplete"] := ctl.Value
-	Else If (ctl.Name = "PickFont") {
+	If (ctl.Name = "PickFont") {
 		fName := Settings["fontFace"]
 		fSize := Settings["fontSize"]
 		fontObj := Map("name",fName,"size",fSize) ; ,"color",0xFF0000
@@ -440,19 +467,68 @@ SetFontDemo() {
 	SettingsGUI["FontDemo"].Opt("+Background" bgColor)
 }
 
+KillAllHotkeys() {
+	CallTipInvoke := Settings["CallTipInvoke"]
+	AutoCompleteInvoke := Settings["AutoCompleteInvoke"]
+	ReloadInvoke := Settings["ReloadInvoke"]
+	CloseInvoke := Settings["CloseInvoke"]
+	
+	If (CallTipInvoke)
+		Hotkey CallTipInvoke, "Off"
+	If (AutoCompleteInvoke)
+		Hotkey AutoCompleteInvoke, "Off"
+	If (ReloadInvoke)
+		Hotkey ReloadInvoke, "Off"
+	If (CloseInvoke)
+		Hotkey CloseInvoke, "Off"
+}
+
+SetHotkeys() {
+	CallTipInvoke := Settings["CallTipInvoke"]
+	AutoCompleteInvoke := Settings["AutoCompleteInvoke"]
+	ReloadInvoke := Settings["ReloadInvoke"]
+	CloseInvoke := Settings["CloseInvoke"]
+	
+	HotIfWinActive "ahk_id " oCallTip.progHwnd
+	If (CallTipInvoke)
+		Hotkey CallTipInvoke, "DisplayCallTip"
+	If (AutoCompleteInvoke)
+		Hotkey AutoCompleteInvoke, "AutoComp"
+	If (ReloadInvoke)
+		Hotkey ReloadInvoke, "ReloadGui"
+	If (CloseInvoke)
+		Hotkey CloseInvoke, "CloseScript"
+
+}
+
 gui_close(guiObj) {
-	; newLang := Settings["ActiveLanguage"].Text
+	newLang := guiObj["ActiveLanguage"].Text
+	newExe := guiObj["ProgExe"].value
+	newClassNN := guiObj["ProgClassNN"].value
+	newBaseFile := guiObj["BaseFile"].value
+	
+	doReload := false
+	If (newLang != Settings["ActiveLanguage"] Or newExe != Settings["ProgExe"] Or newClassNN != Settings["ProgClassNN"] Or newBaseFile != Settings["BaseFile"])
+		doReload := true
 	
 	Settings["ProgExe"] := guiObj["ProgExe"].value
 	Settings["ProgClassNN"] := guiObj["ProgClassNN"].value
 	Settings["BaseFile"] := guiObj["BaseFile"].value
+	Settings["ActiveLanguage"] := guiObj["ActiveLanguage"].Text
+	
+	Settings["CallTipInvoke"] := guiObj["CallTipInvoke"].Value
+	Settings["AutoCompleteInvoke"] := guiObj["AutoCompleteInvoke"].Value
+	Settings["ReloadInvoke"] := guiObj["ReloadInvoke"].Value
+	Settings["CloseInvoke"] := guiObj["CloseInvoke"].Value
+	
 	
 	settingsText := Jxon_Dump(Settings,4)
 	FileDelete "Settings.txt"
 	FileAppend settingsText, "Settings.txt"
 	SettingsGUI.Destroy(), SettingsGUI := ""
 	
-	SetTimer "FullReload", -1
+	If (doReload)
+		SetTimer "FullReload", -1
 }
 
 ; ================================================================
@@ -470,6 +546,7 @@ QuickReloadGUI() {
 	g.Add("Edit","vBaseFile x+2 yp-4 w400 ReadOnly r1",Settings["BaseFile"])
 	g.Add("Button","vPickBaseFile x+0","...").OnEvent("click","quick_reload_gui")
 	g.Add("Button","vClearBaseFile x+0","X").OnEvent("click","quick_reload_gui")
+	g.Add("Button","vReload x+10 +Default","Reload").OnEvent("click","quick_reload_gui")
 	
 	g.Show("Hide")
 	
@@ -485,13 +562,14 @@ quick_reload_gui(ctl, info) {
 			ctl.gui["BaseFile"].value := newFile
 	} Else If (ctl.Name = "ClearBaseFile")
 		ctl.gui["BaseFile"].value := ""
+	
 	Settings["BaseFile"] := ctl.gui["BaseFile"].value
 	
 	settingsText := Jxon_Dump(Settings,4)
 	FileDelete "Settings.txt"
 	FileAppend settingsText, "Settings.txt"
 	
-	ReParseText()
+	ReParseText() ; reload user defined elements
 	ctl.gui.Destroy()
 }
 

@@ -25,13 +25,14 @@ SetupInputHook(false) ; suppress enter - true/false
 
 Settings := ReadSettingsFromFile() ; Map
 AddTrayMenu() ; modify tray menu
+SetHotkeys()
 
 If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
 	SettingsGUILoad()
 
 GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
 If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
-	FullReload() ; conditional for language elements
+	FullReload()
 }
 
 return ; end of auto execute section
@@ -110,23 +111,17 @@ class oCallTip { ; testing
 ; hotkeys - global ; 
 ; ================================================================
 
-^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
+; ^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
 
-^+Space::DisplayCallTip() ; ClickCheck("LButton")
+; ^+Space::DisplayCallTip() ; ClickCheck("LButton")
 
-^!Space::LoadAutoComplete(true) ; force Auto-Complete gui to show
+; ^!Space::LoadAutoComplete(true) ; force Auto-Complete gui to show
 
 ^+F12:: ; close CallTipsForAll
 {
 	MsgBox "Closing Call Tips For All!"
 	ExitApp
 }
-
-; ~ESC::
-; {
-	; closeCallTip()
-	; closeAutoComplete()
-; }
 
 Up:: ; scroll when multiple records are available for call tips
 {
@@ -266,17 +261,21 @@ FullReload() {
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
 	
+	
+	
 	If (oCallTip.ctlHwnd)
 		ScintillaExt.pid := oCallTip.progPID ; need PID for sending messages to edit control in some cases
 	
 	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	
-	LoadKeywordsList()
+	; msgbox "progHwnd: " oCallTip.progHwnd "`r`nctlHwnd: " oCallTip.ctlHwnd "`r`nsrcFiles: " oCallTip.srcFiles
+	
+	LoadKeywordsList() ; reload defined language elements
 	LoadFunctionsList()
 	objMatchText := LoadMethPropList()
 	LoadObjectCreateList(objMatchText)
 	
-	ReParseText()
+	ReParseText() ; reload user defined elements
 }
 
 SetupInputHook(suppressEnter) {
@@ -293,15 +292,24 @@ SetupInputHook(suppressEnter) {
 }
 
 keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
-	a := WinActive("ahk_id " oCallTip.progHwnd)
+	a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
+	b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
 	
-	If (vk = 9 And GetKeyState("Alt") Or !a)	; if alt-tab editor control is inactive
+	If (vk = 9 And GetKeyState("Alt") Or (!a And !b))	; if alt-tab editor control is inactive
 		oCallTip.ctlActive := false
-	Else If (a) 								; if a > 0 then editor control is active
+	Else If (a Or b) 								; if a > 0 then editor control is active
 		oCallTip.ctlActive := true
 	
 	ProcInput()
 	curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
+	
+	
+	
+	
+	; DebugMsg("curPhrase: " curPhrase)
+	
+	
+	
 	
 	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter based on .ctlActive
 		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
@@ -311,6 +319,11 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 		IH.Stop(), SetupInputHook(oCallTip.suppressEnter) ; no need to continue processing
 		return
 	}
+	
+	
+	
+	
+	
 	
 	If (KeywordFilter.Count) ; set {Enter} and {Tab} suppression
 		oCallTip.suppressEnter := true
@@ -360,6 +373,9 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 				} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
 					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
 					newPos := curPos.dll - StrLen(curPhrase)
+					
+					; DebugMsg("curPos: " curPos.dll " / newPos: " newPos " / curPhrase: " curPhrase)
+					
 					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
 					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
 				}
@@ -388,7 +404,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 	}
 	
 	; If (oCallTip.ctlActive)
-		; debugmsg("suppress: " ocallTIp.suppressEnter " / kw: " KeywordFilter.Count " / curPhrase: " curPhrase)
+		; debugmsg("suppress: " ocallTIp.suppressEnter " / kw: " KeywordFilter.Count " / curPhrase: " curPhrase " / hwnd: " a)
 	
 	IH.Stop() ; global InputHook prevents duplicate IH objects on rapid key entry, ie. holding a key down.
 	SetupInputHook(oCallTip.suppressEnter)
@@ -397,6 +413,14 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 ; ======================================================================================
 ; Functions related to hotkey events
 ; ======================================================================================
+AutoComp(ThisKey:="") {
+	LoadAutoComplete(true) ; force ProcInput() and populating of KeywordFilter
+}
+
+ReloadGui(ThisKey:="") {
+	ClickCheck("Reload")
+}
+
 LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly)
 	If (!oCallTip.progHwnd) ; this should be conditional
 		GetEditorHwnd()
@@ -546,6 +570,11 @@ debugToolTip() {
 		  , x, (y+30) 
 }
 
+CloseScript(ThisKey:="") {
+	Msgbox "Closing CallTipsForAll!"
+	ExitApp
+}
+
 ClickCheck(curKey) {
 	CheckMouseLocation()
 	If (!oCallTip.ctlActive) {
@@ -562,7 +591,7 @@ ClickCheck(curKey) {
 			return
 		closeAutoComplete()
 		DisplayCallTip()
-	} Else If (curKey = "^Space") {
+	} Else If (curKey = "Reload") {
 		oCallTip.c := c
 		SetTimer "CallTipsReload", -300
 	}
@@ -576,7 +605,7 @@ CallTipsReload() {
 	}
 }
 
-DisplayCallTip() {
+DisplayCallTip(ThisKey:="") {
 	closeAutoComplete()
 	If (!oCallTip.ctlActive)
 		return

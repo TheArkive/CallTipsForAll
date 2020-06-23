@@ -124,6 +124,13 @@ ProcInput() {
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
 		scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll,0,hCtl)
 		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll,"",hCtl,scintBufferLen.dll)
+		
+		If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
+			curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCtl,scintBufferLen.dll+1)
+		
+		; DebugMsg("scintBufferLen: " scintBufferLen.dll " / pos: " curLineText.dll " / curLineText: " curLineText.str)
+		
+		
 		curCol := curLineText.dll + 1
 		
 		oCallTip.scintBufferLen := scintBufferLen.dll
