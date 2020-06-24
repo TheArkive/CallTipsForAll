@@ -278,7 +278,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
           LineOrig := LTrim(LineOrig)
         If ContiBlock2Settings.AllowTrimRight
           LineOrig := RTrim(LineOrig)
-        ;when still in continuation section concatenate the line with the JoinString,
+        ;in continuation section concatenate the line with the JoinString,
         ContinuationBuffer .= ContiBlock2Settings.JoinString . LineOrig
       } Else
         ;otherwise the code after the ) will be concatenated without any string
