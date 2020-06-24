@@ -313,6 +313,12 @@ differences between SetItem, Within and Nesting:
     Nest.Pointer["LineEndOfBody"] := line
     Return Nest
   }
+  GetNestingStack(){
+    For i, Data in this.NestingStack {
+      tmpstr .= (Data.Name ? Data.Name : Data.Type) "\"
+    }
+    Return Trim(tmpstr, "\")
+  }
 
   Function(line, Name, Props){
     Return this.SetNesting("Function", line, Name, Props)
