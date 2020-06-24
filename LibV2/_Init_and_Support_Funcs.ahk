@@ -20,7 +20,8 @@ AddTrayMenu() {
 	trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
 	trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
 	; trayMenu.Add("AHK Auto-Gen",subMenuAutoGen) ; not really useful for this script
-	trayMenu.Add("Reload","iconMenu")
+	trayMenu.Add("Reload Items (Full)","iconMenu")
+	trayMenu.Add("Reload Script","iconMenu")
 	trayMenu.Add("Exit","iconMenu")
 
 	iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
@@ -32,8 +33,10 @@ AddTrayMenu() {
 			clipboard := WrapText(WrapTextChars)
 		} Else If (ItemName = "UnWrap Text (CTL + ALT + U)") {
 			clipboard := unwrapText()
-		} Else If (ItemName = "Reload")
+		} Else If (ItemName = "Reload Script")
 			Reload
+		Else If (ItemName = "Reload Items (Full)")
+			FullReload()
 		Else If (ItemName = "Exit")
 			ExitApp
 	}
