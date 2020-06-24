@@ -113,18 +113,6 @@ class oCallTip { ; testing
 ; hotkeys - global ; 
 ; ================================================================
 
-; ^Space::ClickCheck(A_ThisHotkey) ; ReParseText() ; ClickCheck(A_ThisHotkey)
-
-; ^+Space::DisplayCallTip() ; ClickCheck("LButton")
-
-; ^!Space::LoadAutoComplete(true) ; force Auto-Complete gui to show
-
-; ^+F12:: ; close CallTipsForAll
-; {
-	; MsgBox "Closing Call Tips For All!"
-	; ExitApp
-; }
-
 Up:: ; scroll when multiple records are available for call tips
 {
 	i := oCallTip.fullDescArr ? oCallTip.fullDescArr.Count : 0
@@ -149,7 +137,6 @@ Down:: ; scroll when multiple records are available for call tips
 		callTipGui := ""
 		LoadCallTip()
 	} Else If (IsObject(AutoCompleteGUI)) {
-		; msgbox AutoCompleteGUI["KwList"].Focused control
 		If (!AutoCompleteGUI["KwList"].Focused)
 			AutoCompleteGUI["KwList"].Focus()
 		SendInput "{Down}"
@@ -163,65 +150,63 @@ Down:: ; scroll when multiple records are available for call tips
 	closeAutoComplete()
 }
 
-^!w:: ; hotkey to wrap text in clipboard
-{
-	newText := WrapText(WrapTextChars)
-	If (newText)
-		clipboard := newText
-}
+; ^!w:: ; hotkey to wrap text in clipboard
+; {
+	; newText := WrapText(WrapTextChars)
+	; If (newText)
+		; clipboard := newText
+; }
 
-^!u:: ; hotkey to unwrap text in clipboard
-{
-	newText := unwrapText()
-	If (newText)
-		clipboard := newText
-}
+; ^!u:: ; hotkey to unwrap text in clipboard
+; {
+	; newText := unwrapText()
+	; If (newText)
+		; clipboard := newText
+; }
 
-F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
-{
-	testList := ""
-	For curFunc, obj in FunctionList {
-		params := obj["desc"]
-		testList .= curFunc " / " (params.Has(1) ? params[1] : "") "`r`n`r`n"
-	}
+; F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
+; {
+	; testList := ""
+	; For curFunc, obj in FunctionList {
+		; params := obj["desc"]
+		; testList .= curFunc " / " (params.Has(1) ? params[1] : "") "`r`n`r`n"
+	; }
 	; A_Clipboard := testList
-	msgbox "Function List:`r`n`r`n" testList
+	; msgbox "Function List:`r`n`r`n" testList
 	
 	
-	testList := ""
-	For curName, obj in CustomFunctions {
-		desc := obj["desc"]
-		testList .= curName " / " desc "`r`n`r`n"
-	}
+	; testList := ""
+	; For curName, obj in CustomFunctions {
+		; desc := obj["desc"]
+		; testList .= curName " / " desc "`r`n`r`n"
+	; }
 		
-	msgbox "Custom Functions:`r`n`r`n" testList
+	; msgbox "Custom Functions:`r`n`r`n" testList
 	
-	testList := ""
-	For objName, obj in ObjectList {
-		For curType, obj2 in obj["types"] {
-			type := curType, label := obj2["label"], match := obj2["match"]
-			testList .= objName " / " label " / " type "`r`n" A_Index ": " match "`r`n"
-		}
-		testList .= "`r`n"
-	}
-	msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
+	; testList := ""
+	; For objName, obj in ObjectList {
+		; For curType, obj2 in obj["types"] {
+			; type := curType, label := obj2["label"], match := obj2["match"]
+			; testList .= objName " / " label " / " type "`r`n" A_Index ": " match "`r`n"
+		; }
+		; testList .= "`r`n"
+	; }
+	; msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
 	
 	
-	; Map("type","Class","desc",className,"classBody",Trim(classBody," `t`r`n"),"extends",extends,"index",GetLineNum(match.Pos(0)),"parent",parent)
-	; and Map("members",list)
-	testList := ""
-	For className, obj in ClassesList {
-		testList .= "`r`n" className " / " obj["type"] "`r`n"
-		For member, memObj in obj["members"] {
-			testList .= "`t" member " / " memObj["type"] "`r`n"
-		}
-	}
+	; testList := ""
+	; For className, obj in ClassesList {
+		; testList .= "`r`n" className " / " obj["type"] "`r`n"
+		; For member, memObj in obj["members"] {
+			; testList .= "`t" member " / " memObj["type"] "`r`n"
+		; }
+	; }
 	; A_Clipboard := testList
-	MsgBox "Classes loaded:`r`n`r`n" testList
-}
+	; MsgBox "Classes loaded:`r`n`r`n" testList
+; }
 
-F10:: ; list functions - for debugging List_*.txt files only
-{
+; F10:: ; list functions - for debugging List_*.txt files only
+; {
 	; testList := ""
 	; For curName, obj in FunctionList {
 		; if (curName = "msgbox") {
@@ -232,29 +217,29 @@ F10:: ; list functions - for debugging List_*.txt files only
 		
 	; msgbox "Functions:`r`n`r`n" testList
 	
-	testList := ""
-	For level, lvlObj in ObjectCreateList { ; for debug only
-		For label, labelObj in lvlObj {
-			regex := labelObj["regex"]
-			type := labelObj["type"]
-			direct := labelObj["direct"]
-			testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
-		}
-	}
-	msgbox testList
-}
+	; testList := ""
+	; For level, lvlObj in ObjectCreateList { ; for debug only
+		; For label, labelObj in lvlObj {
+			; regex := labelObj["regex"]
+			; type := labelObj["type"]
+			; direct := labelObj["direct"]
+			; testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
+		; }
+	; }
+	; msgbox testList
+; }
 
-F9::
-{
-	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
-	LoadKeywordsList()
-	LoadFunctionsList()
+; F9::
+; {
+	; oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
+	; LoadKeywordsList()
+	; LoadFunctionsList()
 	
-	objMatchText := LoadMethPropList()
-	LoadObjectCreateList(objMatchText)
+	; objMatchText := LoadMethPropList()
+	; LoadObjectCreateList(objMatchText)
 	
-	ReParseText()
-}
+	; ReParseText()
+; }
 
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
@@ -262,8 +247,6 @@ F9::
 FullReload() {
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
-	
-	
 	
 	If (oCallTip.ctlHwnd)
 		ScintillaExt.pid := oCallTip.progPID ; need PID for sending messages to edit control in some cases
