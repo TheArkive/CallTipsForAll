@@ -307,7 +307,7 @@ differences between SetItem, Within and Nesting:
     Return this.NestingStack.MaxIndex()
   }
   getNest(Level){
-    Return this.NestingStack[ this.Nesting.MaxIndex() - Level ]
+    Return this.NestingStack[ this.NestingStack.MaxIndex() - Level ]
   }
   PopNesting(line){
     Nest := this.NestingStack.pop()
