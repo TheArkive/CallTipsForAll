@@ -2,7 +2,7 @@
     "ActiveLanguage": "AHK2",
     "AutoComplete": 1,
     "AutoCompleteInvoke": "^!Space",
-    "BaseFile": "C:\\Users\\Jeb7\\Documents\\GitHub\\CallTipsForAll\\CallTipsForAll_AHKv2.ahk",
+    "BaseFile": "",
     "CallTipInvoke": "+^Space",
     "CallTipSelectable": "0",
     "CloseInvoke": "^F12",
