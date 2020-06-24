@@ -258,7 +258,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		If (callTipGui)
 			callTipGui.Destroy()
 		
-		callTipGui := Gui.New("-Border AlwaysOnTop +Owner" oCallTip.progHwnd) ; Splitpath drive
+		callTipGui := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" oCallTip.progHwnd) ; Splitpath drive
 		callTipGui.BackColor := bgColor
 		callTipGui.SetFont("s" fontSize " c" fontColor,fontFace)
 		
@@ -402,13 +402,13 @@ SettingsGUILoad() {
 
 gui_hotkey_events(ctl, info) {
 	result := ""
-	If (GetKeyState("Ctrl") And GetKeyState("Space"))
-		result := "^Space"
+	ctrl := GetKeyState("Ctrl")		; fix key combos with {Space}
+	alt := GetKeyState("Alt")		; fix key combos with {Space}
+	shift := GetKeyState("Shift")	; fix key combos with {Space}
+	If ((ctrl Or alt Or shift) And GetKeyState("Space"))
+		result := (ctrl ? "^" : "") (alt ? "!" : "") (shift ? "+" : "") "Space"
 	
-	If (ctl.Name = "CallTipInvoke") {
-		
-			; msgbox "CTRL+Space"
-	}
+	result ? ctl.Value := result : ""
 }
 
 gui_change_events(ctl, Info) { ; GuiControlObject
@@ -473,6 +473,7 @@ KillAllHotkeys() {
 	ReloadInvoke := Settings["ReloadInvoke"]
 	CloseInvoke := Settings["CloseInvoke"]
 	
+	HotIfWinActive "ahk_id " oCallTip.progHwnd
 	If (CallTipInvoke)
 		Hotkey CallTipInvoke, "Off"
 	If (AutoCompleteInvoke)
@@ -489,16 +490,35 @@ SetHotkeys() {
 	ReloadInvoke := Settings["ReloadInvoke"]
 	CloseInvoke := Settings["CloseInvoke"]
 	
+	; DebugMsg("progHwnd: " oCallTip.progHwnd)
+	
+	WinActivate "ahk_id " oCallTip.progHwnd
 	HotIfWinActive "ahk_id " oCallTip.progHwnd
-	If (CallTipInvoke)
+	
+	If (CallTipInvoke) {
+		; DebugMsg("CallTipInvoke - " CallTipInvoke)
 		Hotkey CallTipInvoke, "DisplayCallTip"
-	If (AutoCompleteInvoke)
+		Hotkey CallTipInvoke, "On"
+	}
+	
+	If (AutoCompleteInvoke) {
+		; DebugMsg("AutoCompleteInvoke - " AutoCompleteInvoke)
 		Hotkey AutoCompleteInvoke, "AutoComp"
-	If (ReloadInvoke)
+		Hotkey AutoCompleteInvoke, "On"
+	}
+	
+	If (ReloadInvoke) {
+		; DebugMsg("ReloadInvoke - " ReloadInvoke)
 		Hotkey ReloadInvoke, "ReloadGui"
-	If (CloseInvoke)
+		Hotkey ReloadInvoke, "On"
+	}
+	
+	If (CloseInvoke) {
+		; DebugMsg("CloseInvoke - " CloseInvoke)
 		Hotkey CloseInvoke, "CloseScript"
-
+		Hotkey CloseInvoke, "on"
+	}
+	
 }
 
 gui_close(guiObj) {
@@ -521,6 +541,7 @@ gui_close(guiObj) {
 	Settings["ReloadInvoke"] := guiObj["ReloadInvoke"].Value
 	Settings["CloseInvoke"] := guiObj["CloseInvoke"].Value
 	
+	SetHotkeys()
 	
 	settingsText := Jxon_Dump(Settings,4)
 	FileDelete "Settings.txt"
