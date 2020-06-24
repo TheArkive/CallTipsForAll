@@ -300,6 +300,7 @@ differences between SetItem, Within and Nesting:
       this.SetItem(Type, line, Name, Props)
       this.NestingStack.push( {Type: Type, line: line, Name: Name, Pointer: this.Info[ this._File, Type, line ] } )
     }
+    this.Line(line, {NestingStack: this.GetNestingStack()})
     Return 
   }
   isNested(){
