@@ -53,18 +53,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
 
-      , ClassLevel := 0                       ; current class level, 0 if none
-      , tnClasses := []                       ; array of tree nodes of classes, index is class Level
-      , BlockLevel := []                      ; number of open blocks '{ ... }' per class level, index is class Level
-      , FuncBlockLevel := 0                   ; number of open blocks '{ ... }' in the current function definition
-      , tnCurrentFuncDef := ""                ; tree node of function while in definition, 0 if not
-
-  ;object to store results                    ;keys for classes, functions and labels have to be defined, rest is just for documentation. Each is empty when nothing is found in FileContent. 
-                                              ;to change this behavior, empty keys could be removed before Return of this function
-      , oResult := {"Classes":[]          
-                   ,"Functions":[]
-                   ,"Labels":[]}
-
   ;>>> define RegEx Needles
       , DocCommRE :="
               ( Join LTrim Comment       ; DocComment allows comments to show up in Code Explorer as Notes
@@ -240,7 +228,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       ;local variable without initialization
       , ContiBlock2Settings, AllowComments, AllowTrimLeft, AllowTrimRight, JoinString
       , Lines, FuncName, Match, i, Line, LineNoCo, LineNoLi, TotalNumberOfLine, LineOrig, Params, PhysicalLineNum, TempLine, TempLineNum, Type
-      , Block, Vars, tn
+      , Block, Vars
 
   ;>>> Begin to parse FileContent line by line
   Lines := StrSplit(FileContent, "`n", "`r")
@@ -410,18 +398,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       Else
         LineInfo.Brace(PhysicalLineNum, "{", { Brace: True } )
 
-      If (ClassLevel > 0  AND !isObject(tnCurrentFuncDef) ){  ;we are in a class definition
-        BlockLevel[ClassLevel] += i - 2                       ;in- or decrease BlockLevel
-        If (BlockLevel[ClassLevel] < 1)
-          ClassLevel--
-      }Else If (isObject(tnCurrentFuncDef)){                  ;we are in a function definition
-        FuncBlockLevel += i - 2                               ;in- or decrease FuncBlockLevel
-        If (FuncBlockLevel < 1){                              ;end of function body
-          FuncBlockLevel = 0
-          tnCurrentFuncDef := ""
-        }
-      }Else                                         ;neither in a class nor function definition
-        Break                                         ;don't trim line and break loop
       If !(Line := LTrim(SubStr(Line, 2), " `t")){    ;trim off first char which is a brace and remove whitespace
         LineInfo.Line(PhysicalLineNum, {OnlyBraces: True })
         Continue, 2             ;when no more braces and line is empty go to next line
@@ -434,25 +410,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;Class definitions can contain variable declarations, method and property definitions, Meta-Functions and nested class definitions
     ;they are not allowed inside a function definition
     
-    ;tn is short for TreeNode, as this function was designed for a for code explorer in PSPad with a tree view
-    ; it either points to the base array for class results (oResult.Classes)
-    ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
-    ; tnClasses might be better called parent class
-    ; and Inside might be better called contains
-    
-    tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Classes
     If (RegExMatch(Line, ClassRE, Match)) {
-      tn[PhysicalLineNum] := {"Name":Match.1,"Type":"Class","Inside":[]}
-      ClassLevel++
-      tnClasses[ClassLevel] := tn[PhysicalLineNum, "Inside"]
-      BlockLevel[ClassLevel] := 0
-
       LineInfo.Class(PhysicalLineNum, Match.1, {} )
-      
-      If (SubStr(Line, 0) = "{"){      ;check OTB
-        BlockLevel[ClassLevel]++
+      If (SubStr(Line, 0) = "{")      ;check OTB
         LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
-      }
       Continue
     }
 
@@ -475,22 +436,22 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;        }
 ;     }
 
-    ;tnCurrentFuncDef was designed to hold a hwnd of a TreeNode for function definitions, as this function was designed for a for code explorer in PSPad with a tree view
-    ; currently it is purely used as a flag and could potentially be simplified
-    ; it might be better called InFunctionDef or InFunctionBody
-
-    If (!isObject(tnCurrentFuncDef) AND (ClassLevel = 0 Or BlockLevel[ClassLevel] = 1)){
-    ; we are not in another function definition and (outside of a class or at the base level of a class)
-      ;>>> Check for a new function/method/metaFunction definition
-      If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty line
-        If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
-          OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
-          tnCurrentFuncDef := ["dummy"]                  ;set that something was found, (the var for the hwnd is misused as a flag)
-        }
+    ;>>> Check for a new function/method/metaFunction definition
+    If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty line
+      If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
+        OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
+        Type := LineInfo.isNested() ? "Method" : "Function"
+        Params := GetParameterOfFunctionDef(Line)
+        LineInfo.Line(PhysicalLineNum, {Type: Type, NumParams: Params.Length(), Params: Params })
+        LineInfo[Type](PhysicalLineNum, FuncName.1, {NumParams: Params.Length(), Params: Params} )
+        If (SubStr(Line, 0) = "{")       ;check again for OTB
+          LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
+        Continue
       }
+    }
 
       ;class property definitions are only allowed on base level of a class
-      ;they can only have Get and Set functions, but since these would be function definitions within function definition, these will be skipped
+      ;they can only have Get and Set functions
 ;       class classname
 ;       {
 ;          prop      ;case 1
@@ -513,66 +474,29 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 ;          prop[]{   ;case 4
 ;          }
 ;       }
-             ;"ClassLevel > 0" is redundant because BlockLevel[0] would not be 1, but for clarity I leave it in
-      Else If (ClassLevel > 0 AND BlockLevel[ClassLevel] = 1){
-      ;we are not in another function definition and in a class and at the base level of a class
+    ;we are not in another function definition and in a class and at the base level of a class
 
-        ;>>> Check for a new class property definition
-        If (RegExMatch(Line, PropertyRE, FuncName)) {    ;potential a property definition, let's check the end of line or next not empty line
-          If (SubStr(FuncName.0, 0) = "["
-              AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
-              Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
-            tnCurrentFuncDef := ["dummy"]   ;set that something was found, (the var for the hwnd is misused as a flag)
-           }
-        }
-      }
-
-      ;>>> Previous checks found a function, method, meta function or class property
-      If (isObject(tnCurrentFuncDef)){
-        
-        ; tn either points to the base array for function results (oResult.Functions)
-        ; or it points to the current parent class (tnClasses = tn.lineNum.Insides)
-        tn := ClassLevel > 0 ? tnClasses[ClassLevel] : oResult.Functions   ;distinguish Functions from methods/meta functions/ClassProperties
-        If (ClassLevel > 0)
-          Type := InStr(FuncName.0, "(") ? "Method" : "Property" 
-        Else
-          Type := "Function"
-        tn[PhysicalLineNum] := {"Name":Line,"FunctionName":FuncName.0,"Type":Type,"Inside":[]}
-        LineInfo.Line(PhysicalLineNum, {Type: Type })
-        Params := GetParameterOfFunctionDef(Line)
-        LineInfo[Type](PhysicalLineNum, FuncName.1, {NumParams: Params.Length(), Params: Params} )
-
-        If (SubStr(Line, 0) = "{"){       ;check again for OTB
-          FuncBlockLevel++
-          LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
-          Line := RTrim(Line , " {")      ;trim the brace
-        }
-        If (Type = "Function" or Type = "Method"){
-          Params := GetParameterOfFunctionDef(Line)
-          tn[PhysicalLineNum, "Parameter"] := Params
-          LineInfo.Line( PhysicalLineNum, {NumParams: Params.Length(), Params: Params} )
-        }
-        
-        ;tnCurrentFuncDef now becomes the new parent class/function/method/parameter that can contain something (or has something inside)
-        tnCurrentFuncDef := tn[PhysicalLineNum, "Inside"]
-        Continue
-      }
+    ;>>> Check for a new class property definition
+    If (RegExMatch(Line, PropertyRE, FuncName) And LineInfo.getNest(0).Type = "Class") {    ;potential a property definition, let's check the end of line or next not empty line
+        ; If (SubStr(FuncName.0, 0) = "["                                                   ;???  regex got improved, check might not be needed anymore
+            ; AND ((SubStr(Line, 0) = "]" AND SubStr(ContinuationBuffer, 1, 1) = "{") OR SubStr(Line, 0) = "{")   ;case 3 & 4
+            ; Or SubStr(Line, 0) = "{" ){       ;case 1 & 2
+          LineInfo.Line(PhysicalLineNum, {Type: "Property" })
+          LineInfo.Property(PhysicalLineNum, FuncName.1, {} )
+          If (SubStr(Line, 0) = "{")       ;check again for OTB
+            LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
+          Continue
     }
 
     ;>>> Search for braces at the end of a line (OTB)
-    ;    for classes no check at end of the line is done, because only definitions are allowed inside a class definition,
-    ;    no flow commands that would allow OTB
-    If (isObject(tnCurrentFuncDef) AND SubStr(Line, 0) = "{"){
-        ;we are in a function definition and at end of line is a { with some text before it
-        ;class, functions/methods and parameters have been checked for OTB previously
-        ;need to check if the line is a command that supports OTB
-        ;this avoids false positives like "Msgbox, {" or "StringReplace, Out, In, Search, {"
-        ;it is still not 100% robust but close, e.g. "IfEqual, var, {" would still be a false positive.
-        If (RegExMatch(Line, OTBCommandsRE)){
-          FuncBlockLevel++
-          LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
-          Continue
-        }
+    ;end of line is a { with some text before it
+    ;class, functions/methods and Properties have been checked for OTB previously
+    ;need to check if the line is a command that supports OTB
+    ;this avoids false positives like "Msgbox, {" or "StringReplace, Out, In, Search, {"
+    ;it is still not 100% robust but close, e.g. "IfEqual, var, {" would still be a false positive.
+    If (SubStr(Line, 0) = "{" And RegExMatch(Line, OTBCommandsRE)){
+      LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
+      Continue
     }
 
     ;>>> Search for Return at start of a line
@@ -671,11 +595,10 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ;Label names are not case sensitive, and may consist of any characters other than space, tab, comma and the escape character (`).
     ;they are allowed inside of functions definitions, in this case they are 'belonging' to the function definitions
     ;since all the block braces are trimmed off, the remaining of the line is the label
-    tn := isObject(tnCurrentFuncDef) ? tnCurrentFuncDef : oResult.Labels
+    ; tn := isObject(tnCurrentFuncDef) ? tnCurrentFuncDef : oResult.Labels
     If RegExMatch(Line, LabelRE, Match){
-      tn[PhysicalLineNum] := Match.1 
       LineInfo.Label(PhysicalLineNum, Match.1, {} )
-     Continue
+      Continue
     }
 
     ;>>> Hotkey Command
