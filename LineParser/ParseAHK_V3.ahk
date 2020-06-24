@@ -1,3 +1,4 @@
+  SetBatchlines -1
   File := A_ScriptFullPath
   SearchRE = i)\Qparse\E
   DocComment = ???
