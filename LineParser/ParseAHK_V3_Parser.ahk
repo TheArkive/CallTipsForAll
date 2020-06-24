@@ -174,6 +174,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     OS)(*UCP)                 ;Study and Unicode (for \w)
                     ^                         ;at the start of line
                     ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    (\[.*\])?                 ;$2 optional parameters
+                    (\s*{)?$                  ;optionally whitespace with OTB at end of line
               )"
       , OTBCommandsRE :="
               ( Join LTrim Comment
