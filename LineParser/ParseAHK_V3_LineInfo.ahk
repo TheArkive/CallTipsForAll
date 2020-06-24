@@ -295,10 +295,10 @@ differences between SetItem, Within and Nesting:
         
       Nest := this.getNest(0)
       Nest.Pointer[ Type, line ] := Props
-      this.NestingStack.push( {Type: Type, line: line, Pointer: Nest.Pointer[ Type, line ] } )
+      this.NestingStack.push( {Type: Type, line: line, Name: Name, Pointer: Nest.Pointer[ Type, line ] } )
     } Else {
       this.SetItem(Type, line, Name, Props)
-      this.NestingStack.push( {Type: Type, line: line, Pointer: this.Info[ this._File, Type, line ] } )
+      this.NestingStack.push( {Type: Type, line: line, Name: Name, Pointer: this.Info[ this._File, Type, line ] } )
     }
     Return 
   }
