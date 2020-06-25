@@ -63,38 +63,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     \s*                        ;optional whitespace
                     (.*)                       ;$2 the documentation string
               )"
-      , HotStringRE :="
-              ( Comment Join LTrim
-                    OS)                        ;Study
-                    ^:                         ;a ':' at start of line
-                    .*?                        ;options (ungreedy)
-                    :                          ;a ':'
-                    (.+)                       ;$1 the hotstring
-                    ::                         ;two ':'s
-                    (.*)                       ;$2 rest of line
-                    $                          ;end of line
-              )"
-      , HotKeyRE :="
-              ( LTrim Join Comment
-                    OS)                        ;Study
-                    ^                          ;at start of line
-                    (.+)                       ;$1 the hotkey at least one character (but including whitespace)
-                    ::                         ;two ':'s
-                    (.*)                       ;$2 rest of line
-                    $                          ;end of line
-              )"
-      , HotKeyCommandRE :="
-              ( LTrim Join Comment
-                    OiS)(*UCP)                 ;case insensitive (for the Hotkey texts), Study and Unicode (for \s)
-                    ^Hotkey                    ;the text 'Hotkey' at start of line
-                    (\s*,\s*|\s+)              ;a comma or space
-                    (?!If)                     ;not the text 'If'
-                    (.+?)                      ;$2 the hotkey
-                    \s*                        ;spaces
-                    ,                          ;a comma
-                    .*                         ;rest of line
-                    $                          ;end of line
-              )"
       , ContinuationBlock2RE :="
               ( Comment LTrim Join         ; for Continuation Block Method 2
                     OiS)(*UCP)                 ;case insensitive (for the option texts), Study and Unicode (for \s and JoinString)
@@ -118,12 +86,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                           \)                          ;and a ')'
                           |:$))                       ;or a ':' at the end of line
               )"
-      , LabelRE :="
-              ( Join LTrim Comment
-                    OS)(*UCP)                 ;Study and Unicode (for \s)
-                    ^([^\s,`:]+)              ;$1 some characters at the start of the line (but no whitespace, comma, backtick or colon)
-                    :$                        ;a ':' at the end of line
-              )"
       , ContinuationOperatorsRE :="
               (LTrim Join Comment
                     iS)(*UCP)                 ;case insensitive (for 'and' and 'or'), Study and Unicode (for \w)
@@ -132,97 +94,31 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                        &|,|-(?!-)|!|~|/|<|>|=|:|    ;or operators that do not need to be escaped, but no --
                        \\|\.|\*|\?|\+(?!\+)|\||\^)  ;or these operators (that must be preceded by a backslash to be seen as literal), but no ++
               )"
-      , DllCallRE :="
+      , LabelRE :="
               ( Join LTrim Comment
-                    Oi)                       ;case insensitive (for 'DllCall')
-                    .*                        ;some code
-                    (                         ;$1
-                       DllCall                ;the text 'DllCall'
-                       \(                     ;a '('
-                       .*                     ;some code         ;            if i would make this ungreedy the first ) would be taken, not necessary the right one.
-                       \))                    ;closing bracket   ;>>> to fix: takes the last ) in the line, not necessary the right one.
+                    OS)(*UCP)                 ;Study and Unicode (for \s)
+                    ^([^\s,`:]+)              ;$1 some characters at the start of the line (but no whitespace, comma, backtick or colon)
+                    :$                        ;a ':' at the end of line
               )"
-      , ClassRE :="
-              ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
-                    ^Class                    ;the text 'Class' at the start of line
-                    \s+                       ;at least one whitespace
-                    ([\w#$@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
-                    .*                        ;rest of the line
+      , HotStringRE :="
+              ( Comment Join LTrim
+                    OS)                        ;Study
+                    ^:                         ;a ':' at start of line
+                    .*?                        ;options (ungreedy)
+                    :                          ;a ':'
+                    (.+)                       ;$1 the hotstring
+                    ::                         ;two ':'s
+                    (.*)                       ;$2 rest of line
+                    $                          ;end of line
               )"
-      , FunctionRE :="
-              ( Join LTrim Comment            ;$1 the whole line will be a match
-                    OS)(*UCP)                 ;Study and Unicode (for \w)
-                    ^                         ;at the start of line
-                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
-                    \(                        ;a '('
-              )"
-      , PropertyRE :="
-              ( Join LTrim Comment            ;$1 the whole line will be a match
-                    OS)(*UCP)                 ;Study and Unicode (for \w)
-                    ^                         ;at the start of line
-                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
-                    (\[.*\])?                 ;$2 optional parameters
-                    (\s*{)?$                  ;optionally whitespace with OTB at end of line
-              )"
-      , OTBCommandsRE :="
-              ( Join LTrim Comment
-                    iS)(*UCP)^(                                           ;case insensitive and at start of line
-                    If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
-                    If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
-                    IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
-                    Else|Try|Catch|Finally|                               ; or
-                    Loop|While|For|Switch)                                ; or
-                    [,\s({]                                               ; followed by an ',' space or '(' (for expression) or '{' (in case of loop until)
-              )"
-      , OneLineFlowRE :="
-              ( Join LTrim Comment
-                    iS)(*UCP)^(                                           ;case insensitive and at start of line
-                    If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
-                    If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
-                    IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
-                    Else|Catch|                                           ; or
-                    Loop|While|For)                                       ; or
-                    [,\s(]                                                ; followed by an ',' space or '(' (for expression) 
-              )"
-      , IncludeRE :="
-              ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
-                    ^#Include                 ;the text '#Include' at the start of line
-                    \s+                       ;at least one whitespace
-                    (\*i\s)?                  ;maybe the option "*i" and at least a single whitespace
-                    \s*                       ;potentially more whitespace
-                    (?P<File>.*)              ;rest of the line
-              )"
-      , ReturnRE :=" 
-              ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
-                    ^Return                   ;the text 'return' at the start of line
-                    \s*                       ;optionally whitespace
-                    (.*)                      ;rest of the line
-              )"
-      , GlobalVarsRE :=" 
-              ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
-                    ^global                   ;the text 'global' at the start of line
-                    \s+                       ;at least one whitespace
-                    (.*)                      ;rest of the line
-              )"
-      ;distinguish super globals and globals?        
-      
-      , VarScopeRE :=" 
-              ( Join LTrim Comment
-                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
-                    ^                         ;at the start of line
-                    (static|global|local)     ;one of the 3 words
-                    \s                        ;minimum one whitespace
-              )"
-      , VarAssumeScopeRE :=" 
-              ( Join LTrim Comment
-                    OiS)                      ;Study
-                    ^                         ;at the start of line
-                    (static|global|local)     ;one of the 3 words
-                    $                         ;end of line
+      , HotKeyRE :="
+              ( LTrim Join Comment
+                    OS)                        ;Study
+                    ^                          ;at start of line
+                    (.+)                       ;$1 the hotkey at least one character (but including whitespace)
+                    ::                         ;two ':'s
+                    (.*)                       ;$2 rest of line
+                    $                          ;end of line
               )"
 
       ;local variable without initialization
@@ -381,6 +277,111 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ContinuationBuffer := Line  
     ContinuationBufferLineNum := PhysicalLineNum
   }
+
+    local HotKeyCommandRE :="
+              ( LTrim Join Comment
+                    OiS)(*UCP)                 ;case insensitive (for the Hotkey texts), Study and Unicode (for \s)
+                    ^Hotkey                    ;the text 'Hotkey' at start of line
+                    (\s*,\s*|\s+)              ;a comma or space
+                    (?!If)                     ;not the text 'If'
+                    (.+?)                      ;$2 the hotkey
+                    \s*                        ;spaces
+                    ,                          ;a comma
+                    .*                         ;rest of line
+                    $                          ;end of line
+              )"
+      , DllCallRE :="
+              ( Join LTrim Comment
+                    Oi)                       ;case insensitive (for 'DllCall')
+                    .*                        ;some code
+                    (                         ;$1
+                       DllCall                ;the text 'DllCall'
+                       \(                     ;a '('
+                       .*                     ;some code         ;            if i would make this ungreedy the first ) would be taken, not necessary the right one.
+                       \))                    ;closing bracket   ;>>> to fix: takes the last ) in the line, not necessary the right one.
+              )"
+      , ClassRE :="
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive (for \s, \w and 'Class'), Study and Unicode (for \s and \w)
+                    ^Class                    ;the text 'Class' at the start of line
+                    \s+                       ;at least one whitespace
+                    ([\w#$@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    .*                        ;rest of the line
+              )"
+      , FunctionRE :="
+              ( Join LTrim Comment            ;$1 the whole line will be a match
+                    OS)(*UCP)                 ;Study and Unicode (for \w)
+                    ^                         ;at the start of line
+                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    \(                        ;a '('
+              )"
+      , PropertyRE :="
+              ( Join LTrim Comment            ;$1 the whole line will be a match
+                    OS)(*UCP)                 ;Study and Unicode (for \w)
+                    ^                         ;at the start of line
+                    ([\w$#@]+)                ;$1 one or more characters (A-Za-z0-9_) or #, $, @  (all allowed characters in variable names)
+                    (\[.*\])?                 ;$2 optional parameters
+                    (\s*{)?$                  ;optionally whitespace with OTB at end of line
+              )"
+      , OTBCommandsRE :="
+              ( Join LTrim Comment
+                    iS)(*UCP)^(                                           ;case insensitive and at start of line
+                    If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
+                    If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
+                    IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
+                    Else|Try|Catch|Finally|                               ; or
+                    Loop|While|For|Switch)                                ; or
+                    [,\s({]                                               ; followed by an ',' space or '(' (for expression) or '{' (in case of loop until)
+              )"
+      , OneLineFlowRE :="
+              ( Join LTrim Comment
+                    iS)(*UCP)^(                                           ;case insensitive and at start of line
+                    If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
+                    If((Not)?(Equal|InString)|(Greater|Less)(OrEqual)?)|  ; or If[not]Equal|If[not]Equal|If[Greater|Less][OrEqual]
+                    IfWin(Not)?(Active|Exist)|                            ; or IfWin[Not][Active|Exist]
+                    Else|Catch|                                           ; or
+                    Loop|While|For)                                       ; or
+                    [,\s(]                                                ; followed by an ',' space or '(' (for expression) 
+              )"
+      , IncludeRE :="
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
+                    ^#Include                 ;the text '#Include' at the start of line
+                    \s+                       ;at least one whitespace
+                    (\*i\s)?                  ;maybe the option "*i" and at least a single whitespace
+                    \s*                       ;potentially more whitespace
+                    (?P<File>.*)              ;rest of the line
+              )"
+      , ReturnRE :=" 
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
+                    ^Return                   ;the text 'return' at the start of line
+                    \s*                       ;optionally whitespace
+                    (.*)                      ;rest of the line
+              )"
+      , GlobalVarsRE :=" 
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
+                    ^global                   ;the text 'global' at the start of line
+                    \s+                       ;at least one whitespace
+                    (.*)                      ;rest of the line
+              )"
+      ;distinguish super globals and globals?        
+      
+      , VarScopeRE :=" 
+              ( Join LTrim Comment
+                    OiS)(*UCP)                ;case insensitive, Study and Unicode (for \s)
+                    ^                         ;at the start of line
+                    (static|global|local)     ;one of the 3 words
+                    \s                        ;minimum one whitespace
+              )"
+      , VarAssumeScopeRE :=" 
+              ( Join LTrim Comment
+                    OiS)                      ;Study
+                    ^                         ;at the start of line
+                    (static|global|local)     ;one of the 3 words
+                    $                         ;end of line
+              )"
 
   ;>>>> Parse the pure code 
   For i, Data in PureCode {
