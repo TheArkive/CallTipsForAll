@@ -800,12 +800,6 @@ GroupDeactivate
 
 
 Function
-GuiCreate
-`GuiObj := GuiCreate([Options, Title := , EventObj])
-`/docs/commands/GuiCreate.htm
-
-
-Function
 GuiCtrlFromHwnd
 `GuiControlObj := GuiCtrlFromHwnd(Hwnd)
 `/docs/commands/GuiCtrlFromHwnd.htm
@@ -873,6 +867,12 @@ Command
 HotIfWinNotExist
 `HotIfWinNotExist [WinTitle, WinText]
 `/docs/commands/HotIf.htm#IfWin
+
+
+Command
+HotIf
+`HotIf ["Expression"]   or   HotIf [FunctionObject]
+`/docs/commands/HotIf.htm#If
 
 
 Flow
@@ -1131,18 +1131,6 @@ Function
 ATan
 `Value := ATan(Number)
 `/docs/commands/Math.htm#ATan
-
-
-Function
-MenuBarCreate
-`MenuBar := MenuBarCreate()
-`/docs/commands/MenuBarCreate.htm
-
-
-Function
-MenuCreate
-`Menu := MenuCreate()
-`/docs/commands/MenuCreate.htm
 
 
 Function
@@ -2364,3 +2352,69 @@ Function
 Map
 `myMap := Map("Value1", "Value2", ...)
 `/docs/objects/Map.htm
+
+
+Function
+IsInteger
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsFloat
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsNumber
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsDigit
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsXDigit
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsAlpha
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsUpper
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsLower
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsAlnum
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsSpace
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string
+
+
+Function
+IsTime
+`boolean := [MemberName](value)
+`/docs/commands/is.htm#cat-string

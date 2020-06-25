@@ -1,4 +1,4 @@
-﻿Global ArkDebugObj, ArkDebugWinHwnd, ArkDebugOutputHwnd
+﻿Global ArkDebugObj := "", ArkDebugWinHwnd := "", ArkDebugOutputHwnd := ""
 
 DebugMsg(str,sOrder:="top",TimeStamp:=true) {
     ArkDebugCheck() ; check if debug window open
@@ -6,16 +6,18 @@ DebugMsg(str,sOrder:="top",TimeStamp:=true) {
     If (TimeStamp) ; append timestamp + str
         str := "[" A_Hour ":" A_Min ":" A_Sec "] " str "`r`n"
 	
-	AppendTxt(ArkDebugOutputHwnd,&str)
+	AppendTxt(ArkDebugOutputHwnd,StrPtr(str))
 }
 
 ArkDebugCheck() {
-	If (!WinExist("ahk_id " ArkDebugWinHwnd))
+	If (!IsSet(ArkDebugWinHwnd))
+		ArkDebugOpen()
+	Else If (!WinExist("ahk_id " ArkDebugWinHwnd))
         ArkDebugOpen()
 }
 
 ArkDebugOpen() {
-	ArkDebugObj := GuiCreate("+Resize","TheArkyTekt Debug Window"), ArkDebugWinHwnd := ArkDebugObj.Hwnd
+	ArkDebugObj := Gui.New("+Resize +AlwaysOnTop","TheArkyTekt Debug Window"), ArkDebugWinHwnd := ArkDebugObj.Hwnd
 	ArkDebugObj.OnEvent("size", "ArkDebugGuiSize"), ArkDebugObj.OnEvent("close","ArkDebugClose")
 	
 	ArkDebugObj.SetFont("s11","Courier New")
@@ -37,8 +39,8 @@ ArkDebugClear(oCtl,*) { ; button
 }
 
 ArkDebugGuiSize(obj, MinMax, Width, Height) {
-	w := Width - 10, h := Height - 10 - 40, ctl := GuiCtrlFromHwnd(ArkDebugOutputHwnd), pos := ctl.pos
-	ctl.Move("x" pos.x " y" pos.y " w" w " h" h,true)
+	w := Width - 10, h := Height - 10 - 40, ctl := GuiCtrlFromHwnd(ArkDebugOutputHwnd), ctl.GetPos(x,y,w,h)
+	ctl.Move(x,y,w,h)
 }
 
 ArkDebugClose(oGui,*) {

@@ -1,12 +1,25 @@
-0 GuiObject GuiCreate ([\w\.]+)[ \t]*:=[ \t]*(GuiCreate\x28)
+0 GuiObject GuiNew [ \t\.]*(gui)\.[\w]+
+0 GuiObject GuiCreate ([\w\.]+)[ \t]*:=[ \t]*(Gui\.New\x28)
 0 GuiObject GuiFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiFromHwnd\x28)
 0 GuiObject GuiByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Gui[\w ]*)
 `/docs/objects/Gui.htm
 
 
 Method
+New
+`GuiObj.New([Options, Title := A_ScriptName, EventObj])
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+Move
+`GuiObj.Move(x,y,w,h)
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
 Add
-`Add(ControlType, [Options, Text])
+`GuiObj.Add(ControlType, [Options, Text])
 `/docs/objects/Gui.htm#[MemberName]
 
 
@@ -18,7 +31,19 @@ Destroy
 
 Method
 Flash
-`Flash([Blink := true])
+`GuiObj.Flash([Blink := true])
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+GetClientPos
+`GuiObj.ClientPos(x,y,w,h)
+`/docs/objects/Gui.htm#[MemberName]
+
+
+Method
+GetPos
+`GuiObj.GetPos(x,y,w,h)
 `/docs/objects/Gui.htm#[MemberName]
 
 
@@ -54,13 +79,13 @@ Minimize
 
 Method
 OnEvent
-`OnEvent(EventName, Callback, [AddRemove := 1])
+`GuiObj.OnEvent(EventName, Callback, [AddRemove := 1])
 `/docs/objects/GuiOnEvent.htm
 
 
 Method
 Opt
-`Opt(OptionsString)
+`GuiObj.Opt(OptionsString)
 `/docs/objects/Gui.htm#[MemberName]
 
 
@@ -72,7 +97,7 @@ Restore
 
 Method
 SetFont
-`SetFont([Options, FontName])
+`GuiObj.SetFont([Options, FontName])
 `/docs/objects/Gui.htm#[MemberName]
 
 
@@ -84,7 +109,7 @@ Show
 
 Method
 Submit
-`Submit([Hide := true])
+`GuiObj.Submit([Hide := true])
 `/docs/objects/Gui.htm#[MemberName]
 
 
@@ -138,155 +163,155 @@ MenuBar
 
 Method
 AddText
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddEdit
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddEdit
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddUpDown
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddUpDown
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddPicture
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddButton
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddCheckbox
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddCheckbox
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddRadio
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddDropDownList
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddComboBox
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddListBox
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddListView
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddTreeView
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddLink
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddHotkey
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddDateTime
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddMonthCal
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddSlider
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddProgress
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddGroupBox
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddTab
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddStatusBar
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddActiveX
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add
 
 
 Method
 AddCustom
-`[MemberName]([Options, Text])
+`GuiObj.[MemberName]([Options, Text])
 `/docs/objects/Gui.htm#Add

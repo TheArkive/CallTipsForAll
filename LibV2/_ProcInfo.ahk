@@ -15,20 +15,32 @@ StringOutline(sInput,pruneComments := true) {
 	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
-			Loop match.Len(1)
-				repStr .= "*"
+			repStr := StrRepeat("*",match.Len(1))
 			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,1)
 			match := ""
 		}
 	}
 	
-	If (pruneComments)
-		curLineNoStr := RegExReplace(curLineNoStr,";.*","")
+	If (pruneComments) {
+		While (r := RegExMatch(curLineNoStr,"(;.*)",match)) { ;ZZZ - this doesn't work ... need to replace comments with spaces to keep POS accurate
+			If (IsObject(match)) {
+				repStr := StrRepeat(" ",match.Len(0)) ;ZZZ - this will be slightly less annoying than below
+				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,1)
+			}
+		}
+	}
 	
 	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
 	; curLineNoStr := RegExReplace(curLineNoStr,"\" Chr(34),"*")
 	
 	return curLineNoStr
+}
+
+StrRepeat(str,num) {
+	result := ""
+	Loop num
+		result .= str
+	return result
 }
 
 ; ================================================================
@@ -47,6 +59,7 @@ getCurPhraseObj(curLineNoStr,curCol,ByRef curPhraseStartOut) {
 ; Generates the current "phrase" without dots (.)
 ; ================================================================
 getCurPhrase(curLineNoStr, curCol, ByRef curPhraseStartOut) {
+	; msgbox "curLine:`r`n`t" curLineNoStr
 	Lhalf := SubStr(curLineNoStr,1,curCol-1), Rhalf := SubStr(curLineNoStr,curCol) ; split line at curCol
 	p1 := RegExMatch(Lhalf,"(#?[\w]+)$",match), p1 := IsObject(match) ? Trim(match.Value(1)," `t") : ""
 	p2 := RegExMatch(Rhalf,"^(#?[\w]+)",match2), p2 := IsObject(match2) ? Trim(match2.Value(1)," `t") : ""
@@ -66,11 +79,10 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 	
 	fullPhrase := ""
 	aStr := StrSplit(phraseObj,".")
+	
 	Loop (aStr.Length-1) {
 		curBit := aStr[A_Index]
 		fullPhrase .= curBit "."
-		; If (curBit = curPhrase)
-			; Break
 	}
 	fullPhrase := Trim(fullPhrase,".")
 	
@@ -101,21 +113,33 @@ ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	hEditorWin := oCallTip.progHwnd, hCtl := oCallTip.ctlHwnd
+	hCtl := oCallTip.ctlHwnd, ctlClassNN := Settings["ProgClassNN"]
 	
-	curDocText := ControlGetText(oCallTip.ctlHwnd) ; ,"ahk_id " hEditorWin)
-	curDocArr := StrSplit(curDocText,"`n","`r")
+	If (ctlClassNN = "edit") { ; specific for edit control (notepad.exe)
+		curLine := ControlGetCurrentLine(hCtl) ; global
+		curCol := ControlGetCurrentCol(hCtl) ; global
+		curLineText := ControlGetLine(curLine,hCtl)
+	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control
+		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hCtl)
+		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
+		scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll,0,hCtl)
+		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll,"",hCtl,scintBufferLen.dll)
+		
+		If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
+			curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCtl,scintBufferLen.dll+1)
+		
+		; DebugMsg("scintBufferLen: " scintBufferLen.dll " / pos: " curLineText.dll " / curLineText: " curLineText.str)
+		
+		
+		curCol := curLineText.dll + 1
+		
+		oCallTip.scintBufferLen := scintBufferLen.dll
+		oCallTip.lineText := curLineText.str
+	}
 	
-	curCol := ControlGetCurrentCol(hCtl) ; global
-	curLine := ControlGetCurrentLine(hCtl) ; global
+	oCallTip.colNum := curCol, oCallTip.lineNum := curLine.dll, oCallTip.lineText := curLineText.str
 	
-	If (!curLine)
-		return
-	If (!curDocArr.Has(curLine))
-		return
-	
-	curLineText := curDocArr[curLine]
-	curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
+	curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
 	
 	curPhrase := getCurPhrase(curLineNoStr,curCol,curPhraseStart) ; curPhraseStart: ByRef
 	oCallTip.curPhrase := curPhrase
@@ -125,10 +149,18 @@ ProcInput() {
 	
 	oCallTip.curPhraseObj := curPhraseObj
 	oCallTip.parentObj := parentObj
-	oCallTip.curPhraseType := ""
-	oCallTip.parentObjType := ""
+	oCallTip.curPhraseType := "", curPhraseType := ""
+	oCallTip.parentObjType := "", parentObjType := ""
 	
-	parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj] : Map()
+	parentObjTypeList := Map()
+	For objName in ObjectList {
+		If (parentObj = objName) {
+			parentObjTypeList := ObjectList[objName]["types"]
+			Break
+		}
+	}
+	
+	; parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj]["types"] : Map()
 	
 	; topFunc := GetTopLevelFunc(curLineNoStr,curCol,funcStart,funcEnd) ; funcStart, funcEnd: ByRef - not currently used
 	; funcText := topFunc ? SubStr(curLineText,funcStart,StrLen(topFunc)) : ""

@@ -10,7 +10,7 @@ AddTrayMenu() {
 	; ======================================================================================
 	; Tray Menu
 	; ======================================================================================
-	subMenuAutoGen := MenuCreate()
+	subMenuAutoGen := Menu.New()
 	; subMenuAutoGen.Add("Generate Commands","iconMenu")
 
 	trayMenu := A_TrayMenu
@@ -20,20 +20,23 @@ AddTrayMenu() {
 	trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
 	trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
 	; trayMenu.Add("AHK Auto-Gen",subMenuAutoGen) ; not really useful for this script
-	trayMenu.Add("Reload","iconMenu")
+	trayMenu.Add("Reload Items (Full)","iconMenu")
+	trayMenu.Add("Reload Script","iconMenu")
 	trayMenu.Add("Exit","iconMenu")
 
 	iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 		If (ItemName = "Settings") {
-			SettingsGUI()
+			SettingsGUILoad()
 		; } Else If (ItemName = "Generate Commands") {
 			; AutoCmdFunc()
 		} Else If (ItemName = "ReWrap Text (CTL + ALT + W)") {
 			clipboard := WrapText(WrapTextChars)
 		} Else If (ItemName = "UnWrap Text (CTL + ALT + U)") {
 			clipboard := unwrapText()
-		} Else If (ItemName = "Reload")
+		} Else If (ItemName = "Reload Script")
 			Reload
+		Else If (ItemName = "Reload Items (Full)")
+			FullReload()
 		Else If (ItemName = "Exit")
 			ExitApp
 	}
@@ -231,28 +234,29 @@ GetMonitorData(x:="", y:="") {
 ; ======================================================================================
 ; Detects a multi-click event, given a specified delay and specified key, between clicks
 ; ======================================================================================
-MultiClickDetect(ThisKey, delay:=300, CycleLimit:=0) {	; ThisKey = A_ThisHotKey, or whatever value you pass
-    Global MultiClickCount, MultiClickKey			; delay (ms) = expected delay between "clicks"
-    ct := MultiClickTickCount()
-    
-	MultiClickCount := (MultiClickCount = "") ? 0 : MultiClickCount
-    If ((ct > delay And ct != "" And ct != 0) Or (ThisKey != MultiClickKey And MultiClickKey != ""))
-        MultiClickCount := 0
-    Else If (MultiClickCount >= CycleLimit And CycleLimit > 0) ; resets MultiClickCount to 1 on CycleLimit+1
-        MultiClickCount := 0 ; useful for firing multiple double/triple/etc clicks without a pause between.
-    
-    MultiClickKey := ThisKey, MultiClickCount++
-    return MultiClickCount
-}
-
-MultiClickTickCount() { ; returns the number of ticks (ms) since the last button event (any button)
-    Global MultiClickTicksPrev
-    CurTicks := A_TickCount
-    
-    If (MultiClickTicksPrev = "")
-        diff := 0, MultiClickTicksPrev := A_TickCount
-    Else
-        diff := A_TickCount - MultiClickTicksPrev, MultiClickTicksPrev := A_TickCount
-    
-    return diff
+class MultiClick {
+	Static Count := "", Key := "", TicksPrev := ""
+	
+	Static Detect(ThisKey, delay:=300, CycleLimit:=0) {	; ThisKey = A_ThisHotKey, or whatever value you pass
+		ct := this.TickDiff()
+		
+		this.Count := (this.Count = "") ? 0 : this.Count
+		If ((ct > delay And ct != "" And ct != 0) Or (ThisKey != this.Key And this.Key != ""))
+			this.Count := 0
+		Else If (this.Count >= CycleLimit And CycleLimit > 0) ; resets MultiClickCount to 1 on CycleLimit+1
+			this.Count := 0 ; useful for firing multiple double/triple/etc clicks without a pause between.
+		
+		this.Key := ThisKey, this.Count++
+		return this.Count
+	}
+	Static TickDiff() { ; returns the number of ticks (ms) since the last button event (any button)
+		CurTicks := A_TickCount
+		
+		If (this.TicksPrev = "")
+			diff := 0, this.TicksPrev := A_TickCount
+		Else
+			diff := A_TickCount - this.TicksPrev, this.TicksPrev := A_TickCount
+		
+		return diff
+	}
 }

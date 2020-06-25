@@ -1,3 +1,4 @@
+; AHK Test
 ; originally posted by maestrith 
 ; https://autohotkey.com/board/topic/94083-ahk-11-font-and-color-dialogs/
 
@@ -76,7 +77,7 @@ FontSelect(fontObject:="",hwnd:=0,Effects:=1) {
 	c := Format("0x{:06X}",c1|c2|c3)
 	fontObject["color"] := c
 	
-	fontSize := NumGet(choosefont,A_PtrSize=8?32:16,"UInt")/10 ; 32:16
+	fontSize := NumGet(choosefont,A_PtrSize=8?32:16,"UInt") / 10 ; 32:16
 	fontObject["size"] := fontSize
 	fontHwnd := DllCall("CreateFontIndirect","uptr",logfont.ptr) ; last param "cdecl"
 	fontObject["name"] := fntName
@@ -95,6 +96,7 @@ FontSelect(fontObject:="",hwnd:=0,Effects:=1) {
 		z := fontObject["size"] ? "s" fontObject["size"] : ""
 		u := fontObject["underline"] ? "underline" : ""
 		fullStr := b "|" i "|" s "|" c "|" z "|" u
+		str := ""
 		Loop Parse fullStr, "|"
 			If (A_LoopField)
 				str .= A_LoopField " "
@@ -103,4 +105,3 @@ FontSelect(fontObject:="",hwnd:=0,Effects:=1) {
 		return fontObject
 	}
 }
-
