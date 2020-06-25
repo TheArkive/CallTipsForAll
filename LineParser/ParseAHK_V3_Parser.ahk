@@ -51,6 +51,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
+      , PureCode := []
 
   ;>>> define RegEx Needles
       , DocCommRE :="
@@ -226,10 +227,15 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
       ;local variable without initialization
       , ContiBlock2Settings, AllowComments, AllowTrimLeft, AllowTrimRight, JoinString
-      , Lines, FuncName, Match, i, Line, LineNoCo, LineNoLi, TotalNumberOfLine, LineOrig, Params, PhysicalLineNum, TempLine, TempLineNum, Type
-      , Block, Vars
+      , Lines, FuncName, Match, i, Line, LineNoCo, LineNoLi, TotalNumberOfLine, LineOrig, Params, PhysicalLineNum, Type
+      , Block, Vars, Data
 
-  ;>>> Begin to parse FileContent line by line
+  ;>>> Begin to parse FileContent line by line to find the pure code
+  ; search for SearchRE and DocComment
+  ; remove semicolon comments  ( ;) and commentSections (/*..*/)
+  ; concatenate Continuation Lines Method 1 and Method 2
+  ; remove empty lines and indentation
+  ; store pure code
   Lines := StrSplit(FileContent, "`n", "`r")
   TotalNumberOfLine := Lines.MaxIndex()
   For PhysicalLineNum, LineOrig In Lines {
@@ -369,19 +375,18 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       If (PhysicalLineNum <> TotalNumberOfLine)
         Continue                       ;go to next line, but not in case of last line
     }
-
-    ProcessLastLine:                       ;label to jump to to process last line
-
-    ;>>> Swap buffer with current line
-    TempLine           := ContinuationBuffer
-    ContinuationBuffer := Line             ;the current line is now buffered to be checked later
-    Line               := TempLine         ;Line is now the previously buffered line
-    TempLineNum               := ContinuationBufferLineNum
+    
+    ;>>> Store buffered line and buffer current line
+    PureCode.push( { Line: ContinuationBufferLineNum, Code: ContinuationBuffer } )
+    ContinuationBuffer := Line  
     ContinuationBufferLineNum := PhysicalLineNum
-    PhysicalLineNum           := TempLineNum
+  }
 
-    LineInfo.Line(PhysicalLineNum, { _LineFull:     Line
-                                   , _LineFullNoLi: LineNoLi := RemoveQuotedStrings(Line) })
+  ;>>>> Parse the pure code 
+  For i, Data in PureCode {
+    Line := Data.Code
+    LineNoLi := RemoveQuotedStrings(Line)
+    PhysicalLineNum := Data.Line
 
     ;>>> #Include ----------------------------------------------------------------------------------------------------
     If RegExMatch(Line, IncludeRE, Match){
@@ -605,11 +610,6 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     If RegExMatch(Line, HotKeyCommandRE, Match){
       LineInfo.Hotkey(PhysicalLineNum, Match.2, {Type: "HotKeyCommand"})
       Continue
-    }
-
-    If (PhysicalLineNum = TotalNumberOfLine - 1 ) {
-      LineInfo.Line(TotalNumberOfLine, {"LastLine in File": True })
-      GoTo ProcessLastLine
     }
 
     ;every line that makes it through to this point is a 'normal' command
