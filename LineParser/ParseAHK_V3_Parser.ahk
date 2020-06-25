@@ -29,9 +29,9 @@ Potential Enhancements
 
 - detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
 
-- refactor function (currently ~700 lines)
-  - get rid of the swapping of lines: One loop to get full lines without comments, then a second loop over remaining full lines to parse the code
-      see if this is faster
+- refactor function (currently ~580 lines)
+  - reduce comments to minimum or store them somewhere else
+  - try to oursource code in new functions
   
 - add push() method to LineInfo parallel to set()
 
@@ -47,7 +47,7 @@ Potential Enhancements
 
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
   ; internal vars with default values
-  ;local enforces assume global; this is usually not needed, since all variables should be local anyway. But this is how I can check with ListVars in main script which variables have not been initialized. In the final script local could be removed
+  ; local enforces assume global; this is usually not needed, since all variables should be local anyway. But this is how I can check with ListVars in main script which variables have not been initialized. In the final script local could be removed
   local InCommentSection := False             ; true if within a comment section '/* ... */'
       , ContinuationBuffer := ""              ; buffer to collect continuation lines
       , ContinuationBufferLineNum := 0        ; buffer for first line number of continuation lines
