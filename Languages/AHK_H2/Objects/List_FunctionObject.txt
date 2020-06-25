@@ -1,0 +1,68 @@
+0 FunctionObject FuncObjByFunc ([\w\.]+)[ \t]*:=[ \t]*(Func\x28)
+0 BoundFuncObject BoundFuncMethod ([\w\.]+)[ \t]*:=[ \t]*(ObjBindMethod\x28)
+0 FunctionObject FuncObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Function[\w ]*)
+0 BoundFuncObject BoundFuncByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*BoundFunc[\w ]*)
+`/docs/objects/Func.htm
+
+
+Property
+Name
+`Func.Name (R/O)
+/Returns the function's name.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Property
+IsBuiltIn
+`Func.IsBuiltIn (R/O)
+/Returns true if the function is built-in and false otherwise.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Property
+IsVariadic
+`Func.IsVariadic (R/O)
+/Returns true if the function is variadic and false otherwise.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Property
+MinParams
+`Func.MinParams (R/O)
+/Returns the number of required parameters.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Property
+MaxParams
+`Func.MaxParams (R/O)
+/Returns the number of formally-declared parameters for a user-defined function
+or maximum parameters for a built-in function.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Method
+Call
+`Func.Call(Param1, Param2, ...)
+`/docs/objects/Func.htm#[MemberName]
+
+
+Method
+Bind
+`BoundFunc := Func.Bind(Param1, Param2, ...)
+/Binds parameters to the function and returns a BoundFunc object.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Method
+IsByRef
+`Boolean := Func.IsByRef([ParamIndex])
+/Determines whether a parameter is ByRef.  Not meant for built-in functions.
+`/docs/objects/Func.htm#[MemberName]
+
+
+Method
+IsOptional
+`Boolean := Func.IsOptional([ParamIndex])
+/Determines whether a parameter is optional.
+`/docs/objects/Func.htm#[MemberName]

@@ -1795,7 +1795,7 @@ Until
 
 Function
 VarSetStrCapacity
-GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity])
+`GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity])
 `/docs/commands/VarSetStrCapacity.htm
 
 
