@@ -30,7 +30,6 @@ Potential Enhancements
 - detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
 
 - refactor function (currently ~700 lines)
-  - rename tn... vars
   - get rid of the swapping of lines: One loop to get full lines without comments, then a second loop over remaining full lines to parse the code
       see if this is faster
   

@@ -45,6 +45,7 @@
 .isNested()                           ;returns level of nesting, "" for no nesting
 .getNest(Level)                       ;get Nest Info (Level 0 is head, Level 1 the one below, etc)
 .PopNesting(line#)                    ;remove Nest from stack of Nesting
+.GetNestingStack()                    ;get Stack as a string
 
                    Properties are one object with keys; {key1: info, ... } 
 .Function(line#, Name, properties)   ;store a function and it's properties 
