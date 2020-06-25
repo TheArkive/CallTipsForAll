@@ -698,18 +698,7 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 }
 
 GetCustFuncParams(funcBody) {
-	; funcDef := ""
-	; Loop Parse funcBody, "`n", "`r"
-	; {
-		; If (A_Index <= 2) {
-			; funcDef .= A_LoopField
-			; Break
-		; }
-	; }
-	
-	; msgbox "funcBody:   " funcBody
 	r := RegExMatch(funcBody,"mi)" oCallTip.funcStart,match)
-	
 	return match.Value(2)
 }
 
