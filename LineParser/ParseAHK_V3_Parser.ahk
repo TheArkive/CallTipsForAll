@@ -344,7 +344,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     }Else If (RegExMatch(Line, ContinuationBlock2RE, Match)) {  ;it's the start of the continuation section when it starts with (
                                                                 ;but doesn't have a ), exception is after Join; it could be an expressions like (x.y)[z]()
                                                                 ;and doesn't have a : at it's start or end, exception is after Join; it could be a label, hotkey or hotstring
-      JoinString := Match.Value(3) ? "`n" : ""                        ;JoinString is by default `n, when Join is present it is 'no space'
+      JoinString := Match.Value(3) ? "" : "`n"                        ;JoinString is by default `n, when Join is present it is 'no space'
       JoinString := Match.Value(4) ? Match.Value(4) : JoinString      ;when a string is given right after Join, it is used instead
       AllowTrimLeft  :=  Match.Value(5) ? True : False                ;with LTrim all spaces and tabs at the beginning of each line are omitted
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
