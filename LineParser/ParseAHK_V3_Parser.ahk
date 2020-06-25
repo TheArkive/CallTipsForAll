@@ -259,8 +259,9 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
       ;when still in continuation section trim or strip the original line
       If isObject(ContiBlock2Settings) {
-        If !ContiBlock2Settings.AllowComments                           ;check if comments are allowed literally
-          LineOrig := RemoveComments(LineOrig)      ;can not use LineNoCo, because it doesn't have original indentation (LineNoCo is trimmed)
+        If (Line and ContiBlock2Settings.AllowComments)    ;check if comments are allowed literally, if yes, remove semicolon comments when line is not already empty
+          If ! (LineOrig := RemoveComments(LineOrig))        ;can not use LineNoCo, because it doesn't have original indentation (LineNoCo is trimmed)
+            Continue                                           ;when line is now empty, skip it
         If ContiBlock2Settings.AllowTrimLeft
           LineOrig := LTrim(LineOrig)
         If ContiBlock2Settings.AllowTrimRight
@@ -347,7 +348,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       JoinString := Match.Value(4) ? Match.Value(4) : JoinString      ;when a string is given right after Join, it is used instead
       AllowTrimLeft  :=  Match.Value(5) ? True : False                ;with LTrim all spaces and tabs at the beginning of each line are omitted
       AllowTrimRight := !Match.Value(6) ? True : False                ;with RTrim0 omission of spaces and tabs from the end of each line is turned off
-      AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section but not /*..*/)
+      AllowComments  :=  Match.Value(7) ? True : False                ;a string starting with C allows semicolon comments inside the continuation section (they are removed from the code) but not /*..*/ (these lines stay in the code)
       
       ContiBlock2Settings := {ContiBlock2: True
                             , AllowTrimLeft: AllowTrimLeft
