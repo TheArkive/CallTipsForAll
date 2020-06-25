@@ -1,0 +1,165 @@
+0 InputHookObject InputHookFunc ([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
+0 InputHookObject InputHookByComment [\w]+\(([\w]+).*(; InputHook[\w ]*)
+0 InputHookObject InputHookByComment2 ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*InputHook[\w ]*)
+`/docs/commands/InputHook.htm
+
+
+Method
+KeyOpt
+`InputHook.KeyOpt(Keys, KeyOptions)
+/      Keys:   Use {All}, {Enter}, {scNNN}, {vkNN}, etc, or regular key names.
+KeyOptions (+/-Key):   E = End key       I = Ignore
+                       N = Notify        S = Suppress       V = Visible
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Method
+Start
+`InputHook.Start()
+/Starts collecting input.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Method
+Stop
+`InputHook.Stop()
+/Terminates the Input and sets EndReason to the word Stopped.  Has no effect if
+the Input is not in progress.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Method
+Wait
+`InputHook.Wait([MaxTime])
+/Waits until the Input is terminated (InProgress is false).  If Input is still in
+progress after MaxTime seconds, the method returns and does not terminate Input.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+EndKey
+`InputHook.EndKey
+/Returns the name of the end key which was pressed to terminate the Input.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+EndMods
+`InputHook.EndMods
+/Returns a string of the modifiers which were logically down when Input was terminated.
+If all modifiers were logically down (pressed), the full string is:
+    <^>^<!>!<+>+<#>#    <--- same as hotkey modifiers.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+EndReason
+`InputHook.EndReason
+/Returns an EndReason string indicating how Input was terminated.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+InProgress
+`InputHook.InProgress
+/Returns true if the Input is in progress and false otherwise.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+Input
+`InputHook.Input
+/Returns any text collected since the last time Input was started.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+Match
+`InputHook.Match
+/Returns the MatchList item which caused the Input to terminate.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+OnEnd
+`InputHook.OnEnd := Func("CallbackFunc")   <--- basic usage
+/Retrieves or sets the function object which is called when Input is terminated.
+Callback has these parameters:    CallbackFunc(InputHookObject)
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+OnChar
+`InputHook.OnChar := Func("CallbackFunc")   <--- basic usage
+/Retrieves or sets the function object which is called after a character is
+added to the input buffer.
+Callback has these parameters:    CallbackFunc(InputHookObject,Char)
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+OnKeyDown
+`InputHook.OnKeyDown := Func("CallbackFunc")   <--- basic usage
+/Retrieves or sets the function object which is called when a notification-enabled
+key is pressed.
+Callback has these parameters:    CallbackFunc(InputHookObject,VK,SC)
+             Format for VK/SC:    GetKeyName(Format("vk/sc{:x}", VK/SC))
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+BackspaceIsUndo
+`InputHook.BackspaceIsUndo := Boolean    (R/W, Default = true)
+/Controls whether Backspace removes the most recently pressed character from the end
+of the Input buffer.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+CaseSensitive
+`InputHook.CaseSensitive := Boolean    (R/W, Default = false)
+/Controls whether MatchList is case sensitive.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+FindAnywhere
+`InputHook.FindAnywhere := Boolean    (R/W, Default = false)
+/Controls whether each match can be a substring of the input text.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+MinSendLevel
+`InputHook.MinSendLevel := Level    (R/W, Default = 1)
+/Retrieves or sets the minimum send level of input to collect.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+NotifyNonText
+`InputHook.NotifyNonText := Boolean    (R/W, Default = false)
+/Controls whether the OnKeyDown callback is called whenever a non-text key is pressed.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+Timeout
+`InputHook.Timeout := Boolean    (R/W, Default = 0)
+/Retrieves or sets the timeout value in seconds.
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+VisibleNonText
+`InputHook.VisibleNonText := Boolean    (R/W, Default = true)
+/Controls whether keys or key combinations which do not produce text are visible
+(not blocked).
+`/docs/commands/InputHook.htm#[MemberName]
+
+
+Property
+VisibleText
+`InputHook.VisibleText := Boolean    (R/W, Default = false)
+/Controls whether keys or key combinations which produce text are visible (not blocked).
+`/docs/commands/InputHook.htm#[MemberName]

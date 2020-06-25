@@ -1,0 +1,150 @@
+0 GuiControlObject GuiControlFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiControlFromHwnd\x28)
+0 GuiControlObject GuiControlByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*GuiControl[\w ]*)
+0 GuiControlObject GuiControlByCallback [\w]+\x28([\w]+).*?\x29(.*[ \t]+;[ \t]*GuiControl[\w ]*)
+1 GuiControlObject GuiControlByItem ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)
+1 GuiControlObject GuiControlByMethod ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28)
+`/docs/objects/GuiControl.htm
+
+
+Method
+Add
+`Add(ArrayOrList)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Choose
+`Choose(Value)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Delete
+`Delete([Value])
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Focus
+`Focus()
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Move
+`Move(x,y,w,h)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+OnCommand
+`GuiControl.OnCommand(NotifyCode, Callback [, AddRemove := 1])
+`/docs/objects/GuiOnCommand.htm
+
+
+Method
+OnEvent
+`OnEvent(EventName, Callback, [AddRemove := 1])
+`/docs/objects/GuiOnEvent.htm
+
+
+Method
+OnNotify
+`OnNotify(NotifyCode, Callback, [AddRemove := 1])
+`/docs/objects/GuiOnNotify.htm
+
+
+Method
+Opt
+`Opt(Options)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+GetPos
+`GuiCtlObj.GetPos(x,y,w,h)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+Redraw
+`GuiCtrl.Redraw()
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+SetFont
+`SetFont([Options, FontName])
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+SetFormat
+`DateTime.SetFormat([Format])
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Method
+UseTab
+`UseTab([Value, ExactMatch := false])
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+ClassNN
+`GuiCtlObj.ClassNN (R/O)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Hwnd
+`GuiCtlObj.Hwnd (R/O)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Type
+`GuiCtlObj.Type (R/O)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Enabled
+`GuiCtlObl.Enabled (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Focused
+`GuiCtlObj.Focused (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Name
+`GuiCtlObj.Name (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Text
+`GuiCtlObj.Text (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Value
+`GuiCtlObj.Value (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Visible
+`GuiCtlObj.Visible (R/W)
+`/docs/objects/GuiControl.htm#[MemberName]
+
+
+Property
+Gui
+`GuiCtlObj.Gui (Obj)
+`/docs/objects/GuiControl.htm#[MemberName]

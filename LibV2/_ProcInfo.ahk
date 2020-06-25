@@ -119,6 +119,8 @@ ProcInput() {
 		curLine := ControlGetCurrentLine(hCtl) ; global
 		curCol := ControlGetCurrentCol(hCtl) ; global
 		curLineText := ControlGetLine(curLine,hCtl)
+		oCallTip.lineNum := curLine, oCallTip.lineText := curLineText
+		curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
 	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control
 		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hCtl)
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
@@ -130,16 +132,15 @@ ProcInput() {
 		
 		; DebugMsg("scintBufferLen: " scintBufferLen.dll " / pos: " curLineText.dll " / curLineText: " curLineText.str)
 		
-		
 		curCol := curLineText.dll + 1
 		
 		oCallTip.scintBufferLen := scintBufferLen.dll
 		oCallTip.lineText := curLineText.str
+		oCallTip.lineNum := curLine.dll, oCallTip.lineText := curLineText.str
+		curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
 	}
 	
-	oCallTip.colNum := curCol, oCallTip.lineNum := curLine.dll, oCallTip.lineText := curLineText.str
-	
-	curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
+	oCallTip.colNum := curCol
 	
 	curPhrase := getCurPhrase(curLineNoStr,curCol,curPhraseStart) ; curPhraseStart: ByRef
 	oCallTip.curPhrase := curPhrase

@@ -146,8 +146,8 @@ Down:: ; scroll when multiple records are available for call tips
 ~LButton::ClickCheck(A_ThisHotkey)
 ~MButton::
 {
-	closeCallTip()
-	closeAutoComplete()
+	closeCallTip(), closeAutoComplete()
+	oCallTip.suppressEnter := false, IH.Stop(), SetupInputHook(false)
 }
 
 ; ^!w:: ; hotkey to wrap text in clipboard

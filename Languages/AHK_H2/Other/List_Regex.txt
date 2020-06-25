@@ -1,0 +1,16 @@
+FunctionStart: ([\w]+)(\x28[^\x29]*\x29)[ \t\r\n]*\{
+FunctionEnd: (\})
+FunctionReturn: ^[ \t]*return[ \t]+([\w]+)
+ClassStart: class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{
+ClassEnd: (\})
+MethodStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t\r\n]*\{
+MethodEnd: \}
+MethodOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t]*\=\>.+
+PropertyStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t\r\n]*\{
+PropertyEnd: \}
+PropertyOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x5B[^\x5D]*\x5D)?[ \t]*\=\>.+
+SmallPropExt: (([\w]+)[ \t]*\:\=)[^\;\r\n]*(\;.*)?
+SmallPropInt: this\.([\w]+)[ \t]*\:\=[^\;\r\n]*(\;.*)?
+ClassInstance: ([\w\.]+)[ \t]*\:\=[ \t]*{Class}\.New(\x28.*?\x29)
+Includes: ^(#Include(Again)?[ \t]+.*)
+LineComment: (\;.*)

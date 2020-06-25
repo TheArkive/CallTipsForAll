@@ -658,8 +658,8 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 		If (IsObject(match) And match.Count()) {
 			curPos1 := match.Pos(0)
 			funcName := match.Value(1)
-			params := RegExReplace(match.Value(2),"`t|`r|`n","")
-			If (funcName = "")
+			; params := RegExReplace(match.Value(2),"`t|`r|`n","")
+			If (funcName = "" Or funcName = "If" Or funcName = "While" Or funcName = "For" Or funcName = "Else")
 				Continue
 			
 			curPos2 := curPos1
@@ -671,7 +671,8 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 				If (lB = rB) {
 					index := GetLineNum(curPos1)
 					bodyText := SubStr(curDocText,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText,"index",index)
+					params := GetCustFuncParams(bodyText)
+					obj := Map("type","CustomFunction","desc",funcName params,"funcBody",bodyText,"index",index,"params",params)
 					curPos1 := curPos2
 					Break
 				}
@@ -694,6 +695,11 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 	}
 	
 	return funcList
+}
+
+GetCustFuncParams(funcBody) {
+	r := RegExMatch(funcBody,"mi)" oCallTip.funcStart,match)
+	return match.Value(2)
 }
 
 CheckShowMode(strBody,helper:="") { ; checks class, methods, properties for "; show" or "; hide" comment

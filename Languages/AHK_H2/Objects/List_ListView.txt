@@ -1,0 +1,75 @@
+2 ListViewObject ListViewByAdd ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28"ListView")
+2 ListViewObject ListViewByAddSpec ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.AddListView\x28)
+0 ListViewObject ListViewByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*ListView[\w ]*)
+`/docs/commands/ListView.htm
+
+
+Method
+Add
+`NewRowNumber := LV.Add([Options, Col1, Col2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+Insert
+`NewRowNumber := LV.Insert(RowNumber [, Options, Col1, Col2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+Modify
+`LV.Modify(RowNumber [, Options, NewCol1, NewCol2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+Delete
+`LV.Delete([RowNumber])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+ModifyCol
+`LV.ModifyCol([ColumnNumber, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+InsertCol
+`NewColumnNumber := LV.InsertCol(ColumnNumber [, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+DeleteCol
+`LV.DeleteCol(ColumnNumber)
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+GetCount
+`CountNumber := LV.GetCount([Mode])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+GetNext
+`RowNumber := LV.GetNext([StartingRowNumber, RowType])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+GetText
+`RetrievedText := LV.GetText(RowNumber [, ColumnNumber])
+
+
+Method
+SetImageList
+`PrevImageListID := LV.SetImageList(ImageListID [, IconType])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Method
+OnEvent
+`LV.OnEvent(EventName, Callback [, AddRemove := 1])
+`/docs/commands/ListView.htm#Events
