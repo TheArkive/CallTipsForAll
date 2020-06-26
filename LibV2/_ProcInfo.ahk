@@ -113,19 +113,20 @@ ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
-	curClassNN := ControlGetClassNN(hCtl) ; active ctl ClassNN
+	; hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
+	; curClassNN := ControlGetClassNN(hCtl) ; active ctl ClassNN
 	
+	hCtl := oCalLTip.ctlHwnd
 	ctlClassNN := Settings["ProgClassNN"]
 	
-	If (ctlClassNN = "edit" And InStr(curClassNN,ctlClassNN)) { ; specific for edit control (notepad.exe)
+	If (ctlClassNN = "edit") { ; specific for edit control (notepad.exe)
 		oCallTip.ctlHwnd := hCtl ; update control hwnd
 		curLine := ControlGetCurrentLine(hCtl) ; global
 		curCol := ControlGetCurrentCol(hCtl) ; global
 		curLineText := ControlGetLine(curLine,hCtl)
 		oCallTip.lineNum := curLine, oCallTip.lineText := curLineText
 		curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
-	} Else If (ctlClassNN = "scintilla" And InStr(curClassNN,ctlClassNN)) { ; specific for scintilla control
+	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control
 		oCallTip.ctlHwnd := hCtl ; update control hwnd
 		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hCtl)
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
