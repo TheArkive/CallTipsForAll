@@ -277,9 +277,10 @@ SetupInputHook(suppressEnter) {
 }
 
 keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
-	a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
-	b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
-	c := SettingsGUI.HasProp("hwnd") ? WinActive("ahk_id " SettingsGUI.hwnd) : 0
+	a := 0, b := 0, c := 0
+	Try a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
+	Try b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
+	Try c := SettingsGUI.HasProp("hwnd") ? WinActive("ahk_id " SettingsGUI.hwnd) : 0
 	
 	If ((vk = 9 And GetKeyState("Alt")) Or (!a And !b) Or c)	; if alt-tab editor control is inactive
 		oCallTip.ctlActive := false
