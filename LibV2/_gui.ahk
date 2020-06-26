@@ -590,8 +590,8 @@ quick_reload_gui(ctl, info) {
 	FileDelete "Settings.txt"
 	FileAppend settingsText, "Settings.txt"
 	
-	ReParseText() ; reload user defined elements
 	ctl.gui.Destroy()
+	ReParseText() ; reload user defined elements
 }
 
 quick_reload_close(g) {

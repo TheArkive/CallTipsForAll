@@ -113,9 +113,14 @@ GetEditorHwnd() {
   
 CheckMouseLocation() {
 	MouseGetPos x,y,hWnd, ctlHwndCheck, 2
+	ctlClassNnCheck := ""
+	Try ctlClassNnCheck := ControlGetClassNN(ctlHwndCheck) ; try to get ClassNN
+	
+	If (ctlClassNnCheck != "" And InStr(ctlClassNnCheck,Settings["ProgClassNN"]))
+		oCallTip.ctlHwnd := ctlHwndCheck ; update ctl hwnd if match
   
 	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
-		oCallTip.ctlActive := true
+		oCallTip.ctlActive := false
 	Else If (IsObject(callTipGui) And callTipGui.hwnd = hwnd)
 		oCallTip.ctlActive := true
 	Else If (oCallTip.progHwnd != hWnd Or ctlHwndCheck != oCallTip.ctlHwnd)
@@ -215,7 +220,7 @@ LoadFunctionsList() {
 			curObj["helpLink"] := LastBlock
 
 			FunctionList[funcName] := curObj
-			KeywordList[funcName] := "function"
+			KeywordList[funcName] := curObj["type"] ; fill proper type instead of all "function"
 			curObj := ""
 		}
 	}
@@ -657,7 +662,7 @@ GetLineNum(inPos) { ; DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "
 GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 	; msgbox "curDocText:`r`n`r`n" curDocText
 	curDocTextNoStr := oCallTip.docTextNoStr
-	funcList := Map(), funcList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	funcList := Map(), funcList.CaseSense := 0
 	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcStart,match,curPos1)) {
@@ -698,7 +703,8 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 			If (returnObj.Count > 0)
 				obj["return"] := returnObj ; attach returnObj list of "return" lines if exist
 			
-			funcList[funcName] := obj
+			If (!funcList.Has(funcName))
+				funcList[funcName] := obj
 		}
 	}
 	

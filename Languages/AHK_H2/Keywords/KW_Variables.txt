@@ -154,3 +154,14 @@ base
 Menu
 MenuBar
 Gui
+NULL
+A_AhkDir
+A_IsDll
+A_DllPath
+A_DllDir
+A_ModuleHandle
+A_ScriptStruct
+A_GlobalStruct
+A_MainThreadID
+A_ThreadID
+A_ZipCompressionLevel

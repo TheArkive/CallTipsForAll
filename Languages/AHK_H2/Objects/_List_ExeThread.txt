@@ -1,0 +1,69 @@
+0 ThreadObject ThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(ExeThread\x28)
+`/docs/commands/AhkThread.htm
+
+
+Method
+ahkFunction
+`returnValue := threadObj.ahkFunction["FuncName" (, Arg1, Arg2, ..., Arg10)]
+`/docs/commands/ahkFunction.htm
+
+
+Method
+ahkPostFunction
+`BoolFound := threadObj.ahkPostFunction["FuncName" (, Arg1, Arg2, ..., Arg10)]
+`/docs/commands/ahkPostFunction.htm
+
+
+Method
+ahkExecuteLine
+`linePtr := threadObj.ahkExecuteLine[LinePointer, Mode, Wait]
+`/docs/commands/ahkExecuteLine.htm
+
+
+Method
+ahkLabel
+`BoolFounc := threadObj.ahkLabel[LabelName (, DoNotWaitBool)]
+`/docs/commands/ahkLabel.htm
+
+
+Method
+ahkFindLabel
+`labelPtr := threadObj.ahkFindLabel["LabelName"]
+`/docs/commands/ahkFindLabel.htm
+
+
+Method
+addFile
+`linePtr := threadObj.addFile[FilePath, WaitExecute]
+`/docs/commands/addFile.htm
+
+
+Method
+addScript
+`linePtr := threadObj.addScript[NewCodeStr, WaitExecute]
+`/docs/commands/addScript.htm
+
+
+Method
+ahkExec
+`BoolSuccess := threadObj.ahkExec[codeStr]
+`/docs/commands/ahkExec.htm
+
+
+Method
+ahkAssign
+`BoolSuccess := threadObj.ahkAssign("varName", value)
+`/docs/commands/ahkassign.htm
+
+
+Method
+ahkGetVar
+`value_or_ptr := threadObj.ahkGetVar("varName", GetVarPointer)   or   threadObj.ahkGetVar.varName
+`/docs/commands/ahkgetvar.htm
+
+
+Method
+ahkPause
+`IsPaused := threadObj.ahkPause[OnOff]
+OnOff = "On", "Off", True, False, 1, 0, or Ptr to this value.
+`/docs/commands/ahkPause.htm
