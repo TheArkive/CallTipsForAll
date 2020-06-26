@@ -2351,6 +2351,8 @@ Array
 Function
 Map
 `myMap := Map("Value1", "Value2", ...)
+myMap := Map({key: value, key2: value2, ...})
+/In AHK_H, Map() accepts 1 object parameter and uses it for initialization.  This single parameter can be either Object, Map or Array.
 `/docs/objects/Map.htm
 
 

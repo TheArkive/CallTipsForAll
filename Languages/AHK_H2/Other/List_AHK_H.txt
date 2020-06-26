@@ -1,0 +1,549 @@
+Directive
+#DllImport
+`#DllImport Function_Name, [DllFile\]Function [, Type1, Arg1, Type2, Arg2, Cdecl ReturnType]
+`/docs/commands/_DllImport.htm
+
+
+Directive
+#WarnContinuableException
+`#WarnContinuableException [On|Off]
+`/docs/commands/_WarnContinuableException.htm
+
+
+Directive
+#WindowClassMain
+`#WindowClassMain [ClassName]
+`/commands/_WindowClassMain.htm
+
+
+Directive
+#WindowClassGui
+`#WindowClassGui [ClassName]
+`/docs/commands/_WindowClassGui.htm
+
+
+Function
+AhkThread
+`ThreadObj := AhkThread([ScriptOrFile, Parameters, Title, ScriptIsFile, DllToUse])
+/Create a real additional AutoHotkey thread in current process using AutoHotkey.dll.
+`/docs/commands/AhkThread.htm
+
+
+Command
+Alias
+`Alias, "MyVar", VariableOrPointer
+Alias("MyVar", VariableOrPointer)
+/Convert a local variable to an alias to represent a different variable for example in another thread.
+`/docs/commands/Alias.htm
+
+
+Function
+BinRun
+`OutputPID := BinRun(AddressOrPath [, CommandLineParams, ScriptCommandLineParams, Hide, ExeToUse])
+BinRun &MyExe, "`nMsgBox `% A_Args.a", {a:"Hello World!"}
+`/docs/commands/BinRun.htm
+
+
+Function
+BinToHex
+`OutputVar := BinToHex(Address, Length)
+`/docs/commands/BinToHex.htm
+
+
+Function
+Cast
+`OutputVar := Cast(DataType, VarOrValue, NewDataType)
+/Converts a value from one data type to another data type.
+`/v2/docs/commands/Cast.htm
+
+
+Function
+CreateScript
+`OutputVar := CreateScript(Script [, Password])
+/Creates a script from main script that can be passed to AutoHotkey.dll, BinRun or DynaRun.
+`/v2/docs/commands/CreateScript.htm
+
+
+Function
+CriticalSection
+`CritObjPtr := CriticalSection()
+`/docs/commands/CriticalSection.htm
+
+
+Function
+CryptAES
+`OutputVar := CryptAES(AddressOrVar, Size, password [, EncryptOrDecrypt, Algorithm])
+`/docs/commands/CryptAES.htm
+
+
+Function
+DirGetParent
+`OutputVar := DirGetParent(Path [, ParentCount])
+/Retrieve parent directory for a file or folder.   To retrieve parent of parent use ParentCount := 2 and so on.
+`/docs/commands/DirGetParent.htm
+
+
+Function
+DynaRun
+`OutputPID := DynaRun(Script [, ScriptName, ScriptParameters, AlternateExecutable])
+`/docs/commands/DynaRun.htm
+
+
+Function
+ErrorMessage
+`OutputVar := ErrorMessage([MessageId])
+`/docs/commands/ErrorMessage.htm
+
+
+Function
+ExeThread
+`ThreadObj := ExeThread(Script [, Parameters, Title, Wait])
+/Create a real additional AutoHotkey thread in current process without using AutoHotkey.dll (based on NewThread).
+`/docs/commands/ExeThread.htm
+
+
+Function
+FileReplace
+`BoolSuccess := OutputVar := FileReplace(Text, Filename [, Options])
+`/docs/commands/FileReplace.htm
+
+
+Function
+FindFunc
+`OutputPtr := FindFunc(FuncName)
+`/docs/commands/FindFunc.htm
+
+
+Function
+FindLabel
+`OutputPtr := FindLabel(LabelName)
+`/docs/commands/FindLabel.htm
+
+
+Command
+GetEnv
+`GetEnv()
+/Add environment variables to script.
+`/docs/commands/GetEnv.htm
+
+
+Function
+HexToBin
+`OutputVar := HexToBin(Bin, Hex)
+`/docs/commands/HexToBin.htm
+
+
+Function
+HIBYTE
+`OutputVar := HIBYTE(Value)
+`/docs/commands/HIBYTE.htm
+
+
+Function
+HIWORD
+`OutputVar := HIWORD(Value)
+`/docs/commands/HIWORD.htm
+
+
+Function
+IsBOM
+`OutputBOM := IsBOM(AddressOrBuffer [, BOM])
+/BOM can be UTF-8, UTF-16, UTF-16BE, UTF-32 or UTF-32BE only.
+`/docs/commands/IsBOM.htm
+
+
+Function
+LOBYTE
+`OutputVar := LOBYTE(Value)
+`/docs/commands/LOBYTE.htm
+
+
+Function
+LOWORD
+`OutputVar := LOWORD(Value)
+`/docs/commands/LOWORD.htm
+
+
+Function
+MAKELANGID
+`OutputVar := MAKELANGID(PrimaryLanguage, SubLanguage)
+`/docs/commands/MAKELANGID.htm
+
+
+Function
+MAKELCID
+`OutputVar := MAKELCID(LanguageID, SortID)
+`/docs/commands/MAKELCID.htm
+
+
+Function
+MAKELONG
+`OutputVar := MAKELONG(ValueLow, ValueHigh)
+`/docs/commands/MAKELONG.htm
+
+
+Function
+MAKELPARAM
+`MAKELPARAM(ValueLow, ValueHigh)
+`/docs/commands/MAKELPARAM.htm
+
+
+Function
+MAKELRESULT
+`OutputVar := MAKELRESULT(ValueLow, ValueHigh)
+`/docs/commands/MAKELRESULT.htm
+
+
+Function
+MAKEWORD
+`OutputVar := MAKEWORD(ValueLow, ValueHigh)
+`/docs/commands/MAKEWORD.htm
+
+
+Function
+MAKEWPARAM
+`OutputVar := MAKEWPARAM(ValueLow, ValueHigh)
+`/docs/commands/MAKEWPARAM.htm
+
+
+Function
+MCodeH
+`FuncObj := MCodeH(Hex , Definition, Parameter1, Parameter2, ...)
+`/docs/commands/MCodeH.htm
+
+
+Function
+NewThread
+`ThreadID := NewThread(Script [, Parameters, Title])
+`/docs/commands/NewThread.htm
+
+
+Command
+Progress
+`Progress ProgressParam1 [, SubText, MainText, WinTitle, FontName]
+Progress Off
+`/docs/commands/Progress.htm
+
+
+Function
+ResDelete
+`BoolSuccess := ResDelete(Executable, Name [, Type, Language])
+ResDelete A_AhkPath, "MYRESOURCE"
+/Creates a resource only dll. Such dll will not have any executable code but can be loaded into programs to access resources.
+`/docs/commands/ResDelete.htm
+
+
+Function
+ResDllCreate
+`BoolSuccess := ResDllCreate(DllPath)
+`/docs/commands/ResDllCreate.htm
+
+
+Function
+ResExist
+`OutputVar := ResExist(Executable, Name [, Type, Language])
+/Check whether resource exists in the executable file (dll or exe).
+`/docs/commands/ResExist.htm
+
+
+Function
+ResPut
+`BoolSuccess := ResPut(Data, Size, Executable, Name [, Type, Language])
+`/docs/commands/ResPut.htm
+
+
+Function
+ResPutFile
+`BoolSuccess := ResPutFile(FilePath, Executable, Name [, Type, Language])
+`/docs/commands/ResPutFile.htm
+
+
+Function
+sizeof
+`OutputVar := sizeof(Definition [, offset])
+/Built in function to calculate size of a structure or type like TCHAR or PTR or VOID..., see also "Struct" for usage and examples. 
+`/docs/commands/sizeof.htm
+
+
+Command
+SplashImage
+`SplashImage [ImageFile, Options, SubText, MainText, WinTitle, FontName]
+SplashImage, Off
+`/docs/commands/SplashImage.htm
+
+
+Command
+SplashTextOff
+`SplashTextOff
+/Use the SplashTextOff command to remove an existing splash window.
+`/docs/commands/SplashTextOn.htm
+
+
+Command
+SplashTextOn
+`SplashTextOn [, Width, Height, Title, Text]
+`/docs/commands/SplashTextOn.htm
+
+
+Function
+StrPutVar
+`SizeVar := StrPutVar(String, Variable [, Encoding])
+/Copies a string to a variable, optionally converting to or from a given code page.
+Returns size of var including terminator.
+`/docs/commands/StrPutVar.htm
+
+
+Function
+ThreadObj
+`ThreadObj := ThreadObj(Script [, Parameters, Title])
+/Create a real additional AutoHotkey thread in current process without using AutoHotkey.dll (based on NewThread).
+`/docs/commands/ThreadObj.htm
+
+
+Function
+ToChar
+`OutputVar := ToChar(ByRef IntOrVar)
+/Convert an integer to signed char type.
+`/docs/commands/ToChar.htm
+
+
+Function
+ToInt
+`OutputVar := ToInt(ByRef IntOrVar)
+/Convert an integer to signed int type.
+`/docs/commands/ToInt.htm
+
+
+Function
+ToShort
+`OutputVar := ToShort(ByRef IntOrVar)
+/Convert an integer to signed short type.
+`/docs/commands/ToShort.htm
+
+
+Function
+ToUChar
+`OutputVar := ToUChar(ByRef IntOrVar)
+/Convert an integer to unsigned char type.
+`/docs/commands/ToUChar.htm
+
+
+Function
+ToUInt
+`OutputVar := ToUInt(ByRef IntOrVar)
+/Convert an integer to unsigned int type.
+`/docs/commands/ToUInt.htm
+
+
+Function
+ToUShort
+`OutputVar := ToUShort(ByRef IntOrVar)
+/Convert an integer to unsigned short type.
+`/docs/commands/ToUShort.htm
+
+
+Function
+ZipCreateFile
+`ZipHwnd := ZipCreateFile(FileName [, Password])
+/This function is used to create a new empty zip file, use ZipAddFile or ZipAddBuffer to add files to the zip archive.
+`/docs/commands/ZipCreateFile.htm
+
+
+Function
+ZipAddFile
+`BoolSuccess := ZipAddFile(ZipHandle, FileName [, ZipFileName])
+`/docs/commands/ZipAddFile.htm
+
+
+Function
+ZipCloseFile
+`BoolSuccess := ZipCloseFile(ZipHandle)
+`/docs/commands/ZipCloseFile.htm
+
+
+Function
+ZipOptions
+`BoolSuccess := ZipOptions(ZipHandle, Options)
+`/docs/commands/ZipOptions.htm
+
+
+Function
+UnZip
+`BoolSuccess := UnZip(ZipFileName, DestinationFolder [, FileToExtract, DestinationFileName, Password])
+BoolSuccess := UnZip(Address, Size, DestinationFolder [, FileToExtract, DestinationFileName, Password])
+`/docs/commands/UnZip.htm
+
+
+Function
+ZipCreateBuffer
+`ZipHwnd := ZipCreateBuffer(MaxSize [, Password])
+`/docs/commands/ZipCreateBuffer.htm
+
+
+Function
+ZipAddBuffer
+`BoolSuccess := ZipAddBuffer(ZipHandle, Address, Size, FileName)
+`/docs/commands/ZipAddBuffer.htm
+
+
+Function
+ZipCloseBuffer
+`BufferSize := ZipCloseBuffer(ZipHandle [, VariableName])
+`/docs/commands/ZipCloseBuffer.htm
+
+
+Function
+UnZipBuffer
+`BufferName := UnZipBuffer(ZipFileName, FileToExtract [, VariableName, Password])
+BufferName := UnZipBuffer(Address, Size, FileToExtract [, VariableName, Password])
+`/docs/commands/UnZipBuffer.htm
+
+
+Function
+ZipRawMemory
+`ZipSize := ZipRawMemory(Address, Size [, VariableOrAddress, Password])
+`/docs/commands/ZipRawMemory.htm
+
+
+Function
+ZipInfo
+`ZipObj := ZipInfo(FileNameOrAddress [, Size])
+`/docs/commands/ZipInfo.htm
+
+
+Function
+UnZipRawMemory
+`ZipSize := UnZipRawMemory(Address, Size [, VariableOrAddress, Password])
+`/docs/commands/UnZipRawMemory.htm
+
+
+Function
+ZipAddFolder
+`BoolSuccess := ZipAddFolder(ZipHandle, ZipFileName)
+`/docs/commands/ZipAddFolder.htm
+
+
+Directive
+#CriticalObjectSleepTime
+`#CriticalObjectSleepTime Seconds
+/Sleep time between TryEnterCriticalObject calls when accessing CriticalObject. This affects CPU load. This setting affects only the thread where CriticalObject was created.
+`/docs/commands/_CriticalObjectSleepTime.htm
+
+
+Directive
+#CriticalObjectTimeOut
+`#CriticalObjectTimeOut Seconds
+/Time out for accessing CriticalObject. When time out is reached, an error message will be shown and current thread will exit.
+`/docs/commands/_CriticalObjectTimeOut.htm
+
+
+Function
+ComObjDll
+`OutputVar := ComObjDll(hModule, CLSID [, IID])
+`/docs/commands/ComObjDll.htm
+
+
+Function
+CriticalObject
+`CritObj := CriticalObject([Object, lpCriticalSection])
+`/docs/commands/CriticalObject.htm
+
+
+Function
+DynaCall
+`DynaCallObj := DynaCall("[DllFile\]Function", "ParameterDefinition", Default1, Default2, Default3, ...)
+/Build in function, similar to DllCall but works with DllCall structures and uses Object syntax. It is often faster than DllCall, easier to use and it saves a lot of typing and code.
+`/docs/commands/DynaCall.htm
+
+
+Function
+ObjByRef
+`NewObj := ObjByRef(Var1 [, Var2, ...])
+`/Creates an object containing ByRef variables, obj.var returns actual variable content and obj.var := value will assign new value to variable.
+`/docs/commands/ObjByRef.htm
+
+
+Function
+ObjDump
+`ObjSize := ObjDump(ObjectOrPath [, DumpToVar, Compress, Password])
+`/docs/commands/ObjDump.htm
+
+
+Function
+UMap
+`map := UMap(["key", value, ...])
+`/docs/commands/ObjectExtended.htm#UMap
+
+
+Function
+UArray
+`array := UArray(["value", ...])
+`/docs/commands/ObjectExtended.htm#UMap
+
+
+Function
+UObject
+`obj := UObject()
+``/docs/commands/ObjectExtended.htm#UMap
+
+
+Function
+ObjLoad
+`obj := ObjLoad(AddressOrPath [, Password])
+`/docs/commands/ObjLoad.htm
+
+
+Function
+ObjShare
+`OutputVar := ObjShare(ObjectOrLresult)
+/Included function to use an object in a multi-threaded environment. This is especially useful to call methods of a class from a different thread. Such objects can be used from multiple threads without causing a crash using COM functions LresultFromObject and ObjectFromLresult.
+`/docs/commands/ObjShare.htm
+
+
+Function
+Struct
+`OutputVar := Struct(Definition ,StructMemory, InitObject)
+/Struct is a build-in function that creates and returns a structure object.  This object can be used to access the defined structure using object syntax.  SetCapacity Method can be used to allocate memory to structure and pointers.
+`/docs/commands/Struct.htm
+
+
+Function
+MemoryFindResource
+`ResPtr := MemoryFindResource(Handle, Name, Type [, Language])
+/Find the resource in the specified dll previously loaded with MemoryLoadLibrary. Similar to FindResource and FindResourceEx.
+`/docs/commands/MemoryFindResource.htm
+
+
+Command
+MemoryFreeLibrary
+`MemoryFreeLibrary ahkdllModule
+/Free the specified dll previousle loaded with MemoryLoadLibrary. Similar to FreeLibrary.
+`/docs/commands/MemoryFreeLibrary.htm
+
+
+Function
+MemoryGetProcAddress
+`FuncPtr := MemoryGetProcAddress(Handle, FuncName)
+/Find the function pointer in the specified dll previously loaded with MemoryLoadLibrary. Similar to GetProcAddress.
+`/docs/commands/MemoryGetProcAddress.htm
+
+
+Function
+MemoryLoadLibrary
+`OutputVar := MemoryLoadLibrary(PathToDll)
+/Loads the specified dll into the process. Similar to LoadLibrary but loads the module from memory rather than disk and allows loading a module multiple times.
+`/docs/commands/MemoryLoadLibrary.htm
+
+
+Function
+MemoryLoadResource
+`ResPtr := MemoryLoadResource(Handle, hResource)
+/Load a resource in the specified dll previously loaded with MemoryLoadLibrary. Similar to LoadResource.
+`/docs/commands/MemoryLoadResource.htm
+
+
+Function
+MemoryLoadString
+`StringPtr := MemoryLoadString(Handle, Id [, BufferPointer, Length])
+/Loads a string resource in the specified dll previously loaded with MemoryLoadLibrary. Similar to LoadString.
+`/docs/commands/MemoryLoadString.htm
