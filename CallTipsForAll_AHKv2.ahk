@@ -287,6 +287,14 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 		oCallTip.ctlActive := true
 	
 	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter based on .ctlActive
+		hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
+		curClassNN := ""
+		Try curClassNN := ControlGetClassNN(hCtl) ; active ctl ClassNN
+		ctlClassNN := Settings["ProgClassNN"]
+		
+		If (InStr(curClassNN,ctlClassNN))
+			oCallTip.ctlHwnd := hCtl
+		
 		ProcInput()
 		curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
 		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
