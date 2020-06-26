@@ -32,6 +32,7 @@ ReloadElements() {
 	
 	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
 	
+	; msgbox "parse includes"
 	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
 		pos := 0, tmp := ""
 		For i, File in GetIncludes() {
@@ -59,14 +60,19 @@ ReloadElements() {
 		
 		; msgbox testStr
 	}
+	; msgbox "done parsing includes"
 	
 	oCallTip.docTextNoStr := StringOutline(curDocText) ; this should only be done once per load/reload (for full text + includes)
 	oCallTip.docText := curDocText
 	
 	CustomFunctions := GetCustomFunctions(curDocText)
+	; msgbox "in1"
 	ClassesList := GetClasses(curDocText)
+	; msgbox "in2"
 	ScanClasses(curDocText)
+	; msgbox "in3"
 	ObjectList := CreateObjList(curDocText)
+	; msgbox "done parsing"
 }
 
 ; ==================================================
@@ -649,12 +655,13 @@ GetLineNum(inPos) { ; DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "
 }
 
 GetCustomFunctions(curDocText) { ;ZZZ - this should work better
+	; msgbox "curDocText:`r`n`r`n" curDocText
 	curDocTextNoStr := oCallTip.docTextNoStr
 	funcList := Map(), funcList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcStart,match,curPos1)) {
-		funcName := "", bodyText := ""
+		funcName := "", bodyText := "", obj := Map()
 		If (IsObject(match) And match.Count()) {
 			curPos1 := match.Pos(0)
 			funcName := match.Value(1)
@@ -665,6 +672,7 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 			curPos2 := curPos1
 			While (r2 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcEnd,match2,curPos2)) {
 				bodyText := SubStr(curDocTextNoStr,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
+				; msgbox bodyText
 				curPos2 := match2.Pos(0) + match2.Len(0)
 				w := StrReplace(StrReplace(bodyText,"{","{",lB),"}","}",rB)
 				

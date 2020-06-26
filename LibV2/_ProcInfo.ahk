@@ -156,7 +156,7 @@ ProcInput() {
 	parentObjTypeList := Map()
 	For objName in ObjectList {
 		If (parentObj = objName) {
-			parentObjTypeList := ObjectList[objName]["types"]
+			parentObjTypeList := ObjectList[objName]["types"], parentObj := objName ; correct case on parentObj
 			Break
 		}
 	}
