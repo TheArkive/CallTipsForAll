@@ -164,8 +164,8 @@ Down:: ; scroll when multiple records are available for call tips
 		; clipboard := newText
 ; }
 
-; F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
-; {
+F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
+{
 	; testList := ""
 	; For curFunc, obj in FunctionList {
 		; params := obj["desc"]
@@ -203,7 +203,9 @@ Down:: ; scroll when multiple records are available for call tips
 	; }
 	; A_Clipboard := testList
 	; MsgBox "Classes loaded:`r`n`r`n" testList
-; }
+	
+	; A_Clipboard :=   
+}
 
 ; F10:: ; list functions - for debugging List_*.txt files only
 ; {
@@ -277,16 +279,16 @@ SetupInputHook(suppressEnter) {
 keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 	a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
 	b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
+	c := SettingsGUI.HasProp("hwnd") ? WinActive("ahk_id " SettingsGUI.hwnd) : 0
 	
-	If (vk = 9 And GetKeyState("Alt") Or (!a And !b))	; if alt-tab editor control is inactive
+	If ((vk = 9 And GetKeyState("Alt")) Or (!a And !b) Or c)	; if alt-tab editor control is inactive
 		oCallTip.ctlActive := false
 	Else If (a Or b) 								; if a > 0 then editor control is active
 		oCallTip.ctlActive := true
 	
-	ProcInput()
-	curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
-	
 	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter based on .ctlActive
+		ProcInput()
+		curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
 		KeywordFilter := KwSearchDeep(curPhrase, parentObj)
 	} Else {
 		KeywordFilter.Clear()
