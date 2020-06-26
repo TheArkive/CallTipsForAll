@@ -113,9 +113,6 @@ ProcInput() {
 	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
 		return
 	
-	; hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
-	; curClassNN := ControlGetClassNN(hCtl) ; active ctl ClassNN
-	
 	hCtl := oCalLTip.ctlHwnd
 	ctlClassNN := Settings["ProgClassNN"]
 	
@@ -135,8 +132,6 @@ ProcInput() {
 		
 		If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
 			curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCtl,scintBufferLen.dll+1)
-		
-		; DebugMsg("scintBufferLen: " scintBufferLen.dll " / pos: " curLineText.dll " / curLineText: " curLineText.str)
 		
 		curCol := curLineText.dll + 1
 		
@@ -166,8 +161,6 @@ ProcInput() {
 			Break
 		}
 	}
-	
-	; parentObjTypeList := ObjectList.Has(parentObj) ? ObjectList[parentObj]["types"] : Map()
 	
 	; topFunc := GetTopLevelFunc(curLineNoStr,curCol,funcStart,funcEnd) ; funcStart, funcEnd: ByRef - not currently used
 	; funcText := topFunc ? SubStr(curLineText,funcStart,StrLen(topFunc)) : ""
