@@ -32,10 +32,13 @@ ReloadElements() {
 	
 	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
 	
-	; msgbox "parse includes"
 	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
+		GetIncludes([Settings["BaseFile"]]) ; populate IncludesList
 		pos := 0, tmp := ""
-		For i, File in GetIncludes() {
+		
+		; msgbox "IncludesList: " IncludesList.Length
+		
+		For i, File in IncludesList { ; IncludesList is global
 			curFileText := FileRead(File), curFileLen := StrLen(curFileText)
 			curFileArr := StrSplit(curFileText,"`n","`r")
 			
@@ -113,13 +116,18 @@ GetEditorHwnd() {
   
 CheckMouseLocation() {
 	MouseGetPos x,y,hWnd, ctlHwndCheck, 2
+	
 	ctlClassNnCheck := ""
 	Try ctlClassNnCheck := ControlGetClassNN(ctlHwndCheck) ; try to get ClassNN
 	
-	If (ctlClassNnCheck != "" And InStr(ctlClassNnCheck,Settings["ProgClassNN"]))
+	If (oCallTip.progHwnd = hWnd And ctlClassNnCheck != "" And InStr(ctlClassNnCheck,Settings["ProgClassNN"])) {
 		oCallTip.ctlHwnd := ctlHwndCheck ; update ctl hwnd if match
-  
-	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
+		ScintillaExt.ctlHwnd := ctlHwndCheck
+		; msgbox "match"
+		; debugmsg("hctl: " ctlHwndCheck)
+	}
+	
+  	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
 		oCallTip.ctlActive := false
 	Else If (IsObject(callTipGui) And callTipGui.hwnd = hwnd)
 		oCallTip.ctlActive := true
@@ -660,7 +668,6 @@ GetLineNum(inPos) { ; DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "
 }
 
 GetCustomFunctions(curDocText) { ;ZZZ - this should work better
-	; msgbox "curDocText:`r`n`r`n" curDocText
 	curDocTextNoStr := oCallTip.docTextNoStr
 	funcList := Map(), funcList.CaseSense := 0
 	curPos1 := 1
@@ -670,14 +677,12 @@ GetCustomFunctions(curDocText) { ;ZZZ - this should work better
 		If (IsObject(match) And match.Count()) {
 			curPos1 := match.Pos(0)
 			funcName := match.Value(1)
-			; params := RegExReplace(match.Value(2),"`t|`r|`n","")
 			If (funcName = "" Or funcName = "If" Or funcName = "While" Or funcName = "For" Or funcName = "Else")
 				Continue
 			
 			curPos2 := curPos1
 			While (r2 := RegExMatch(curDocTextNoStr,"mi)" oCallTip.funcEnd,match2,curPos2)) {
 				bodyText := SubStr(curDocTextNoStr,curPos1,match2.Pos(0)+match2.Len(0)-curPos1)
-				; msgbox bodyText
 				curPos2 := match2.Pos(0) + match2.Len(0)
 				w := StrReplace(StrReplace(bodyText,"{","{",lB),"}","}",rB)
 				
@@ -953,21 +958,111 @@ ScanClasses(curDocText) { ; scan doc for class instances
 	}
 }
 
-GetIncludes() { ;ZZZ - in general i need to treat libraries properly, as you said they shouldn't have to be #INCLUDED, but...
-	baseFile := Settings["BaseFile"] ;ZZZ - this still has to be dependent on having a "BaseFile" defined of course.
-	curDocText := FileRead(baseFile) ;ZZZ - So there are several changes that need to happen here, but I'll address the other smaller ones first.
-	curDocArr := StrSplit(curDocText,"`n","`r") ;ZZZ - I think i can do more good with fixing the function parser first, that one is more clear in my head.
+GetIncludes(inputIncludes) {
+	; msgbox "inputIncludes: " inputIncludes.length
+	newIncludes := []
+	Loop inputIncludes.Length {
+		curFile := inputIncludes[A_Index]
+		
+		If (IncludeCheckDupe(curFile))
+			continue
+		Else
+			IncludesList.Push(curFile)
+		
+		curDocText := FileRead(curFile)
+		curDocArr := StrSplit(curDocText,"`n","`r")
+		
+		SplitPath curFile, , baseFolderP
+		curBaseFolder := baseFolderP
+		includesSearch := oCallTip.includes
+		
+		Loop curDocArr.Length {
+			curLine := curDocArr[A_Index]
+			
+			If (!r1 := RegExMatch(curLine,"mi)" includesSearch,match))
+				continue
+			
+			; curInc := match.Value(1) ; clean up include match
+			; msgbox curInc
+			curInc := Trim(RegExReplace(match.Value(1),"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
+			curInclude := RegExReplace(curInc,"<|>","")
+			
+			If (curInc != curInclude) ; include is library file and will automatically be scanned
+				continue
+			
+			curInclude := StrReplace(curInclude,"%A_ScriptDir%",curBaseFolder) ;ZZZ - need to replace a larger set of vars here
+			finalFile := (FileExist(curBaseFolder "\" curInclude)) ? curBaseFolder "\" curInclude : FileExist(curInclude) ? curInclude : ""
+			incType := FileExist(finalFile)
+			
+			; msgbox curBaseFolder "\" curInclude "`r`n`r`n" finalFile "`r`nType: " incType
+			
+			If (InStr(incType,"D"))
+				curBaseFilder := finalFile ; change baseFolder if dir
+			Else If (incType)
+				newIncludes.Push(finalFile) ; add to new includes
+		}
+	}
+	
+	If (newIncludes.Length)
+		GetIncludes(newIncludes)	
+}
+
+IncludeCheckDupe(inFile) {
+	dupe := false
+	For i, curInc in IncludesList { ; check for duplicate includes
+		If (inFile = curInc) {
+			dupe := true
+			Break
+		}
+	}
+	
+	return dupe
+}
+
+GetLibs() {
+	If (IncludesList.Length) {
+		baseFile := IncludesList[1]
+		SplitPath baseFile,, baseFolder
+		
+		f1 := baseFolder "\Lib\*" ;??? - simplified handling of 3 lib locations   ;ZZZ - yes finally simplified!
+		Loop Files f1
+		{
+			If (!IncludeCheckDupe(A_LoopFileFullPath))
+				IncludesList.Push(A_LoopFileFullPath)
+		}
+		
+		f2 := A_MyDocuments "\AutoHotkey\Lib\*"
+		Loop Files f2
+		{
+			If (!IncludeCheckDupe(A_LoopFileFullPath))
+				IncludesList.Push(A_LoopFileFullPath)
+		}
+		
+		f3 := ""
+		Try f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\*"
+		If (f3) {
+			Loop Files f3
+			{
+				If (!IncludeCheckDupe(A_LoopFileFullPath))
+					IncludesList.Push(A_LoopFileFullPath)
+			}
+		}
+	}
+}
+
+GetIncludesOld() {
+	baseFile := Settings["BaseFile"]
+	curDocText := FileRead(baseFile)
+	curDocArr := StrSplit(curDocText,"`n","`r")
 	
 	SplitPath baseFile, , baseFolderP
 	curBaseFolder := baseFolderP
 	
-	includes := oCallTip.includes, includeArr := Array() ;ZZZ - includes regex are not being loaded, gotta check that out now before fixing GetCustomFunctions()
+	includesSearch := oCallTip.includes, includeArr := Array()
 	Loop curDocArr.Length {
 		curLine := curDocArr[A_Index]
-		If (r1 := RegExMatch(curLine,"mi)" includes,match)) {
-			; msgbox "curLine: " curLine "`r`nregex: " includes "`r`ncurMatch: " match.Value(0)
+		If (r1 := RegExMatch(curLine,"mi)" includes,match))
 			includeArr.Push(match.Value(1))
-		}
 	}
 	curDocArr := "" ; free memory
 	
