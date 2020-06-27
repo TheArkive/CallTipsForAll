@@ -14,7 +14,7 @@
 
  
 
-; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
+; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE") ; get text and cursor col
 ; curCol := curLineText.dll + 1 ; current pos in current line (aka column)
 ; msgbox "curLineText:`r`n`r`n" curLineText.str "`r`n`r`ncur col: " curCol
 

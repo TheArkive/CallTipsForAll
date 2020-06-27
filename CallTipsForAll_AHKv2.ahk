@@ -11,15 +11,16 @@ SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
 Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
 Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
+Global IncludesList := []
 Global Settings := "" ; user settings object
 Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
 
 ; eventually move these to settings GUI
 Global WrapTextChars := 80
-Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
+; Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
 Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
-Global maxLines := 20
+; Global maxLines := 20
 
 SetupInputHook(false) ; suppress enter - true/false
 
@@ -166,6 +167,9 @@ Down:: ; scroll when multiple records are available for call tips
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
+	msgbox ControlGetHwnd("scintilla1","ahk_id " oCallTip.progHwnd) " / " ControlGetHwnd("scintilla2","ahk_id " oCallTip.progHwnd)
+	; A_Clipboard := Jxon_Dump(FunctionList,4)
+	; msgbox "check FunctionList"
 	; testList := ""
 	; For curFunc, obj in FunctionList {
 		; params := obj["desc"]
@@ -291,12 +295,13 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 	
 	If (oCallTip.ctlActive) { ; populate or clear KeywordFilter based on .ctlActive
 		hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
+		
 		curClassNN := ""
 		Try curClassNN := ControlGetClassNN(hCtl) ; active ctl ClassNN
 		ctlClassNN := Settings["ProgClassNN"]
 		
 		If (InStr(curClassNN,ctlClassNN))
-			oCallTip.ctlHwnd := hCtl
+			oCallTip.ctlHwnd := hCtl, ScintillaExt.ctlHwnd := hCtl
 		
 		ProcInput()
 		curPhrase := oCallTip.curPhrase, parentObj := oCallTip.parentObj
@@ -350,7 +355,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 			
 			If (kwSel) {
 				If (ctlClassNN = "edit") { ; edit specific, ie. notepad.exe
-					sPos := BufferAlloc(4,0) 
+					sPos := BufferAlloc(4,0)
 					SendMessage 176, sPos.ptr, 0, hwnd ; EM_GETSEL - used this way it gets the carat position
 					curPos := NumGet(sPos,"UInt"), newPos := curPos - StrLen(curPhrase)
 					SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
@@ -562,6 +567,10 @@ CloseScript(ThisKey:="") {
 }
 
 ClickCheck(curKey) {
+	; hCtl := ControlGetFocus("ahk_id " oCallTip.progHwnd) ; active ctl hwnd
+	; MouseGetPos x,y,hwnd,hCtl, 2
+	; msgbox "active hctl: " hCtl
+	
 	CheckMouseLocation()
 	closeAutoComplete(), oCallTip.suppressEnter := false, IH.Stop(), SetupInputHook(false)
 	
@@ -574,6 +583,7 @@ ClickCheck(curKey) {
 	c := MultiClick.Count
 	
 	If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
+		; msgbox "active: " oCallTip.ctlActive
 		If (!oCallTip.ctlActive)
 			return
 		closeAutoComplete()

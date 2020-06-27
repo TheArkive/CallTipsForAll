@@ -127,15 +127,10 @@ ProcInput() {
 		oCallTip.ctlHwnd := hCtl ; update control hwnd
 		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll)
-		; scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll)
 		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
-		
-		; If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
-			; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCt)
 		
 		curCol := curLineText.dll + 1
 		
-		; oCallTip.scintBufferLen := scintBufferLen.dll
 		oCallTip.lineText := curLineText.str
 		oCallTip.lineNum := curLine.dll
 		curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
