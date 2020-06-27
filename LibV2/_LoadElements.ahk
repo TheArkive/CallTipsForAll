@@ -330,7 +330,7 @@ LoadMethPropList() {
 				memMap["helpLink"] := memHelpLink
 				
 				curMemType := StrLower(curMemType)  
-				KeywordList[curMem] := curMemType
+				; KeywordList[curMem] := curMemType
 				If (curMemType = "Method")
 					methList[curMem] := memMap
 				Else

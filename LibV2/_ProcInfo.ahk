@@ -125,19 +125,19 @@ ProcInput() {
 		curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
 	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control
 		oCallTip.ctlHwnd := hCtl ; update control hwnd
-		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hCtl)
-		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll,0,hCtl)
-		scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll,0,hCtl)
-		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll,"",hCtl,scintBufferLen.dll)
+		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
+		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll)
+		; scintBufferLen := ScintillaExt.SendMsg("SCI_LINELENGTH",curLine.dll)
+		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
 		
-		If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
-			curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCtl,scintBufferLen.dll+1)
+		; If (scintBufferLen.dll = curLineText.dll) ; this should catch last char when typing at the END of the document
+			; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE",scintBufferLen.dll+1,"",hCt)
 		
 		curCol := curLineText.dll + 1
 		
-		oCallTip.scintBufferLen := scintBufferLen.dll
+		; oCallTip.scintBufferLen := scintBufferLen.dll
 		oCallTip.lineText := curLineText.str
-		oCallTip.lineNum := curLine.dll, oCallTip.lineText := curLineText.str
+		oCallTip.lineNum := curLine.dll
 		curLineNoStr := StringOutline(curLineText.str) ; blank out strings with "****"
 	}
 	
