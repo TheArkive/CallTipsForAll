@@ -250,8 +250,10 @@ FullReload() {
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
 	
-	If (oCallTip.ctlHwnd)
+	If (oCallTip.ctlHwnd) {
 		ScintillaExt.pid := oCallTip.progPID ; need PID for sending messages to edit control in some cases
+		ScintillaExt.ctlHwnd := oCallTip.ctlHwnd
+	}
 	
 	oCallTip.srcFiles := A_ScriptDir "\Languages\" Settings["ActiveLanguage"] ;ZZZ - this needs to be here for proper functionality
 	
@@ -342,6 +344,8 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 			kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
 			
 			hwnd := oCallTip.ctlHwnd
+			ScintillaExt.ctlHwnd := hwnd
+			
 			ctlClassNN := Settings["ProgClassNN"]
 			
 			If (kwSel) {
@@ -352,11 +356,11 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 					SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
 					ControlEditPaste kwSel, hwnd
 				} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
-					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS",0,0,hwnd)
+					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
 					newPos := curPos.dll - StrLen(curPhrase)
 					
-					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos,0,hwnd)
-					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel,hwnd)
+					r1 := ScintillaExt.SendMsg("SCI_SETANCHOR",newPos)
+					r2 := ScintillaExt.SendMsg("SCI_REPLACESEL",0,kwSel)
 				}
 				closeAutoComplete()
 				

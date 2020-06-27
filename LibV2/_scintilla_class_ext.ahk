@@ -1,5 +1,119 @@
-Class ScintillaExt {
-	static df := 0, dp := 0, pid := 0
+; AHK v2
+; =================================================================================
+; EXAMPLES
+; =================================================================================
+; winHwnd := WinActive("A")
+; ctlHwnd := ControLGetFocus("ahk_id " winHwnd)
+; winPid := WinGetPid("ahk_id " winHwnd)
+
+; ScintillaExt.pid := winPid
+; ScintillaExt.ctlHwnd := ctlHwnd
+; =================================================================================
+; ABOVE TEXT MUST BE UNCOMMENTED FOR BELOW EXAMPLES
+; =================================================================================
+
+ 
+
+; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
+; curCol := curLineText.dll + 1 ; current pos in current line (aka column)
+; msgbox "curLineText:`r`n`r`n" curLineText.str "`r`n`r`ncur col: " curCol
+
+
+
+; ScintillaExt.SendMsg("SCI_REPLACESEL",0,"abcd") ; this is a test comment for SCI_REPLACESEL
+; msgbox "SCI_REPLACESEL done" ; replacement test
+
+
+  
+; ScintillaExt.SendMsg("SCI_SETSELECTION",5,5) ; set multiple selections
+; ScintillaExt.SendMsg("SCI_ADDSELECTION",50,50)
+; msgbox "multi-cursor / selection set"
+
+
+
+; selText := ScintillaExt.SendMsg("SCI_GETSELTEXT")
+; msgbox "selText: " selText.str
+
+
+
+; curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
+; msgbox "cur pos in document: " curPos.dll
+
+
+
+; curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
+; curlineNum := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll)
+; msgbox "line from specified pos: " curLineNum.dll + 1 "`r`n`r`nin this case it's the current line"
+
+
+
+; lineLen := ScintillaExt.SendMsg("SCI_LINELENGTH",54-1) ; lines are 0 based
+; msgbox "lineLen: " lineLen.dll ; includes NULL terminator
+
+
+
+; textFromLineNum := ScintillaExt.SendMsg("SCI_GETLINE",1)
+; msgbox "textFromLineNum: " textFromLineNum.str "`r`nchars pulled + NULL terminator: " textFromLineNum.dll
+
+
+
+; curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS") ; you can use any position, this is just currnet position
+; ScintillaExt.SendMsg("SCI_INSERTTEXT",curPos.dll,"abcde")
+; msgbox "text inserted at specifiec position, cursor NOT moved"
+
+
+
+; ScintillaExt.SendMsg("SCI_ADDTEXT",0,"abcde") ; "SCI_ADDTEXT", nLen, "text to insert" / nLen := 0 ... this will use all text given
+; msgbox "text added to CURRENT POSITION, cursor moved"
+
+
+
+; ==========================================================================================================================
+; based on Scintilla class made by kczx3: https://github.com/kczx3/Scintilla
+; and based on scintilla wrapper functions provided by toralf: https://www.autohotkey.com/boards/viewtopic.php?p=336240#p336240
+; ==========================================================================================================================
+;
+; This class aims to make using SCI_* messages easier by way of using the scintilla help docs.
+; Most of the SCI_* messages take only 2 parameters, wParam and lParam.  In a few cases, I've simplified the input to be
+; more intuitive.
+;
+; ==========================================================================================================================
+; === set these first ===
+; ==========================================================================================================================
+; ScintillaExt.pid := pid
+; ScintillaExt.ctlHwnd := ctlHwnd
+;
+; ==========================================================================================================================
+; === then send call commands / messages ===
+; ==========================================================================================================================
+; returnObj := ScintillaExt.SendMsg("SCI_msg...", wParam := 0, lParam := 0)
+;
+;		returnObj := {dll:number, str:string}
+;		- if output is a number from the SCI message, it's in the .dll member (returnObj.dll)
+;		- if output is a string, it's in the .str member (returnObj.str)
+;
+; General usage cases:
+;
+;		1) wParam is an integer, and lParam is not used (set to zero by default).
+;
+;		2) wParam and lParam are both integers.
+;
+;		3) wParam is an integer and lParam is a string.
+;
+;			a) wParam is usually a position, or buffer length, then lParam will be a string.
+;
+;			b) If wParam is a buffer length, then set the last optional parameter in .SendMsg() to true (wParamIsBufLen := true).
+;
+;			c) If you are "putting" a string into the scintilla control then pass it "quoted" directly into lParam.
+;
+;			d) If you are extracting a string value from the scintilla control, then pass a blank string to lParam.
+;
+; For specific usage cases, see examples above.
+; 
+; ==========================================================================================================================
+; ==========================================================================================================================
+class ScintillaExt {
+	static df := 0, dp := 0, pid := 0, ctlHwnd := 0
 	
 	static SCI_ADDTEXT:=2001,SCI_ADDSTYLEDTEXT:=2002,SCI_INSERTTEXT:=2003,SCI_CLEARALL:=2004,SCI_CLEARDOCUMENTSTYLE:=2005,SCI_GETLENGTH:=2006,SCI_GETCHARAT:=2007,SCI_GETCURRENTPOS:=2008,SCI_GETANCHOR:=2009,SCI_GETSTYLEAT:=2010,SCI_REDO:=2011,SCI_SETUNDOCOLLECTION:=2012,SCI_SELECTALL:=2013,SCI_SETSAVEPOINT:=2014,SCI_GETSTYLEDTEXT:=2015,SCI_CANREDO:=2016,SCI_MARKERLINEFROMHANDLE:=2017,SCI_MARKERDELETEHANDLE:=2018,SCI_GETUNDOCOLLECTION:=2019,SCI_GETVIEWWS:=2020,SCI_SETVIEWWS:=2021,SCI_POSITIONFROMPOINT:=2022,SCI_POSITIONFROMPOINTCLOSE:=2023,SCI_GOTOLINE:=2024,SCI_GOTOPOS:=2025,SCI_SETANCHOR:=2026,SCI_GETCURLINE:=2027,SCI_GETENDSTYLED:=2028,SCI_CONVERTEOLS:=2029,SCI_GETEOLMODE:=2030,SCI_SETEOLMODE:=2031
 	static SCI_STARTSTYLING:=2032,SCI_SETSTYLING:=2033,SCI_GETBUFFEREDDRAW:=2034,SCI_SETBUFFEREDDRAW:=2035,SCI_SETTABWIDTH:=2036,SCI_GETTABWIDTH:=2121,SCI_SETCODEPAGE:=2037,SCI_SETUSEPALETTE:=2039,SCI_MARKERDEFINE:=2040,SCI_MARKERSETFORE:=2041,SCI_MARKERSETBACK:=2042,SCI_MARKERADD:=2043,SCI_MARKERDELETE:=2044,SCI_MARKERDELETEALL:=2045,SCI_MARKERGET:=2046,SCI_MARKERNEXT:=2047,SCI_MARKERPREVIOUS:=2048,SCI_MARKERDEFINEPIXMAP:=2049,SCI_MARKERADDSET:=2466,SCI_MARKERSETALPHA:=2476,SCI_SETMARGINTYPEN:=2240,SCI_GETMARGINTYPEN:=2241,SCI_SETMARGINWIDTHN:=2242,SCI_GETMARGINWIDTHN:=2243,SCI_SETMARGINMASKN:=2244,SCI_GETMARGINMASKN:=2245,SCI_SETMARGINSENSITIVEN:=2246,SCI_GETMARGINSENSITIVEN:=2247,SCI_STYLECLEARALL:=2050
@@ -22,7 +136,6 @@ Class ScintillaExt {
 
 	; Search flags
 	static SCFIND_WHOLEWORD:=2,SCFIND_MATCHCASE:=4,SCFIND_WORDSTART:=0x00100000,SCFIND_REGEXP:=0x00200000,SCFIND_POSIX:=0x00400000
-
 	static SC_UPDATE_CONTENT:=0x01,SC_UPDATE_SELECTION:=0x02,SC_UPDATE_V_SCROLL:=0x04,SC_UPDATE_H_SCROLL:=0x08
 
 	; Keys
@@ -45,51 +158,105 @@ Class ScintillaExt {
 	static SC_WRAP_NONE:=0,SC_WRAP_WORD:=1,SC_WRAP_CHAR:=2,SC_WRAPVISUALFLAG_NONE:=0x0000,SC_WRAPVISUALFLAG_END:=0x0001,SC_WRAPVISUALFLAG_START:=0x0002,SC_WRAPVISUALFLAG_MARGIN:=0x0004, SC_WRAPVISUALFLAGLOC_DEFAULT:=0x0000,SC_WRAPVISUALFLAGLOC_END_BY_TEXT:=0x0001,SC_WRAPVISUALFLAGLOC_START_BY_TEXT:=0x0002,SC_CACHE_NONE:=0,SC_CACHE_CARET:=1,SC_CACHE_PAGE:=2,SC_CACHE_DOCUMENT:=3,EDGE_NONE:=0,EDGE_LINE:=1,EDGE_BACKGROUND:=2,SC_CURSORNORMAL:=-1,SC_CURSORWAIT:=4,VISIBLE_SLOP:=0x01,VISIBLE_STRICT:=0x04,CARET_SLOP:=0x01,CARET_STRICT:=0x04,CARET_JUMPS:=0x10,CARET_EVEN:=0x08,SC_SEL_STREAM:=0,SC_SEL_RECTANGLE:=1,SC_SEL_LINES:=2,SC_ALPHA_TRANSPARENT:=0,SC_ALPHA_OPAQUE:=255,SC_ALPHA_NOALPHA:=256,KEYWORDSET_MAX:=8
 	static SC_MOD_INSERTTEXT:=0x1,SC_MOD_DELETETEXT:=0x2,SC_MOD_CHANGESTYLE:=0x4,SC_MOD_CHANGEFOLD:=0x8,SC_PERFORMED_USER:=0x10,SC_PERFORMED_UNDO:=0x20,SC_PERFORMED_REDO:=0x40,SC_MULTISTEPUNDOREDO:=0x80,SC_LASTSTEPINUNDOREDO:=0x100,SC_MOD_CHANGEMARKER:=0x200,SC_MOD_BEFOREINSERT:=0x400,SC_MOD_BEFOREDELETE:=0x800,SC_MULTILINEUNDOREDO:=0x1000,SC_MODEVENTMASKALL:=0x1FFF,SC_WEIGHT_NORMAL:=400, SC_WEIGHT_SEMIBOLD:=600, SC_WEIGHT_BOLD:=700
 	
-	Static SendMsg(msgName,wParam:=0,lParam:=0,hwnd:=0,bufSize:=0) {
-		If (!hwnd)
-			return 0
-		Else If (this.HasOwnProp(msgName)) {
-			retVal := "", r := 0
-			curMsg := this.%msgName%
-			pid := this.pid
+	static SCI_ADDSELECTION:=2573, SCI_SETSELECTION:=2572
+	
+	Static SendMsg(msgName,wParam:=0,lParam:=0) {	; for read str:  make ext buffer, SendMsg, ReadProcMem
+		ctlHwnd := this.ctlHwnd									; for write str: make ext buffer, WriteProcMem, SendMsg
+		curMsg := this.HasOwnProp(msgName) ? this.%msgName% : 0
+		
+		If (!curMsg)
+			return {dll:0, str:""}
+		Else If (msgName = "SCI_GETSELTEXT") {
+			bufSize := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", curMsg, "UInt", 0, "Ptr", 0) ; get buffer length
+			retVal := this.ReadProc(bufSize, curMsg)
+			return retVal
+		} Else If (msgName = "SCI_GETCURLINE") {
+			curPos := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", this.SCI_GETCURRENTPOS, "UInt", 0, "UInt", 0)
+			curLine := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", this.SCI_LINEFROMPOSITION, "UInt", curPos, "UInt", 0)
+			lineLen := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", this.SCI_LINELENGTH, "UInt", curLine, "UInt", 0)
+			bufSize := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", curMsg, "Int", lineLen, "Ptr", 0) ; get buffer length
 			
-			If (Type(wParam) = "Integer" And Type(lParam) = "String") {
-				bufSize := !bufSize ? StrPut(lParam,"UTF-8") : bufSize
-				kwSelBuf := BufferAlloc(bufSize,0)
-				if (lParam)
-					StrPut lParam, kwSelBuf, "UTF-8" ; write string if lParam is not ""
-				
-				hProc := DllCall("OpenProcess", "UInt", 0x438, "Int", False, "UInt", pid, "Ptr") ; get proccess handle
-				If (!hProc)
-					return 0
-				
-				BufAddress := DllCall("VirtualAllocEx", "Ptr", hProc, "Ptr", 0, "UInt", bufSize, "UInt", 0x1000, "UInt", 4, "Ptr") ; allocate memory in process
-				If (!BufAddress)
-					return 0
-				
-				If (lParam) { ; write to buffer
-					; written := BufferAlloc(4,0) ; to check bytes written
-					r2 := DllCall("kernel32\WriteProcessMemory", "Ptr" , hProc, "Ptr" , BufAddress, "Ptr" , kwSelBuf.ptr, "UInt", bufSize, "Ptr" , 0)
-					r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Ptr", BufAddress)
-				} Else { ; read from buffer
-					; written := BufferAlloc(4,0) ; to check bytes written
-					r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Ptr", BufAddress)
-					r2 := DllCall("ReadProcessMemory", "Ptr", hProc, "Ptr", BufAddress, "Ptr", kwSelBuf.ptr, "UInt", bufSize, "Ptr", 0)
-					retVal := StrGet(kwSelBuf,"UTF-8") ; , writ := NumGet(written,"UInt")
-				}
-				If (!r)
-					return {dll:0, str:""}
-				
-				DllCall("VirtualFreeEx", "Ptr", hProc, "Ptr", BufAddress, "UPtr", 0, "UInt", 0x8000) ; MEM_RELEASE
-				DllCall("CloseHandle", "Ptr", hProc)
-				
-				return {dll:r, str:retVal}
-			} Else If (Type(wParam) = "Integer" And Type(lParam) = "Integer") {
-				r := DllCall("SendMessage", "Ptr", hwnd, "UInt", curMsg , "Int", wParam, "Int", lParam)
-				return {dll:r, str:""}
-			} Else
-				return {dll:0, str:""}
+			retVal := this.ReadProc(bufSize,curMsg)
+			
+			return retVal
+		} Else If (msgName = "SCI_REPLACESEL" Or msgName = "SCI_INSERTTEXT") {
+			r := this.WriteProc(curMsg, wParam, lParam)
+			return r
+		} Else If (msgName = "SCI_GETLINE") {
+			lineAdj := wParam - 1
+			lineLen := DllCall("SendMessage", "Ptr", ctlHwnd, "UInt", this.SCI_LINELENGTH, "UInt", lineAdj, "UInt", 0)
+			return this.ReadProc(lineLen,curMsg,lineAdj)
+		} Else If (msgName = "SCI_ADDTEXT") {
+			sLen := (wParam = 0) ? StrLen(lParam) : wParam
+			str := SubStr(lParam,1,sLen)
+			r := this.WriteProc(curMsg, sLen, str)
 		} Else
-			return {dll:-1, str:""} ; unknown message specified
+			return this.EasyMsg(curMsg, wParam, lParam)
+	}
+	
+	Static EasyMsg(curMsg, wParam:=0, lParam:=0) {
+		r := DllCall("SendMessage", "Ptr", this.ctlHwnd, "UInt", curMsg , "Int", wParam, "Int", lParam)
+		return {dll:r, str:""}
+	}
+	
+	Static OpenProc(bufSize) {
+		hProc := DllCall("OpenProcess", "UInt", 0x438, "Int", False, "UInt", this.pid, "Ptr") ; get proccess handle
+		If (!hProc)
+			return {bufAddr:0, hProc:0}
+		
+		bufAddr := DllCall("VirtualAllocEx", "Ptr", hProc, "Ptr", 0, "UInt", bufSize, "UInt", 0x1000, "UInt", 4, "Ptr") ; allocate memory in process
+		If (!bufAddr)
+			return {bufAddr:0, hProc:0}
+		
+		return {bufAddr:bufAddr, hProc:hProc}
+	}
+	
+	Static WriteProc(curMsg, wParam:="", bufText:="") { ; lParam is bufText
+		bufSize := StrPut(bufText)
+		extBuf := BufferAlloc(bufSize,0) ; create external buffer for read/write into scintilla control
+		if (bufText != "")
+			StrPut(bufText, extBuf.ptr, "UTF-8")
+		proc := this.OpenProc(bufSize) ; VarSetCapacity(written,4,0)
+		
+		wParam := (wParam = "") ? 0 : wParam
+		
+		r := DllCall("kernel32\WriteProcessMemory", "Ptr", proc.hProc, "Ptr", proc.bufAddr, "Ptr", extBuf.ptr, "UInt", bufSize, "Ptr", 0)
+		
+		; VarSetCapacity(extBuf,0)
+		extBuf := ""
+		If (!r)
+			return {dll:0, str:""}
+		
+		dllRes := DllCall("SendMessage", "Ptr", this.ctlHwnd, "UInt", curMsg, "UInt", wParam, "Ptr", proc.bufAddr)
+		this.CloseProc(proc.hProc, proc.bufAddr)
+		
+		return {dll:dllRes, str:""} ; this is a test
+	}
+	
+	Static ReadProc(bufSize, curMsg, wParam:="", lParam:="") {
+		extBuf := BufferAlloc(bufSize,0) ; create external buffer for read/write into scintilla control
+		proc := this.OpenProc(bufSize)
+		
+		If (wParam != "")
+			dllRes := DllCall("SendMessage", "Ptr", this.ctlHwnd, "UInt", curMsg, "UInt", wParam, "Ptr", proc.bufAddr)
+		Else
+			dllRes := DllCall("SendMessage", "Ptr", this.ctlHwnd, "UInt", curMsg, "UInt", bufSize, "Ptr", proc.bufAddr)
+		
+		r := DllCall("ReadProcessMemory", "Ptr", proc.hProc, "Ptr", proc.bufAddr, "Ptr", extBuf.ptr, "UInt", bufSize, "Ptr", 0)
+		If (!r)
+			return {dll:0, str:""}
+		
+		retVal := StrGet(extBuf,"UTF-8")
+		
+		extBuf := ""
+		this.CloseProc(proc.hProc, proc.bufAddr)
+		
+		return {dll:dllRes, str:retVal}
+	}
+	
+	Static CloseProc(hProc, bufAddr) {
+		DllCall("VirtualFreeEx", "Ptr", hProc, "Ptr", bufAddr, "UPtr", 0, "UInt", 0x8000) ; MEM_RELEASE
+		DllCall("CloseHandle", "Ptr", hProc)
 	}
 }
+; asdf
