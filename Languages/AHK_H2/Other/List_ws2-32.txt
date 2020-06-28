@@ -1,0 +1,892 @@
+Function
+__WSAFDIsSet
+`int := __WSAFDIsSet(SOCKET fd, fd_set *set)
+`/docs/commands/WinApi.htm
+
+
+Function
+accept
+`SOCKET := accept(_In_ SOCKET s, _Out_ struct sockaddr *addr, _Inout_ int *addrlen)
+`/docs/commands/WinApi.htm
+
+
+Function
+bind
+`int := bind(_In_ SOCKET s, _In_ const struct sockaddr *name, _In_ int namelen)
+`/docs/commands/WinApi.htm
+
+
+Function
+closesocket
+`int := closesocket(_In_ SOCKET s)
+`/docs/commands/WinApi.htm
+
+
+Function
+connect
+`int := connect(_In_ SOCKET s, _In_ const struct sockaddr *name, _In_ int namelen)
+`/docs/commands/WinApi.htm
+
+
+Function
+freeaddrinfo
+`VOID := freeaddrinfo(_In_ struct addrinfo *ai)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeAddrInfoEx
+`VOID := FreeAddrInfoEx(_In_ PADDRINFOEX pAddrInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeAddrInfoExW
+`VOID := FreeAddrInfoExW(_In_ PADDRINFOEX pAddrInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeAddrInfoW
+`VOID := FreeAddrInfoW(_In_ PADDRINFOW pAddrInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+getaddrinfo
+`int := getaddrinfo(_In_opt_ PCSTR pNodeName, _In_opt_ PCSTR pServiceName, _In_opt_ const ADDRINFOA *pHints, _Out_ PADDRINFOA *ppResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAddrInfoEx
+`int := GetAddrInfoEx(_In_opt_ PCTSTR pName, _In_opt_ PCTSTR pServiceName, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ const ADDRINFOEX *pHints, _Out_ PADDRINFOEX *ppResult, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAddrInfoExA
+`int := GetAddrInfoExA(_In_opt_ PCTSTR pName, _In_opt_ PCTSTR pServiceName, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ const ADDRINFOEX *pHints, _Out_ PADDRINFOEX *ppResult, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAddrInfoExW
+`int := GetAddrInfoExW(_In_opt_ PCTSTR pName, _In_opt_ PCTSTR pServiceName, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ const ADDRINFOEX *pHints, _Out_ PADDRINFOEX *ppResult, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAddrInfoW
+`int := GetAddrInfoW(_In_opt_ PCWSTR pNodeName, _In_opt_ PCWSTR pServiceName, _In_opt_ const ADDRINFOW *pHints, _Out_ PADDRINFOW *ppResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+gethostbyaddr
+`hostent* := gethostbyaddr(_In_ const char *addr, _In_ int len, _In_ int type)
+`/docs/commands/WinApi.htm
+
+
+Function
+gethostbyname
+`hostent* := gethostbyname(_In_ const char *name)
+`/docs/commands/WinApi.htm
+
+
+Function
+gethostname
+`int := gethostname(_Out_ char *name, _In_ int namelen)
+`/docs/commands/WinApi.htm
+
+
+Function
+getnameinfo
+`int := getnameinfo(_In_ const struct sockaddr FAR *sa, _In_ socklen_t salen, _Out_ char FAR *host, _In_ DWORD hostlen, _Out_ char FAR *serv, _In_ DWORD servlen, _In_ int flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNameInfoW
+`int := GetNameInfoW(_In_ const SOCKADDR *pSockaddr, _In_ socklen_t SockaddrLength, _Out_ PWCHAR pNodeBuffer, _In_ DWORD NodeBufferSize, _Out_ PWCHAR pServiceBuffer, _In_ DWORD ServiceBufferSize, _In_ INT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+getpeername
+`int := getpeername(_In_ SOCKET s, _Out_ struct sockaddr *name, _Inout_ int *namelen)
+`/docs/commands/WinApi.htm
+
+
+Function
+getprotobyname
+`PROTOENT* := getprotobyname(_In_ const char *name)
+`/docs/commands/WinApi.htm
+
+
+Function
+getprotobynumber
+`PROTOENT* := getprotobynumber(_In_ int number)
+`/docs/commands/WinApi.htm
+
+
+Function
+getservbyname
+`servent* := getservbyname(_In_ const char *name, _In_ const char *proto)
+`/docs/commands/WinApi.htm
+
+
+Function
+getservbyport
+`servent* := getservbyport(_In_ int port, _In_ const char *proto)
+`/docs/commands/WinApi.htm
+
+
+Function
+getsockname
+`int := getsockname(_In_ SOCKET s, _Out_ struct sockaddr *name, _Inout_ int *namelen)
+`/docs/commands/WinApi.htm
+
+
+Function
+getsockopt
+`int := getsockopt(_In_ SOCKET s, _In_ int level, _In_ int optname, _Out_ char *optval, _Inout_ int *optlen)
+`/docs/commands/WinApi.htm
+
+
+Function
+htonl
+`u_long := htonl(_In_ u_long hostlong)
+`/docs/commands/WinApi.htm
+
+
+Function
+htons
+`u_short := htons(_In_ u_short hostshort)
+`/docs/commands/WinApi.htm
+
+
+Function
+inet_addr
+`unsignedlong := inet_addr(_In_ const char *cp)
+`/docs/commands/WinApi.htm
+
+
+Function
+inet_ntoa
+`char* := inet_ntoa(_In_ struct in_addr in)
+`/docs/commands/WinApi.htm
+
+
+Function
+InetNtop
+`PCTSTR := InetNtop(_In_ INT Family, _In_ PVOID pAddr, _Out_ PTSTR pStringBuf, _In_ size_t StringBufSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+InetNtopW
+`PCTSTR := InetNtopW(_In_ INT Family, _In_ PVOID pAddr, _Out_ PTSTR pStringBuf, _In_ size_t StringBufSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+InetPton
+`int := InetPton(_In_ INT Family, _In_ PCTSTR pszAddrString, _Out_ PVOID pAddrBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+InetPtonW
+`int := InetPtonW(_In_ INT Family, _In_ PCTSTR pszAddrString, _Out_ PVOID pAddrBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+ioctlsocket
+`int := ioctlsocket(_In_ SOCKET s, _In_ long cmd, _Inout_ u_long *argp)
+`/docs/commands/WinApi.htm
+
+
+Function
+listen
+`int := listen(_In_ SOCKET s, _In_ int backlog)
+`/docs/commands/WinApi.htm
+
+
+Function
+ntohl
+`u_long := ntohl(_In_ u_long netlong)
+`/docs/commands/WinApi.htm
+
+
+Function
+ntohs
+`u_short := ntohs(_In_ u_short netshort)
+`/docs/commands/WinApi.htm
+
+
+Function
+recv
+`int := recv(_In_ SOCKET s, _Out_ char *buf, _In_ int len, _In_ int flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+recvfrom
+`int := recvfrom(_In_ SOCKET s, _Out_ char *buf, _In_ int len, _In_ int flags, _Out_ struct sockaddr *from, _Inout_opt_ int *fromlen)
+`/docs/commands/WinApi.htm
+
+
+Function
+select
+`int := select(_In_ int nfds, _Inout_ fd_set *readfds, _Inout_ fd_set *writefds, _Inout_ fd_set *exceptfds, _In_ const struct timeval *timeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+send_
+`int := send_(_In_ SOCKET s, _In_ const char *buf, _In_ int len, _In_ int flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+sendto
+`int := sendto(_In_ SOCKET s, _In_ const char *buf, _In_ int len, _In_ int flags, _In_ const struct sockaddr *to, _In_ int tolen)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetAddrInfoEx
+`int := SetAddrInfoEx(_In_ PCTSTR pName, _In_ PCTSTR pServiceName, _Inout_ SOCKET_ADDRESS *pAddresses, _In_ DWORD dwAddressCount, _In_opt_ LPBLOB lpBlob, _In_ DWORD dwFlags, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetAddrInfoExA
+`int := SetAddrInfoExA(_In_ PCTSTR pName, _In_ PCTSTR pServiceName, _Inout_ SOCKET_ADDRESS *pAddresses, _In_ DWORD dwAddressCount, _In_opt_ LPBLOB lpBlob, _In_ DWORD dwFlags, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetAddrInfoExW
+`int := SetAddrInfoExW(_In_ PCTSTR pName, _In_ PCTSTR pServiceName, _Inout_ SOCKET_ADDRESS *pAddresses, _In_ DWORD dwAddressCount, _In_opt_ LPBLOB lpBlob, _In_ DWORD dwFlags, _In_ DWORD dwNameSpace, _In_opt_ LPGUID lpNspId, _In_opt_ struct timeval *timeout, _In_opt_ LPOVERLAPPED lpOverlapped, _In_opt_ LPLOOKUPSERVICE_COMPLETION_ROUTINE lpCompletionRoutine, _Out_opt_ LPHANDLE lpNameHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+setsockopt
+`int := setsockopt(_In_ SOCKET s, _In_ int level, _In_ int optname, _In_ const char *optval, _In_ int optlen)
+`/docs/commands/WinApi.htm
+
+
+Function
+shutdown_
+`int := shutdown_(_In_ SOCKET s, _In_ int how)
+`/docs/commands/WinApi.htm
+
+
+Function
+socket
+`SOCKET := socket(_In_ int af, _In_ int type, _In_ int protocol)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAccept
+`SOCKET := WSAAccept(_In_ SOCKET s, _Out_ struct sockaddr *addr, _Inout_ LPINT addrlen, _In_ LPCONDITIONPROC lpfnCondition, _In_ DWORD_PTR dwCallbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAddressToString
+`int := WSAAddressToString(_In_ LPSOCKADDR lpsaAddress, _In_ DWORD dwAddressLength, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Inout_ LPTSTR lpszAddressString, _Inout_ LPDWORD lpdwAddressStringLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAddressToStringA
+`int := WSAAddressToStringA(_In_ LPSOCKADDR lpsaAddress, _In_ DWORD dwAddressLength, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Inout_ LPSTR lpszAddressString, _Inout_ LPDWORD lpdwAddressStringLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAddressToStringW
+`int := WSAAddressToStringW(_In_ LPSOCKADDR lpsaAddress, _In_ DWORD dwAddressLength, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Inout_ LPWSTR lpszAddressString, _Inout_ LPDWORD lpdwAddressStringLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAdvertiseProvider
+`int := WSAAdvertiseProvider(_In_ const GUID *puuidProviderId, _In_ const LPCNSPV2_ROUTINE *pNSPv2Routine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetHostByAddr
+`HANDLE := WSAAsyncGetHostByAddr(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ const char *addr, _In_ int len, _In_ int type, _Out_ char *buf, _In_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetHostByName
+`HANDLE := WSAAsyncGetHostByName(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ const char *name, _Out_ char *buf, _In_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetProtoByName
+`HANDLE := WSAAsyncGetProtoByName(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ const char *name, _Out_ char *buf, _Out_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetProtoByNumber
+`HANDLE := WSAAsyncGetProtoByNumber(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ int number, _Out_ char *buf, _In_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetServByName
+`HANDLE := WSAAsyncGetServByName(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ const char *name, _In_ const char *proto, _Out_ char *buf, _In_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncGetServByPort
+`HANDLE := WSAAsyncGetServByPort(_In_ HWND hWnd, _In_ unsigned int wMsg, _In_ int port, _In_ const char *proto, _Out_ char *buf, _In_ int buflen)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAAsyncSelect
+`int := WSAAsyncSelect(_In_ SOCKET s, _In_ HWND hWnd, _In_ unsigned int wMsg, _In_ long lEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSACancelAsyncRequest
+`int := WSACancelAsyncRequest(_In_ HANDLE hAsyncTaskHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSACleanup
+`int := WSACleanup(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSACloseEvent
+`BOOL := WSACloseEvent(_In_ WSAEVENT hEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAConnect
+`int := WSAConnect(_In_ SOCKET s, _In_ const struct sockaddr *name, _In_ int namelen, _In_ LPWSABUF lpCallerData, _Out_ LPWSABUF lpCalleeData, _In_ LPQOS lpSQOS, _In_ LPQOS lpGQOS)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAConnectByList
+`BOOL := WSAConnectByList(_In_ SOCKET s, _In_ PSOCKET_ADDRESS_LIST SocketAddressList, _Inout_ LPDWORD LocalAddressLength, _Out_ LPSOCKADDR LocalAddress, _Inout_ LPDWORD RemoteAddressLength, _Out_ LPSOCKADDR RemoteAddress, _In_ const struct timeval *timeout, _In_ LPWSAOVERLAPPED Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAConnectByName
+`BOOL := WSAConnectByName(_In_ SOCKET s, _In_ LPTSTR nodename, _In_ LPTSTR servicename, _Inout_ LPDWORD LocalAddressLength, _Out_ LPSOCKADDR LocalAddress, _Inout_ LPDWORD RemoteAddressLength, _Out_ LPSOCKADDR RemoteAddress, _In_ const struct timeval *timeout, LPWSAOVERLAPPED Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAConnectByNameA
+`BOOL := WSAConnectByNameA(_In_ SOCKET s, _In_ LPSTR nodename, _In_ LPSTR servicename, _Inout_ LPDWORD LocalAddressLength, _Out_ LPSOCKADDR LocalAddress, _Inout_ LPDWORD RemoteAddressLength, _Out_ LPSOCKADDR RemoteAddress, _In_ const struct timeval *timeout, LPWSAOVERLAPPED Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAConnectByNameW
+`BOOL := WSAConnectByNameW(_In_ SOCKET s, _In_ LPWSTR nodename, _In_ LPWSTR servicename, _Inout_ LPDWORD LocalAddressLength, _Out_ LPSOCKADDR LocalAddress, _Inout_ LPDWORD RemoteAddressLength, _Out_ LPSOCKADDR RemoteAddress, _In_ const struct timeval *timeout, LPWSAOVERLAPPED Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSACreateEvent
+`WSAEVENT := WSACreateEvent(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSADuplicateSocket
+`int := WSADuplicateSocket(_In_ SOCKET s, _In_ DWORD dwProcessId, _Out_ LPWSAPROTOCOL_INFO lpProtocolInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSADuplicateSocketA
+`int := WSADuplicateSocketA(_In_ SOCKET s, _In_ DWORD dwProcessId, _Out_ LPWSAPROTOCOL_INFO lpProtocolInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSADuplicateSocketW
+`int := WSADuplicateSocketW(_In_ SOCKET s, _In_ DWORD dwProcessId, _Out_ LPWSAPROTOCOL_INFO lpProtocolInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProviders
+`int := WSAEnumNameSpaceProviders(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFO lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProvidersA
+`int := WSAEnumNameSpaceProvidersA(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFO lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProvidersEx
+`int := WSAEnumNameSpaceProvidersEx(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFOEX lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProvidersExA
+`int := WSAEnumNameSpaceProvidersExA(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFOEX lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProvidersExW
+`int := WSAEnumNameSpaceProvidersExW(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFOEX lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNameSpaceProvidersW
+`int := WSAEnumNameSpaceProvidersW(_Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSANAMESPACE_INFO lpnspBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumNetworkEvents
+`int := WSAEnumNetworkEvents(_In_ SOCKET s, _In_ WSAEVENT hEventObject, _Out_ LPWSANETWORKEVENTS lpNetworkEvents)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumProtocols
+`int := WSAEnumProtocols(_In_ LPINT lpiProtocols, _Out_ LPWSAPROTOCOL_INFO lpProtocolBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumProtocolsA
+`int := WSAEnumProtocolsA(_In_ LPINT lpiProtocols, _Out_ LPWSAPROTOCOL_INFO lpProtocolBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEnumProtocolsW
+`int := WSAEnumProtocolsW(_In_ LPINT lpiProtocols, _Out_ LPWSAPROTOCOL_INFO lpProtocolBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAEventSelect
+`int := WSAEventSelect(_In_ SOCKET s, _In_ WSAEVENT hEventObject, _In_ long lNetworkEvents)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetLastError
+`int := WSAGetLastError(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetOverlappedResult
+`BOOL := WSAGetOverlappedResult(_In_ SOCKET s, _In_ LPWSAOVERLAPPED lpOverlapped, _Out_ LPDWORD lpcbTransfer, _In_ BOOL fWait, _Out_ LPDWORD lpdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetQOSByName
+`BOOL := WSAGetQOSByName(_In_ SOCKET s, _Inout_ LPWSABUF lpQOSName, _Out_ LPQOS lpQOS)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassInfo
+`int := WSAGetServiceClassInfo(_In_ LPGUID lpProviderId, _In_ LPGUID lpServiceClassId, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassInfoA
+`int := WSAGetServiceClassInfoA(_In_ LPGUID lpProviderId, _In_ LPGUID lpServiceClassId, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassInfoW
+`int := WSAGetServiceClassInfoW(_In_ LPGUID lpProviderId, _In_ LPGUID lpServiceClassId, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassNameByClassId
+`int := WSAGetServiceClassNameByClassId(_In_ LPGUID lpServiceClassId, _Out_ LPTSTR lpszServiceClassName, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassNameByClassIdA
+`int := WSAGetServiceClassNameByClassIdA(_In_ LPGUID lpServiceClassId, _Out_ LPSTR lpszServiceClassName, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAGetServiceClassNameByClassIdW
+`int := WSAGetServiceClassNameByClassIdW(_In_ LPGUID lpServiceClassId, _Out_ LPWSTR lpszServiceClassName, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAHtonl
+`int := WSAHtonl(_In_ SOCKET s, _In_ u_long hostlong, _Out_ u_long *lpnetlong)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAHtons
+`int := WSAHtons(_In_ SOCKET s, _In_ u_short hostshort, _Out_ u_short *lpnetshort)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAInstallServiceClass
+`int := WSAInstallServiceClass(_In_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAInstallServiceClassA
+`int := WSAInstallServiceClassA(_In_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAInstallServiceClassW
+`int := WSAInstallServiceClassW(_In_ LPWSASERVICECLASSINFO lpServiceClassInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAIoctl
+`int := WSAIoctl(_In_ SOCKET s, _In_ DWORD dwIoControlCode, _In_ LPVOID lpvInBuffer, _In_ DWORD cbInBuffer, _Out_ LPVOID lpvOutBuffer, _In_ DWORD cbOutBuffer, _Out_ LPDWORD lpcbBytesReturned, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAJoinLeaf
+`SOCKET := WSAJoinLeaf(_In_ SOCKET s, _In_ const struct sockaddr *name, _In_ int namelen, _In_ LPWSABUF lpCallerData, _Out_ LPWSABUF lpCalleeData, _In_ LPQOS lpSQOS, _In_ LPQOS lpGQOS, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceBegin
+`int := WSALookupServiceBegin(_In_ LPWSAQUERYSET lpqsRestrictions, _In_ DWORD dwControlFlags, _Out_ LPHANDLE lphLookup)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceBeginA
+`int := WSALookupServiceBeginA(_In_ LPWSAQUERYSET lpqsRestrictions, _In_ DWORD dwControlFlags, _Out_ LPHANDLE lphLookup)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceBeginW
+`int := WSALookupServiceBeginW(_In_ LPWSAQUERYSET lpqsRestrictions, _In_ DWORD dwControlFlags, _Out_ LPHANDLE lphLookup)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceEnd
+`int := WSALookupServiceEnd(_In_ HANDLE hLookup)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceNext
+`int := WSALookupServiceNext(_In_ HANDLE hLookup, _In_ DWORD dwControlFlags, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSAQUERYSET lpqsResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceNextA
+`int := WSALookupServiceNextA(_In_ HANDLE hLookup, _In_ DWORD dwControlFlags, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSAQUERYSET lpqsResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSALookupServiceNextW
+`int := WSALookupServiceNextW(_In_ HANDLE hLookup, _In_ DWORD dwControlFlags, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPWSAQUERYSET lpqsResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSANtohl
+`int := WSANtohl(_In_ SOCKET s, _In_ u_long netlong, _Out_ u_long *lphostlong)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSANtohs
+`int := WSANtohs(_In_ SOCKET s, _In_ u_short netshort, _Out_ u_short *lphostshort)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAPoll
+`int := WSAPoll(_Inout_ WSAPOLLFD fdarray[], _In_ ULONG nfds, _In_ INT timeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAProviderCompleteAsyncCall
+`int := WSAProviderCompleteAsyncCall(HANDLE hAsyncCall, INT iRetCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAProviderConfigChange
+`int := WSAProviderConfigChange(_Inout_ LPHANDLE lpNotificationHandle, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSARecv
+`int := WSARecv(_In_ SOCKET s, _Inout_ LPWSABUF lpBuffers, _In_ DWORD dwBufferCount, _Out_ LPDWORD lpNumberOfBytesRecvd, _Inout_ LPDWORD lpFlags, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSARecvDisconnect
+`int := WSARecvDisconnect(_In_ SOCKET s, _Out_ LPWSABUF lpInboundDisconnectData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSARecvFrom
+`int := WSARecvFrom(_In_ SOCKET s, _Inout_ LPWSABUF lpBuffers, _In_ DWORD dwBufferCount, _Out_ LPDWORD lpNumberOfBytesRecvd, _Inout_ LPDWORD lpFlags, _Out_ struct sockaddr *lpFrom, _Inout_ LPINT lpFromlen, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSARemoveServiceClass
+`int := WSARemoveServiceClass(_In_ LPGUID lpServiceClassId)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAResetEvent
+`BOOL := WSAResetEvent(_In_ WSAEVENT hEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASend
+`int := WSASend(_In_ SOCKET s, _In_ LPWSABUF lpBuffers, _In_ DWORD dwBufferCount, _Out_ LPDWORD lpNumberOfBytesSent, _In_ DWORD dwFlags, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASendDisconnect
+`int := WSASendDisconnect(_In_ SOCKET s, _In_ LPWSABUF lpOutboundDisconnectData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASendMsg
+`int := WSASendMsg(_In_ SOCKET s, _In_ LPWSAMSG lpMsg, _In_ DWORD dwFlags, _Out_ LPDWORD lpNumberOfBytesSent, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASendTo
+`int := WSASendTo(_In_ SOCKET s, _In_ LPWSABUF lpBuffers, _In_ DWORD dwBufferCount, _Out_ LPDWORD lpNumberOfBytesSent, _In_ DWORD dwFlags, _In_ const struct sockaddr *lpTo, _In_ int iToLen, _In_ LPWSAOVERLAPPED lpOverlapped, _In_ LPWSAOVERLAPPED_COMPLETION_ROUTINE lpCompletionRoutine)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASetEvent
+`BOOL := WSASetEvent(_In_ WSAEVENT hEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASetLastError
+`VOID := WSASetLastError(_In_ int iError)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASetService
+`int := WSASetService(_In_ LPWSAQUERYSET lpqsRegInfo, _In_ WSAESETSERVICEOP essOperation, _In_ DWORD dwControlFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASetServiceA
+`int := WSASetServiceA(_In_ LPWSAQUERYSET lpqsRegInfo, _In_ WSAESETSERVICEOP essOperation, _In_ DWORD dwControlFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASetServiceW
+`int := WSASetServiceW(_In_ LPWSAQUERYSET lpqsRegInfo, _In_ WSAESETSERVICEOP essOperation, _In_ DWORD dwControlFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASocket
+`SOCKET := WSASocket(_In_ int af, _In_ int type, _In_ int protocol, _In_ LPWSAPROTOCOL_INFO lpProtocolInfo, _In_ GROUP g, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASocketA
+`SOCKET := WSASocketA(_In_ int af, _In_ int type, _In_ int protocol, _In_ LPWSAPROTOCOL_INFO lpProtocolInfo, _In_ GROUP g, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSASocketW
+`SOCKET := WSASocketW(_In_ int af, _In_ int type, _In_ int protocol, _In_ LPWSAPROTOCOL_INFO lpProtocolInfo, _In_ GROUP g, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAStartup
+`int := WSAStartup(_In_ WORD wVersionRequested, _Out_ LPWSADATA lpWSAData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAStringToAddress
+`int := WSAStringToAddress(_In_ LPTSTR AddressString, _In_ INT AddressFamily, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Out_ LPSOCKADDR lpAddress, _Inout_ LPINT lpAddressLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAStringToAddressA
+`int := WSAStringToAddressA(_In_ LPSTR AddressString, _In_ INT AddressFamily, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Out_ LPSOCKADDR lpAddress, _Inout_ LPINT lpAddressLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAStringToAddressW
+`int := WSAStringToAddressW(_In_ LPWSTR AddressString, _In_ INT AddressFamily, _In_opt_ LPWSAPROTOCOL_INFO lpProtocolInfo, _Out_ LPSOCKADDR lpAddress, _Inout_ LPINT lpAddressLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAUnadvertiseProvider
+`int := WSAUnadvertiseProvider(_In_ const GUID *puuidProviderId)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSAWaitForMultipleEvents
+`DWORD := WSAWaitForMultipleEvents(_In_ DWORD cEvents, _In_ const WSAEVENT *lphEvents, _In_ BOOL fWaitAll, _In_ DWORD dwTimeout, _In_ BOOL fAlertable)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCDeinstallProvider
+`int := WSCDeinstallProvider(_In_ LPGUID lpProviderId, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCEnableNSProvider
+`int := WSCEnableNSProvider(_In_ LPGUID lpProviderId, _In_ BOOL fEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCEnumProtocols
+`int := WSCEnumProtocols(_In_ LPINT lpiProtocols, _Out_ LPWSAPROTOCOL_INFOW lpProtocolBuffer, _Inout_ LPDWORD lpdwBufferLength, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCGetApplicationCategory
+`int := WSCGetApplicationCategory(_In_ LPCWSTR Path, _In_ DWORD PathLength, _In_ LPCWSTR Extra, _In_ DWORD ExtraLength, _Out_ DWORD *pPermittedLspCategories, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCGetProviderInfo
+`int := WSCGetProviderInfo(_In_ LPGUID lpProviderId, _In_ WSC_PROVIDER_INFO_TYPE InfoType, _Out_ PBYTE Info, _Inout_ size_t *InfoSize, _In_ DWORD Flags, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCGetProviderPath
+`int := WSCGetProviderPath(_In_ LPGUID lpProviderId, _Out_ LPWSTR lpszProviderDllPath, _Inout_ LPINT lpProviderDllPathLen, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCInstallNameSpace
+`int := WSCInstallNameSpace(_In_ LPWSTR lpszIdentifier, _In_ LPWSTR lpszPathName, _In_ DWORD dwNameSpace, _In_ DWORD dwVersion, _In_ LPGUID lpProviderId)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCInstallNameSpaceEx
+`int := WSCInstallNameSpaceEx(_In_ LPWSTR lpszIdentifier, _In_ LPWSTR lpszPathName, _In_ DWORD dwNameSpace, _In_ DWORD dwVersion, _In_ LPGUID lpProviderId, _In_ LPBLOB lpProviderInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCInstallProvider
+`int := WSCInstallProvider(_In_ const LPGUID lpProviderId, _In_ const LPWSTR lpszProviderDllPath, _In_ const LPWSAPROTOCOL_INFO lpProtocolInfoList, _In_ DWORD dwNumberOfEntries, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCInstallProviderAndChains
+`int := WSCInstallProviderAndChains(_In_ const LPGUID lpProviderId, _In_ const LPWSTR lpszProviderDllPath, _In_ const LPWSTR lpszLspName, _In_ DWORD dwServiceFlags, _In_ const LPWSAPROTOCOL_INFO lpProtocolInfoList, _In_ DWORD dwNumberOfEntries, _Out_opt_ LPDWORD lpdwCatalogEntryId, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCSetApplicationCategory
+`int := WSCSetApplicationCategory(_In_ LPCWSTR Path, _In_ DWORD PathLength, _In_ LPCWSTR Extra, _In_ DWORD ExtraLength, _In_ DWORD PermittedLspCategories, _Out_ DWORD *pPrevPermLspCat, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCSetProviderInfo
+`int := WSCSetProviderInfo(_In_ LPGUID lpProviderId, _In_ WSC_PROVIDER_INFO_TYPE InfoType, _In_ PBYTE Info, _In_ size_t InfoSize, _In_ DWORD Flags, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCUnInstallNameSpace
+`int := WSCUnInstallNameSpace(_In_ LPGUID lpProviderId)
+`/docs/commands/WinApi.htm
+
+
+Function
+WSCUpdateProvider
+`int := WSCUpdateProvider(_In_ LPGUID lpProviderId, _In_ const WCHAR *lpszProviderDllPath, _In_ const LPWSAPROTOCOL_INFO lpProtocolInfoList, _In_ DWORD dwNumberOfEntries, _Out_ LPINT lpErrno)
+`/docs/commands/WinApi.htm

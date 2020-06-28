@@ -161,8 +161,8 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		
 		subClasses := ""
 		For clName, cObj in ClassesList {
-			parent := cObj["parent"]
-			subClasses .= (cObj["parent"] = className) ? clName ", " : ""
+			parent := cObj.Has("parent") ? cObj["parent"] : ""
+			subClasses .= (parent = className) ? clName ", " : ""
 		}
 		subClasses := Trim(subClasses,", ")
 		

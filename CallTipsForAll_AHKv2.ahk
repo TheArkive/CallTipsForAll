@@ -167,73 +167,24 @@ Down:: ; scroll when multiple records are available for call tips
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
-	msgbox ControlGetHwnd("scintilla1","ahk_id " oCallTip.progHwnd) " / " ControlGetHwnd("scintilla2","ahk_id " oCallTip.progHwnd)
-	; A_Clipboard := Jxon_Dump(FunctionList,4)
-	; msgbox "check FunctionList"
-	; testList := ""
-	; For curFunc, obj in FunctionList {
-		; params := obj["desc"]
-		; testList .= curFunc " / " (params.Has(1) ? params[1] : "") "`r`n`r`n"
-	; }
-	; A_Clipboard := testList
-	; msgbox "Function List:`r`n`r`n" testList
+	A_Clipboard := Jxon_Dump(FunctionList,4)
+	msgbox "check FunctionList"
 	
+	A_Clipboard := Jxon_dump(CustomFunctions,4)
+	msgbox "check CustomFunctions"
 	
-	; testList := ""
-	; For curName, obj in CustomFunctions {
-		; desc := obj["desc"]
-		; testList .= curName " / " desc "`r`n`r`n"
-	; }
-		
-	; msgbox "Custom Functions:`r`n`r`n" testList
+	A_Clipboard := Jxon_dump(ObjectList,4)
+	msgbox "check ObjectList"
 	
-	; testList := ""
-	; For objName, obj in ObjectList {
-		; For curType, obj2 in obj["types"] {
-			; type := curType, label := obj2["label"], match := obj2["match"]
-			; testList .= objName " / " label " / " type "`r`n" A_Index ": " match "`r`n"
-		; }
-		; testList .= "`r`n"
-	; }
-	; msgbox ObjectList.Count "`r`nObjectList:`r`n`r`n" testList
+	A_Clipboard := Jxon_dump(ClassesList,4)
+	msgbox "check ClassesList"
 	
+	A_Clipboard := Jxon_dump(IncludesList,4)
+	msgbox "check IncludesList"
 	
-	; testList := ""
-	; For className, obj in ClassesList {
-		; testList .= "`r`n" className " / " obj["type"] "`r`n"
-		; For member, memObj in obj["members"] {
-			; testList .= "`t" member " / " memObj["type"] "`r`n"
-		; }
-	; }
-	; A_Clipboard := testList
-	; MsgBox "Classes loaded:`r`n`r`n" testList
-	
-	; A_Clipboard :=   
+	A_Clipboard := Jxon_dump(ObjectCreateList,4)
+	msgbox "check ObjectCreateList"
 }
-
-; F10:: ; list functions - for debugging List_*.txt files only
-; {
-	; testList := ""
-	; For curName, obj in FunctionList {
-		; if (curName = "msgbox") {
-			; desc := obj["desc"]
-			; testList .= curName "`r`n" desc "`r`n`r`n"
-		; }
-	; }
-		
-	; msgbox "Functions:`r`n`r`n" testList
-	
-	; testList := ""
-	; For level, lvlObj in ObjectCreateList { ; for debug only
-		; For label, labelObj in lvlObj {
-			; regex := labelObj["regex"]
-			; type := labelObj["type"]
-			; direct := labelObj["direct"]
-			; testList .= level " / " label " / " type "`r`n" regex "`r`n`r`n"
-		; }
-	; }
-	; msgbox testList
-; }
 
 ; F9::
 ; {

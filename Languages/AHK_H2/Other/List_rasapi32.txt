@@ -1,0 +1,730 @@
+Function
+RasClearConnectionStatistics
+`DWORD := RasClearConnectionStatistics(_In_ HRASCONN hRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasClearLinkStatistics
+`DWORD := RasClearLinkStatistics(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasConnectionNotification
+`DWORD := RasConnectionNotification(_In_ HRASCONN hrasconn, _In_ HANDLE hEvent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasConnectionNotificationA
+`DWORD := RasConnectionNotificationA(_In_ HRASCONN hrasconn, _In_ HANDLE hEvent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasConnectionNotificationW
+`DWORD := RasConnectionNotificationW(_In_ HRASCONN hrasconn, _In_ HANDLE hEvent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasCreatePhonebookEntry
+`DWORD := RasCreatePhonebookEntry(_In_ HWND hwnd, _In_ LPCTSTR lpszPhonebook)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasCreatePhonebookEntryA
+`DWORD := RasCreatePhonebookEntryA(_In_ HWND hwnd, _In_ LPCSTR lpszPhonebook)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasCreatePhonebookEntryW
+`DWORD := RasCreatePhonebookEntryW(_In_ HWND hwnd, _In_ LPCWSTR lpszPhonebook)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteEntry
+`DWORD := RasDeleteEntry(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteEntryA
+`DWORD := RasDeleteEntryA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteEntryW
+`DWORD := RasDeleteEntryW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteSubEntry
+`DWORD := RasDeleteSubEntry(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _In_ DWORD dwSubEntryId)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteSubEntryA
+`DWORD := RasDeleteSubEntryA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _In_ DWORD dwSubEntryId)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDeleteSubEntryW
+`DWORD := RasDeleteSubEntryW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _In_ DWORD dwSubEntryId)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDial
+`DWORD := RasDial(_In_ LPRASDIALEXTENSIONS lpRasDialExtensions, _In_ LPCTSTR lpszPhonebook, _In_ LPRASDIALPARAMS lpRasDialParams, _In_ DWORD dwNotifierType, _In_ LPVOID lpvNotifier, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDialA
+`DWORD := RasDialA(_In_ LPRASDIALEXTENSIONS lpRasDialExtensions, _In_ LPCSTR lpszPhonebook, _In_ LPRASDIALPARAMS lpRasDialParams, _In_ DWORD dwNotifierType, _In_ LPVOID lpvNotifier, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDialW
+`DWORD := RasDialW(_In_ LPRASDIALEXTENSIONS lpRasDialExtensions, _In_ LPCWSTR lpszPhonebook, _In_ LPRASDIALPARAMS lpRasDialParams, _In_ DWORD dwNotifierType, _In_ LPVOID lpvNotifier, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEditPhonebookEntry
+`DWORD := RasEditPhonebookEntry(_In_ HWND hwnd, _In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEditPhonebookEntryA
+`DWORD := RasEditPhonebookEntryA(_In_ HWND hwnd, _In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEditPhonebookEntryW
+`DWORD := RasEditPhonebookEntryW(_In_ HWND hwnd, _In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumAutodialAddresses
+`DWORD := RasEnumAutodialAddresses(_Inout_ LPTSTR *lppAddresses, _Inout_ LPDWORD lpdwcbAddresses, _Out_ LPDWORD lpdwcAddresses)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumAutodialAddressesA
+`DWORD := RasEnumAutodialAddressesA(_Inout_ LPSTR *lppAddresses, _Inout_ LPDWORD lpdwcbAddresses, _Out_ LPDWORD lpdwcAddresses)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumAutodialAddressesW
+`DWORD := RasEnumAutodialAddressesW(_Inout_ LPWSTR *lppAddresses, _Inout_ LPDWORD lpdwcbAddresses, _Out_ LPDWORD lpdwcAddresses)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumConnections
+`DWORD := RasEnumConnections(_Inout_ LPRASCONN lprasconn, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcConnections)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumConnectionsA
+`DWORD := RasEnumConnectionsA(_Inout_ LPRASCONN lprasconn, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcConnections)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumConnectionsW
+`DWORD := RasEnumConnectionsW(_Inout_ LPRASCONN lprasconn, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcConnections)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumDevices
+`DWORD := RasEnumDevices(_In_ LPRASDEVINFO lpRasDevInfo, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcDevices)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumDevicesA
+`DWORD := RasEnumDevicesA(_In_ LPRASDEVINFO lpRasDevInfo, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcDevices)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumDevicesW
+`DWORD := RasEnumDevicesW(_In_ LPRASDEVINFO lpRasDevInfo, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcDevices)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumEntries
+`DWORD := RasEnumEntries(_In_ LPCTSTR reserved, _In_ LPCTSTR lpszPhonebook, _Inout_ LPRASENTRYNAME lprasentryname, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumEntriesA
+`DWORD := RasEnumEntriesA(_In_ LPCSTR reserved, _In_ LPCSTR lpszPhonebook, _Inout_ LPRASENTRYNAME lprasentryname, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEnumEntriesW
+`DWORD := RasEnumEntriesW(_In_ LPCWSTR reserved, _In_ LPCWSTR lpszPhonebook, _Inout_ LPRASENTRYNAME lprasentryname, _Inout_ LPDWORD lpcb, _Out_ LPDWORD lpcEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasFreeEapUserIdentity
+`VOID := RasFreeEapUserIdentity(_In_ LPRASEAPUSERIDENTITY pRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasFreeEapUserIdentityA
+`VOID := RasFreeEapUserIdentityA(_In_ LPRASEAPUSERIDENTITY pRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasFreeEapUserIdentityW
+`VOID := RasFreeEapUserIdentityW(_In_ LPRASEAPUSERIDENTITY pRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialAddress
+`DWORD := RasGetAutodialAddress(_In_ LPCTSTR lpszAddress, _In_ LPDWORD lpdwReserved, _Inout_ LPRASAUTODIALENTRY lpAutoDialEntries, _Inout_ LPDWORD lpdwcbAutoDialEntries, _Out_ LPDWORD lpdwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialAddressA
+`DWORD := RasGetAutodialAddressA(_In_ LPCSTR lpszAddress, _In_ LPDWORD lpdwReserved, _Inout_ LPRASAUTODIALENTRY lpAutoDialEntries, _Inout_ LPDWORD lpdwcbAutoDialEntries, _Out_ LPDWORD lpdwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialAddressW
+`DWORD := RasGetAutodialAddressW(_In_ LPCWSTR lpszAddress, _In_ LPDWORD lpdwReserved, _Inout_ LPRASAUTODIALENTRY lpAutoDialEntries, _Inout_ LPDWORD lpdwcbAutoDialEntries, _Out_ LPDWORD lpdwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialEnable
+`DWORD := RasGetAutodialEnable(_In_ DWORD dwDialingLocation, _Out_ LPBOOL lpfEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialEnableA
+`DWORD := RasGetAutodialEnableA(_In_ DWORD dwDialingLocation, _Out_ LPBOOL lpfEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialEnableW
+`DWORD := RasGetAutodialEnableW(_In_ DWORD dwDialingLocation, _Out_ LPBOOL lpfEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialParam
+`DWORD := RasGetAutodialParam(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _Inout_ LPDWORD lpdwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialParamA
+`DWORD := RasGetAutodialParamA(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _Inout_ LPDWORD lpdwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetAutodialParamW
+`DWORD := RasGetAutodialParamW(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _Inout_ LPDWORD lpdwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetConnectionStatistics
+`DWORD := RasGetConnectionStatistics(_In_ HRASCONN hRasConn, _Inout_ RAS_STATS *lpStatistics)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetConnectStatus
+`DWORD := RasGetConnectStatus(_In_ HRASCONN hrasconn, _Inout_ LPRASCONNSTATUS lprasconnstatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetConnectStatusA
+`DWORD := RasGetConnectStatusA(_In_ HRASCONN hrasconn, _Inout_ LPRASCONNSTATUS lprasconnstatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetConnectStatusW
+`DWORD := RasGetConnectStatusW(_In_ HRASCONN hrasconn, _Inout_ LPRASCONNSTATUS lprasconnstatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCountryInfo
+`DWORD := RasGetCountryInfo(_Inout_ LPRASCTRYINFO lpRasCtryInfo, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCountryInfoA
+`DWORD := RasGetCountryInfoA(_Inout_ LPRASCTRYINFO lpRasCtryInfo, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCountryInfoW
+`DWORD := RasGetCountryInfoW(_Inout_ LPRASCTRYINFO lpRasCtryInfo, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCredentials
+`DWORD := RasGetCredentials(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _Inout_ LPRASCREDENTIALS lpCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCredentialsA
+`DWORD := RasGetCredentialsA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _Inout_ LPRASCREDENTIALS lpCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCredentialsW
+`DWORD := RasGetCredentialsW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _Inout_ LPRASCREDENTIALS lpCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCustomAuthData
+`DWORD := RasGetCustomAuthData(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _Out_ BYTE *pbCustomAuthData, _Inout_ DWORD *pdwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCustomAuthDataA
+`DWORD := RasGetCustomAuthDataA(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _Out_ BYTE *pbCustomAuthData, _Inout_ DWORD *pdwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetCustomAuthDataW
+`DWORD := RasGetCustomAuthDataW(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _Out_ BYTE *pbCustomAuthData, _Inout_ DWORD *pdwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserData
+`DWORD := RasGetEapUserData(_In_ HANDLE hToken, _In_ LPCTSTR pszPhonebook, _In_ LPCTSTR pszEntry, _Out_ BYTE *pbEapData, _Inout_ DWORD *pdwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserDataA
+`DWORD := RasGetEapUserDataA(_In_ HANDLE hToken, _In_ LPCSTR pszPhonebook, _In_ LPCSTR pszEntry, _Out_ BYTE *pbEapData, _Inout_ DWORD *pdwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserDataW
+`DWORD := RasGetEapUserDataW(_In_ HANDLE hToken, _In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _Out_ BYTE *pbEapData, _Inout_ DWORD *pdwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserIdentity
+`DWORD := RasGetEapUserIdentity(_In_ LPCSTR pszPhonebook, _In_ LPCSTR pszEntry, _In_ DWORD dwFlags, _In_ HWND hwnd, _Out_ LPRASEAPUSERIDENTITY *ppRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserIdentityA
+`DWORD := RasGetEapUserIdentityA(_In_ LPCSTR pszPhonebook, _In_ LPCSTR pszEntry, _In_ DWORD dwFlags, _In_ HWND hwnd, _Out_ LPRASEAPUSERIDENTITY *ppRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEapUserIdentityW
+`DWORD := RasGetEapUserIdentityW(_In_ LPCSTR pszPhonebook, _In_ LPCSTR pszEntry, _In_ DWORD dwFlags, _In_ HWND hwnd, _Out_ LPRASEAPUSERIDENTITY *ppRasEapUserIdentity)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryDialParams
+`DWORD := RasGetEntryDialParams(_In_ LPCTSTR lpszPhonebook, _Inout_ LPRASDIALPARAMS lprasdialparams, _Out_ LPBOOL lpfPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryDialParamsA
+`DWORD := RasGetEntryDialParamsA(_In_ LPCSTR lpszPhonebook, _Inout_ LPRASDIALPARAMS lprasdialparams, _Out_ LPBOOL lpfPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryDialParamsW
+`DWORD := RasGetEntryDialParamsW(_In_ LPCWSTR lpszPhonebook, _Inout_ LPRASDIALPARAMS lprasdialparams, _Out_ LPBOOL lpfPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryProperties
+`DWORD := RasGetEntryProperties(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _Inout_ LPRASENTRY lpRasEntry, _Inout_ LPDWORD lpdwEntryInfoSize, _Out_ LPBYTE lpbDeviceInfo, _Inout_ LPDWORD lpdwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryPropertiesA
+`DWORD := RasGetEntryPropertiesA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _Inout_ LPRASENTRY lpRasEntry, _Inout_ LPDWORD lpdwEntryInfoSize, _Out_ LPBYTE lpbDeviceInfo, _Inout_ LPDWORD lpdwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetEntryPropertiesW
+`DWORD := RasGetEntryPropertiesW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _Inout_ LPRASENTRY lpRasEntry, _Inout_ LPDWORD lpdwEntryInfoSize, _Out_ LPBYTE lpbDeviceInfo, _Inout_ LPDWORD lpdwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetErrorString
+`DWORD := RasGetErrorString(_In_ UINT uErrorValue, _Out_ LPTSTR lpszErrorString, _In_ DWORD cBufSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetErrorStringA
+`DWORD := RasGetErrorStringA(_In_ UINT uErrorValue, _Out_ LPSTR lpszErrorString, _In_ DWORD cBufSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetErrorStringW
+`DWORD := RasGetErrorStringW(_In_ UINT uErrorValue, _Out_ LPWSTR lpszErrorString, _In_ DWORD cBufSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetLinkStatistics
+`DWORD := RasGetLinkStatistics(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry, _Inout_ RAS_STATS *lpStatistics)
+`/docs/commands/WinApi.htm
+
+
+Function
+rasgetnapstatus
+`DWORD := rasgetnapstatus(_In_ HRASCONN hRasConn, _Inout_ LPRASNAPSTATE pNapState)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetProjectionInfo
+`DWORD := RasGetProjectionInfo(_In_ HRASCONN hrasconn, _In_ RASPROJECTION rasprojection, _Out_ LPVOID lpprojection, _Inout_ LPDWORD lpcb)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetProjectionInfoA
+`DWORD := RasGetProjectionInfoA(_In_ HRASCONN hrasconn, _In_ RASPROJECTION rasprojection, _Out_ LPVOID lpprojection, _Inout_ LPDWORD lpcb)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetProjectionInfoEx
+`DWORD := RasGetProjectionInfoEx(_In_ HRASCONN Hrasconn, _Inout_ PRAS_PROJECTION_INFO pRasProjection, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetProjectionInfoW
+`DWORD := RasGetProjectionInfoW(_In_ HRASCONN hrasconn, _In_ RASPROJECTION rasprojection, _Out_ LPVOID lpprojection, _Inout_ LPDWORD lpcb)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryHandle
+`DWORD := RasGetSubEntryHandle(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryHandleA
+`DWORD := RasGetSubEntryHandleA(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryHandleW
+`DWORD := RasGetSubEntryHandleW(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry, _Out_ LPHRASCONN lphRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryProperties
+`DWORD := RasGetSubEntryProperties(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _In_ DWORD dwSubEntry, _Inout_ LPRASSUBENTRY lpRasSubEntry, _Inout_ LPDWORD lpdwcb, _In_ LPBYTE lpbDeviceConfig, _In_ LPDWORD lpcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryPropertiesA
+`DWORD := RasGetSubEntryPropertiesA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _In_ DWORD dwSubEntry, _Inout_ LPRASSUBENTRY lpRasSubEntry, _Inout_ LPDWORD lpdwcb, _In_ LPBYTE lpbDeviceConfig, _In_ LPDWORD lpcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasGetSubEntryPropertiesW
+`DWORD := RasGetSubEntryPropertiesW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _In_ DWORD dwSubEntry, _Inout_ LPRASSUBENTRY lpRasSubEntry, _Inout_ LPDWORD lpdwcb, _In_ LPBYTE lpbDeviceConfig, _In_ LPDWORD lpcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasHangUp
+`DWORD := RasHangUp(_In_ HRASCONN hRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasHangUpA
+`DWORD := RasHangUpA(_In_ HRASCONN hRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasHangUpW
+`DWORD := RasHangUpW(_In_ HRASCONN hRasConn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasInvokeEapUI
+`DWORD := RasInvokeEapUI(_In_ HRASCONN hRasConn, _In_ DWORD dwSubEntry, _In_ LPRASDIALEXTENSIONS lpExtensions, _In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasRenameEntry
+`DWORD := RasRenameEntry(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszOldEntry, _In_ LPCTSTR lpszNewEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasRenameEntryA
+`DWORD := RasRenameEntryA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszOldEntry, _In_ LPCSTR lpszNewEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasRenameEntryW
+`DWORD := RasRenameEntryW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszOldEntry, _In_ LPCWSTR lpszNewEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialAddress
+`DWORD := RasSetAutodialAddress(_In_ LPCTSTR lpszAddress, _In_ DWORD dwReserved, _In_ LPRASAUTODIALENTRY lpAutoDialEntries, _In_ DWORD dwcbAutoDialEntries, _In_ DWORD dwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialAddressA
+`DWORD := RasSetAutodialAddressA(_In_ LPCSTR lpszAddress, _In_ DWORD dwReserved, _In_ LPRASAUTODIALENTRY lpAutoDialEntries, _In_ DWORD dwcbAutoDialEntries, _In_ DWORD dwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialAddressW
+`DWORD := RasSetAutodialAddressW(_In_ LPCWSTR lpszAddress, _In_ DWORD dwReserved, _In_ LPRASAUTODIALENTRY lpAutoDialEntries, _In_ DWORD dwcbAutoDialEntries, _In_ DWORD dwcAutoDialEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialEnable
+`DWORD := RasSetAutodialEnable(_In_ DWORD dwDialingLocation, _In_ BOOL fEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialEnableA
+`DWORD := RasSetAutodialEnableA(_In_ DWORD dwDialingLocation, _In_ BOOL fEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialEnableW
+`DWORD := RasSetAutodialEnableW(_In_ DWORD dwDialingLocation, _In_ BOOL fEnabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialParam
+`DWORD := RasSetAutodialParam(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _In_ DWORD dwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialParamA
+`DWORD := RasSetAutodialParamA(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _In_ DWORD dwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetAutodialParamW
+`DWORD := RasSetAutodialParamW(_In_ DWORD dwKey, _Out_ LPVOID lpvValue, _In_ DWORD dwcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCredentials
+`DWORD := RasSetCredentials(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _In_ LPRASCREDENTIALS lpCredentials, _In_ BOOL fClearCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCredentialsA
+`DWORD := RasSetCredentialsA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _In_ LPRASCREDENTIALS lpCredentials, _In_ BOOL fClearCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCredentialsW
+`DWORD := RasSetCredentialsW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _In_ LPRASCREDENTIALS lpCredentials, _In_ BOOL fClearCredentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCustomAuthData
+`DWORD := RasSetCustomAuthData(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _In_ BYTE *pbCustomAuthData, _In_ DWORD dwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCustomAuthDataA
+`DWORD := RasSetCustomAuthDataA(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _In_ BYTE *pbCustomAuthData, _In_ DWORD dwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetCustomAuthDataW
+`DWORD := RasSetCustomAuthDataW(_In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _In_ BYTE *pbCustomAuthData, _In_ DWORD dwSizeofCustomAuthData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEapUserData
+`DWORD := RasSetEapUserData(_In_ HANDLE hToken, _In_ LPCTSTR pszPhonebook, _In_ LPCTSTR pszEntry, _In_ BYTE *pbEapData, _In_ DWORD dwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEapUserDataA
+`DWORD := RasSetEapUserDataA(_In_ HANDLE hToken, _In_ LPCSTR pszPhonebook, _In_ LPCSTR pszEntry, _In_ BYTE *pbEapData, _In_ DWORD dwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEapUserDataW
+`DWORD := RasSetEapUserDataW(_In_ HANDLE hToken, _In_ LPCWSTR pszPhonebook, _In_ LPCWSTR pszEntry, _In_ BYTE *pbEapData, _In_ DWORD dwSizeofEapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryDialParams
+`DWORD := RasSetEntryDialParams(_In_ LPCTSTR lpszPhonebook, _In_ LPRASDIALPARAMS lprasdialparams, _In_ BOOL fRemovePassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryDialParamsA
+`DWORD := RasSetEntryDialParamsA(_In_ LPCSTR lpszPhonebook, _In_ LPRASDIALPARAMS lprasdialparams, _In_ BOOL fRemovePassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryDialParamsW
+`DWORD := RasSetEntryDialParamsW(_In_ LPCWSTR lpszPhonebook, _In_ LPRASDIALPARAMS lprasdialparams, _In_ BOOL fRemovePassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryProperties
+`DWORD := RasSetEntryProperties(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _In_ LPRASENTRY lpRasEntry, _In_ DWORD dwEntryInfoSize, _In_ LPBYTE lpbDeviceInfo, _In_ DWORD dwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryPropertiesA
+`DWORD := RasSetEntryPropertiesA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _In_ LPRASENTRY lpRasEntry, _In_ DWORD dwEntryInfoSize, _In_ LPBYTE lpbDeviceInfo, _In_ DWORD dwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetEntryPropertiesW
+`DWORD := RasSetEntryPropertiesW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _In_ LPRASENTRY lpRasEntry, _In_ DWORD dwEntryInfoSize, _In_ LPBYTE lpbDeviceInfo, _In_ DWORD dwDeviceInfoSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetSubEntryProperties
+`DWORD := RasSetSubEntryProperties(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry, _In_ DWORD dwSubEntry, _In_ LPRASSUBENTRY lpRasSubEntry, _In_ DWORD dwcbRasSubEntry, _In_ LPBYTE lpbDeviceConfig, _In_ DWORD dwcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetSubEntryPropertiesA
+`DWORD := RasSetSubEntryPropertiesA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry, _In_ DWORD dwSubEntry, _In_ LPRASSUBENTRY lpRasSubEntry, _In_ DWORD dwcbRasSubEntry, _In_ LPBYTE lpbDeviceConfig, _In_ DWORD dwcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSetSubEntryPropertiesW
+`DWORD := RasSetSubEntryPropertiesW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry, _In_ DWORD dwSubEntry, _In_ LPRASSUBENTRY lpRasSubEntry, _In_ DWORD dwcbRasSubEntry, _In_ LPBYTE lpbDeviceConfig, _In_ DWORD dwcbDeviceConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasUpdateConnection
+`DWORD := RasUpdateConnection(_In_ HRASCONN hrasconn, _In_ LPRASUPDATECONN lprasupdateconn)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasValidateEntryName
+`DWORD := RasValidateEntryName(_In_ LPCTSTR lpszPhonebook, _In_ LPCTSTR lpszEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasValidateEntryNameA
+`DWORD := RasValidateEntryNameA(_In_ LPCSTR lpszPhonebook, _In_ LPCSTR lpszEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasValidateEntryNameW
+`DWORD := RasValidateEntryNameW(_In_ LPCWSTR lpszPhonebook, _In_ LPCWSTR lpszEntry)
+`/docs/commands/WinApi.htm

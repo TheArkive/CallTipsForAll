@@ -1,0 +1,2116 @@
+Function
+glAccum
+`VOID := glAccum(GLenum op, GLfloat value)
+`/docs/commands/WinApi.htm
+
+
+Function
+glAlphaFunc
+`VOID := glAlphaFunc(GLenum func, GLclampf ref)
+`/docs/commands/WinApi.htm
+
+
+Function
+glAreTexturesResident
+`GLboolean := glAreTexturesResident(GLsizei n, const GLuint *textures, GLboolean *residences)
+`/docs/commands/WinApi.htm
+
+
+Function
+glArrayElement
+`VOID := glArrayElement(GLint index)
+`/docs/commands/WinApi.htm
+
+
+Function
+glBegin
+`VOID := glBegin(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glBindTexture
+`VOID := glBindTexture(GLenum target, GLuint texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+glBitmap
+`VOID := glBitmap(GLSizei width, GLSizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, const GLubyte *bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+glBlendFunc
+`VOID := glBlendFunc(GLenum sfactor, GLenum dfactor)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCallList
+`VOID := glCallList(GLuint list)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCallLists
+`VOID := glCallLists(GLsizei n, GLenum type, const GLvoid *lists)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClear
+`VOID := glClear(GLbitfield mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClearAccum
+`VOID := glClearAccum(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClearColor
+`VOID := glClearColor(GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClearDepth
+`VOID := glClearDepth(GLclampd depth)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClearIndex
+`VOID := glClearIndex(GLfloat c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClearStencil
+`VOID := glClearStencil(GLint s)
+`/docs/commands/WinApi.htm
+
+
+Function
+glClipPlane
+`VOID := glClipPlane(GLenum plane, const GLdouble *equation)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3b
+`VOID := glColor3b(GLbyte red, GLbyte green, GLbyte blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3bv
+`VOID := glColor3bv(const GLbyte *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3d
+`VOID := glColor3d(GLdouble red, GLdouble green, GLdouble blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3dv
+`VOID := glColor3dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3f
+`VOID := glColor3f(GLfloat red, GLfloat green, GLfloat blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3fv
+`VOID := glColor3fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3i
+`VOID := glColor3i(GLint red, GLint green, GLint blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3iv
+`VOID := glColor3iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3s
+`VOID := glColor3s(GLshort red, GLshort green, GLshort blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3sv
+`VOID := glColor3sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3ub
+`VOID := glColor3ub(GLubyte red, GLubyte green, GLubyte blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3ubv
+`VOID := glColor3ubv(const GLubyte *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3ui
+`VOID := glColor3ui(GLuint red, GLuint green, GLuint blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3uiv
+`VOID := glColor3uiv(const GLuint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3us
+`VOID := glColor3us(GLushort red, GLushort green, GLushort blue)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor3usv
+`VOID := glColor3usv(const GLushort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4b
+`VOID := glColor4b(GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4bv
+`VOID := glColor4bv(const GLbyte *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4d
+`VOID := glColor4d(GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4dv
+`VOID := glColor4dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4f
+`VOID := glColor4f(GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4fv
+`VOID := glColor4fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4i
+`VOID := glColor4i(GLint red, GLint green, GLint blue, GLint alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4iv
+`VOID := glColor4iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4s
+`VOID := glColor4s(GLshort red, GLshort green, GLshort blue, GLshort alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4sv
+`VOID := glColor4sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4ub
+`VOID := glColor4ub(GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4ubv
+`VOID := glColor4ubv(const GLubyte *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4ui
+`VOID := glColor4ui(GLuint red, GLuint green, GLuint blue, GLuint alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4uiv
+`VOID := glColor4uiv(const GLuint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4us
+`VOID := glColor4us(GLushort red, GLushort green, GLushort blue, GLushort alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColor4usv
+`VOID := glColor4usv(const GLushort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColorMask
+`VOID := glColorMask(GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColorMaterial
+`VOID := glColorMaterial(GLenum face, GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glColorPointer
+`VOID := glColorPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCopyPixels
+`VOID := glCopyPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum type)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCopyTexImage1D
+`VOID := glCopyTexImage1D(GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLint border)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCopyTexImage2D
+`VOID := glCopyTexImage2D(GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCopyTexSubImage1D
+`VOID := glCopyTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCopyTexSubImage2D
+`VOID := glCopyTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height)
+`/docs/commands/WinApi.htm
+
+
+Function
+glCullFace
+`VOID := glCullFace(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDeleteLists
+`VOID := glDeleteLists(GLuint list, GLsizei range)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDeleteTextures
+`VOID := glDeleteTextures(GLsizei n, const GLuint *textures)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDepthFunc
+`VOID := glDepthFunc(GLenum func)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDepthMask
+`VOID := glDepthMask(GLboolean flag)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDepthRange
+`VOID := glDepthRange(GLclampd zNear, GLclampd zFar)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDisable
+`VOID := glDisable(GLenum cap)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDisableClientState
+`VOID := glDisableClientState(GLenum array)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDrawArrays
+`VOID := glDrawArrays(GLenum mode, GLint first, GLsizei count)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDrawBuffer
+`VOID := glDrawBuffer(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDrawElements
+`VOID := glDrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid *indices)
+`/docs/commands/WinApi.htm
+
+
+Function
+glDrawPixels
+`VOID := glDrawPixels(GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEdgeFlag
+`VOID := glEdgeFlag(GLboolean flag)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEdgeFlagPointer
+`VOID := glEdgeFlagPointer(GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEdgeFlagv
+`VOID := glEdgeFlagv(const GLboolean *flag)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEnable
+`VOID := glEnable(GLenum cap)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEnableClientState
+`VOID := glEnableClientState(GLenum array)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEnd
+`VOID := glEnd(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEndList
+`VOID := glEndList(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord1d
+`VOID := glEvalCoord1d(GLdouble u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord1dv
+`VOID := glEvalCoord1dv(const GLdouble *u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord1f
+`VOID := glEvalCoord1f(GLfloat u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord1fv
+`VOID := glEvalCoord1fv(const GLfloat *u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord2d
+`VOID := glEvalCoord2d(GLdouble u, GLdouble v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord2dv
+`VOID := glEvalCoord2dv(const GLdouble *u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord2f
+`VOID := glEvalCoord2f(GLfloat u, GLfloat v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalCoord2fv
+`VOID := glEvalCoord2fv(const GLfloat *u)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalMesh1
+`VOID := glEvalMesh1(GLenum mode, GLint i1, GLint i2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalMesh2
+`VOID := glEvalMesh2(GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalPoint1
+`VOID := glEvalPoint1(GLint i)
+`/docs/commands/WinApi.htm
+
+
+Function
+glEvalPoint2
+`VOID := glEvalPoint2(GLint i, GLint j)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFeedbackBuffer
+`VOID := glFeedbackBuffer(GLsizei size, GLenum type, GLfloat *buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFinish
+`VOID := glFinish(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFlush
+`VOID := glFlush(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFogf
+`VOID := glFogf(GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFogfv
+`VOID := glFogfv(GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFogi
+`VOID := glFogi(GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFogiv
+`VOID := glFogiv(GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFrontFace
+`VOID := glFrontFace(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glFrustum
+`VOID := glFrustum(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGenLists
+`GLuint := glGenLists(GLsizei range)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGenTextures
+`VOID := glGenTextures(GLsizei n, GLuint *textures)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetBooleanv
+`VOID := glGetBooleanv(GLenum pname, GLboolean *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetClipPlane
+`VOID := glGetClipPlane(GLenum plane, GLdouble *equation)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetDoublev
+`VOID := glGetDoublev(GLenum pname, GLboolean *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetError
+`GLenum := glGetError(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetFloatv
+`VOID := glGetFloatv(GLenum pname, GLboolean *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetIntegerv
+`VOID := glGetIntegerv(GLenum pname, GLboolean *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetLightfv
+`VOID := glGetLightfv(GLenum light, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetLightiv
+`VOID := glGetLightiv(GLenum light, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetMapdv
+`VOID := glGetMapdv(GLenum target, GLenum query, GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetMapfv
+`VOID := glGetMapfv(GLenum target, GLenum query, GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetMapiv
+`VOID := glGetMapiv(GLenum target, GLenum query, GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetMaterialfv
+`VOID := glGetMaterialfv(GLenum face, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetMaterialiv
+`VOID := glGetMaterialiv(GLenum face, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetPixelMapfv
+`VOID := glGetPixelMapfv(GLenum map, GLfloat *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetPixelMapuiv
+`VOID := glGetPixelMapuiv(GLenum map, GLuint *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetPixelMapusv
+`VOID := glGetPixelMapusv(GLenum map, GLushort *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetPointerv
+`VOID := glGetPointerv(GLenum pname, GLvoid **params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetPolygonStipple
+`VOID := glGetPolygonStipple(GLubyte *mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetString
+`GLubyte* := glGetString(GLenum name)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexEnvfv
+`VOID := glGetTexEnvfv(GLenum target, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexEnviv
+`VOID := glGetTexEnviv(GLenum target, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexGendv
+`VOID := glGetTexGendv(GLenum coord, GLenum pname, GLdouble *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexGenfv
+`VOID := glGetTexGenfv(GLenum coord, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexGeniv
+`VOID := glGetTexGeniv(GLenum coord, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexImage
+`VOID := glGetTexImage(GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexLevelParameterfv
+`VOID := glGetTexLevelParameterfv(GLenum target, GLint level, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexLevelParameteriv
+`VOID := glGetTexLevelParameteriv(GLenum target, GLint level, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexParameterfv
+`VOID := glGetTexParameterfv(GLenum target, GLenum pname, GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glGetTexParameteriv
+`VOID := glGetTexParameteriv(GLenum target, GLenum pname, GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glHint
+`VOID := glHint(GLenum target, GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexd
+`VOID := glIndexd(GLdouble c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexdv
+`VOID := glIndexdv(const GLdouble *c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexf
+`VOID := glIndexf(GLfloat c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexfv
+`VOID := glIndexfv(const GLfloat *c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexi
+`VOID := glIndexi(GLint c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexiv
+`VOID := glIndexiv(const GLint *c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexMask
+`VOID := glIndexMask(GLuint mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexPointer
+`VOID := glIndexPointer(GLenum type, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexs
+`VOID := glIndexs(GLshort c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIndexsv
+`VOID := glIndexsv(const GLshort *c)
+`/docs/commands/WinApi.htm
+
+
+Function
+glInitNames
+`VOID := glInitNames(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glInterleavedArrays
+`VOID := glInterleavedArrays(GLenum format, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIsEnabled
+`GLboolean := glIsEnabled(GLenum cap)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIsList
+`GLboolean := glIsList(GLuint list)
+`/docs/commands/WinApi.htm
+
+
+Function
+glIsTexture
+`GLboolean := glIsTexture(GLuint texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightf
+`VOID := glLightf(GLenum light, GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightfv
+`VOID := glLightfv(GLenum light, GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLighti
+`VOID := glLighti(GLenum light, GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightiv
+`VOID := glLightiv(GLenum light, GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightModelf
+`VOID := glLightModelf(GLenum pname, GLfloat *param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightModelfv
+`VOID := glLightModelfv(GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightModeli
+`VOID := glLightModeli(GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLightModeliv
+`VOID := glLightModeliv(GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLineStipple
+`VOID := glLineStipple(GLint factor, GLushort pattern)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLineWidth
+`VOID := glLineWidth(GLfloat width)
+`/docs/commands/WinApi.htm
+
+
+Function
+glListBase
+`VOID := glListBase(GLuint base)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLoadIdentity
+`VOID := glLoadIdentity(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLoadMatrixd
+`VOID := glLoadMatrixd(const GLdouble *m)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLoadMatrixf
+`VOID := glLoadMatrixf(const GLfloat *m)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLoadName
+`VOID := glLoadName(GLuint name)
+`/docs/commands/WinApi.htm
+
+
+Function
+glLogicOp
+`VOID := glLogicOp(GLenum opcode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMap1d
+`VOID := glMap1d(GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, const GLdouble *points)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMap1f
+`VOID := glMap1f(GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, const GLfloat *points)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMap2d
+`VOID := glMap2d(GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, const GLdouble *points)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMap2f
+`VOID := glMap2f(GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, const GLfloat *points)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMapGrid1d
+`VOID := glMapGrid1d(GLint un, GLdouble u1, GLdouble u2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMapGrid1f
+`VOID := glMapGrid1f(GLint un, GLfloat u1, GLfloat u2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMapGrid2d
+`VOID := glMapGrid2d(GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMapGrid2f
+`VOID := glMapGrid2f(GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMaterialf
+`VOID := glMaterialf(GLenum face, GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMaterialfv
+`VOID := glMaterialfv(GLenum face, GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMateriali
+`VOID := glMateriali(GLenum face, GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMaterialiv
+`VOID := glMaterialiv(GLenum face, GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMatrixMode
+`VOID := glMatrixMode(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMultMatrixd
+`VOID := glMultMatrixd(const GLdouble *m)
+`/docs/commands/WinApi.htm
+
+
+Function
+glMultMatrixf
+`VOID := glMultMatrixf(const GLdouble *m)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNewList
+`VOID := glNewList(GLuint list, GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3b
+`VOID := glNormal3b(GLbyte nx, GLbyte ny, GLbyte nz)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3bv
+`VOID := glNormal3bv(const GLbyte *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3d
+`VOID := glNormal3d(GLdouble nx, GLdouble ny, GLdouble nz)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3dv
+`VOID := glNormal3dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3f
+`VOID := glNormal3f(GLfloat nx, GLfloat ny, GLfloat nz)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3fv
+`VOID := glNormal3fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3i
+`VOID := glNormal3i(GLint nx, GLint ny, GLint nz)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3iv
+`VOID := glNormal3iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3s
+`VOID := glNormal3s(GLshort nx, GLshort ny, GLshort nz)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormal3sv
+`VOID := glNormal3sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glNormalPointer
+`VOID := glNormalPointer(GLenum type, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glOrtho
+`VOID := glOrtho(GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPassThrough
+`VOID := glPassThrough(GLfloat token)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelMapfv
+`VOID := glPixelMapfv(GLenum map, GLsizei mapsize, const GLfloat *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelMapuiv
+`VOID := glPixelMapuiv(GLenum map, GLsizei mapsize, const GLuint *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelMapusv
+`VOID := glPixelMapusv(GLenum map, GLsizei mapsize, const GLushort *values)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelStoref
+`VOID := glPixelStoref(GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelStorei
+`VOID := glPixelStorei(GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelTransferf
+`VOID := glPixelTransferf(GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelTransferi
+`VOID := glPixelTransferi(GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPixelZoom
+`VOID := glPixelZoom(GLfloat xfactor, GLfloat yfactor)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPointSize
+`VOID := glPointSize(GLfloat size)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPolygonMode
+`VOID := glPolygonMode(GLenum face, GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPolygonOffset
+`VOID := glPolygonOffset(GLfloat factor, GLfloat units)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPolygonStipple
+`VOID := glPolygonStipple(const GLubyte *mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPopAttrib
+`VOID := glPopAttrib(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPopClientAttrib
+`VOID := glPopClientAttrib(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPopMatrix
+`VOID := glPopMatrix(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPopName
+`VOID := glPopName(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPrioritizeTextures
+`VOID := glPrioritizeTextures(GLsizei n, const GLuint *textures, const GLclampf *priorities)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPushAttrib
+`VOID := glPushAttrib(GLbitfield mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPushClientAttrib
+`VOID := glPushClientAttrib(GLbitfield mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPushMatrix
+`VOID := glPushMatrix(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+glPushName
+`VOID := glPushName(GLuint name)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2d
+`VOID := glRasterPos2d(GLdouble x, GLdouble y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2dv
+`VOID := glRasterPos2dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2f
+`VOID := glRasterPos2f(GLfloat x, GLfloat y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2fv
+`VOID := glRasterPos2fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2i
+`VOID := glRasterPos2i(GLint x, GLint y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2iv
+`VOID := glRasterPos2iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2s
+`VOID := glRasterPos2s(GLshort x, GLshort y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos2sv
+`VOID := glRasterPos2sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3d
+`VOID := glRasterPos3d(GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3dv
+`VOID := glRasterPos3dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3f
+`VOID := glRasterPos3f(GLfloat x, GLfloat y, GLfloat z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3fv
+`VOID := glRasterPos3fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3i
+`VOID := glRasterPos3i(GLint x, GLint y, GLint z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3iv
+`VOID := glRasterPos3iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3s
+`VOID := glRasterPos3s(GLshort x, GLshort y, GLshort z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos3sv
+`VOID := glRasterPos3sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4d
+`VOID := glRasterPos4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4dv
+`VOID := glRasterPos4dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4f
+`VOID := glRasterPos4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4fv
+`VOID := glRasterPos4fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4i
+`VOID := glRasterPos4i(GLint x, GLint y, GLint z, GLint w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4iv
+`VOID := glRasterPos4iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4s
+`VOID := glRasterPos4s(GLshort x, GLshort y, GLshort z, GLshort w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRasterPos4sv
+`VOID := glRasterPos4sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glReadBuffer
+`VOID := glReadBuffer(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glReadPixels
+`VOID := glReadPixels(GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectd
+`VOID := glRectd(GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectdv
+`VOID := glRectdv(const GLdouble *v1, const GLdouble *v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectf
+`VOID := glRectf(GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectfv
+`VOID := glRectfv(const GLfloat *v1, const GLfloat *v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRecti
+`VOID := glRecti(GLint x1, GLint y1, GLint x2, GLint y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectiv
+`VOID := glRectiv(const GLint *v1, const GLint *v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRects
+`VOID := glRects(GLshort x1, GLshort y1, GLshort x2, GLshort y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRectsv
+`VOID := glRectsv(const GLshort *v1, const GLshort *v2)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRenderMode
+`GLint := glRenderMode(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRotated
+`VOID := glRotated(GLdouble angle, GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glRotatef
+`VOID := glRotatef(GLfloat angle, GLfloat x, GLfloat y, GLfloat z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glScaled
+`VOID := glScaled(GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glScalef
+`VOID := glScalef(GLfloat x, GLfloat y, GLfloat z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glScissor
+`VOID := glScissor(GLint x, GLint y, GLsizei width, GLsizei height)
+`/docs/commands/WinApi.htm
+
+
+Function
+glSelectBuffer
+`VOID := glSelectBuffer(GLsizei size, GLuint *buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glShadeModel
+`VOID := glShadeModel(GLenum mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+glStencilFunc
+`VOID := glStencilFunc(GLenum func, GLint ref, GLuint mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glStencilMask
+`VOID := glStencilMask(GLuint mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+glStencilOp
+`VOID := glStencilOp(GLenum fail, GLenum zfail, GLenum zpass)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1d
+`VOID := glTexCoord1d(GLdouble s)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1dv
+`VOID := glTexCoord1dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1f
+`VOID := glTexCoord1f(GLfloat s)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1fv
+`VOID := glTexCoord1fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1i
+`VOID := glTexCoord1i(GLint s)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1iv
+`VOID := glTexCoord1iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1s
+`VOID := glTexCoord1s(GLshort s)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord1sv
+`VOID := glTexCoord1sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2d
+`VOID := glTexCoord2d(GLdouble s, GLdouble t)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2dv
+`VOID := glTexCoord2dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2fv
+`VOID := glTexCoord2fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2i
+`VOID := glTexCoord2i(GLint s, GLint t)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2iv
+`VOID := glTexCoord2iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2s
+`VOID := glTexCoord2s(GLshort s, GLshort t)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord2sv
+`VOID := glTexCoord2sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3d
+`VOID := glTexCoord3d(GLdouble s, GLdouble t, GLdouble r)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3dv
+`VOID := glTexCoord3dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3f
+`VOID := glTexCoord3f(GLfloat s, GLfloat t, GLfloat r)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3fv
+`VOID := glTexCoord3fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3i
+`VOID := glTexCoord3i(GLint s, GLint t, GLint r)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3iv
+`VOID := glTexCoord3iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3s
+`VOID := glTexCoord3s(GLshort s, GLshort t, GLshort r)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord3sv
+`VOID := glTexCoord3sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4d
+`VOID := glTexCoord4d(GLdouble s, GLdouble t, GLdouble r, GLdouble q)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4dv
+`VOID := glTexCoord4dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4f
+`VOID := glTexCoord4f(GLfloat s, GLfloat t, GLfloat r, GLfloat q)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4fv
+`VOID := glTexCoord4fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4i
+`VOID := glTexCoord4i(GLint s, GLint t, GLint r, GLint q)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4iv
+`VOID := glTexCoord4iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4s
+`VOID := glTexCoord4s(GLshort s, GLshort t, GLshort r, GLshort q)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoord4sv
+`VOID := glTexCoord4sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexCoordPointer
+`VOID := glTexCoordPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexEnvf
+`VOID := glTexEnvf(GLenum target, GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexEnvfv
+`VOID := glTexEnvfv(GLenum target, GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexEnvi
+`VOID := glTexEnvi(GLenum target, GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexEnviv
+`VOID := glTexEnviv(GLenum target, GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGend
+`VOID := glTexGend(GLenum coord, GLenum pname, GLdouble param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGendv
+`VOID := glTexGendv(GLenum coord, GLenum pname, const GLdouble *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGenf
+`VOID := glTexGenf(GLenum coord, GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGenfv
+`VOID := glTexGenfv(GLenum coord, GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGeni
+`VOID := glTexGeni(GLenum coord, GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexGeniv
+`VOID := glTexGeniv(GLenum coord, GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexImage1D
+`VOID := glTexImage1D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLint format, GLenum type, const GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexImage2D
+`VOID := glTexImage2D(GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLint format, GLenum type, const GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexParameterf
+`VOID := glTexParameterf(GLenum target, GLenum pname, GLfloat param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexParameterfv
+`VOID := glTexParameterfv(GLenum target, GLenum pname, const GLfloat *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexParameteri
+`VOID := glTexParameteri(GLenum target, GLenum pname, GLint param)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexParameteriv
+`VOID := glTexParameteriv(GLenum target, GLenum pname, const GLint *params)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexSubImage1D
+`VOID := glTexSubImage1D(GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, const GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTexSubImage2D
+`VOID := glTexSubImage2D(GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *pixels)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTranslated
+`VOID := glTranslated(GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glTranslatef
+`VOID := glTranslatef(GLfloat x, GLfloat y, GLfloat z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2d
+`VOID := glVertex2d(GLdouble x, GLdouble y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2dv
+`VOID := glVertex2dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2f
+`VOID := glVertex2f(GLfloat x, GLfloat y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2fv
+`VOID := glVertex2fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2i
+`VOID := glVertex2i(GLint x, GLint y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2iv
+`VOID := glVertex2iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2s
+`VOID := glVertex2s(GLshort x, GLshort y)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex2sv
+`VOID := glVertex2sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3d
+`VOID := glVertex3d(GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3dv
+`VOID := glVertex3dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3f
+`VOID := glVertex3f(GLfloat x, GLfloat y, GLfloat z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3fv
+`VOID := glVertex3fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3i
+`VOID := glVertex3i(GLint x, GLint y, GLint z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3iv
+`VOID := glVertex3iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3s
+`VOID := glVertex3s(GLshort x, GLshort y, GLshort z)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex3sv
+`VOID := glVertex3sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4d
+`VOID := glVertex4d(GLdouble x, GLdouble y, GLdouble z, GLdouble w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4dv
+`VOID := glVertex4dv(const GLdouble *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4f
+`VOID := glVertex4f(GLfloat x, GLfloat y, GLfloat z, GLfloat w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4fv
+`VOID := glVertex4fv(const GLfloat *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4i
+`VOID := glVertex4i(GLint x, GLint y, GLint z, GLint w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4iv
+`VOID := glVertex4iv(const GLint *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4s
+`VOID := glVertex4s(GLshort x, GLshort y, GLshort z, GLshort w)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertex4sv
+`VOID := glVertex4sv(const GLshort *v)
+`/docs/commands/WinApi.htm
+
+
+Function
+glVertexPointer
+`VOID := glVertexPointer(GLint size, GLenum type, GLsizei stride, const GLvoid *pointer)
+`/docs/commands/WinApi.htm
+
+
+Function
+glViewport
+`VOID := glViewport(GLint x, GLint y, GLsizei width, GLsizei height)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglCopyContext
+`BOOL := wglCopyContext(HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglCreateContext
+`HGLRC := wglCreateContext(HDC hDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglCreateLayerContext
+`HGLRC := wglCreateLayerContext(HDC hdc, int iLayerPlane)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglDeleteContext
+`BOOL := wglDeleteContext(HGLRC hglrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglDescribeLayerPlane
+`BOOL := wglDescribeLayerPlane(HDC hdc, int iPixelFormat, int iLayerPlane, UINT nBytes, LPLAYERPLANEDESCRIPTOR plpd)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglGetCurrentContext
+`HGLRC := wglGetCurrentContext(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglGetCurrentDC
+`HDC := wglGetCurrentDC(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglGetLayerPaletteEntries
+`int := wglGetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF *pcr)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglGetProcAddress
+`PROC := wglGetProcAddress(LPCSTR lpszProc)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglMakeCurrent
+`BOOL := wglMakeCurrent(HDC hdc, HGLRC hglrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglRealizeLayerPalette
+`BOOL := wglRealizeLayerPalette(HDC hdc, int iLayerPlane, BOOL bRealize)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglSetLayerPaletteEntries
+`int := wglSetLayerPaletteEntries(HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF *pcr)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglShareLists
+`BOOL := wglShareLists(HGLRC hglrc1, HGLRC hglrc2)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglSwapLayerBuffers
+`BOOL := wglSwapLayerBuffers(HDC hdc, UINT fuPlanes)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontBitmaps
+`BOOL := wglUseFontBitmaps(HDC hdc, DWORD first, DWORD count, DWORD listBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontBitmapsA
+`BOOL := wglUseFontBitmapsA(HDC hdc, DWORD first, DWORD count, DWORD listBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontBitmapsW
+`BOOL := wglUseFontBitmapsW(HDC hdc, DWORD first, DWORD count, DWORD listBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontOutlines
+`BOOL := wglUseFontOutlines(HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontOutlinesA
+`BOOL := wglUseFontOutlinesA(HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
+`/docs/commands/WinApi.htm
+
+
+Function
+wglUseFontOutlinesW
+`BOOL := wglUseFontOutlinesW(HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf)
+`/docs/commands/WinApi.htm

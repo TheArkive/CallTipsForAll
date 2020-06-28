@@ -1,0 +1,280 @@
+Function
+CreateEnvironmentBlock
+`BOOL := CreateEnvironmentBlock(_Out_ LPVOID *lpEnvironment, _In_opt_ HANDLE hToken, _In_ BOOL bInherit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProfile
+`HRESULT := CreateProfile(_In_ LPCWSTR pszUserSid, _In_ LPCWSTR pszUserName, _Out_ LPWSTR pszProfilePath, _In_ DWORD cchProfilePath)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteProfile
+`BOOL := DeleteProfile(_In_ LPCTSTR lpSidString, _In_opt_ LPCTSTR lpProfilePath, _In_opt_ LPCTSTR lpComputerName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteProfileA
+`BOOL := DeleteProfileA(_In_ LPCSTR lpSidString, _In_opt_ LPCSTR lpProfilePath, _In_opt_ LPCSTR lpComputerName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteProfileW
+`BOOL := DeleteProfileW(_In_ LPCWSTR lpSidString, _In_opt_ LPCWSTR lpProfilePath, _In_opt_ LPCWSTR lpComputerName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyEnvironmentBlock
+`BOOL := DestroyEnvironmentBlock(_In_ LPVOID lpEnvironment)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnterCriticalPolicySection
+`HANDLE := EnterCriticalPolicySection(_In_ BOOL bMachine)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExpandEnvironmentStringsForUser
+`BOOL := ExpandEnvironmentStringsForUser(_In_opt_ HANDLE hToken, _In_ LPCTSTR lpSrc, _Out_ LPTSTR lpDest, _In_ DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExpandEnvironmentStringsForUserA
+`BOOL := ExpandEnvironmentStringsForUserA(_In_opt_ HANDLE hToken, _In_ LPCSTR lpSrc, _Out_ LPSTR lpDest, _In_ DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExpandEnvironmentStringsForUserW
+`BOOL := ExpandEnvironmentStringsForUserW(_In_opt_ HANDLE hToken, _In_ LPCWSTR lpSrc, _Out_ LPWSTR lpDest, _In_ DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeGPOList
+`BOOL := FreeGPOList(_In_ PGROUP_POLICY_OBJECT pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeGPOListA
+`BOOL := FreeGPOListA(_In_ PGROUP_POLICY_OBJECT pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeGPOListW
+`BOOL := FreeGPOListW(_In_ PGROUP_POLICY_OBJECT pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAllUsersProfileDirectory
+`BOOL := GetAllUsersProfileDirectory(_Out_opt_ LPTSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAllUsersProfileDirectoryA
+`BOOL := GetAllUsersProfileDirectoryA(_Out_opt_ LPSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAllUsersProfileDirectoryW
+`BOOL := GetAllUsersProfileDirectoryW(_Out_opt_ LPWSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAppliedGPOList
+`DWORD := GetAppliedGPOList(_In_ DWORD dwFlags, _In_ LPCTSTR pMachineName, _In_ PSID pSidUser, _In_ GUID *pGuidExtension, _Out_ PGROUP_POLICY_OBJECT *ppGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAppliedGPOListA
+`DWORD := GetAppliedGPOListA(_In_ DWORD dwFlags, _In_ LPCSTR pMachineName, _In_ PSID pSidUser, _In_ GUID *pGuidExtension, _Out_ PGROUP_POLICY_OBJECT *ppGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAppliedGPOListW
+`DWORD := GetAppliedGPOListW(_In_ DWORD dwFlags, _In_ LPCWSTR pMachineName, _In_ PSID pSidUser, _In_ GUID *pGuidExtension, _Out_ PGROUP_POLICY_OBJECT *ppGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDefaultUserProfileDirectory
+`BOOL := GetDefaultUserProfileDirectory(_Out_opt_ LPTSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDefaultUserProfileDirectoryA
+`BOOL := GetDefaultUserProfileDirectoryA(_Out_opt_ LPSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDefaultUserProfileDirectoryW
+`BOOL := GetDefaultUserProfileDirectoryW(_Out_opt_ LPWSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGPOList
+`BOOL := GetGPOList(_In_ HANDLE hToken, _In_ LPCTSTR lpName, _In_ LPCTSTR lpHostName, _In_ LPCTSTR lpComputerName, _In_ DWORD dwFlags, _Out_ PGROUP_POLICY_OBJECT *pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGPOListA
+`BOOL := GetGPOListA(_In_ HANDLE hToken, _In_ LPCSTR lpName, _In_ LPCSTR lpHostName, _In_ LPCSTR lpComputerName, _In_ DWORD dwFlags, _Out_ PGROUP_POLICY_OBJECT *pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGPOListW
+`BOOL := GetGPOListW(_In_ HANDLE hToken, _In_ LPCWSTR lpName, _In_ LPCWSTR lpHostName, _In_ LPCWSTR lpComputerName, _In_ DWORD dwFlags, _Out_ PGROUP_POLICY_OBJECT *pGPOList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProfilesDirectory
+`BOOL := GetProfilesDirectory(_Out_ LPTSTR lpProfilesDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProfilesDirectoryA
+`BOOL := GetProfilesDirectoryA(_Out_ LPSTR lpProfilesDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProfilesDirectoryW
+`BOOL := GetProfilesDirectoryW(_Out_ LPWSTR lpProfilesDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProfileType
+`BOOL := GetProfileType(_Out_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserProfileDirectory
+`BOOL := GetUserProfileDirectory(_In_ HANDLE hToken, _Out_opt_ LPTSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserProfileDirectoryA
+`BOOL := GetUserProfileDirectoryA(_In_ HANDLE hToken, _Out_opt_ LPSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserProfileDirectoryW
+`BOOL := GetUserProfileDirectoryW(_In_ HANDLE hToken, _Out_opt_ LPWSTR lpProfileDir, _Inout_ LPDWORD lpcchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+LeaveCriticalPolicySection
+`BOOL := LeaveCriticalPolicySection(_In_ HANDLE hSection)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadUserProfile
+`BOOL := LoadUserProfile(_In_ HANDLE hToken, _Inout_ LPPROFILEINFO lpProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadUserProfileA
+`BOOL := LoadUserProfileA(_In_ HANDLE hToken, _Inout_ LPPROFILEINFO lpProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadUserProfileW
+`BOOL := LoadUserProfileW(_In_ HANDLE hToken, _Inout_ LPPROFILEINFO lpProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ProcessGroupPolicyCompleted
+`DWORD := ProcessGroupPolicyCompleted(_In_ REFGPEXTENSIONID extensionId, _In_ ASYNCCOMPLETIONHANDLE pAsyncHandle, _In_ DWORD dwStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+ProcessGroupPolicyCompletedEx
+`DWORD := ProcessGroupPolicyCompletedEx(_In_ REFGPEXTENSIONID extensionId, _In_ ASYNCCOMPLETIONHANDLE pAsyncHandle, _In_ DWORD dwStatus, _In_ HRESULT RsopStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RefreshPolicy
+`BOOL := RefreshPolicy(_In_ BOOL bMachine)
+`/docs/commands/WinApi.htm
+
+
+Function
+RefreshPolicyEx
+`BOOL := RefreshPolicyEx(_In_ BOOL bMachine, _In_ DWORD dwOptions)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterGPNotification
+`BOOL := RegisterGPNotification(_In_ HANDLE hEvent, _In_ BOOL bMachine)
+`/docs/commands/WinApi.htm
+
+
+Function
+RSoPAccessCheckByType
+`HRESULT := RSoPAccessCheckByType(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ PSID pPrincipalSelfSid, _In_ PRSOPTOKEN pRsopToken, _In_ DWORD dwDesiredAccessMask, _In_ POBJECT_TYPE_LIST pObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING pGenericMapping, _In_ PPRIVILEGE_SET pPrivilegeSet, _In_ LPDWORD pdwPrivilegeSetLength, _Out_ LPDWORD pdwGrantedAccessMask, _Out_ LPBOOL pbAccessStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RSoPFileAccessCheck
+`HRESULT := RSoPFileAccessCheck(_In_ LPWSTR pszFileName, _In_ PRSOPTOKEN pRsopToken, _In_ DWORD dwDesiredAccessMask, _Out_ LPDWORD pdwGrantedAccessMask, _Out_ LPBOOL pbAccessStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+RSoPResetPolicySettingStatus
+`HRESULT := RSoPResetPolicySettingStatus(_In_ DWORD dwFlags, _In_ IWbemServices *pServices, _In_ IWbemClassObject *pSettingInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+RSoPSetPolicySettingStatus
+`HRESULT := RSoPSetPolicySettingStatus(_In_ DWORD dwFlags, _In_ IWbemServices *pServices, _In_ IWbemClassObject *pSettingInstance, _In_ DWORD nInfo, _In_ POLICYSETTINGSTATUSINFO *pStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnloadUserProfile
+`BOOL := UnloadUserProfile(_In_ HANDLE hToken, _In_ HANDLE hProfile)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterGPNotification
+`BOOL := UnregisterGPNotification(_In_ HANDLE hEvent)
+`/docs/commands/WinApi.htm
