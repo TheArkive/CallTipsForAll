@@ -1,0 +1,1408 @@
+Function
+CertAddCertificateContextToStore
+`BOOL := CertAddCertificateContextToStore(_In_ HCERTSTORE hCertStore, _In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCERT_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddCertificateLinkToStore
+`BOOL := CertAddCertificateLinkToStore(_In_ HCERTSTORE hCertStore, _In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCERT_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddCRLContextToStore
+`BOOL := CertAddCRLContextToStore(_In_ HCERTSTORE hCertStore, _In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCRL_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddCRLLinkToStore
+`BOOL := CertAddCRLLinkToStore(_In_ HCERTSTORE hCertStore, _In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCRL_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddCTLContextToStore
+`BOOL := CertAddCTLContextToStore(_In_ HCERTSTORE hCertStore, _In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCTL_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddCTLLinkToStore
+`BOOL := CertAddCTLLinkToStore(_In_ HCERTSTORE hCertStore, _In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwAddDisposition, _Out_opt_ PCCTL_CONTEXT *ppStoreContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCertificateToStore
+`BOOL := CertAddEncodedCertificateToStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwCertEncodingType, _In_ const BYTE *pbCertEncoded, _In_ DWORD cbCertEncoded, _In_ DWORD dwAddDisposition, _Out_opt_ PCCERT_CONTEXT *ppCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCertificateToSystemStore
+`BOOL := CertAddEncodedCertificateToSystemStore(_In_ LPCSTR szCertStoreName, _In_ const BYTE *pbCertEncoded, _In_ DWORD cbCertEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCertificateToSystemStoreA
+`BOOL := CertAddEncodedCertificateToSystemStoreA(_In_ LPCSTR szCertStoreName, _In_ const BYTE *pbCertEncoded, _In_ DWORD cbCertEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCertificateToSystemStoreW
+`BOOL := CertAddEncodedCertificateToSystemStoreW(_In_ LPCSTR szCertStoreName, _In_ const BYTE *pbCertEncoded, _In_ DWORD cbCertEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCRLToStore
+`BOOL := CertAddEncodedCRLToStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwCertEncodingType, _In_ const BYTE *pbCrlEncoded, _In_ DWORD cbCrlEncoded, _In_ DWORD dwAddDisposition, _Out_opt_ PCCRL_CONTEXT *ppCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEncodedCTLToStore
+`BOOL := CertAddEncodedCTLToStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwMsgAndCertEncodingType, _In_ const BYTE *pbCtlEncoded, _In_ DWORD cbCtlEncoded, _In_ DWORD dwAddDisposition, _Out_opt_ PCCTL_CONTEXT *ppCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddEnhancedKeyUsageIdentifier
+`BOOL := CertAddEnhancedKeyUsageIdentifier(_In_ PCCERT_CONTEXT pCertContext, _In_ LPCSTR pszUsageIdentifier)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddRefServerOcspResponse
+`VOID := CertAddRefServerOcspResponse(_In_ HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddRefServerOcspResponseContext
+`VOID := CertAddRefServerOcspResponseContext(_In_ PCCERT_SERVER_OCSP_RESPONSE_CONTEXT pServerOcspResponseContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddSerializedElementToStore
+`BOOL := CertAddSerializedElementToStore(_In_ HCERTSTORE hCertStore, _In_ const BYTE *pbElement, _In_ DWORD cbElement, _In_ DWORD dwAddDisposition, _In_ DWORD dwFlags, _In_ DWORD dwContextTypeFlags, _Out_ DWORD *pdwContextType, _Out_ const void **ppvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAddStoreToCollection
+`BOOL := CertAddStoreToCollection(_In_ HCERTSTORE hCollectionStore, _In_opt_ HCERTSTORE hSiblingStore, _In_ DWORD dwUpdateFlag, _In_ DWORD dwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertAlgIdToOID
+`LPCSTR := CertAlgIdToOID(_In_ DWORD dwAlgId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCloseServerOcspResponse
+`VOID := CertCloseServerOcspResponse(_In_ HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCloseStore
+`BOOL := CertCloseStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCompareCertificate
+`BOOL := CertCompareCertificate(_In_ DWORD dwCertEncodingType, _In_ PCERT_INFO pCertId1, _In_ PCERT_INFO pCertId2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCompareCertificateName
+`BOOL := CertCompareCertificateName(_In_ DWORD dwCertEncodingType, _In_ PCERT_NAME_BLOB pCertName1, _In_ PCERT_NAME_BLOB pCertName2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCompareIntegerBlob
+`BOOL := CertCompareIntegerBlob(_In_ PCRYPT_INTEGER_BLOB pInt1, _In_ PCRYPT_INTEGER_BLOB pInt2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertComparePublicKeyInfo
+`BOOL := CertComparePublicKeyInfo(_In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pPublicKey1, _In_ PCERT_PUBLIC_KEY_INFO pPublicKey2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertControlStore
+`BOOL := CertControlStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwFlags, _In_ DWORD dwCtrlType, _In_ const void *pvCtrlPara)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateCertificateChainEngine
+`BOOL := CertCreateCertificateChainEngine(_In_ PCERT_CHAIN_ENGINE_CONFIG pConfig, _Out_ HCERTCHAINENGINE *phChainEngine)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateCertificateContext
+`PCCERT_CONTEXT := CertCreateCertificateContext(_In_ DWORD dwCertEncodingType, _In_ const BYTE *pbCertEncoded, _In_ DWORD cbCertEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateContext
+`void* := CertCreateContext(_In_ DWORD dwContextType, _In_ DWORD dwEncodingType, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _In_ DWORD dwFlags, _In_opt_ PCERT_CREATE_CONTEXT_PARA pCreatePara)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateCRLContext
+`PCCRL_CONTEXT := CertCreateCRLContext(_In_ DWORD dwCertEncodingType, _In_ const BYTE *pbCrlEncoded, _In_ DWORD cbCrlEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateCTLContext
+`PCCTL_CONTEXT := CertCreateCTLContext(_In_ DWORD dwMsgAndCertEncodingType, _In_ const BYTE *pbCtlEncoded, _In_ DWORD cbCtlEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateCTLEntryFromCertificateContextProperties
+`BOOL := CertCreateCTLEntryFromCertificateContextProperties(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD cOptAttr, _In_ PCRYPT_ATTRIBUTE rgOptAttr, _In_ DWORD dwFlags, _In_ void *pvReserved, _Out_ PCTL_ENTRY pCtlEntry, _Inout_ DWORD *pcbCtlEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertCreateSelfSignCertificate
+`PCCERT_CONTEXT := CertCreateSelfSignCertificate(_In_opt_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey, _In_ PCERT_NAME_BLOB pSubjectIssuerBlob, _In_ DWORD dwFlags, _In_opt_ PCRYPT_KEY_PROV_INFO pKeyProvInfo, _In_opt_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm, _In_opt_ PSYSTEMTIME pStartTime, _In_opt_ PSYSTEMTIME pEndTime, PCERT_EXTENSIONS pExtensions)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDeleteCertificateFromStore
+`BOOL := CertDeleteCertificateFromStore(_In_ PCCERT_CONTEXT pCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDeleteCRLFromStore
+`BOOL := CertDeleteCRLFromStore(_In_ PCCRL_CONTEXT pCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDeleteCTLFromStore
+`BOOL := CertDeleteCTLFromStore(_In_ PCCTL_CONTEXT pCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDuplicateCertificateChain
+`PCCERT_CHAIN_CONTEXT := CertDuplicateCertificateChain(_In_ PCCERT_CHAIN_CONTEXT pChainContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDuplicateCertificateContext
+`PCCERT_CONTEXT := CertDuplicateCertificateContext(_In_ PCCERT_CONTEXT pCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDuplicateCRLContext
+`PCCRL_CONTEXT := CertDuplicateCRLContext(_In_ PCCRL_CONTEXT pCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDuplicateCTLContext
+`PCCTL_CONTEXT := CertDuplicateCTLContext(_In_ PCCTL_CONTEXT pCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertDuplicateStore
+`HCERTSTORE := CertDuplicateStore(_In_ HCERTSTORE hCertStore)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCertificateContextProperties
+`DWORD := CertEnumCertificateContextProperties(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwPropId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCertificatesInStore
+`PCCERT_CONTEXT := CertEnumCertificatesInStore(_In_ HCERTSTORE hCertStore, _In_ PCCERT_CONTEXT pPrevCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCRLContextProperties
+`DWORD := CertEnumCRLContextProperties(_In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwPropId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCRLsInStore
+`PCCRL_CONTEXT := CertEnumCRLsInStore(_In_ HCERTSTORE hCertStore, _In_ PCCRL_CONTEXT pPrevCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCTLContextProperties
+`DWORD := CertEnumCTLContextProperties(_In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwPropId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumCTLsInStore
+`PCCTL_CONTEXT := CertEnumCTLsInStore(_In_ HCERTSTORE hCertStore, _In_ PCCTL_CONTEXT pPrevCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumPhysicalStore
+`BOOL := CertEnumPhysicalStore(_In_ const void *pvSystemStore, _In_ DWORD dwFlags, _In_ void *pvArg, _In_ PFN_CERT_ENUM_PHYSICAL_STORE pfnEnum)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumSubjectInSortedCTL
+`BOOL := CertEnumSubjectInSortedCTL(_In_ PCCTL_CONTEXT pCtlContext, _Inout_ void **ppvNextSubject, _Out_ PCRYPT_DER_BLOB pSubjectIdentifier, _Out_ PCRYPT_DER_BLOB pEncodedAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumSystemStore
+`BOOL := CertEnumSystemStore(_In_ DWORD dwFlags, _In_opt_ void *pvSystemStoreLocationPara, _In_ void *pvArg, _In_ PFN_CERT_ENUM_SYSTEM_STORE pfnEnum)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertEnumSystemStoreLocation
+`BOOL := CertEnumSystemStoreLocation(_In_ DWORD dwFlags, _In_ void *pvArg, _In_ PFN_CERT_ENUM_SYSTEM_STORE_LOCATION pfnEnum)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindAttribute
+`PCRYPT_ATTRIBUTE := CertFindAttribute(_In_ LPCSTR pszObjId, _In_ DWORD cAttr, _In_ CRYPT_ATTRIBUTE rgAttr[])
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindCertificateInCRL
+`BOOL := CertFindCertificateInCRL(_In_ PCCERT_CONTEXT pCert, _In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwFlags, _In_opt_ void *pvReserved, _Out_ PCRL_ENTRY *ppCrlEntry)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindCertificateInStore
+`PCCERT_CONTEXT := CertFindCertificateInStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwCertEncodingType, _In_ DWORD dwFindFlags, _In_ DWORD dwFindType, _In_ const void *pvFindPara, _In_ PCCERT_CONTEXT pPrevCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindChainInStore
+`PCCERT_CHAIN_CONTEXT := CertFindChainInStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwCertEncodingType, _In_ DWORD dwFindFlags, _In_ DWORD dwFindType, _In_ const void *pvFindPara, _In_ PCCERT_CHAIN_CONTEXT pPrevChainContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindCRLInStore
+`PCCRL_CONTEXT := CertFindCRLInStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwEncodingType, _In_ DWORD dwFindFlags, _In_ DWORD dwFindType, _In_ const void *pvFindPara, _In_ PCCRL_CONTEXT pPrevCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindCTLInStore
+`PCCTL_CONTEXT := CertFindCTLInStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwMsgAndCertEncodingType, _In_ DWORD dwFindFlags, _In_ DWORD dwFindType, _In_ const void *pvFindPara, _In_ PCCTL_CONTEXT pPrevCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindExtension
+`PCERT_EXTENSION := CertFindExtension(_In_ LPCSTR pszObjId, _In_ DWORD cExtensions, _In_ CERT_EXTENSION rgExtensions[])
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindRDNAttr
+`PCERT_RDN_ATTR := CertFindRDNAttr(_In_ LPCSTR pszObjId, _In_ PCERT_NAME_INFO pName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindSubjectInCTL
+`PCTL_ENTRY := CertFindSubjectInCTL(_In_ DWORD dwEncodingType, _In_ DWORD dwSubjectType, _In_ void *pvSubject, _In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFindSubjectInSortedCTL
+`BOOL := CertFindSubjectInSortedCTL(_In_ PCRYPT_DATA_BLOB pSubjectIdentifier, _In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwFlags, _In_ void *pvReserved, _Out_ PCRYPT_DER_BLOB pEncodedAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCertificateChain
+`VOID := CertFreeCertificateChain(_In_ PCCERT_CHAIN_CONTEXT pChainContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCertificateChainEngine
+`VOID := CertFreeCertificateChainEngine(_In_ HCERTCHAINENGINE hChainEngine)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCertificateChainList
+`VOID := CertFreeCertificateChainList(_In_ PCCERT_CHAIN_CONTEXT *prgpSelection)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCertificateContext
+`BOOL := CertFreeCertificateContext(_In_ PCCERT_CONTEXT pCertContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCRLContext
+`BOOL := CertFreeCRLContext(_In_ PCCRL_CONTEXT pCrlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeCTLContext
+`BOOL := CertFreeCTLContext(_In_ PCCTL_CONTEXT pCtlContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertFreeServerOcspResponseContext
+`int := CertFreeServerOcspResponseContext(_In_ PCCERT_SERVER_OCSP_RESPONSE_CONTEXT pServerOcspResponseContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetCertificateChain
+`BOOL := CertGetCertificateChain(_In_opt_ HCERTCHAINENGINE hChainEngine, _In_ PCCERT_CONTEXT pCertContext, _In_opt_ LPFILETIME pTime, _In_ HCERTSTORE hAdditionalStore, _In_ PCERT_CHAIN_PARA pChainPara, _In_ DWORD dwFlags, _In_ LPVOID pvReserved, _Out_ PCCERT_CHAIN_CONTEXT *ppChainContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetCertificateContextProperty
+`BOOL := CertGetCertificateContextProperty(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwPropId, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetCRLContextProperty
+`BOOL := CertGetCRLContextProperty(_In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwPropId, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetCRLFromStore
+`PCCRL_CONTEXT := CertGetCRLFromStore(_In_ HCERTSTORE hCertStore, _In_opt_ PCCERT_CONTEXT pIssuerContext, _In_ PCCRL_CONTEXT pPrevCrlContext, _Inout_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetCTLContextProperty
+`BOOL := CertGetCTLContextProperty(_In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwPropId, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetEnhancedKeyUsage
+`BOOL := CertGetEnhancedKeyUsage(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwFlags, _Out_ PCERT_ENHKEY_USAGE pUsage, _Inout_ DWORD *pcbUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetIntendedKeyUsage
+`BOOL := CertGetIntendedKeyUsage(_In_ DWORD dwCertEncodingType, _In_ PCERT_INFO pCertInfo, _Out_ BYTE *pbKeyUsage, _In_ DWORD cbKeyUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetIssuerCertificateFromStore
+`PCCERT_CONTEXT := CertGetIssuerCertificateFromStore(_In_ HCERTSTORE hCertStore, _In_ PCCERT_CONTEXT pSubjectContext, _In_opt_ PCCERT_CONTEXT pPrevIssuerContext, _Inout_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetNameString
+`DWORD := CertGetNameString(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwType, _In_ DWORD dwFlags, _In_ void *pvTypePara, _Out_ LPTSTR pszNameString, _In_ DWORD cchNameString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetNameStringA
+`DWORD := CertGetNameStringA(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwType, _In_ DWORD dwFlags, _In_ void *pvTypePara, _Out_ LPSTR pszNameString, _In_ DWORD cchNameString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetNameStringW
+`DWORD := CertGetNameStringW(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwType, _In_ DWORD dwFlags, _In_ void *pvTypePara, _Out_ LPWSTR pszNameString, _In_ DWORD cchNameString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetPublicKeyLength
+`DWORD := CertGetPublicKeyLength(_In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pPublicKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetServerOcspResponseContext
+`PCCERT_SERVER_OCSP_RESPONSE_CONTEXT := CertGetServerOcspResponseContext(_In_ HCERT_SERVER_OCSP_RESPONSE hServerOcspResponse, _In_ DWORD dwFlags, _Reserved_ LPVOID pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetStoreProperty
+`BOOL := CertGetStoreProperty(_In_ HCERTSTORE hCertStore, _In_ DWORD dwPropId, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetSubjectCertificateFromStore
+`PCCERT_CONTEXT := CertGetSubjectCertificateFromStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwCertEncodingType, _In_ PCERT_INFO pCertId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertGetValidUsages
+`BOOL := CertGetValidUsages(_In_ DWORD cCerts, _In_ PCCERT_CONTEXT *rghCerts, _Out_ int *cNumOIDs, _Out_ LPSTR *rghOIDs, _Inout_ DWORD *pcbOIDs)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertIsRDNAttrsInCertificateName
+`BOOL := CertIsRDNAttrsInCertificateName(_In_ DWORD dwCertEncodingType, _In_ DWORD dwFlags, _In_ PCERT_NAME_BLOB pCertName, _In_ PCERT_RDN pRDN)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertIsValidCRLForCertificate
+`BOOL := CertIsValidCRLForCertificate(_In_ PCCERT_CONTEXT pCert, _In_ PCCRL_CONTEXT pCRL, _In_ DWORD dwFlags, _In_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertNameToStr
+`DWORD := CertNameToStr(_In_ DWORD dwCertEncodingType, _In_ PCERT_NAME_BLOB pName, _In_ DWORD dwStrType, _Out_ LPTSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertNameToStrA
+`DWORD := CertNameToStrA(_In_ DWORD dwCertEncodingType, _In_ PCERT_NAME_BLOB pName, _In_ DWORD dwStrType, _Out_ LPSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertNameToStrW
+`DWORD := CertNameToStrW(_In_ DWORD dwCertEncodingType, _In_ PCERT_NAME_BLOB pName, _In_ DWORD dwStrType, _Out_ LPWSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOIDToAlgId
+`DWORD := CertOIDToAlgId(_In_ LPCSTR pszObjId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOpenServerOcspResponse
+`HCERT_SERVER_OCSP_RESPONSE := CertOpenServerOcspResponse(_In_ PCCERT_CHAIN_CONTEXT pChainContext, _In_ DWORD dwFlags, _Reserved_ LPVOID pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOpenStore
+`HCERTSTORE := CertOpenStore(_In_ LPCSTR lpszStoreProvider, _In_ DWORD dwMsgAndCertEncodingType, _In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwFlags, _In_ const void *pvPara)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOpenSystemStore
+`HCERTSTORE := CertOpenSystemStore(_In_ HCRYPTPROV_LEGACY hprov, _In_ LPTCSTR szSubsystemProtocol)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOpenSystemStoreA
+`HCERTSTORE := CertOpenSystemStoreA(_In_ HCRYPTPROV_LEGACY hprov, _In_ LPCSTR szSubsystemProtocol)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertOpenSystemStoreW
+`HCERTSTORE := CertOpenSystemStoreW(_In_ HCRYPTPROV_LEGACY hprov, _In_ LPCWSTR szSubsystemProtocol)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRDNValueToStr
+`DWORD := CertRDNValueToStr(_In_ DWORD dwValueType, _In_ PCERT_RDN_VALUE_BLOB pValue, _Out_ LPTSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRDNValueToStrA
+`DWORD := CertRDNValueToStrA(_In_ DWORD dwValueType, _In_ PCERT_RDN_VALUE_BLOB pValue, _Out_ LPSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRDNValueToStrW
+`DWORD := CertRDNValueToStrW(_In_ DWORD dwValueType, _In_ PCERT_RDN_VALUE_BLOB pValue, _Out_ LPWSTR psz, _In_ DWORD csz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRegisterPhysicalStore
+`BOOL := CertRegisterPhysicalStore(_In_ const void *pvSystemStore, _In_ DWORD dwFlags, _In_ LPCWSTR pwszStoreName, _In_ PCERT_PHYSICAL_STORE_INFO pStoreInfo, _In_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRegisterSystemStore
+`BOOL := CertRegisterSystemStore(_In_ const void *pvSystemStore, _In_ DWORD dwFlags, _In_ PCERT_SYSTEM_STORE_INFO pStoreInfo, _In_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRemoveEnhancedKeyUsageIdentifier
+`BOOL := CertRemoveEnhancedKeyUsageIdentifier(_In_ PCCERT_CONTEXT pCertContext, _In_ LPCSTR pszUsageIdentifier)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRemoveStoreFromCollection
+`VOID := CertRemoveStoreFromCollection(_In_ HCERTSTORE hCollectionStore, _In_ HCERTSTORE hSiblingStore)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertRetrieveLogoOrBiometricInfo
+`BOOL := CertRetrieveLogoOrBiometricInfo(_In_ PCCERT_CONTEXT pCertContext, _In_ LPCSTR lpszLogoOrBiometricType, _In_ DWORD dwRetrievalFlags, _In_ DWORD dwTimeout, _In_ DWORD dwFlags, _Reserved_ void *pvReserved, _Out_ BYTE **ppbData, _Out_ DWORD *pcbData, _Out_ LPWSTR *ppwszMimeType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSaveStore
+`BOOL := CertSaveStore(_In_ HCERTSTORE hCertStore, _In_ DWORD dwMsgAndCertEncodingType, _In_ DWORD dwSaveAs, _In_ DWORD dwSaveTo, _Inout_ void *pvSaveToPara, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSelectCertificateChains
+`BOOL := CertSelectCertificateChains(_In_opt_ LPCGUID pSelectionContext, _In_ DWORD dwFlags, _In_opt_ PCCERT_SELECT_CHAIN_PARA pChainParameters, _In_ DWORD cCriteria, _In_opt_ PCCERT_SELECT_CRITERIA rgpCriteria, _In_ HCERTSTORE hStore, _Out_ PDWORD pcSelection, _Out_ PCCERT_CHAIN_CONTEXT **pprgpSelection)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSerializeCertificateStoreElement
+`BOOL := CertSerializeCertificateStoreElement(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwFlags, _Out_ BYTE *pbElement, _Inout_ DWORD *pcbElement)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSerializeCRLStoreElement
+`BOOL := CertSerializeCRLStoreElement(_In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwFlags, _Out_ BYTE *pbElement, _Inout_ DWORD *pcbElement)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSerializeCTLStoreElement
+`BOOL := CertSerializeCTLStoreElement(_In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwFlags, _Out_ BYTE *pbElement, _Inout_ DWORD *pcbElement)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetCertificateContextPropertiesFromCTLEntry
+`BOOL := CertSetCertificateContextPropertiesFromCTLEntry(_In_ PCCERT_CONTEXT pCertContext, _In_ PCTL_ENTRY pCtlEntry, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetCertificateContextProperty
+`BOOL := CertSetCertificateContextProperty(_In_ PCCERT_CONTEXT pCertContext, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ const void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetCRLContextProperty
+`BOOL := CertSetCRLContextProperty(_In_ PCCRL_CONTEXT pCrlContext, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ const void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetCTLContextProperty
+`BOOL := CertSetCTLContextProperty(_In_ PCCTL_CONTEXT pCtlContext, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ const void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetEnhancedKeyUsage
+`BOOL := CertSetEnhancedKeyUsage(_In_ PCCERT_CONTEXT pCertContext, _In_ PCERT_ENHKEY_USAGE pUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertSetStoreProperty
+`BOOL := CertSetStoreProperty(_In_ HCERTSTORE hCertStore, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ const void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertStrToName
+`BOOL := CertStrToName(_In_ DWORD dwCertEncodingType, _In_ LPCTSTR pszX500, _In_ DWORD dwStrType, _In_opt_ void *pvReserved, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded, _Out_opt_ LPCTSTR *ppszError)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertStrToNameA
+`BOOL := CertStrToNameA(_In_ DWORD dwCertEncodingType, _In_ LPCSTR pszX500, _In_ DWORD dwStrType, _In_opt_ void *pvReserved, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded, _Out_opt_ LPCSTR *ppszError)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertStrToNameW
+`BOOL := CertStrToNameW(_In_ DWORD dwCertEncodingType, _In_ LPCWSTR pszX500, _In_ DWORD dwStrType, _In_opt_ void *pvReserved, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded, _Out_opt_ LPCWSTR *ppszError)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertUnregisterPhysicalStore
+`BOOL := CertUnregisterPhysicalStore(_In_ const void *pvSystemStore, _In_ DWORD dwFlags, _In_ LPCWSTR pwszStoreName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertUnregisterSystemStore
+`BOOL := CertUnregisterSystemStore(_In_ const void *pvSystemStore, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyCertificateChainPolicy
+`BOOL := CertVerifyCertificateChainPolicy(_In_ LPCSTR pszPolicyOID, _In_ PCCERT_CHAIN_CONTEXT pChainContext, _In_ PCERT_CHAIN_POLICY_PARA pPolicyPara, _Inout_ PCERT_CHAIN_POLICY_STATUS pPolicyStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyCRLRevocation
+`BOOL := CertVerifyCRLRevocation(_In_ DWORD dwCertEncodingType, _In_ PCERT_INFO pCertId, _In_ DWORD cCrlInfo, _In_ PCRL_INFO rgpCrlInfo[])
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyCRLTimeValidity
+`LONG := CertVerifyCRLTimeValidity(_In_ LPFILETIME pTimeToVerify, _In_ PCRL_INFO pCrlInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyCTLUsage
+`BOOL := CertVerifyCTLUsage(_In_ DWORD dwEncodingType, _In_ DWORD dwSubjectType, _In_ void *pvSubject, _In_ PCTL_USAGE pSubjectUsage, _In_ DWORD dwFlags, _In_opt_ PCTL_VERIFY_USAGE_PARA pVerifyUsagePara, _Inout_ PCTL_VERIFY_USAGE_STATUS pVerifyUsageStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyRevocation
+`BOOL := CertVerifyRevocation(_In_ DWORD dwEncodingType, _In_ DWORD dwRevType, _In_ DWORD cContext, _In_ PVOID rgpvContext[], _In_ DWORD dwFlags, _In_opt_ PCERT_REVOCATION_PARA pRevPara, _Inout_ PCERT_REVOCATION_STATUS pRevStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifySubjectCertificateContext
+`BOOL := CertVerifySubjectCertificateContext(_In_ PCCERT_CONTEXT pSubject, _In_opt_ PCCERT_CONTEXT pIssuer, _Inout_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyTimeValidity
+`LONG := CertVerifyTimeValidity(_In_ LPFILETIME pTimeToVerify, _In_ PCERT_INFO pCertInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CertVerifyValidityNesting
+`BOOL := CertVerifyValidityNesting(_In_ PCERT_INFO pSubjectInfo, _In_ PCERT_INFO pIssuerInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptAcquireCertificatePrivateKey
+`BOOL := CryptAcquireCertificatePrivateKey(_In_ PCCERT_CONTEXT pCert, _In_ DWORD dwFlags, _In_opt_ void *pvParameters, _Out_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE *phCryptProvOrNCryptKey, _Out_ DWORD *pdwKeySpec, _Out_ BOOL *pfCallerFreeProvOrNCryptKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptBinaryToString
+`BOOL := CryptBinaryToString(_In_ const BYTE *pbBinary, _In_ DWORD cbBinary, _In_ DWORD dwFlags, _Out_opt_ LPTSTR pszString, _Inout_ DWORD *pcchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptBinaryToStringA
+`BOOL := CryptBinaryToStringA(_In_ const BYTE *pbBinary, _In_ DWORD cbBinary, _In_ DWORD dwFlags, _Out_opt_ LPSTR pszString, _Inout_ DWORD *pcchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptBinaryToStringW
+`BOOL := CryptBinaryToStringW(_In_ const BYTE *pbBinary, _In_ DWORD cbBinary, _In_ DWORD dwFlags, _Out_opt_ LPWSTR pszString, _Inout_ DWORD *pcchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptCreateKeyIdentifierFromCSP
+`BOOL := CryptCreateKeyIdentifierFromCSP(_In_ DWORD dwCertEncodingType, _In_ LPCSTR pszPubKeyOID, _In_ const PUBLICKEYSTRUC *pPubKeyStruc, _In_ DWORD cbPubKeyStruc, _In_ DWORD dwFlags, _In_ void *pvReserved, _Out_ BYTE *pbHash, _Inout_ DWORD *pcbHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecodeMessage
+`BOOL := CryptDecodeMessage(_In_ DWORD dwMsgTypeFlags, _In_ PCRYPT_DECRYPT_MESSAGE_PARA pDecryptPara, _In_ PCRYPT_VERIFY_MESSAGE_PARA pVerifyPara, _In_ DWORD dwSignerIndex, _In_ const BYTE *pbEncodedBlob, _In_ DWORD cbEncodedBlob, _In_ DWORD dwPrevInnerContentType, _Out_opt_ DWORD *pdwMsgType, _Out_opt_ DWORD *pdwInnerContentType, _Out_opt_ BYTE *pbDecoded, _Inout_opt_ DWORD *pcbDecoded, _Out_opt_ PCCERT_CONTEXT *ppXchgCert, _Out_opt_ PCCERT_CONTEXT *ppSignerCert)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecodeObject
+`BOOL := CryptDecodeObject(_In_ DWORD dwCertEncodingType, _In_ LPCSTR lpszStructType, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _In_ DWORD dwFlags, _Out_ void *pvStructInfo, _Inout_ DWORD *pcbStructInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecodeObjectEx
+`BOOL := CryptDecodeObjectEx(_In_ DWORD dwCertEncodingType, _In_ LPCSTR lpszStructType, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _In_ DWORD dwFlags, _In_ PCRYPT_DECODE_PARA pDecodePara, _Out_ void *pvStructInfo, _Inout_ DWORD *pcbStructInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecryptAndVerifyMessageSignature
+`BOOL := CryptDecryptAndVerifyMessageSignature(_In_ PCRYPT_DECRYPT_MESSAGE_PARA pDecryptPara, _In_ PCRYPT_VERIFY_MESSAGE_PARA pVerifyPara, _In_ DWORD dwSignerIndex, _In_ const BYTE *pbEncryptedBlob, _In_ DWORD cbEncryptedBlob, _Out_opt_ BYTE *pbDecrypted, _Inout_opt_ DWORD *pcbDecrypted, _Out_opt_ PCCERT_CONTEXT *ppXchgCert, _Out_opt_ PCCERT_CONTEXT *ppSignerCert)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecryptMessage
+`BOOL := CryptDecryptMessage(_In_ PCRYPT_DECRYPT_MESSAGE_PARA pDecryptPara, _In_ const BYTE *pbEncryptedBlob, _In_ DWORD cbEncryptedBlob, _Out_opt_ BYTE *pbDecrypted, _Inout_opt_ DWORD *pcbDecrypted, _Out_opt_ PCCERT_CONTEXT *ppXchgCert)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEncodeObject
+`BOOL := CryptEncodeObject(_In_ DWORD dwCertEncodingType, _In_ LPCSTR lpszStructType, _In_ const void *pvStructInfo, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEncodeObjectEx
+`BOOL := CryptEncodeObjectEx(_In_ DWORD dwCertEncodingType, _In_ LPCSTR lpszStructType, _In_ const void *pvStructInfo, _In_ DWORD dwFlags, _In_ PCRYPT_ENCODE_PARA pEncodePara, _Out_ void *pvEncoded, _Inout_ DWORD *pcbEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEncryptMessage
+`BOOL := CryptEncryptMessage(_In_ PCRYPT_ENCRYPT_MESSAGE_PARA pEncryptPara, _In_ DWORD cRecipientCert, _In_ PCCERT_CONTEXT rgpRecipientCert[], _In_ const BYTE *pbToBeEncrypted, _In_ DWORD cbToBeEncrypted, _Out_ BYTE *pbEncryptedBlob, _Inout_ DWORD *pcbEncryptedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumKeyIdentifierProperties
+`BOOL := CryptEnumKeyIdentifierProperties(_In_opt_ const CRYPT_HASH_BLOB *pKeyIdentifier, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_opt_ LPCWSTR pwszComputerName, _In_ void *pvReserved, _In_opt_ void *pvArg, _In_ PFN_CRYPT_ENUM_KEYID_PROP pfnEnum)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumOIDFunction
+`BOOL := CryptEnumOIDFunction(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCSTR pszOID, _In_ DWORD dwFlags, _In_ void *pvArg, _In_ PFN_CRYPT_ENUM_OID_FUNC pfnEnumOIDFunc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumOIDInfo
+`BOOL := CryptEnumOIDInfo(_In_ DWORD dwGroupId, _In_ DWORD dwFlags, _In_ void *pvArg, _In_ PFN_CRYPT_ENUM_OID_INFO pfnEnumOIDInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptExportPKCS8
+`BOOL := CryptExportPKCS8(_In_ HCRYPTPROV hCryptProv, _In_ DWORD dwKeySpec, _In_ LPSTR pszPrivateKeyObjId, _In_ DWORD dwFlags, _In_opt_ void *pvAuxInfo, _Out_opt_ BYTE *pbPrivateKeyBlob, _Inout_ DWORD *pcbPrivateKeyBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptExportPublicKeyInfo
+`BOOL := CryptExportPublicKeyInfo(_In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey, _In_ DWORD dwKeySpec, _In_ DWORD dwCertEncodingType, _Out_ PCERT_PUBLIC_KEY_INFO pInfo, _Inout_ DWORD *pcbInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptExportPublicKeyInfoEx
+`BOOL := CryptExportPublicKeyInfoEx(_In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey, _In_ DWORD dwKeySpec, _In_ DWORD dwCertEncodingType, _In_ LPSTR pszPublicKeyObjId, _In_ DWORD dwFlags, _In_ void *pvAuxInfo, _Out_ PCERT_PUBLIC_KEY_INFO pInfo, _Inout_ DWORD *pcbInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptExportPublicKeyInfoFromBCryptKeyHandle
+`BOOL := CryptExportPublicKeyInfoFromBCryptKeyHandle(_In_ BCRYPT_KEY_HANDLE hBCryptKey, _In_ DWORD dwCertEncodingType, _In_opt_ LPSTR pszPublicKeyObjId, _In_ DWORD dwFlags, _In_opt_ void pvAuxInfo, _Out_opt_ PCERT_PUBLIC_KEY_INFO pInfo, _Inout_ DWORD pcbInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptFindCertificateKeyProvInfo
+`BOOL := CryptFindCertificateKeyProvInfo(_In_ PCCERT_CONTEXT pCert, _In_ DWORD dwFlags, _In_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptFindLocalizedName
+`LPCWSTR := CryptFindLocalizedName(_In_ LPCWSTR pwszCryptName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptFindOIDInfo
+`PCCRYPT_OID_INFO := CryptFindOIDInfo(_In_ DWORD dwKeyType, _In_ void *pvKey, _In_ DWORD dwGroupId)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptFormatObject
+`BOOL := CryptFormatObject(_In_ DWORD dwCertEncodingType, _In_ DWORD dwFormatType, _In_ DWORD dwFormatStrType, _In_ void *pFormatStruct, _In_ LPCSTR lpszStructType, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _Out_ void *pbFormat, _Inout_ DWORD *pcbFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptFreeOIDFunctionAddress
+`BOOL := CryptFreeOIDFunctionAddress(_In_ HCRYPTOIDFUNCADDR hFuncAddr, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetDefaultOIDDllList
+`BOOL := CryptGetDefaultOIDDllList(_In_ HCRYPTOIDFUNCSET hFuncSet, _In_ DWORD dwEncodingType, _Out_ LPWSTR pwszDllList, _Inout_ DWORD *pcchDllList)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetDefaultOIDFunctionAddress
+`BOOL := CryptGetDefaultOIDFunctionAddress(_In_ HCRYPTOIDFUNCSET hFuncSet, _In_ DWORD dwEncodingType, _In_opt_ LPCWSTR pwszDll, _In_ DWORD dwFlags, _Out_ void **ppvFuncAddr, _Inout_ HCRYPTOIDFUNCADDR *phFuncAddr)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetKeyIdentifierProperty
+`BOOL := CryptGetKeyIdentifierProperty(_In_ const CRYPT_HASH_BLOB *pKeyIdentifier, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ LPCWSTR pwszComputerName, _In_ void *pvReserved, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetMessageCertificates
+`HCERTSTORE := CryptGetMessageCertificates(_In_ DWORD dwMsgAndCertEncodingType, _In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwFlags, _In_ const BYTE *pbSignedBlob, _In_ DWORD cbSignedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetMessageSignerCount
+`LONG := CryptGetMessageSignerCount(_In_ DWORD dwMsgEncodingType, _In_ const BYTE *pbSignedBlob, _In_ DWORD cbSignedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetOIDFunctionAddress
+`BOOL := CryptGetOIDFunctionAddress(_In_ HCRYPTOIDFUNCSET hFuncSet, _In_ DWORD dwEncodingType, _In_ LPCSTR pszOID, _In_ DWORD dwFlags, _Out_ void **ppvFuncAddr, _Out_ HCRYPTOIDFUNCADDR *phFuncAddr)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetOIDFunctionValue
+`BOOL := CryptGetOIDFunctionValue(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCSTR pszOID, _In_ LPCWSTR pwszValueName, _Out_ DWORD *pdwValueType, _Out_ BYTE *pbValueData, _Inout_ DWORD *pcbValueData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashCertificate
+`BOOL := CryptHashCertificate(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ ALG_ID Algid, _In_ DWORD dwFlags, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _Out_ BYTE *pbComputedHash, _Inout_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashCertificate2
+`BOOL := CryptHashCertificate2(_In_ LPCWSTR pwszCNGHashAlgid, _In_ DWORD dwFlags, _Reserved_ void *pvReserved, _In_ BYTE *pbEncoded, _In_ DWORD cbEncoded, _Out_ BYTE *pbComputedHash, _Inout_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashMessage
+`BOOL := CryptHashMessage(_In_ PCRYPT_HASH_MESSAGE_PARA pHashPara, _In_ BOOL fDetachedHash, _In_ DWORD cToBeHashed, _In_ const BYTE *rgpbToBeHashed[], _In_ DWORD rgcbToBeHashed[], _Out_ BYTE *pbHashedBlob, _Inout_ DWORD *pcbHashedBlob, _Out_opt_ BYTE *pbComputedHash, _Inout_opt_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashPublicKeyInfo
+`BOOL := CryptHashPublicKeyInfo(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ ALG_ID Algid, _In_ DWORD dwFlags, _In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pInfo, _Out_ BYTE *pbComputedHash, _Inout_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashToBeSigned
+`BOOL := CryptHashToBeSigned(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwCertEncodingType, _In_ const BYTE *pbEncoded, _In_ DWORD cbEncoded, _Out_ BYTE *pbComputedHash, _Inout_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptImportPKCS8
+`BOOL := CryptImportPKCS8(_In_ CRYPT_PKCS8_IMPORT_PARAMS sPrivateKeyAndParams, _In_ DWORD dwFlags, _Out_opt_ HCRYPTPROV *phCryptProv, _In_opt_ void *pvAuxInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptImportPublicKeyInfo
+`BOOL := CryptImportPublicKeyInfo(_In_ HCRYPTPROV hCryptProv, _In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pInfo, _Out_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptImportPublicKeyInfoEx
+`BOOL := CryptImportPublicKeyInfoEx(_In_ HCRYPTPROV hCryptProv, _In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pInfo, _In_ ALG_ID aiKeyAlg, _In_ DWORD dwFlags, _In_ void *pvAuxInfo, _Out_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptImportPublicKeyInfoEx2
+`BOOL := CryptImportPublicKeyInfoEx2(_In_ DWORD dwCertEncodingType, _In_ PCERT_PUBLIC_KEY_INFO pInfo, _In_ DWORD dwFlags, _In_ void *pvAuxInfo, _Out_ BCRYPT_KEY_HANDLE *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptInitOIDFunctionSet
+`HCRYPTOIDFUNCSET := CryptInitOIDFunctionSet(_In_ LPCSTR pszFuncName, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptInstallDefaultContext
+`BOOL := CryptInstallDefaultContext(_In_ HCRYPTPROV hCryptProv, _In_ DWORD dwDefaultType, _In_ const void *pvDefaultPara, _In_ DWORD dwFlags, _In_ void *pvReserved, _Out_ HCRYPTDEFAULTCONTEXT *phDefaultContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptInstallOIDFunctionAddress
+`BOOL := CryptInstallOIDFunctionAddress(_In_ HMODULE hModule, _In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ DWORD cFuncEntry, _In_ CRYPT_OID_FUNC_ENTRY rgFuncEntry[], _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMemAlloc
+`LPVOID := CryptMemAlloc(_In_ ULONG cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMemFree
+`VOID := CryptMemFree(_In_ LPVOID pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMemRealloc
+`LPVOID := CryptMemRealloc(_In_ LPVOID pv, _In_ ULONG cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgCalculateEncodedLength
+`DWORD := CryptMsgCalculateEncodedLength(_In_ DWORD dwMsgEncodingType, _In_ DWORD dwFlags, _In_ DWORD dwMsgType, _In_ const void *pvMsgEncodeInfo, _In_opt_ LPSTR pszInnerContentObjID, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgClose
+`BOOL := CryptMsgClose(_In_ HCRYPTMSG hCryptMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgControl
+`BOOL := CryptMsgControl(_In_ HCRYPTMSG hCryptMsg, _In_ DWORD dwFlags, _In_ DWORD dwCtrlType, _In_ const void *pvCtrlPara)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgCountersign
+`BOOL := CryptMsgCountersign(_Inout_ HCRYPTMSG hCryptMsg, _In_ DWORD dwIndex, _In_ DWORD cCountersigners, _In_ PCMSG_SIGNER_ENCODE_INFO rgCountersigners)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgCountersignEncoded
+`BOOL := CryptMsgCountersignEncoded(_In_ DWORD dwEncodingType, _In_ PBYTE pbSignerInfo, _In_ DWORD cbSignerInfo, _In_ DWORD cCountersigners, _In_ PCMSG_SIGNER_ENCODE_INFO rgCountersigners, _Out_ PBYTE pbCountersignature, _Inout_ PDWORD pcbCountersignature)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgDuplicate
+`HCRYPTMSG := CryptMsgDuplicate(_In_ HCRYPTMSG hCryptMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgEncodeAndSignCTL
+`BOOL := CryptMsgEncodeAndSignCTL(_In_ DWORD dwMsgEncodingType, _In_ PCTL_INFO pCtlInfo, _In_ PCMSG_SIGNED_ENCODE_INFO pSignInfo, _In_ DWORD dwFlags, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgGetAndVerifySigner
+`BOOL := CryptMsgGetAndVerifySigner(_In_ HCRYPTMSG hCryptMsg, _In_ DWORD cSignerStore, _In_opt_ HCERTSTORE *rghSignerStore, _In_ DWORD dwFlags, _Out_opt_ PCCERT_CONTEXT *ppSigner, _Inout_opt_ DWORD *pdwSignerIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgGetParam
+`BOOL := CryptMsgGetParam(_In_ HCRYPTMSG hCryptMsg, _In_ DWORD dwParamType, _In_ DWORD dwIndex, _Out_ void *pvData, _Inout_ DWORD *pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgOpenToDecode
+`HCRYPTMSG := CryptMsgOpenToDecode(_In_ DWORD dwMsgEncodingType, _In_ DWORD dwFlags, _In_ DWORD dwMsgType, _In_ HCRYPTPROV_LEGACY hCryptProv, _In_ PCERT_INFO pRecipientInfo, _In_opt_ PCMSG_STREAM_INFO pStreamInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgOpenToEncode
+`HCRYPTMSG := CryptMsgOpenToEncode(_In_ DWORD dwMsgEncodingType, _In_ DWORD dwFlags, _In_ DWORD dwMsgType, _In_ const void *pvMsgEncodeInfo, _In_opt_ LPSTR pszInnerContentObjID, _In_ PCMSG_STREAM_INFO pStreamInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgSignCTL
+`BOOL := CryptMsgSignCTL(_In_ DWORD dwMsgEncodingType, _In_ BYTE *pbCtlContent, _In_ DWORD cbCtlContent, _In_ PCMSG_SIGNED_ENCODE_INFO pSignInfo, _In_ DWORD dwFlags, _Out_ BYTE *pbEncoded, _Inout_ DWORD *pcbEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgUpdate
+`BOOL := CryptMsgUpdate(_In_ HCRYPTMSG hCryptMsg, _In_ const BYTE *pbData, _In_ DWORD cbData, _In_ BOOL fFinal)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgVerifyCountersignatureEncoded
+`BOOL := CryptMsgVerifyCountersignatureEncoded(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwEncodingType, _In_ PBYTE pbSignerInfo, _In_ DWORD cbSignerInfo, _In_ PBYTE pbSignerInfoCountersignature, _In_ DWORD cbSignerInfoCountersignature, _In_ PCERT_INFO pciCountersigner)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptMsgVerifyCountersignatureEncodedEx
+`BOOL := CryptMsgVerifyCountersignatureEncodedEx(_In_opt_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwEncodingType, _In_ PBYTE pbSignerInfo, _In_ DWORD cbSignerInfo, _In_ PBYTE pbSignerInfoCountersignature, _In_ DWORD cbSignerInfoCountersignature, _In_ DWORD dwSignerType, _In_ void *pvSigner, _Reserved_ DWORD dwFlags, _Reserved_ void *pvExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptProtectData
+`BOOL := CryptProtectData(_In_ DATA_BLOB *pDataIn, _In_ LPCWSTR szDataDescr, _In_ DATA_BLOB *pOptionalEntropy, _In_ PVOID pvReserved, _In_opt_ CRYPTPROTECT_PROMPTSTRUCT *pPromptStruct, _In_ DWORD dwFlags, _Out_ DATA_BLOB *pDataOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptProtectMemory
+`BOOL := CryptProtectMemory(_Inout_ LPVOID pData, _In_ DWORD cbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptQueryObject
+`BOOL := CryptQueryObject(_In_ DWORD dwObjectType, _In_ const void *pvObject, _In_ DWORD dwExpectedContentTypeFlags, _In_ DWORD dwExpectedFormatTypeFlags, _In_ DWORD dwFlags, _Out_ DWORD *pdwMsgAndCertEncodingType, _Out_ DWORD *pdwContentType, _Out_ DWORD *pdwFormatType, _Out_ HCERTSTORE *phCertStore, _Out_ HCRYPTMSG *phMsg, _Out_ const void **ppvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptRegisterDefaultOIDFunction
+`BOOL := CryptRegisterDefaultOIDFunction(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ DWORD dwIndex, _In_ LPCWSTR pwszDll)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptRegisterOIDFunction
+`BOOL := CryptRegisterOIDFunction(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCSTR pszOID, _In_ LPCWSTR pwszDll, _In_ LPCSTR pszOverrideFuncName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptRegisterOIDInfo
+`BOOL := CryptRegisterOIDInfo(_In_ PCCRYPT_OID_INFO pInfo, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptRetrieveTimeStamp
+`BOOL := CryptRetrieveTimeStamp(_In_ LPCWSTR wszUrl, DWORD dwRetrievalFlags, DWORD dwTimeout, _In_ LPCSTR pszHashId, _In_opt_ const CRYPT_TIMESTAMP_PARA *pPara, _In_ const BYTE *pbData, DWORD cbData, _Out_ PCRYPT_TIMESTAMP_CONTEXT *ppTsContext, _Out_opt_ PCCERT_CONTEXT *ppTsSigner, _Out_opt_ HCERTSTORE phStore)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetKeyIdentifierProperty
+`BOOL := CryptSetKeyIdentifierProperty(_In_ const CRYPT_HASH_BLOB *pKeyIdentifier, _In_ DWORD dwPropId, _In_ DWORD dwFlags, _In_ LPCWSTR pwszComputerName, _In_ void *pvReserved, _Out_ const void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetOIDFunctionValue
+`BOOL := CryptSetOIDFunctionValue(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCSTR pszOID, _In_ LPCWSTR pwszValueName, _In_ DWORD dwValueType, _In_ const BYTE *pbValueData, _In_ DWORD cbValueData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignAndEncodeCertificate
+`BOOL := CryptSignAndEncodeCertificate(_In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey, _In_ DWORD dwKeySpec, _In_ DWORD dwCertEncodingType, _In_ LPCSTR lpszStructType, _In_ const void *pvStructInfo, _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm, _In_ const void *pvHashAuxInfo, _Out_ PBYTE pbEncoded, _Inout_ DWORD *pcbEncoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignAndEncryptMessage
+`BOOL := CryptSignAndEncryptMessage(_In_ PCRYPT_SIGN_MESSAGE_PARA pSignPara, _In_ PCRYPT_ENCRYPT_MESSAGE_PARA pEncryptPara, _In_ DWORD cRecipientCert, _In_ PCCERT_CONTEXT rgpRecipientCert[], _In_ const BYTE *pbToBeSignedAndEncrypted, _In_ DWORD cbToBeSignedAndEncrypted, _Out_ BYTE *pbSignedAndEncryptedBlob, _Inout_ DWORD *pcbSignedAndEncryptedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignCertificate
+`BOOL := CryptSignCertificate(_In_ HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hCryptProvOrNCryptKey, _In_ DWORD dwKeySpec, _In_ DWORD dwCertEncodingType, _In_ const BYTE *pbEncodedToBeSigned, _In_ DWORD cbEncodedToBeSigned, _In_ PCRYPT_ALGORITHM_IDENTIFIER pSignatureAlgorithm, _In_ const void *pvHashAuxInfo, _Out_ BYTE *pbSignature, _Inout_ DWORD *pcbSignature)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignMessage
+`BOOL := CryptSignMessage(_In_ PCRYPT_SIGN_MESSAGE_PARA pSignPara, _In_ BOOL fDetachedSignature, _In_ DWORD cToBeSigned, _In_ const BYTE *rgpbToBeSigned[], _In_ DWORD rgcbToBeSigned[], _Out_ BYTE *pbSignedBlob, _Inout_ DWORD *pcbSignedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignMessageWithKey
+`BOOL := CryptSignMessageWithKey(_In_ PCRYPT_KEY_SIGN_MESSAGE_PARA pSignPara, _In_ const BYTE *pbToBeSigned, _In_ DWORD cToBeSigned, _Out_ BYTE *pbSignedBlob, _Inout_ DWORD *pcbSignedBlob)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPAddProvider
+`BOOL := CryptSIPAddProvider(_In_ SIP_ADD_NEWPROVIDER *psNewProv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPCreateIndirectData
+`BOOL := CryptSIPCreateIndirectData(_In_ SIP_SUBJECTINFO *pSubjectInfo, _Inout_ DWORD *pcbIndirectData, _Out_ SIP_INDIRECT_DATA *pIndirectData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPGetSignedDataMsg
+`BOOL := CryptSIPGetSignedDataMsg(_In_ SIP_SUBJECTINFO *pSubjectInfo, _Out_ DWORD *pdwEncodingType, _In_ DWORD dwIndex, _Inout_ DWORD *pcbSignedDataMsg, _Out_ BYTE *pbSignedDataMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPLoad
+`BOOL := CryptSIPLoad(_In_ const GUID *pgSubject, _In_ DWORD dwFlags, _Inout_ SIP_DISPATCH_INFO *pSipDispatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPPutSignedDataMsg
+`BOOL := CryptSIPPutSignedDataMsg(_In_ SIP_SUBJECTINFO *pSubjectInfo, _In_ DWORD dwEncodingType, _Out_ DWORD *pdwIndex, _In_ DWORD cbSignedDataMsg, _In_ BYTE *pbSignedDataMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPRemoveProvider
+`BOOL := CryptSIPRemoveProvider(_In_ GUID *pgProv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPRemoveSignedDataMsg
+`BOOL := CryptSIPRemoveSignedDataMsg(_In_ SIP_SUBJECTINFO *pSubjectInfo, _In_ DWORD dwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPRetrieveSubjectGuid
+`BOOL := CryptSIPRetrieveSubjectGuid(_In_ LPCWSTR FileName, _In_opt_ HANDLE hFileIn, _Out_ GUID *pgSubject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPRetrieveSubjectGuidForCatalogFile
+`BOOL := CryptSIPRetrieveSubjectGuidForCatalogFile(_In_ LPCWSTR FileName, _In_opt_ HANDLE hFileIn, _Out_ GUID *pgSubject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSIPVerifyIndirectData
+`BOOL := CryptSIPVerifyIndirectData(_In_ SIP_SUBJECTINFO *pSubjectInfo, _In_ SIP_INDIRECT_DATA *pIndirectData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptStringToBinary
+`BOOL := CryptStringToBinary(_In_ LPCTSTR pszString, _In_ DWORD cchString, _In_ DWORD dwFlags, _In_ BYTE *pbBinary, _Inout_ DWORD *pcbBinary, _Out_ DWORD *pdwSkip, _Out_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptStringToBinaryA
+`BOOL := CryptStringToBinaryA(_In_ LPCSTR pszString, _In_ DWORD cchString, _In_ DWORD dwFlags, _In_ BYTE *pbBinary, _Inout_ DWORD *pcbBinary, _Out_ DWORD *pdwSkip, _Out_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptStringToBinaryW
+`BOOL := CryptStringToBinaryW(_In_ LPCWSTR pszString, _In_ DWORD cchString, _In_ DWORD dwFlags, _In_ BYTE *pbBinary, _Inout_ DWORD *pcbBinary, _Out_ DWORD *pdwSkip, _Out_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUninstallDefaultContext
+`BOOL := CryptUninstallDefaultContext(_In_ HCRYPTDEFAULTCONTEXT hDefaultContext, _In_ DWORD dwFlags, _In_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUnprotectData
+`BOOL := CryptUnprotectData(_In_ DATA_BLOB *pDataIn, _Out_opt_ LPWSTR *ppszDataDescr, _In_opt_ DATA_BLOB *pOptionalEntropy, _Reserved_ PVOID pvReserved, _In_opt_ CRYPTPROTECT_PROMPTSTRUCT *pPromptStruct, _In_ DWORD dwFlags, _Out_ DATA_BLOB *pDataOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUnprotectMemory
+`BOOL := CryptUnprotectMemory(_Inout_ LPVOID pData, _In_ DWORD cbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUnregisterDefaultOIDFunction
+`BOOL := CryptUnregisterDefaultOIDFunction(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCWSTR pwszDll)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUnregisterOIDFunction
+`BOOL := CryptUnregisterOIDFunction(_In_ DWORD dwEncodingType, _In_ LPCSTR pszFuncName, _In_ LPCSTR pszOID)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUnregisterOIDInfo
+`BOOL := CryptUnregisterOIDInfo(_In_ PCCRYPT_OID_INFO pInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptUpdateProtectedState
+`BOOL := CryptUpdateProtectedState(_In_ PSID pOldSid, _In_ LPCWSTR pwszOldPassword, _In_ DWORD dwFlags, _Out_ DWORD *pdwSuccessCount, _Out_ DWORD *pdwFailureCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyCertificateSignature
+`BOOL := CryptVerifyCertificateSignature(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwCertEncodingType, _In_ BYTE *pbEncoded, _In_ DWORD cbEncoded, _In_ PCERT_PUBLIC_KEY_INFO pPublicKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyCertificateSignatureEx
+`BOOL := CryptVerifyCertificateSignatureEx(_In_ HCRYPTPROV_LEGACY hCryptProv, _In_ DWORD dwCertEncodingType, _In_ DWORD dwSubjectType, _In_ void *pvSubject, _In_ DWORD dwIssuerType, _In_ void *pvIssuer, _In_ DWORD dwFlags, _Inout_opt_ void *pvExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyDetachedMessageHash
+`BOOL := CryptVerifyDetachedMessageHash(_In_ PCRYPT_HASH_MESSAGE_PARA pHashPara, _In_ BYTE *pbDetachedHashBlob, _In_ DWORD cbDetachedHashBlob, _In_ DWORD cToBeHashed, _In_ const BYTE *rgpbToBeHashed[], _In_ DWORD rgcbToBeHashed[], _Out_ BYTE *pbComputedHash, _Inout_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyDetachedMessageSignature
+`BOOL := CryptVerifyDetachedMessageSignature(_In_ PCRYPT_VERIFY_MESSAGE_PARA pVerifyPara, _In_ DWORD dwSignerIndex, _In_ const BYTE *pbDetachedSignBlob, _In_ DWORD cbDetachedSignBlob, _In_ DWORD cToBeSigned, _In_ const BYTE *rgpbToBeSigned[], _In_ DWORD rgcbToBeSigned[], _Out_opt_ PCCERT_CONTEXT *ppSignerCert)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyMessageHash
+`BOOL := CryptVerifyMessageHash(_In_ PCRYPT_HASH_MESSAGE_PARA pHashPara, _In_ BYTE *pbHashedBlob, _In_ DWORD cbHashedBlob, _Out_ BYTE *pbToBeHashed, _Inout_ DWORD *pcbToBeHashed, _Out_opt_ BYTE *pbComputedHash, _Inout_opt_ DWORD *pcbComputedHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyMessageSignature
+`BOOL := CryptVerifyMessageSignature(_In_ PCRYPT_VERIFY_MESSAGE_PARA pVerifyPara, _In_ DWORD dwSignerIndex, _In_ const BYTE *pbSignedBlob, _In_ DWORD cbSignedBlob, _Out_ BYTE *pbDecoded, _Inout_ DWORD *pcbDecoded, _Out_opt_ PCCERT_CONTEXT *ppSignerCert)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyMessageSignatureWithKey
+`BOOL := CryptVerifyMessageSignatureWithKey(_In_ PCRYPT_KEY_VERIFY_MESSAGE_PARA pVerifyPara, _In_ PCERT_PUBLIC_KEY_INFO pPublicKeyInfo, _In_ const BYTE *pbSignedBlob, _In_ DWORD cbSignedBlob, _Out_ BYTE *pbDecoded, _Inout_ DWORD *pcbDecoded)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifyTimeStampSignature
+`BOOL := CryptVerifyTimeStampSignature(_In_ const BYTE pbTSContentInfo, DWORD cbTSContentInfo, _In_opt_ const DWORD pbData, DWORD cbData, _In_opt_ HCERTSTORE hAdditionalStore, _Out_ PCRYPT_TIMESTAMP_CONTEXT ppTsContext, _Out_opt_ PCCERT_CONTEXT *ppTsSigner, _Out_opt_ HCERTSTORE *phStore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PFXExportCertStore
+`BOOL := PFXExportCertStore(_In_ HCERTSTORE hStore, _Inout_ CRYPT_DATA_BLOB *pPFX, _In_ LPCWSTR szPassword, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PFXExportCertStoreEx
+`BOOL := PFXExportCertStoreEx(_In_ HCERTSTORE hStore, _Inout_ CRYPT_DATA_BLOB *pPFX, _In_ LPCWSTR szPassword, _In_ void *pvPara, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PFXImportCertStore
+`HCERTSTORE := PFXImportCertStore(_In_ CRYPT_DATA_BLOB *pPFX, _In_ LPCWSTR szPassword, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PFXIsPFXBlob
+`BOOL := PFXIsPFXBlob(_In_ CRYPT_DATA_BLOB *pPFX)
+`/docs/commands/WinApi.htm
+
+
+Function
+PFXVerifyPassword
+`BOOL := PFXVerifyPassword(_In_ CRYPT_DATA_BLOB *pPFX, _In_ LPCWSTR szPassword, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm

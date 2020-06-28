@@ -1,0 +1,184 @@
+Function
+ChooseColor
+`BOOL := ChooseColor(_Inout_ LPCHOOSECOLOR lpcc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChooseColorA
+`BOOL := ChooseColorA(_Inout_ LPCHOOSECOLOR lpcc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChooseColorW
+`BOOL := ChooseColorW(_Inout_ LPCHOOSECOLOR lpcc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChooseFont
+`BOOL := ChooseFont(_Inout_ LPCHOOSEFONT lpcf)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChooseFontA
+`BOOL := ChooseFontA(_Inout_ LPCHOOSEFONT lpcf)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChooseFontW
+`BOOL := ChooseFontW(_Inout_ LPCHOOSEFONT lpcf)
+`/docs/commands/WinApi.htm
+
+
+Function
+CommDlgExtendedError
+`DWORD := CommDlgExtendedError(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindText
+`HWND := FindText(_In_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindTextA
+`HWND := FindTextA(_In_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindTextW
+`HWND := FindTextW(_In_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileTitle
+`SHORT := GetFileTitle(_In_ LPCTSTR lpszFile, _Out_ LPTSTR lpszTitle, _In_ WORD cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileTitleA
+`SHORT := GetFileTitleA(_In_ LPCSTR lpszFile, _Out_ LPSTR lpszTitle, _In_ WORD cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileTitleW
+`SHORT := GetFileTitleW(_In_ LPCWSTR lpszFile, _Out_ LPWSTR lpszTitle, _In_ WORD cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOpenFileName
+`BOOL := GetOpenFileName(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOpenFileNameA
+`BOOL := GetOpenFileNameA(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOpenFileNameW
+`BOOL := GetOpenFileNameW(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSaveFileName
+`BOOL := GetSaveFileName(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSaveFileNameA
+`BOOL := GetSaveFileNameA(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSaveFileNameW
+`BOOL := GetSaveFileNameW(_Inout_ LPOPENFILENAME lpofn)
+`/docs/commands/WinApi.htm
+
+
+Function
+PageSetupDlg
+`BOOL := PageSetupDlg(_Inout_ LPPAGESETUPDLG lppsd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PageSetupDlgA
+`BOOL := PageSetupDlgA(_Inout_ LPPAGESETUPDLG lppsd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PageSetupDlgW
+`BOOL := PageSetupDlgW(_Inout_ LPPAGESETUPDLG lppsd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlg
+`BOOL := PrintDlg(_Inout_ LPPRINTDLG lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlgA
+`BOOL := PrintDlgA(_Inout_ LPPRINTDLG lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlgEx
+`HRESULT := PrintDlgEx(_Inout_ LPPRINTDLGEX lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlgExA
+`HRESULT := PrintDlgExA(_Inout_ LPPRINTDLGEX lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlgExW
+`HRESULT := PrintDlgExW(_Inout_ LPPRINTDLGEX lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintDlgW
+`BOOL := PrintDlgW(_Inout_ LPPRINTDLG lppd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReplaceText
+`HWND := ReplaceText(_Inout_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReplaceTextA
+`HWND := ReplaceTextA(_Inout_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReplaceTextW
+`HWND := ReplaceTextW(_Inout_ LPFINDREPLACE lpfr)
+`/docs/commands/WinApi.htm

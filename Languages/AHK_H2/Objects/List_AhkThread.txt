@@ -1,5 +1,40 @@
-0 ThreadObject ThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(ExeThread\x28)
+0 ThreadObject ThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(AhkThread\x28)
 `/docs/commands/AhkThread.htm
+
+
+Method
+ahkDll
+`threadObj.ahkDll[FileName (, Params, Title)]
+/This function is only available in AutoHotkey.dll
+`/docs/commands/[MemberName].htm
+
+
+Method
+ahkTextDll
+`threadObj.ahkTextDll[ScriptText (, Parameters, Title)]
+/This function is only available in AutoHotkey.dll
+`/docs/commands/ahktextdll.htm
+
+
+Method
+ahkReady
+`IsReady := threadObj.ahkReady()
+/This function is only available in AutoHotkey.dll
+`/docs/commands/ahkReady.htm
+
+
+Method
+ahkTerminate
+`threadObj.ahkTerminate[(Timeout_ms)]
+/This function is only available in AutoHotkey.dll
+`/docs/commands/ahkTerminate.htm
+
+
+Method
+ahkReload
+`threadObj.ahkReload[(Timeout_ms)]
+/This function is only available in AutoHotkey.dll
+`/docs/commands/ahkReload.htm
 
 
 Method
@@ -30,6 +65,12 @@ Method
 ahkFindLabel
 `labelPtr := threadObj.ahkFindLabel["LabelName"]
 `/docs/commands/ahkFindLabel.htm
+
+
+Method
+ahkFindFunc
+`funcPtr := threadObj.ahkFindFunc["FunctionName"]
+``/docs/commands/ahkFindFunc.htm
 
 
 Method

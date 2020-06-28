@@ -1,0 +1,2362 @@
+Function
+BSTR_UserFree
+`VOID := BSTR_UserFree(_In_ unsigned long *pFlags, _In_ BSTR *pBstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+BSTR_UserMarshal
+`unsignedchar* := BSTR_UserMarshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ BSTR *pBstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+BSTR_UserSize
+`unsignedlong := BSTR_UserSize(_In_ unsigned long *pFlags, _In_ unsigned long Offset, _In_ BSTR *pBstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+BSTR_UserUnmarshal
+`unsignedchar* := BSTR_UserUnmarshal(_In_ unsigned long *pFlags, _In_ unsigned char *pBuffer, _Out_ BSTR *pBstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+BstrFromVector
+`HRESULT := BstrFromVector(_In_ SAFEARRAY *psa, _Out_ BSTR *pbstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClearCustData
+`VOID := ClearCustData(LPCUSTDATA pCustData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDispTypeInfo
+`HRESULT := CreateDispTypeInfo(INTERFACEDATA *pidata, LCID lcid, ITypeInfo **pptinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateErrorInfo
+`HRESULT := CreateErrorInfo(_Out_ ICreateErrorInfo **pperrinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStdDispatch
+`HRESULT := CreateStdDispatch(IUnknown *punkOuter, void *pvThis, ITypeInfo *ptinfo, IUnknown **ppunkStdDisp)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateTypeLib
+`HRESULT := CreateTypeLib(SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib **ppctlib)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateTypeLib2
+`HRESULT := CreateTypeLib2(SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib2 **ppctlib)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispCallFunc
+`HRESULT := DispCallFunc(void *pvInstance, ULONG_PTR oVft, CALLCONV cc, VARTYPE vtReturn, UINT cActuals, VARTYPE *prgvt, VARIANTARG **prgpvarg, VARIANT *pvargResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispGetIDsOfNames
+`HRESULT := DispGetIDsOfNames(ITypeInfo *ptinfo, _In_ OLECHAR **rgszNames, UINT cNames, _Out_ DISPID *rgdispid)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispGetParam
+`HRESULT := DispGetParam(_In_ DISPPARAMS *pdispparams, UINT position, VARTYPE vtTarg, _Out_ VARIANT *pvarResult, _Out_opt_ UINT *puArgErr)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispInvoke
+`HRESULT := DispInvoke(void *_this, ITypeInfo *ptinfo, DISPID dispidMember, WORD wFlags, DISPPARAMS *pparams, VARIANT *pvarResult, EXCEPINFO *pexcepinfo, UINT *puArgErr)
+`/docs/commands/WinApi.htm
+
+
+Function
+DosDateTimeToVariantTime
+`int := DosDateTimeToVariantTime(_In_ USHORT wDosDate, _In_ USHORT wDosTime, _Out_ DOUBLE *pvtime)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetActiveObject
+`HRESULT := GetActiveObject(_In_ REFCLSID rclsid, _Reserved_ void *pvReserved, _Out_ IUnknown **ppunk)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAltMonthNames
+`HRESULT := GetAltMonthNames(_In_ LCID lcid, _Out_ LPOLESTR **prgp)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetErrorInfo
+`HRESULT := GetErrorInfo(_In_ ULONG dwReserved, _Out_ IErrorInfo **pperrinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRecordInfoFromGuids
+`HRESULT := GetRecordInfoFromGuids(_In_ REFGUID rGuidTypeLib, _In_ ULONG uVerMajor, _In_ ULONG uVerMinor, _In_ LCID lcid, _In_ REFGUID rGuidTypeInfo, _Out_ IRecordInfo **ppRecInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRecordInfoFromTypeInfo
+`HRESULT := GetRecordInfoFromTypeInfo(_In_ ITypeInfo *pTypeInfo, _Out_ IRecordInfo **ppRecInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetVarConversionLocaleSetting
+`HRESULT := GetVarConversionLocaleSetting(_Out_ ULONG *dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+LHashValOfNameSys
+`ULONG := LHashValOfNameSys(SYSKIND syskind, LCID lcid, const OLECHAR *szName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LHashValOfNameSysA
+`ULONG := LHashValOfNameSysA(SYSKIND syskind, LCID lcid, LPCSTR szName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadRegTypeLib
+`HRESULT := LoadRegTypeLib(REFGUID rguid, WORD wVerMajor, WORD wVerMinor, LCID lcid, ITypeLib **pptlib)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadTypeLib
+`HRESULT := LoadTypeLib(LPCOLESTR szFile, ITypeLib **pptlib)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadTypeLibEx
+`HRESULT := LoadTypeLibEx(LPCOLESTR szFile, REGKIND regkind, ITypeLib **pptlib)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_Marshal
+`unsignedchar* := LPSAFEARRAY_Marshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ LPSAFEARRAY *ppSafeArray, _In_ const IID *piid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_Size
+`unsignedlong := LPSAFEARRAY_Size(_In_ unsigned long *pFlags, _In_ unsigned long Offset, _In_ LPSAFEARRAY *ppSafeArray, _In_ const IID *piid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_Unmarshal
+`unsignedchar* := LPSAFEARRAY_Unmarshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ LPSAFEARRAY *ppSafeArray, _In_ const IID *piid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_UserFree
+`VOID := LPSAFEARRAY_UserFree(_In_ unsigned long *pFlags, _In_ LPSAFEARRAY *ppSafeArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_UserMarshal
+`unsignedchar* := LPSAFEARRAY_UserMarshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ LPSAFEARRAY *ppSafeArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_UserSize
+`unsignedlong := LPSAFEARRAY_UserSize(_In_ unsigned long *pFlags, _In_ unsigned long Offset, _In_ LPSAFEARRAY *ppSafeArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPSAFEARRAY_UserUnmarshal
+`unsignedchar* := LPSAFEARRAY_UserUnmarshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ LPSAFEARRAY *ppSafeArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+OaBuildVersion
+`ULONG := OaBuildVersion(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+OaEnablePerUserTLibRegistration
+`VOID := OaEnablePerUserTLibRegistration(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateFontIndirect
+`HRESULT := OleCreateFontIndirect(_In_ LPFONTDESC lpFontDesc, _In_ REFIID riid, _Out_ LPVOID *lplpvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreatePictureIndirect
+`HRESULT := OleCreatePictureIndirect(_In_ LPPICTDESC lpPictDesc, _In_ REFIID riid, _In_ BOOL fOwn, _Out_ LPVOID *lplpvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreatePropertyFrame
+`HRESULT := OleCreatePropertyFrame(_In_ HWND hwndOwner, _In_ UINT x, _In_ UINT y, _In_ LPCOLESTR lpszCaption, _In_ ULONG cObjects, _In_ LPUNKNOWN *ppUnk, _In_ ULONG cPages, _In_ LPCLSID pPageClsID, _In_ LCID lcid, _In_ DWORD dwReserved, _In_ LPVOID pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreatePropertyFrameIndirect
+`HRESULT := OleCreatePropertyFrameIndirect(_In_ LPOCPFIPARAMS lpParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleIconToCursor
+`HCURSOR := OleIconToCursor(_In_ HINSTANCE hinstExe, _In_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadPicture
+`HRESULT := OleLoadPicture(_In_ LPSTREAM lpstream, _In_ LONG lSize, _In_ BOOL fRunmode, _In_ REFIID riid, _Out_ LPVOID *lplpvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadPictureEx
+`HRESULT := OleLoadPictureEx(_In_ LPSTREAM lpstream, _In_ LONG lSize, _In_ BOOL fRunmode, _In_ REFIID riid, _In_ DWORD xSizeDesired, _In_ DWORD ySizeDesired, _In_ DWORD dwFlags, _Out_ LPVOID *lplpvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadPictureFile
+`HRESULT := OleLoadPictureFile(_In_ VARIANT varFileName, _Out_ LPDISPATCH *lplpdispPicture)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadPictureFileEx
+`HRESULT := OleLoadPictureFileEx(_In_ VARIANT varFileName, _In_ DWORD xSizeDesired, _In_ DWORD ySizeDesired, _In_ DWORD dwFlags, _Out_ LPDISPATCH *lplpdispPicture)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadPicturePath
+`HRESULT := OleLoadPicturePath(_In_ LPOLESTR szURLorPath, _In_ LPUNKNOWN punkCaller, _In_ DWORD dwReserved, _In_ OLE_COLOR clrReserved, _In_ REFIID riid, _Out_ LPVOID *ppvRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSavePictureFile
+`HRESULT := OleSavePictureFile(_In_ LPDISPATCH lpdispPicture, _In_ BSTR bstrFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleTranslateColor
+`HRESULT := OleTranslateColor(_In_ OLE_COLOR clr, _In_ HPALETTE hpal, _Out_ COLORREF *lpcolorref)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryPathOfRegTypeLib
+`HRESULT := QueryPathOfRegTypeLib(REFGUID guid, USHORT wMaj, USHORT wMin, LCID lcid, _Out_ LPBSTR lpbstrPathName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterActiveObject
+`HRESULT := RegisterActiveObject(IUnknown *punk, REFCLSID rclsid, DWORD dwFlags, DWORD *pdwRegister)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterTypeLib
+`HRESULT := RegisterTypeLib(ITypeLib *ptlib, _In_ LPCOLESTR szFullPath, _In_opt_ LPCOLESTR szHelpDir)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterTypeLibForUser
+`HRESULT := RegisterTypeLibForUser(ITypeLib *ptlib, _In_ OLECHAR *szFullPath, _In_opt_ OLECHAR *szHelpDir)
+`/docs/commands/WinApi.htm
+
+
+Function
+RevokeActiveObject
+`HRESULT := RevokeActiveObject(_In_ DWORD dwRegister, _Reserved_ void *pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayAccessData
+`HRESULT := SafeArrayAccessData(_In_ SAFEARRAY *psa, _Out_ void **ppvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayAllocData
+`HRESULT := SafeArrayAllocData(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayAllocDescriptor
+`HRESULT := SafeArrayAllocDescriptor(_In_ UINT cDims, _Out_ SAFEARRAY **ppsaOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayAllocDescriptorEx
+`HRESULT := SafeArrayAllocDescriptorEx(_In_ VARTYPE vt, _In_ UINT cDims, _Out_ SAFEARRAY **ppsaOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCopy
+`HRESULT := SafeArrayCopy(_In_ SAFEARRAY *psa, _Out_ SAFEARRAY **ppsaOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCopyData
+`HRESULT := SafeArrayCopyData(_In_ SAFEARRAY *psaSource, _In_ SAFEARRAY *psaTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCreate
+`SAFEARRAY* := SafeArrayCreate(_In_ VARTYPE vt, _In_ UINT cDims, _In_ SAFEARRAYBOUND *rgsabound)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCreateEx
+`SAFEARRAY* := SafeArrayCreateEx(_In_ VARTYPE vt, _In_ UINT cDims, _In_ SAFEARRAYBOUND *rgsabound, _In_ PVOID pvExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCreateVector
+`SAFEARRAY* := SafeArrayCreateVector(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ ULONG cElements)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayCreateVectorEx
+`SAFEARRAY* := SafeArrayCreateVectorEx(_In_ VARTYPE vt, _In_ LONG lLbound, _In_ ULONG cElements, _In_ PVOID pvExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayDestroy
+`HRESULT := SafeArrayDestroy(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayDestroyData
+`HRESULT := SafeArrayDestroyData(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayDestroyDescriptor
+`HRESULT := SafeArrayDestroyDescriptor(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetDim
+`UINT := SafeArrayGetDim(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetElement
+`HRESULT := SafeArrayGetElement(_In_ SAFEARRAY *psa, _In_ LONG *rgIndices, _Out_ void *pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetElemsize
+`UINT := SafeArrayGetElemsize(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetIID
+`HRESULT := SafeArrayGetIID(_In_ SAFEARRAY *psa, _Out_ GUID *pguid)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetLBound
+`HRESULT := SafeArrayGetLBound(_In_ SAFEARRAY *psa, _In_ UINT nDim, _Out_ LONG *plLbound)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetRecordInfo
+`HRESULT := SafeArrayGetRecordInfo(_In_ SAFEARRAY *psa, _Out_ IRecordInfo **prinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetUBound
+`HRESULT := SafeArrayGetUBound(_In_ SAFEARRAY *psa, _In_ UINT nDim, _Out_ LONG *plUbound)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayGetVartype
+`HRESULT := SafeArrayGetVartype(_In_ SAFEARRAY *psa, _Out_ VARTYPE *pvt)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayLock
+`HRESULT := SafeArrayLock(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayPtrOfIndex
+`HRESULT := SafeArrayPtrOfIndex(_In_ SAFEARRAY *psa, _In_ LONG *rgIndices, _Out_ void **ppvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayPutElement
+`HRESULT := SafeArrayPutElement(_In_ SAFEARRAY *psa, _In_ LONG *rgIndices, _In_ void *pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayRedim
+`HRESULT := SafeArrayRedim(_Inout_ SAFEARRAY *psa, _In_ SAFEARRAYBOUND *psaboundNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArraySetIID
+`HRESULT := SafeArraySetIID(_In_ SAFEARRAY *psa, _In_ REFGUID guid)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArraySetRecordInfo
+`HRESULT := SafeArraySetRecordInfo(_In_ SAFEARRAY *psa, _In_ IRecordInfo *prinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayUnaccessData
+`HRESULT := SafeArrayUnaccessData(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SafeArrayUnlock
+`HRESULT := SafeArrayUnlock(_In_ SAFEARRAY *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetErrorInfo
+`HRESULT := SetErrorInfo(_In_ ULONG dwReserved, _In_opt_ IErrorInfo *perrinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetOaNoCache
+`VOID := SetOaNoCache(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetVarConversionLocaleSetting
+`HRESULT := SetVarConversionLocaleSetting(_In_ ULONG dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysAllocString
+`BSTR := SysAllocString(_In_opt_ const OLECHAR *psz)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysAllocStringByteLen
+`BSTR := SysAllocStringByteLen(_In_opt_ LPCSTR psz, _In_ UINT len)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysAllocStringLen
+`BSTR := SysAllocStringLen(_In_ const OLECHAR *strIn, _In_ UINT ui)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysFreeString
+`VOID := SysFreeString(_In_opt_ BSTR bstrString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysReAllocString
+`int := SysReAllocString(_Inout_ BSTR *pbstr, _In_opt_ const OLECHAR *psz)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysReAllocStringLen
+`int := SysReAllocStringLen(_Inout_ BSTR *pbstr, _In_opt_ const OLECHAR *psz, _In_ unsigned int len)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysStringByteLen
+`UINT := SysStringByteLen(_In_opt_ BSTR bstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+SysStringLen
+`UINT := SysStringLen(_In_opt_ BSTR bstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+SystemTimeToVariantTime
+`int := SystemTimeToVariantTime(_In_ LPSYSTEMTIME lpSystemTime, _Out_ DOUBLE *pvtime)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnRegisterTypeLib
+`HRESULT := UnRegisterTypeLib(REFGUID libID, WORD wVerMajor, WORD wVerMinor, LCID lcid, SYSKIND syskind)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnRegisterTypeLibForUser
+`HRESULT := UnRegisterTypeLibForUser(REFGUID libID, WORD wMajorVerNum, WORD wMinorVerNum, LCID lcid, SYSKIND syskind)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarAbs
+`HRESULT := VarAbs(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarAdd
+`HRESULT := VarAdd(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarAnd
+`HRESULT := VarAnd(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromCy
+`HRESULT := VarBoolFromCy(_In_ CY cyIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromDate
+`HRESULT := VarBoolFromDate(_In_ DATE dateIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromDec
+`HRESULT := VarBoolFromDec(_In_ const DECIMAL *pdecIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromDisp
+`HRESULT := VarBoolFromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromI1
+`HRESULT := VarBoolFromI1(_In_ CHAR cIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromI2
+`HRESULT := VarBoolFromI2(_In_ SHORT sIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromI4
+`HRESULT := VarBoolFromI4(_In_ LONG lIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromI8
+`HRESULT := VarBoolFromI8(_In_ LONG64 i64In, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromR4
+`HRESULT := VarBoolFromR4(_In_ FLOAT fltIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromR8
+`HRESULT := VarBoolFromR8(_In_ DOUBLE dblIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromStr
+`HRESULT := VarBoolFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromUI1
+`HRESULT := VarBoolFromUI1(_In_ BYTE bIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromUI2
+`HRESULT := VarBoolFromUI2(_In_ USHORT uiIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromUI4
+`HRESULT := VarBoolFromUI4(_In_ ULONG ulIn, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBoolFromUI8
+`HRESULT := VarBoolFromUI8(_In_ ULONG64 i64In, _Out_ VARIANT_BOOL *pboolOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrCat
+`HRESULT := VarBstrCat(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _Out_ LPBSTR pbstrResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrCmp
+`HRESULT := VarBstrCmp(_In_ BSTR bstrLeft, _In_ BSTR bstrRight, _In_ LCID lcid, _In_ ULONG dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromBool
+`HRESULT := VarBstrFromBool(_In_ VARIANT_BOOL boolIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromCy
+`HRESULT := VarBstrFromCy(_In_ CY cyIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromDate
+`HRESULT := VarBstrFromDate(_In_ DATE dateIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromDec
+`HRESULT := VarBstrFromDec(_In_ const DECIMAL *pdecIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromDisp
+`HRESULT := VarBstrFromDisp(IDispatch *pdispIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromI1
+`HRESULT := VarBstrFromI1(_In_ CHAR cIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromI2
+`HRESULT := VarBstrFromI2(_In_ SHORT iVal, _In_ LCID lcid, _In_ ULONG dwFlags, BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromI4
+`HRESULT := VarBstrFromI4(_In_ LONG lIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromI8
+`HRESULT := VarBstrFromI8(_In_ LONG64 i64In, _In_ LCID lcid, _In_ unsigned long dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromR4
+`HRESULT := VarBstrFromR4(_In_ FLOAT fltIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromR8
+`HRESULT := VarBstrFromR8(_In_ DOUBLE dblIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromUI1
+`HRESULT := VarBstrFromUI1(_In_ BYTE bVal, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromUI2
+`HRESULT := VarBstrFromUI2(_In_ USHORT uiIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromUI4
+`HRESULT := VarBstrFromUI4(_In_ ULONG ulIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarBstrFromUI8
+`HRESULT := VarBstrFromUI8(_In_ ULONG64 ui64In, _In_ LCID lcid, _In_ unsigned long dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCat
+`HRESULT := VarCat(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCmp
+`HRESULT := VarCmp(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _In_ LCID lcid, _In_ ULONG dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyAbs
+`HRESULT := VarCyAbs(_In_ CY cyIn, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyAdd
+`HRESULT := VarCyAdd(_In_ CY cyLeft, _In_ CY cyRight, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyCmp
+`HRESULT := VarCyCmp(_In_ CY cyLeft, _In_ CY cyRight)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyCmpR8
+`HRESULT := VarCyCmpR8(_In_ CY cyLeft, _In_ double dblRight)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFix
+`HRESULT := VarCyFix(_In_ CY cyIn, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromBool
+`HRESULT := VarCyFromBool(_In_ VARIANT_BOOL boolIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromDate
+`HRESULT := VarCyFromDate(_In_ DATE dateIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromDec
+`HRESULT := VarCyFromDec(_In_ const DECIMAL *pdecIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromDisp
+`HRESULT := VarCyFromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromI1
+`HRESULT := VarCyFromI1(_In_ CHAR cIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromI2
+`HRESULT := VarCyFromI2(_In_ SHORT sIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromI4
+`HRESULT := VarCyFromI4(_In_ LONG lIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromI8
+`HRESULT := VarCyFromI8(_In_ LONG64 i64In, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromR4
+`HRESULT := VarCyFromR4(_In_ FLOAT fltIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromR8
+`HRESULT := VarCyFromR8(_In_ DOUBLE dblIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromStr
+`HRESULT := VarCyFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromUI1
+`HRESULT := VarCyFromUI1(_In_ BYTE bIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromUI2
+`HRESULT := VarCyFromUI2(_In_ USHORT uiIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromUI4
+`HRESULT := VarCyFromUI4(_In_ ULONG ulIn, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyFromUI8
+`HRESULT := VarCyFromUI8(_In_ ULONG64 ui64In, _Out_ CY *pcyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyInt
+`HRESULT := VarCyInt(_In_ CY cyIn, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyMul
+`HRESULT := VarCyMul(_In_ CY cyLeft, _In_ CY cyRight, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyMulI4
+`HRESULT := VarCyMulI4(_In_ CY cyLeft, _In_ long lRight, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyMulI8
+`HRESULT := VarCyMulI8(_In_ CY cyLeft, _In_ LONG64 lRight, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyNeg
+`HRESULT := VarCyNeg(_In_ CY cyIn, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCyRound
+`HRESULT := VarCyRound(_In_ CY cyIn, _In_ int cDecimals, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarCySub
+`HRESULT := VarCySub(_In_ CY cyLeft, _In_ CY cyRight, _Out_ LPCY pcyResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromBool
+`HRESULT := VarDateFromBool(_In_ VARIANT_BOOL boolIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromCy
+`HRESULT := VarDateFromCy(_In_ CY cyIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromDec
+`HRESULT := VarDateFromDec(_In_ const DECIMAL *pdecIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromDisp
+`HRESULT := VarDateFromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromI1
+`HRESULT := VarDateFromI1(_In_ CHAR cIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromI2
+`HRESULT := VarDateFromI2(_In_ SHORT sIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromI4
+`HRESULT := VarDateFromI4(_In_ LONG lIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromI8
+`HRESULT := VarDateFromI8(_In_ LONG64 i64In, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromR4
+`HRESULT := VarDateFromR4(_In_ FLOAT fltIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromR8
+`HRESULT := VarDateFromR8(_In_ DOUBLE dblIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromStr
+`HRESULT := VarDateFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUdate
+`HRESULT := VarDateFromUdate(_In_ UDATE *pudateIn, _In_ ULONG dwFlags, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUdateEx
+`HRESULT := VarDateFromUdateEx(_In_ UDATE *pudateIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUI1
+`HRESULT := VarDateFromUI1(_In_ BYTE bIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUI2
+`HRESULT := VarDateFromUI2(_In_ USHORT uiIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUI4
+`HRESULT := VarDateFromUI4(_In_ ULONG ulIn, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDateFromUI8
+`HRESULT := VarDateFromUI8(_In_ ULONG64 ui64In, _Out_ DATE *pdateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecAbs
+`HRESULT := VarDecAbs(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecAdd
+`HRESULT := VarDecAdd(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecCmp
+`HRESULT := VarDecCmp(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecCmpR8
+`HRESULT := VarDecCmpR8(_In_ LPDECIMAL pdecLeft, _In_ double dblRight)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecDiv
+`HRESULT := VarDecDiv(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFix
+`HRESULT := VarDecFix(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromBool
+`HRESULT := VarDecFromBool(_In_ VARIANT_BOOL boolIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromCy
+`HRESULT := VarDecFromCy(_In_ CY cyIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromDate
+`HRESULT := VarDecFromDate(_In_ DATE dateIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromDisp
+`HRESULT := VarDecFromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromI1
+`HRESULT := VarDecFromI1(_In_ CHAR cIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromI2
+`HRESULT := VarDecFromI2(_In_ SHORT uiIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromI4
+`HRESULT := VarDecFromI4(_In_ LONG lIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromI8
+`HRESULT := VarDecFromI8(_In_ LONG64 i64In, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromR4
+`HRESULT := VarDecFromR4(_In_ FLOAT fltIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromR8
+`HRESULT := VarDecFromR8(_In_ DOUBLE dblIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromStr
+`HRESULT := VarDecFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromUI1
+`HRESULT := VarDecFromUI1(_In_ BYTE bIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromUI2
+`HRESULT := VarDecFromUI2(_In_ USHORT uiIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromUI4
+`HRESULT := VarDecFromUI4(_In_ ULONG ulIn, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecFromUI8
+`HRESULT := VarDecFromUI8(_In_ ULONG64 ui64In, _Out_ DECIMAL *pdecOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecInt
+`HRESULT := VarDecInt(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecMul
+`HRESULT := VarDecMul(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecNeg
+`HRESULT := VarDecNeg(_In_ LPDECIMAL pdecIn, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecRound
+`HRESULT := VarDecRound(_In_ LPDECIMAL pdecIn, _In_ int cDecimals, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDecSub
+`HRESULT := VarDecSub(_In_ LPDECIMAL pdecLeft, _In_ LPDECIMAL pdecRight, _Out_ LPDECIMAL pdecResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarDiv
+`HRESULT := VarDiv(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarEqv
+`HRESULT := VarEqv(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFix
+`HRESULT := VarFix(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormat
+`HRESULT := VarFormat(_In_ LPVARIANT pvarIn, _In_opt_ LPOLESTR pstrFormat, _In_ int iFirstDay, _In_ int iFirstWeek, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormatCurrency
+`HRESULT := VarFormatCurrency(_In_ LPVARIANT pvarIn, _In_ int iNumDig, _In_ int iIncLead, _In_ int iUseParens, _In_ int iGroup, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormatDateTime
+`HRESULT := VarFormatDateTime(_In_ LPVARIANT pvarIn, _In_ int iNamedFormat, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormatFromTokens
+`HRESULT := VarFormatFromTokens(_In_ LPVARIANT pvarIn, _In_opt_ LPOLESTR pstrFormat, _In_ LPBYTE pbTokCur, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut, _In_ LCID lcid)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormatNumber
+`HRESULT := VarFormatNumber(_In_ LPVARIANT pvarIn, _In_ int iNumDig, _In_ int iIncLead, _In_ int iUseParens, _In_ int iGroup, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarFormatPercent
+`HRESULT := VarFormatPercent(_In_ LPVARIANT pvarIn, _In_ int iNumDig, _In_ int iIncLead, _In_ int iUseParens, _In_ int iGroup, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromBool
+`HRESULT := VarI1FromBool(_In_ VARIANT_BOOL boolIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromCy
+`HRESULT := VarI1FromCy(_In_ CY cyIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromDate
+`HRESULT := VarI1FromDate(_In_ DATE dateIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromDec
+`HRESULT := VarI1FromDec(_In_ const DECIMAL *pdecIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromDisp
+`HRESULT := VarI1FromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromI2
+`HRESULT := VarI1FromI2(_In_ SHORT uiIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromI4
+`HRESULT := VarI1FromI4(_In_ LONG lIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromI8
+`HRESULT := VarI1FromI8(_In_ LONG64 i64In, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromR4
+`HRESULT := VarI1FromR4(_In_ FLOAT fltIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromR8
+`HRESULT := VarI1FromR8(_In_ DOUBLE dblIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromStr
+`HRESULT := VarI1FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromUI1
+`HRESULT := VarI1FromUI1(_In_ BYTE bIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromUI2
+`HRESULT := VarI1FromUI2(_In_ USHORT uiIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromUI4
+`HRESULT := VarI1FromUI4(_In_ ULONG ulIn, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI1FromUI8
+`HRESULT := VarI1FromUI8(_In_ ULONG64 i64In, _Out_ CHAR *pcOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromBool
+`HRESULT := VarI2FromBool(_In_ VARIANT_BOOL boolIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromCy
+`HRESULT := VarI2FromCy(_In_ CY cyIn, SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromDate
+`HRESULT := VarI2FromDate(_In_ DATE dateIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromDec
+`HRESULT := VarI2FromDec(_In_ const DECIMAL *pdecIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromDisp
+`HRESULT := VarI2FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromI1
+`HRESULT := VarI2FromI1(_In_ CHAR cIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromI4
+`HRESULT := VarI2FromI4(_In_ LONG lIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromI8
+`HRESULT := VarI2FromI8(_In_ LONG64 i64In, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromR4
+`HRESULT := VarI2FromR4(_In_ FLOAT fltIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromR8
+`HRESULT := VarI2FromR8(_In_ DOUBLE dblIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromStr
+`HRESULT := VarI2FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromUI1
+`HRESULT := VarI2FromUI1(_In_ BYTE bIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromUI2
+`HRESULT := VarI2FromUI2(_In_ USHORT uiIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromUI4
+`HRESULT := VarI2FromUI4(_In_ ULONG ulIn, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI2FromUI8
+`HRESULT := VarI2FromUI8(_In_ ULONG64 ui64In, _Out_ SHORT *psOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromBool
+`HRESULT := VarI4FromBool(_In_ VARIANT_BOOL boolIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromCy
+`HRESULT := VarI4FromCy(_In_ CY cyIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromDate
+`HRESULT := VarI4FromDate(_In_ DATE dateIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromDec
+`HRESULT := VarI4FromDec(_In_ const DECIMAL *pdecIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromDisp
+`HRESULT := VarI4FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromI1
+`HRESULT := VarI4FromI1(_In_ CHAR cIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromI2
+`HRESULT := VarI4FromI2(_In_ SHORT sIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromI8
+`HRESULT := VarI4FromI8(_In_ LONG64 i64In, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromR4
+`HRESULT := VarI4FromR4(_In_ FLOAT fltIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromR8
+`HRESULT := VarI4FromR8(_In_ DOUBLE dblIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromStr
+`HRESULT := VarI4FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromUI1
+`HRESULT := VarI4FromUI1(_In_ BYTE bIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromUI2
+`HRESULT := VarI4FromUI2(_In_ USHORT uiIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromUI4
+`HRESULT := VarI4FromUI4(_In_ ULONG ulIn, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI4FromUI8
+`HRESULT := VarI4FromUI8(_In_ ULONG64 ui64In, _Out_ LONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromBool
+`HRESULT := VarI8FromBool(_In_ VARIANT_BOOL boolIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromCy
+`HRESULT := VarI8FromCy(_In_ CY cyIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromDate
+`HRESULT := VarI8FromDate(_In_ DATE dateIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromDec
+`HRESULT := VarI8FromDec(_In_ const DECIMAL *pdecIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromDisp
+`HRESULT := VarI8FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromI1
+`HRESULT := VarI8FromI1(_In_ CHAR cIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromI2
+`HRESULT := VarI8FromI2(_In_ SHORT sIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromR4
+`HRESULT := VarI8FromR4(_In_ FLOAT fltIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromR8
+`HRESULT := VarI8FromR8(_In_ DOUBLE dblIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromStr
+`HRESULT := VarI8FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ unsigned long dwFlags, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromUI1
+`HRESULT := VarI8FromUI1(_In_ BYTE bIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromUI2
+`HRESULT := VarI8FromUI2(_In_ USHORT uiIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromUI4
+`HRESULT := VarI8FromUI4(_In_ ULONG ulIn, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarI8FromUI8
+`HRESULT := VarI8FromUI8(_In_ ULONG64 ui64In, _Out_ LONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VARIANT_UserFree
+`VOID := VARIANT_UserFree(_In_ unsigned long *pFlags, _In_ VARIANT *pVariant)
+`/docs/commands/WinApi.htm
+
+
+Function
+VARIANT_UserMarshal
+`unsignedchar* := VARIANT_UserMarshal(_In_ unsigned long *pFlags, _Inout_ unsigned char *pBuffer, _In_ VARIANT *pVariant)
+`/docs/commands/WinApi.htm
+
+
+Function
+VARIANT_UserSize
+`unsignedlong := VARIANT_UserSize(_In_ unsigned long *pFlags, _In_ unsigned long Offset, _In_ VARIANT *pVariant)
+`/docs/commands/WinApi.htm
+
+
+Function
+VARIANT_UserUnmarshal
+`unsignedchar* := VARIANT_UserUnmarshal(_In_ unsigned long *pFlags, _In_ unsigned char *pBuffer, _Out_ VARIANT *pVariant)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantChangeType
+`HRESULT := VariantChangeType(_Out_ VARIANTARG *pvargDest, _In_ const VARIANTARG *pvarSrc, _In_ USHORT wFlags, _In_ VARTYPE vt)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantChangeTypeEx
+`HRESULT := VariantChangeTypeEx(_Out_ VARIANTARG *pvargDest, _In_ const VARIANTARG *pvarSrc, _In_ LCID lcid, _In_ USHORT wFlags, _In_ VARTYPE vt)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantClear
+`HRESULT := VariantClear(_Inout_ VARIANTARG *pvarg)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantCopy
+`HRESULT := VariantCopy(_Out_ VARIANTARG *pvargDest, _In_ const VARIANTARG *pvargSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantCopyInd
+`HRESULT := VariantCopyInd(_Out_ VARIANT *pvarDest, _In_ const VARIANTARG *pvargSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantInit
+`VOID := VariantInit(_Out_ VARIANTARG *pvarg)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantTimeToDosDateTime
+`int := VariantTimeToDosDateTime(_In_ DOUBLE vtime, _Out_ USHORT *pwDosDate, _Out_ USHORT *pwDosTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+VariantTimeToSystemTime
+`int := VariantTimeToSystemTime(_In_ DOUBLE vtime, _Out_ LPSYSTEMTIME lpSystemTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarIdiv
+`HRESULT := VarIdiv(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarImp
+`HRESULT := VarImp(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarInt
+`HRESULT := VarInt(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarMod
+`HRESULT := VarMod(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarMonthName
+`HRESULT := VarMonthName(_In_ int iMonth, _In_ int fAbbrev, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarMul
+`HRESULT := VarMul(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarNeg
+`HRESULT := VarNeg(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarNot
+`HRESULT := VarNot(_In_ LPVARIANT pvarIn, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarNumFromParseNum
+`HRESULT := VarNumFromParseNum(_In_ NUMPARSE *pnumprs, _In_ BYTE *rgbDig, _In_ ULONG dwVtBits, _Out_ VARIANT *pvar)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarOr
+`HRESULT := VarOr(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarParseNumFromStr
+`HRESULT := VarParseNumFromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ NUMPARSE *pnumprs, _Out_ BYTE *rgbDig)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarPow
+`HRESULT := VarPow(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4CmpR8
+`HRESULT := VarR4CmpR8(_In_ float fltLeft, _In_ double dblRight)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromBool
+`HRESULT := VarR4FromBool(_In_ VARIANT_BOOL boolIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromCy
+`HRESULT := VarR4FromCy(_In_ CY cyIn, FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromDate
+`HRESULT := VarR4FromDate(_In_ DATE dateIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromDec
+`HRESULT := VarR4FromDec(_In_ const DECIMAL *pdecIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromDisp
+`HRESULT := VarR4FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromI1
+`HRESULT := VarR4FromI1(_In_ CHAR cIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromI2
+`HRESULT := VarR4FromI2(_In_ SHORT sIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromI4
+`HRESULT := VarR4FromI4(_In_ LONG lIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromI8
+`HRESULT := VarR4FromI8(_In_ LONG64 i64In, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromR8
+`HRESULT := VarR4FromR8(_In_ DOUBLE dblIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromStr
+`HRESULT := VarR4FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromUI1
+`HRESULT := VarR4FromUI1(_In_ BYTE bIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromUI2
+`HRESULT := VarR4FromUI2(_In_ USHORT uiIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromUI4
+`HRESULT := VarR4FromUI4(_In_ ULONG ulIn, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR4FromUI8
+`HRESULT := VarR4FromUI8(_In_ ULONG64 ui64In, _Out_ FLOAT *pfltOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromBool
+`HRESULT := VarR8FromBool(_In_ VARIANT_BOOL boolIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromCy
+`HRESULT := VarR8FromCy(_In_ CY cyIn, DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromDate
+`HRESULT := VarR8FromDate(_In_ DATE dateIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromDec
+`HRESULT := VarR8FromDec(_In_ const DECIMAL *pdecIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromDisp
+`HRESULT := VarR8FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromI1
+`HRESULT := VarR8FromI1(_In_ CHAR cIn, DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromI2
+`HRESULT := VarR8FromI2(_In_ SHORT sIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromI4
+`HRESULT := VarR8FromI4(_In_ LONG lIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromI8
+`HRESULT := VarR8FromI8(_In_ LONG64 i64In, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromR4
+`HRESULT := VarR8FromR4(_In_ FLOAT fltIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromStr
+`HRESULT := VarR8FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromUI1
+`HRESULT := VarR8FromUI1(_In_ BYTE bIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromUI2
+`HRESULT := VarR8FromUI2(_In_ USHORT uiIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromUI4
+`HRESULT := VarR8FromUI4(_In_ ULONG ulIn, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8FromUI8
+`HRESULT := VarR8FromUI8(_In_ ULONG64 ui64In, _Out_ DOUBLE *pdblOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8Pow
+`HRESULT := VarR8Pow(_In_ double dblLeft, _In_ double dblRight, _Out_ double *pdblResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarR8Round
+`HRESULT := VarR8Round(_In_ double dblIn, _In_ int cDecimals, _Out_ double *pdblResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarRound
+`HRESULT := VarRound(_In_ LPVARIANT pvarIn, _In_ int cDecimals, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarSub
+`HRESULT := VarSub(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarTokenizeFormatString
+`HRESULT := VarTokenizeFormatString(_In_opt_ LPOLESTR pstrFormat, _Inout_ LPBYTE rgbTok, _In_ int cbTok, _In_ int iFirstDay, _In_ int iFirstWeek, _In_ LCID lcid, _In_opt_ int *pcbActual)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUdateFromDate
+`HRESULT := VarUdateFromDate(_In_ DATE dateIn, _In_ ULONG dwFlags, _Out_ UDATE *pudateOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromBool
+`HRESULT := VarUI1FromBool(_In_ VARIANT_BOOL boolIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromCy
+`HRESULT := VarUI1FromCy(_In_ CY cyIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromDate
+`HRESULT := VarUI1FromDate(_In_ DATE dateIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromDec
+`HRESULT := VarUI1FromDec(_In_ const DECIMAL *pdecIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromDisp
+`HRESULT := VarUI1FromDisp(IDispatch *pdispIn, _In_ LCID lcid, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromI1
+`HRESULT := VarUI1FromI1(_In_ CHAR cIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromI2
+`HRESULT := VarUI1FromI2(_In_ SHORT sIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromI4
+`HRESULT := VarUI1FromI4(_In_ LONG lIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromI8
+`HRESULT := VarUI1FromI8(_In_ LONG64 i64In, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromR4
+`HRESULT := VarUI1FromR4(_In_ FLOAT fltIn, BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromR8
+`HRESULT := VarUI1FromR8(_In_ DOUBLE dblIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromStr
+`HRESULT := VarUI1FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromUI2
+`HRESULT := VarUI1FromUI2(_In_ USHORT uiIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromUI4
+`HRESULT := VarUI1FromUI4(_In_ ULONG ulIn, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI1FromUI8
+`HRESULT := VarUI1FromUI8(_In_ ULONG64 ui64In, _Out_ BYTE *pbOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromBool
+`HRESULT := VarUI2FromBool(_In_ VARIANT_BOOL boolIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromCy
+`HRESULT := VarUI2FromCy(_In_ CY cyIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromDate
+`HRESULT := VarUI2FromDate(_In_ DATE dateIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromDec
+`HRESULT := VarUI2FromDec(_In_ const DECIMAL *pdecIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromDisp
+`HRESULT := VarUI2FromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromI1
+`HRESULT := VarUI2FromI1(_In_ CHAR cIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromI2
+`HRESULT := VarUI2FromI2(_In_ SHORT uiIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromI4
+`HRESULT := VarUI2FromI4(_In_ LONG lIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromI8
+`HRESULT := VarUI2FromI8(_In_ LONG64 i64In, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromR4
+`HRESULT := VarUI2FromR4(_In_ FLOAT fltIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromR8
+`HRESULT := VarUI2FromR8(_In_ DOUBLE dblIn, USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromStr
+`HRESULT := VarUI2FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromUI1
+`HRESULT := VarUI2FromUI1(_In_ BYTE bIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromUI4
+`HRESULT := VarUI2FromUI4(_In_ ULONG ulIn, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI2FromUI8
+`HRESULT := VarUI2FromUI8(_In_ ULONG64 i64In, _Out_ USHORT *puiOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromBool
+`HRESULT := VarUI4FromBool(_In_ VARIANT_BOOL boolIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromCy
+`HRESULT := VarUI4FromCy(_In_ CY cyIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromDate
+`HRESULT := VarUI4FromDate(_In_ DATE dateIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromDec
+`HRESULT := VarUI4FromDec(_In_ const DECIMAL *pdecIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromDisp
+`HRESULT := VarUI4FromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromI1
+`HRESULT := VarUI4FromI1(_In_ CHAR cIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromI2
+`HRESULT := VarUI4FromI2(_In_ SHORT uiIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromI4
+`HRESULT := VarUI4FromI4(_In_ LONG lIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromI8
+`HRESULT := VarUI4FromI8(_In_ LONG64 i64In, _Out_ ULONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromR4
+`HRESULT := VarUI4FromR4(_In_ FLOAT fltIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromR8
+`HRESULT := VarUI4FromR8(_In_ DOUBLE dblIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromStr
+`HRESULT := VarUI4FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ ULONG dwFlags, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromUI1
+`HRESULT := VarUI4FromUI1(_In_ BYTE bIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromUI2
+`HRESULT := VarUI4FromUI2(_In_ USHORT uiIn, _Out_ ULONG *pulOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI4FromUI8
+`HRESULT := VarUI4FromUI8(_In_ ULONG64 ui64In, _Out_ ULONG *plOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromBool
+`HRESULT := VarUI8FromBool(_In_ VARIANT_BOOL boolIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromCy
+`HRESULT := VarUI8FromCy(_In_ CY cyIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromDate
+`HRESULT := VarUI8FromDate(_In_ DATE dateIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromDec
+`HRESULT := VarUI8FromDec(_In_ const DECIMAL *pdecIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromDisp
+`HRESULT := VarUI8FromDisp(_In_ IDispatch *pdispIn, _In_ LCID lcid, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromI1
+`HRESULT := VarUI8FromI1(_In_ CHAR cIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromI2
+`HRESULT := VarUI8FromI2(_In_ SHORT sIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromI8
+`HRESULT := VarUI8FromI8(_In_ LONG64 ui64In, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromR4
+`HRESULT := VarUI8FromR4(_In_ FLOAT fltIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromR8
+`HRESULT := VarUI8FromR8(_In_ DOUBLE dblIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromStr
+`HRESULT := VarUI8FromStr(_In_ LPCOLESTR strIn, _In_ LCID lcid, _In_ unsigned long dwFlags, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromUI1
+`HRESULT := VarUI8FromUI1(_In_ BYTE bIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromUI2
+`HRESULT := VarUI8FromUI2(_In_ USHORT uiIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarUI8FromUI4
+`HRESULT := VarUI8FromUI4(_In_ ULONG ulIn, _Out_ ULONG64 *pi64Out)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarWeekdayName
+`HRESULT := VarWeekdayName(_In_ int iWeekday, _In_ int fAbbrev, _In_ int iFirstDay, _In_ ULONG dwFlags, _Out_ BSTR *pbstrOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+VarXor
+`HRESULT := VarXor(_In_ LPVARIANT pvarLeft, _In_ LPVARIANT pvarRight, _Out_ LPVARIANT pvarResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+VectorFromBstr
+`HRESULT := VectorFromBstr(_In_ BSTR bstr, _Out_ SAFEARRAY **ppsa)
+`/docs/commands/WinApi.htm

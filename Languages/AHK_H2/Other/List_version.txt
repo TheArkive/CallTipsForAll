@@ -1,0 +1,112 @@
+Function
+GetFileVersionInfo
+`BOOL := GetFileVersionInfo(_In_ LPCTSTR lptstrFilename, _Reserved_ DWORD dwHandle, _In_ DWORD dwLen, _Out_ LPVOID lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoA
+`BOOL := GetFileVersionInfoA(_In_ LPCSTR lptstrFilename, _Reserved_ DWORD dwHandle, _In_ DWORD dwLen, _Out_ LPVOID lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoEx
+`BOOL := GetFileVersionInfoEx(_In_ DWORD dwFlags, _In_ LPCTSTR lptstrFilename, _Reserved_ DWORD dwHandle, _In_ DWORD dwLen, _Out_ LPVOID lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoExW
+`BOOL := GetFileVersionInfoExW(_In_ DWORD dwFlags, _In_ LPCWSTR lptstrFilename, _Reserved_ DWORD dwHandle, _In_ DWORD dwLen, _Out_ LPVOID lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoSize
+`DWORD := GetFileVersionInfoSize(_In_ LPCTSTR lptstrFilename, _Out_opt_ LPDWORD lpdwHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoSizeA
+`DWORD := GetFileVersionInfoSizeA(_In_ LPCSTR lptstrFilename, _Out_opt_ LPDWORD lpdwHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoSizeEx
+`DWORD := GetFileVersionInfoSizeEx(_In_ DWORD dwFlags, _In_ LPCTSTR lptstrFilename, _Out_ LPDWORD lpdwHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoSizeExW
+`DWORD := GetFileVersionInfoSizeExW(_In_ DWORD dwFlags, _In_ LPCWSTR lptstrFilename, _Out_ LPDWORD lpdwHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoSizeW
+`DWORD := GetFileVersionInfoSizeW(_In_ LPCWSTR lptstrFilename, _Out_opt_ LPDWORD lpdwHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileVersionInfoW
+`BOOL := GetFileVersionInfoW(_In_ LPCWSTR lptstrFilename, _Reserved_ DWORD dwHandle, _In_ DWORD dwLen, _Out_ LPVOID lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerFindFile
+`DWORD := VerFindFile(_In_ DWORD dwFlags, _In_ LPCTSTR szFileName, _In_opt_ LPCTSTR szWinDir, _In_ LPCTSTR szAppDir, _Out_ LPWSTR szCurDir, _Inout_ PUINT lpuCurDirLen, _Out_ LPTSTR szDestDir, _Inout_ PUINT lpuDestDirLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerFindFileA
+`DWORD := VerFindFileA(_In_ DWORD dwFlags, _In_ LPCSTR szFileName, _In_opt_ LPCSTR szWinDir, _In_ LPCSTR szAppDir, _Out_ LPWSTR szCurDir, _Inout_ PUINT lpuCurDirLen, _Out_ LPSTR szDestDir, _Inout_ PUINT lpuDestDirLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerFindFileW
+`DWORD := VerFindFileW(_In_ DWORD dwFlags, _In_ LPCWSTR szFileName, _In_opt_ LPCWSTR szWinDir, _In_ LPCWSTR szAppDir, _Out_ LPWSTR szCurDir, _Inout_ PUINT lpuCurDirLen, _Out_ LPWSTR szDestDir, _Inout_ PUINT lpuDestDirLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerInstallFile
+`DWORD := VerInstallFile(_In_ DWORD uFlags, _In_ LPCTSTR szSrcFileName, _In_ LPCTSTR szDestFileName, _In_ LPCTSTR szSrcDir, _In_ LPCTSTR szDestDir, _In_ LPCTSTR szCurDir, _Out_ LPTSTR szTmpFile, _Inout_ PUINT lpuTmpFileLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerInstallFileA
+`DWORD := VerInstallFileA(_In_ DWORD uFlags, _In_ LPCSTR szSrcFileName, _In_ LPCSTR szDestFileName, _In_ LPCSTR szSrcDir, _In_ LPCSTR szDestDir, _In_ LPCSTR szCurDir, _Out_ LPSTR szTmpFile, _Inout_ PUINT lpuTmpFileLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerInstallFileW
+`DWORD := VerInstallFileW(_In_ DWORD uFlags, _In_ LPCWSTR szSrcFileName, _In_ LPCWSTR szDestFileName, _In_ LPCWSTR szSrcDir, _In_ LPCWSTR szDestDir, _In_ LPCWSTR szCurDir, _Out_ LPWSTR szTmpFile, _Inout_ PUINT lpuTmpFileLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerQueryValue
+`BOOL := VerQueryValue(_In_ LPCVOID pBlock, _In_ LPCTSTR lpSubBlock, _Out_ LPVOID *lplpBuffer, _Out_ PUINT puLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerQueryValueA
+`BOOL := VerQueryValueA(_In_ LPCVOID pBlock, _In_ LPCSTR lpSubBlock, _Out_ LPVOID *lplpBuffer, _Out_ PUINT puLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+VerQueryValueW
+`BOOL := VerQueryValueW(_In_ LPCVOID pBlock, _In_ LPCWSTR lpSubBlock, _Out_ LPVOID *lplpBuffer, _Out_ PUINT puLen)
+`/docs/commands/WinApi.htm

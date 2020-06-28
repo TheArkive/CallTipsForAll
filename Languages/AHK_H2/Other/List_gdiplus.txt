@@ -1,0 +1,3646 @@
+Function
+GdipAddPathArc
+`GpStatus := GdipAddPathArc(GpPath* path,REAL x,REAL y,REAL width,REAL height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathArcI
+`GpStatus := GdipAddPathArcI(GpPath* path,INT x,INT y,INT width,INT height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathBezier
+`GpStatus := GdipAddPathBezier(GpPath* path,REAL x1,REAL y1,REAL x2,REAL y2,REAL x3,REAL y3,REAL x4,REAL y4)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathBezierI
+`GpStatus := GdipAddPathBezierI(GpPath* path,INT x1,INT y1,INT x2,INT y2,INT x3,INT y3,INT x4,INT y4)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathBeziers
+`GpStatus := GdipAddPathBeziers(GpPath* path,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathBeziersI
+`GpStatus := GdipAddPathBeziersI(GpPath* path,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathClosedCurve
+`GpStatus := GdipAddPathClosedCurve(GpPath* path,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathClosedCurve2
+`GpStatus := GdipAddPathClosedCurve2(GpPath* path,GDIPGpPointF* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathClosedCurve2I
+`GpStatus := GdipAddPathClosedCurve2I(GpPath* path,GDIPGpPoint* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathClosedCurveI
+`GpStatus := GdipAddPathClosedCurveI(GpPath* path,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurve
+`GpStatus := GdipAddPathCurve(GpPath* path,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurve2
+`GpStatus := GdipAddPathCurve2(GpPath* path,GDIPGpPointF* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurve2I
+`GpStatus := GdipAddPathCurve2I(GpPath* path,GDIPGpPoint* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurve3
+`GpStatus := GdipAddPathCurve3(GpPath* path,GDIPGpPointF* points,INT count,INT offset,INT numberOfSegments,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurve3I
+`GpStatus := GdipAddPathCurve3I(GpPath* path,GDIPGpPoint* points,INT count,INT offset,INT numberOfSegments,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathCurveI
+`GpStatus := GdipAddPathCurveI(GpPath* path,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathEllipse
+`GpStatus := GdipAddPathEllipse(GpPath* path,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathEllipseI
+`GpStatus := GdipAddPathEllipseI(GpPath* path,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathLine
+`GpStatus := GdipAddPathLine(GpPath* path,REAL x1,REAL y1,REAL x2,REAL y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathLine2
+`GpStatus := GdipAddPathLine2(GpPath* path,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathLine2I
+`GpStatus := GdipAddPathLine2I(GpPath* path,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathLineI
+`GpStatus := GdipAddPathLineI(GpPath* path,INT x1,INT y1,INT x2,INT y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathPath
+`GpStatus := GdipAddPathPath(GpPath* path,GDIPGpPath* addingPath,BOOL connect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathPie
+`GpStatus := GdipAddPathPie(GpPath* path,REAL x,REAL y,REAL width,REAL height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathPieI
+`GpStatus := GdipAddPathPieI(GpPath* path,INT x,INT y,INT width,INT height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathPolygon
+`GpStatus := GdipAddPathPolygon(GpPath* path,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathPolygonI
+`GpStatus := GdipAddPathPolygonI(GpPath* path,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathRectangle
+`GpStatus := GdipAddPathRectangle(GpPath* path,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathRectangleI
+`GpStatus := GdipAddPathRectangleI(GpPath* path,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathRectangles
+`GpStatus := GdipAddPathRectangles(GpPath* path,GDIPGpRectF* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathRectanglesI
+`GpStatus := GdipAddPathRectanglesI(GpPath* path,GDIPGpRect* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathString
+`GpStatus := GdipAddPathString(GpPath* path,GDIPWCHAR* string,INT length,GDIPGpFontFamily* family,INT style,REAL emSize,GDIPRectF* layoutRect,GDIPGpStringFormat* format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAddPathStringI
+`GpStatus := GdipAddPathStringI(GpPath* path,GDIPWCHAR* string,INT length,GDIPGpFontFamily* family,INT style,REAL emSize,GDIPRect* layoutRect,GDIPGpStringFormat* format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipAlloc
+`void* := GdipAlloc(size_t size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBeginContainer
+`GpStatus := GdipBeginContainer(GpGraphics* graphics,GDIPGpRectF* dstrect,GDIPGpRectF* srcrect,GpUnit unit,GraphicsContainer* state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBeginContainer2
+`GpStatus := GdipBeginContainer2(GpGraphics* graphics,GraphicsContainer* state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBeginContainerI
+`GpStatus := GdipBeginContainerI(GpGraphics* graphics,GDIPGpRect* dstrect,GDIPGpRect* srcrect,GpUnit unit,GraphicsContainer* state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBitmapGetPixel
+`GpStatus := GdipBitmapGetPixel(GpBitmap* bitmap,INT x,INT y,ARGB* color)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBitmapLockBits
+`GpStatus := GdipBitmapLockBits(GpBitmap* bitmap,GDIPGpRect* rect,UINT flags,PixelFormat format,BitmapData* lockedBitmapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBitmapSetPixel
+`GpStatus := GdipBitmapSetPixel(GpBitmap* bitmap,INT x,INT y,ARGB color)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBitmapSetResolution
+`GpStatus := GdipBitmapSetResolution(GpBitmap* bitmap,REAL xdpi,REAL ydpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipBitmapUnlockBits
+`GpStatus := GdipBitmapUnlockBits(GpBitmap* bitmap,BitmapData* lockedBitmapData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipClearPathMarkers
+`GpStatus := GdipClearPathMarkers(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneBitmapArea
+`GpStatus := GdipCloneBitmapArea(REAL x,REAL y,REAL width,REAL height,PixelFormat format,GpBitmap* srcBitmap,GpBitmap* *dstBitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneBitmapAreaI
+`GpStatus := GdipCloneBitmapAreaI(INT x,INT y,INT width,INT height,PixelFormat format,GpBitmap* srcBitmap,GpBitmap* *dstBitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneBrush
+`GpStatus := GdipCloneBrush(GpBrush* brush,GpBrush* *cloneBrush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneCustomLineCap
+`GpStatus := GdipCloneCustomLineCap(GpCustomLineCap* customCap,GpCustomLineCap** clonedCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneFont
+`GpStatus := GdipCloneFont(GpFont* font,GpFont** cloneFont)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneFontFamily
+`GpStatus := GdipCloneFontFamily(GpFontFamily* FontFamily,GpFontFamily* *clonedFontFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneImage
+`GpStatus := GdipCloneImage(GpImage* image,GpImage* *cloneImage)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneImageAttributes
+`GpStatus := GdipCloneImageAttributes(GDIPGpImageAttributes* imageattr,GpImageAttributes* *cloneImageattr)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneMatrix
+`GpStatus := GdipCloneMatrix(GpMatrix* matrix,GpMatrix* *cloneMatrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipClonePath
+`GpStatus := GdipClonePath(GpPath* path,GpPath* *clonePath)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipClonePen
+`GpStatus := GdipClonePen(GpPen* pen,GpPen* *clonepen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneRegion
+`GpStatus := GdipCloneRegion(GpRegion* region,GpRegion* *cloneRegion)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCloneStringFormat
+`GpStatus := GdipCloneStringFormat(GDIPGpStringFormat* format,GpStringFormat* *newFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipClosePathFigure
+`GpStatus := GdipClosePathFigure(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipClosePathFigures
+`GpStatus := GdipClosePathFigures(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCombineRegionPath
+`GpStatus := GdipCombineRegionPath(GpRegion* region,GpPath* path,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCombineRegionRect
+`GpStatus := GdipCombineRegionRect(GpRegion* region,GDIPGpRectF* rect,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCombineRegionRectI
+`GpStatus := GdipCombineRegionRectI(GpRegion* region,GDIPGpRect* rect,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCombineRegionRegion
+`GpStatus := GdipCombineRegionRegion(GpRegion* region,GpRegion* region2,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipComment
+`GpStatus := GdipComment(GpGraphics* graphics,UINT sizeData,GDIPBYTE* data)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateAdjustableArrowCap
+`GpStatus := GdipCreateAdjustableArrowCap(REAL height,REAL width,BOOL isFilled,GpAdjustableArrowCap* *cap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromDirectDrawSurface
+`GpStatus := GdipCreateBitmapFromDirectDrawSurface(IDirectDrawSurface7* surface,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromFile
+`GpStatus := GdipCreateBitmapFromFile(GDIPWCHAR* filename,GpBitmap* *bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromFileICM
+`GpStatus := GdipCreateBitmapFromFileICM(GDIPWCHAR* filename,GpBitmap* *bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromGdiDib
+`GpStatus := GdipCreateBitmapFromGdiDib(GDIPBITMAPINFO* gdiBitmapInfo,VOID* gdiBitmapData,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromGraphics
+`GpStatus := GdipCreateBitmapFromGraphics(INT width,INT height,GpGraphics* target,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromHBITMAP
+`GpStatus := GdipCreateBitmapFromHBITMAP(HBITMAP hbm,HPALETTE hpal,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromHICON
+`GpStatus := GdipCreateBitmapFromHICON(HICON hicon,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromResource
+`GpStatus := GdipCreateBitmapFromResource(HINSTANCE hInstance,GDIPWCHAR* lpBitmapName,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromScan0
+`GpStatus := GdipCreateBitmapFromScan0(INT width,INT height,INT stride,PixelFormat format,BYTE* scan0,GpBitmap** bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromStream
+`GpStatus := GdipCreateBitmapFromStream(IStream* stream,GpBitmap* *bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateBitmapFromStreamICM
+`GpStatus := GdipCreateBitmapFromStreamICM(IStream* stream,GpBitmap* *bitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateCachedBitmap
+`GpStatus := GdipCreateCachedBitmap(GpBitmap* bitmap,GpGraphics* graphics,GpCachedBitmap* *cachedBitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateCustomLineCap
+`GpStatus := GdipCreateCustomLineCap(GpPath* fillPath,GpPath* strokePath,GpLineCap baseCap,REAL baseInset,GpCustomLineCap* *customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFont
+`GpStatus := GdipCreateFont(GDIPGpFontFamily* fontFamily,REAL emSize,INT style,Unit unit,GpFont* *font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFontFamilyFromName
+`GpStatus := GdipCreateFontFamilyFromName(GDIPWCHAR* name,GpFontCollection* fontCollection,GpFontFamily* *FontFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFontFromDC
+`GpStatus := GdipCreateFontFromDC(HDC hdc,GpFont* *font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFontFromLogfont
+`GpStatus := GdipCreateFontFromLogfont(HDC hdc,GDIPLOGFONTA* logfont,GpFont* *font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFontFromLogfontA
+`GpStatus := GdipCreateFontFromLogfontA(HDC hdc,GDIPLOGFONTA* logfont,GpFont* *font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFontFromLogfontW
+`GpStatus := GdipCreateFontFromLogfontW(HDC hdc,GDIPLOGFONTW* logfont,GpFont* *font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFromHDC
+`GpStatus := GdipCreateFromHDC(HDC hdc,GpGraphics* *graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFromHDC2
+`GpStatus := GdipCreateFromHDC2(HDC hdc,HANDLE hDevice,GpGraphics* *graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFromHWND
+`GpStatus := GdipCreateFromHWND(HWND hwnd,GpGraphics* *graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateFromHWNDICM
+`GpStatus := GdipCreateFromHWNDICM(HWND hwnd,GpGraphics* *graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateHalftonePalette
+`HPALETTE := GdipCreateHalftonePalette()
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateHatchBrush
+`GpStatus := GdipCreateHatchBrush(GpHatchStyle hatchstyle,ARGB forecol,ARGB backcol,GpHatch* *brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateHBITMAPFromBitmap
+`GpStatus := GdipCreateHBITMAPFromBitmap(GpBitmap* bitmap,HBITMAP* hbmReturn,ARGB background)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateHICONFromBitmap
+`GpStatus := GdipCreateHICONFromBitmap(GpBitmap* bitmap,HICON* hbmReturn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateImageAttributes
+`GpStatus := GdipCreateImageAttributes(GpImageAttributes* *imageattr)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrush
+`GpStatus := GdipCreateLineBrush(GDIPGpPointF* point1,GDIPGpPointF* point2,ARGB color1,ARGB color2,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrushFromRect
+`GpStatus := GdipCreateLineBrushFromRect(GDIPGpRectF* rect,ARGB color1,ARGB color2,LinearGradientMode mode,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrushFromRectI
+`GpStatus := GdipCreateLineBrushFromRectI(GDIPGpRect* rect,ARGB color1,ARGB color2,LinearGradientMode mode,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrushFromRectWithAngle
+`GpStatus := GdipCreateLineBrushFromRectWithAngle(GDIPGpRectF* rect,ARGB color1,ARGB color2,REAL angle,BOOL isAngleScalable,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrushFromRectWithAngleI
+`GpStatus := GdipCreateLineBrushFromRectWithAngleI(GDIPGpRect* rect,ARGB color1,ARGB color2,REAL angle,BOOL isAngleScalable,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateLineBrushI
+`GpStatus := GdipCreateLineBrushI(GDIPGpPoint* point1,GDIPGpPoint* point2,ARGB color1,ARGB color2,GpWrapMode wrapMode,GpLineGradient* *lineGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMatrix
+`GpStatus := GdipCreateMatrix(GpMatrix* *matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMatrix2
+`GpStatus := GdipCreateMatrix2(REAL m11,REAL m12,REAL m21,REAL m22,REAL dx,REAL dy,GpMatrix* *matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMatrix3
+`GpStatus := GdipCreateMatrix3(GDIPGpRectF* rect,GDIPGpPointF* dstplg,GpMatrix* *matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMatrix3I
+`GpStatus := GdipCreateMatrix3I(GDIPGpRect* rect,GDIPGpPoint* dstplg,GpMatrix* *matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMetafileFromEmf
+`GpStatus := GdipCreateMetafileFromEmf(HENHMETAFILE hEmf,BOOL deleteEmf,GpMetafile* *metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMetafileFromFile
+`GpStatus := GdipCreateMetafileFromFile(GDIPWCHAR* file,GpMetafile* *metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMetafileFromStream
+`GpStatus := GdipCreateMetafileFromStream(IStream* stream,GpMetafile* *metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMetafileFromWmf
+`GpStatus := GdipCreateMetafileFromWmf(HMETAFILE hWmf,BOOL deleteWmf,GDIPWmfPlaceableFileHeader* wmfPlaceableFileHeader,GpMetafile* *metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateMetafileFromWmfFile
+`GpStatus := GdipCreateMetafileFromWmfFile(GDIPWCHAR* file,GDIPWmfPlaceableFileHeader* wmfPlaceableFileHeader,GpMetafile* *metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePath
+`GpStatus := GdipCreatePath(GpFillMode brushMode,GpPath* *path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePath2
+`GpStatus := GdipCreatePath2(GDIPGpPointF*,GDIPBYTE*,INT,GpFillMode,GpPath* *path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePath2I
+`GpStatus := GdipCreatePath2I(GDIPGpPoint*,GDIPBYTE*,INT,GpFillMode,GpPath* *path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePathGradient
+`GpStatus := GdipCreatePathGradient(GDIPGpPointF* points,INT count,GpWrapMode wrapMode,GpPathGradient* *polyGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePathGradientFromPath
+`GpStatus := GdipCreatePathGradientFromPath(GDIPGpPath* path,GpPathGradient* *polyGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePathGradientI
+`GpStatus := GdipCreatePathGradientI(GDIPGpPoint* points,INT count,GpWrapMode wrapMode,GpPathGradient* *polyGradient)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePathIter
+`GpStatus := GdipCreatePathIter(GpPathIterator* *iterator,GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePen1
+`GpStatus := GdipCreatePen1(ARGB color,REAL width,GpUnit unit,GpPen* *pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreatePen2
+`GpStatus := GdipCreatePen2(GpBrush* brush,REAL width,GpUnit unit,GpPen* *pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegion
+`GpStatus := GdipCreateRegion(GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegionHrgn
+`GpStatus := GdipCreateRegionHrgn(HRGN hRgn,GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegionPath
+`GpStatus := GdipCreateRegionPath(GpPath* path,GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegionRect
+`GpStatus := GdipCreateRegionRect(GDIPGpRectF* rect,GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegionRectI
+`GpStatus := GdipCreateRegionRectI(GDIPGpRect* rect,GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateRegionRgnData
+`GpStatus := GdipCreateRegionRgnData(GDIPBYTE* regionData,INT size,GpRegion* *region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateSolidFill
+`GpStatus := GdipCreateSolidFill(ARGB color,GpSolidFill* *brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateStreamOnFile
+`GpStatus := GdipCreateStreamOnFile(GDIPWCHAR* filename,UINT access,IStream* *stream)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateStringFormat
+`GpStatus := GdipCreateStringFormat(INT formatAttributes,LANGID language,GpStringFormat* *format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateTexture
+`GpStatus := GdipCreateTexture(GpImage* image,GpWrapMode wrapmode,GpTexture* *texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateTexture2
+`GpStatus := GdipCreateTexture2(GpImage* image,GpWrapMode wrapmode,REAL x,REAL y,REAL width,REAL height,GpTexture* *texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateTexture2I
+`GpStatus := GdipCreateTexture2I(GpImage* image,GpWrapMode wrapmode,INT x,INT y,INT width,INT height,GpTexture* *texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateTextureIA
+`GpStatus := GdipCreateTextureIA(GpImage* image,GDIPGpImageAttributes* imageAttributes,REAL x,REAL y,REAL width,REAL height,GpTexture* *texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipCreateTextureIAI
+`GpStatus := GdipCreateTextureIAI(GpImage* image,GDIPGpImageAttributes* imageAttributes,INT x,INT y,INT width,INT height,GpTexture* *texture)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteBrush
+`GpStatus := GdipDeleteBrush(GpBrush* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteCachedBitmap
+`GpStatus := GdipDeleteCachedBitmap(GpCachedBitmap* cachedBitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteCustomLineCap
+`GpStatus := GdipDeleteCustomLineCap(GpCustomLineCap* customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteFont
+`GpStatus := GdipDeleteFont(GpFont* font)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteFontFamily
+`GpStatus := GdipDeleteFontFamily(GpFontFamily* FontFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteGraphics
+`GpStatus := GdipDeleteGraphics(GpGraphics* graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteMatrix
+`GpStatus := GdipDeleteMatrix(GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeletePath
+`GpStatus := GdipDeletePath(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeletePathIter
+`GpStatus := GdipDeletePathIter(GpPathIterator* iterator)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeletePen
+`GpStatus := GdipDeletePen(GpPen* pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeletePrivateFontCollection
+`GpStatus := GdipDeletePrivateFontCollection(GpFontCollection** fontCollection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteRegion
+`GpStatus := GdipDeleteRegion(GpRegion* region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDeleteStringFormat
+`GpStatus := GdipDeleteStringFormat(GpStringFormat* format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDisposeImage
+`GpStatus := GdipDisposeImage(GpImage* image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDisposeImageAttributes
+`GpStatus := GdipDisposeImageAttributes(GpImageAttributes* imageattr)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawArc
+`GpStatus := GdipDrawArc(GpGraphics* graphics,GpPen* pen,REAL x,REAL y,REAL width,REAL height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawArcI
+`GpStatus := GdipDrawArcI(GpGraphics* graphics,GpPen* pen,INT x,INT y,INT width,INT height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawBezier
+`GpStatus := GdipDrawBezier(GpGraphics* graphics,GpPen* pen,REAL x1,REAL y1,REAL x2,REAL y2,REAL x3,REAL y3,REAL x4,REAL y4)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawBezierI
+`GpStatus := GdipDrawBezierI(GpGraphics* graphics,GpPen* pen,INT x1,INT y1,INT x2,INT y2,INT x3,INT y3,INT x4,INT y4)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawBeziers
+`GpStatus := GdipDrawBeziers(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawBeziersI
+`GpStatus := GdipDrawBeziersI(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCachedBitmap
+`GpStatus := GdipDrawCachedBitmap(GpGraphics* graphics,GpCachedBitmap* cachedBitmap,INT x,INT y)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawClosedCurve
+`GpStatus := GdipDrawClosedCurve(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawClosedCurve2
+`GpStatus := GdipDrawClosedCurve2(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawClosedCurve2I
+`GpStatus := GdipDrawClosedCurve2I(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawClosedCurveI
+`GpStatus := GdipDrawClosedCurveI(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurve
+`GpStatus := GdipDrawCurve(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurve2
+`GpStatus := GdipDrawCurve2(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurve2I
+`GpStatus := GdipDrawCurve2I(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurve3
+`GpStatus := GdipDrawCurve3(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count,INT offset,INT numberOfSegments,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurve3I
+`GpStatus := GdipDrawCurve3I(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count,INT offset,INT numberOfSegments,REAL tension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawCurveI
+`GpStatus := GdipDrawCurveI(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawDriverString
+`GpStatus := GdipDrawDriverString(GpGraphics* graphics,GDIPUINT16* text,INT length,GDIPGpFont* font,GDIPGpBrush* brush,GDIPPointF* positions,INT flags,GDIPGpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawEllipse
+`GpStatus := GdipDrawEllipse(GpGraphics* graphics,GpPen* pen,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawEllipseI
+`GpStatus := GdipDrawEllipseI(GpGraphics* graphics,GpPen* pen,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImage
+`GpStatus := GdipDrawImage(GpGraphics* graphics,GpImage* image,REAL x,REAL y)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImageI
+`GpStatus := GdipDrawImageI(GpGraphics* graphics,GpImage* image,INT x,INT y)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePointRect
+`GpStatus := GdipDrawImagePointRect(GpGraphics* graphics,GpImage* image,REAL x,REAL y,REAL srcx,REAL srcy,REAL srcwidth,REAL srcheight,GpUnit srcUnit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePointRectI
+`GpStatus := GdipDrawImagePointRectI(GpGraphics* graphics,GpImage* image,INT x,INT y,INT srcx,INT srcy,INT srcwidth,INT srcheight,GpUnit srcUnit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePoints
+`GpStatus := GdipDrawImagePoints(GpGraphics* graphics,GpImage* image,GDIPGpPointF* dstpoints,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePointsI
+`GpStatus := GdipDrawImagePointsI(GpGraphics* graphics,GpImage* image,GDIPGpPoint* dstpoints,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePointsRect
+`GpStatus := GdipDrawImagePointsRect(GpGraphics* graphics,GpImage* image,GDIPGpPointF* points,INT count,REAL srcx,REAL srcy,REAL srcwidth,REAL srcheight,GpUnit srcUnit,GDIPGpImageAttributes* imageAttributes,DrawImageAbort callback,VOID* callbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImagePointsRectI
+`GpStatus := GdipDrawImagePointsRectI(GpGraphics* graphics,GpImage* image,GDIPGpPoint* points,INT count,INT srcx,INT srcy,INT srcwidth,INT srcheight,GpUnit srcUnit,GDIPGpImageAttributes* imageAttributes,DrawImageAbort callback,VOID* callbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImageRect
+`GpStatus := GdipDrawImageRect(GpGraphics* graphics,GpImage* image,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImageRectI
+`GpStatus := GdipDrawImageRectI(GpGraphics* graphics,GpImage* image,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImageRectRect
+`GpStatus := GdipDrawImageRectRect(GpGraphics* graphics,GpImage* image,REAL dstx,REAL dsty,REAL dstwidth,REAL dstheight,REAL srcx,REAL srcy,REAL srcwidth,REAL srcheight,GpUnit srcUnit,GDIPGpImageAttributes* imageAttributes,DrawImageAbort callback,VOID* callbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawImageRectRectI
+`GpStatus := GdipDrawImageRectRectI(GpGraphics* graphics,GpImage* image,INT dstx,INT dsty,INT dstwidth,INT dstheight,INT srcx,INT srcy,INT srcwidth,INT srcheight,GpUnit srcUnit,GDIPGpImageAttributes* imageAttributes,DrawImageAbort callback,VOID* callbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawLine
+`GpStatus := GdipDrawLine(GpGraphics* graphics,GpPen* pen,REAL x1,REAL y1,REAL x2,REAL y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawLineI
+`GpStatus := GdipDrawLineI(GpGraphics* graphics,GpPen* pen,INT x1,INT y1,INT x2,INT y2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawLines
+`GpStatus := GdipDrawLines(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawLinesI
+`GpStatus := GdipDrawLinesI(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawPath
+`GpStatus := GdipDrawPath(GpGraphics* graphics,GpPen* pen,GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawPie
+`GpStatus := GdipDrawPie(GpGraphics* graphics,GpPen* pen,REAL x,REAL y,REAL width,REAL height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawPieI
+`GpStatus := GdipDrawPieI(GpGraphics* graphics,GpPen* pen,INT x,INT y,INT width,INT height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawPolygon
+`GpStatus := GdipDrawPolygon(GpGraphics* graphics,GpPen* pen,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawPolygonI
+`GpStatus := GdipDrawPolygonI(GpGraphics* graphics,GpPen* pen,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawRectangle
+`GpStatus := GdipDrawRectangle(GpGraphics* graphics,GpPen* pen,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawRectangleI
+`GpStatus := GdipDrawRectangleI(GpGraphics* graphics,GpPen* pen,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawRectangles
+`GpStatus := GdipDrawRectangles(GpGraphics* graphics,GpPen* pen,GDIPGpRectF* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawRectanglesI
+`GpStatus := GdipDrawRectanglesI(GpGraphics* graphics,GpPen* pen,GDIPGpRect* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipDrawString
+`GpStatus := GdipDrawString(GpGraphics* graphics,GDIPWCHAR* string,INT length,GDIPGpFont* font,GDIPRectF* layoutRect,GDIPGpStringFormat* stringFormat,GDIPGpBrush* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEmfToWmfBits
+`UINT := GdipEmfToWmfBits(HENHMETAFILE hemf,UINT cbData16,LPBYTE pData16,INT iMapMode,INT eFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEndContainer
+`GpStatus := GdipEndContainer(GpGraphics* graphics,GraphicsContainer state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestPoint
+`GpStatus := GdipEnumerateMetafileDestPoint(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPointF & destPoint,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestPointI
+`GpStatus := GdipEnumerateMetafileDestPointI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPoint & destPoint,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestPoints
+`GpStatus := GdipEnumerateMetafileDestPoints(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPointF* destPoints,INT count,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestPointsI
+`GpStatus := GdipEnumerateMetafileDestPointsI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPoint* destPoints,INT count,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestRect
+`GpStatus := GdipEnumerateMetafileDestRect(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPRectF & destRect,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileDestRectI
+`GpStatus := GdipEnumerateMetafileDestRectI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPRect & destRect,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestPoint
+`GpStatus := GdipEnumerateMetafileSrcRectDestPoint(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPointF & destPoint,GDIPRectF & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestPointI
+`GpStatus := GdipEnumerateMetafileSrcRectDestPointI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPoint & destPoint,GDIPRect & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestPoints
+`GpStatus := GdipEnumerateMetafileSrcRectDestPoints(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPointF* destPoints,INT count,GDIPRectF & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestPointsI
+`GpStatus := GdipEnumerateMetafileSrcRectDestPointsI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPPoint* destPoints,INT count,GDIPRect & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestRect
+`GpStatus := GdipEnumerateMetafileSrcRectDestRect(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPRectF & destRect,GDIPRectF & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipEnumerateMetafileSrcRectDestRectI
+`GpStatus := GdipEnumerateMetafileSrcRectDestRectI(GpGraphics* graphics,GDIPGpMetafile* metafile,GDIPRect & destRect,GDIPRect & srcRect,Unit srcUnit,EnumerateMetafileProc callback,VOID* callbackData,GDIPGpImageAttributes* imageAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillClosedCurve
+`GpStatus := GdipFillClosedCurve(GpGraphics* graphics,GpBrush* brush,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillClosedCurve2
+`GpStatus := GdipFillClosedCurve2(GpGraphics* graphics,GpBrush* brush,GDIPGpPointF* points,INT count,REAL tension,GpFillMode fillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillClosedCurve2I
+`GpStatus := GdipFillClosedCurve2I(GpGraphics* graphics,GpBrush* brush,GDIPGpPoint* points,INT count,REAL tension,GpFillMode fillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillClosedCurveI
+`GpStatus := GdipFillClosedCurveI(GpGraphics* graphics,GpBrush* brush,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillEllipse
+`GpStatus := GdipFillEllipse(GpGraphics* graphics,GpBrush* brush,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillEllipseI
+`GpStatus := GdipFillEllipseI(GpGraphics* graphics,GpBrush* brush,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPath
+`GpStatus := GdipFillPath(GpGraphics* graphics,GpBrush* brush,GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPie
+`GpStatus := GdipFillPie(GpGraphics* graphics,GpBrush* brush,REAL x,REAL y,REAL width,REAL height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPieI
+`GpStatus := GdipFillPieI(GpGraphics* graphics,GpBrush* brush,INT x,INT y,INT width,INT height,REAL startAngle,REAL sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPolygon
+`GpStatus := GdipFillPolygon(GpGraphics* graphics,GpBrush* brush,GDIPGpPointF* points,INT count,GpFillMode fillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPolygon2
+`GpStatus := GdipFillPolygon2(GpGraphics* graphics,GpBrush* brush,GDIPGpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPolygon2I
+`GpStatus := GdipFillPolygon2I(GpGraphics* graphics,GpBrush* brush,GDIPGpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillPolygonI
+`GpStatus := GdipFillPolygonI(GpGraphics* graphics,GpBrush* brush,GDIPGpPoint* points,INT count,GpFillMode fillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillRectangle
+`GpStatus := GdipFillRectangle(GpGraphics* graphics,GpBrush* brush,REAL x,REAL y,REAL width,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillRectangleI
+`GpStatus := GdipFillRectangleI(GpGraphics* graphics,GpBrush* brush,INT x,INT y,INT width,INT height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillRectangles
+`GpStatus := GdipFillRectangles(GpGraphics* graphics,GpBrush* brush,GDIPGpRectF* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillRectanglesI
+`GpStatus := GdipFillRectanglesI(GpGraphics* graphics,GpBrush* brush,GDIPGpRect* rects,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFillRegion
+`GpStatus := GdipFillRegion(GpGraphics* graphics,GpBrush* brush,GpRegion* region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFlattenPath
+`GpStatus := GdipFlattenPath(GpPath* path,GpMatrix* matrix,REAL flatness)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFlush
+`GpStatus := GdipFlush(GpGraphics* graphics,GpFlushIntention intention)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipFree
+`void := GdipFree(void* ptr)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetAdjustableArrowCapFillState
+`GpStatus := GdipGetAdjustableArrowCapFillState(GpAdjustableArrowCap* cap,BOOL* fillState)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetAdjustableArrowCapHeight
+`GpStatus := GdipGetAdjustableArrowCapHeight(GpAdjustableArrowCap* cap,REAL* height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetAdjustableArrowCapMiddleInset
+`GpStatus := GdipGetAdjustableArrowCapMiddleInset(GpAdjustableArrowCap* cap,REAL* middleInset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetAdjustableArrowCapWidth
+`GpStatus := GdipGetAdjustableArrowCapWidth(GpAdjustableArrowCap* cap,REAL* width)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetAllPropertyItems
+`GpStatus := GdipGetAllPropertyItems(GpImage* image,UINT totalBufferSize,UINT numProperties,PropertyItem* allItems)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetBrushType
+`GpStatus := GdipGetBrushType(GpBrush* brush,GpBrushType* type)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCellAscent
+`GpStatus := GdipGetCellAscent(GDIPGpFontFamily* family,INT style,UINT16* CellAscent)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCellDescent
+`GpStatus := GdipGetCellDescent(GDIPGpFontFamily* family,INT style,UINT16* CellDescent)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetClip
+`GpStatus := GdipGetClip(GpGraphics* graphics,GpRegion* region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetClipBounds
+`GpStatus := GdipGetClipBounds(GpGraphics* graphics,GpRectF* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetClipBoundsI
+`GpStatus := GdipGetClipBoundsI(GpGraphics* graphics,GpRect* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCompositingMode
+`GpStatus := GdipGetCompositingMode(GpGraphics* graphics,CompositingMode* compositingMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCompositingQuality
+`GpStatus := GdipGetCompositingQuality(GpGraphics* graphics,CompositingQuality* compositingQuality)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapBaseCap
+`GpStatus := GdipGetCustomLineCapBaseCap(GpCustomLineCap* customCap,GpLineCap* baseCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapBaseInset
+`GpStatus := GdipGetCustomLineCapBaseInset(GpCustomLineCap* customCap,REAL* inset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapStrokeCaps
+`GpStatus := GdipGetCustomLineCapStrokeCaps(GpCustomLineCap* customCap,GpLineCap* startCap,GpLineCap* endCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapStrokeJoin
+`GpStatus := GdipGetCustomLineCapStrokeJoin(GpCustomLineCap* customCap,GpLineJoin* lineJoin)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapType
+`GpStatus := GdipGetCustomLineCapType(GpCustomLineCap* customCap,CustomLineCapType* capType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetCustomLineCapWidthScale
+`GpStatus := GdipGetCustomLineCapWidthScale(GpCustomLineCap* customCap,REAL* widthScale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetDC
+`GpStatus := GdipGetDC(GpGraphics* graphics,HDC* hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetDpiX
+`GpStatus := GdipGetDpiX(GpGraphics* graphics,REAL* dpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetDpiY
+`GpStatus := GdipGetDpiY(GpGraphics* graphics,REAL* dpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetEmHeight
+`GpStatus := GdipGetEmHeight(GDIPGpFontFamily* family,INT style,UINT16* EmHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetEncoderParameterList
+`GpStatus := GdipGetEncoderParameterList(GpImage* image,GDIPCLSID* clsidEncoder,UINT size,EncoderParameters* buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetEncoderParameterListSize
+`GpStatus := GdipGetEncoderParameterListSize(GpImage* image,GDIPCLSID* clsidEncoder,UINT* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFamily
+`GpStatus := GdipGetFamily(GpFont* font,GpFontFamily* *family)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFamilyName
+`GpStatus := GdipGetFamilyName(GDIPGpFontFamily* family,WCHAR* name[LF_FACESIZE],LANGID language)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontCollectionFamilyCount
+`GpStatus := GdipGetFontCollectionFamilyCount(GpFontCollection* fontCollection,INT* numFound)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontCollectionFamilyList
+`GpStatus := GdipGetFontCollectionFamilyList(GpFontCollection* fontCollection,INT numSought,GpFontFamily* gpfamilies[],INT* numFound)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontHeight
+`GpStatus := GdipGetFontHeight(GDIPGpFont* font,GDIPGpGraphics* graphics,REAL* height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontHeightGivenDPI
+`GpStatus := GdipGetFontHeightGivenDPI(GDIPGpFont* font,REAL dpi,REAL* height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontSize
+`GpStatus := GdipGetFontSize(GpFont* font,REAL* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontStyle
+`GpStatus := GdipGetFontStyle(GpFont* font,INT* style)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetFontUnit
+`GpStatus := GdipGetFontUnit(GpFont* font,Unit* unit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetGenericFontFamilyMonospace
+`GpStatus := GdipGetGenericFontFamilyMonospace(GpFontFamily* *nativeFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetGenericFontFamilySansSerif
+`GpStatus := GdipGetGenericFontFamilySansSerif(GpFontFamily* *nativeFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetGenericFontFamilySerif
+`GpStatus := GdipGetGenericFontFamilySerif(GpFontFamily* *nativeFamily)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetHatchBackgroundColor
+`GpStatus := GdipGetHatchBackgroundColor(GpHatch* brush,ARGB* backcol)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetHatchForegroundColor
+`GpStatus := GdipGetHatchForegroundColor(GpHatch* brush,ARGB* forecol)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetHatchStyle
+`GpStatus := GdipGetHatchStyle(GpHatch* brush,GpHatchStyle* hatchstyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetHemfFromMetafile
+`GpStatus := GdipGetHemfFromMetafile(GpMetafile* metafile,HENHMETAFILE* hEmf)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageAttributesAdjustedPalette
+`GpStatus := GdipGetImageAttributesAdjustedPalette(GpImageAttributes* imageAttr,ColorPalette* colorPalette,ColorAdjustType colorAdjustType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageBounds
+`GpStatus := GdipGetImageBounds(GpImage* image,GpRectF* srcRect,GpUnit* srcUnit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageDecoders
+`GpStatus := GdipGetImageDecoders(UINT numDecoders,UINT size,ImageCodecInfo* decoders)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageDecodersSize
+`GpStatus := GdipGetImageDecodersSize(UINT* numDecoders,UINT* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageDimension
+`GpStatus := GdipGetImageDimension(GpImage* image,REAL* width,REAL* height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageEncoders
+`GpStatus := GdipGetImageEncoders(UINT numEncoders,UINT size,ImageCodecInfo* encoders)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageEncodersSize
+`GpStatus := GdipGetImageEncodersSize(UINT* numEncoders,UINT* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageFlags
+`GpStatus := GdipGetImageFlags(GpImage* image,UINT* flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageGraphicsContext
+`GpStatus := GdipGetImageGraphicsContext(GpImage* image,GpGraphics* *graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageHeight
+`GpStatus := GdipGetImageHeight(GpImage* image,UINT* height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageHorizontalResolution
+`GpStatus := GdipGetImageHorizontalResolution(GpImage* image,REAL* resolution)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImagePalette
+`GpStatus := GdipGetImagePalette(GpImage* image,ColorPalette* palette,INT size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImagePaletteSize
+`GpStatus := GdipGetImagePaletteSize(GpImage* image,INT* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImagePixelFormat
+`GpStatus := GdipGetImagePixelFormat(GpImage* image,PixelFormat* format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageRawFormat
+`GpStatus := GdipGetImageRawFormat(GpImage* image,GUID* format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageThumbnail
+`GpStatus := GdipGetImageThumbnail(GpImage* image,UINT thumbWidth,UINT thumbHeight,GpImage* *thumbImage,GetThumbnailImageAbort callback,VOID* callbackData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageType
+`GpStatus := GdipGetImageType(GpImage* image,ImageType* type)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageVerticalResolution
+`GpStatus := GdipGetImageVerticalResolution(GpImage* image,REAL* resolution)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetImageWidth
+`GpStatus := GdipGetImageWidth(GpImage* image,UINT* width)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetInterpolationMode
+`GpStatus := GdipGetInterpolationMode(GpGraphics* graphics,InterpolationMode* interpolationMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineBlend
+`GpStatus := GdipGetLineBlend(GpLineGradient* brush,REAL* blend,REAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineBlendCount
+`GpStatus := GdipGetLineBlendCount(GpLineGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineColors
+`GpStatus := GdipGetLineColors(GpLineGradient* brush,ARGB* colors)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineGammaCorrection
+`GpStatus := GdipGetLineGammaCorrection(GpLineGradient* brush,BOOL* useGammaCorrection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLinePresetBlend
+`GpStatus := GdipGetLinePresetBlend(GpLineGradient* brush,ARGB* blend,REAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLinePresetBlendCount
+`GpStatus := GdipGetLinePresetBlendCount(GpLineGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineRect
+`GpStatus := GdipGetLineRect(GpLineGradient* brush,GpRectF* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineRectI
+`GpStatus := GdipGetLineRectI(GpLineGradient* brush,GpRect* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineSpacing
+`GpStatus := GdipGetLineSpacing(GDIPGpFontFamily* family,INT style,UINT16* LineSpacing)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineTransform
+`GpStatus := GdipGetLineTransform(GpLineGradient* brush,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLineWrapMode
+`GpStatus := GdipGetLineWrapMode(GpLineGradient* brush,GpWrapMode* wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLogFont
+`GpStatus := GdipGetLogFont(GpFont* font,GpGraphics* graphics,LOGFONTA* logfontA)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLogFontA
+`GpStatus := GdipGetLogFontA(GpFont* font,GpGraphics* graphics,LOGFONTA* logfontA)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetLogFontW
+`GpStatus := GdipGetLogFontW(GpFont* font,GpGraphics* graphics,LOGFONTW* logfontW)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMatrixElements
+`GpStatus := GdipGetMatrixElements(GDIPGpMatrix* matrix,REAL* matrixOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileDownLevelRasterizationLimit
+`GpStatus := GdipGetMetafileDownLevelRasterizationLimit(GDIPGpMetafile* metafile,UINT* metafileRasterizationLimitDpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileHeaderFromEmf
+`GpStatus := GdipGetMetafileHeaderFromEmf(HENHMETAFILE hEmf,MetafileHeader* header)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileHeaderFromFile
+`GpStatus := GdipGetMetafileHeaderFromFile(GDIPWCHAR* filename,MetafileHeader* header)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileHeaderFromMetafile
+`GpStatus := GdipGetMetafileHeaderFromMetafile(GpMetafile* metafile,MetafileHeader* header)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileHeaderFromStream
+`GpStatus := GdipGetMetafileHeaderFromStream(IStream* stream,MetafileHeader* header)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetMetafileHeaderFromWmf
+`GpStatus := GdipGetMetafileHeaderFromWmf(HMETAFILE hWmf,GDIPWmfPlaceableFileHeader* wmfPlaceableFileHeader,MetafileHeader* header)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetNearestColor
+`GpStatus := GdipGetNearestColor(GpGraphics* graphics,ARGB* argb)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPageScale
+`GpStatus := GdipGetPageScale(GpGraphics* graphics,REAL* scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPageUnit
+`GpStatus := GdipGetPageUnit(GpGraphics* graphics,GpUnit* unit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathData
+`GpStatus := GdipGetPathData(GpPath* path,GpPathData* pathData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathFillMode
+`GpStatus := GdipGetPathFillMode(GpPath* path,GpFillMode* fillmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientBlend
+`GpStatus := GdipGetPathGradientBlend(GpPathGradient* brush,REAL* blend,REAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientBlendCount
+`GpStatus := GdipGetPathGradientBlendCount(GpPathGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientCenterColor
+`GpStatus := GdipGetPathGradientCenterColor(GpPathGradient* brush,ARGB* colors)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientCenterPoint
+`GpStatus := GdipGetPathGradientCenterPoint(GpPathGradient* brush,GpPointF* points)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientCenterPointI
+`GpStatus := GdipGetPathGradientCenterPointI(GpPathGradient* brush,GpPoint* points)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientFocusScales
+`GpStatus := GdipGetPathGradientFocusScales(GpPathGradient* brush,REAL* xScale,REAL* yScale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientGammaCorrection
+`GpStatus := GdipGetPathGradientGammaCorrection(GpPathGradient* brush,BOOL* useGammaCorrection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientPath
+`GpStatus := GdipGetPathGradientPath(GpPathGradient* brush,GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientPointCount
+`GpStatus := GdipGetPathGradientPointCount(GpPathGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientPresetBlend
+`GpStatus := GdipGetPathGradientPresetBlend(GpPathGradient* brush,ARGB* blend,REAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientPresetBlendCount
+`GpStatus := GdipGetPathGradientPresetBlendCount(GpPathGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientRect
+`GpStatus := GdipGetPathGradientRect(GpPathGradient* brush,GpRectF* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientRectI
+`GpStatus := GdipGetPathGradientRectI(GpPathGradient* brush,GpRect* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientSurroundColorCount
+`GpStatus := GdipGetPathGradientSurroundColorCount(GpPathGradient* brush,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientSurroundColorsWithCount
+`GpStatus := GdipGetPathGradientSurroundColorsWithCount(GpPathGradient* brush,ARGB* color,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientTransform
+`GpStatus := GdipGetPathGradientTransform(GpPathGradient* brush,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathGradientWrapMode
+`GpStatus := GdipGetPathGradientWrapMode(GpPathGradient* brush,GpWrapMode* wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathLastPoint
+`GpStatus := GdipGetPathLastPoint(GpPath* path,GpPointF* lastPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathPoints
+`GpStatus := GdipGetPathPoints(GpPath*,GpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathPointsI
+`GpStatus := GdipGetPathPointsI(GpPath*,GpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathTypes
+`GpStatus := GdipGetPathTypes(GpPath* path,BYTE* types,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathWorldBounds
+`GpStatus := GdipGetPathWorldBounds(GpPath* path,GpRectF* bounds,GDIPGpMatrix* matrix,GDIPGpPen* pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPathWorldBoundsI
+`GpStatus := GdipGetPathWorldBoundsI(GpPath* path,GpRect* bounds,GDIPGpMatrix* matrix,GDIPGpPen* pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenBrushFill
+`GpStatus := GdipGetPenBrushFill(GpPen* pen,GpBrush* *brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenColor
+`GpStatus := GdipGetPenColor(GpPen* pen,ARGB* argb)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenCompoundArray
+`GpStatus := GdipGetPenCompoundArray(GpPen* pen,REAL* dash,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenCompoundCount
+`GpStatus := GdipGetPenCompoundCount(GpPen* pen,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenCustomEndCap
+`GpStatus := GdipGetPenCustomEndCap(GpPen* pen,GpCustomLineCap** customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenCustomStartCap
+`GpStatus := GdipGetPenCustomStartCap(GpPen* pen,GpCustomLineCap** customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenDashArray
+`GpStatus := GdipGetPenDashArray(GpPen* pen,REAL* dash,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenDashCap197819
+`GpStatus := GdipGetPenDashCap197819(GpPen* pen,GpDashCap* dashCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenDashCount
+`GpStatus := GdipGetPenDashCount(GpPen* pen,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenDashOffset
+`GpStatus := GdipGetPenDashOffset(GpPen* pen,REAL* offset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenDashStyle
+`GpStatus := GdipGetPenDashStyle(GpPen* pen,GpDashStyle* dashstyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenEndCap
+`GpStatus := GdipGetPenEndCap(GpPen* pen,GpLineCap* endCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenFillType
+`GpStatus := GdipGetPenFillType(GpPen* pen,GpPenType* type)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenLineJoin
+`GpStatus := GdipGetPenLineJoin(GpPen* pen,GpLineJoin* lineJoin)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenMiterLimit
+`GpStatus := GdipGetPenMiterLimit(GpPen* pen,REAL* miterLimit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenMode
+`GpStatus := GdipGetPenMode(GpPen* pen,GpPenAlignment* penMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenStartCap
+`GpStatus := GdipGetPenStartCap(GpPen* pen,GpLineCap* startCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenTransform
+`GpStatus := GdipGetPenTransform(GpPen* pen,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenUnit
+`GpStatus := GdipGetPenUnit(GpPen* pen,GpUnit* unit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPenWidth
+`GpStatus := GdipGetPenWidth(GpPen* pen,REAL* width)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPixelOffsetMode
+`GpStatus := GdipGetPixelOffsetMode(GpGraphics* graphics,PixelOffsetMode* pixelOffsetMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPointCount
+`GpStatus := GdipGetPointCount(GpPath* path,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPropertyCount
+`GpStatus := GdipGetPropertyCount(GpImage* image,UINT* numOfProperty)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPropertyIdList
+`GpStatus := GdipGetPropertyIdList(GpImage* image,UINT numOfProperty,PROPID* list)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPropertyItem
+`GpStatus := GdipGetPropertyItem(GpImage* image,PROPID propId,UINT propSize,PropertyItem* buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPropertyItemSize
+`GpStatus := GdipGetPropertyItemSize(GpImage* image,PROPID propId,UINT* size)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetPropertySize
+`GpStatus := GdipGetPropertySize(GpImage* image,UINT* totalBufferSize,UINT* numProperties)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionBounds
+`GpStatus := GdipGetRegionBounds(GpRegion* region,GpGraphics* graphics,GpRectF* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionBoundsI
+`GpStatus := GdipGetRegionBoundsI(GpRegion* region,GpGraphics* graphics,GpRect* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionData
+`GpStatus := GdipGetRegionData(GpRegion* region,BYTE* buffer,UINT bufferSize,UINT* sizeFilled)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionDataSize
+`GpStatus := GdipGetRegionDataSize(GpRegion* region,UINT* bufferSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionHRgn
+`GpStatus := GdipGetRegionHRgn(GpRegion* region,GpGraphics* graphics,HRGN* hRgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionScans
+`GpStatus := GdipGetRegionScans(GpRegion* region,GpRectF* rects,INT* count,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionScansCount
+`GpStatus := GdipGetRegionScansCount(GpRegion* region,UINT* count,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRegionScansI
+`GpStatus := GdipGetRegionScansI(GpRegion* region,GpRect* rects,INT* count,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetRenderingOrigin
+`GpStatus := GdipGetRenderingOrigin(GpGraphics* graphics,INT* x,INT* y)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetSmoothingMode
+`GpStatus := GdipGetSmoothingMode(GpGraphics* graphics,SmoothingMode* smoothingMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetSolidFillColor
+`GpStatus := GdipGetSolidFillColor(GpSolidFill* brush,ARGB* color)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatAlign
+`GpStatus := GdipGetStringFormatAlign(GDIPGpStringFormat* format,StringAlignment* align)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatDigitSubstitution
+`GpStatus := GdipGetStringFormatDigitSubstitution(GDIPGpStringFormat* format,LANGID* language,StringDigitSubstitute* substitute)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatFlags
+`GpStatus := GdipGetStringFormatFlags(GDIPGpStringFormat* format,INT* flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatHotkeyPrefix
+`GpStatus := GdipGetStringFormatHotkeyPrefix(GDIPGpStringFormat* format,INT* hotkeyPrefix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatLineAlign
+`GpStatus := GdipGetStringFormatLineAlign(GDIPGpStringFormat* format,StringAlignment* align)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatMeasurableCharacterRangeCount
+`GpStatus := GdipGetStringFormatMeasurableCharacterRangeCount(GDIPGpStringFormat* format,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatTabStopCount
+`GpStatus := GdipGetStringFormatTabStopCount(GDIPGpStringFormat* format,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatTabStops
+`GpStatus := GdipGetStringFormatTabStops(GDIPGpStringFormat* format,INT count,REAL* firstTabOffset,REAL* tabStops)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetStringFormatTrimming
+`GpStatus := GdipGetStringFormatTrimming(GDIPGpStringFormat* format,StringTrimming* trimming)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetTextRenderingHint
+`GpStatus := GdipGetTextRenderingHint(GpGraphics* graphics,TextRenderingHint* mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetTextureImage
+`GpStatus := GdipGetTextureImage(GpTexture* brush,GpImage* *image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetTextureTransform
+`GpStatus := GdipGetTextureTransform(GpTexture* brush,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetTextureWrapMode
+`GpStatus := GdipGetTextureWrapMode(GpTexture* brush,GpWrapMode* wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetVisibleClipBounds
+`GpStatus := GdipGetVisibleClipBounds(GpGraphics* graphics,GpRectF* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetVisibleClipBoundsI
+`GpStatus := GdipGetVisibleClipBoundsI(GpGraphics* graphics,GpRect* rect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGetWorldTransform
+`GpStatus := GdipGetWorldTransform(GpGraphics* graphics,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipGraphicsClear
+`GpStatus := GdipGraphicsClear(GpGraphics* graphics,ARGB color)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageForceValidation
+`GpStatus := GdipImageForceValidation(GpImage* image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageGetFrameCount
+`GpStatus := GdipImageGetFrameCount(GpImage* image,GDIPGUID* dimensionID,UINT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageGetFrameDimensionsCount
+`GpStatus := GdipImageGetFrameDimensionsCount(GpImage* image,UINT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageGetFrameDimensionsList
+`GpStatus := GdipImageGetFrameDimensionsList(GpImage* image,GUID* dimensionIDs,UINT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageRotateFlip
+`GpStatus := GdipImageRotateFlip(GpImage* image,RotateFlipType rfType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipImageSelectActiveFrame
+`GpStatus := GdipImageSelectActiveFrame(GpImage* image,GDIPGUID* dimensionID,UINT frameIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipInvertMatrix
+`GpStatus := GdipInvertMatrix(GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsClipEmpty
+`GpStatus := GdipIsClipEmpty(GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsEmptyRegion
+`GpStatus := GdipIsEmptyRegion(GpRegion* region,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsEqualRegion
+`GpStatus := GdipIsEqualRegion(GpRegion* region,GpRegion* region2,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsInfiniteRegion
+`GpStatus := GdipIsInfiniteRegion(GpRegion* region,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsMatrixEqual
+`GpStatus := GdipIsMatrixEqual(GDIPGpMatrix* matrix,GDIPGpMatrix* matrix2,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsMatrixIdentity
+`GpStatus := GdipIsMatrixIdentity(GDIPGpMatrix* matrix,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsMatrixInvertible
+`GpStatus := GdipIsMatrixInvertible(GDIPGpMatrix* matrix,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsOutlineVisiblePathPoint
+`GpStatus := GdipIsOutlineVisiblePathPoint(GpPath* path,REAL x,REAL y,GpPen* pen,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsOutlineVisiblePathPointI
+`GpStatus := GdipIsOutlineVisiblePathPointI(GpPath* path,INT x,INT y,GpPen* pen,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleClipEmpty
+`GpStatus := GdipIsVisibleClipEmpty(GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisiblePathPoint
+`GpStatus := GdipIsVisiblePathPoint(GpPath* path,REAL x,REAL y,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisiblePathPointI
+`GpStatus := GdipIsVisiblePathPointI(GpPath* path,INT x,INT y,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisiblePoint
+`GpStatus := GdipIsVisiblePoint(GpGraphics* graphics,REAL x,REAL y,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisiblePointI
+`GpStatus := GdipIsVisiblePointI(GpGraphics* graphics,INT x,INT y,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRect
+`GpStatus := GdipIsVisibleRect(GpGraphics* graphics,REAL x,REAL y,REAL width,REAL height,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRectI
+`GpStatus := GdipIsVisibleRectI(GpGraphics* graphics,INT x,INT y,INT width,INT height,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRegionPoint
+`GpStatus := GdipIsVisibleRegionPoint(GpRegion* region,REAL x,REAL y,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRegionPointI
+`GpStatus := GdipIsVisibleRegionPointI(GpRegion* region,INT x,INT y,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRegionRect
+`GpStatus := GdipIsVisibleRegionRect(GpRegion* region,REAL x,REAL y,REAL width,REAL height,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipIsVisibleRegionRectI
+`GpStatus := GdipIsVisibleRegionRectI(GpRegion* region,INT x,INT y,INT width,INT height,GpGraphics* graphics,BOOL* result)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipLoadImageFromFile
+`GpStatus := GdipLoadImageFromFile(GDIPWCHAR* filename,GpImage* *image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipLoadImageFromFileICM
+`GpStatus := GdipLoadImageFromFileICM(GDIPWCHAR* filename,GpImage* *image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipLoadImageFromStream
+`GpStatus := GdipLoadImageFromStream(IStream* stream,GpImage* *image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipLoadImageFromStreamICM
+`GpStatus := GdipLoadImageFromStreamICM(IStream* stream,GpImage* *image)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiplusNotificationHook
+`GpStatus := GdiplusNotificationHook(ULONG_PTR* token)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiplusNotificationUnhook
+`VOID := GdiplusNotificationUnhook(ULONG_PTR token)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiplusShutdown
+`VOID := GdiplusShutdown(__in ULONG_PTR token)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiplusStartup
+`Status := GdiplusStartup(__out ULONG_PTR token *token, __in const GdiplusStartupInput *input, __out GdiplusStartupOutput *output)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMeasureCharacterRanges
+`GpStatus := GdipMeasureCharacterRanges(GpGraphics* graphics,GDIPWCHAR* string,INT length,GDIPGpFont* font,GDIPRectF &layoutRect,GDIPGpStringFormat* stringFormat,INT regionCount,GpRegion* *regions)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMeasureDriverString
+`GpStatus := GdipMeasureDriverString(GpGraphics* graphics,GDIPUINT16* text,INT length,GDIPGpFont* font,GDIPPointF* positions,INT flags,GDIPGpMatrix* matrix,RectF* boundingBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMeasureString
+`GpStatus := GdipMeasureString(GpGraphics* graphics,GDIPWCHAR* string,INT length,GDIPGpFont* font,GDIPRectF* layoutRect,GDIPGpStringFormat* stringFormat,RectF* boundingBox,INT* codepointsFitted,INT* linesFilled)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyLineTransform
+`GpStatus := GdipMultiplyLineTransform(GpLineGradient* brush,GDIPGpMatrix* matrix,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyMatrix
+`GpStatus := GdipMultiplyMatrix(GpMatrix* matrix,GpMatrix* matrix2,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyPathGradientTransform
+`GpStatus := GdipMultiplyPathGradientTransform(GpPathGradient* brush,GDIPGpMatrix* matrix,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyPenTransform
+`GpStatus := GdipMultiplyPenTransform(GpPen* pen,GDIPGpMatrix* matrix,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyTextureTransform
+`GpStatus := GdipMultiplyTextureTransform(GpTexture* brush,GDIPGpMatrix* matrix,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipMultiplyWorldTransform
+`GpStatus := GdipMultiplyWorldTransform(GpGraphics* graphics,GDIPGpMatrix* matrix,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipNewInstalledFontCollection
+`GpStatus := GdipNewInstalledFontCollection(GpFontCollection** fontCollection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipNewPrivateFontCollection
+`GpStatus := GdipNewPrivateFontCollection(GpFontCollection** fontCollection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterCopyData
+`GpStatus := GdipPathIterCopyData(GpPathIterator* iterator,INT* resultCount,GpPointF* points,BYTE* types,INT startIndex,INT endIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterEnumerate
+`GpStatus := GdipPathIterEnumerate(GpPathIterator* iterator,INT* resultCount,GpPointF* points,BYTE* types,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterGetCount
+`GpStatus := GdipPathIterGetCount(GpPathIterator* iterator,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterGetSubpathCount
+`GpStatus := GdipPathIterGetSubpathCount(GpPathIterator* iterator,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterHasCurve
+`GpStatus := GdipPathIterHasCurve(GpPathIterator* iterator,BOOL* hasCurve)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterIsValid
+`GpStatus := GdipPathIterIsValid(GpPathIterator* iterator,BOOL* valid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterNextMarker
+`GpStatus := GdipPathIterNextMarker(GpPathIterator* iterator,INT* resultCount,INT* startIndex,INT* endIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterNextMarkerPath
+`GpStatus := GdipPathIterNextMarkerPath(GpPathIterator* iterator,INT* resultCount,GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterNextPathType
+`GpStatus := GdipPathIterNextPathType(GpPathIterator* iterator,INT* resultCount,BYTE* pathType,INT* startIndex,INT* endIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterNextSubpath
+`GpStatus := GdipPathIterNextSubpath(GpPathIterator* iterator,INT* resultCount,INT* startIndex,INT* endIndex,BOOL* isClosed)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterNextSubpathPath
+`GpStatus := GdipPathIterNextSubpathPath(GpPathIterator* iterator,INT* resultCount,GpPath* path,BOOL* isClosed)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPathIterRewind
+`GpStatus := GdipPathIterRewind(GpPathIterator* iterator)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPlayMetafileRecord
+`GpStatus := GdipPlayMetafileRecord(GDIPGpMetafile* metafile,EmfPlusRecordType recordType,UINT flags,UINT dataSize,GDIPBYTE* data)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPrivateAddFontFile
+`GpStatus := GdipPrivateAddFontFile(GpFontCollection* fontCollection,GDIPWCHAR* filename)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipPrivateAddMemoryFont
+`GpStatus := GdipPrivateAddMemoryFont(GpFontCollection* fontCollection,GDIPvoid* memory,INT length)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafile
+`GpStatus := GdipRecordMetafile(HDC referenceHdc,EmfType type,GDIPGpRectF* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafileFileName
+`GpStatus := GdipRecordMetafileFileName(GDIPWCHAR* fileName,HDC referenceHdc,EmfType type,GDIPGpRectF* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafileFileNameI
+`GpStatus := GdipRecordMetafileFileNameI(GDIPWCHAR* fileName,HDC referenceHdc,EmfType type,GDIPGpRect* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafileI
+`GpStatus := GdipRecordMetafileI(HDC referenceHdc,EmfType type,GDIPGpRect* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafileStream
+`GpStatus := GdipRecordMetafileStream(IStream* stream,HDC referenceHdc,EmfType type,GDIPGpRectF* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRecordMetafileStreamI
+`GpStatus := GdipRecordMetafileStreamI(IStream* stream,HDC referenceHdc,EmfType type,GDIPGpRect* frameRect,MetafileFrameUnit frameUnit,GDIPWCHAR* description,GpMetafile* * metafile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipReleaseDC
+`GpStatus := GdipReleaseDC(GpGraphics* graphics,HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRemovePropertyItem
+`GpStatus := GdipRemovePropertyItem(GpImage* image,PROPID propId)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetClip
+`GpStatus := GdipResetClip(GpGraphics* graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetImageAttributes
+`GpStatus := GdipResetImageAttributes(GpImageAttributes* imageattr,ColorAdjustType type)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetLineTransform
+`GpStatus := GdipResetLineTransform(GpLineGradient* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetPageTransform
+`GpStatus := GdipResetPageTransform(GpGraphics* graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetPath
+`GpStatus := GdipResetPath(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetPathGradientTransform
+`GpStatus := GdipResetPathGradientTransform(GpPathGradient* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetPenTransform
+`GpStatus := GdipResetPenTransform(GpPen* pen)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetTextureTransform
+`GpStatus := GdipResetTextureTransform(GpTexture* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipResetWorldTransform
+`GpStatus := GdipResetWorldTransform(GpGraphics* graphics)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRestoreGraphics
+`GpStatus := GdipRestoreGraphics(GpGraphics* graphics,GraphicsState state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipReversePath
+`GpStatus := GdipReversePath(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotateLineTransform
+`GpStatus := GdipRotateLineTransform(GpLineGradient* brush,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotateMatrix
+`GpStatus := GdipRotateMatrix(GpMatrix* matrix,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotatePathGradientTransform
+`GpStatus := GdipRotatePathGradientTransform(GpPathGradient* brush,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotatePenTransform
+`GpStatus := GdipRotatePenTransform(GpPen* pen,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotateTextureTransform
+`GpStatus := GdipRotateTextureTransform(GpTexture* brush,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipRotateWorldTransform
+`GpStatus := GdipRotateWorldTransform(GpGraphics* graphics,REAL angle,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSaveAdd
+`GpStatus := GdipSaveAdd(GpImage* image,GDIPEncoderParameters* encoderParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSaveAddImage
+`GpStatus := GdipSaveAddImage(GpImage* image,GpImage* newImage,GDIPEncoderParameters* encoderParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSaveGraphics
+`GpStatus := GdipSaveGraphics(GpGraphics* graphics,GraphicsState* state)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSaveImageToFile
+`GpStatus := GdipSaveImageToFile(GpImage* image,GDIPWCHAR* filename,GDIPCLSID* clsidEncoder,GDIPEncoderParameters* encoderParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSaveImageToStream
+`GpStatus := GdipSaveImageToStream(GpImage* image,IStream* stream,GDIPCLSID* clsidEncoder,GDIPEncoderParameters* encoderParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScaleLineTransform
+`GpStatus := GdipScaleLineTransform(GpLineGradient* brush,REAL sx,REAL sy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScaleMatrix
+`GpStatus := GdipScaleMatrix(GpMatrix* matrix,REAL scaleX,REAL scaleY,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScalePathGradientTransform
+`GpStatus := GdipScalePathGradientTransform(GpPathGradient* brush,REAL sx,REAL sy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScalePenTransform
+`GpStatus := GdipScalePenTransform(GpPen* pen,REAL sx,REAL sy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScaleTextureTransform
+`GpStatus := GdipScaleTextureTransform(GpTexture* brush,REAL sx,REAL sy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipScaleWorldTransform
+`GpStatus := GdipScaleWorldTransform(GpGraphics* graphics,REAL sx,REAL sy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetAdjustableArrowCapFillState
+`GpStatus := GdipSetAdjustableArrowCapFillState(GpAdjustableArrowCap* cap,BOOL fillState)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetAdjustableArrowCapHeight
+`GpStatus := GdipSetAdjustableArrowCapHeight(GpAdjustableArrowCap* cap,REAL height)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetAdjustableArrowCapMiddleInset
+`GpStatus := GdipSetAdjustableArrowCapMiddleInset(GpAdjustableArrowCap* cap,REAL middleInset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetAdjustableArrowCapWidth
+`GpStatus := GdipSetAdjustableArrowCapWidth(GpAdjustableArrowCap* cap,REAL width)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipGraphics
+`GpStatus := GdipSetClipGraphics(GpGraphics* graphics,GpGraphics* srcgraphics,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipHrgn
+`GpStatus := GdipSetClipHrgn(GpGraphics* graphics,HRGN hRgn,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipPath
+`GpStatus := GdipSetClipPath(GpGraphics* graphics,GpPath* path,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipRect
+`GpStatus := GdipSetClipRect(GpGraphics* graphics,REAL x,REAL y,REAL width,REAL height,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipRectI
+`GpStatus := GdipSetClipRectI(GpGraphics* graphics,INT x,INT y,INT width,INT height,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetClipRegion
+`GpStatus := GdipSetClipRegion(GpGraphics* graphics,GpRegion* region,CombineMode combineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCompositingMode
+`GpStatus := GdipSetCompositingMode(GpGraphics* graphics,CompositingMode compositingMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCompositingQuality
+`GpStatus := GdipSetCompositingQuality(GpGraphics* graphics,CompositingQuality compositingQuality)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCustomLineCapBaseCap
+`GpStatus := GdipSetCustomLineCapBaseCap(GpCustomLineCap* customCap,GpLineCap baseCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCustomLineCapBaseInset
+`GpStatus := GdipSetCustomLineCapBaseInset(GpCustomLineCap* customCap,REAL inset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCustomLineCapStrokeCaps
+`GpStatus := GdipSetCustomLineCapStrokeCaps(GpCustomLineCap* customCap,GpLineCap startCap,GpLineCap endCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCustomLineCapStrokeJoin
+`GpStatus := GdipSetCustomLineCapStrokeJoin(GpCustomLineCap* customCap,GpLineJoin lineJoin)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetCustomLineCapWidthScale
+`GpStatus := GdipSetCustomLineCapWidthScale(GpCustomLineCap* customCap,REAL widthScale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetEmpty
+`GpStatus := GdipSetEmpty(GpRegion* region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesCachedBackground
+`GpStatus := GdipSetImageAttributesCachedBackground(GpImageAttributes* imageattr,BOOL enableFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesColorKeys
+`GpStatus := GdipSetImageAttributesColorKeys(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,ARGB colorLow,ARGB colorHigh)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesColorMatrix
+`GpStatus := GdipSetImageAttributesColorMatrix(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,GDIPColorMatrix* colorMatrix,GDIPColorMatrix* grayMatrix,ColorMatrixFlags flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesGamma
+`GpStatus := GdipSetImageAttributesGamma(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,REAL gamma)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesNoOp
+`GpStatus := GdipSetImageAttributesNoOp(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesOutputChannel
+`GpStatus := GdipSetImageAttributesOutputChannel(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,ColorChannelFlags channelFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesOutputChannelColorProfile
+`GpStatus := GdipSetImageAttributesOutputChannelColorProfile(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,GDIPWCHAR* colorProfileFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesRemapTable
+`GpStatus := GdipSetImageAttributesRemapTable(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,UINT mapSize,GDIPColorMap* map)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesThreshold
+`GpStatus := GdipSetImageAttributesThreshold(GpImageAttributes* imageattr,ColorAdjustType type,BOOL enableFlag,REAL threshold)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesToIdentity
+`GpStatus := GdipSetImageAttributesToIdentity(GpImageAttributes* imageattr,ColorAdjustType type)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImageAttributesWrapMode
+`GpStatus := GdipSetImageAttributesWrapMode(GpImageAttributes* imageAttr,WrapMode wrap,ARGB argb,BOOL clamp)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetImagePalette
+`GpStatus := GdipSetImagePalette(GpImage* image,GDIPColorPalette* palette)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetInfinite
+`GpStatus := GdipSetInfinite(GpRegion* region)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetInterpolationMode
+`GpStatus := GdipSetInterpolationMode(GpGraphics* graphics,InterpolationMode interpolationMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineBlend
+`GpStatus := GdipSetLineBlend(GpLineGradient* brush,GDIPREAL* blend,GDIPREAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineColors
+`GpStatus := GdipSetLineColors(GpLineGradient* brush,ARGB color1,ARGB color2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineGammaCorrection
+`GpStatus := GdipSetLineGammaCorrection(GpLineGradient* brush,BOOL useGammaCorrection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineLinearBlend
+`GpStatus := GdipSetLineLinearBlend(GpLineGradient* brush,REAL focus,REAL scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLinePresetBlend
+`GpStatus := GdipSetLinePresetBlend(GpLineGradient* brush,GDIPARGB* blend,GDIPREAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineSigmaBlend
+`GpStatus := GdipSetLineSigmaBlend(GpLineGradient* brush,REAL focus,REAL scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineTransform
+`GpStatus := GdipSetLineTransform(GpLineGradient* brush,GDIPGpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetLineWrapMode
+`GpStatus := GdipSetLineWrapMode(GpLineGradient* brush,GpWrapMode wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetMatrixElements
+`GpStatus := GdipSetMatrixElements(GpMatrix* matrix,REAL m11,REAL m12,REAL m21,REAL m22,REAL dx,REAL dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetMetafileDownLevelRasterizationLimit
+`GpStatus := GdipSetMetafileDownLevelRasterizationLimit(GpMetafile* metafile,UINT metafileRasterizationLimitDpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPageScale
+`GpStatus := GdipSetPageScale(GpGraphics* graphics,REAL scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPageUnit
+`GpStatus := GdipSetPageUnit(GpGraphics* graphics,GpUnit unit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathFillMode
+`GpStatus := GdipSetPathFillMode(GpPath* path,GpFillMode fillmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientBlend
+`GpStatus := GdipSetPathGradientBlend(GpPathGradient* brush,GDIPREAL* blend,GDIPREAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientCenterColor
+`GpStatus := GdipSetPathGradientCenterColor(GpPathGradient* brush,ARGB colors)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientCenterPoint
+`GpStatus := GdipSetPathGradientCenterPoint(GpPathGradient* brush,GDIPGpPointF* points)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientCenterPointI
+`GpStatus := GdipSetPathGradientCenterPointI(GpPathGradient* brush,GDIPGpPoint* points)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientFocusScales
+`GpStatus := GdipSetPathGradientFocusScales(GpPathGradient* brush,REAL xScale,REAL yScale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientGammaCorrection
+`GpStatus := GdipSetPathGradientGammaCorrection(GpPathGradient* brush,BOOL useGammaCorrection)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientLinearBlend
+`GpStatus := GdipSetPathGradientLinearBlend(GpPathGradient* brush,REAL focus,REAL scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientPath
+`GpStatus := GdipSetPathGradientPath(GpPathGradient* brush,GDIPGpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientPresetBlend
+`GpStatus := GdipSetPathGradientPresetBlend(GpPathGradient* brush,GDIPARGB* blend,GDIPREAL* positions,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientSigmaBlend
+`GpStatus := GdipSetPathGradientSigmaBlend(GpPathGradient* brush,REAL focus,REAL scale)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientSurroundColorsWithCount
+`GpStatus := GdipSetPathGradientSurroundColorsWithCount(GpPathGradient* brush,GDIPARGB* color,INT* count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientTransform
+`GpStatus := GdipSetPathGradientTransform(GpPathGradient* brush,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathGradientWrapMode
+`GpStatus := GdipSetPathGradientWrapMode(GpPathGradient* brush,GpWrapMode wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPathMarker
+`GpStatus := GdipSetPathMarker(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenBrushFill
+`GpStatus := GdipSetPenBrushFill(GpPen* pen,GpBrush* brush)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenColor
+`GpStatus := GdipSetPenColor(GpPen* pen,ARGB argb)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenCompoundArray
+`GpStatus := GdipSetPenCompoundArray(GpPen* pen,GDIPREAL* dash,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenCustomEndCap
+`GpStatus := GdipSetPenCustomEndCap(GpPen* pen,GpCustomLineCap* customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenCustomStartCap
+`GpStatus := GdipSetPenCustomStartCap(GpPen* pen,GpCustomLineCap* customCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenDashArray
+`GpStatus := GdipSetPenDashArray(GpPen* pen,GDIPREAL* dash,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenDashCap197819
+`GpStatus := GdipSetPenDashCap197819(GpPen* pen,GpDashCap dashCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenDashOffset
+`GpStatus := GdipSetPenDashOffset(GpPen* pen,REAL offset)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenDashStyle
+`GpStatus := GdipSetPenDashStyle(GpPen* pen,GpDashStyle dashstyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenEndCap
+`GpStatus := GdipSetPenEndCap(GpPen* pen,GpLineCap endCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenLineCap197819
+`GpStatus := GdipSetPenLineCap197819(GpPen* pen,GpLineCap startCap,GpLineCap endCap,GpDashCap dashCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenLineJoin
+`GpStatus := GdipSetPenLineJoin(GpPen* pen,GpLineJoin lineJoin)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenMiterLimit
+`GpStatus := GdipSetPenMiterLimit(GpPen* pen,REAL miterLimit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenMode
+`GpStatus := GdipSetPenMode(GpPen* pen,GpPenAlignment penMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenStartCap
+`GpStatus := GdipSetPenStartCap(GpPen* pen,GpLineCap startCap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenTransform
+`GpStatus := GdipSetPenTransform(GpPen* pen,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenUnit
+`GpStatus := GdipSetPenUnit(GpPen* pen,GpUnit unit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPenWidth
+`GpStatus := GdipSetPenWidth(GpPen* pen,REAL width)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPixelOffsetMode
+`GpStatus := GdipSetPixelOffsetMode(GpGraphics* graphics,PixelOffsetMode pixelOffsetMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetPropertyItem
+`GpStatus := GdipSetPropertyItem(GpImage* image,GDIPPropertyItem* item)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetRenderingOrigin
+`GpStatus := GdipSetRenderingOrigin(GpGraphics* graphics,INT x,INT y)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetSmoothingMode
+`GpStatus := GdipSetSmoothingMode(GpGraphics* graphics,SmoothingMode smoothingMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetSolidFillColor
+`GpStatus := GdipSetSolidFillColor(GpSolidFill* brush,ARGB color)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatAlign
+`GpStatus := GdipSetStringFormatAlign(GpStringFormat* format,StringAlignment align)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatDigitSubstitution
+`GpStatus := GdipSetStringFormatDigitSubstitution(GpStringFormat* format,LANGID language,StringDigitSubstitute substitute)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatFlags
+`GpStatus := GdipSetStringFormatFlags(GpStringFormat* format,INT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatHotkeyPrefix
+`GpStatus := GdipSetStringFormatHotkeyPrefix(GpStringFormat* format,INT hotkeyPrefix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatLineAlign
+`GpStatus := GdipSetStringFormatLineAlign(GpStringFormat* format,StringAlignment align)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatMeasurableCharacterRanges
+`GpStatus := GdipSetStringFormatMeasurableCharacterRanges(GpStringFormat* format,INT rangeCount,GDIPCharacterRange* ranges)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatTabStops
+`GpStatus := GdipSetStringFormatTabStops(GpStringFormat* format,REAL firstTabOffset,INT count,GDIPREAL* tabStops)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetStringFormatTrimming
+`GpStatus := GdipSetStringFormatTrimming(GpStringFormat* format,StringTrimming trimming)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetTextRenderingHint
+`GpStatus := GdipSetTextRenderingHint(GpGraphics* graphics,TextRenderingHint mode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetTextureTransform
+`GpStatus := GdipSetTextureTransform(GpTexture* brush,GDIPGpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetTextureWrapMode
+`GpStatus := GdipSetTextureWrapMode(GpTexture* brush,GpWrapMode wrapmode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipSetWorldTransform
+`GpStatus := GdipSetWorldTransform(GpGraphics* graphics,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipShearMatrix
+`GpStatus := GdipShearMatrix(GpMatrix* matrix,REAL shearX,REAL shearY,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipStartPathFigure
+`GpStatus := GdipStartPathFigure(GpPath* path)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipStringFormatGetGenericDefault
+`GpStatus := GdipStringFormatGetGenericDefault(GpStringFormat* *format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipStringFormatGetGenericTypographic
+`GpStatus := GdipStringFormatGetGenericTypographic(GpStringFormat* *format)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTestControl
+`GpStatus := GdipTestControl(GpTestControlEnum control,void* param)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformMatrixPoints
+`GpStatus := GdipTransformMatrixPoints(GpMatrix* matrix,GpPointF* pts,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformMatrixPointsI
+`GpStatus := GdipTransformMatrixPointsI(GpMatrix* matrix,GpPoint* pts,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformPath
+`GpStatus := GdipTransformPath(GpPath* path,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformPoints
+`GpStatus := GdipTransformPoints(GpGraphics* graphics,GpCoordinateSpace destSpace,GpCoordinateSpace srcSpace,GpPointF* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformPointsI
+`GpStatus := GdipTransformPointsI(GpGraphics* graphics,GpCoordinateSpace destSpace,GpCoordinateSpace srcSpace,GpPoint* points,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTransformRegion
+`GpStatus := GdipTransformRegion(GpRegion* region,GpMatrix* matrix)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateClip
+`GpStatus := GdipTranslateClip(GpGraphics* graphics,REAL dx,REAL dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateClipI
+`GpStatus := GdipTranslateClipI(GpGraphics* graphics,INT dx,INT dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateLineTransform
+`GpStatus := GdipTranslateLineTransform(GpLineGradient* brush,REAL dx,REAL dy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateMatrix
+`GpStatus := GdipTranslateMatrix(GpMatrix* matrix,REAL offsetX,REAL offsetY,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslatePathGradientTransform
+`GpStatus := GdipTranslatePathGradientTransform(GpPathGradient* brush,REAL dx,REAL dy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslatePenTransform
+`GpStatus := GdipTranslatePenTransform(GpPen* pen,REAL dx,REAL dy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateRegion
+`GpStatus := GdipTranslateRegion(GpRegion* region,REAL dx,REAL dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateRegionI
+`GpStatus := GdipTranslateRegionI(GpRegion* region,INT dx,INT dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateTextureTransform
+`GpStatus := GdipTranslateTextureTransform(GpTexture* brush,REAL dx,REAL dy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipTranslateWorldTransform
+`GpStatus := GdipTranslateWorldTransform(GpGraphics* graphics,REAL dx,REAL dy,GpMatrixOrder order)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipVectorTransformMatrixPoints
+`GpStatus := GdipVectorTransformMatrixPoints(GpMatrix* matrix,GpPointF* pts,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipVectorTransformMatrixPointsI
+`GpStatus := GdipVectorTransformMatrixPointsI(GpMatrix* matrix,GpPoint* pts,INT count)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipWarpPath
+`GpStatus := GdipWarpPath(GpPath* path,GpMatrix* matrix,GDIPGpPointF* points,INT count,REAL srcx,REAL srcy,REAL srcwidth,REAL srcheight,WarpMode warpMode,REAL flatness)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipWidenPath
+`GpStatus := GdipWidenPath(GpPath* nativePath,GpPen* pen,GpMatrix* matrix,REAL flatness)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdipWindingModeOutline
+`GpStatus := GdipWindingModeOutline(GpPath* path,GpMatrix* matrix,REAL flatness)
+`/docs/commands/WinApi.htm

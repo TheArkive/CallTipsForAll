@@ -1,0 +1,2362 @@
+Function
+AbortDoc
+`int := AbortDoc(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+AbortPath
+`BOOL := AbortPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontMemResourceEx
+`HANDLE := AddFontMemResourceEx(_In_ PVOID pbFont, _In_ DWORD cbFont, _In_ PVOID pdv, _In_ DWORD *pcFonts)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResource
+`int := AddFontResource(_In_ LPCTSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResourceA
+`int := AddFontResourceA(_In_ LPCSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResourceEx
+`int := AddFontResourceEx(_In_ LPCTSTR lpszFilename, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResourceExA
+`int := AddFontResourceExA(_In_ LPCSTR lpszFilename, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResourceExW
+`int := AddFontResourceExW(_In_ LPCWSTR lpszFilename, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddFontResourceW
+`int := AddFontResourceW(_In_ LPCWSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+AngleArc
+`BOOL := AngleArc(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ DWORD dwRadius, _In_ FLOAT eStartAngle, _In_ FLOAT eSweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+AnimatePalette
+`BOOL := AnimatePalette(_In_ HPALETTE hpal, _In_ UINT iStartIndex, _In_ UINT cEntries, _In_ const PALETTEENTRY *ppe)
+`/docs/commands/WinApi.htm
+
+
+Function
+Arc
+`BOOL := Arc(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nXStartArc, _In_ int nYStartArc, _In_ int nXEndArc, _In_ int nYEndArc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ArcTo
+`BOOL := ArcTo(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nXRadial1, _In_ int nYRadial1, _In_ int nXRadial2, _In_ int nYRadial2)
+`/docs/commands/WinApi.htm
+
+
+Function
+BeginPath
+`BOOL := BeginPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+BitBlt
+`BOOL := BitBlt(_In_ HDC hdcDest, _In_ int nXDest, _In_ int nYDest, _In_ int nWidth, _In_ int nHeight, _In_ HDC hdcSrc, _In_ int nXSrc, _In_ int nYSrc, _In_ DWORD dwRop)
+`/docs/commands/WinApi.htm
+
+
+Function
+CancelDC
+`BOOL := CancelDC(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckColorsInGamut
+`BOOL := CheckColorsInGamut(HDC hDC, LPVOID lpRGBTriples, LPVOID lpBuffer, UINT nCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChoosePixelFormat
+`int := ChoosePixelFormat(HDC hdc, const PIXELFORMATDESCRIPTOR *ppfd)
+`/docs/commands/WinApi.htm
+
+
+Function
+Chord
+`BOOL := Chord(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nXRadial1, _In_ int nYRadial1, _In_ int nXRadial2, _In_ int nYRadial2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseEnhMetaFile
+`HENHMETAFILE := CloseEnhMetaFile(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseFigure
+`BOOL := CloseFigure(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseMetaFile
+`HMETAFILE := CloseMetaFile(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ColorCorrectPalette
+`BOOL := ColorCorrectPalette(HDC hDC, HPALETTE hPalette, DWORD dwFirstEntry, DWORD dwNumOfEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+ColorMatchToTarget
+`BOOL := ColorMatchToTarget(HDC hDC, HDC hdcTarget, DWORD uiAction)
+`/docs/commands/WinApi.htm
+
+
+Function
+CombineRgn
+`int := CombineRgn(_In_ HRGN hrgnDest, _In_ HRGN hrgnSrc1, _In_ HRGN hrgnSrc2, _In_ int fnCombineMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CombineTransform
+`BOOL := CombineTransform(_Out_ LPXFORM lpxformResult, _In_ const XFORM *lpxform1, _In_ const XFORM *lpxform2)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyEnhMetaFile
+`HENHMETAFILE := CopyEnhMetaFile(_In_ HENHMETAFILE hemfSrc, _In_ LPCTSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyEnhMetaFileA
+`HENHMETAFILE := CopyEnhMetaFileA(_In_ HENHMETAFILE hemfSrc, _In_ LPCSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyEnhMetaFileW
+`HENHMETAFILE := CopyEnhMetaFileW(_In_ HENHMETAFILE hemfSrc, _In_ LPCWSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyMetaFile
+`HMETAFILE := CopyMetaFile(_In_ HMETAFILE hmfSrc, _In_ LPCTSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyMetaFileA
+`HMETAFILE := CopyMetaFileA(_In_ HMETAFILE hmfSrc, _In_ LPCSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyMetaFileW
+`HMETAFILE := CopyMetaFileW(_In_ HMETAFILE hmfSrc, _In_ LPCWSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateBitmap
+`HBITMAP := CreateBitmap(_In_ int nWidth, _In_ int nHeight, _In_ UINT cPlanes, _In_ UINT cBitsPerPel, _In_ const VOID *lpvBits)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateBitmapIndirect
+`HBITMAP := CreateBitmapIndirect(_In_ const BITMAP *lpbm)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateBrushIndirect
+`HBRUSH := CreateBrushIndirect(_In_ const LOGBRUSH *lplb)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateColorSpace
+`HCOLORSPACE := CreateColorSpace(LPLOGCOLORSPACE lpLogColorSpace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateColorSpaceA
+`HCOLORSPACE := CreateColorSpaceA(LPLOGCOLORSPACE lpLogColorSpace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateColorSpaceW
+`HCOLORSPACE := CreateColorSpaceW(LPLOGCOLORSPACE lpLogColorSpace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateCompatibleBitmap
+`HBITMAP := CreateCompatibleBitmap(_In_ HDC hdc, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateCompatibleDC
+`HDC := CreateCompatibleDC(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDC
+`HDC := CreateDC(LPCTSTR lpszDriver, _In_ LPCTSTR lpszDevice, LPCTSTR lpszOutput, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDCA
+`HDC := CreateDCA(LPCSTR lpszDriver, _In_ LPCSTR lpszDevice, LPCSTR lpszOutput, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDCW
+`HDC := CreateDCW(LPCWSTR lpszDriver, _In_ LPCWSTR lpszDevice, LPCWSTR lpszOutput, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDIBitmap
+`HBITMAP := CreateDIBitmap(_In_ HDC hdc, _In_ const BITMAPINFOHEADER *lpbmih, _In_ DWORD fdwInit, _In_ const VOID *lpbInit, _In_ const BITMAPINFO *lpbmi, _In_ UINT fuUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDIBPatternBrush
+`HBRUSH := CreateDIBPatternBrush(_In_ HGLOBAL hglbDIBPacked, _In_ UINT fuColorSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDIBPatternBrushPt
+`HBRUSH := CreateDIBPatternBrushPt(_In_ const VOID *lpPackedDIB, _In_ UINT iUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDIBSection
+`HBITMAP := CreateDIBSection(_In_ HDC hdc, _In_ const BITMAPINFO *pbmi, _In_ UINT iUsage, _Out_ VOID **ppvBits, _In_ HANDLE hSection, _In_ DWORD dwOffset)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDiscardableBitmap
+`HBITMAP := CreateDiscardableBitmap(_In_ HDC hdc, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateEllipticRgn
+`HRGN := CreateEllipticRgn(_In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateEllipticRgnIndirect
+`HRGN := CreateEllipticRgnIndirect(_In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateEnhMetaFile
+`HDC := CreateEnhMetaFile(_In_ HDC hdcRef, _In_ LPCTSTR lpFilename, _In_ const RECT *lpRect, _In_ LPCTSTR lpDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateEnhMetaFileA
+`HDC := CreateEnhMetaFileA(_In_ HDC hdcRef, _In_ LPCSTR lpFilename, _In_ const RECT *lpRect, _In_ LPCSTR lpDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateEnhMetaFileW
+`HDC := CreateEnhMetaFileW(_In_ HDC hdcRef, _In_ LPCWSTR lpFilename, _In_ const RECT *lpRect, _In_ LPCWSTR lpDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFont
+`HFONT := CreateFont(_In_ int nHeight, _In_ int nWidth, _In_ int nEscapement, _In_ int nOrientation, _In_ int fnWeight, _In_ DWORD fdwItalic, _In_ DWORD fdwUnderline, _In_ DWORD fdwStrikeOut, _In_ DWORD fdwCharSet, _In_ DWORD fdwOutputPrecision, _In_ DWORD fdwClipPrecision, _In_ DWORD fdwQuality, _In_ DWORD fdwPitchAndFamily, _In_ LPCTSTR lpszFace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontA
+`HFONT := CreateFontA(_In_ int nHeight, _In_ int nWidth, _In_ int nEscapement, _In_ int nOrientation, _In_ int fnWeight, _In_ DWORD fdwItalic, _In_ DWORD fdwUnderline, _In_ DWORD fdwStrikeOut, _In_ DWORD fdwCharSet, _In_ DWORD fdwOutputPrecision, _In_ DWORD fdwClipPrecision, _In_ DWORD fdwQuality, _In_ DWORD fdwPitchAndFamily, _In_ LPCSTR lpszFace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirect
+`HFONT := CreateFontIndirect(_In_ const LOGFONT *lplf)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirectA
+`HFONT := CreateFontIndirectA(_In_ const LOGFONT *lplf)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirectEx
+`HFONT := CreateFontIndirectEx(_In_ const ENUMLOGFONTEXDV *penumlfex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirectExA
+`HFONT := CreateFontIndirectExA(_In_ const ENUMLOGFONTEXDV *penumlfex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirectExW
+`HFONT := CreateFontIndirectExW(_In_ const ENUMLOGFONTEXDV *penumlfex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontIndirectW
+`HFONT := CreateFontIndirectW(_In_ const LOGFONT *lplf)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFontW
+`HFONT := CreateFontW(_In_ int nHeight, _In_ int nWidth, _In_ int nEscapement, _In_ int nOrientation, _In_ int fnWeight, _In_ DWORD fdwItalic, _In_ DWORD fdwUnderline, _In_ DWORD fdwStrikeOut, _In_ DWORD fdwCharSet, _In_ DWORD fdwOutputPrecision, _In_ DWORD fdwClipPrecision, _In_ DWORD fdwQuality, _In_ DWORD fdwPitchAndFamily, _In_ LPCWSTR lpszFace)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateHalftonePalette
+`HPALETTE := CreateHalftonePalette(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateHatchBrush
+`HBRUSH := CreateHatchBrush(_In_ int fnStyle, _In_ COLORREF clrref)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateIC
+`HDC := CreateIC(_In_ LPCTSTR lpszDriver, _In_ LPCTSTR lpszDevice, LPCTSTR lpszOutput, _In_ const DEVMODE *lpdvmInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateICA
+`HDC := CreateICA(_In_ LPCSTR lpszDriver, _In_ LPCSTR lpszDevice, LPCSTR lpszOutput, _In_ const DEVMODE *lpdvmInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateICW
+`HDC := CreateICW(_In_ LPCWSTR lpszDriver, _In_ LPCWSTR lpszDevice, LPCWSTR lpszOutput, _In_ const DEVMODE *lpdvmInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMetaFile
+`HDC := CreateMetaFile(_In_ LPCTSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMetaFileA
+`HDC := CreateMetaFileA(_In_ LPCSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMetaFileW
+`HDC := CreateMetaFileW(_In_ LPCWSTR lpszFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePalette
+`HPALETTE := CreatePalette(_In_ const LOGPALETTE *lplgpl)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePatternBrush
+`HBRUSH := CreatePatternBrush(_In_ HBITMAP hbmp)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePen
+`HPEN := CreatePen(_In_ int fnPenStyle, _In_ int nWidth, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePenIndirect
+`HPEN := CreatePenIndirect(_In_ const LOGPEN *lplgpn)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePolygonRgn
+`HRGN := CreatePolygonRgn(_In_ const POINT *lppt, _In_ int cPoints, _In_ int fnPolyFillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePolyPolygonRgn
+`HRGN := CreatePolyPolygonRgn(_In_ const POINT *lppt, _In_ const INT *lpPolyCounts, _In_ int nCount, _In_ int fnPolyFillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateRectRgn
+`HRGN := CreateRectRgn(_In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateRectRgnIndirect
+`HRGN := CreateRectRgnIndirect(_In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateRoundRectRgn
+`HRGN := CreateRoundRectRgn(_In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nWidthEllipse, _In_ int nHeightEllipse)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateScalableFontResource
+`BOOL := CreateScalableFontResource(_In_ DWORD fdwHidden, _In_ LPCTSTR lpszFontRes, _In_ LPCTSTR lpszFontFile, _In_ LPCTSTR lpszCurrentPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateScalableFontResourceA
+`BOOL := CreateScalableFontResourceA(_In_ DWORD fdwHidden, _In_ LPCSTR lpszFontRes, _In_ LPCSTR lpszFontFile, _In_ LPCSTR lpszCurrentPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateScalableFontResourceW
+`BOOL := CreateScalableFontResourceW(_In_ DWORD fdwHidden, _In_ LPCWSTR lpszFontRes, _In_ LPCWSTR lpszFontFile, _In_ LPCWSTR lpszCurrentPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateSolidBrush
+`HBRUSH := CreateSolidBrush(_In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCIGetCapabilitiesString
+`int := DDCCIGetCapabilitiesString(__in HANDLE hMonitor, __out LPSTR pszString, __in DWORD dwLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCIGetCapabilitiesStringLength
+`int := DDCCIGetCapabilitiesStringLength(__in HANDLE hMonitor, __out DWORD *pdwLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCIGetTimingReport
+`int := DDCCIGetTimingReport(__in HANDLE hMonitor, __out LPMC_TIMING_REPORT pmtr)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCIGetVCPFeature
+`int := DDCCIGetVCPFeature(__in HANDLE hMonitor, __in DWORD dwVCPCode, __out_opt LPMC_VCP_CODE_TYPE pvct, __out DWORD *pdwCurrentValue, __out_opt DWORD *pdwMaximumValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCISaveCurrentSettings
+`int := DDCCISaveCurrentSettings(HANDLE hMonitor)
+`/docs/commands/WinApi.htm
+
+
+Function
+DDCCISetVCPFeature
+`int := DDCCISetVCPFeature(__in HANDLE hMonitor, __in DWORD dwVCPCode, __in DWORD dwNewValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteColorSpace
+`BOOL := DeleteColorSpace(HCOLORSPACE hColorSpace)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteDC
+`BOOL := DeleteDC(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteEnhMetaFile
+`BOOL := DeleteEnhMetaFile(_In_ HENHMETAFILE hemf)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteMetaFile
+`BOOL := DeleteMetaFile(_In_ HMETAFILE hmf)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteObject
+`BOOL := DeleteObject(_In_ HGDIOBJ hObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+DescribePixelFormat
+`int := DescribePixelFormat(HDC hdc, int iPixelFormat, UINT nBytes, LPPIXELFORMATDESCRIPTOR ppfd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyPhysicalMonitorInternal
+`int := DestroyPhysicalMonitorInternal(__in HANDLE hMonitor)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPtoLP
+`BOOL := DPtoLP(_In_ HDC hdc, _Inout_ LPPOINT lpPoints, _In_ int nCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawEscape
+`int := DrawEscape(_In_ HDC hdc, _In_ int nEscape, _In_ int cbInput, _In_ LPCSTR lpszInData)
+`/docs/commands/WinApi.htm
+
+
+Function
+Ellipse
+`BOOL := Ellipse(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableEUDC
+`BOOL := EnableEUDC(_In_ HDC BOOL fEnableEUDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndDoc
+`int := EndDoc(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndPage
+`int := EndPage(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndPath
+`BOOL := EndPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumEnhMetaFile
+`BOOL := EnumEnhMetaFile(_In_ HDC hdc, _In_ HENHMETAFILE hemf, _In_ ENHMFENUMPROC lpEnhMetaFunc, _In_ LPVOID lpData, _In_ const RECT *lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamilies
+`int := EnumFontFamilies(_In_ HDC hdc, _In_ LPCTSTR lpszFamily, _In_ FONTENUMPROC lpEnumFontFamProc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamiliesA
+`int := EnumFontFamiliesA(_In_ HDC hdc, _In_ LPCSTR lpszFamily, _In_ FONTENUMPROC lpEnumFontFamProc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamiliesEx
+`int := EnumFontFamiliesEx(_In_ HDC hdc, _In_ LPLOGFONT lpLogfont, _In_ FONTENUMPROC lpEnumFontFamExProc, _In_ LPARAM lParam, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamiliesExA
+`int := EnumFontFamiliesExA(_In_ HDC hdc, _In_ LPLOGFONT lpLogfont, _In_ FONTENUMPROC lpEnumFontFamExProc, _In_ LPARAM lParam, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamiliesExW
+`int := EnumFontFamiliesExW(_In_ HDC hdc, _In_ LPLOGFONT lpLogfont, _In_ FONTENUMPROC lpEnumFontFamExProc, _In_ LPARAM lParam, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontFamiliesW
+`int := EnumFontFamiliesW(_In_ HDC hdc, _In_ LPCWSTR lpszFamily, _In_ FONTENUMPROC lpEnumFontFamProc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFonts
+`int := EnumFonts(_In_ HDC hdc, _In_ LPCTSTR lpFaceName, _In_ FONTENUMPROC lpFontFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontsA
+`int := EnumFontsA(_In_ HDC hdc, _In_ LPCSTR lpFaceName, _In_ FONTENUMPROC lpFontFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumFontsW
+`int := EnumFontsW(_In_ HDC hdc, _In_ LPCWSTR lpFaceName, _In_ FONTENUMPROC lpFontFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumICMProfiles
+`int := EnumICMProfiles(HDC hDC, ICMENUMPROC lpEnumICMProfilesFunc, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumICMProfilesA
+`int := EnumICMProfilesA(HDC hDC, ICMENUMPROC lpEnumICMProfilesFunc, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumICMProfilesW
+`int := EnumICMProfilesW(HDC hDC, ICMENUMPROC lpEnumICMProfilesFunc, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumMetaFile
+`BOOL := EnumMetaFile(_In_ HDC hdc, _In_ HMETAFILE hmf, _In_ MFENUMPROC lpMetaFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumObjects
+`int := EnumObjects(_In_ HDC hdc, _In_ int nObjectType, _In_ GOBJENUMPROC lpObjectFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EqualRgn
+`BOOL := EqualRgn(_In_ HRGN hSrcRgn1, _In_ HRGN hSrcRgn2)
+`/docs/commands/WinApi.htm
+
+
+Function
+Escape
+`int := Escape(_In_ HDC hdc, _In_ int nEscape, _In_ int cbInput, _In_ LPCSTR lpvInData, _Out_ LPVOID lpvOutData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExcludeClipRect
+`int := ExcludeClipRect(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtCreatePen
+`HPEN := ExtCreatePen(_In_ DWORD dwPenStyle, _In_ DWORD dwWidth, _In_ const LOGBRUSH *lplb, _In_ DWORD dwStyleCount, _In_ const DWORD *lpStyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtCreateRegion
+`HRGN := ExtCreateRegion(_In_ const XFORM *lpXform, _In_ DWORD nCount, _In_ const RGNDATA *lpRgnData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtEscape
+`int := ExtEscape(_In_ HDC hdc, _In_ int nEscape, _In_ int cbInput, _In_ LPCSTR lpszInData, _In_ int cbOutput, _Out_ LPSTR lpszOutData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtFloodFill
+`BOOL := ExtFloodFill(_In_ HDC hdc, _In_ int nXStart, _In_ int nYStart, _In_ COLORREF crColor, _In_ UINT fuFillType)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtSelectClipRgn
+`int := ExtSelectClipRgn(_In_ HDC hdc, _In_ HRGN hrgn, _In_ int fnMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtTextOut
+`BOOL := ExtTextOut(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ UINT fuOptions, _In_ const RECT *lprc, _In_ LPCTSTR lpString, _In_ UINT cbCount, _In_ const INT *lpDx)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtTextOutA
+`BOOL := ExtTextOutA(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ UINT fuOptions, _In_ const RECT *lprc, _In_ LPCSTR lpString, _In_ UINT cbCount, _In_ const INT *lpDx)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtTextOutW
+`BOOL := ExtTextOutW(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ UINT fuOptions, _In_ const RECT *lprc, _In_ LPCWSTR lpString, _In_ UINT cbCount, _In_ const INT *lpDx)
+`/docs/commands/WinApi.htm
+
+
+Function
+FillPath
+`BOOL := FillPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+FillRgn
+`BOOL := FillRgn(_In_ HDC hdc, _In_ HRGN hrgn, _In_ HBRUSH hbr)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlattenPath
+`BOOL := FlattenPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+FloodFill
+`BOOL := FloodFill(_In_ HDC hdc, _In_ int nXStart, _In_ int nYStart, _In_ COLORREF crFill)
+`/docs/commands/WinApi.htm
+
+
+Function
+FrameRgn
+`BOOL := FrameRgn(_In_ HDC hdc, _In_ HRGN hrgn, _In_ HBRUSH hbr, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiAlphaBlend
+`BOOL := GdiAlphaBlend(_In_ HDC hdcDest, _In_ int xoriginDest, _In_ int yoriginDest, _In_ int wDest, _In_ int hDest, _In_ HDC hdcSrc, _In_ int xoriginSrc, _In_ int yoriginSrc, _In_ int wSrc, _In_ int hSrc, _In_ BLENDFUNCTION ftn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiComment
+`BOOL := GdiComment(_In_ HDC hdc, _In_ UINT cbSize, _In_ const BYTE *lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiFlush
+`BOOL := GdiFlush(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiGetBatchLimit
+`DWORD := GdiGetBatchLimit(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiGradientFill
+`BOOL := GdiGradientFill(_In_ HDC hdc, _In_ PTRIVERTEX pVertex, _In_ ULONG dwNumVertex, _In_ PVOID pMesh, _In_ ULONG dwNumMesh, _In_ ULONG dwMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiSetBatchLimit
+`DWORD := GdiSetBatchLimit(_In_ DWORD dwLimit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GdiTransparentBlt
+`BOOL := GdiTransparentBlt(_In_ HDC hdcDest, _In_ int xoriginDest, _In_ int yoriginDest, _In_ int wDest, _In_ int hDest, _In_ HDC hdcSrc, _In_ int xoriginSrc, _In_ int yoriginSrc, _In_ int wSrc, _In_ int hSrc, _In_ UINT crTransparent)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetArcDirection
+`int := GetArcDirection(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAspectRatioFilterEx
+`BOOL := GetAspectRatioFilterEx(_In_ HDC hdc, _Out_ LPSIZE lpAspectRatio)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBitmapBits
+`LONG := GetBitmapBits(_In_ HBITMAP hbmp, _In_ LONG cbBuffer, _Out_ LPVOID lpvBits)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBitmapDimensionEx
+`BOOL := GetBitmapDimensionEx(_In_ HBITMAP hBitmap, _Out_ LPSIZE lpDimension)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBkColor
+`COLORREF := GetBkColor(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBkMode
+`int := GetBkMode(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBoundsRect
+`UINT := GetBoundsRect(_In_ HDC hdc, _Out_ LPRECT lprcBounds, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBrushOrgEx
+`BOOL := GetBrushOrgEx(_In_ HDC hdc, _Out_ LPPOINT lppt)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidths
+`BOOL := GetCharABCWidths(_In_ HDC hdc, _In_ UINT uFirstChar, _In_ UINT uLastChar, _Out_ LPABC lpabc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsA
+`BOOL := GetCharABCWidthsA(_In_ HDC hdc, _In_ UINT uFirstChar, _In_ UINT uLastChar, _Out_ LPABC lpabc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsFloat
+`BOOL := GetCharABCWidthsFloat(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPABCFLOAT lpABCF)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsFloatA
+`BOOL := GetCharABCWidthsFloatA(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPABCFLOAT lpABCF)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsFloatW
+`BOOL := GetCharABCWidthsFloatW(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPABCFLOAT lpABCF)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsI
+`BOOL := GetCharABCWidthsI(_In_ HDC hdc, _In_ UINT giFirst, _In_ UINT cgi, _In_ LPWORD pgi, _Out_ LPABC lpabc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharABCWidthsW
+`BOOL := GetCharABCWidthsW(_In_ HDC hdc, _In_ UINT uFirstChar, _In_ UINT uLastChar, _Out_ LPABC lpabc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharacterPlacement
+`DWORD := GetCharacterPlacement(_In_ HDC hdc, _In_ LPCTSTR lpString, _In_ int nCount, _In_ int nMaxExtent, _Inout_ LPGCP_RESULTS lpResults, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharacterPlacementA
+`DWORD := GetCharacterPlacementA(_In_ HDC hdc, _In_ LPCSTR lpString, _In_ int nCount, _In_ int nMaxExtent, _Inout_ LPGCP_RESULTS lpResults, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharacterPlacementW
+`DWORD := GetCharacterPlacementW(_In_ HDC hdc, _In_ LPCWSTR lpString, _In_ int nCount, _In_ int nMaxExtent, _Inout_ LPGCP_RESULTS lpResults, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidth
+`BOOL := GetCharWidth(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidth32
+`BOOL := GetCharWidth32(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidth32A
+`BOOL := GetCharWidth32A(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidth32W
+`BOOL := GetCharWidth32W(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthA
+`BOOL := GetCharWidthA(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthFloat
+`BOOL := GetCharWidthFloat(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ PFLOAT pxBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthFloatA
+`BOOL := GetCharWidthFloatA(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ PFLOAT pxBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthFloatW
+`BOOL := GetCharWidthFloatW(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ PFLOAT pxBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthI
+`BOOL := GetCharWidthI(_In_ HDC hdc, _In_ UINT giFirst, _In_ UINT cgi, _In_ LPWORD pgi, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCharWidthW
+`BOOL := GetCharWidthW(_In_ HDC hdc, _In_ UINT iFirstChar, _In_ UINT iLastChar, _Out_ LPINT lpBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipBox
+`int := GetClipBox(_In_ HDC hdc, _Out_ LPRECT lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipRgn
+`int := GetClipRgn(_In_ HDC hdc, _In_ HRGN hrgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetColorAdjustment
+`BOOL := GetColorAdjustment(_In_ HDC hdc, _Out_ LPCOLORADJUSTMENT lpca)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetColorSpace
+`HCOLORSPACE := GetColorSpace(HDC hDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentObject
+`HGDIOBJ := GetCurrentObject(_In_ HDC hdc, _In_ UINT uObjectType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentPositionEx
+`BOOL := GetCurrentPositionEx(_In_ HDC hdc, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDCBrushColor
+`COLORREF := GetDCBrushColor(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDCOrgEx
+`BOOL := GetDCOrgEx(_In_ HDC hdc, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDCPenColor
+`COLORREF := GetDCPenColor(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDeviceCaps
+`int := GetDeviceCaps(_In_ HDC hdc, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDeviceGammaRamp
+`BOOL := GetDeviceGammaRamp(HDC hDC, LPVOID lpRamp)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDIBColorTable
+`UINT := GetDIBColorTable(_In_ HDC hdc, _In_ UINT uStartIndex, _In_ UINT cEntries, _Out_ RGBQUAD *pColors)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDIBits
+`int := GetDIBits(_In_ HDC hdc, _In_ HBITMAP hbmp, _In_ UINT uStartScan, _In_ UINT cScanLines, _Out_ LPVOID lpvBits, _Inout_ LPBITMAPINFO lpbi, _In_ UINT uUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFile
+`HENHMETAFILE := GetEnhMetaFile(_In_ LPCTSTR lpszMetaFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileA
+`HENHMETAFILE := GetEnhMetaFileA(_In_ LPCSTR lpszMetaFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileBits
+`UINT := GetEnhMetaFileBits(_In_ HENHMETAFILE hemf, _In_ UINT cbBuffer, _Out_ LPBYTE lpbBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileDescription
+`UINT := GetEnhMetaFileDescription(_In_ HENHMETAFILE hemf, _In_ UINT cchBuffer, _Out_ LPTSTR lpszDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileDescriptionA
+`UINT := GetEnhMetaFileDescriptionA(_In_ HENHMETAFILE hemf, _In_ UINT cchBuffer, _Out_ LPSTR lpszDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileDescriptionW
+`UINT := GetEnhMetaFileDescriptionW(_In_ HENHMETAFILE hemf, _In_ UINT cchBuffer, _Out_ LPWSTR lpszDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileHeader
+`UINT := GetEnhMetaFileHeader(_In_ HENHMETAFILE hemf, _In_ UINT cbBuffer, _Out_ LPENHMETAHEADER lpemh)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFilePaletteEntries
+`UINT := GetEnhMetaFilePaletteEntries(_In_ HENHMETAFILE hemf, _In_ UINT cEntries, _Out_ LPPALETTEENTRY lppe)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFilePixelFormat
+`UINT := GetEnhMetaFilePixelFormat(HENHMETAFILE hemf, DWORD cbBuffer, const PIXELFORMATDESCRIPTOR *ppfd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEnhMetaFileW
+`HENHMETAFILE := GetEnhMetaFileW(_In_ LPCWSTR lpszMetaFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFontData
+`DWORD := GetFontData(_In_ HDC hdc, _In_ DWORD dwTable, _In_ DWORD dwOffset, _Out_ LPVOID lpvBuffer, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFontLanguageInfo
+`DWORD := GetFontLanguageInfo(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFontUnicodeRanges
+`DWORD := GetFontUnicodeRanges(_In_ HDC hdc, _Out_ LPGLYPHSET lpgs)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphIndices
+`DWORD := GetGlyphIndices(_In_ HDC hdc, _In_ LPCTSTR lpstr, _In_ int c, _Out_ LPWORD pgi, _In_ DWORD fl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphIndicesA
+`DWORD := GetGlyphIndicesA(_In_ HDC hdc, _In_ LPCSTR lpstr, _In_ int c, _Out_ LPWORD pgi, _In_ DWORD fl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphIndicesW
+`DWORD := GetGlyphIndicesW(_In_ HDC hdc, _In_ LPCWSTR lpstr, _In_ int c, _Out_ LPWORD pgi, _In_ DWORD fl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphOutline
+`DWORD := GetGlyphOutline(_In_ HDC hdc, _In_ UINT uChar, _In_ UINT uFormat, _Out_ LPGLYPHMETRICS lpgm, _In_ DWORD cbBuffer, _Out_ LPVOID lpvBuffer, _In_ const MAT2 *lpmat2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphOutlineA
+`DWORD := GetGlyphOutlineA(_In_ HDC hdc, _In_ UINT uChar, _In_ UINT uFormat, _Out_ LPGLYPHMETRICS lpgm, _In_ DWORD cbBuffer, _Out_ LPVOID lpvBuffer, _In_ const MAT2 *lpmat2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGlyphOutlineW
+`DWORD := GetGlyphOutlineW(_In_ HDC hdc, _In_ UINT uChar, _In_ UINT uFormat, _Out_ LPGLYPHMETRICS lpgm, _In_ DWORD cbBuffer, _Out_ LPVOID lpvBuffer, _In_ const MAT2 *lpmat2)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGraphicsMode
+`int := GetGraphicsMode(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetICMProfile
+`BOOL := GetICMProfile(HDC hDC, LPDWORD lpcbName, LPTSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetICMProfileA
+`BOOL := GetICMProfileA(HDC hDC, LPDWORD lpcbName, LPSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetICMProfileW
+`BOOL := GetICMProfileW(HDC hDC, LPDWORD lpcbName, LPWSTR lpszFilename)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKerningPairs
+`DWORD := GetKerningPairs(_In_ HDC hdc, _In_ DWORD nNumPairs, _Out_ LPKERNINGPAIR lpkrnpair)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKerningPairsA
+`DWORD := GetKerningPairsA(_In_ HDC hdc, _In_ DWORD nNumPairs, _Out_ LPKERNINGPAIR lpkrnpair)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKerningPairsW
+`DWORD := GetKerningPairsW(_In_ HDC hdc, _In_ DWORD nNumPairs, _Out_ LPKERNINGPAIR lpkrnpair)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLayout
+`DWORD := GetLayout(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLogColorSpace
+`BOOL := GetLogColorSpace(HCOLORSPACE hColorSpace, LPLOGCOLORSPACE lpBuffer, DWORD nSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLogColorSpaceA
+`BOOL := GetLogColorSpaceA(HCOLORSPACE hColorSpace, LPLOGCOLORSPACE lpBuffer, DWORD nSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLogColorSpaceW
+`BOOL := GetLogColorSpaceW(HCOLORSPACE hColorSpace, LPLOGCOLORSPACE lpBuffer, DWORD nSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMapMode
+`int := GetMapMode(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMetaFileBitsEx
+`UINT := GetMetaFileBitsEx(_In_ HMETAFILE hmf, _In_ UINT nSize, _Out_ LPVOID lpvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMetaRgn
+`int := GetMetaRgn(_In_ HDC hdc, _In_ HRGN hrgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMiterLimit
+`BOOL := GetMiterLimit(_In_ HDC hdc, _Out_ PFLOAT peLimit)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNearestColor
+`COLORREF := GetNearestColor(_In_ HDC hdc, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNearestPaletteIndex
+`UINT := GetNearestPaletteIndex(_In_ HPALETTE hpal, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNumberOfPhysicalMonitors
+`int := GetNumberOfPhysicalMonitors(__in UNICODE_STRING *pstrDeviceName, __out LPDWORD pdwNumberOfPhysicalMonitors)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetObject
+`int := GetObject(_In_ HGDIOBJ hgdiobj, _In_ int cbBuffer, _Out_ LPVOID lpvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetObjectA
+`int := GetObjectA(_In_ HGDIOBJ hgdiobj, _In_ int cbBuffer, _Out_ LPVOID lpvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetObjectType
+`DWORD := GetObjectType(_In_ HGDIOBJ h)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetObjectW
+`int := GetObjectW(_In_ HGDIOBJ hgdiobj, _In_ int cbBuffer, _Out_ LPVOID lpvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOutlineTextMetrics
+`UINT := GetOutlineTextMetrics(_In_ HDC hdc, _In_ UINT cbData, _Out_opt_ LPOUTLINETEXTMETRIC lpOTM)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOutlineTextMetricsA
+`UINT := GetOutlineTextMetricsA(_In_ HDC hdc, _In_ UINT cbData, _Out_opt_ LPOUTLINETEXTMETRIC lpOTM)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOutlineTextMetricsW
+`UINT := GetOutlineTextMetricsW(_In_ HDC hdc, _In_ UINT cbData, _Out_opt_ LPOUTLINETEXTMETRIC lpOTM)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPaletteEntries
+`UINT := GetPaletteEntries(_In_ HPALETTE hpal, _In_ UINT iStartIndex, _In_ UINT nEntries, _Out_ LPPALETTEENTRY lppe)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPath
+`int := GetPath(_In_ HDC hdc, _Out_ LPPOINT lpPoints, _Out_ LPBYTE lpTypes, _In_ int nSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPhysicalMonitorDescription
+`int := GetPhysicalMonitorDescription(__in HANDLE hMonitor, __in DWORD dwPhysicalMonitorDescriptionSizeInChars, __out LPWSTR szPhysicalMonitorDescription)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPhysicalMonitors
+`int := GetPhysicalMonitors(__in UNICODE_STRING *pstrDeviceName, __in DWORD dwPhysicalMonitorArraySize, __out DWORD *pdwNumPhysicalMonitorHandlesInArray, __out HANDLE *phPhysicalMonitorArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPixel
+`COLORREF := GetPixel(_In_ HDC hdc, _In_ int nXPos, _In_ int nYPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPixelFormat
+`int := GetPixelFormat(HDC hDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPolyFillMode
+`int := GetPolyFillMode(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRandomRgn
+`int := GetRandomRgn(_In_ HDC hdc, _In_ HRGN hrgn, _In_ INT iNum)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRasterizerCaps
+`BOOL := GetRasterizerCaps(_Out_ LPRASTERIZER_STATUS lprs, _In_ UINT cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRegionData
+`DWORD := GetRegionData(_In_ HRGN hRgn, _In_ DWORD dwCount, _Out_ LPRGNDATA lpRgnData)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRgnBox
+`int := GetRgnBox(_In_ HRGN hrgn, _Out_ LPRECT lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetROP2
+`int := GetROP2(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetStockObject
+`HGDIOBJ := GetStockObject(_In_ int fnObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetStretchBltMode
+`int := GetStretchBltMode(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSystemPaletteEntries
+`UINT := GetSystemPaletteEntries(_In_ HDC hdc, _In_ UINT iStartIndex, _In_ UINT nEntries, _Out_ LPPALETTEENTRY lppe)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSystemPaletteUse
+`UINT := GetSystemPaletteUse(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextAlign
+`UINT := GetTextAlign(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextCharacterExtra
+`int := GetTextCharacterExtra(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextCharset
+`int := GetTextCharset(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextCharsetInfo
+`int := GetTextCharsetInfo(_In_ HDC hdc, _Out_opt_ LPFONTSIGNATURE lpSig, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextColor
+`COLORREF := GetTextColor(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentExPoint
+`BOOL := GetTextExtentExPoint(_In_ HDC hdc, _In_ LPCTSTR lpszStr, _In_ int cchString, _In_ int nMaxExtent, _Out_ LPINT lpnFit, _Out_ LPINT alpDx, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentExPointA
+`BOOL := GetTextExtentExPointA(_In_ HDC hdc, _In_ LPCSTR lpszStr, _In_ int cchString, _In_ int nMaxExtent, _Out_ LPINT lpnFit, _Out_ LPINT alpDx, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentExPointI
+`BOOL := GetTextExtentExPointI(_In_ HDC hdc, _In_ LPWORD pgiIn, _In_ int cgi, _In_ int nMaxExtent, _Out_ LPINT lpnFit, _Out_ LPINT alpDx, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentExPointW
+`BOOL := GetTextExtentExPointW(_In_ HDC hdc, _In_ LPCWSTR lpszStr, _In_ int cchString, _In_ int nMaxExtent, _Out_ LPINT lpnFit, _Out_ LPINT alpDx, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPoint
+`BOOL := GetTextExtentPoint(_In_ HDC hdc, _In_ LPCTSTR lpString, _In_ int cbString, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPoint32
+`BOOL := GetTextExtentPoint32(_In_ HDC hdc, _In_ LPCTSTR lpString, _In_ int c, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPoint32A
+`BOOL := GetTextExtentPoint32A(_In_ HDC hdc, _In_ LPCSTR lpString, _In_ int c, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPoint32W
+`BOOL := GetTextExtentPoint32W(_In_ HDC hdc, _In_ LPCWSTR lpString, _In_ int c, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPointA
+`BOOL := GetTextExtentPointA(_In_ HDC hdc, _In_ LPCSTR lpString, _In_ int cbString, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPointI
+`BOOL := GetTextExtentPointI(_In_ HDC hdc, _In_ LPWORD pgiIn, _In_ int cgi, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextExtentPointW
+`BOOL := GetTextExtentPointW(_In_ HDC hdc, _In_ LPCWSTR lpString, _In_ int cbString, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextFace
+`int := GetTextFace(_In_ HDC hdc, _In_ int nCount, _Out_ LPTSTR lpFaceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextFaceA
+`int := GetTextFaceA(_In_ HDC hdc, _In_ int nCount, _Out_ LPSTR lpFaceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextFaceW
+`int := GetTextFaceW(_In_ HDC hdc, _In_ int nCount, _Out_ LPWSTR lpFaceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextMetrics
+`BOOL := GetTextMetrics(_In_ HDC hdc, _Out_ LPTEXTMETRIC lptm)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextMetricsA
+`BOOL := GetTextMetricsA(_In_ HDC hdc, _Out_ LPTEXTMETRIC lptm)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTextMetricsW
+`BOOL := GetTextMetricsW(_In_ HDC hdc, _Out_ LPTEXTMETRIC lptm)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetViewportExtEx
+`BOOL := GetViewportExtEx(_In_ HDC hdc, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetViewportOrgEx
+`BOOL := GetViewportOrgEx(_In_ HDC hdc, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowExtEx
+`BOOL := GetWindowExtEx(_In_ HDC hdc, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowOrgEx
+`BOOL := GetWindowOrgEx(_In_ HDC hdc, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWinMetaFileBits
+`UINT := GetWinMetaFileBits(_In_ HENHMETAFILE hemf, _In_ UINT cbBuffer, _Out_ LPBYTE lpbBuffer, _In_ INT fnMapMode, _In_ HDC hdcRef)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWorldTransform
+`BOOL := GetWorldTransform(_In_ HDC hdc, _Out_ LPXFORM lpXform)
+`/docs/commands/WinApi.htm
+
+
+Function
+IntersectClipRect
+`int := IntersectClipRect(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+InvertRgn
+`BOOL := InvertRgn(_In_ HDC hdc, _In_ HRGN hrgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+LineDDA
+`BOOL := LineDDA(_In_ int nXStart, _In_ int nYStart, _In_ int nXEnd, _In_ int nYEnd, _In_ LINEDDAPROC lpLineFunc, _In_ LPARAM lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+LineTo
+`BOOL := LineTo(_In_ HDC hdc, _In_ int nXEnd, _In_ int nYEnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+LPtoDP
+`BOOL := LPtoDP(_In_ HDC hdc, _Inout_ LPPOINT lpPoints, _In_ int nCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+MaskBlt
+`BOOL := MaskBlt(_In_ HDC hdcDest, _In_ int nXDest, _In_ int nYDest, _In_ int nWidth, _In_ int nHeight, _In_ HDC hdcSrc, _In_ int nXSrc, _In_ int nYSrc, _In_ HBITMAP hbmMask, _In_ int xMask, _In_ int yMask, _In_ DWORD dwRop)
+`/docs/commands/WinApi.htm
+
+
+Function
+ModifyWorldTransform
+`BOOL := ModifyWorldTransform(_In_ HDC hdc, _In_ const XFORM *lpXform, _In_ DWORD iMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+MoveToEx
+`BOOL := MoveToEx(_In_ HDC hdc, _In_ int X, _In_ int Y, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+OffsetClipRgn
+`int := OffsetClipRgn(_In_ HDC hdc, _In_ int nXOffset, _In_ int nYOffset)
+`/docs/commands/WinApi.htm
+
+
+Function
+OffsetRgn
+`int := OffsetRgn(_In_ HRGN hrgn, _In_ int nXOffset, _In_ int nYOffset)
+`/docs/commands/WinApi.htm
+
+
+Function
+OffsetViewportOrgEx
+`BOOL := OffsetViewportOrgEx(_In_ HDC hdc, _In_ int nXOffset, _In_ int nYOffset, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+OffsetWindowOrgEx
+`BOOL := OffsetWindowOrgEx(_In_ HDC hdc, _In_ int nXOffset, _In_ int nYOffset, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+PaintRgn
+`BOOL := PaintRgn(_In_ HDC hdc, _In_ HRGN hrgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+PatBlt
+`BOOL := PatBlt(_In_ HDC hdc, _In_ int nXLeft, _In_ int nYLeft, _In_ int nWidth, _In_ int nHeight, _In_ DWORD dwRop)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathToRegion
+`HRGN := PathToRegion(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+Pie
+`BOOL := Pie(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nXRadial1, _In_ int nYRadial1, _In_ int nXRadial2, _In_ int nYRadial2)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlayEnhMetaFile
+`BOOL := PlayEnhMetaFile(_In_ HDC hdc, _In_ HENHMETAFILE hemf, _In_ const RECT *lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlayEnhMetaFileRecord
+`BOOL := PlayEnhMetaFileRecord(_In_ HDC hdc, _In_ LPHANDLETABLE lpHandletable, _In_ const ENHMETARECORD *lpEnhMetaRecord, _In_ UINT nHandles)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlayMetaFile
+`BOOL := PlayMetaFile(_In_ HDC hdc, _In_ HMETAFILE hmf)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlayMetaFileRecord
+`BOOL := PlayMetaFileRecord(_In_ HDC hdc, _In_ LPHANDLETABLE lpHandletable, _In_ LPMETARECORD lpMetaRecord, _In_ UINT nHandles)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlgBlt
+`BOOL := PlgBlt(_In_ HDC hdcDest, _In_ const POINT *lpPoint, _In_ HDC hdcSrc, _In_ int nXSrc, _In_ int nYSrc, _In_ int nWidth, _In_ int nHeight, _In_ HBITMAP hbmMask, _In_ int xMask, _In_ int yMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyBezier
+`BOOL := PolyBezier(_In_ HDC hdc, _In_ const POINT *lppt, _In_ DWORD cPoints)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyBezierTo
+`BOOL := PolyBezierTo(_In_ HDC hdc, _In_ const POINT *lppt, _In_ DWORD cCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyDraw
+`BOOL := PolyDraw(_In_ HDC hdc, _In_ const POINT *lppt, _In_ const BYTE *lpbTypes, _In_ int cCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+Polygon
+`BOOL := Polygon(_In_ HDC hdc, _In_ const POINT *lpPoints, _In_ int nCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+Polyline
+`BOOL := Polyline(_In_ HDC hdc, _In_ const POINT *lppt, _In_ int cPoints)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolylineTo
+`BOOL := PolylineTo(_In_ HDC hdc, _In_ const POINT *lppt, _In_ DWORD cCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyPolygon
+`BOOL := PolyPolygon(_In_ HDC hdc, _In_ const POINT *lpPoints, _In_ const INT *lpPolyCounts, _In_ int nCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyPolyline
+`BOOL := PolyPolyline(_In_ HDC hdc, _In_ const POINT *lppt, _In_ const DWORD *lpdwPolyPoints, _In_ DWORD cCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyTextOut
+`BOOL := PolyTextOut(_In_ HDC hdc, _In_ const POLYTEXT *pptxt, _In_ int cStrings)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyTextOutA
+`BOOL := PolyTextOutA(_In_ HDC hdc, _In_ const POLYTEXT *pptxt, _In_ int cStrings)
+`/docs/commands/WinApi.htm
+
+
+Function
+PolyTextOutW
+`BOOL := PolyTextOutW(_In_ HDC hdc, _In_ const POLYTEXT *pptxt, _In_ int cStrings)
+`/docs/commands/WinApi.htm
+
+
+Function
+PtInRegion
+`BOOL := PtInRegion(_In_ HRGN hrgn, _In_ int X, _In_ int Y)
+`/docs/commands/WinApi.htm
+
+
+Function
+PtVisible
+`BOOL := PtVisible(_In_ HDC hdc, _In_ int X, _In_ int Y)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealizePalette
+`UINT := RealizePalette(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+Rectangle
+`BOOL := Rectangle(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+RectInRegion
+`BOOL := RectInRegion(_In_ HRGN hrgn, _In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+RectVisible
+`BOOL := RectVisible(_In_ HDC hDC, _In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontMemResourceEx
+`BOOL := RemoveFontMemResourceEx(_In_ HANDLE fh)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResource
+`BOOL := RemoveFontResource(_In_ LPCTSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResourceA
+`BOOL := RemoveFontResourceA(_In_ LPCSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResourceEx
+`BOOL := RemoveFontResourceEx(_In_ LPCTSTR lpFileName, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResourceExA
+`BOOL := RemoveFontResourceExA(_In_ LPCSTR lpFileName, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResourceExW
+`BOOL := RemoveFontResourceExW(_In_ LPCWSTR lpFileName, _In_ DWORD fl, _In_ PVOID pdv)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveFontResourceW
+`BOOL := RemoveFontResourceW(_In_ LPCWSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+ResetDC
+`HDC := ResetDC(_In_ HDC hdc, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ResetDCA
+`HDC := ResetDCA(_In_ HDC hdc, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ResetDCW
+`HDC := ResetDCW(_In_ HDC hdc, _In_ const DEVMODE *lpInitData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ResizePalette
+`BOOL := ResizePalette(_In_ HPALETTE hpal, _In_ UINT nEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+RestoreDC
+`BOOL := RestoreDC(_In_ HDC hdc, _In_ int nSavedDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+RoundRect
+`BOOL := RoundRect(_In_ HDC hdc, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaveDC
+`int := SaveDC(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScaleViewportExtEx
+`BOOL := ScaleViewportExtEx(_In_ HDC hdc, _In_ int Xnum, _In_ int Xdenom, _In_ int Ynum, _In_ int Ydenom, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScaleWindowExtEx
+`BOOL := ScaleWindowExtEx(_In_ HDC hdc, _In_ int Xnum, _In_ int Xdenom, _In_ int Ynum, _In_ int Ydenom, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SelectClipPath
+`BOOL := SelectClipPath(_In_ HDC hdc, _In_ int iMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SelectClipRgn
+`int := SelectClipRgn(_In_ HDC hdc, _In_ HRGN hrgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+SelectObject
+`HGDIOBJ := SelectObject(_In_ HDC hdc, _In_ HGDIOBJ hgdiobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+SelectPalette
+`HPALETTE := SelectPalette(_In_ HDC hdc, _In_ HPALETTE hpal, _In_ BOOL bForceBackground)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetAbortProc
+`int := SetAbortProc(_In_ HDC hdc, _In_ ABORTPROC lpAbortProc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetArcDirection
+`int := SetArcDirection(_In_ HDC hdc, _In_ int ArcDirection)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBitmapBits
+`LONG := SetBitmapBits(_In_ HBITMAP hbmp, _In_ DWORD cBytes, _In_ const VOID *lpBits)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBitmapDimensionEx
+`BOOL := SetBitmapDimensionEx(_In_ HBITMAP hBitmap, _In_ int nWidth, _In_ int nHeight, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBkColor
+`COLORREF := SetBkColor(_In_ HDC hdc, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBkMode
+`int := SetBkMode(_In_ HDC hdc, _In_ int iBkMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBoundsRect
+`UINT := SetBoundsRect(_In_ HDC hdc, _In_ const RECT *lprcBounds, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetBrushOrgEx
+`BOOL := SetBrushOrgEx(_In_ HDC hdc, _In_ int nXOrg, _In_ int nYOrg, _Out_ LPPOINT lppt)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetColorAdjustment
+`BOOL := SetColorAdjustment(_In_ HDC hdc, _In_ const COLORADJUSTMENT *lpca)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetColorSpace
+`HCOLORSPACE := SetColorSpace(HCD hDC, HCOLORSPACE hColorSpace)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDCBrushColor
+`COLORREF := SetDCBrushColor(_In_ HDC hdc, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDCPenColor
+`COLORREF := SetDCPenColor(_In_ HDC hdc, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDeviceGammaRamp
+`BOOL := SetDeviceGammaRamp(HDC hDC, LPVOID lpRamp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDIBColorTable
+`UINT := SetDIBColorTable(_In_ HDC hdc, _In_ UINT uStartIndex, _In_ UINT cEntries, _In_ const RGBQUAD *pColors)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDIBits
+`int := SetDIBits(_In_ HDC hdc, _In_ HBITMAP hbmp, _In_ UINT uStartScan, _In_ UINT cScanLines, _In_ const VOID *lpvBits, _In_ const BITMAPINFO *lpbmi, _In_ UINT fuColorUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDIBitsToDevice
+`int := SetDIBitsToDevice(_In_ HDC hdc, _In_ int XDest, _In_ int YDest, _In_ DWORD dwWidth, _In_ DWORD dwHeight, _In_ int XSrc, _In_ int YSrc, _In_ UINT uStartScan, _In_ UINT cScanLines, _In_ const VOID *lpvBits, _In_ const BITMAPINFO *lpbmi, _In_ UINT fuColorUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetEnhMetaFileBits
+`HENHMETAFILE := SetEnhMetaFileBits(_In_ UINT cbBuffer, _In_ const BYTE *lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetGraphicsMode
+`int := SetGraphicsMode(_In_ HDC hdc, _In_ int iMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetICMMode
+`int := SetICMMode(HDC hDC, int iEnableICM)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetICMProfile
+`BOOL := SetICMProfile(HDC hDC, LPTSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetICMProfileA
+`BOOL := SetICMProfileA(HDC hDC, LPSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetICMProfileW
+`BOOL := SetICMProfileW(HDC hDC, LPWSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetLayout
+`DWORD := SetLayout(_In_ HDC hdc, _In_ DWORD dwLayout)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMapMode
+`int := SetMapMode(_In_ HDC hdc, _In_ int fnMapMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMapperFlags
+`DWORD := SetMapperFlags(_In_ HDC hdc, _In_ DWORD dwFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMetaFileBitsEx
+`HMETAFILE := SetMetaFileBitsEx(_In_ UINT nSize, _In_ const BYTE *lpData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMetaRgn
+`int := SetMetaRgn(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMiterLimit
+`BOOL := SetMiterLimit(_In_ HDC hdc, _In_ FLOAT eNewLimit, _Out_ PFLOAT peOldLimit)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPaletteEntries
+`UINT := SetPaletteEntries(_In_ HPALETTE hpal, _In_ UINT iStart, _In_ UINT cEntries, _In_ const PALETTEENTRY *lppe)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPixel
+`COLORREF := SetPixel(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPixelFormat
+`BOOL := SetPixelFormat(HDC hdc, int iPixelFormat, const PIXELFORMATDESCRIPTOR *ppfd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPixelV
+`BOOL := SetPixelV(_In_ HDC hdc, _In_ int X, _In_ int Y, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPolyFillMode
+`int := SetPolyFillMode(_In_ HDC hdc, _In_ int iPolyFillMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetRectRgn
+`BOOL := SetRectRgn(_In_ HRGN hrgn, _In_ int nLeftRect, _In_ int nTopRect, _In_ int nRightRect, _In_ int nBottomRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetROP2
+`int := SetROP2(_In_ HDC hdc, _In_ int fnDrawMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetStretchBltMode
+`int := SetStretchBltMode(_In_ HDC hdc, _In_ int iStretchMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSystemPaletteUse
+`UINT := SetSystemPaletteUse(_In_ HDC hdc, _In_ UINT uUsage)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTextAlign
+`UINT := SetTextAlign(_In_ HDC hdc, _In_ UINT fMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTextCharacterExtra
+`int := SetTextCharacterExtra(_In_ HDC hdc, _In_ int nCharExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTextColor
+`COLORREF := SetTextColor(_In_ HDC hdc, _In_ COLORREF crColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTextJustification
+`BOOL := SetTextJustification(_In_ HDC hdc, _In_ int nBreakExtra, _In_ int nBreakCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetViewportExtEx
+`BOOL := SetViewportExtEx(_In_ HDC hdc, _In_ int nXExtent, _In_ int nYExtent, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetViewportOrgEx
+`BOOL := SetViewportOrgEx(_In_ HDC hdc, _In_ int X, _In_ int Y, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowExtEx
+`BOOL := SetWindowExtEx(_In_ HDC hdc, _In_ int nXExtent, _In_ int nYExtent, _Out_ LPSIZE lpSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowOrgEx
+`BOOL := SetWindowOrgEx(_In_ HDC hdc, _In_ int X, _In_ int Y, _Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWinMetaFileBits
+`HENHMETAFILE := SetWinMetaFileBits(_In_ UINT cbBuffer, _In_ const BYTE *lpbBuffer, _In_ HDC hdcRef, _In_ const METAFILEPICT *lpmfp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWorldTransform
+`BOOL := SetWorldTransform(_In_ HDC hdc, _In_ const XFORM *lpXform)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartDoc
+`int := StartDoc(_In_ HDC hdc, _In_ const DOCINFO *lpdi)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartDocA
+`int := StartDocA(_In_ HDC hdc, _In_ const DOCINFO *lpdi)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartDocW
+`int := StartDocW(_In_ HDC hdc, _In_ const DOCINFO *lpdi)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartPage
+`int := StartPage(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StretchBlt
+`BOOL := StretchBlt(_In_ HDC hdcDest, _In_ int nXOriginDest, _In_ int nYOriginDest, _In_ int nWidthDest, _In_ int nHeightDest, _In_ HDC hdcSrc, _In_ int nXOriginSrc, _In_ int nYOriginSrc, _In_ int nWidthSrc, _In_ int nHeightSrc, _In_ DWORD dwRop)
+`/docs/commands/WinApi.htm
+
+
+Function
+StretchDIBits
+`int := StretchDIBits(_In_ HDC hdc, _In_ int XDest, _In_ int YDest, _In_ int nDestWidth, _In_ int nDestHeight, _In_ int XSrc, _In_ int YSrc, _In_ int nSrcWidth, _In_ int nSrcHeight, _In_ const VOID *lpBits, _In_ const BITMAPINFO *lpBitsInfo, _In_ UINT iUsage, _In_ DWORD dwRop)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrokeAndFillPath
+`BOOL := StrokeAndFillPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrokePath
+`BOOL := StrokePath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SwapBuffers
+`BOOL := SwapBuffers(HDC hDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+TextOut
+`BOOL := TextOut(_In_ HDC hdc, _In_ int nXStart, _In_ int nYStart, _In_ LPCTSTR lpString, _In_ int cchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+TextOutA
+`BOOL := TextOutA(_In_ HDC hdc, _In_ int nXStart, _In_ int nYStart, _In_ LPCSTR lpString, _In_ int cchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+TextOutW
+`BOOL := TextOutW(_In_ HDC hdc, _In_ int nXStart, _In_ int nYStart, _In_ LPCWSTR lpString, _In_ int cchString)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateCharsetInfo
+`BOOL := TranslateCharsetInfo(_Inout_ DWORD FAR *lpSrc, _Out_ LPCHARSETINFO lpCs, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnrealizeObject
+`BOOL := UnrealizeObject(_In_ HGDIOBJ hgdiobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateColors
+`BOOL := UpdateColors(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateICMRegKey
+`BOOL := UpdateICMRegKey(DWORD dwReserved, LPTSTR lpszCMID, LPTSTR lpszFileName, UINT nCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateICMRegKeyA
+`BOOL := UpdateICMRegKeyA(DWORD dwReserved, LPSTR lpszCMID, LPSTR lpszFileName, UINT nCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateICMRegKeyW
+`BOOL := UpdateICMRegKeyW(DWORD dwReserved, LPWSTR lpszCMID, LPWSTR lpszFileName, UINT nCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+WidenPath
+`BOOL := WidenPath(_In_ HDC hdc)
+`/docs/commands/WinApi.htm

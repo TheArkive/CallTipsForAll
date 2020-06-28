@@ -1,0 +1,748 @@
+Function
+_TrackMouseEvent
+`BOOL := _TrackMouseEvent(_Inout_ LPTRACKMOUSEEVENT lpEventTrack)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddMRUStringW
+`int := AddMRUStringW(_In_ HANDLE hMRU, _In_ LPCTSTR szString)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMappedBitmap
+`HBITMAP := CreateMappedBitmap(HINSTANCE hInstance, INT_PTR idBitmap, UINT wFlags, _In_ LPCOLORMAP lpColorMap, int iNumMaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMRUListW
+`int := CreateMRUListW(_In_ LPMRUINFO lpmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePropertySheetPage
+`HPROPSHEETPAGE := CreatePropertySheetPage(LPCPROPSHEETPAGE lppsp)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePropertySheetPageA
+`HPROPSHEETPAGE := CreatePropertySheetPageA(LPCPROPSHEETPAGE lppsp)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePropertySheetPageW
+`HPROPSHEETPAGE := CreatePropertySheetPageW(LPCPROPSHEETPAGE lppsp)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStatusWindow
+`HWND := CreateStatusWindow(LONG style, LPCTSTR lpszText, HWND hwndParent, UINT wID)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStatusWindowA
+`HWND := CreateStatusWindowA(LONG style, LPCSTR lpszText, HWND hwndParent, UINT wID)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStatusWindowW
+`HWND := CreateStatusWindowW(LONG style, LPCWSTR lpszText, HWND hwndParent, UINT wID)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateToolbarEx
+`HWND := CreateToolbarEx(HWND hwnd, DWORD ws, UINT wID, int nBitmaps, HINSTANCE hBMInst, UINT_PTR wBMID, LPCTBBUTTON lpButtons, int iNumButtons, int dxButton, int dyButton, int dxBitmap, int dyBitmap, UINT uStructSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateUpDownControl
+`HWND := CreateUpDownControl(DWORD dwStyle, int x, int y, int cx, int cy, HWND hParent, int nID, HINSTANCE hInst, HWND hBuddy, int nUpper, int nLower, int nPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefSubclassProc
+`LRESULT := DefSubclassProc(_In_ HWND hWnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyPropertySheetPage
+`BOOL := DestroyPropertySheetPage(HPROPSHEETPAGE hPSPage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Clone
+`HDPA := DPA_Clone(_In_ const HDPA hdpaSource, _Inout_opt_ HDPA hdpaNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Create
+`HDPA := DPA_Create(int cpGrow)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_CreateEx
+`HDPA := DPA_CreateEx(_In_ int cpGrow, _In_opt_ HANDLE hheap)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_DeleteAllPtrs
+`BOOL := DPA_DeleteAllPtrs(HDPA pdpa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_DeletePtr
+`void* := DPA_DeletePtr(HDPA pdpa, int index)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Destroy
+`BOOL := DPA_Destroy(HDPA pdpa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_DestroyCallback
+`VOID := DPA_DestroyCallback(HDPA pdpa, PFNDPAENUMCALLBACK pfnCB, void *pData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_EnumCallback
+`VOID := DPA_EnumCallback(HDPA pdpa, PFNDPAENUMCALLBACK pfnCB, void *pData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_GetPtr
+`void* := DPA_GetPtr(HDPA pdpa, int index)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_GetPtrIndex
+`int := DPA_GetPtrIndex(_In_ HDPA hdpa, _In_ const void *pvoid)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_GetSize
+`ULONGLONG := DPA_GetSize(_In_ HDPA pdpa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Grow
+`BOOL := DPA_Grow(_In_ HDPA hdpa, _In_ int cp)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_InsertPtr
+`int := DPA_InsertPtr(HDPA pdpa, int index, void *p)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_LoadStream
+`HRESULT := DPA_LoadStream(_Out_ HDPA *ppdpa, _In_ PFNDPASTREAM pfn, _In_ IStream *pstm, _In_ void *pvInstData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Merge
+`BOOL := DPA_Merge(_Inout_ HDPA hdpaDest, _In_ HDPA hdpaSrc, _In_ DWORD dwFlags, _In_ PFNDPACOMPARE pfnCompare, _In_ PFNDPAMERGE pfnMerge, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_SaveStream
+`HRESULT := DPA_SaveStream(_In_ HDPA pdpa, _In_ PFNDPASTREAM pfn, _In_ IStream *pstm, _In_ void *pvInstData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Search
+`int := DPA_Search(HDPA pdpa, void *pFind, int iStart, PFNDPACOMPARE pfnCmp, LPARAM lParam, UINT options)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_SetPtr
+`BOOL := DPA_SetPtr(HDPA pdpa, int index, void *p)
+`/docs/commands/WinApi.htm
+
+
+Function
+DPA_Sort
+`BOOL := DPA_Sort(HDPA pdpa, PFNDPACOMPARE pfnCmp, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawInsert
+`VOID := DrawInsert(HWND handParent, HWND hLB, int nItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawShadowText
+`int := DrawShadowText(HDC hdc, LPCWSTR pszText, UINT cch, const RECT *pRect, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawStatusText
+`VOID := DrawStatusText(HDC hdc, LPCRECT lprc, LPCTSTR pszText, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawStatusTextA
+`VOID := DrawStatusTextA(HDC hdc, LPCRECT lprc, LPCSTR pszText, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawStatusTextW
+`VOID := DrawStatusTextW(HDC hdc, LPCRECT lprc, LPCWSTR pszText, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_Clone
+`HDSA := DSA_Clone(_In_ HDSA hdsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_Create
+`HDSA := DSA_Create(_In_ int cbItem, _In_ int cbItemGrow)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_DeleteAllItems
+`BOOL := DSA_DeleteAllItems(_In_ HDSA hdsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_DeleteItem
+`BOOL := DSA_DeleteItem(_In_ HDSA hdsa, _In_ int nPosition)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_Destroy
+`BOOL := DSA_Destroy(_In_ HDSA pdsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_DestroyCallback
+`VOID := DSA_DestroyCallback(_In_ HDSA pdsa, _In_ PFNDSAENUMCALLBACK pfnCB, _In_ void *pData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_EnumCallback
+`VOID := DSA_EnumCallback(_In_ HDSA hdsa, _In_ PFNDAENUMCALLBACK *pfnCB, _In_ void *pData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_GetItem
+`BOOL := DSA_GetItem(_In_ HDSA pdsa, _In_ int index, _Out_ void *pitem)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_GetItemPtr
+`void* := DSA_GetItemPtr(_In_ HDSA pdsa, _In_ int index)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_GetSize
+`ULONGLONG := DSA_GetSize(_In_ HDSA hdsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_InsertItem
+`int := DSA_InsertItem(_In_ HDSA pdsa, _In_ int index, _In_ void *pItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_SetItem
+`BOOL := DSA_SetItem(_In_ HDSA hdsa, _In_ int index, _In_ void *pItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+DSA_Sort
+`BOOL := DSA_Sort(_In_ HDSA pdsa, _In_ PFNDACOMPARE pfnCompare, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumMRUListW
+`int := EnumMRUListW(_In_ HANDLE hMRU, _In_ int nItem, _Out_ void *lpData, _In_ UINT uLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_EnableScrollBar
+`BOOL := FlatSB_EnableScrollBar(HWND hwnd, int wSBflags, UINT wArrows)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_GetScrollInfo
+`BOOL := FlatSB_GetScrollInfo(HWND hwnd, int fnBar, LPSCROLLINFO lpsi)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_GetScrollPos
+`int := FlatSB_GetScrollPos(HWND hwnd, int code)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_GetScrollProp
+`BOOL := FlatSB_GetScrollProp(HWND hwnd, UINT index, LPINT pValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_GetScrollRange
+`BOOL := FlatSB_GetScrollRange(HWND hwnd, int code, LPINT lpMinPos, LPINT lpMaxPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_SetScrollInfo
+`int := FlatSB_SetScrollInfo(HWND hwnd, int fnBar, LPSCROLLINFO lpsi, BOOL fRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_SetScrollPos
+`int := FlatSB_SetScrollPos(HWND hwnd, int code, int nPos, BOOL fRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_SetScrollProp
+`BOOL := FlatSB_SetScrollProp(HWND hwnd, UINT index, INT_PTR newValue, BOOL fRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_SetScrollRange
+`int := FlatSB_SetScrollRange(HWND hwnd, int code, int nMinPos, int nMaxPos, BOOL fRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlatSB_ShowScrollBar
+`BOOL := FlatSB_ShowScrollBar(HWND hwnd, int code, BOOL fShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeMRUList
+`int := FreeMRUList(_In_ HANDLE hMRU)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEffectiveClientRect
+`VOID := GetEffectiveClientRect(HWND hWnd, LPRECT lprc, _In_ const INT *lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMUILanguage
+`LANGID := GetMUILanguage(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowSubclass
+`BOOL := GetWindowSubclass(_In_ HWND hWnd, _In_ SUBCLASSPROC pfnSubclass, _In_ UINT_PTR uIdSubclass, _Out_ DWORD_PTR *pdwRefData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HIMAGELIST_QueryInterface
+`HRESULT := HIMAGELIST_QueryInterface(_In_ HIMAGELIST himl, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Add
+`int := ImageList_Add(_In_ HIMAGELIST himl, _In_ HBITMAP hbmImage, _In_opt_ HBITMAP hbmMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_AddMasked
+`int := ImageList_AddMasked(HIMAGELIST himl, HBITMAP hbmImage, COLORREF crMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_BeginDrag
+`BOOL := ImageList_BeginDrag(HIMAGELIST himlTrack, int iTrack, int dxHotspot, int dyHotspot)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_CoCreateInstance
+`HRESULT := ImageList_CoCreateInstance(_In_ REFCLSID rclsid, _In_opt_ const IUnknown *punkOuter, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Copy
+`BOOL := ImageList_Copy(HIMAGELIST himlDst, int iDst, HIMAGELIST himlSrc, int iSrc, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Create
+`HIMAGELIST := ImageList_Create(int cx, int cy, UINT flags, int cInitial, int cGrow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Destroy
+`BOOL := ImageList_Destroy(_In_opt_ HIMAGELIST himl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DragEnter
+`BOOL := ImageList_DragEnter(HWND hwndLock, int x, int y)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DragLeave
+`BOOL := ImageList_DragLeave(HWND hwndLock)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DragMove
+`BOOL := ImageList_DragMove(int x, int y)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DragShowNolock
+`BOOL := ImageList_DragShowNolock(BOOL fShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Draw
+`BOOL := ImageList_Draw(HIMAGELIST himl, int i, HDC hdcDst, int x, int y, UINT fStyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DrawEx
+`BOOL := ImageList_DrawEx(HIMAGELIST himl, int i, HDC hdcDst, int x, int y, int dx, int dy, COLORREF rgbBk, COLORREF rgbFg, UINT fStyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_DrawIndirect
+`BOOL := ImageList_DrawIndirect(IMAGELISTDRAWPARAMS *pimldp)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Duplicate
+`HIMAGELIST := ImageList_Duplicate(HIMAGELIST himl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_EndDrag
+`VOID := ImageList_EndDrag(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetBkColor
+`COLORREF := ImageList_GetBkColor(_In_ HIMAGELIST himl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetDragImage
+`HIMAGELIST := ImageList_GetDragImage(POINT *ppt, POINT *pptHotspot)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetIcon
+`HICON := ImageList_GetIcon(HIMAGELIST himl, int i, UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetIconSize
+`BOOL := ImageList_GetIconSize(HIMAGELIST himl, int *cx, int *cy)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetImageCount
+`int := ImageList_GetImageCount(_In_ HIMAGELIST himl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_GetImageInfo
+`BOOL := ImageList_GetImageInfo(HIMAGELIST himl, int i, IMAGEINFO *pImageInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_LoadImage
+`HIMAGELIST := ImageList_LoadImage(HINSTANCE hi, LPCTSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_LoadImageA
+`HIMAGELIST := ImageList_LoadImageA(HINSTANCE hi, LPCSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_LoadImageW
+`HIMAGELIST := ImageList_LoadImageW(HINSTANCE hi, LPCWSTR lpbmp, int cx, int cGrow, COLORREF crMask, UINT uType, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Merge
+`HIMAGELIST := ImageList_Merge(HIMAGELIST himl1, int i1, HIMAGELIST himl2, int i2, int dx, int dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Read
+`HIMAGELIST := ImageList_Read(LPSTREAM pstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_ReadEx
+`HRESULT := ImageList_ReadEx(_In_ DWORD dwFlags, _In_ LPSTREAM pstm, _Out_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Remove
+`BOOL := ImageList_Remove(HIMAGELIST himl, int i)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Replace
+`BOOL := ImageList_Replace(HIMAGELIST himl, int i, HBITMAP hbmImage, HBITMAP hbmMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_ReplaceIcon
+`int := ImageList_ReplaceIcon(_In_ HIMAGELIST himl, _In_ int i, _In_ HICON hicon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_SetBkColor
+`COLORREF := ImageList_SetBkColor(_In_ HIMAGELIST himl, _In_ COLORREF clrBk)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_SetDragCursorImage
+`BOOL := ImageList_SetDragCursorImage(HIMAGELIST himlDrag, int iDrag, int dxHotspot, int dyHotspot)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_SetIconSize
+`BOOL := ImageList_SetIconSize(HIMAGELIST himl, int cx, int cy)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_SetImageCount
+`BOOL := ImageList_SetImageCount(_In_ HIMAGELIST himl, _In_ UINT uNewCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_SetOverlayImage
+`BOOL := ImageList_SetOverlayImage(_In_ HIMAGELIST himl, _In_ int iImage, _In_ int iOverlay)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_Write
+`BOOL := ImageList_Write(HIMAGELIST himl, LPSTREAM pstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImageList_WriteEx
+`HRESULT := ImageList_WriteEx(_In_ HIMAGELIST himl, _In_ DWORD dwFlags, _In_ LPSTREAM pstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitCommonControls
+`VOID := InitCommonControls(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitCommonControlsEx
+`BOOL := InitCommonControlsEx(_In_ const LPINITCOMMONCONTROLSEX lpInitCtrls)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitializeFlatSB
+`BOOL := InitializeFlatSB(HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitMUILanguage
+`VOID := InitMUILanguage(LANGID uiLang)
+`/docs/commands/WinApi.htm
+
+
+Function
+LBItemFromPt
+`int := LBItemFromPt(HWND hLB, POINT pt, BOOL bAutoScroll)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadIconMetric
+`HRESULT := LoadIconMetric(_In_ HINSTANCE hinst, _In_ PCWSTR pszName, _In_ int lims, _Out_ HICON *phico)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadIconWithScaleDown
+`HRESULT := LoadIconWithScaleDown(_In_ HINSTANCE hinst, _In_ PCWSTR pszName, _In_ int cx, _In_ int cy, _Out_ HICON *phico)
+`/docs/commands/WinApi.htm
+
+
+Function
+MakeDragList
+`BOOL := MakeDragList(HWND hLB)
+`/docs/commands/WinApi.htm
+
+
+Function
+MenuHelp
+`VOID := MenuHelp(UINT uMsg, WPARAM wParam, LPARAM lParam, HMENU hMainMenu, HINSTANCE hInst, HWND hwndStatus, LPUINT lpwIDs)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropertySheet
+`INT_PTR := PropertySheet(LPCPROPSHEETHEADER lppsph)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropertySheetA
+`INT_PTR := PropertySheetA(LPCPROPSHEETHEADER lppsph)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropertySheetW
+`INT_PTR := PropertySheetW(LPCPROPSHEETHEADER lppsph)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveWindowSubclass
+`BOOL := RemoveWindowSubclass(_In_ HWND hWnd, _In_ SUBCLASSPROC pfnSubclass, _In_ UINT_PTR uIdSubclass)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowSubclass
+`BOOL := SetWindowSubclass(_In_ HWND hWnd, _In_ SUBCLASSPROC pfnSubclass, _In_ UINT_PTR uIdSubclass, _In_ DWORD_PTR dwRefData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowHideMenuCtl
+`BOOL := ShowHideMenuCtl(HWND hWnd, UINT_PTR uFlags, LPINT lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+Str_SetPtr
+`BOOL := Str_SetPtr(_Inout_ LPTSTR *ppszCurrent, LPCTSTR pszNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+Str_SetPtrW
+`BOOL := Str_SetPtrW(_Inout_ LPWSTR *ppszCurrent, LPCWSTR pszNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+TaskDialog
+`HRESULT := TaskDialog(_In_ HWND hWndParent, _In_ HINSTANCE hInstance, _In_ PCWSTR pszWindowTitle, _In_ PCWSTR pszMainInstruction, _In_ PCWSTR pszContent, _In_ TASKDIALOG_COMMON_BUTTON_FLAGS dwCommonButtons, _In_ PCWSTR pszIcon, _Out_ int *pnButton)
+`/docs/commands/WinApi.htm
+
+
+Function
+TaskDialogIndirect
+`HRESULT := TaskDialogIndirect(_In_ const TASKDIALOGCONFIG *pTaskConfig, _Out_opt_ int *pnButton, _Out_opt_ int *pnRadioButton, _Out_opt_ BOOL *pfVerificationFlagChecked)
+`/docs/commands/WinApi.htm
+
+
+Function
+UninitializeFlatSB
+`HRESULT := UninitializeFlatSB(HWND hwnd)
+`/docs/commands/WinApi.htm

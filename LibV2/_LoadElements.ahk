@@ -24,6 +24,7 @@ ReParseText() {
 
 ReloadElements() {
 	DocumentMap := Array() ; this should be reset every reload, even if no baseFile
+	IncludesList := Array()
 	srcFiles := oCallTip.srcFiles
 	
 	Loop Files srcFiles "\*.chm"
@@ -34,6 +35,7 @@ ReloadElements() {
 	
 	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
 		GetIncludes([Settings["BaseFile"]]) ; populate IncludesList
+		GetLibs()
 		pos := 0, tmp := ""
 		
 		; msgbox "IncludesList: " IncludesList.Length
