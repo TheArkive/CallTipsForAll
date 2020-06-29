@@ -15,25 +15,12 @@ Known Issues
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
            
 Potential Enhancements 
-- detect Return in oneline statements
-  
+- detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
+
 - detect scope of variables|methods|properties (super-global, global, local, static)
 
 - detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
  - brute force: scan for all text with length > 3 and remove keywords
-  
-- detect 'correct' indentation level (curly braces block do work in function bodies, but oneliner after Loop/For/If etc are missing or outside of function bodies)
-  to later be able to define different styles not only indentation level needs to be known but also if the line starts with an opening or closing brace
-
-- detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
-
-- detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
-
-- refactor function (currently ~580 lines)
-  - reduce comments to minimum or store them somewhere else
-  - try to oursource code in new functions
-  
-- add push() method to LineInfo parallel to set()
 
 - scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
   then FileName or FileContent should be the incoming parameter to ParseAHK() with detection on which is provided.
@@ -43,6 +30,14 @@ Potential Enhancements
   later a map could be created from it (currently I do not know how to find roots except for AutoExec, but maybe with brute force to count how often a label/function was called, and then the roots are without a direct call e.g. hotkeys, hotstrings, autoexec)
   if it is the identical name it is a recursive label/function.
  
+- detect 'documentation' e.g. of functions in comments (needs special keywords or format, similar to doxygen etc.) for call tips
+
+- refactor function (currently ~580 lines)
+  - reduce comments to minimum or store them somewhere else
+  - try to oursource code in new functions
+  
+- add push() method to LineInfo parallel to set()
+
 */
 
 ParseAHK(FileContent, SearchRE := "", DocComment := "") {
