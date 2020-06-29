@@ -444,7 +444,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
 
     ;>>> Check for a new function/method/metaFunction definition
     If (RegExMatch(Line, FunctionRE, FuncName)) {    ;potential function definition or call without return value, let's check the end of line or next not empty line
-      If ( (SubStr(Line, 0) = ")" AND SubStr(ContinuationBuffer, 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
+      If ( (SubStr(Line, 0) = ")" AND SubStr(PureCode[i+1, "Code"], 1, 1) = "{")   ;case 1 & 3: function definition with { on next line
         OR (SubStr(Line, 0) = "{" )) {                                          ;case 2 & 4: function definition with OTB
         Type := LineInfo.isNested() ? "Method" : "Function"
         Params := GetParameterOfFunctionDef(Line)
