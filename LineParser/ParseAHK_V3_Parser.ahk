@@ -333,7 +333,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
                     Loop|While|For|Switch)                                ; or
                     [,\s({]                                               ; followed by an ',' space or '(' (for expression) or '{' (in case of loop until)
               )"
-      , OneLineFlowRE :="
+      , OneLineStatementRE :="
               ( Join LTrim Comment
                     iS)(*UCP)^(                                           ;case insensitive and at start of line
                     If((Not)?Exist|MsgBox)?|                              ; either If|If[Not]Exit|IfMsgBox
@@ -504,6 +504,11 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       LineInfo.Brace(PhysicalLineNum, "{", { OTB: True } )
       Continue
     }
+
+    ;>>> Search for one line statement commands without a curled brace following on next line
+    If (RegExMatch(Line, OneLineStatementRE, Match) AND SubStr(PureCode[i + 1, "Code"], 1, 1) <> "{" )
+      LineInfo.Line(PhysicalLineNum + 1, { OneLineStatement: True } )
+    
 
     ;>>> Search for Return at start of a line
     ;    for classes no check at end of the line is done, because only definitions are allowed inside a class definition,
