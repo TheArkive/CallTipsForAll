@@ -524,7 +524,8 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
       Switch LineInfo.GetWithin( i := 0).Type
       {
         Case "AutoExec", "Label", "HotKey", "HotString":
-          LineInfo.PopWithin(PhysicalLineNum)
+          If !LineInfo.has("Line", PhysicalLineNum, "OneLineStatement")
+            LineInfo.PopWithin(PhysicalLineNum)
         Case "Brace":
           While ( isObject(Block := LineInfo.GetWithin(++i)) ){
             Type := Block.Type
