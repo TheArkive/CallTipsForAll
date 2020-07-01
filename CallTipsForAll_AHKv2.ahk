@@ -6,8 +6,7 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 FileEncoding "UTF-8"
 
-Global SettingsGUI, AutoCompleteGUI, callTipGui
-SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
+Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
 Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
 Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
@@ -32,9 +31,8 @@ If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for importan
 
 GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
 SetHotkeys()
-If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
+If (oCallTip.progHwnd)  ; initial loading of functions, custom functions, objects, if matching window found
 	FullReload()
-}
 
 return ; end of auto execute section
 
@@ -107,8 +105,11 @@ class oCallTip { ; testing
 #INCLUDE LibV2\_ProcInfo.ahk
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
-#INCLUDE LibV2\TheArkive_Debug.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
+#INCLUDE LibV2\_Load_Call_Tip_Data.ahk
+#INCLUDE LibV2\_old_parser.ahk
+#INCLUDE LibV2\_AHK-parser_TheArkive.ahk
+#INCLUDE LibV2\TheArkive_Debug.ahk
 
 ; ================================================================
 ; hotkeys - global ; 

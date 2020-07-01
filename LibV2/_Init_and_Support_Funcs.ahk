@@ -1,3 +1,69 @@
+; ==================================================
+; Determines parent window based on user settings.
+; ==================================================
+; 
+GetEditorHwnd() {
+	If (!oCallTip.ctlConfirmed) { ; should only be run at script start, generally... cont
+		winList := WinGetList("ahk_exe " Settings["ProgExe"])
+		
+		Loop winList.Length { ;ZZZ - you didn't askf or this, but this is to filter out the FIND window, or any other child window if active in text editor
+			if (oCallTip.ctlConfirmed)
+				break ;ZZZ - no need to keep looking after control is found
+			
+			curHwnd := winList[A_Index]
+			ctlArr := WinGetControls("ahk_id " curHwnd)
+			If (!ctlArr)
+				Break
+			
+			ClassNNcomp := Settings["ProgClassNN"] . 1
+			Loop ctlArr.Length {
+				If (ClassNNcomp = ctlArr[A_Index]) {
+					ctlHwnd := ControlGetHwnd(ClassNNcomp,"ahk_id " curHwnd)
+					oCallTip.ctlHwnd := ctlHwnd
+					oCallTip.progHwnd := curHwnd
+					oCallTip.progPID := WinGetPID("ahk_id " curHwnd)
+					oCallTip.progTitle := WinGetTitle("ahk_id " curHwnd)
+					oCallTip.ctlConfirmed := true
+					
+					Break  ;??? - this will only break the first loop, hence it will find other instances of the editor and will use the last one found.
+				} ;ZZZ - i tried addressing a proper loop break above
+			}
+		}
+	} 
+	If (!oCallTip.ctlConfirmed And Settings["ProgExe"] And Settings["ProgClassNN"])
+		MsgBox "Editor control not found!"
+}
+
+; ==================================================
+; Determines parent window based on user settings.
+; ==================================================
+; 
+CheckMouseLocation() {
+	MouseGetPos x,y,hWnd, ctlHwndCheck, 2
+	
+	ctlClassNnCheck := ""
+	Try ctlClassNnCheck := ControlGetClassNN(ctlHwndCheck) ; try to get ClassNN
+	
+	If (oCallTip.progHwnd = hWnd And ctlClassNnCheck != "" And InStr(ctlClassNnCheck,Settings["ProgClassNN"])) {
+		oCallTip.ctlHwnd := ctlHwndCheck ; update ctl hwnd if match
+		ScintillaExt.ctlHwnd := ctlHwndCheck
+	}
+	
+  	If (IsObject(SettingsGUI) And SettingsGUI.hwnd = hwnd)
+		oCallTip.ctlActive := false
+	Else If (IsObject(callTipGui) And callTipGui.hwnd = hwnd)
+		oCallTip.ctlActive := true
+	Else If (oCallTip.progHwnd != hWnd Or ctlHwndCheck != oCallTip.ctlHwnd)
+		oCallTip.ctlActive := false
+	Else
+		oCallTip.ctlActive := true
+	
+	If (!oCallTip.ctlActive) {
+		IH.Stop()
+		SetupInputHook(false)
+	}
+}
+
 ReadSettingsFromFile() {
 	SettingsFile := "Settings.txt"
 	If (FileExist("Settings.txt.blank") And !FileExist(SettingsFile)) ; load default settings on first run
