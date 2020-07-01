@@ -1,6 +1,5 @@
-﻿Global ArkDebugObj := "", ArkDebugWinHwnd := "", ArkDebugOutputHwnd := ""
-
-DebugMsg(str,sOrder:="top",TimeStamp:=true) {
+﻿DebugMsg(str,sOrder:="top",TimeStamp:=true) {
+	Global ArkDebugObj := "", ArkDebugWinHwnd := "", ArkDebugOutputHwnd := ""
     ArkDebugCheck() ; check if debug window open
     
     If (TimeStamp) ; append timestamp + str
