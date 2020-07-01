@@ -6,12 +6,6 @@ BlockInput MouseMove
 `/docs/commands/BlockInput.htm
 
 
-Flow
-Break
-`Break [LoopLabel]
-`/docs/commands/Break.htm
-
-
 Function
 BufferAlloc
 `Buffer := BufferAlloc(ByteCount [, FillByte])
@@ -28,15 +22,6 @@ Function
 CaretGetPos
 `CaretGetPos([OutputVarX, OutputVarY])
 `/docs/commands/CaretGetPos.htm
-
-
-Flow
-Catch
-`
-Catch [OutputVar]    |or|    Catch [OutputVar] {
-    Statement        |  |        Statements
-                     |  |    }
-`/docs/commands/Catch.htm
 
 
 Function
@@ -132,12 +117,6 @@ ComObjValue
 `/docs/commands/ComObjValue.htm
 
 
-Flow
-Continue
-`Continue [LoopLabel]
-`/docs/commands/Continue.htm
-
-
 Command
 ControlAddItem
 `ControlAddItem String, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
@@ -145,9 +124,9 @@ ControlAddItem
 
 
 Command
-ControlChoose
-`ControlChoose N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlChoose.htm
+ControlChooseIndex
+`ControlChooseIndex N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlChooseIndex.htm
 
 
 Command
@@ -166,12 +145,6 @@ Command
 ControlDeleteItem
 `ControlDeleteItem N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlDeleteItem.htm
-
-
-Command
-ControlEditPaste
-`ControlEditPaste String, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlEditPaste.htm
 
 
 Function
@@ -205,18 +178,6 @@ ControlGetClassNN
 
 
 Function
-ControlGetCurrentCol
-`CurrentCol := ControlGetCurrentCol(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetCurrentCol.htm
-
-
-Function
-ControlGetCurrentLine
-`CurrentLine := ControlGetCurrentLine(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetCurrentLine.htm
-
-
-Function
 ControlGetEnabled
 `IsEnabled := ControlGetEnabled(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
 `/docs/commands/ControlGetEnabled.htm
@@ -235,33 +196,21 @@ ControlGetHwnd
 
 
 Function
-ControlGetLine
-`Line := ControlGetLine(N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetLine.htm
+ControlGetIndex
+`Index := ControlGetIndex(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ControlGetIndex.htm
 
 
 Function
-ControlGetLineCount
-`LineCount := ControlGetLineCount(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetLineCount.htm
-
-
-Function
-ControlGetList
-`List := ControlGetList([Options, Control, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetList.htm
+ControlGetItems
+`ItemsArr := ControlGetItems(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ControlGetItems.htm
 
 
 Command
 ControlGetPos
 `ControlGetPos [X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlGetPos.htm
-
-
-Function
-ControlGetSelected
-`Selected := ControlGetSelected(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetSelected.htm
 
 
 Function
@@ -274,12 +223,6 @@ Function
 ControlGetExStyle
 `ExStyle := ControlGetExStyle(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
 `/docs/commands/ControlGetStyle.htm
-
-
-Function
-ControlGetTab
-`Tab := ControlGetTab(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetTab.htm
 
 
 Function
@@ -349,12 +292,6 @@ ControlSetExStyle
 
 
 Command
-ControlSetTab
-`ControlSetTab N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlSetTab.htm
-
-
-Command
 ControlSetText
 `ControlSetText NewText, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlSetText.htm
@@ -376,12 +313,6 @@ Command
 CoordMode
 `CoordMode TargetType [, RelativeTo]
 `/docs/commands/CoordMode.htm
-
-
-Flow
-Critical
-`Critical [OnOffNumeric]
-`/docs/commands/Critical.htm
 
 
 Function
@@ -540,13 +471,40 @@ Edit
 `/docs/commands/Edit.htm
 
 
-Flow
-Else
-`
-Else Statement    |or|   Else {
-                  |  |       Statements
-                  |  |   }
-`/docs/commands/Else.htm
+Function
+EditGetCurrentCol
+`CurrentCol := EditGetCurrentCol(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetCurrentCol.htm
+
+
+Function
+EditGetCurrentLine
+`CurrentLine := EditGetCurrentLine(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetCurrentLine.htm
+
+
+Function
+EditGetLine
+`Line := EditGetLine(N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetLine.htm
+
+
+Function
+EditGetLineCount
+`LineCount := EditGetLineCount(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetLineCount.htm
+
+
+Function
+EditGetSelectedText
+`Selected := EditGetSelectedText(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetSelectedText.htm
+
+
+Command
+EditPaste
+`EditPaste String, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/EditPaste.htm
 
 
 Function
@@ -559,18 +517,6 @@ Command
 EnvSet
 `EnvSet EnvVar, Value
 `/docs/commands/EnvSet.htm
-
-
-Flow
-Exit
-`Exit [ExitCode]
-`/docs/commands/Exit.htm
-
-
-Flow
-ExitApp
-`ExitApp [ExitCode]
-`/docs/commands/ExitApp.htm
 
 
 Command
@@ -693,25 +639,10 @@ FileSetTime
 `/docs/commands/FileSetTime.htm
 
 
-Flow
-Finally
-`
-Finally Statement    |or|    Finally {
-                     |  |        Statements
-                     |  |    }
-`/docs/commands/Finally.htm
-
-
 Function
 Float
 `FltValue := Float(Value)
 `/docs/commands/Float.htm
-
-
-Flow
-For
-`For Value1 [, Value2] in Expression {...}
-`/docs/commands/For.htm
 
 
 Function
@@ -761,18 +692,6 @@ Function
 GetMethod
 `Method := GetMethod(Value, Name)
 `/docs/commands/GetMethod.htm
-
-
-Flow
-Gosub
-`Gosub Label    or    Gosub("Label")
-`/docs/commands/Gosub.htm
-
-
-Flow
-Goto
-`Goto Label    or    Goto("Label")
-`/docs/commands/Goto.htm
 
 
 Command
@@ -873,15 +792,6 @@ Command
 HotIf
 `HotIf ["Expression"]   or   HotIf [FunctionObject]
 `/docs/commands/HotIf.htm#If
-
-
-Flow
-If
-`
-If (Expression) {
-    Statements
-}
-`/docs/commands/If.htm
 
 
 Command
@@ -1002,33 +912,15 @@ ListVars
 
 
 Function
+ListViewGetContent
+`ListTxt := ListViewGetContent([Options, Control, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ListViewGetContent.htm
+
+
+Function
 LoadPicture
 `Handle := LoadPicture(Filename [, Options, ByRef ImageType])
 `/docs/commands/LoadPicture.htm
-
-
-Flow
-Loop
-`Loop {...}    or    Loop [Count] {...}
-`/docs/commands/Loop.htm
-
-
-Flow
-Files
-`Loop Files FilePattern [, Mode]
-`/docs/commands/LoopFiles.htm
-
-
-Flow
-Parse
-`Loop Parse String [, Delimiters, OmitChars]
-`/docs/commands/LoopParse.htm
-
-
-Flow
-Reg
-`Loop Reg KeyName [, Mode]
-`/docs/commands/LoopReg.htm
 
 
 Function
@@ -1243,19 +1135,6 @@ FunctionName(Type)
 `/docs/commands/OnClipboardChange.htm
 
 
-Flow
-OnError
-`OnError Func [, AddRemove]
-`/docs/commands/OnError.htm
-
-
-Flow
-OnExit
-`OnExit Func [, AddRemove]
-MyFunction(, )
-`/docs/commands/OnExit.htm
-
-
 Command
 OnMessage
 `OnMessage MsgNumber [, Function, MaxThreads]
@@ -1272,12 +1151,6 @@ Command
 OutputDebug
 `OutputDebug Text
 `/docs/commands/OutputDebug.htm
-
-
-Flow
-Pause
-`#p::Pause    or    Pause [OnOffToggle, OperateOnUnderlyingThread]
-`/docs/commands/Pause.htm
 
 
 Function
@@ -1368,18 +1241,6 @@ Command
 RegWrite
 `RegWrite Value, ValueType, KeyName [, ValueName]    or    RegWrite Value [, ValueType, , ValueName]
 `/docs/commands/RegWrite.htm
-
-
-Flow
-Reload
-`Reload
-`/docs/commands/Reload.htm
-
-
-Flow
-Return
-`Return [Expression]
-`/docs/commands/Return.htm
 
 
 Command
@@ -1504,12 +1365,6 @@ SetStoreCapsLockMode
 `/docs/commands/SetStoreCapsLockMode.htm
 
 
-Flow
-SetTimer
-`SetTimer [Callback, Period, Priority]
-`/docs/commands/SetTimer.htm
-
-
 Command
 SetTitleMatchMode
 `SetTitleMatchMode MatchMode
@@ -1533,12 +1388,6 @@ Command
 Shutdown
 `Shutdown Code
 `/docs/commands/Shutdown.htm
-
-
-Flow
-Sleep
-`Sleep DelayInMilliseconds
-`/docs/commands/Sleep.htm
 
 
 Function
@@ -1682,26 +1531,6 @@ SubStr
 `/docs/commands/SubStr.htm
 
 
-Flow
-Suspend
-`Suspend [Mode]
-`/docs/commands/Suspend.htm
-
-
-Flow
-Switch
-`Switch [SwitchValue]
-{
-    Case CaseValue1:
-        Statements1
-    Case CaseValue2a, CaseValue2b:
-        Statements2
-    Default:
-        Statements3
-}
-`/docs/commands/Switch.htm
-
-
 Function
 SysGet
 `Value := SysGet(Property)
@@ -1712,20 +1541,6 @@ Function
 SysGetIPAddresses
 `Addresses := SysGetIPAddresses()
 `/docs/commands/SysGetIPAddresses.htm
-
-
-Flow
-Thread
-`
-Thread  [, Value1, Value2]           |or|    Thread "Priority", Level
-Thread "NoTimers" [, TrueOrFalse]    |  |    Thread "Interrupt" [, Duration, LineCount]
-`/docs/commands/Thread.htm
-
-
-Flow
-Throw
-`Throw [Expression]
-`/docs/commands/Throw.htm
 
 
 Function
@@ -1770,39 +1585,16 @@ RTrim
 `/docs/commands/Trim.htm
 
 
-Flow
-Try
-`
-Try Statement    |or|    Try {
-                 |  |        Statements
-                 |  |    }
-`/docs/commands/Try.htm
-
-
 Function
 Type
 `Type := Type(Value)
 `/docs/commands/Type.htm
 
 
-Flow
-Until
-`Loop {
-    ...
-} Until Expression
-`/docs/commands/Until.htm
-
-
 Function
 VarSetStrCapacity
 `GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity])
 `/docs/commands/VarSetStrCapacity.htm
-
-
-Flow
-While
-`While Expression
-`/docs/commands/While.htm
 
 
 Command
@@ -2091,165 +1883,6 @@ Command
 WinWaitClose
 `WinWaitClose [WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
 `/docs/commands/WinWaitClose.htm
-
-
-Command
-#ClipboardTimeout
-`#ClipboardTimeout Milliseconds
-`/docs/commands/_ClipboardTimeout.htm
-
-
-Command
-#DllLoad
-`#DllLoad [FileOrDirName]
-`/docs/commands/_DllLoad.htm
-
-
-Command
-#ErrorStdOut
-`#ErrorStdOut
-`/docs/commands/_ErrorStdOut.htm
-
-
-Command
-#HotkeyInterval
-`#HotkeyInterval Milliseconds
-`/docs/commands/_HotkeyInterval.htm
-
-
-Command
-#HotkeyModifierTimeout
-`#HotkeyModifierTimeout Milliseconds
-`/docs/commands/_HotkeyModifierTimeout.htm
-
-
-Command
-#Hotstring
-`
-#Hotstring NoMouse    |or|    #Hotstring EndChars NewChars
-                      |  |    #Hotstring NewOptions
-`/docs/commands/_Hotstring.htm
-
-
-Command
-#HotIf
-`#HotIf [Expression]
-`/docs/commands/_HotIf.htm
-
-
-Command
-#HotIfTimeout
-`#HotIfTimeout Timeout
-`/docs/commands/_HotIfTimeout.htm
-
-
-Command
-#Include
-`#Include FileOrDirName
-#Include <LibName>
-`/docs/commands/_Include.htm
-
-
-Command
-#IncludeAgain
-`#IncludeAgain FileOrDirName
-`/docs/commands/_Include.htm
-
-
-Command
-#InputLevel
-`#InputLevel [Level]
-`/docs/commands/_InputLevel.htm
-
-
-Command
-#InstallKeybdHook
-`#InstallKeybdHook
-`/docs/commands/_InstallKeybdHook.htm
-
-
-Command
-#InstallMouseHook
-`#InstallMouseHook
-`/docs/commands/_InstallMouseHook.htm
-
-
-Command
-#KeyHistory
-`#KeyHistory MaxEvents
-`/docs/commands/_KeyHistory.htm
-
-
-Command
-#MaxHotkeysPerInterval
-`#MaxHotkeysPerInterval Value
-`/docs/commands/_MaxHotkeysPerInterval.htm
-
-
-Command
-#MaxThreads
-`#MaxThreads Value
-`/docs/commands/_MaxThreads.htm
-
-
-Command
-#MaxThreadsBuffer
-`#MaxThreadsBuffer OnOff
-`/docs/commands/_MaxThreadsBuffer.htm
-
-
-Command
-#MaxThreadsPerHotkey
-`#MaxThreadsPerHotkey Value
-`/docs/commands/_MaxThreadsPerHotkey.htm
-
-
-Command
-#MenuMaskKey
-`#MenuMaskKey KeyName
-`/docs/commands/_MenuMaskKey.htm
-
-
-Command
-#NoTrayIcon
-`#NoTrayIcon
-`/docs/commands/_NoTrayIcon.htm
-
-
-Command
-#Persistent
-`#Persistent
-`/docs/commands/_Persistent.htm
-
-
-Command
-#SingleInstance
-`#SingleInstance [ForceIgnoreOff]
-`/docs/commands/_SingleInstance.htm
-
-
-Command
-#SuspendExempt
-`#SuspendExempt [Exempt]
-`/docs/commands/_SuspendExempt.htm
-
-
-Command
-#UseHook
-`#UseHook [OnOff]
-`/docs/commands/_UseHook.htm
-
-
-Command
-#Warn
-`#Warn [WarningType, WarningMode]
-`/docs/commands/_Warn.htm
-
-
-Command
-#WinActivateForce
-`#WinActivateForce
-`/docs/commands/_WinActivateForce.htm
 
 
 Function
