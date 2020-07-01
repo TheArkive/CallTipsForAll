@@ -118,9 +118,9 @@ ProcInput() {
 	
 	If (ctlClassNN = "edit") { ; specific for edit control (notepad.exe)
 		oCallTip.ctlHwnd := hCtl ; update control hwnd
-		curLine := EditGetCurrentLine(hCtl) ; global
-		curCol := EditGetCurrentCol(hCtl) ; global
-		curLineText := EditGetLine(curLine,hCtl)
+		curLine := ControlGetCurrentLine(hCtl) ; global
+		curCol := ControlGetCurrentCol(hCtl) ; global
+		curLineText := ControlGetLine(curLine,hCtl)
 		oCallTip.lineNum := curLine, oCallTip.lineText := curLineText
 		curLineNoStr := StringOutline(curLineText) ; blank out strings with "****"
 	} Else If (ctlClassNN = "scintilla") { ; specific for scintilla control

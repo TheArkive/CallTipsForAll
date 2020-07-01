@@ -1,4 +1,4 @@
-; AHK Test v2
+; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
@@ -270,7 +270,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 		oCallTip.suppressEnter := false, closeAutoComplete()
 	
 	If (IsObject(AutoCompleteGUI)) {
-		oCallTip.suppressEnter := true, ctl := ""
+		oCallTIp.suppressEnter := true, ctl := ""
 		Try ctl := AutoCompleteGUI["KwList"] ; AutoCompleteGUI may be in the process of closing
 		acON := (ctl) ? true : false
 	} Else
@@ -310,7 +310,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 					SendMessage 176, sPos.ptr, 0, hwnd ; EM_GETSEL - used this way it gets the carat position
 					curPos := NumGet(sPos,"UInt"), newPos := curPos - StrLen(curPhrase)
 					SendMessage 177, newPos, curPos, hwnd ; EM_SETSEL
-					EditPaste kwSel, hwnd
+					ControlEditPaste kwSel, hwnd
 				} Else If (ctlClassNN = "scintilla") { ; scintilla specific, ie. notepad++.exe
 					curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
 					newPos := curPos.dll - StrLen(curPhrase)
@@ -320,8 +320,8 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 				}
 				closeAutoComplete()
 				
-				t := KeywordFilter.Has(kwSel) ? KeywordFilter[kwSel] : "" ; get keyword type
-				If (t != "property") ; simplify - do NOT show call tip on ENTER if type = ...
+				t := KeywordFilter.Has(kwSel) ? KeywordFilter[kwSel] : ""
+				If (InStr(t,"command") Or InStr(t,"Function") Or InStr(t,"Object") Or InStr(t,"method") Or InStr(t,"property-params"))
 					DisplayCallTip()
 				
 				KeywordFilter.Clear()
@@ -330,12 +330,12 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 		
 		oCallTip.suppressEnter := false
 	} Else If ((VK = 37 or VK = 39) And oCallTip.ctlActive) { ; left and right arrows
-		oCallTip.suppressEnter := false
+		ocallTIp.suppressEnter := false
 		If (acON) ; make sure auto-complete GUI is visible
 			closeAutoComplete()
 	} Else { ; skip autocomplete if...
 		If (IsObject(CallTipGUI) Or GetKeyState("Ctrl") Or !Settings["AutoComplete"] Or IsObject(SettingsGUI)) {
-			oCallTip.suppressEnter := false
+			ocallTIp.suppressEnter := false
 			return
 		}
 				SetTimer "LoadAutoComplete", -30 ; ... otherwise load auto-complete

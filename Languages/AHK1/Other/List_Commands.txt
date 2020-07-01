@@ -18,6 +18,20 @@ BlockInput, MouseMove
 `/docs/commands/BlockInput.htm
 
 
+Flow
+Break
+`Break [, LoopLabel]
+`/docs/commands/Break.htm
+
+
+Flow
+Catch
+`Catch [, OutputVar] {
+    Statements
+}
+`/docs/commands/Catch.htm
+
+
 Function
 Chr
 `String := Chr(Number)
@@ -92,6 +106,12 @@ Function
 ComObjValue
 `Value := ComObjValue(ComObject)
 `/docs/commands/ComObjValue.htm
+
+
+Flow
+Continue
+`Continue [, LoopLabel]
+`/docs/commands/Continue.htm
 
 
 Command
@@ -170,6 +190,12 @@ CoordMode
 `/docs/commands/CoordMode.htm
 
 
+Flow
+Critical
+`Critical [, OnOffNumeric]
+`/docs/commands/Critical.htm
+
+
 Command
 DetectHiddenText
 `DetectHiddenText, OnOff
@@ -214,6 +240,14 @@ Edit
 `/docs/commands/Edit.htm
 
 
+Flow
+Else
+`Else {
+    Statements
+}
+`/docs/commands/Else.htm
+
+
 Command
 EnvAdd
 `EnvAdd, Var, Value [, TimeUnits]
@@ -254,6 +288,18 @@ Command
 EnvUpdate
 `EnvUpdate
 `/docs/commands/EnvUpdate.htm
+
+
+Flow
+Exit
+`Exit [, ExitCode]
+`/docs/commands/Exit.htm
+
+
+Flow
+ExitApp
+`ExitApp [, ExitCode]
+`/docs/commands/ExitApp.htm
 
 
 Command
@@ -412,6 +458,20 @@ FileSetTime
 `/docs/commands/FileSetTime.htm
 
 
+Flow
+Finally
+`Finally {
+    Statements
+}
+`/docs/commands/Finally.htm
+
+
+Flow
+For
+`For Key [, Value] in Expression
+`/docs/commands/For.htm
+
+
 Function
 Format
 `String := Format(FormatStr [, Values...])
@@ -453,6 +513,18 @@ Function
 GetKeyState
 `KeyIsDown := GetKeyState(KeyName [, Mode])
 `/docs/commands/GetKeyState.htm
+
+
+Flow
+Gosub
+`Gosub, Label
+`/docs/commands/Gosub.htm
+
+
+Flow
+Goto
+`Goto, Label
+`/docs/commands/Goto.htm
 
 
 Command
@@ -518,6 +590,107 @@ Hotstring
 OldValue := Hotstring("EndChars" [, NewValue])     |  |    Hotstring("Reset")
 OldValue := Hotstring("MouseReset" [, NewValue])   |  |    
 `/docs/commands/Hotstring.htm
+
+
+Flow
+Between
+`If var [not] between LowerBound and UpperBound
+`/docs/commands/IfBetween.htm
+
+
+Flow
+IfEqual
+`IfEqual, Var [, Value]          
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfNotEqual
+`IfNotEqual, Var [, Value]       
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfLess
+`IfLess, Var [, Value]           
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfLessOrEqual
+`IfLessOrEqual, Var [, Value]    
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfGreater
+`IfGreater, Var [, Value]        
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfGreaterOrEqual
+`IfGreaterOrEqual, Var [, Value] 
+`/docs/commands/IfEqual.htm
+
+
+Flow
+IfExist
+`IfExist, FilePattern
+`/docs/commands/IfExist.htm
+
+
+Flow
+IfNotExist
+`IfNotExist, FilePattern
+`/docs/commands/IfExist.htm
+
+
+Flow
+If
+`If (Expression) {
+    Statements
+}
+`/docs/commands/IfExpression.htm
+
+
+Flow
+In
+`if Var in MatchList
+if Var not in MatchList
+`/docs/commands/IfIn.htm
+
+
+Flow
+Contains
+`if Var contains MatchList
+if Var not contains MatchList
+`/docs/commands/IfIn.htm
+
+
+Flow
+IfInString
+`IfInString, Var, SearchString
+`/docs/commands/IfInString.htm
+
+
+Flow
+IfNotInString
+`IfNotInString, Var, SearchString
+`/docs/commands/IfInString.htm
+
+
+Flow
+Is
+`if Var is Type
+if Var is not Type
+`/docs/commands/IfIs.htm
+
+
+Flow
+IfMsgBox
+`IfMsgBox, ButtonName
+`/docs/commands/IfMsgBox.htm
 
 
 Command
@@ -629,6 +802,30 @@ Function
 LoadPicture
 `Handle := LoadPicture(Filename [, Options, ByRef ImageType])
 `/docs/commands/LoadPicture.htm
+
+
+Flow
+Loop
+`Loop [, Count]
+`/docs/commands/Loop.htm
+
+
+Flow
+Files
+`Loop, Files, FilePattern [, Mode]
+`/docs/commands/LoopFile.htm
+
+
+Flow
+Parse
+`Loop, Parse, InputVar [, Delimiters, OmitChars]
+`/docs/commands/LoopParse.htm
+
+
+Flow
+Reg
+`Loop, Reg, KeyName [, Mode]
+`/docs/commands/LoopReg.htm
 
 
 Function
@@ -824,6 +1021,20 @@ FunctionName(Type)
 `/docs/commands/OnClipboardChange.htm
 
 
+Flow
+OnError
+`OnError(Func [, AddRemove])
+`/docs/commands/OnError.htm
+
+
+Flow
+OnExit
+`OnExit(Func [, AddRemove])
+OnExit [, Label]
+ExitFunc(ExitReason, ExitCode)
+`/docs/commands/OnExit.htm
+
+
 Function
 OnMessage
 `OnMessage(MsgNumber [, Function, MaxThreads])    |    Name := OnMessage(MsgNumber, "FunctionName")
@@ -843,6 +1054,13 @@ Command
 OutputDebug
 `OutputDebug, Text
 `/docs/commands/OutputDebug.htm
+
+
+Flow
+Pause
+`#p::Pause 
+Pause [, OnOffToggle, OperateOnUnderlyingThread]
+`/docs/commands/Pause.htm
 
 
 Command
@@ -934,6 +1152,18 @@ RegWrite
 `/docs/commands/RegWrite.htm
 
 
+Flow
+Reload
+`Reload
+`/docs/commands/Reload.htm
+
+
+Flow
+Return
+`Return [, Expression]
+`/docs/commands/Return.htm
+
+
 Command
 Run
 `Run, Target [, WorkingDir, Options, OutputVarPID]
@@ -992,6 +1222,13 @@ Command
 SendMode
 `SendMode Mode
 `/docs/commands/SendMode.htm
+
+
+Flow
+SetBatchLines
+`SetBatchLines, 20ms
+SetBatchLines, LineCount
+`/docs/commands/SetBatchLines.htm
 
 
 Command
@@ -1061,6 +1298,12 @@ SetStoreCapsLockMode
 `/docs/commands/SetStoreCapslockMode.htm
 
 
+Flow
+SetTimer
+`SetTimer [, Label, PeriodOnOffDelete, Priority]
+`/docs/commands/SetTimer.htm
+
+
 Command
 SetTitleMatchMode
 `SetTitleMatchMode, MatchMode    or    SetTitleMatchMode, Speed
@@ -1083,6 +1326,12 @@ Command
 Shutdown
 `Shutdown, Code
 `/docs/commands/Shutdown.htm
+
+
+Flow
+Sleep
+`Sleep, DelayInMilliseconds
+`/docs/commands/Sleep.htm
 
 
 Command
@@ -1266,11 +1515,45 @@ SubStr
 `/docs/commands/SubStr.htm
 
 
+Flow
+Suspend
+`Suspend [, Mode]
+`/docs/commands/Suspend.htm
+
+
+Flow
+Switch
+`Switch [SwitchValue]
+{
+    Case CaseValue1:
+        Statements1
+    Case CaseValue2a, CaseValue2b:
+        Statements2
+    Default:
+        Statements3
+}
+`/docs/commands/Switch.htm
+
+
 Command
 SysGet
 `SysGet, OutputVar, SubCommand [, Value]
 /SubCommands:  MonitorCount, MonitorPrimary, Monitor, MonitorWorkArea, MonitorName, N
 `/docs/commands/SysGet.htm
+
+
+Flow
+Thread
+`Thread, SubCommand [, Value1, Value2]
+/SubCommands:  NoTimers, Priority, Interrupt
+`/docs/commands/Thread.htm
+
+
+Flow
+Throw
+`Throw [, Expression]
+Exception(Message [, What, Extra])
+`/docs/commands/Throw.htm
 
 
 Command
@@ -1311,6 +1594,22 @@ RTrim
 `/docs/commands/Trim.htm
 
 
+Flow
+Try
+`Try {
+    Statements
+}
+`/docs/commands/Try.htm
+
+
+Flow
+Until
+`Loop {
+    ...
+} Until Expression
+`/docs/commands/Until.htm
+
+
 Command
 UrlDownloadToFile
 `UrlDownloadToFile, URL, Filename
@@ -1321,6 +1620,13 @@ Function
 VarSetCapacity
 `GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity, FillByte])
 `/docs/commands/VarSetCapacity.htm
+
+
+Flow
+While
+`While Expression
+While(Expression) { ... }
+`/docs/commands/While.htm
 
 
 Command
@@ -1341,6 +1647,18 @@ WinActive
 `/docs/commands/WinActive.htm
 
 
+Flow
+IfWinActive
+`IfWinActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActive.htm
+
+
+Flow
+IfWinNotActive
+`IfWinNotActive [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActive.htm
+
+
 Command
 WinClose
 `WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
@@ -1350,6 +1668,18 @@ WinClose
 Function
 WinExist
 `UniqueID := WinExist(WinTitle [, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/WinExist.htm
+
+
+Flow
+IfWinExist
+`IfWinExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinExist.htm
+
+
+Flow
+IfWinNotExist
+`IfWinNotExist [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/WinExist.htm
 
 
@@ -1494,6 +1824,205 @@ Command
 WinWaitClose
 `WinWaitClose [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
 `/docs/commands/WinWaitClose.htm
+
+
+Command
+#AllowSameLineComments
+`#AllowSameLineComments
+`/docs/commands/_AllowSameLineComments.htm
+
+
+Command
+#ClipboardTimeout
+`#ClipboardTimeout Milliseconds
+`/docs/commands/_ClipboardTimeout.htm
+
+
+Command
+#CommentFlag
+`#CommentFlag NewString
+`/docs/commands/_CommentFlag.htm
+
+
+Command
+#ErrorStdOut
+`#ErrorStdOut
+`/docs/commands/_ErrorStdOut.htm
+
+
+Command
+#EscapeChar
+`#EscapeChar NewChar
+`/docs/commands/_EscapeChar.htm
+
+
+Command
+#HotkeyInterval
+`#HotkeyInterval Milliseconds
+`/docs/commands/_HotkeyInterval.htm
+
+
+Command
+#HotkeyModifierTimeout
+`#HotkeyModifierTimeout Milliseconds
+`/docs/commands/_HotkeyModifierTimeout.htm
+
+
+Command
+#Hotstring
+`#Hotstring NoMouse       |    #Hotstring EndChars NewChars
+#Hotstring NewOptions    |
+`/docs/commands/_Hotstring.htm
+
+
+Command
+#If
+`#If [Expression]
+`/docs/commands/_If.htm
+
+
+Command
+#IfTimeout
+`#IfTimeout Timeout
+`/docs/commands/_IfTimeout.htm
+
+
+Command
+#IfWinActive
+`#IfWinActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinExist
+`#IfWinExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinNotActive
+`#IfWinNotActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinNotExist
+`#IfWinNotExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Flow
+#Include
+`#Include FileOrDirName    or    #Include <LibName>
+`/docs/commands/_Include.htm
+
+
+Flow
+#IncludeAgain
+`#IncludeAgain FileOrDirName
+`/docs/commands/_Include.htm
+
+
+Command
+#InputLevel
+`#InputLevel [Level]
+`/docs/commands/_InputLevel.htm
+
+
+Command
+#InstallKeybdHook
+`#InstallKeybdHook
+`/docs/commands/_InstallKeybdHook.htm
+
+
+Command
+#InstallMouseHook
+`#InstallMouseHook
+`/docs/commands/_InstallMouseHook.htm
+
+
+Command
+#KeyHistory
+`#KeyHistory MaxEvents
+`/docs/commands/_KeyHistory.htm
+
+
+Command
+#MaxHotkeysPerInterval
+`#MaxHotkeysPerInterval Value
+`/docs/commands/_MaxHotkeysPerInterval.htm
+
+
+Command
+#MaxMem
+`#MaxMem Megabytes
+`/docs/commands/_MaxMem.htm
+
+
+Command
+#MaxThreads
+`#MaxThreads Value
+`/docs/commands/_MaxThreads.htm
+
+
+Command
+#MaxThreadsBuffer
+`#MaxThreadsBuffer OnOff
+`/docs/commands/_MaxThreadsBuffer.htm
+
+
+Command
+#MaxThreadsPerHotkey
+`#MaxThreadsPerHotkey Value
+`/docs/commands/_MaxThreadsPerHotkey.htm
+
+
+Command
+#MenuMaskKey
+`#MenuMaskKey KeyName
+`/docs/commands/_MenuMaskKey.htm
+
+
+Command
+#NoEnv
+`#NoEnv
+`/docs/commands/_NoEnv.htm
+
+
+Command
+#NoTrayIcon
+`#NoTrayIcon
+`/docs/commands/_NoTrayIcon.htm
+
+
+Command
+#Persistent
+`#Persistent
+`/docs/commands/_Persistent.htm
+
+
+Command
+#SingleInstance
+`#SingleInstance [ForceIgnoreOff]
+`/docs/commands/_SingleInstance.htm
+
+
+Command
+#UseHook
+`#UseHook [OnOff]
+`/docs/commands/_UseHook.htm
+
+
+Command
+#Warn
+`#Warn [WarningType, WarningMode]
+`/docs/commands/_Warn.htm
+
+
+Command
+#WinActivateForce
+`#WinActivateForce
+`/docs/commands/_WinActivateForce.htm
 
 
 Function
