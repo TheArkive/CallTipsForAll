@@ -124,9 +124,9 @@ ControlAddItem
 
 
 Command
-ControlChoose
-`ControlChoose N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlChoose.htm
+ControlChooseIndex
+`ControlChooseIndex N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlChooseIndex.htm
 
 
 Command
@@ -145,12 +145,6 @@ Command
 ControlDeleteItem
 `ControlDeleteItem N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlDeleteItem.htm
-
-
-Command
-ControlEditPaste
-`ControlEditPaste String, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlEditPaste.htm
 
 
 Function
@@ -184,18 +178,6 @@ ControlGetClassNN
 
 
 Function
-ControlGetCurrentCol
-`CurrentCol := ControlGetCurrentCol(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetCurrentCol.htm
-
-
-Function
-ControlGetCurrentLine
-`CurrentLine := ControlGetCurrentLine(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetCurrentLine.htm
-
-
-Function
 ControlGetEnabled
 `IsEnabled := ControlGetEnabled(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
 `/docs/commands/ControlGetEnabled.htm
@@ -214,33 +196,21 @@ ControlGetHwnd
 
 
 Function
-ControlGetLine
-`Line := ControlGetLine(N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetLine.htm
+ControlGetIndex
+`Index := ControlGetIndex(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ControlGetIndex.htm
 
 
 Function
-ControlGetLineCount
-`LineCount := ControlGetLineCount(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetLineCount.htm
-
-
-Function
-ControlGetList
-`List := ControlGetList([Options, Control, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetList.htm
+ControlGetItems
+`ItemsArr := ControlGetItems(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ControlGetItems.htm
 
 
 Command
 ControlGetPos
 `ControlGetPos [X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlGetPos.htm
-
-
-Function
-ControlGetSelected
-`Selected := ControlGetSelected(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetSelected.htm
 
 
 Function
@@ -253,12 +223,6 @@ Function
 ControlGetExStyle
 `ExStyle := ControlGetExStyle(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
 `/docs/commands/ControlGetStyle.htm
-
-
-Function
-ControlGetTab
-`Tab := ControlGetTab(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
-`/docs/commands/ControlGetTab.htm
 
 
 Function
@@ -325,12 +289,6 @@ Command
 ControlSetExStyle
 `ControlSetExStyle Value, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
 `/docs/commands/ControlSetStyle.htm
-
-
-Command
-ControlSetTab
-`ControlSetTab N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
-`/docs/commands/ControlSetTab.htm
 
 
 Command
@@ -511,6 +469,42 @@ Command
 Edit
 `Edit
 `/docs/commands/Edit.htm
+
+
+Function
+EditGetCurrentCol
+`CurrentCol := EditGetCurrentCol(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetCurrentCol.htm
+
+
+Function
+EditGetCurrentLine
+`CurrentLine := EditGetCurrentLine(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetCurrentLine.htm
+
+
+Function
+EditGetLine
+`Line := EditGetLine(N, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetLine.htm
+
+
+Function
+EditGetLineCount
+`LineCount := EditGetLineCount(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetLineCount.htm
+
+
+Function
+EditGetSelectedText
+`Selected := EditGetSelectedText(Control [, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/EditGetSelectedText.htm
+
+
+Command
+EditPaste
+`EditPaste String, Control [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/EditPaste.htm
 
 
 Function
@@ -915,6 +909,12 @@ Command
 ListVars
 `ListVars
 `/docs/commands/ListVars.htm
+
+
+Function
+ListViewGetContent
+`ListTxt := ListViewGetContent([Options, Control, WinTitle, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/ListViewGetContent.htm
 
 
 Function
