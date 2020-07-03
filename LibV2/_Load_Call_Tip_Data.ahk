@@ -1,9 +1,18 @@
 ; ==================================================
-; keyword list - These are also generated when functions, methods, and properties are
-;                enumerated from List_*.txt files.  This will be expanded for an auto
-;                complete function/hotkey.  KW_*.txt files are optional, and don't serve
-;                much purpose yet.
+; Functions here load basic call tip data
+; For objects, only data the will match objects is loaded.  Actually identifying functions within source code
+; is done by the parser.
 ; ==================================================
+
+
+; ==================================================
+; keyword list - Load pre-defined keywords.  Basically anything that is NOT a function, command, class, object,
+;                or anything else that is not already defined in lang files.
+; ==================================================
+;    Structure
+;
+;		obj
+;			[elementName] = type_string (usually set to "keyword" by default
 
 LoadKeywordsList() {
 	KeywordList := Map() ; , KeywordList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
@@ -15,10 +24,22 @@ LoadKeywordsList() {
 	}
 	KeywordList.Has("") ? KeywordList.Delete("") : ""
 }
-; ==================================================
-; Create function and command list for call tips / and classes?
-; ==================================================
 
+; ==================================================
+; Loads any call tip data that is 1-to-1, in other words, not nested like objects.
+; Mostly this is functions, commands, directives, flow control words, etc.
+; Yes, this function name is a slight misnomer.  It loads more than just functions.
+; ==================================================
+; FunctionList Structure
+; ========================
+;	FunctionList
+;
+;		obj
+;			[elementName] - name of func, cmd, etc.  Defined in lang files.
+;				["desc"] - help data for call tips, defined in lang files
+;				["type"] - type of element, function, command, flow, directive, etc... Defined in lang files
+;				["helpLink"] - help link for element, defined in lang files
+; ==================================================
 LoadFunctionsList() {
 	FunctionList := Map() ; , FunctionList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	Loop Files oCallTip.srcFiles "\Other\List_*.txt" ; functions and commands are combined into one list => FunctionList[]
@@ -29,31 +50,8 @@ LoadFunctionsList() {
 		curList := FileRead(fileName)
 		curList := Trim(curList,"`r`n") entryEnd
 
-		If (curFileType = "Regex") {
-			Loop Parse curList, "`n", "`r"
-			{
-				Switch A_Index	;AAA - LOL wasn't thinking of that at the time, but yah you are right!
-				{                     ;??? this could be further simplified if the lines in the regex file start with the right property name
-					case 1:  oCallTip.funcStart            := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 2:  oCallTip.funcEnd              := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 3:  oCallTip.funcReturn           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 4:  oCallTip.classStart           := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 5:  oCallTip.classEnd             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 6:  oCallTip.classMethodStart     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 7:  oCallTip.classMethodEnd       := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 8:  oCallTip.classMethodOneLine   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 9:  oCallTip.classPropertyStart   := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 10: oCallTip.classPropertyEnd     := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 11: oCallTip.classPropertyOneLine := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 12: oCallTip.classSmallPropExt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 13: oCallTip.classSmallPropInt    := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 14: oCallTip.classInstance        := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 15: oCallTip.includes             := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-					case 16: oCallTip.lineComment          := Trim(SubStr(A_LoopField,1+InStr(A_LoopField,":")))
-				}
-			}
-			Continue ;jump to next file
-		}
+		If (curFileType = "Regex")
+			Continue
 
 		curPos := 1, subStrEnd := 1
 		len := StrLen(curList)
@@ -90,40 +88,20 @@ LoadFunctionsList() {
 	}
 }
 
-; FunctionList Structure
-; ========================
-;	FunctionList
+; ==================================================
+; Create Object list, indexed by object type.  All nested members are included.
+; ==================================================
+;    Structure:
 ;
-;		funcName / curObj
-;
-;			desc / descArr
-;			type / funcTypeStr
-;			helpLink / helpLinkStr
-
-
-; msgbox "Begin:   " funcBeginStr "`r`nEnd:   " funcEndStr
-; ==================================================
-; for debug only
-; ==================================================
-; For funcName, obj in FunctionList {
-	; type := obj["type"]
-	; desc := obj["desc"]
-	
-	; textList .= funcName " / " type "`r`n" desc "`r`n`r`n`r`n"
-; }
-; clipboard := textList
-; msgbox textList
-
-; ==================================================
-; generate custom function list - taken care of in ReloadElements()
-; ==================================================
-; hCtl := editorCtlHwnd(hEditorWin,cClassNN,EventType)
-; curDocText := ControlGetText(cClassNN,"ahk_id " hEditorWin)
-; curDocArr := StrSplit(curDocText,"`n","`r")
-; CustomFunctions := GetCustomFunctions(curDocArr)
-
-; ==================================================
-; Create Object Index by type for call tips
+;		obj
+;			["method"] - method list
+;				["desc"] - help data as defined in lang files
+;				["helpLink"] - help link for method
+;			["property"] - property list
+;				["desc"] - help data as defined in lang files
+;				["helpLink"] - help link for property
+;			["helpLink"] - link to help info
+;			["desc"] - summarized list of methods, properties
 ; ==================================================
 
 LoadMethPropList() {
@@ -242,12 +220,12 @@ LoadMethPropList() {
 ; ==================================================
 ; Generates a hierarchical list of object match strings to be executed in a specific order.
 ; Execution is done by CreateObjList()
-; Hierarchy:    List
-;                   Level / LevelObj
-;                       Label / LabelObj
-;                           Member: regex  (string - the regex string)
-;                           Member: type   (string - object type)
-;                           Member: direct (boolean - indicates if {substitution} in regex is required)
+; Hierarchy:    obj
+;                   [N] - number or level, 0 is parsed first
+;                       [Label] - must be unique, this is a name for the record that defines level and regex search criteria, defined in lang files
+;                           ["regex"] - the regex string
+;                           ["type"] - object type string
+;                           ["direct"] - boolean - indicates if {substitution_obj_name} in regex is required
 ; ==================================================
 LoadObjectCreateList(objMatchText) {
 	ObjectCreateList := Map()

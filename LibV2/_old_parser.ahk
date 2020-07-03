@@ -462,8 +462,7 @@ ScanClasses(curDocText) { ; scan doc for class instances
 	}
 }
 
-GetIncludes(inputIncludes) {
-	; msgbox "inputIncludes: " inputIncludes.length
+GetIncludes(inputIncludes) { ; input should start with [baseFile]
 	newIncludes := []
 	Loop inputIncludes.Length {
 		curFile := inputIncludes[A_Index]
@@ -486,8 +485,6 @@ GetIncludes(inputIncludes) {
 			If (!r1 := RegExMatch(curLine,"mi)" includesSearch,match))
 				continue
 			
-			; curInc := match.Value(1) ; clean up include match
-			; msgbox curInc
 			curInc := Trim(RegExReplace(match.Value(1),"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
 			curInclude := RegExReplace(curInc,"<|>","")
 			
@@ -497,8 +494,6 @@ GetIncludes(inputIncludes) {
 			curInclude := StrReplace(curInclude,"%A_ScriptDir%",curBaseFolder) ;ZZZ - need to replace a larger set of vars here
 			finalFile := (FileExist(curBaseFolder "\" curInclude)) ? curBaseFolder "\" curInclude : FileExist(curInclude) ? curInclude : ""
 			incType := FileExist(finalFile)
-			
-			; msgbox curBaseFolder "\" curInclude "`r`n`r`n" finalFile "`r`nType: " incType
 			
 			If (InStr(incType,"D"))
 				curBaseFilder := finalFile ; change baseFolder if dir
@@ -554,66 +549,7 @@ GetLibs() {
 	}
 }
 
-GetIncludesOld() {
-	baseFile := Settings["BaseFile"]
-	curDocText := FileRead(baseFile)
-	curDocArr := StrSplit(curDocText,"`n","`r")
-	
-	SplitPath baseFile, , baseFolderP
-	curBaseFolder := baseFolderP
-	
-	includesSearch := oCallTip.includes, includeArr := Array()
-	Loop curDocArr.Length {
-		curLine := curDocArr[A_Index]
-		If (r1 := RegExMatch(curLine,"mi)" includes,match))
-			includeArr.Push(match.Value(1))
-	}
-	curDocArr := "" ; free memory
-	
-	FinalArr := Array(), FinalArr.Push(baseFile)
-	Loop includeArr.Length {
-		curInc := includeArr[A_Index]
-		curInc := Trim(RegExReplace(curInc,"i)(^#Include(Again)?|\*i|" Chr(34) ")",""))
-		curInclude := RegExReplace(curInc,"<|>","")
-		curInclude := StrReplace(curInclude,"%A_ScriptDir%",baseFolderP) ;??? all other built-in variables are not handled, why? I have a small function for it in ahk project manager (ReplaceVars())    ;ZZZ - we should include your function!
-		
-		includeExist := FileExist(curInclude)  ;??? I'm not sure if this captures a pure/relative dir name , e.g. "#INCLUDE LibV2"
-		isDir := InStr(includeExist,"D") ? true : false ;ZZZ - relative dir #INCLUDEs are handled with f4 below.
-		isFile := (includeExist And !InStr(includeExist,"D")) ? true : false
-		
-		If (isDir) {
-			curBaseFolder := curInclude
-			continue
-		}
-		
-		If (isFile) {
-			FinalArr.Push(curInclude)
-			continue
-		}
-		
-		f4 := findFile(curBaseFolder "\" curInclude) ;ZZZ - should handle all relative located files.
-		If (f4) {
-			FinalArr.Push(f4)
-			continue
-		}
-	}
-	
-	f1 := baseFolderP "\Lib\*" ;??? - simplified handling of 3 lib locations   ;ZZZ - yes finally simplified!
-	Loop Files f1
-		FinalArr.Push(A_LoopFileFullPath)
-	
-	f2 := A_MyDocuments "\AutoHotkey\Lib\*"
-	Loop Files f2
-		FinalArr.Push(A_LoopFileFullPath)
-	
-	f3 := RegRead("HKEY_LOCAL_MACHINE\SOFTWARE\AutoHotkey","InstallDir") "\Lib\*"
-	Loop Files f3
-		FinalArr.Push(A_LoopFileFullPath)
-	
-	return finalArr
-}
-
-; ReplaceVars(v, OutFileName, CurrentOutDir){
+; ReplaceVars(v, OutFileName, CurrentOutDir){ ; made by toralf
   ; AHKVars := {"%A_AhkPath%":         A_AhkPath
             ; , "%A_AhkVersion%":      A_AhkVersion
             ; , "%A_ComputerName%":    A_ComputerName

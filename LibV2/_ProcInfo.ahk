@@ -110,8 +110,8 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 }
 
 ProcInput() {
-	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
-		return
+	; If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
+		; return
 	
 	hCtl := oCalLTip.ctlHwnd
 	ctlClassNN := Settings["ProgClassNN"]
@@ -128,6 +128,8 @@ ProcInput() {
 		curPos := ScintillaExt.SendMsg("SCI_GETCURRENTPOS")
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll)
 		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
+		
+		; Debug.Msg(curLineText.str)
 		
 		curCol := curLineText.dll + 1
 		
@@ -150,10 +152,13 @@ ProcInput() {
 	oCallTip.parentObjType := "", parentObjType := ""
 	
 	parentObjTypeList := Map()
-	For objName in ObjectList {
-		If (parentObj = objName) {
-			parentObjTypeList := ObjectList[objName]["types"], parentObj := objName ; correct case on parentObj
-			Break
+	
+	If (ObjectList) {
+		For objName in ObjectList {
+			If (parentObj = objName) {
+				parentObjTypeList := ObjectList[objName]["types"], parentObj := objName ; correct case on parentObj
+				Break
+			}
 		}
 	}
 	
@@ -173,20 +178,24 @@ ProcInput() {
 		}
 	}
 	
-	If (!curPhraseType) {
-		For curFuncName, obj in CustomFunctions {
-			If (curFuncName = curPhrase) {
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-				Break
+	If (CustomFunctions) {
+		If (!curPhraseType) {
+			For curFuncName, obj in CustomFunctions {
+				If (curFuncName = curPhrase) {
+					curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
+					Break
+				}
 			}
 		}
 	}
 	
-	If (!curPhraseType) {
-		For curObjName in ObjectList {
-			If (curObjName = curPhrase) {
-				curPhraseType := "object", oCallTip.curPhraseType := curPhraseType
-				Break
+	If (ObjectList) {
+		If (!curPhraseType) {
+			For curObjName in ObjectList {
+				If (curObjName = curPhrase) {
+					curPhraseType := "object", oCallTip.curPhraseType := curPhraseType
+					Break
+				}
 			}
 		}
 	}
@@ -217,26 +226,28 @@ ProcInput() {
 		}
 	}
 	
-	If (!curPhraseType And ClassesList.Count) {
-		For instName, obj in ClassesList {
-			If (instName = curPhrase) { ; catch classname and instances
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-				Break
+	If (ClassesList) {
+		If (!curPhraseType And ClassesList.Count) {
+			For instName, obj in ClassesList {
+				If (instName = curPhrase) { ; catch classname and instances
+					curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
+					Break
+				}
 			}
 		}
-	}
-	
-	If (!curPhraseType And ClassesList.Count) { ; class methods and properties
-		For instName, obj in ClassesList {
-			If (instName = parentObj) {
-				If (obj["type"] = "Instance")
-					obj := ClassesList[obj["class"]]
-				
-				memList := obj["members"]
-				For memName, memObj in memList {
-					If (memName = curPhrase Or memName = "__" curPhrase) {
-						curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
-						break
+		
+		If (!curPhraseType And ClassesList.Count) { ; class methods and properties
+			For instName, obj in ClassesList {
+				If (instName = parentObj) {
+					If (obj["type"] = "Instance")
+						obj := ClassesList[obj["class"]]
+					
+					memList := obj["members"]
+					For memName, memObj in memList {
+						If (memName = curPhrase Or memName = "__" curPhrase) {
+							curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
+							break
+						}
 					}
 				}
 			}

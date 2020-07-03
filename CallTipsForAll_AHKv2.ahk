@@ -24,6 +24,7 @@ Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectabl
 SetupInputHook(false) ; suppress enter - true/false
 
 Settings := ReadSettingsFromFile() ; Map
+
 AddTrayMenu() ; modify tray menu
 
 If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
@@ -52,11 +53,7 @@ class oCallTip { ; testing
 	Static curPhrase := "", curPhraseObj := "", parentObj := "", curPhraseType := "", parentObjType := ""
 	
 	; properties for regex matches
-	Static funcStart := "", funcEnd := "", funcReturn := "", classStart := "", classEnd := "", includes := ""
-	Static classMethodStart := "", classMethodEnd := "", classMethodOneLine := ""
-	Static classPropertyStart := "", classPropertyEnd := "", classPropertyOneLine := ""
-	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
-	Static lineComment := ""
+	Static regex := Map()
 	
 	
 	
@@ -107,7 +104,7 @@ class oCallTip { ; testing
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
 #INCLUDE LibV2\_Load_Call_Tip_Data.ahk
-#INCLUDE LibV2\_old_parser.ahk
+; #INCLUDE LibV2\_old_parser.ahk
 #INCLUDE LibV2\_AHK-parser_TheArkive.ahk
 #INCLUDE LibV2\TheArkive_Debug.ahk
 
@@ -234,7 +231,9 @@ SetupInputHook(suppressEnter) {
 	IH.Start()
 }
 
-keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
+keyPress(iHook
+		,VK
+		,SC) { ; InputHook ;ZZZ - significant changes here...
 	a := 0, b := 0, c := 0
 	Try a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
 	Try b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
@@ -404,19 +403,25 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 KwSearchDeep(curPhrase, parentObj) {
 	resultList := Map()
 	If (curPhrase And !parentObj) {
-		For objName in ObjectList {
-			If (inStr(objName,curPhrase))
-				resultList[objName] := "User Object"
+		If (ObjectList) {
+			For objName in ObjectList {
+				If (inStr(objName,curPhrase))
+					resultList[objName] := "User Object"
+			}
 		}
 		
-		For className, obj in ClassesList {
-			If (inStr(className,curPhrase))
-				resultList[classname] := "User " obj["type"]
+		If (ClassesList) {
+			For className, obj in ClassesList {
+				If (inStr(className,curPhrase))
+					resultList[classname] := "User " obj["type"]
+			}
 		}
 		
-		For funcName, obj in CustomFunctions {
-			If (InStr(funcName,curPhrase))
-				resultList[funcName] := "User Function"
+		If (CustomFunctions) {
+			For funcName, obj in CustomFunctions {
+				If (InStr(funcName,curPhrase))
+					resultList[funcName] := "User Function"
+			}
 		}
 		
 		If (!resultList.Count) {
@@ -491,6 +496,7 @@ KwSearchDeep(curPhrase, parentObj) {
 debugToolTip() {
 	ProcInput()
 	
+	funcName := "", funcText := ""
 	curPhrase := oCallTip.curPhrase
 	curPhraseObj := oCallTip.curPhraseObj
 	curPhraseType := oCallTip.curPhraseType
@@ -535,7 +541,6 @@ ClickCheck(curKey) {
 	c := MultiClick.Count
 	
 	If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
-		; msgbox "active: " oCallTip.ctlActive
 		If (!oCallTip.ctlActive)
 			return
 		closeAutoComplete()

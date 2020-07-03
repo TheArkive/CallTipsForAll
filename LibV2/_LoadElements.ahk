@@ -24,58 +24,26 @@ ReParseText() {
 
 ReloadElements() {
 	DocumentMap := Array() ; this should be reset every reload, even if no baseFile
-	IncludesList := Array()
 	srcFiles := oCallTip.srcFiles
 	
 	Loop Files srcFiles "\*.chm"
 		If (A_Index = 1)
 			oCallTip.helpFile := A_LoopFileFullPath
 	
-	curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
+	; curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
 	
-	If (FileExist(Settings["BaseFile"])) { ;or use content of base file and all its includes instead
-		GetIncludes([Settings["BaseFile"]]) ; populate IncludesList
-		GetLibs()
-		pos := 0, tmp := ""
-		
-		; msgbox "IncludesList: " IncludesList.Length
-		
-		For i, File in IncludesList { ; IncludesList is global
-			curFileText := FileRead(File), curFileLen := StrLen(curFileText)
-			curFileArr := StrSplit(curFileText,"`n","`r")
-			
-			For lineNum, lineText in curFileArr { ; create DocumentMap so regex pos can correspond to a file and line number
-				lineLen := StrLen(lineText)
-				start := (lineLen > 0) ? pos++ : pos
-				end := (lineLen > 0) ? pos + (lineLen - 1) : pos
-				pos := end ; sync pos
-				DocumentMap.Push(Map("fileName",File, "lineNum",lineNum, "start",start, "end",end, "length",lineLen,"text",lineText))
-				pos += 2 ; add length of CRLF
-			}
-			
-			tmp .= curFileText "`r`n`r`n" ; load all includes into one var
-			pos += 4 ; add length of CRLF x 2
-		}
-		
-		curDocText := tmp ? tmp : curDocText
-		; A_Clipboard := curDocText
-		
-		; For i, obj in DocumentMap ; quick test of DocumentMap
-			; testStr .= obj["fileName"] "`r`nLine: " obj["lineNum"] " / " obj["start"] " / " obj["end"] "`r`n`r`n"
-		
-		; msgbox testStr
-	}
-	; msgbox "done parsing includes"
+	; ============ old parser ==================
+	; oCallTip.docTextNoStr := StringOutline(curDocText) ; this should only be done once per load/reload (for full text + includes)
+	; oCallTip.docText := curDocText
 	
-	oCallTip.docTextNoStr := StringOutline(curDocText) ; this should only be done once per load/reload (for full text + includes)
-	oCallTip.docText := curDocText
+	; CustomFunctions := GetCustomFunctions(curDocText)
+	; ClassesList := GetClasses(curDocText)
+	; ScanClasses(curDocText)
+	; ObjectList := CreateObjList(curDocText)
 	
-	CustomFunctions := GetCustomFunctions(curDocText)
-	; msgbox "in1"
-	ClassesList := GetClasses(curDocText)
-	; msgbox "in2"
-	ScanClasses(curDocText)
-	; msgbox "in3"
-	ObjectList := CreateObjList(curDocText)
-	; msgbox "done parsing"
+	; ====== new parser ======
+	baseFile := Settings["BaseFile"]
+	If (baseFile)
+		ahk_parser_launcher(baseFile)
+	
 }
