@@ -2,6 +2,7 @@
 0 GuiObject GuiCreate ([\w\.]+)[ \t]*:=[ \t]*(Gui\.New\x28)
 0 GuiObject GuiFromHwnd ([\w\.]+)[ \t]*:=[ \t]*(GuiFromHwnd\x28)
 0 GuiObject GuiByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Gui[\w ]*)
+`
 `/docs/objects/Gui.htm
 
 

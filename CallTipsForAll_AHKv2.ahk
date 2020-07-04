@@ -10,7 +10,7 @@ Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
 
 Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
 Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
-Global IncludesList := []
+Global IncludesList := [], VariablesList := Array()
 Global Settings := "" ; user settings object
 Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
@@ -42,6 +42,7 @@ class oCallTip { ; testing
 	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}{Escape}~"
 	Static colNum := 0, lineNum := 0, lineText := ""
 	Static scintBufferLen := 0, suppressEnter := false
+	Static newParseClass := 0, newParseFunction := 0
 	
 	; properties for call display and help link
 	Static curIndex := "", fullDescArr := Map(), helpFile := ""
@@ -55,39 +56,42 @@ class oCallTip { ; testing
 	; properties for regex matches
 	Static regex := Map()
 	
+	; properties for enclosure matching
+	Static LPar := 0, RPar := 0, LBrace := 0, RBrace := 0, LCBrace := 0, RCBrace := 0
 	
 	
-	; property1[a,b] { ; show
 	
-	; }
-	; property2[c,d] ; show
-	; {
+	property1[a,b] { ; show
 	
-	; }
-	; property3 {
+	}
+	property2[c,d] ; show
+	{
 	
-	; }
-	; property4 ; show
-	; {
+	}
+	property3[] {
 	
-	; }
-	; property5 => a + b ; show
+	}
+	property4 ; show
+	{
 	
-	; method1(a,b) { ; show
+	}
+	property5 => a + b ; show
 	
-	; }
-	; method2(c,d) ; show
-	; {
+	method1(a,b) { ; show
 	
-	; }
-	; method3() {
+	}
+	method2(c,d) ; show
+	{
 	
-	; }
-	; method4() ; show
-	; {
+	}
+	method3() {
 	
-	; }
-	; method5() => a * b ; show
+	}
+	method4() ; show
+	{
+	
+	}
+	method5() => a * b ; show
 }
 
 ; ================================================================
@@ -165,11 +169,17 @@ Down:: ; scroll when multiple records are available for call tips
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
+	A_Clipboard := Jxon_dump(VariablesList,4)
+	Msgbox "check VarList"
+	
 	A_Clipboard := Jxon_Dump(FunctionList,4)
 	msgbox "check FunctionList"
 	
 	A_Clipboard := Jxon_dump(CustomFunctions,4)
 	msgbox "check CustomFunctions"
+	
+	A_Clipboard := Jxon_dump(MethPropList,4)
+	msgbox "check MethPropList"
 	
 	A_Clipboard := Jxon_dump(ObjectList,4)
 	msgbox "check ObjectList"
@@ -199,7 +209,8 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
-FullReload() {
+FullReload()
+{
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
 	
@@ -218,7 +229,8 @@ FullReload() {
 	ReParseText() ; reload user defined elements
 }
 
-SetupInputHook(suppressEnter) {
+SetupInputHook(suppressEnter)
+{
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
@@ -231,9 +243,7 @@ SetupInputHook(suppressEnter) {
 	IH.Start()
 }
 
-keyPress(iHook
-		,VK
-		,SC) { ; InputHook ;ZZZ - significant changes here...
+keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 	a := 0, b := 0, c := 0
 	Try a := WinActive("ahk_id " oCallTip.progHwnd) ; check if editor control is active
 	Try b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active

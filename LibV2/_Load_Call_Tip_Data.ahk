@@ -135,7 +135,9 @@ LoadMethPropList() {
 					t := Trim(objMatchArr[A_Index],"`r`n")
 					If (A_Index = 1)
 						objListPre := t, objMatchText .= objListPre "`r`n"
-					Else If (A_Index > 1 And A_Index < i)
+					Else If (A_Index = 2)
+						moreObj := t
+					Else If (A_Index > 2 And A_Index < i)
 						objDescArr.Push(t)
 					Else If (A_Index = i)
 						curHelpLink := t
@@ -202,7 +204,7 @@ LoadMethPropList() {
 		firstDesc := Trim(firstDesc "`r`n`r`n" propText,"`r`n")
 		
 		curObj["method"] := methList, curObj["property"] := propList
-		curObj["helpLink"] := curHelpLink
+		curObj["helpLink"] := curHelpLink, curObj["moreObj"] := moreObj
 		
 		Loop Parse objList, "`n", "`r" ; append methods/properties to all defined obj types
 		{

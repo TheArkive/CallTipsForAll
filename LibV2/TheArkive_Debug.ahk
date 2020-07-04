@@ -15,12 +15,15 @@
 		this._gui := ""
 		
 		guiClose := ObjBindMethod(this,"gClose")
+		this.guiClose := guiClose
 		guiSize := ObjBindMethod(this,"gSize")
+		this.guiSize := guiSize
 		ctlEvent := ObjBindMethod(this,"event")
+		this.ctlEvent := ctlEvent
 		
 		ArkDebugObj := Gui.New("+Resize +AlwaysOnTop","TheArkyTekt Debug Window")
-		ArkDebugObj.OnEvent("close", guiClose)
-		ArkDebugObj.OnEvent("size", guiSize)
+		ArkDebugObj.OnEvent("close", this.guiClose)
+		ArkDebugObj.OnEvent("size", this.guiSize)
 		
 		ArkDebugObj.SetFont("s11","Courier New")
 		ctl := ArkDebugObj.Add("Button","vCopy x5 y5 Section","Copy to Clipboard").OnEvent("Click",ctlEvent)
@@ -42,6 +45,7 @@
 	}
 	
 	Static gSize(g, MinMax, Width, Height) {
+		; msgbox "in size"
 		w := Width - 10, h := Height - 10 - 40
 		ctl := g["EditBox"]
 		ctl.GetPos(x,y)

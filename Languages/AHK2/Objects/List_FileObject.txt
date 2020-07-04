@@ -1,5 +1,6 @@
 0 FileObject FileObjByFunc ([\w\.]+)[ \t]*:=[ \t]*(FileOpen\x28)
 0 FileObject FileObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*File[\w ]*)
+`
 `/docs/objects/File.htm
 
 

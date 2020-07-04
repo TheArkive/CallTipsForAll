@@ -1,5 +1,6 @@
 0 MapObject MapByFunc ([\w\.]+)[ \t]*:=[ \t]*(Map\x28)
 0 MapObject MapByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Map[\w ]*)
+`
 `/docs/objects/Map.htm
 
 

@@ -146,8 +146,11 @@ Jxon_Dump(obj, indent:="", lvl:=1) {
 
 		lvl += 1, out := "" ; Make #Warn happy
 		for k, v in obj {
-			if IsObject(k) || (k == "")
+			if IsObject(k) ; || (k == "")
 				throw Exception("Invalid object key.", -1, k ? Format("<Object at 0x{:p}>", ObjPtr(obj)) : "<blank>")
+			
+			If (k = "")
+				Continue
 			
 			if !is_array ;// key ; ObjGetCapacity([k], 1)
 				out .= (ObjGetCapacity([k]) ? Jxon_Dump(k) : q k q) (indent ? ": " : ":") ; token + padding
