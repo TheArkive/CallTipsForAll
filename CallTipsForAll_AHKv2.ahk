@@ -6,12 +6,12 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 FileEncoding "UTF-8"
 
-Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
+Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := "" ; GuiObject
 
-Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
-Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
+Global ClassesList := Map(), ObjectCreateList := Map(), ObjectList := Map(), KeywordFilter := Map() ; internal lists
+Global MethPropList := Map(), FunctionList := Map(), CustomFunctions := Map(), KeywordList := Map() ; internal lists
 Global IncludesList := [], VariablesList := Array()
-Global Settings := "" ; user settings object
+Global Settings := Map() ; user settings object
 Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
 
@@ -23,7 +23,7 @@ Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectabl
 
 SetupInputHook(false) ; suppress enter - true/false
 
-Settings := ReadSettingsFromFile() ; Map
+Settings := ReadSettingsFromFile()
 
 AddTrayMenu() ; modify tray menu
 

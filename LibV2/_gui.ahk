@@ -295,7 +295,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 
 gui_click(ctlObj,info) {
 	curIndex := oCallTip.curIndex
-	fullDescArrObj := oCallTip.fullDescArr[curIndex]
+	fullDescArrObj := oCallTip.fullDescArr[curIndex] ; map
 	fullDesc := fullDescArrObj["desc"]
 	link := fullDescArrObj["helpLink"]
 	helpFile := oCallTip.helpFile

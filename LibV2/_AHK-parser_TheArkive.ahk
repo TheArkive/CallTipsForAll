@@ -174,9 +174,11 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			}
 			
 			If (RegExMatch(StringOutline(curChunk),"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
-				encl := enclosureCheck(curChunk), curType := "class", curChunk := curLine, lastVarStatus := ""
-			} Else If (RegExMatch(StringOutline(curChunk),"^[ \t]*([\w]+)\x28.*\x29[ \t]*\{")) { ; ------------------------- it's a function!
-				encl := enclosureCheck(curLine), curType := "function", curChunk := curLine, lastVarStatus := ""
+				; Debug.Msg("class evaluation")
+				encl := enclosureCheck(curChunk), curType := "class", lastVarStatus := "", i++
+			} Else If (RegExMatch(StringOutline(curChunk),"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
+				; Debug.Msg("function evaluation")
+				encl := enclosureCheck(curChunk), curType := "function", lastVarStatus := "", i++
 			} Else { ; ------------------------------------------------------------------------ it's something else ...
 				encl := enclosureCheck(curLine)
 				curLineNoStr := RTrim(StringOutline(curLine)," `t")
@@ -186,7 +188,6 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				Else If (RegExMatch(curLine,"^[ \t]*Static"))
 					lastVarStatus := "Static"
 				Else If (RegExMatch(curLineNoStr,"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
-					Debug.Msg("regex: " curLineNoStr)
 					ObjectList[match.Value(1)] := "RegExMatchObject"
 				}
 				
@@ -219,16 +220,20 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				If (!iStart)
 					iStart := i ; set start line of multi-line statement
 				
+				; Debug.Msg(iStart " / collecting")
+				
 				i++
 				If (docArr.Has(i)) {
 					nextLine := docArr[i]
+					
+					; If (curType = "Function")
+						; Debug.Msg(nextLine)
 					
 					If (RegExMatch(curLine,"^[ \t]*Global"))
 						lastVarStatus := "Global"
 					Else If (RegExMatch(curLine,"^[ \t]*Static"))
 						lastVarStatus := "Static"
 					Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
-						; Debug.Msg("regex: " nextLine)
 						ObjectList[match.Value(1)] := "RegExMatchObject"
 					}
 					
@@ -240,12 +245,23 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 						tempVarList.Push(obj)
 					
 					multi := true
+					
+					; Debug.Msg("compile multi-line statement")
 					encl := enclosureCheck(nextLine)
 					
 					curChunk .= "`r`n" nextLine
 				} Else
 					Break
 			}
+			
+			If (!encl.c.exist) {
+				i++
+				Continue
+			}
+			
+			; Debug.Msg(curChunk "`r`n`r`n`r`n`r`ntype: " curType " / curly brace exist: " encl.c.exist)
+			; Msgbox "check chunk"
+
 			
 			c := "", f := ""
 			If (curType = "class")
@@ -284,6 +300,7 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 	oCallTip.LBrace += LB, oCallTip.RBrace += RB
 	oCallTip.LCBrace += LC, oCallTip.RCBrace += RC
 	
+	; Debug.Msg(LP " / " RP " / " LB " / " RB " / " LC " / " RC)
 	
 	p := Abs(oCallTip.LPar - oCallTip.RPar)
 	b := Abs(oCallTip.LBrace - oCallTip.RBrace)
@@ -305,7 +322,7 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 	return {p:p, b:b, c:c, even:even, exist:exist} ; if enclosures exist, are they even, and how many of each
 }
 
-GetCustomFunction(curDocText,fileName,lineNum) { ;ZZZ - this should work better
+GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work better
 	noStr := StringOutline(curDocText), obj := ""
 	curRegex := "^[ \t]*([\w]+)\x28"
 	
@@ -314,8 +331,6 @@ GetCustomFunction(curDocText,fileName,lineNum) { ;ZZZ - this should work better
 		fn := match.Value(1)
 		If (fn = "" Or fn = "If" Or fn = "While" Or fn = "For" Or fn = "Else")
 			return "" ; not a function
-		
-		
 		
 		curPos2 := curPos1
 		While (r2 := InStr(noStr, ")",, curPos2)) {
@@ -328,6 +343,12 @@ GetCustomFunction(curDocText,fileName,lineNum) { ;ZZZ - this should work better
 				funcStart := RegExReplace(RegExReplace(funcStart,"\r|\n",""),"[ \t]+"," ")
 				r3 := RegExMatch(funcStart,"(\x28.*\x29)",match3)
 				params := match3.Value(0)
+				
+				If (!RegExMatch(curDocText,"[ \t\r\n]*\{",match4,curPos2+1)) {
+					; Debug.Msg("not a function`r`n" curDocText)
+					return "" ; not a function
+				}
+				
 				Break ; fn, funcStart, params, fileName, lineNum
 			}
 		}
@@ -579,19 +600,6 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 	return classList
 }
 
-ScanClasses(curDocText) { ; scan doc for class instances
-	cList := Map()
-	curPos := 1 ;??? oCallTip.classInstance is most likely not robust enough   ;ZZZ - do you mean not accounting for #$@ in class names?
-	While (RegExMatch(curDocText,"i)([\w\.]+)[ \t]*\:\=[ \t]*([\w\.]+?)\.New\x28",match,curPos)) {
-		instName := match.Value(1)
-		className := match.Value(2)
-		curPos := match.Pos(0) + match.Len(0)
-		cList[instName] := Map("type","Instance","name",instName,"params",params,"class",className)
-	}
-	
-	return cList
-}
-
 GetCustFuncParams(funcBody) {
 	r := RegExMatch(funcBody,"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)([ \t]*\;.*)?[ \t\r\n]*\{",match)
 	If (match.HasMethod("Value"))
@@ -623,7 +631,6 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 	stringText := Trim(SubStr(stringText,1,StrLen(noStr))," `t,")
 	
 	varList := Array()
-	
 	varArr := StrSplit(noStr,",")
 	
 	If (status) {
@@ -751,26 +758,55 @@ ParseObjectsInstances() { ; skip "ByCallback" labels... regex for "ByDerived" an
 		
 		For label, obj3 in round2 { ; round 2, level 1 - derived objects
 			labelSuffix := SubStr(label,-9)
+			labelRegex := obj3["regex"]
 			
-			If (labelSuffix = "ByDerived" Or labelSuffix = "ByComment") {
-				If (RegExMatch(varValue,"i)^" obj3["regex"]) Or RegExMatch(comment,"i)^" obj3["regex"])) {
+			For objName, objType in ObjectList {
+				If (!InStr(labelRegex,"{" objType "}")) {
+					nextVar := True
+					Continue
+				}
+				
+				If (labelSuffix != "ByDerived") {
+					nextVar := True
+					Continue
+				}
+				
+				curRegex := StrReplace(labelRegex,"{" objType "}",objName)
+				If (RegExMatch(varValue,"i)^" curRegex)) {
 					ObjectList[VarName] := obj3["type"]
 					nextVar := true
 					Continue
 				}
-			} Else {
-				If (InStr(varValue,obj3["regex"]) = 1) {
-					ObjectList[varName] := obj3["type"]
-					nextVar := true
-					Continue
-				}
 			}
+			
+			If (nextVar)
+				Continue
 		}
 		
 		If (nextVar)
 			Continue
 		
-		
+		; obj := Map("type","CustomFunction","desc",fn params,"funcName",fn,"params",params,"file",fileName,"lineNum",lineNum,"return",retObj)
+		; For funcName, obj4 in CustomFunctions { ; check functions for returning obj type
+			; Debug.Msg(varName)
+			
+			; If (RegExMatch(varValue,"i)^" funcName "\(")) {
+				; retArr := obj4["return"]
+				; For i, retVal in retArr {
+					; If (ObjectList.Has(retVal)) {
+						; curType := ObjectList[retVal]
+						; ObjectList[varName] := curType
+						; nextVar := true
+						
+						; Debug.Msg(varName " / " curType)
+						; Continue
+					; }
+				; }
+			; }
+			
+			; If (nextVar)
+				; Continue
+		; }
 	}
 	
 	For kw, kwType in KeywordList { ; load pre-defined objects

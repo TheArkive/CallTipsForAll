@@ -1,8 +1,8 @@
 0 GuiControlObject GuiControlFromHwnd GuiControlFromHwnd(
 0 GuiControlObject GuiControlByComment ;[ \t]*GuiControl
 2 GuiControlObject GuiControlByCallback [\w]+\x28([\w]+).*?\x29(.*[ \t]+;[ \t]*GuiControl[\w ]*)
-1 GuiControlObject GuiControlItemByDerived [\w\.]+\[
-1 GuiControlObject GuiControlMethodByDerived [\w\.]+\.Add\(
+1 GuiControlObject GuiControlItemByDerived {GuiObject}\[
+1 GuiControlObject GuiControlMethodByDerived {GuiObject}\.Add\(
 `
 `/docs/objects/GuiControl.htm
 
