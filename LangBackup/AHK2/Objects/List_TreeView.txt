@@ -1,0 +1,83 @@
+2 TreeViewObject TreeViewByAdd ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28"TreeView")
+2 TreeViewObject TreeViewByAddSpec ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.AddTreeView\x28)
+0 TreeViewObject TreeViewByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*TreeView[\w ]*)
+`GuiObject
+`/docs/commands/TreeView.htm
+
+
+Method
+Add
+`UniqueID := TV.Add(Name, [ParentItemID, Options])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+Modify
+`CurrentItemID := TV.Modify(ItemID [, Options, NewName])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+Delete
+`TV.Delete([ItemID])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetSelection
+`SelectedItemID := TV.GetSelection()
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetCount
+`CountNumber := TV.GetCount()
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetParent
+`ParentItemID := TV.GetParent(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetChild
+`TopChildID := TV.GetChild(ParentItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetPrev
+`PrevItemID := TV.GetPrev(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetNext
+`NextItemID := TV.GetNext([ItemID := 0, ItemType := ""])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+GetText
+`RetrievedText := TV.GetText(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+Get
+`CurrentItemID := TV.Get(ItemID, Attribute)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+SetImageList
+`PrevImageListID := TV.SetImageList(ImageListID [, IconType])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Method
+OnEvent
+`TV.OnEvent(EventName, Callback [, AddRemove := 1])
+`/docs/commands/TreeView.htm#Events

@@ -1,0 +1,3052 @@
+Function
+AssocCreate
+`HRESULT := AssocCreate(_In_ CLSID clsid, _In_ REFIID riid, _Out_ void *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocGetPerceivedType
+`HRESULT := AssocGetPerceivedType(_In_ PCWSTR pszExt, _Out_ PERCEIVED *ptype, _Out_ PERCEIVEDFLAG *pflag, _Out_opt_ PWSTR *ppszType)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocIsDangerous
+`BOOL := AssocIsDangerous(_In_ PCWSTR pszAssoc)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryKey
+`HRESULT := AssocQueryKey(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCTSTR pszAssoc, _In_ LPCTSTR pszExtra, _Out_ HKEY *phkeyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryKeyA
+`HRESULT := AssocQueryKeyA(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCSTR pszAssoc, _In_ LPCSTR pszExtra, _Out_ HKEY *phkeyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryKeyW
+`HRESULT := AssocQueryKeyW(_In_ ASSOCF flags, _In_ ASSOCKEY key, _In_ LPCWSTR pszAssoc, _In_ LPCWSTR pszExtra, _Out_ HKEY *phkeyOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryString
+`HRESULT := AssocQueryString(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCTSTR pszAssoc, _In_opt_ LPCTSTR pszExtra, _Out_opt_ LPTSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryStringA
+`HRESULT := AssocQueryStringA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCSTR pszAssoc, _In_opt_ LPCSTR pszExtra, _Out_opt_ LPSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryStringByKey
+`HRESULT := AssocQueryStringByKey(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCTSTR pszExtra, _Out_opt_ LPTSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryStringByKeyA
+`HRESULT := AssocQueryStringByKeyA(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCSTR pszExtra, _Out_opt_ LPSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryStringByKeyW
+`HRESULT := AssocQueryStringByKeyW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ HKEY hkAssoc, _In_opt_ LPCWSTR pszExtra, _Out_opt_ LPWSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocQueryStringW
+`HRESULT := AssocQueryStringW(_In_ ASSOCF flags, _In_ ASSOCSTR str, _In_ LPCWSTR pszAssoc, _In_opt_ LPCWSTR pszExtra, _Out_opt_ LPWSTR pszOut, _Inout_ DWORD *pcchOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChrCmpI
+`BOOL := ChrCmpI(_In_ TCHAR w1, _In_ TCHAR w2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChrCmpIA
+`BOOL := ChrCmpIA(_In_ TCHAR w1, _In_ TCHAR w2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChrCmpIW
+`BOOL := ChrCmpIW(_In_ TCHAR w1, _In_ TCHAR w2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ColorAdjustLuma
+`COLORREF := ColorAdjustLuma(COLORREF clrRGB, int n, BOOL fScale)
+`/docs/commands/WinApi.htm
+
+
+Function
+ColorHLSToRGB
+`COLORREF := ColorHLSToRGB(WORD wHue, WORD wLuminance, WORD wSaturation)
+`/docs/commands/WinApi.htm
+
+
+Function
+ColorRGBToHLS
+`VOID := ColorRGBToHLS(COLORREF clrRGB, _Out_ WORD *pwHue, _Out_ WORD *pwLuminance, _Out_ WORD *pwSaturation)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConnectToConnectionPoint
+`HRESULT := ConnectToConnectionPoint(_In_opt_ IUnknown *punk, _In_ REFIID riidEvent, BOOL fConnect, _In_ IUnknown *punkTarget, _Out_ DWORD *pdwCookie, _Out_opt_ IConnectionPoint **ppcpOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+DllInstall
+`HRESULT := DllInstall(BOOL bInstall, _In_opt_ PCWSTR pszCmdLine)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAcceptLanguages
+`HRESULT := GetAcceptLanguages(_Out_ LPTSTR pszLanguages, _Inout_ DWORD *pcchLanguages)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAcceptLanguagesA
+`HRESULT := GetAcceptLanguagesA(_Out_ LPSTR pszLanguages, _Inout_ DWORD *pcchLanguages)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAcceptLanguagesW
+`HRESULT := GetAcceptLanguagesW(_Out_ LPWSTR pszLanguages, _Inout_ DWORD *pcchLanguages)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuPosFromID
+`int := GetMenuPosFromID(_In_ HMENU hmenu, UINT id)
+`/docs/commands/WinApi.htm
+
+
+Function
+HashData
+`HRESULT := HashData(_In_ BYTE *pbData, DWORD cbData, _Out_ BYTE *pbHash, DWORD cbHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+IntlStrEqWorker
+`BOOL := IntlStrEqWorker(_In_ BOOL fCaseSens, _In_ LPCTSTR pszStr1, _In_ LPCTSTR pszStr2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+IntlStrEqWorkerA
+`BOOL := IntlStrEqWorkerA(_In_ BOOL fCaseSens, _In_ LPCSTR pszStr1, _In_ LPCSTR pszStr2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+IntlStrEqWorkerW
+`BOOL := IntlStrEqWorkerW(_In_ BOOL fCaseSens, _In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharSpace
+`BOOL := IsCharSpace(_In_ TCHAR wch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharSpaceA
+`BOOL := IsCharSpaceA(_In_ TCHAR wch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharSpaceW
+`BOOL := IsCharSpaceW(_In_ TCHAR wch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsInternetESCEnabled
+`BOOL := IsInternetESCEnabled(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsOS
+`BOOL := IsOS(_In_ DWORD dwOS)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_Copy
+`HRESULT := IStream_Copy(_In_ IStream *pstmFrom, _In_ IStream *pstmTo, _In_ DWORD cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_Read
+`HRESULT := IStream_Read(_In_ IStream *pstm, _Out_ VOID *pv, _In_ ULONG cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_ReadPidl
+`HRESULT := IStream_ReadPidl(_In_ IStream* pstm, _Out_ PIDLIST_RELATIVE* ppidlOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_ReadStr
+`HRESULT := IStream_ReadStr(_In_ IStream *pstm, _Out_ PWSTR *ppsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_Reset
+`HRESULT := IStream_Reset(_In_ IStream *pstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_Size
+`HRESULT := IStream_Size(_In_ IStream *pstm, _Out_ ULARGE_INTEGER *pui)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_Write
+`HRESULT := IStream_Write(_In_ IStream *pstm, _In_ const void *pv, _In_ ULONG cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_WritePidl
+`HRESULT := IStream_WritePidl(_In_ IStream* pstm, _In_ PCUIDLIST_RELATIVE pidlWrite)
+`/docs/commands/WinApi.htm
+
+
+Function
+IStream_WriteStr
+`HRESULT := IStream_WriteStr(_In_ IStream *pstm, _In_ PCWSTR psz)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_AtomicRelease
+`VOID := IUnknown_AtomicRelease(_Inout_opt_ void **ppunk)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_GetSite
+`HRESULT := IUnknown_GetSite(_In_ IUnknown *punk, _In_ REFIID riid, _Out_ VOID **ppvSite)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_GetWindow
+`HRESULT := IUnknown_GetWindow(_In_ IUnknown *punk, _Out_ HWND *phwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_QueryService
+`HRESULT := IUnknown_QueryService(_In_ IUnknown *punk, _In_ REFGUID guidService, _In_ REFIID riid, _Out_ void **ppvOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_Set
+`VOID := IUnknown_Set(_Inout_ IUnknown **ppunk, _In_opt_ IUnknown *punk)
+`/docs/commands/WinApi.htm
+
+
+Function
+IUnknown_SetSite
+`HRESULT := IUnknown_SetSite(_In_ IUnknown *punk, _In_ IUnknown *punkSite)
+`/docs/commands/WinApi.htm
+
+
+Function
+MLFreeLibrary
+`BOOL := MLFreeLibrary(_In_ HMODULE hModule)
+`/docs/commands/WinApi.htm
+
+
+Function
+MLLoadLibrary
+`HINSTANCE := MLLoadLibrary(_In_ LPCTSTR lpszLibFileName, _In_ HMODULE hModule, _In_ DWORD dwCrossCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+MLLoadLibraryA
+`HINSTANCE := MLLoadLibraryA(_In_ LPCSTR lpszLibFileName, _In_ HMODULE hModule, _In_ DWORD dwCrossCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+MLLoadLibraryW
+`HINSTANCE := MLLoadLibraryW(_In_ LPCWSTR lpszLibFileName, _In_ HMODULE hModule, _In_ DWORD dwCrossCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+ParseURL
+`HRESULT := ParseURL(_In_ LPCTSTR pcszUrl, _Inout_ PARSEDURL *ppu)
+`/docs/commands/WinApi.htm
+
+
+Function
+ParseURLA
+`HRESULT := ParseURLA(_In_ LPCSTR pcszUrl, _Inout_ PARSEDURL *ppu)
+`/docs/commands/WinApi.htm
+
+
+Function
+ParseURLW
+`HRESULT := ParseURLW(_In_ LPCWSTR pcszUrl, _Inout_ PARSEDURL *ppu)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddBackslash
+`LPTSTR := PathAddBackslash(_Inout_ LPTSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddBackslashA
+`LPSTR := PathAddBackslashA(_Inout_ LPSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddBackslashW
+`LPWSTR := PathAddBackslashW(_Inout_ LPWSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddExtension
+`BOOL := PathAddExtension(_Inout_ LPTSTR pszPath, _In_opt_ LPCTSTR pszExtension)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddExtensionA
+`BOOL := PathAddExtensionA(_Inout_ LPSTR pszPath, _In_opt_ LPCSTR pszExtension)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAddExtensionW
+`BOOL := PathAddExtensionW(_Inout_ LPWSTR pszPath, _In_opt_ LPCWSTR pszExtension)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAppend
+`BOOL := PathAppend(_Inout_ LPTSTR pszPath, _In_ LPCTSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAppendA
+`BOOL := PathAppendA(_Inout_ LPSTR pszPath, _In_ LPCSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathAppendW
+`BOOL := PathAppendW(_Inout_ LPWSTR pszPath, _In_ LPCWSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathBuildRoot
+`LPTSTR := PathBuildRoot(_Out_ LPTSTR szRoot, _In_ int iDrive)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathBuildRootA
+`LPSTR := PathBuildRootA(_Out_ LPSTR szRoot, _In_ int iDrive)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathBuildRootW
+`LPWSTR := PathBuildRootW(_Out_ LPWSTR szRoot, _In_ int iDrive)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCanonicalize
+`BOOL := PathCanonicalize(_Out_ LPTSTR lpszDst, _In_ LPCTSTR lpszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCanonicalizeA
+`BOOL := PathCanonicalizeA(_Out_ LPSTR lpszDst, _In_ LPCSTR lpszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCanonicalizeW
+`BOOL := PathCanonicalizeW(_Out_ LPWSTR lpszDst, _In_ LPCWSTR lpszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCombine
+`LPTSTR := PathCombine(_Out_ LPTSTR pszPathOut, _In_opt_ LPCTSTR pszPathIn, _In_ LPCTSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCombineA
+`LPSTR := PathCombineA(_Out_ LPSTR pszPathOut, _In_opt_ LPCSTR pszPathIn, _In_ LPCSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCombineW
+`LPWSTR := PathCombineW(_Out_ LPWSTR pszPathOut, _In_opt_ LPCWSTR pszPathIn, _In_ LPCWSTR pszMore)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCommonPrefix
+`int := PathCommonPrefix(_In_ LPCTSTR pszFile1, _In_ LPCTSTR pszFile2, _Out_opt_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCommonPrefixA
+`int := PathCommonPrefixA(_In_ LPCSTR pszFile1, _In_ LPCSTR pszFile2, _Out_opt_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCommonPrefixW
+`int := PathCommonPrefixW(_In_ LPCWSTR pszFile1, _In_ LPCWSTR pszFile2, _Out_opt_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPath
+`BOOL := PathCompactPath(_In_ HDC hDC, _Inout_ LPTSTR lpszPath, _In_ UINT dx)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPathA
+`BOOL := PathCompactPathA(_In_ HDC hDC, _Inout_ LPSTR lpszPath, _In_ UINT dx)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPathEx
+`BOOL := PathCompactPathEx(_Out_ LPTSTR pszOut, _In_ LPCTSTR pszSrc, _In_ UINT cchMax, _Reserved_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPathExA
+`BOOL := PathCompactPathExA(_Out_ LPSTR pszOut, _In_ LPCSTR pszSrc, _In_ UINT cchMax, _Reserved_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPathExW
+`BOOL := PathCompactPathExW(_Out_ LPWSTR pszOut, _In_ LPCWSTR pszSrc, _In_ UINT cchMax, _Reserved_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCompactPathW
+`BOOL := PathCompactPathW(_In_ HDC hDC, _Inout_ LPWSTR lpszPath, _In_ UINT dx)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCreateFromUrl
+`HRESULT := PathCreateFromUrl(_In_ PCTSTR pszUrl, _Out_ PTSTR pszPath, _Inout_ DWORD *pcchPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCreateFromUrlA
+`HRESULT := PathCreateFromUrlA(_In_ PCTSTR pszUrl, _Out_ PTSTR pszPath, _Inout_ DWORD *pcchPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCreateFromUrlAlloc
+`HRESULT := PathCreateFromUrlAlloc(_In_ PCWSTR pszIn, _Out_ PWSTR *ppszOut, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCreateFromUrlW
+`HRESULT := PathCreateFromUrlW(_In_ PCTSTR pszUrl, _Out_ PTSTR pszPath, _Inout_ DWORD *pcchPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFileExists
+`BOOL := PathFileExists(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFileExistsA
+`BOOL := PathFileExistsA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFileExistsW
+`BOOL := PathFileExistsW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindExtension
+`PTSTR := PathFindExtension(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindExtensionA
+`PTSTR := PathFindExtensionA(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindExtensionW
+`PTSTR := PathFindExtensionW(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindFileName
+`PTSTR := PathFindFileName(_In_ PTSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindFileNameA
+`PTSTR := PathFindFileNameA(_In_ PTSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindFileNameW
+`PTSTR := PathFindFileNameW(_In_ PTSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindNextComponent
+`PTSTR := PathFindNextComponent(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindNextComponentA
+`PTSTR := PathFindNextComponentA(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindNextComponentW
+`PTSTR := PathFindNextComponentW(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindOnPath
+`BOOL := PathFindOnPath(_Inout_ LPTSTR pszFile, _In_opt_ LPCTSTR *ppszOtherDirs)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindOnPathA
+`BOOL := PathFindOnPathA(_Inout_ LPSTR pszFile, _In_opt_ LPCSTR *ppszOtherDirs)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindOnPathW
+`BOOL := PathFindOnPathW(_Inout_ LPWSTR pszFile, _In_opt_ LPCWSTR *ppszOtherDirs)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindSuffixArray
+`LPCTSTR := PathFindSuffixArray(_In_ LPCTSTR pszPath, _In_ const LPCTSTR *apszSuffix, _In_ int iArraySize)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindSuffixArrayA
+`LPCSTR := PathFindSuffixArrayA(_In_ LPCSTR pszPath, _In_ const LPCSTR *apszSuffix, _In_ int iArraySize)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathFindSuffixArrayW
+`LPCWSTR := PathFindSuffixArrayW(_In_ LPCWSTR pszPath, _In_ const LPCWSTR *apszSuffix, _In_ int iArraySize)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetArgs
+`PTSTR := PathGetArgs(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetArgsA
+`PTSTR := PathGetArgsA(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetArgsW
+`PTSTR := PathGetArgsW(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetCharType
+`UINT := PathGetCharType(_In_ TUCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetCharTypeA
+`UINT := PathGetCharTypeA(_In_ TUCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetCharTypeW
+`UINT := PathGetCharTypeW(_In_ TUCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetDriveNumber
+`int := PathGetDriveNumber(_In_ LPCTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetDriveNumberA
+`int := PathGetDriveNumberA(_In_ LPCSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetDriveNumberW
+`int := PathGetDriveNumberW(_In_ LPCWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsContentType
+`BOOL := PathIsContentType(_In_ LPCTSTR pszPath, _In_ LPCTSTR pszContentType)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsContentTypeA
+`BOOL := PathIsContentTypeA(_In_ LPCSTR pszPath, _In_ LPCSTR pszContentType)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsContentTypeW
+`BOOL := PathIsContentTypeW(_In_ LPCWSTR pszPath, _In_ LPCWSTR pszContentType)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectory
+`BOOL := PathIsDirectory(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectoryA
+`BOOL := PathIsDirectoryA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectoryEmpty
+`BOOL := PathIsDirectoryEmpty(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectoryEmptyA
+`BOOL := PathIsDirectoryEmptyA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectoryEmptyW
+`BOOL := PathIsDirectoryEmptyW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsDirectoryW
+`BOOL := PathIsDirectoryW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsFileSpec
+`BOOL := PathIsFileSpec(_In_ LPCTSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsFileSpecA
+`BOOL := PathIsFileSpecA(_In_ LPCSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsFileSpecW
+`BOOL := PathIsFileSpecW(_In_ LPCWSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsLFNFileSpec
+`BOOL := PathIsLFNFileSpec(_In_ LPCTSTR pszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsLFNFileSpecA
+`BOOL := PathIsLFNFileSpecA(_In_ LPCSTR pszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsLFNFileSpecW
+`BOOL := PathIsLFNFileSpecW(_In_ LPCWSTR pszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsNetworkPath
+`BOOL := PathIsNetworkPath(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsNetworkPathA
+`BOOL := PathIsNetworkPathA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsNetworkPathW
+`BOOL := PathIsNetworkPathW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsPrefix
+`BOOL := PathIsPrefix(_In_ IN LPCTSTR pszPrefix, _In_ IN LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsPrefixA
+`BOOL := PathIsPrefixA(_In_ IN LPCSTR pszPrefix, _In_ IN LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsPrefixW
+`BOOL := PathIsPrefixW(_In_ IN LPCWSTR pszPrefix, _In_ IN LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRelative
+`BOOL := PathIsRelative(_In_ LPCTSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRelativeA
+`BOOL := PathIsRelativeA(_In_ LPCSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRelativeW
+`BOOL := PathIsRelativeW(_In_ LPCWSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRoot
+`BOOL := PathIsRoot(_In_ LPCTSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRootA
+`BOOL := PathIsRootA(_In_ LPCSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsRootW
+`BOOL := PathIsRootW(_In_ LPCWSTR pPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSameRoot
+`BOOL := PathIsSameRoot(_In_ LPCTSTR pszPath1, _In_ LPCTSTR pszPath2)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSameRootA
+`BOOL := PathIsSameRootA(_In_ LPCSTR pszPath1, _In_ LPCSTR pszPath2)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSameRootW
+`BOOL := PathIsSameRootW(_In_ LPCWSTR pszPath1, _In_ LPCWSTR pszPath2)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSystemFolder
+`BOOL := PathIsSystemFolder(_In_opt_ LPCTSTR pszPath, _In_ DWORD dwAttrb)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSystemFolderA
+`BOOL := PathIsSystemFolderA(_In_opt_ LPCSTR pszPath, _In_ DWORD dwAttrb)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSystemFolderW
+`BOOL := PathIsSystemFolderW(_In_opt_ LPCWSTR pszPath, _In_ DWORD dwAttrb)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNC
+`BOOL := PathIsUNC(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCA
+`BOOL := PathIsUNCA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServer
+`BOOL := PathIsUNCServer(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServerA
+`BOOL := PathIsUNCServerA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServerShare
+`BOOL := PathIsUNCServerShare(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServerShareA
+`BOOL := PathIsUNCServerShareA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServerShareW
+`BOOL := PathIsUNCServerShareW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCServerW
+`BOOL := PathIsUNCServerW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsUNCW
+`BOOL := PathIsUNCW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsURL
+`BOOL := PathIsURL(_In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsURLA
+`BOOL := PathIsURLA(_In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsURLW
+`BOOL := PathIsURLW(_In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakePretty
+`BOOL := PathMakePretty(_Inout_ LPTSTR lpPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakePrettyA
+`BOOL := PathMakePrettyA(_Inout_ LPSTR lpPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakePrettyW
+`BOOL := PathMakePrettyW(_Inout_ LPWSTR lpPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakeSystemFolder
+`BOOL := PathMakeSystemFolder(_In_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakeSystemFolderA
+`BOOL := PathMakeSystemFolderA(_In_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakeSystemFolderW
+`BOOL := PathMakeSystemFolderW(_In_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpec
+`BOOL := PathMatchSpec(_In_ LPCSTR pszFile, _In_ LPCSTR pszSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpecA
+`BOOL := PathMatchSpecA(_In_ LPCSTR pszFile, _In_ LPCSTR pszSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpecEx
+`HRESULT := PathMatchSpecEx(_In_ LPCTSTR pszFile, _In_ LPCTSTR pszSpec, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpecExA
+`HRESULT := PathMatchSpecExA(_In_ LPCSTR pszFile, _In_ LPCSTR pszSpec, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpecExW
+`HRESULT := PathMatchSpecExW(_In_ LPCWSTR pszFile, _In_ LPCWSTR pszSpec, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMatchSpecW
+`BOOL := PathMatchSpecW(_In_ LPCSTR pszFile, _In_ LPCSTR pszSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathParseIconLocation
+`int := PathParseIconLocation(_Inout_ LPTSTR pszIconFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathParseIconLocationA
+`int := PathParseIconLocationA(_Inout_ LPSTR pszIconFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathParseIconLocationW
+`int := PathParseIconLocationW(_Inout_ LPWSTR pszIconFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathQuoteSpaces
+`BOOL := PathQuoteSpaces(_Inout_ LPTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathQuoteSpacesA
+`BOOL := PathQuoteSpacesA(_Inout_ LPSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathQuoteSpacesW
+`BOOL := PathQuoteSpacesW(_Inout_ LPWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRelativePathTo
+`BOOL := PathRelativePathTo(_Out_ LPTSTR pszPath, _In_ LPCTSTR pszFrom, _In_ DWORD dwAttrFrom, _In_ LPCTSTR pszTo, _In_ DWORD dwAttrTo)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRelativePathToA
+`BOOL := PathRelativePathToA(_Out_ LPSTR pszPath, _In_ LPCSTR pszFrom, _In_ DWORD dwAttrFrom, _In_ LPCSTR pszTo, _In_ DWORD dwAttrTo)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRelativePathToW
+`BOOL := PathRelativePathToW(_Out_ LPWSTR pszPath, _In_ LPCWSTR pszFrom, _In_ DWORD dwAttrFrom, _In_ LPCWSTR pszTo, _In_ DWORD dwAttrTo)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveArgs
+`VOID := PathRemoveArgs(_Inout_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveArgsA
+`VOID := PathRemoveArgsA(_Inout_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveArgsW
+`VOID := PathRemoveArgsW(_Inout_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBackslash
+`LPTSTR := PathRemoveBackslash(_Inout_ LPTSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBackslashA
+`LPSTR := PathRemoveBackslashA(_Inout_ LPSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBackslashW
+`LPWSTR := PathRemoveBackslashW(_Inout_ LPWSTR lpszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBlanks
+`VOID := PathRemoveBlanks(_Inout_ LPTSTR lpszString)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBlanksA
+`VOID := PathRemoveBlanksA(_Inout_ LPSTR lpszString)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveBlanksW
+`VOID := PathRemoveBlanksW(_Inout_ LPWSTR lpszString)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveExtension
+`VOID := PathRemoveExtension(_Inout_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveExtensionA
+`VOID := PathRemoveExtensionA(_Inout_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveExtensionW
+`VOID := PathRemoveExtensionW(_Inout_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveFileSpec
+`BOOL := PathRemoveFileSpec(_Inout_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveFileSpecA
+`BOOL := PathRemoveFileSpecA(_Inout_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRemoveFileSpecW
+`BOOL := PathRemoveFileSpecW(_Inout_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRenameExtension
+`BOOL := PathRenameExtension(_Inout_ LPTSTR pszPath, _In_ LPCTSTR pszExt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRenameExtensionA
+`BOOL := PathRenameExtensionA(_Inout_ LPSTR pszPath, _In_ LPCSTR pszExt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathRenameExtensionW
+`BOOL := PathRenameExtensionW(_Inout_ LPWSTR pszPath, _In_ LPCWSTR pszExt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSearchAndQualify
+`BOOL := PathSearchAndQualify(_In_ LPCTSTR pcszPath, _Out_ LPTSTR pszFullyQualifiedPath, _In_ UINT cchFullyQualifiedPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSearchAndQualifyA
+`BOOL := PathSearchAndQualifyA(_In_ LPCSTR pcszPath, _Out_ LPSTR pszFullyQualifiedPath, _In_ UINT cchFullyQualifiedPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSearchAndQualifyW
+`BOOL := PathSearchAndQualifyW(_In_ LPCWSTR pcszPath, _Out_ LPWSTR pszFullyQualifiedPath, _In_ UINT cchFullyQualifiedPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSetDlgItemPath
+`VOID := PathSetDlgItemPath(_In_ HWND hDlg, _In_ int id, _In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSetDlgItemPathA
+`VOID := PathSetDlgItemPathA(_In_ HWND hDlg, _In_ int id, _In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSetDlgItemPathW
+`VOID := PathSetDlgItemPathW(_In_ HWND hDlg, _In_ int id, _In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSkipRoot
+`PTSTR := PathSkipRoot(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSkipRootA
+`PTSTR := PathSkipRootA(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathSkipRootW
+`PTSTR := PathSkipRootW(_In_ PTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripPath
+`VOID := PathStripPath(_Inout_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripPathA
+`VOID := PathStripPathA(_Inout_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripPathW
+`VOID := PathStripPathW(_Inout_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripToRoot
+`BOOL := PathStripToRoot(_Inout_ LPTSTR szRoot)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripToRootA
+`BOOL := PathStripToRootA(_Inout_ LPSTR szRoot)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathStripToRootW
+`BOOL := PathStripToRootW(_Inout_ LPWSTR szRoot)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUndecorate
+`VOID := PathUndecorate(_Inout_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUndecorateA
+`VOID := PathUndecorateA(_Inout_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUndecorateW
+`VOID := PathUndecorateW(_Inout_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnExpandEnvStrings
+`BOOL := PathUnExpandEnvStrings(_In_ LPCTSTR pszPath, _Out_ LPTSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnExpandEnvStringsA
+`BOOL := PathUnExpandEnvStringsA(_In_ LPCSTR pszPath, _Out_ LPSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnExpandEnvStringsW
+`BOOL := PathUnExpandEnvStringsW(_In_ LPCWSTR pszPath, _Out_ LPWSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnmakeSystemFolder
+`BOOL := PathUnmakeSystemFolder(_In_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnmakeSystemFolderA
+`BOOL := PathUnmakeSystemFolderA(_In_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnmakeSystemFolderW
+`BOOL := PathUnmakeSystemFolderW(_In_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnquoteSpaces
+`VOID := PathUnquoteSpaces(_Inout_ LPTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnquoteSpacesA
+`VOID := PathUnquoteSpacesA(_Inout_ LPSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathUnquoteSpacesW
+`VOID := PathUnquoteSpacesW(_Inout_ LPWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+QISearch
+`HRESULT := QISearch(_In_ void *that, _In_ LPCQITAB pqit, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAllocShared
+`HANDLE := SHAllocShared(_In_opt_ const void *pvData, _In_ DWORD dwSize, _In_ DWORD dwDestinationProcessId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAnsiToAnsi
+`int := SHAnsiToAnsi(_In_ LPCSTR pszSrc, _Out_ LPWSTR pszDst, int cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAnsiToUnicode
+`int := SHAnsiToUnicode(_In_ PCSTR pszSrc, _Out_ PWSTR pwszDst, int cwchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAutoComplete
+`HRESULT := SHAutoComplete(_In_ HWND hwndEdit, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCopyKey
+`LSTATUS := SHCopyKey(_In_ HKEY hkeySrc, _In_opt_ LPCTSTR pszSrcSubKey, _In_ HKEY hkeyDest, _Reserved_ DWORD fReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCopyKeyA
+`LSTATUS := SHCopyKeyA(_In_ HKEY hkeySrc, _In_opt_ LPCSTR pszSrcSubKey, _In_ HKEY hkeyDest, _Reserved_ DWORD fReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCopyKeyW
+`LSTATUS := SHCopyKeyW(_In_ HKEY hkeySrc, _In_opt_ LPCWSTR pszSrcSubKey, _In_ HKEY hkeyDest, _Reserved_ DWORD fReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateMemStream
+`IStream* := SHCreateMemStream(_In_opt_ const BYTE *pInit, _In_ UINT cbInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellPalette
+`HPALETTE := SHCreateShellPalette(_In_opt_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateStreamOnFile
+`HRESULT := SHCreateStreamOnFile(_In_ LPCTSTR pszFile, _In_ DWORD grfMode, _Out_ IStream **ppstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateStreamOnFileA
+`HRESULT := SHCreateStreamOnFileA(_In_ LPCSTR pszFile, _In_ DWORD grfMode, _Out_ IStream **ppstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateStreamOnFileEx
+`HRESULT := SHCreateStreamOnFileEx(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _In_ DWORD dwAttributes, _In_ BOOL fCreate, _Reserved_ IStream *pstmTemplate, _Out_ IStream **ppstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateStreamOnFileW
+`HRESULT := SHCreateStreamOnFileW(_In_ LPCWSTR pszFile, _In_ DWORD grfMode, _Out_ IStream **ppstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateThread
+`BOOL := SHCreateThread(_In_ LPTHREAD_START_ROUTINE pfnThreadProc, _In_opt_ void *pData, _In_ SHCT_FLAGS dwFlags, _In_opt_ LPTHREAD_START_ROUTINE pfnCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateThreadRef
+`HRESULT := SHCreateThreadRef(_In_ LONG *pcRef, _Out_ IUnknown **ppunk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateThreadWithHandle
+`BOOL := SHCreateThreadWithHandle(_In_ LPTHREAD_START_ROUTINE pfnThreadProc, _In_opt_ void *pData, _In_ SHCT_FLAGS flags, _In_opt_ LPTHREAD_START_ROUTINE pfnCallback, _Out_opt_ HANDLE *pHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteEmptyKey
+`LSTATUS := SHDeleteEmptyKey(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteEmptyKeyA
+`LSTATUS := SHDeleteEmptyKeyA(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteEmptyKeyW
+`LSTATUS := SHDeleteEmptyKeyW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteKey
+`LSTATUS := SHDeleteKey(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteKeyA
+`LSTATUS := SHDeleteKeyA(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteKeyW
+`LSTATUS := SHDeleteKeyW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteValue
+`LSTATUS := SHDeleteValue(HKEY hkey, LPCTSTR pszSubKey, LPCTSTR pszValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteValueA
+`LSTATUS := SHDeleteValueA(HKEY hkey, LPCSTR pszSubKey, LPCSTR pszValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDeleteValueW
+`LSTATUS := SHDeleteValueW(HKEY hkey, LPCWSTR pszSubKey, LPCWSTR pszValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellMessageBox
+`int := ShellMessageBox(_In_ HINSTANCE hInst, _In_ HWND hWnd, _In_ LPCTSTR pszMsg, _In_ LPCTSTR pszTitle, _In_ UINT fuStyle, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellMessageBoxA
+`int := ShellMessageBoxA(_In_ HINSTANCE hInst, _In_ HWND hWnd, _In_ LPCSTR pszMsg, _In_ LPCSTR pszTitle, _In_ UINT fuStyle, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellMessageBoxW
+`int := ShellMessageBoxW(_In_ HINSTANCE hInst, _In_ HWND hWnd, _In_ LPCWSTR pszMsg, _In_ LPCWSTR pszTitle, _In_ UINT fuStyle, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumKeyEx
+`LSTATUS := SHEnumKeyEx(_In_ HKEY hkey, DWORD dwIndex, LPTSTR pszName, _In_ LPDWORD pcchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumKeyExA
+`LSTATUS := SHEnumKeyExA(_In_ HKEY hkey, DWORD dwIndex, LPSTR pszName, _In_ LPDWORD pcchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumKeyExW
+`LSTATUS := SHEnumKeyExW(_In_ HKEY hkey, DWORD dwIndex, LPWSTR pszName, _In_ LPDWORD pcchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumValue
+`LSTATUS := SHEnumValue(_In_ HKEY hkey, _In_ DWORD dwIndex, LPTSTR pszValueName, _Inout_opt_ LPDWORD pcchValueName, _Out_opt_ LPDWORD pdwType, LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumValueA
+`LSTATUS := SHEnumValueA(_In_ HKEY hkey, _In_ DWORD dwIndex, LPSTR pszValueName, _Inout_opt_ LPDWORD pcchValueName, _Out_opt_ LPDWORD pdwType, LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumValueW
+`LSTATUS := SHEnumValueW(_In_ HKEY hkey, _In_ DWORD dwIndex, LPWSTR pszValueName, _Inout_opt_ LPDWORD pcchValueName, _Out_opt_ LPDWORD pdwType, LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFormatDateTime
+`int := SHFormatDateTime(_In_ const FILETIME UNALIGNED *pft, _Inout_opt_ DWORD *pdwFlags, _Out_ LPTSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFormatDateTimeA
+`int := SHFormatDateTimeA(_In_ const FILETIME UNALIGNED *pft, _Inout_opt_ DWORD *pdwFlags, _Out_ LPSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFormatDateTimeW
+`int := SHFormatDateTimeW(_In_ const FILETIME UNALIGNED *pft, _Inout_opt_ DWORD *pdwFlags, _Out_ LPWSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFreeShared
+`BOOL := SHFreeShared(_In_ HANDLE hData, _In_ DWORD dwProcessId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetInverseCMAP
+`HRESULT := SHGetInverseCMAP(_Out_ BYTE *pbMap, _In_ ULONG cbMap)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetThreadRef
+`HRESULT := SHGetThreadRef(_In_ IUnknown **ppunk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetValue
+`LSTATUS := SHGetValue(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubKey, _In_opt_ LPCTSTR pszValue, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetValueA
+`LSTATUS := SHGetValueA(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubKey, _In_opt_ LPCSTR pszValue, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetValueW
+`LSTATUS := SHGetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetViewStatePropertyBag
+`HRESULT := SHGetViewStatePropertyBag(_In_opt_ PCIDLIST_ABSOLUTE pidl, _In_opt_ PCWSTR pszBagName, DWORD dwFlags, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHIsChildOrSelf
+`HRESULT := SHIsChildOrSelf(_In_ HWND hWndParent, _In_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHLoadIndirectString
+`HRESULT := SHLoadIndirectString(_In_ PCWSTR pszSource, _Out_ PWSTR pszOutBuf, _In_ UINT cchOutBuf, _Reserved_ void **ppvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHLockShared
+`void* := SHLockShared(_In_ HANDLE hData, _In_ DWORD dwProcessId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHMessageBoxCheck
+`int := SHMessageBoxCheck(_In_opt_ HWND hwnd, _In_ LPCTSTR pszText, _In_ LPCTSTR pszCaption, UINT uType, int iDefault, _In_ LPCTSTR pszRegVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHMessageBoxCheckA
+`int := SHMessageBoxCheckA(_In_opt_ HWND hwnd, _In_ LPCSTR pszText, _In_ LPCSTR pszCaption, UINT uType, int iDefault, _In_ LPCSTR pszRegVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHMessageBoxCheckW
+`int := SHMessageBoxCheckW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszText, _In_ LPCWSTR pszCaption, UINT uType, int iDefault, _In_ LPCWSTR pszRegVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStream
+`IStream* := SHOpenRegStream(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubkey, _In_opt_ LPCTSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStream2
+`IStream* := SHOpenRegStream2(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubkey, _In_opt_ LPCTSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStream2A
+`IStream* := SHOpenRegStream2A(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubkey, _In_opt_ LPCSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStream2W
+`IStream* := SHOpenRegStream2W(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubkey, _In_opt_ LPCWSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStreamA
+`IStream* := SHOpenRegStreamA(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubkey, _In_opt_ LPCSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenRegStreamW
+`IStream* := SHOpenRegStreamW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubkey, _In_opt_ LPCWSTR pszValue, _In_ DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryInfoKey
+`LSTATUS := SHQueryInfoKey(_In_ HKEY hkey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryInfoKeyA
+`LSTATUS := SHQueryInfoKeyA(_In_ HKEY hkey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryInfoKeyW
+`LSTATUS := SHQueryInfoKeyW(_In_ HKEY hkey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryValueEx
+`DWORD := SHQueryValueEx(_In_ HKEY hkey, _In_opt_ LPCTSTR pszValue, LPDWORD pdwReserved, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryValueExA
+`DWORD := SHQueryValueExA(_In_ HKEY hkey, _In_opt_ LPCSTR pszValue, LPDWORD pdwReserved, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryValueExW
+`DWORD := SHQueryValueExW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszValue, LPDWORD pdwReserved, _Out_opt_ LPDWORD pdwType, _Out_opt_ LPVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegCloseUSKey
+`LSTATUS := SHRegCloseUSKey(_In_ HUSKEY hUSKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegCreateUSKey
+`LSTATUS := SHRegCreateUSKey(_In_ LPCTSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegCreateUSKeyA
+`LSTATUS := SHRegCreateUSKeyA(_In_ LPCSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegCreateUSKeyW
+`LSTATUS := SHRegCreateUSKeyW(_In_ LPCWSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteEmptyUSKey
+`LSTATUS := SHRegDeleteEmptyUSKey(_In_ HUSKEY hUSKey, _In_ LPCSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteEmptyUSKeyA
+`LSTATUS := SHRegDeleteEmptyUSKeyA(_In_ HUSKEY hUSKey, _In_ LPCSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteEmptyUSKeyW
+`LSTATUS := SHRegDeleteEmptyUSKeyW(_In_ HUSKEY hUSKey, _In_ LPCSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteUSValue
+`LSTATUS := SHRegDeleteUSValue(_In_ HUSKEY hUSKey, _In_ LPCTSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteUSValueA
+`LSTATUS := SHRegDeleteUSValueA(_In_ HUSKEY hUSKey, _In_ LPCSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDeleteUSValueW
+`LSTATUS := SHRegDeleteUSValueW(_In_ HUSKEY hUSKey, _In_ LPCWSTR pszValue, _In_ SHREGDEL_FLAGS delRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegDuplicateHKey
+`HKEY := SHRegDuplicateHKey(_In_ HKEY hKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSKey
+`LSTATUS := SHRegEnumUSKey(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPTSTR pszName, _Inout_ LPDWORD pcchName, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSKeyA
+`LSTATUS := SHRegEnumUSKeyA(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPSTR pszName, _Inout_ LPDWORD pcchName, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSKeyW
+`LSTATUS := SHRegEnumUSKeyW(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPWSTR pszName, _Inout_ LPDWORD pcchName, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSValue
+`LSTATUS := SHRegEnumUSValue(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPTSTR pszValueName, _Inout_ LPDWORD pcchValueNameLen, _Out_opt_ LPDWORD pdwType, _Out_opt_ void *pvData, _Inout_opt_ LPDWORD pcbData, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSValueA
+`LSTATUS := SHRegEnumUSValueA(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPSTR pszValueName, _Inout_ LPDWORD pcchValueNameLen, _Out_opt_ LPDWORD pdwType, _Out_opt_ void *pvData, _Inout_opt_ LPDWORD pcbData, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegEnumUSValueW
+`LSTATUS := SHRegEnumUSValueW(_In_ HUSKEY hUSKey, _In_ DWORD dwIndex, _Out_ LPWSTR pszValueName, _Inout_ LPDWORD pcchValueNameLen, _Out_opt_ LPDWORD pdwType, _Out_opt_ void *pvData, _Inout_opt_ LPDWORD pcbData, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetBoolUSValue
+`BOOL := SHRegGetBoolUSValue(_In_ LPCTSTR pszSubKey, _In_opt_ LPCTSTR pszValue, _In_ BOOL fIgnoreHKCU, _In_ BOOL fDefault)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetBoolUSValueA
+`BOOL := SHRegGetBoolUSValueA(_In_ LPCSTR pszSubKey, _In_opt_ LPCSTR pszValue, _In_ BOOL fIgnoreHKCU, _In_ BOOL fDefault)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetBoolUSValueW
+`BOOL := SHRegGetBoolUSValueW(_In_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _In_ BOOL fIgnoreHKCU, _In_ BOOL fDefault)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetIntW
+`int := SHRegGetIntW(_In_ HKEY hk, _In_ LPCWSTR szKey, _In_ int nDefault)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetPath
+`LSTATUS := SHRegGetPath(_In_ HKEY hkey, _In_ LPCTSTR pszSubkey, _In_ LPCTSTR pszValue, _Out_ LPTSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetPathA
+`LSTATUS := SHRegGetPathA(_In_ HKEY hkey, _In_ LPCSTR pszSubkey, _In_ LPCSTR pszValue, _Out_ LPSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetPathW
+`LSTATUS := SHRegGetPathW(_In_ HKEY hkey, _In_ LPCWSTR pszSubkey, _In_ LPCWSTR pszValue, _Out_ LPWSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetUSValue
+`LSTATUS := SHRegGetUSValue(_In_ LPCTSTR pszSubKey, _In_opt_ LPCTSTR pszValue, _Inout_opt_ DWORD *pdwType, _Out_opt_ void *pvData, _Inout_opt_ DWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ void *pvDefaultData, _In_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetUSValueA
+`LSTATUS := SHRegGetUSValueA(_In_ LPCSTR pszSubKey, _In_opt_ LPCSTR pszValue, _Inout_opt_ DWORD *pdwType, _Out_opt_ void *pvData, _Inout_opt_ DWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ void *pvDefaultData, _In_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetUSValueW
+`LSTATUS := SHRegGetUSValueW(_In_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _Inout_opt_ DWORD *pdwType, _Out_opt_ void *pvData, _Inout_opt_ DWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ void *pvDefaultData, _In_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetValue
+`LSTATUS := SHRegGetValue(_In_ HKEY hkey, _In_ LPCTSTR pszSubKey, _In_ LPCTSTR pszValue, _In_ SRRF srrfFlags, _Inout_ LPDWORD pdwType, _Out_ LPVOID pvData, _Inout_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetValueA
+`LSTATUS := SHRegGetValueA(_In_ HKEY hkey, _In_ LPCSTR pszSubKey, _In_ LPCSTR pszValue, _In_ SRRF srrfFlags, _Inout_ LPDWORD pdwType, _Out_ LPVOID pvData, _Inout_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegGetValueW
+`LSTATUS := SHRegGetValueW(_In_ HKEY hkey, _In_ LPCWSTR pszSubKey, _In_ LPCWSTR pszValue, _In_ SRRF srrfFlags, _Inout_ LPDWORD pdwType, _Out_ LPVOID pvData, _Inout_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegOpenUSKey
+`LSTATUS := SHRegOpenUSKey(_In_ LPCTSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ BOOL fIgnoreHKCU)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegOpenUSKeyA
+`LSTATUS := SHRegOpenUSKeyA(_In_ LPCSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ BOOL fIgnoreHKCU)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegOpenUSKeyW
+`LSTATUS := SHRegOpenUSKeyW(_In_ LPCWSTR pszPath, _In_ REGSAM samDesired, _In_opt_ HUSKEY hRelativeUSKey, _Out_ PHUSKEY phNewUSKey, _In_ BOOL fIgnoreHKCU)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryInfoUSKey
+`LSTATUS := SHRegQueryInfoUSKey(_In_ HUSKEY hUSKey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryInfoUSKeyA
+`LSTATUS := SHRegQueryInfoUSKeyA(_In_ HUSKEY hUSKey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryInfoUSKeyW
+`LSTATUS := SHRegQueryInfoUSKeyW(_In_ HUSKEY hUSKey, _Out_opt_ LPDWORD pcSubKeys, _Out_opt_ LPDWORD pcchMaxSubKeyLen, _Out_opt_ LPDWORD pcValues, _Out_opt_ LPDWORD pcchMaxValueNameLen, _In_ SHREGENUM_FLAGS enumRegFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryUSValue
+`LSTATUS := SHRegQueryUSValue(_In_ HUSKEY hUSKey, _In_opt_ LPCTSTR pszValue, _Inout_opt_ LPDWORD *pdwType, _Out_opt_ LPVOID *pvData, _Inout_ LPDWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ LPVOID *pvDefaultData, _In_opt_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryUSValueA
+`LSTATUS := SHRegQueryUSValueA(_In_ HUSKEY hUSKey, _In_opt_ LPCSTR pszValue, _Inout_opt_ LPDWORD *pdwType, _Out_opt_ LPVOID *pvData, _Inout_ LPDWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ LPVOID *pvDefaultData, _In_opt_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegQueryUSValueW
+`LSTATUS := SHRegQueryUSValueW(_In_ HUSKEY hUSKey, _In_opt_ LPCWSTR pszValue, _Inout_opt_ LPDWORD *pdwType, _Out_opt_ LPVOID *pvData, _Inout_ LPDWORD *pcbData, _In_ BOOL fIgnoreHKCU, _In_opt_ LPVOID *pvDefaultData, _In_opt_ DWORD dwDefaultDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetPath
+`LSTATUS := SHRegSetPath(_In_ HKEY hkey, _In_ LPCTSTR pszSubkey, _In_ LPCTSTR pszValue, _In_ LPCTSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetPathA
+`LSTATUS := SHRegSetPathA(_In_ HKEY hkey, _In_ LPCSTR pszSubkey, _In_ LPCSTR pszValue, _In_ LPCSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetPathW
+`LSTATUS := SHRegSetPathW(_In_ HKEY hkey, _In_ LPCWSTR pszSubkey, _In_ LPCWSTR pszValue, _In_ LPCWSTR pszPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetUSValue
+`LSTATUS := SHRegSetUSValue(_In_ LPCTSTR pszSubKey, _In_ LPCTSTR pszValue, _In_ DWORD dwType, _In_opt_ LPVOID *pvData, _In_opt_ DWORD cbData, _In_opt_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetUSValueA
+`LSTATUS := SHRegSetUSValueA(_In_ LPCSTR pszSubKey, _In_ LPCSTR pszValue, _In_ DWORD dwType, _In_opt_ LPVOID *pvData, _In_opt_ DWORD cbData, _In_opt_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegSetUSValueW
+`LSTATUS := SHRegSetUSValueW(_In_ LPCWSTR pszSubKey, _In_ LPCWSTR pszValue, _In_ DWORD dwType, _In_opt_ LPVOID *pvData, _In_opt_ DWORD cbData, _In_opt_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegWriteUSValue
+`LSTATUS := SHRegWriteUSValue(_In_ HUSKEY hUSKey, _In_ LPCTSTR pszValue, _In_ DWORD dwType, _In_ const void *pvData, _In_ DWORD cbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegWriteUSValueA
+`LSTATUS := SHRegWriteUSValueA(_In_ HUSKEY hUSKey, _In_ LPCSTR pszValue, _In_ DWORD dwType, _In_ const void *pvData, _In_ DWORD cbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRegWriteUSValueW
+`LSTATUS := SHRegWriteUSValueW(_In_ HUSKEY hUSKey, _In_ LPCWSTR pszValue, _In_ DWORD dwType, _In_ const void *pvData, _In_ DWORD cbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHReleaseThreadRef
+`HRESULT := SHReleaseThreadRef(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSendMessageBroadcast
+`LRESULT := SHSendMessageBroadcast(_In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSendMessageBroadcastA
+`LRESULT := SHSendMessageBroadcastA(_In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSendMessageBroadcastW
+`LRESULT := SHSendMessageBroadcastW(_In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetThreadRef
+`HRESULT := SHSetThreadRef(_In_opt_ IUnknown *pUnk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetValue
+`LSTATUS := SHSetValue(_In_ HKEY hkey, _In_opt_ LPCTSTR pszSubKey, _In_opt_ LPCTSTR pszValue, _In_ DWORD dwType, _In_opt_ LPCVOID pvData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetValueA
+`LSTATUS := SHSetValueA(_In_ HKEY hkey, _In_opt_ LPCSTR pszSubKey, _In_opt_ LPCSTR pszValue, _In_ DWORD dwType, _In_opt_ LPCVOID pvData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetValueW
+`LSTATUS := SHSetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR pszSubKey, _In_opt_ LPCWSTR pszValue, _In_ DWORD dwType, _In_opt_ LPCVOID pvData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSkipJunction
+`BOOL := SHSkipJunction(_In_opt_ IBindCtx *pbc, _In_ const CLSID *pclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStrDup
+`HRESULT := SHStrDup(_In_ LPCTSTR pszSource, _Out_ LPTSTR *ppwsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStrDupA
+`HRESULT := SHStrDupA(_In_ LPCSTR pszSource, _Out_ LPSTR *ppwsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStrDupW
+`HRESULT := SHStrDupW(_In_ LPCWSTR pszSource, _Out_ LPWSTR *ppwsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStripMneumonic
+`TCHAR := SHStripMneumonic(_Inout_ LPTSTR *pszMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStripMneumonicA
+`TCHAR := SHStripMneumonicA(_Inout_ LPSTR *pszMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStripMneumonicW
+`TCHAR := SHStripMneumonicW(_Inout_ LPWSTR *pszMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUnicodeToAnsi
+`int := SHUnicodeToAnsi(_In_ PCWSTR pwszSrc, _Out_ PSTR pszDst, int cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUnicodeToUnicode
+`int := SHUnicodeToUnicode(_In_ PCWSTR pwzSrc, _Out_ PWSTR pwzDst, int cwchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUnlockShared
+`BOOL := SHUnlockShared(_In_ void *pvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCat
+`PTSTR := StrCat(_Inout_ PTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCatBuff
+`PTSTR := StrCatBuff(_Inout_ PTSTR pszDest, _In_ PCTSTR pszSrc, int cchDestBuffSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCatBuffA
+`PTSTR := StrCatBuffA(_Inout_ PTSTR pszDest, _In_ PCTSTR pszSrc, int cchDestBuffSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCatBuffW
+`PTSTR := StrCatBuffW(_Inout_ PTSTR pszDest, _In_ PCTSTR pszSrc, int cchDestBuffSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCatChainW
+`DWORD := StrCatChainW(_Out_ PWSTR pszDst, DWORD cchDst, DWORD ichAt, _In_ PCWSTR pszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCatW
+`PTSTR := StrCatW(_Inout_ PTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChr
+`PTSTR := StrChr(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrA
+`PTSTR := StrChrA(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrI
+`PTSTR := StrChrI(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrIA
+`PTSTR := StrChrIA(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrIW
+`PTSTR := StrChrIW(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrNIW
+`PWSTR := StrChrNIW(_In_ PCWSTR pszStart, WCHAR wMatch, UINT cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrNW
+`PWSTR := StrChrNW(_In_ PWSTR pszStart, WCHAR wMatch, UINT cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrChrW
+`PTSTR := StrChrW(_In_ PTSTR pszStart, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmp
+`int := StrCmp(_In_ PCTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpC
+`int := StrCmpC(_Out_ LPCTSTR lpStr1, _Out_ LPCTSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpCA
+`int := StrCmpCA(_Out_ LPCSTR lpStr1, _Out_ LPCSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpCW
+`int := StrCmpCW(_Out_ LPCWSTR lpStr1, _Out_ LPCWSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpI
+`int := StrCmpI(_In_ PCTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpIC
+`int := StrCmpIC(_In_ LPCTSTR lpStr1, _In_ LPCTSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpICA
+`int := StrCmpICA(_In_ LPCSTR lpStr1, _In_ LPCSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpICW
+`int := StrCmpICW(_In_ LPCWSTR lpStr1, _In_ LPCWSTR lpStr2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpIW
+`int := StrCmpIW(_In_ PCTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpLogicalW
+`int := StrCmpLogicalW(_In_ PCWSTR psz1, _In_ PCWSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpN
+`int := StrCmpN(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNA
+`int := StrCmpNA(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNC
+`int := StrCmpNC(_In_ LPCTSTR pszStr1, _In_ LPCTSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNCA
+`int := StrCmpNCA(_In_ LPCSTR pszStr1, _In_ LPCSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNCW
+`int := StrCmpNCW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNI
+`int := StrCmpNI(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNIA
+`int := StrCmpNIA(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNIC
+`int := StrCmpNIC(_In_ LPCTSTR pszStr1, _In_ LPCTSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNICA
+`int := StrCmpNICA(_In_ LPCSTR pszStr1, _In_ LPCSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNICW
+`int := StrCmpNICW(_In_ LPCWSTR pszStr1, _In_ LPCWSTR pszStr2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNIW
+`int := StrCmpNIW(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpNW
+`int := StrCmpNW(_In_ PCTSTR psz1, _In_ PCTSTR psz2, _In_ int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCmpW
+`int := StrCmpW(_In_ PCTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCpy
+`PTSTR := StrCpy(_Out_ PTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCpyN
+`PTSTR := StrCpyN(_Out_ PTSTR pszDst, _In_ PCTSTR pszSrc, int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCpyNW
+`PTSTR := StrCpyNW(_Out_ PTSTR pszDst, _In_ PCTSTR pszSrc, int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCpyW
+`PTSTR := StrCpyW(_Out_ PTSTR psz1, _In_ PCTSTR psz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpn
+`int := StrCSpn(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpnA
+`int := StrCSpnA(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpnI
+`int := StrCSpnI(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpnIA
+`int := StrCSpnIA(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpnIW
+`int := StrCSpnIW(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrCSpnW
+`int := StrCSpnW(_In_ PCTSTR pszStr, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrDup
+`PTSTR := StrDup(PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrDupA
+`PTSTR := StrDupA(PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrDupW
+`PTSTR := StrDupW(PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatByteSize64
+`PSTR := StrFormatByteSize64(LONGLONG qdw, _Out_ PSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatByteSize64A
+`PSTR := StrFormatByteSize64A(LONGLONG qdw, _Out_ PSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatByteSizeA
+`PSTR := StrFormatByteSizeA(DWORD dw, _Out_ PSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatByteSizeEx
+`HRESULT := StrFormatByteSizeEx(ULONGLONG ull, SFBS_FLAGS flags, _Out_ PWSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatByteSizeW
+`PWSTR := StrFormatByteSizeW(LONGLONG qdw, _Out_ PWSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatKBSize
+`PTSTR := StrFormatKBSize(LONGLONG qdw, _Out_ PTSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatKBSizeA
+`PTSTR := StrFormatKBSizeA(LONGLONG qdw, _Out_ PTSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFormatKBSizeW
+`PTSTR := StrFormatKBSizeW(LONGLONG qdw, _Out_ PTSTR pszBuf, UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFromTimeInterval
+`int := StrFromTimeInterval(_Out_ PTSTR pszOut, UINT cchMax, DWORD dwTimeMS, int digits)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFromTimeIntervalA
+`int := StrFromTimeIntervalA(_Out_ PTSTR pszOut, UINT cchMax, DWORD dwTimeMS, int digits)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrFromTimeIntervalW
+`int := StrFromTimeIntervalW(_Out_ PTSTR pszOut, UINT cchMax, DWORD dwTimeMS, int digits)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrIsIntlEqual
+`BOOL := StrIsIntlEqual(BOOL fCaseSens, _In_ PCTSTR pszString1, _In_ PCTSTR pszString2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrIsIntlEqualA
+`BOOL := StrIsIntlEqualA(BOOL fCaseSens, _In_ PCTSTR pszString1, _In_ PCTSTR pszString2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrIsIntlEqualW
+`BOOL := StrIsIntlEqualW(BOOL fCaseSens, _In_ PCTSTR pszString1, _In_ PCTSTR pszString2, int nChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrNCat
+`PTSTR := StrNCat(_Inout_ PTSTR psz1, PCTSTR psz2, int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrNCatA
+`PTSTR := StrNCatA(_Inout_ PTSTR psz1, PCTSTR psz2, int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrNCatW
+`PTSTR := StrNCatW(_Inout_ PTSTR psz1, PCTSTR psz2, int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrPBrk
+`PTSTR := StrPBrk(_In_ PTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrPBrkA
+`PTSTR := StrPBrkA(_In_ PTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrPBrkW
+`PTSTR := StrPBrkW(_In_ PTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChr
+`PTSTR := StrRChr(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChrA
+`PTSTR := StrRChrA(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChrI
+`PTSTR := StrRChrI(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChrIA
+`PTSTR := StrRChrIA(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChrIW
+`PTSTR := StrRChrIW(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRChrW
+`PTSTR := StrRChrW(_In_ PTSTR pszStart, _In_opt_ PCTSTR pszEnd, TCHAR wMatch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToBSTR
+`HRESULT := StrRetToBSTR(_Inout_ STRRET *pstr, _In_ PCUITEMID_CHILD pidl, _Out_ BSTR *pbstr)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToBuf
+`HRESULT := StrRetToBuf(_Inout_ STRRET *pstr, _In_ PCUITEMID_CHILD pidl, _Out_ LPTSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToBufA
+`HRESULT := StrRetToBufA(_Inout_ STRRET *pstr, _In_ PCUITEMID_CHILD pidl, _Out_ LPSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToBufW
+`HRESULT := StrRetToBufW(_Inout_ STRRET *pstr, _In_ PCUITEMID_CHILD pidl, _Out_ LPWSTR pszBuf, _In_ UINT cchBuf)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToStr
+`HRESULT := StrRetToStr(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_ LPTSTR *ppszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToStrA
+`HRESULT := StrRetToStrA(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_ LPSTR *ppszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRetToStrW
+`HRESULT := StrRetToStrW(_Inout_ STRRET *pstr, _In_opt_ PCUITEMID_CHILD pidl, _Out_ LPWSTR *ppszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRStrI
+`PTSTR := StrRStrI(_In_ PTSTR pszSource, _In_opt_ PCTSTR pszLast, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRStrIA
+`PTSTR := StrRStrIA(_In_ PTSTR pszSource, _In_opt_ PCTSTR pszLast, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrRStrIW
+`PTSTR := StrRStrIW(_In_ PTSTR pszSource, _In_opt_ PCTSTR pszLast, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrSpn
+`int := StrSpn(_In_ PCTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrSpnA
+`int := StrSpnA(_In_ PCTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrSpnW
+`int := StrSpnW(_In_ PCTSTR psz, _In_ PCTSTR pszSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStr
+`PTSTR := StrStr(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrA
+`PTSTR := StrStrA(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrI
+`PTSTR := StrStrI(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrIA
+`PTSTR := StrStrIA(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrIW
+`PTSTR := StrStrIW(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrNIW
+`PWSTR := StrStrNIW(_In_ PWSTR pszFirst, _In_ PCWSTR pszSrch, UINT cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrNW
+`PWSTR := StrStrNW(_In_ PWSTR pszFirst, _In_ PCWSTR pszSrch, UINT cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrStrW
+`PTSTR := StrStrW(_In_ PTSTR pszFirst, _In_ PCTSTR pszSrch)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToInt
+`int := StrToInt(_In_ PCTSTR pszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToInt64Ex
+`BOOL := StrToInt64Ex(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ LONGLONG *pllRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToInt64ExA
+`BOOL := StrToInt64ExA(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ LONGLONG *pllRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToInt64ExW
+`BOOL := StrToInt64ExW(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ LONGLONG *pllRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToIntA
+`int := StrToIntA(_In_ PCTSTR pszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToIntEx
+`BOOL := StrToIntEx(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ int *piRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToIntExA
+`BOOL := StrToIntExA(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ int *piRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToIntExW
+`BOOL := StrToIntExW(_In_ PCTSTR pszString, STIF_FLAGS dwFlags, _Out_ int *piRet)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrToIntW
+`int := StrToIntW(_In_ PCTSTR pszSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrTrim
+`BOOL := StrTrim(_Inout_ PTSTR psz, _In_ PCTSTR pszTrimChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrTrimA
+`BOOL := StrTrimA(_Inout_ PTSTR psz, _In_ PCTSTR pszTrimChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+StrTrimW
+`BOOL := StrTrimW(_Inout_ PTSTR psz, _In_ PCTSTR pszTrimChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlApplyScheme
+`HRESULT := UrlApplyScheme(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlApplySchemeA
+`HRESULT := UrlApplySchemeA(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlApplySchemeW
+`HRESULT := UrlApplySchemeW(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCanonicalize
+`HRESULT := UrlCanonicalize(_In_ PCTSTR pszUrl, _Out_ PTSTR pszCanonicalized, _Inout_ DWORD *pcchCanonicalized, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCanonicalizeA
+`HRESULT := UrlCanonicalizeA(_In_ PCTSTR pszUrl, _Out_ PTSTR pszCanonicalized, _Inout_ DWORD *pcchCanonicalized, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCanonicalizeW
+`HRESULT := UrlCanonicalizeW(_In_ PCTSTR pszUrl, _Out_ PTSTR pszCanonicalized, _Inout_ DWORD *pcchCanonicalized, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCombine
+`HRESULT := UrlCombine(_In_ PCTSTR pszBase, _In_ PCTSTR pszRelative, _Out_opt_ PTSTR pszCombined, _Inout_ DWORD *pcchCombined, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCombineA
+`HRESULT := UrlCombineA(_In_ PCTSTR pszBase, _In_ PCTSTR pszRelative, _Out_opt_ PTSTR pszCombined, _Inout_ DWORD *pcchCombined, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCombineW
+`HRESULT := UrlCombineW(_In_ PCTSTR pszBase, _In_ PCTSTR pszRelative, _Out_opt_ PTSTR pszCombined, _Inout_ DWORD *pcchCombined, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCompare
+`int := UrlCompare(_In_ PCTSTR psz1, _In_ PCTSTR psz2, BOOL fIgnoreSlash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCompareA
+`int := UrlCompareA(_In_ PCTSTR psz1, _In_ PCTSTR psz2, BOOL fIgnoreSlash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCompareW
+`int := UrlCompareW(_In_ PCTSTR psz1, _In_ PCTSTR psz2, BOOL fIgnoreSlash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCreateFromPath
+`HRESULT := UrlCreateFromPath(_In_ PCTSTR pszPath, _Out_ PTSTR pszUrl, _Inout_ DWORD *pcchUrl, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCreateFromPathA
+`HRESULT := UrlCreateFromPathA(_In_ PCTSTR pszPath, _Out_ PTSTR pszUrl, _Inout_ DWORD *pcchUrl, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlCreateFromPathW
+`HRESULT := UrlCreateFromPathW(_In_ PCTSTR pszPath, _Out_ PTSTR pszUrl, _Inout_ DWORD *pcchUrl, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlEscape
+`HRESULT := UrlEscape(_In_ PCTSTR pszURL, _Out_ PTSTR pszEscaped, _Inout_ DWORD *pcchEscaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlEscapeA
+`HRESULT := UrlEscapeA(_In_ PCTSTR pszURL, _Out_ PTSTR pszEscaped, _Inout_ DWORD *pcchEscaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlEscapeW
+`HRESULT := UrlEscapeW(_In_ PCTSTR pszURL, _Out_ PTSTR pszEscaped, _Inout_ DWORD *pcchEscaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlFixupW
+`HRESULT := UrlFixupW(_In_ PCWSTR pcszUrl, _Out_ PWSTR pszTranslatedUrl, DWORD cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetLocation
+`LPCTSTR := UrlGetLocation(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetLocationA
+`LPCSTR := UrlGetLocationA(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetLocationW
+`LPCWSTR := UrlGetLocationW(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetPart
+`HRESULT := UrlGetPart(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwPart, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetPartA
+`HRESULT := UrlGetPartA(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwPart, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlGetPartW
+`HRESULT := UrlGetPartW(_In_ PCTSTR pszIn, _Out_ PTSTR pszOut, _Inout_ DWORD *pcchOut, DWORD dwPart, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlHash
+`HRESULT := UrlHash(_In_ PCTSTR pszURL, _Out_ BYTE *pbHash, DWORD cbHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlHashA
+`HRESULT := UrlHashA(_In_ PCTSTR pszURL, _Out_ BYTE *pbHash, DWORD cbHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlHashW
+`HRESULT := UrlHashW(_In_ PCTSTR pszURL, _Out_ BYTE *pbHash, DWORD cbHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIs
+`BOOL := UrlIs(_In_ PCTSTR pszUrl, URLIS UrlIs)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsA
+`BOOL := UrlIsA(_In_ PCTSTR pszUrl, URLIS UrlIs)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsNoHistory
+`BOOL := UrlIsNoHistory(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsNoHistoryA
+`BOOL := UrlIsNoHistoryA(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsNoHistoryW
+`BOOL := UrlIsNoHistoryW(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsOpaque
+`BOOL := UrlIsOpaque(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsOpaqueA
+`BOOL := UrlIsOpaqueA(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsOpaqueW
+`BOOL := UrlIsOpaqueW(_In_ PCTSTR pszURL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlIsW
+`BOOL := UrlIsW(_In_ PCTSTR pszUrl, URLIS UrlIs)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlUnescape
+`HRESULT := UrlUnescape(_Inout_ PTSTR pszURL, _Out_opt_ PTSTR pszUnescaped, _Inout_opt_ DWORD *pcchUnescaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlUnescapeA
+`HRESULT := UrlUnescapeA(_Inout_ PTSTR pszURL, _Out_opt_ PTSTR pszUnescaped, _Inout_opt_ DWORD *pcchUnescaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UrlUnescapeW
+`HRESULT := UrlUnescapeW(_Inout_ PTSTR pszURL, _Out_opt_ PTSTR pszUnescaped, _Inout_opt_ DWORD *pcchUnescaped, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WhichPlatform
+`UINT := WhichPlatform(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+wnsprintf
+`int := wnsprintf(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wnsprintfA
+`int := wnsprintfA(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wnsprintfW
+`int := wnsprintfW(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvnsprintf
+`int := wvnsprintf(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvnsprintfA
+`int := wvnsprintfA(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvnsprintfW
+`int := wvnsprintfW(_Out_ PTSTR pszDest, _In_ int cchDest, _In_ PCTSTR pszFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm

@@ -3,28 +3,12 @@
 ahk_parser_launcher(baseFile:="") {
 	curTicks := A_TickCount
 	
-	regex := Map()
-	srcFiles := oCallTip.srcFiles
-	regexFile := srcFiles "\Other\List_Regex.txt"
-	regexList := FileRead(regexFile)
-	
-	regArr := StrSplit(regexList,"`n","`r")
-	for i, line in regArr
-		regex[SubStr(line,1,InStr(line,":")-1)] := Trim(SubStr(line,InStr(line,":")+1))
-	
-	If (!regex.Count) {
-		MsgBox "Regex list not found."
-		return
-	}
-	
-	oCallTip.regex := regex
-	
 	If (baseFile)
 		IncludesList := [], GetIncludes([baseFile]), GetLibs()
 	
-	; msgbox Jxon_dump(IncludesList,4)
-	
 	ahk_parser_thearkive()
+	
+	ParseObjectsInstances() ; identify objects and instances
 	
 	finalTick := A_TickCount - curTicks
 	mins := Integer(Integer(finalTick / 1000) / 60)
@@ -163,16 +147,12 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 	VariablesList := Array()
 	
 	For i, includeFile in IncludesList {
-		; debug.msg(includeFile)
-		
 		curDocText := FileRead(includeFile)
 		docArr := StrSplit(curDocText,"`n","`r")
 		
 		i := 1, totLines := docArr.Length
 		lastVarStatus := ""
 		While (i <= totLines) {
-			; Debug.Msg("i: " i "`r`n" includeFile)
-			
 			curType := ""
 			iStart := 0 ; start of multi-line statement
 			
@@ -193,29 +173,22 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				Continue
 			}
 			
-			If (RegExMatch(curLine,"^[ \t]*Global"))
-				lastVarStatus := "Global"
-			
-			; debug.msg(curLine)
-			
-			; varList := getVar(curLine,includeFile,i) ; collect vars outside functions / classes
-			; For i, obj in varList
-				; obj["elementName"] := "", VariablesList.Push(obj) ; vars NOT in a function / class / etc...
-			
 			If (RegExMatch(StringOutline(curChunk),"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
 				encl := enclosureCheck(curChunk), curType := "class", curChunk := curLine, lastVarStatus := ""
-			} Else If (RegExMatch(StringOutline(curChunk),"^[ \t]*([\w]+)\x28")) { ; ------------------------- it's a function!
+			} Else If (RegExMatch(StringOutline(curChunk),"^[ \t]*([\w]+)\x28.*\x29[ \t]*\{")) { ; ------------------------- it's a function!
 				encl := enclosureCheck(curLine), curType := "function", curChunk := curLine, lastVarStatus := ""
 			} Else { ; ------------------------------------------------------------------------ it's something else ...
 				encl := enclosureCheck(curLine)
-				curLineNoStr := Trim(StringOutline(curLine)," `t")
+				curLineNoStr := RTrim(StringOutline(curLine)," `t")
 				
 				If (RegExMatch(curLine,"^[ \t]*Global"))
 					lastVarStatus := "Global"
 				Else If (RegExMatch(curLine,"^[ \t]*Static"))
 					lastVarStatus := "Static"
-				
-				; Debug.Msg(curLine)
+				Else If (RegExMatch(curLineNoStr,"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
+					Debug.Msg("regex: " curLineNoStr)
+					ObjectList[match.Value(1)] := "RegExMatchObject"
+				}
 				
 				i++
 				
@@ -228,59 +201,37 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 					obj["elementName"] := "", VariablesList.Push(obj) ; vars NOT in a function / class / etc...
 				}
 				
-				continue
-				
+				Continue
 				
 				; If (!encl.exist) { ; no enclosures, not a function/class
 					; i++
-					
-					; varList := getVar(curLine,includeFile,i,lastVarStatus) ; collect vars outside functions / classes
-					; If (curLineNoStr And !varList.Length)
-						; lastVarStatus := ""
-					
-					; For i, obj in varList {
-						; KeywordList[obj["varName"]] := "UserVar"
-						; obj["elementName"] := "", VariablesList.Push(obj) ; vars NOT in a function / class / etc...
-					; }
 					; Continue
 				; }
 				
 				; If (encl.exist And encl.even) { ; single-line statement, probably a function call, or setting object
 					; i++
-					
-					; varList := getVar(curLine,includeFile,i,lastVarStatus) ; collect vars outside functions / classes
-					; If (curLineNoStr And !varList.Length)
-						; lastVarStatus := ""
-					
-					; For i, obj in varList {
-						; KeywordList[obj["varName"]] := "UserVar"
-						; obj["elementName"] := "", VariablesList.Push(obj) ; vars NOT in a function / class / etc...
-					; }
-					
 					; Continue
 				; }
 			}
 			
-			; msgbox "test1: " curChunk " / i: " i
-			
 			tempVarList := []
 			While (encl.exist And !encl.even) { ; compiles a multi-line statment
-				If (!iStart) {
+				If (!iStart)
 					iStart := i ; set start line of multi-line statement
-					; debug.msg("iStart: " iStart "`r`n" includeFile "`r`n" curChunk "`r`ncurType: " curType)
-				}
 				
 				i++
 				If (docArr.Has(i)) {
 					nextLine := docArr[i]
-					; debug.msg(nextLine)
 					
 					If (RegExMatch(curLine,"^[ \t]*Global"))
 						lastVarStatus := "Global"
 					Else If (RegExMatch(curLine,"^[ \t]*Static"))
 						lastVarStatus := "Static"
+					Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
+						; Debug.Msg("regex: " nextLine)
+						ObjectList[match.Value(1)] := "RegExMatchObject"
+					}
 					
-					; debug.msg("getVar3")
 					varList := getVar(nextLine,includeFile,i,lastVarStatus) ; collect vars
 					If (curLineNoStr And !varList.Length)
 						lastVarStatus := ""
@@ -296,12 +247,10 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 					Break
 			}
 			
-			; Debug.Msg(curChunk "`r`n`r`n`r`n")
-			
+			c := "", f := ""
 			If (curType = "class")
 				c := GetClasses(curChunk,includeFile,i) ; not a big performance hit
-			
-			If (curType = "function") {
+			Else If (curType = "function") {
 				f := GetCustomFunction(curChunk,includeFile,iStart) ; not a big performance hit
 				If (f And !CustomFunctions.Has(f["funcName"])) {
 					For i, obj in tempVarList {
@@ -309,20 +258,13 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 						obj["elementName"] := f["funcName"], VariablesList.Push(obj)
 					}
 					
-					; Debug.Msg("getting function: " f["funcName"])
-					
 					CustomFunctions[f["funcName"]] := f ; add function to call tip data
 				}
 			}
 			
-			; If (InStr(includeFile, "module-fim-thumbs.ahk"))
-				; debug.msg(curChunk)
-			
 			i++
 		}
 	}
-	
-	; debug.msg("done maybe")
 	
 	If (c) { ; save classes to global var
 		For k, obj in c
@@ -373,6 +315,8 @@ GetCustomFunction(curDocText,fileName,lineNum) { ;ZZZ - this should work better
 		If (fn = "" Or fn = "If" Or fn = "While" Or fn = "For" Or fn = "Else")
 			return "" ; not a function
 		
+		
+		
 		curPos2 := curPos1
 		While (r2 := InStr(noStr, ")",, curPos2)) {
 			curPos2 := r2
@@ -391,7 +335,7 @@ GetCustomFunction(curDocText,fileName,lineNum) { ;ZZZ - this should work better
 		return "" ; not a function
 	
 	curPos4 := 1, retObj := Array()
-	While (r4 := RegExMatch(curDocText, "[ \t]*return[ \t]+(.*)", match4, curPos4)) {
+	While (r4 := RegExMatch(curDocText, "i)[ \t]*return[ \t]+(.*)", match4, curPos4)) {
 		curPos4 := match4.Pos(0) + match4.Len(0)
 		retObj.Push(match4.Value(1))
 	}
@@ -431,20 +375,8 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 		classList := Map(), oCallTip.newParseClass := 0
 	
 	If (!classList.Count)
-		classList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
-	curPos1 := 1 ;??? oCallTip.classStart is not robust, see comments on function needle   ;ZZZ - do you mainly mean that it doesn't include #@$ ?  I thought class parsing was easier to write (imho).  Can classes include #@$ ?
-	
-	; ClassStart: class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{
-	; ClassEnd: (\})
-	; MethodStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t\r\n]*\{
-	; MethodEnd: \}
-	; MethodOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t]*\=\>.+
-	; PropertyStart: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t\r\n]*\{
-	; PropertyEnd: \}
-	; PropertyOneLine: ^[ \t]*(Static[ \t]+)?([\w\.]+)(\x5B[^\x5D]*\x5D)?[ \t]*\=\>.+
-	; SmallPropExt: (([\w]+)[ \t]*\:\=)[^\;\r\n]*(\;.*)?
-	; SmallPropInt: this\.([\w]+)[ \t]*\:\=[^\;\r\n]*(\;.*)?
-
+		classList.CaseSense := 0
+	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{",match,curPos1)) { ; parse classes
 		classBody := ""
@@ -682,12 +614,11 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 		status := "Global"
 	Else If (RegExMatch(stringText,"^[ \t]*Static"))
 		status := "Static"
-	Else If (lastStatus And RegExMatch(stringText,"^[ \t]*\,")) {
-		; debug.msg("continuation section... " lastStatus)
+	Else If (lastStatus And RegExMatch(stringText,"^[ \t]*\,"))
 		status := lastStatus
-	}
 	
 	stringText := RegExReplace(stringText,"(^[ \t]*Global[ \t]+|^[ \t]*Static[ \t]+)","")
+	comment := StringOutline(stringText,false), comment := SubStr(comment,InStr(comment,";"))
 	noStr := RTrim(StringOutline(stringText)," `t")
 	stringText := Trim(SubStr(stringText,1,StrLen(noStr))," `t,")
 	
@@ -696,76 +627,166 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 	varArr := StrSplit(noStr,",")
 	
 	If (status) {
-		; Debug.Msg(stringText)
-		
+		append := 0
 		For i, txt in varArr {
-			; Debug.Msg(txt)
 			txt := Trim(txt," `t")
-			If (!txt) {
-				; debug.msg("maybe this is screwing the pooch")
+			If (!txt)
 				Continue
-			}
-			realLine := Trim(SubStr(stringText,1,StrLen(txt)))
 			
-			; debug.msg(realLine "`r`ni: " i "`r`nline: " lineNum)
+			If (!append) {
+				realLine := Trim(SubStr(stringText,1,StrLen(txt))) ; maybe user append var around here...
+			} Else {
+				realLine .= "," Trim(SubStr(stringText,1,StrLen(txt)))
+			}
+			
+			p := 0, b := 0, c := 0
+			testLine := StringOutline(realLine)
+			testLine := StrReplace(StrReplace(testLine,"(","(",LP),")",")",RP)
+			testLine := StrReplace(StrReplace(testLine,"[","[",LB),"]","]",RB)
+			testLine := StrReplace(StrReplace(testLine,"{","{",LC),"}","}",RC)
+			p := LP - RP, b := LB - RB, c := LC - RC
+			
+			If (p Or b Or c) {
+				append++
+				stringText := SubStr(stringText,StrLen(txt)+1)
+				stringText := Trim(stringText," ,")
+				Continue
+			}  Else
+				append := 0
 			
 			If (splitter := InStr(realLine,":="))
 				varName := Trim(SubStr(realLine,1,splitter-1)), varValue := Trim(SubStr(realLine,splitter)," `t:=")
 			Else
 				varName := Trim(realLine," `t"), varValue := ""
 			
-			varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status))
+			varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
 			
 			stringText := SubStr(stringText,StrLen(txt)+1)
 			stringText := Trim(stringText," ,")
 		}
-	} Else
-		return varList
-	
-	
-	
-	
-	; curPos := 1
-	; rg := "(([\w\.]+)[ \t]*\:\=)"
-	; lastPos := 0, lastLen := 0, lastVar := "", lastValue := "", t := 0
-	; While (r := RegExMatch(noStr,rg,match,curPos)) {
-		; t := A_Index
-		; If (lastPos = 0) {
-			; lastVar := match.Value(2)
-			; lastPos := match.Pos(0)
-			; lastLen := match.Len(0)
-			; lastValue := match.Value(0)
-		; } Else {
-			; varName := lastVar
-			; startPos := lastPos + lastLen
-			; curLen := match.Pos(0) - lastPos - lastLen
-			; varValue := Trim(SubStr(stringText,startPos,curLen)," `t")
-			
-			; varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status))
-			; lastVar := match.Value(2), lastPos := match.Pos(0), lastLen := match.Len(0)
-		; }
-		; curPos := match.Pos(0) + match.Len(0)
-	; }
-	
-	; If (t > 0) {
-		; varName := lastVar
-		; startPos := lastPos + lastLen
-		; varValue := Trim(SubStr(stringText,startPos)," `t")
+	} Else {
+		noStr := RTrim(StringOutline(stringText)," `t")
+		curPos := 1
+		rg := "(([\w\.]+)[ \t]*\:\=)"
+		lastPos := 0, lastLen := 0, lastVar := "", lastValue := "", t := 0
+		While (r := RegExMatch(noStr,rg,match,curPos)) {
+			t := A_Index
+			If (lastPos = 0) {
+				lastVar := match.Value(2)
+				lastPos := match.Pos(0)
+				lastLen := match.Len(0)
+				lastValue := match.Value(0)
+			} Else {
+				varName := lastVar
+				startPos := lastPos + lastLen
+				curLen := match.Pos(0) - lastPos - lastLen
+				varValue := Trim(SubStr(stringText,startPos,curLen)," `t")
+				
+				varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
+				lastVar := match.Value(2), lastPos := match.Pos(0), lastLen := match.Len(0)
+			}
+			curPos := match.Pos(0) + match.Len(0)
+		}
 		
-		; varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status))
-	; }
+		If (t > 0) {
+			varName := lastVar
+			startPos := lastPos + lastLen
+			varValue := Trim(SubStr(stringText,startPos)," `t")
+			
+			varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
+		}
+	}
 	
-	; varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status))
 	return varList
 }
 
-ParseObjects() {
-	listObj := ObjectCreateList
+ParseObjectsInstances() { ; skip "ByCallback" labels... regex for "ByDerived" and "ByComment" labels - case insensitive!!!
+	round1 := ObjectCreateList["0"]
+	round2 := ObjectCreateList["1"]
+	
 	For i, obj in VariablesList {
+		nextVar := false
+		varValue := obj["varValue"], varName := obj["varName"], comment := obj["comment"]
+		If (!varValue)
+			Continue
+		
+		If (Type(varValue) = "Array" And !varValue.Length)
+			Continue
+		
+		If (Type(varValue) = "Map" And !varValue.Count)
+			Continue
+		
+		For label, obj2 in round1 { ; round 1, level 0
+			labelSuffix := SubStr(label,-9)
+			
+			If (labelSuffix = "ByDerived" Or labelSuffix = "ByComment") {
+				If (RegExMatch(varValue,"i)^" obj2["regex"]) Or RegExMatch(comment,"i)^" obj2["regex"])) {
+					ObjectList[VarName] := obj2["type"]
+					nextVar := true
+					Continue
+				}
+			} Else {
+				If (InStr(varValue,obj2["regex"]) = 1) {
+					ObjectList[varName] := obj2["type"]
+					nextVar := true
+					Continue
+				}
+			}
+		}
+		
+		If (nextVar)
+			Continue
+		
+		If (RegExMatch(varValue,"i)New[ \t]+([\w\.]+)",match)) { ; AHK v1 class instance
+			className := match.Value(1)
+			ClassesList[varName] := Map("type","Instance","class",className,"extends","","parent","")
+			Continue
+		}
+		
+		If (RegExMatch(varValue,"i)([\w\.]+)\.New\(",match)) { ; AHK v2 class instance
+			className := match.Value(1)
+			ClassesList[varName] := Map("type","Instance","class",className,"extends","","parent","")
+			Continue
+		}
+		
+		For label, obj3 in round2 { ; round 2, level 1 - derived objects
+			labelSuffix := SubStr(label,-9)
+			
+			If (labelSuffix = "ByDerived" Or labelSuffix = "ByComment") {
+				If (RegExMatch(varValue,"i)^" obj3["regex"]) Or RegExMatch(comment,"i)^" obj3["regex"])) {
+					ObjectList[VarName] := obj3["type"]
+					nextVar := true
+					Continue
+				}
+			} Else {
+				If (InStr(varValue,obj3["regex"]) = 1) {
+					ObjectList[varName] := obj3["type"]
+					nextVar := true
+					Continue
+				}
+			}
+		}
+		
+		If (nextVar)
+			Continue
+		
 		
 	}
+	
+	For kw, kwType in KeywordList { ; load pre-defined objects
+		If (InStr(kwType,"Object"))
+			ObjectList[kw] := kwType
+	}
 }
+		; object create list
+		; "label": {
+            ; "direct": 0,
+            ; "regex": "([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)",
+            ; "type": "GuiControlObject"
+        ; },
 
+
+		; vars
         ; "elementName": "GetTextDims",
         ; "fileName": "C:\\Users\\Shmoo\\Documents\\GitHub\\CallTipsForAll\\LibV2\\_Init_and_Support_Funcs.ahk",
         ; "lineNum": 262,

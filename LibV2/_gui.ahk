@@ -68,9 +68,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 	} Else If (curPhraseType = "object") {
 		found := false
-		For objName, objobj in ObjectList { ; find element and correct case
+		For objName, curObjType in ObjectList { ; find element and correct case
 			If (objName = curPhrase) {
-				obj := objobj["types"]
+				objType := curObjType
 				found := true
 				Break
 			}
@@ -80,13 +80,23 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			return
 		
 		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		
+		If (listObj) {
+			descArr := listObj["desc"]
+			helpLink := listObj["helpLink"]
 			
-			If (listObj) {
-				descArr := listObj["desc"]
-				helpLink := listObj["helpLink"]
-				
+			For index, desc in descArr {
+				curObj := Map()
+				curObj["desc"] := desc, curObj["helpLink"] := helpLink
+				fullDescArr[i] := curObj
+				i++
+			}
+			
+			addon := listObj["moreObj"]
+			addon := StrSplit(addon,",")
+			For j, objType in addon {
+				descArr := MethPropList[objType]["desc"]
 				For index, desc in descArr {
 					curObj := Map()
 					curObj["desc"] := desc, curObj["helpLink"] := helpLink
@@ -98,9 +108,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		curObj := "", listObj := "", obj := ""
 	} Else If (curPhraseType = "method" Or curPhraseType = "property") {
 		found := false
-		For objName, objobj in ObjectList { ; find element and correct case
+		For objName, curObjType in ObjectList { ; find element and correct case
 			If (objName = parentObj) {
-				obj := objobj["types"]
+				objType := curObjType
 				found := true
 				Break
 			}
@@ -110,27 +120,25 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			return
 		
 		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
-			memObj := listObj[curPhraseType]
-			
-			For methPropName, descObj in memObj {
-				If (methPropName = curPhrase) {
-					descArr := descObj["desc"]
-					helpLink := descObj["helpLink"]
-					helpLink := StrReplace(helpLink,"[MemberName]",methPropName)
-					
-					For index, desc in descArr {
-						titleHeader := StrUpper(curPhraseType,"T")
-						desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
-						curObj := Map()
-						curObj["helpLink"] := helpLink, curObj["desc"] := desc
-						fullDescArr[i] := curObj
-						i++
-					}
-					
-					Break
+		listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		memObj := listObj[curPhraseType]
+		
+		For methPropName, descObj in memObj {
+			If (methPropName = curPhrase) {
+				descArr := descObj["desc"]
+				helpLink := descObj["helpLink"]
+				helpLink := StrReplace(helpLink,"[MemberName]",methPropName)
+				
+				For index, desc in descArr {
+					titleHeader := StrUpper(curPhraseType,"T")
+					desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
+					curObj := Map()
+					curObj["helpLink"] := helpLink, curObj["desc"] := desc
+					fullDescArr[i] := curObj
+					i++
 				}
+				
+				Break
 			}
 		}
 		

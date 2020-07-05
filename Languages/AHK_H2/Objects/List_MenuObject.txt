@@ -1,12 +1,11 @@
-0 MenuObject MenuNew [ \t\.]*(menu)\.[\w]+
-0 MenuBarObject MenuBarNew [ \t\.]*(menubar)\.[\w]+
-0 MenuObject MenuCreate ([\w\.]+)[ \t]*:=[ \t]*(Menu\.New\x28)
-0 MenuBarObject MenuBarCreate ([\w\.]+)[ \t]*:=[ \t]*(MenuBar\.New\x28)
-0 MenuObject MenuFromHandle ([\w\.]+)[ \t]*:=[ \t]*(MenuFromHandle\x28)
-0 MenuObject MenuFromVar ([\w\.]+)[ \t]*:=[ \t]*(A_TrayMenu)
-0 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; Menu[\w ]*)
-0 MenuObject MenuByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Menu[\w ]*)
-1 MenuObject MenuFromObj ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.MenuBar)
+0 MenuObject MenuCreate Menu.New(
+0 MenuBarObject MenuBarCreate MenuBar.New(
+0 MenuObject MenuFromHandle MenuFromHandle(
+0 MenuObject MenuFromVar A_TrayMenu
+2 MenuObject MenuFromCallback .*?,[ ]+([\w]+)\)[ ]+\x7B[ ]+(; Menu[\w ]*)
+0 MenuObject MenuByComment ;[ \t]*Menu
+0 MenuObject MenuFromByDerived [\w\.]+\.MenuBar
+`
 `/docs/objects/Menu.htm
 
 

@@ -1,0 +1,1677 @@
+﻿Function
+Asc
+`Number := Asc(String)
+`/docs/commands/Asc.htm
+
+
+Command
+AutoTrim
+`AutoTrim, OnOff
+`/docs/commands/AutoTrim.htm
+
+
+Command
+BlockInput
+`BlockInput, OnOff
+BlockInput, SendMouse
+BlockInput, MouseMove  
+`/docs/commands/BlockInput.htm
+
+
+Function
+Chr
+`String := Chr(Number)
+`/docs/commands/Chr.htm
+
+
+Command
+ClipWait
+`ClipWait [, Timeout, WaitForAnyData]
+`/docs/commands/ClipWait.htm
+
+
+Function
+ComObjActive
+`ComObject := ComObjActive(CLSID)                   |    ComObject := ComObjEnwrap(DispPtr)
+ParamObj := ComObject(VarType, Value [, Flags])    |    DispPtr := ComObjUnwrap(ComObject)
+ParamObj := ComObjMissing()                        |
+`/docs/commands/ComObjActive.htm
+
+
+Function
+ComObjArray
+`ArrayObj := ComObjArray(VarType, Count1 [, Count2, ... Count8])
+`/docs/commands/ComObjArray.htm
+
+
+Function
+ComObjConnect
+`ComObjConnect(ComObject [, Prefix])
+`/docs/commands/ComObjConnect.htm
+
+
+Function
+ComObjCreate
+`ComObject := ComObjCreate(CLSID [, IID])
+`/docs/commands/ComObjCreate.htm
+
+
+Function
+ComObjError
+`Enabled := ComObjError([Enable])
+`/docs/commands/ComObjError.htm
+
+
+Function
+ComObjFlags
+`Flags := ComObjFlags(ComObject [, NewFlags, Mask])
+`/docs/commands/ComObjFlags.htm
+
+
+Function
+ComObjGet
+`ComObject := ComObjGet(Name)
+`/docs/commands/ComObjGet.htm
+
+
+Function
+ComObjQuery
+`InterfacePointer := ComObjQuery(ComObject, [SID,] IID)
+`/docs/commands/ComObjQuery.htm
+
+
+Function
+ComObjType
+`VarType := ComObjType(ComObject)            |    CName   := ComObjType(ComObject, "Class")
+IName   := ComObjType(ComObject, "Name")    |    CLSID   := ComObjType(ComObject, "CLSID")
+IID     := ComObjType(ComObject, "IID")     |    
+`/docs/commands/ComObjType.htm
+
+
+Function
+ComObjValue
+`Value := ComObjValue(ComObject)
+`/docs/commands/ComObjValue.htm
+
+
+Command
+Control
+`Control, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+/SubCommands:  Check, Uncheck, Enable, Disable, Show, Hide, Style, ExStyle, ShowDropDown
+               HideDropDown, TabLeft, TabRight, Add, Delete, Choose, ChooseString, EditPaste
+`/docs/commands/Control.htm
+
+
+Command
+ControlClick
+`ControlClick [, Control-or-Pos, WinTitle, WinText, WhichButton, ClickCount, Options, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlClick.htm
+
+
+Command
+ControlFocus
+`ControlFocus [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlFocus.htm
+
+
+Command
+ControlGet
+`ControlGet, OutputVar, SubCommand [, Value, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+/SubCommands:  List, Checked, Enabled, Visible, Tab, FindString, Choice, LineCount, CurrentLine, Line
+               Selected, Style, ExStyle, Hwnd
+`/docs/commands/ControlGet.htm
+
+
+Command
+ControlGetFocus
+`ControlGetFocus, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetFocus.htm
+
+
+Command
+ControlGetPos
+`ControlGetPos [, X, Y, Width, Height, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetPos.htm
+
+
+Command
+ControlGetText
+`ControlGetText, OutputVar [, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlGetText.htm
+
+
+Command
+ControlMove
+`ControlMove, Control, X, Y, Width, Height [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlMove.htm
+
+
+Command
+ControlSend
+`ControlSend [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSend.htm
+
+
+Command
+ControlSendRaw
+`ControlSendRaw [, Control, Keys, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSend.htm
+
+
+Command
+ControlSetText
+`ControlSetText [, Control, NewText, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/ControlSetText.htm
+
+
+Command
+CoordMode
+`CoordMode, TargetType [, RelativeTo]
+`/docs/commands/CoordMode.htm
+
+
+Command
+DetectHiddenText
+`DetectHiddenText, OnOff
+`/docs/commands/DetectHiddenText.htm
+
+
+Command
+DetectHiddenWindows
+`DetectHiddenWindows, OnOff
+`/docs/commands/DetectHiddenWindows.htm
+
+
+Function
+DllCall
+`Result := DllCall("[DllFile\]Function" [, Type1, Arg1, Type2, Arg2, "Cdecl ReturnType"])
+`/docs/commands/DllCall.htm
+
+
+Command
+Drive
+`Drive, SubCommand [, Value1, Value2]
+/SubCommands:  Label, Lock, Unlock, Eject
+`/docs/commands/Drive.htm
+
+
+Command
+DriveGet
+`DriveGet, OutputVar, SubCommand [, Value]
+/SubCommands:  List, Capacity, FileSystem, Label, Serial, Type, Status, StatusCD
+`/docs/commands/DriveGet.htm
+
+
+Command
+DriveSpaceFree
+`DriveSpaceFree, OutputVar, Path
+`/docs/commands/DriveSpaceFree.htm
+
+
+Command
+Edit
+`Edit
+`/docs/commands/Edit.htm
+
+
+Command
+EnvAdd
+`EnvAdd, Var, Value [, TimeUnits]
+`/docs/commands/EnvAdd.htm
+
+
+Command
+EnvDiv
+`EnvDiv, Var, Value
+`/docs/commands/EnvDiv.htm
+
+
+Command
+EnvGet
+`EnvGet, OutputVar, EnvVarName
+`/docs/commands/EnvGet.htm
+
+
+Command
+EnvMult
+`EnvMult, Var, Value
+`/docs/commands/EnvMult.htm
+
+
+Command
+EnvSet
+`EnvSet, EnvVar, Value
+`/docs/commands/EnvSet.htm
+
+
+Command
+EnvSub
+`EnvSub, Var, Value [, TimeUnits]
+`/docs/commands/EnvSub.htm
+
+
+Command
+EnvUpdate
+`EnvUpdate
+`/docs/commands/EnvUpdate.htm
+
+
+Command
+FileAppend
+`FileAppend [, Text, Filename, Encoding]
+`/docs/commands/FileAppend.htm
+
+
+Command
+FileCopy
+`FileCopy, SourcePattern, DestPattern [, Overwrite]
+`/docs/commands/FileCopy.htm
+
+
+Command
+FileCopyDir
+`FileCopyDir, Source, Dest [, Overwrite]
+`/docs/commands/FileCopyDir.htm
+
+
+Command
+FileCreateDir
+`FileCreateDir, DirName
+`/docs/commands/FileCreateDir.htm
+
+
+Command
+FileCreateShortcut
+`FileCreateShortcut, Target, LinkFile [, WorkingDir, Args, Description, IconFile, ShortcutKey, IconNumber, RunState]
+`/docs/commands/FileCreateShortcut.htm
+
+
+Command
+FileDelete
+`FileDelete, FilePattern
+`/docs/commands/FileDelete.htm
+
+
+Command
+FileEncoding
+`FileEncoding [, Encoding]
+`/docs/commands/FileEncoding.htm
+
+
+Function
+FileExist
+`AttributeString := FileExist(FilePattern)
+`/docs/commands/FileExist.htm
+
+
+Command
+FileGetAttrib
+`FileGetAttrib, OutputVar [, Filename]
+`/docs/commands/FileGetAttrib.htm
+
+
+Command
+FileGetShortcut
+`FileGetShortcut, LinkFile [, OutTarget, OutDir, OutArgs, OutDescription, OutIcon, OutIconNum, OutRunState]
+`/docs/commands/FileGetShortcut.htm
+
+
+Command
+FileGetSize
+`FileGetSize, OutputVar [, Filename, Units]
+`/docs/commands/FileGetSize.htm
+
+
+Command
+FileGetTime
+`FileGetTime, OutputVar [, Filename, WhichTime]
+`/docs/commands/FileGetTime.htm
+
+
+Command
+FileGetVersion
+`FileGetVersion, OutputVar [, Filename]
+`/docs/commands/FileGetVersion.htm
+
+
+Command
+FileInstall
+`FileInstall, Source, Dest [, Overwrite]
+`/docs/commands/FileInstall.htm
+
+
+Command
+FileMove
+`FileMove, SourcePattern, DestPattern [, Overwrite]
+`/docs/commands/FileMove.htm
+
+
+Command
+FileMoveDir
+`FileMoveDir, Source, Dest [, Flag]
+`/docs/commands/FileMoveDir.htm
+
+
+Function
+FileOpen
+`file := FileOpen(Filename, Flags [, Encoding])
+`/docs/commands/FileOpen.htm
+
+
+Command
+FileRead
+`FileRead, OutputVar, Filename
+`/docs/commands/FileRead.htm
+
+
+Command
+FileReadLine
+`FileReadLine, OutputVar, Filename, LineNum
+`/docs/commands/FileReadLine.htm
+
+
+Command
+FileRecycle
+`FileRecycle, FilePattern
+`/docs/commands/FileRecycle.htm
+
+
+Command
+FileRecycleEmpty
+`FileRecycleEmpty [, DriveLetter]
+`/docs/commands/FileRecycleEmpty.htm
+
+
+Command
+FileRemoveDir
+`FileRemoveDir, DirName [, Recurse]
+`/docs/commands/FileRemoveDir.htm
+
+
+Command
+FileSelectFile
+`FileSelectFile, OutputVar [, Options, RootDir\Filename, Prompt, Filter]
+`/docs/commands/FileSelectFile.htm
+
+
+Command
+FileSelectFolder
+`FileSelectFolder, OutputVar [, StartingFolder, Options, Prompt]
+`/docs/commands/FileSelectFolder.htm
+
+
+Command
+FileSetAttrib
+`FileSetAttrib, Attributes [, FilePattern, OperateOnFolders?, Recurse?]
+`/docs/commands/FileSetAttrib.htm
+
+
+Command
+FileSetTime
+`FileSetTime [, YYYYMMDDHH24MISS, FilePattern, WhichTime, OperateOnFolders?, Recurse?]
+`/docs/commands/FileSetTime.htm
+
+
+Function
+Format
+`String := Format(FormatStr [, Values...])
+Flags Width .Precision ULT Type
+`/docs/commands/Format.htm
+
+
+Command
+FormatTime
+`FormatTime, OutputVar [, YYYYMMDDHH24MISS, Format]
+`/docs/commands/FormatTime.htm
+
+
+Function
+Func
+`FunctionReference := Func(FunctionName)
+`/docs/commands/Func.htm
+
+
+Function
+GetKeyName
+`String := GetKeyName(Key)
+`/docs/commands/GetKey.htm
+
+
+Function
+GetKeyVK
+`Number := GetKeyVK(Key)
+`/docs/commands/GetKey.htm
+
+
+Function
+GetKeySC
+`Number := GetKeySC(Key)
+`/docs/commands/GetKey.htm
+
+
+Function
+GetKeyState
+`KeyIsDown := GetKeyState(KeyName [, Mode])
+`/docs/commands/GetKeyState.htm
+
+
+Command
+GroupActivate
+`GroupActivate, GroupName [, Mode]
+`/docs/commands/GroupActivate.htm
+
+
+Command
+GroupAdd
+`GroupAdd, GroupName [, WinTitle, WinText, Label, ExcludeTitle, ExcludeText]
+`/docs/commands/GroupAdd.htm
+
+
+Command
+GroupClose
+`GroupClose, GroupName [, Mode]
+`/docs/commands/GroupClose.htm
+
+
+Command
+GroupDeactivate
+`GroupDeactivate, GroupName [, Mode]
+`/docs/commands/GroupDeactivate.htm
+
+
+Function
+GUI
+`Gui, SubCommand [, Value1, Value2, Value3]
+/SubCommand:  GuiName:[SubCmd], New, Add, Show, Submit, Cancel, Hide, Destroy, Font
+Color, Margin, +/-Option, Menu, Minimize, Maximize, Restore, Flash, Default
+/CtrlEvent(CtrlHwnd, GuiEvent, EventInfo, ErrLevel:="")
+GuiSize(GuiHwnd, EventInfo, Width, Height)
+GuiContextMenu(GuiHwnd, CtrlHwnd, EventInfo, IsRightClick, X, Y)
+`/docs/commands/Gui.htm
+
+
+Command
+GuiControl
+`GuiControl, SubCommand, ControlID [, Value]
+/SubCommands:  Text, Move, MoveDraw, Focus, Disable, Enable, Hide, Show, Choose
+ChooseString, Font, +/-Option
+`/docs/commands/GuiControl.htm
+
+
+Command
+GuiControlGet
+`GuiControlGet, OutputVar [, SubCommand, ControlID, Value]
+/SubCommand:  Pos, Focus, FocusV, Enabled, Visible, Hwnd, Name
+`/docs/commands/GuiControlGet.htm
+
+
+Command
+Hotkey
+`Hotkey, KeyName [, Label, Options]                 |    Hotkey, If [, Expression]
+Hotkey, IfWinActive/Exist [, WinTitle, WinText]    |    Hotkey, If, % FunctionObject
+`/docs/commands/Hotkey.htm
+
+
+Function
+Hotstring
+`Hotstring(String [, Replacement, OnOffToggle])     |or|    Hotstring(NewOptions)
+OldValue := Hotstring("EndChars" [, NewValue])     |  |    Hotstring("Reset")
+OldValue := Hotstring("MouseReset" [, NewValue])   |  |    
+`/docs/commands/Hotstring.htm
+
+
+Command
+ImageSearch
+`ImageSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ImageFile
+`/docs/commands/ImageSearch.htm
+
+
+Command
+IniDelete
+`IniDelete, Filename, Section [, Key]
+`/docs/commands/IniDelete.htm
+
+
+Command
+IniRead
+`IniRead, OutputVar, Filename, Section, Key [, Default]
+IniRead, OutputVarSection, Filename, Section
+IniRead, OutputVarSectionNames, Filename
+`/docs/commands/IniRead.htm
+
+
+Command
+IniWrite
+`IniWrite, Value, Filename, Section, Key
+IniWrite, Pairs, Filename, Section
+`/docs/commands/IniWrite.htm
+
+
+Command
+Input
+`Input [, OutputVar, Options, EndKeys, MatchList]
+`/docs/commands/Input.htm
+
+
+Command
+InputBox
+`InputBox, OutputVar [, Title, Prompt, HIDE, Width, Height, X, Y, Locale, Timeout, Default]
+`/docs/commands/InputBox.htm
+
+
+Function
+InputHook
+`InputHook := InputHook([Options, EndKeys, MatchList])
+`/docs/commands/InputHook.htm
+
+
+Function
+InStr
+`FoundPos := InStr(Haystack, Needle [, CaseSensitive := false, StartingPos := 1, Occurrence := 1])
+`/docs/commands/InStr.htm
+
+
+Function
+IsByRef
+`TrueOrFalse := IsByRef(ParameterVar)
+`/docs/commands/IsByRef.htm
+
+
+Function
+IsFunc
+`MinParamsPlus1 := IsFunc(FunctionName)
+`/docs/commands/IsFunc.htm
+
+
+Function
+IsLabel
+`TrueOrFalse := IsLabel(LabelName)
+`/docs/commands/IsLabel.htm
+
+
+Function
+IsObject
+`TrueOrFalse := IsObject(ObjectValue)
+`/docs/commands/IsObject.htm
+
+
+Command
+KeyHistory
+`KeyHistory
+`/docs/commands/KeyHistory.htm
+
+
+Command
+KeyWait
+`KeyWait, KeyName [, Options]
+`/docs/commands/KeyWait.htm
+
+
+Command
+ListHotkeys
+`ListHotkeys
+`/docs/commands/ListHotkeys.htm
+
+
+Command
+ListLines
+`ListLines [, OnOff]
+`/docs/commands/ListLines.htm
+
+
+Command
+ListVars
+`ListVars
+`/docs/commands/ListVars.htm
+
+
+Function
+LoadPicture
+`Handle := LoadPicture(Filename [, Options, ByRef ImageType])
+`/docs/commands/LoadPicture.htm
+
+
+Function
+Abs
+`Value := Abs(Number)
+`/docs/commands/Math.htm#Abs
+
+
+Function
+Ceil
+`Value := Ceil(Number)
+`/docs/commands/Math.htm#Ceil
+
+
+Function
+Exp
+`Value := Exp(N)
+`/docs/commands/Math.htm#Exp
+
+
+Function
+Floor
+`Value := Floor(Number)
+`/docs/commands/Math.htm#Floor
+
+
+Function
+Log
+`Value := Log(Number)
+`/docs/commands/Math.htm#Log
+
+
+Function
+Ln
+`Value := Ln(Number)
+`/docs/commands/Math.htm#Ln
+
+
+Function
+Max
+`Value := Max(Number1 [, Number2, ...])
+`/docs/commands/Math.htm#Max
+
+
+Function
+Min
+`Value := Min(Number1 [, Number2, ...])
+`/docs/commands/Math.htm#Min
+
+
+Function
+Mod
+`Value := Mod(Dividend, Divisor)
+`/docs/commands/Math.htm#Mod
+
+
+Function
+Round
+`Value := Round(Number [, N])
+`/docs/commands/Math.htm#Round
+
+
+Function
+Sqrt
+`Value := Sqrt(Number)
+`/docs/commands/Math.htm#Sqrt
+
+
+Function
+Sin
+`Value := Sin(Number)
+`/docs/commands/Math.htm#Sin
+
+
+Function
+Cos
+`Value := Cos(Number)
+`/docs/commands/Math.htm#Cos
+
+
+Function
+Tan
+`Value := Tan(Number)
+`/docs/commands/Math.htm#Tan
+
+
+Function
+ASin
+`Value := ASin(Number)
+`/docs/commands/Math.htm#ASin
+
+
+Function
+ACos
+`Value := ACos(Number)
+`/docs/commands/Math.htm#ACos
+
+
+Function
+ATan
+`Value := ATan(Number)
+`/docs/commands/Math.htm#ATan
+
+
+Command
+Menu
+`Menu, MenuName, SubCommand [, Value1, Value2, Value3, Value4]
+/SubCommands:  Add, Insert, Delete, DeleteAll, Rename, Check, Uncheck, ToggleCheck, Enable
+Disable, ToggleEnable, Default, NoDefault, Standard, NoStandard, Icon, NoIcon, Show, Color, UseErrorLevel
+/FunctionName(ItemName, ItemPos, MenuName)
+/Menu, Tray, SubCommand [, Value]
+/SubCommands:  Icon, NoIcon, Tip, Click, MainWindow, NoMainWindow
+`/docs/commands/Menu.htm
+
+
+Function
+MenuGetHandle
+`Handle := MenuGetHandle(MenuName)
+`/docs/commands/MenuGetHandle.htm
+
+
+Function
+MenuGetName
+`MenuName := MenuGetName(Handle)
+`/docs/commands/MenuGetName.htm
+
+
+Command
+MouseClick
+`MouseClick [, WhichButton, X, Y, ClickCount, Speed, DownOrUp, Relative]
+`/docs/commands/MouseClick.htm
+
+
+Command
+MouseClickDrag
+`MouseClickDrag, WhichButton, X1, Y1, X2, Y2 [, Speed, Relative]
+`/docs/commands/MouseClickDrag.htm
+
+
+Command
+MouseGetPos
+`MouseGetPos [, OutputVarX, OutputVarY, OutputVarWin, OutputVarControl, Flag]
+`/docs/commands/MouseGetPos.htm
+
+
+Command
+MouseMove
+`MouseMove, X, Y [, Speed, Relative]
+`/docs/commands/MouseMove.htm
+
+
+Command
+MsgBox
+`MsgBox, Text
+MsgBox [, Options, Title, Text, Timeout]
+`/docs/commands/MsgBox.htm
+
+
+Function
+NumGet
+`Number := NumGet(VarOrAddress [, Offset := 0][, Type := "UPtr"])
+`/docs/commands/NumGet.htm
+
+
+Function
+NumPut
+`NumPut(Number, VarOrAddress [, Offset := 0][, Type := "UPtr"])
+`/docs/commands/NumPut.htm
+
+
+Function
+ObjAddRef
+`ObjAddRef(Ptr)
+`/docs/commands/ObjAddRef.htm
+
+
+Function
+ObjRelease
+`ObjRelease(Ptr)
+`/docs/commands/ObjAddRef.htm
+
+
+Function
+ObjBindMethod
+`BoundFunc := ObjBindMethod(Obj, Method, Params)
+`/docs/commands/ObjBindMethod.htm
+
+
+Function
+OnClipboardChange
+`OnClipboardChange(Func [, AddRemove])
+FunctionName(Type)
+`/docs/commands/OnClipboardChange.htm
+
+
+Function
+OnMessage
+`OnMessage(MsgNumber [, Function, MaxThreads])    |    Name := OnMessage(MsgNumber, "FunctionName")
+OnMessage(MsgNumber, FuncObj)                    |    Name := OnMessage(MsgNumber, "")
+OnMessage(MsgNumber, FuncObj, 1)                 |    Name := OnMessage(MsgNumber)
+OnMessage(MsgNumber, FuncObj, -1)                |    OnMessage(MsgNumber, FuncObj, 0)
+`/docs/commands/OnMessage.htm
+
+
+Function
+Ord
+`Number := Ord(String)
+`/docs/commands/Ord.htm
+
+
+Command
+OutputDebug
+`OutputDebug, Text
+`/docs/commands/OutputDebug.htm
+
+
+Command
+PixelGetColor
+`PixelGetColor, OutputVar, X, Y [, Mode]
+`/docs/commands/PixelGetColor.htm
+
+
+Command
+PixelSearch
+`PixelSearch, OutputVarX, OutputVarY, X1, Y1, X2, Y2, ColorID [, Variation, Mode]
+`/docs/commands/PixelSearch.htm
+
+
+Command
+PostMessage
+`PostMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/PostMessage.htm
+
+
+Command
+SendMessage
+`SendMessage, Msg [, wParam, lParam, Control, WinTitle, WinText, ExcludeTitle, ExcludeText, Timeout]
+`/docs/commands/PostMessage.htm
+
+
+Command
+Process
+`Process, SubCommand [, PIDOrName, Value]
+/SubCommand:  Exist, Close, Priority, Wait, WaitClose
+`/docs/commands/Process.htm
+
+
+Command
+Progress
+`Progress, Off
+Progress, ProgressParam1 [, SubText, MainText, WinTitle, FontName]
+`/docs/commands/Progress.htm
+
+
+Command
+SplashImage
+`SplashImage, Off
+SplashImage [, ImageFile, Options, SubText, MainText, WinTitle, FontName]
+`/docs/commands/Progress.htm
+
+
+Command
+Random
+`Random, OutputVar [, Min, Max]
+Random, , NewSeed
+`/docs/commands/Random.htm
+
+
+Command
+RegDelete
+`RegDelete, KeyName [, ValueName]
+`/docs/commands/RegDelete.htm
+
+
+Function
+RegExMatch
+`FoundPos := RegExMatch(Haystack, NeedleRegEx [, OutputVar, StartingPosition := 1])
+`/docs/commands/RegExMatch.htm
+
+
+Function
+RegExReplace
+`NewStr := RegExReplace(Haystack, NeedleRegEx [, Replacement := "", OutputVarCount := "", Limit := -1, StartingPosition := 1])
+`test desc RegExReplace()
+`/docs/commands/RegExReplace.htm
+
+
+Function
+RegisterCallback
+`Address := RegisterCallback("FunctionName" [, Options := "", ParamCount := FormalCount, EventInfo := Address])
+`/docs/commands/RegisterCallback.htm
+
+
+Command
+RegRead
+`RegRead, OutputVar, KeyName [, ValueName]
+`/docs/commands/RegRead.htm
+
+
+Command
+RegWrite
+`RegWrite, ValueType, KeyName [, ValueName, Value]
+`/docs/commands/RegWrite.htm
+
+
+Command
+Run
+`Run, Target [, WorkingDir, Options, OutputVarPID]
+`/docs/commands/Run.htm
+
+
+Command
+RunWait
+`RunWait, Target [, WorkingDir, Options, OutputVarPID]
+`/docs/commands/Run.htm
+
+
+Command
+RunAs
+`RunAs [, User, Password, Domain]
+`/docs/commands/RunAs.htm
+
+
+Command
+Send
+`Send Keys
+`/docs/commands/Send.htm
+
+
+Command
+SendRaw
+`SendRaw Keys
+`/docs/commands/Send.htm
+
+
+Command
+SendInput
+`SendInput Keys
+`/docs/commands/Send.htm
+
+
+Command
+SendPlay
+`SendPlay Keys
+`/docs/commands/Send.htm
+
+
+Command
+SendEvent
+`SendEvent Keys
+`/docs/commands/Send.htm
+
+
+Command
+SendLevel
+`SendLevel, Level
+`/docs/commands/SendLevel.htm
+
+
+Command
+SendMode
+`SendMode Mode
+`/docs/commands/SendMode.htm
+
+
+Command
+SetControlDelay
+`SetControlDelay, Delay
+`/docs/commands/SetControlDelay.htm
+
+
+Command
+SetDefaultMouseSpeed
+`SetDefaultMouseSpeed, Speed
+`/docs/commands/SetDefaultMouseSpeed.htm
+
+
+Command
+SetEnv
+`SetEnv, Var, Value
+Var = Value
+`/docs/commands/SetEnv.htm
+
+
+Command
+SetFormat
+`SetFormat, NumberType, Format
+`/docs/commands/SetFormat.htm
+
+
+Command
+SetKeyDelay
+`SetKeyDelay [, Delay, PressDuration, Play]
+`/docs/commands/SetKeyDelay.htm
+
+
+Command
+SetMouseDelay
+`SetMouseDelay, Delay [, Play]
+`/docs/commands/SetMouseDelay.htm
+
+
+Command
+SetCapsLockState
+`SetCapsLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
+
+
+Command
+SetNumLockState
+`SetNumLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
+
+
+Command
+SetScrollLockState
+`SetScrollLockState [, State]
+`/docs/commands/SetNumScrollCapsLockState.htm
+
+
+Command
+SetRegView
+`SetRegView, RegView
+`/docs/commands/SetRegView.htm
+
+
+Command
+SetStoreCapsLockMode
+`SetStoreCapsLockMode, OnOff
+`/docs/commands/SetStoreCapslockMode.htm
+
+
+Command
+SetTitleMatchMode
+`SetTitleMatchMode, MatchMode    or    SetTitleMatchMode, Speed
+`/docs/commands/SetTitleMatchMode.htm
+
+
+Command
+SetWinDelay
+`SetWinDelay, Delay
+`/docs/commands/SetWinDelay.htm
+
+
+Command
+SetWorkingDir
+`SetWorkingDir, DirName
+`/docs/commands/SetWorkingDir.htm
+
+
+Command
+Shutdown
+`Shutdown, Code
+`/docs/commands/Shutdown.htm
+
+
+Command
+Sort
+`Sort, VarName [, Options]
+`/docs/commands/Sort.htm
+
+
+Command
+SoundBeep
+`SoundBeep [, Frequency, Duration]
+`/docs/commands/SoundBeep.htm
+
+
+Command
+SoundGet
+`SoundGet, OutputVar [, ComponentType, ControlType, DeviceNumber]
+`/docs/commands/SoundGet.htm
+
+
+Command
+SoundGetWaveVolume
+`SoundGetWaveVolume, OutputVar [, DeviceNumber]
+`/docs/commands/SoundGetWaveVolume.htm
+
+
+Command
+SoundPlay
+`SoundPlay, Filename [, Wait]
+`/docs/commands/SoundPlay.htm
+
+
+Command
+SoundSet
+`SoundSet, NewSetting [, ComponentType, ControlType, DeviceNumber]
+`/docs/commands/SoundSet.htm
+
+
+Command
+SoundSetWaveVolume
+`SoundSetWaveVolume, Percent [, DeviceNumber]
+`/docs/commands/SoundSetWaveVolume.htm
+
+
+Command
+SplashTextOn
+`SplashTextOn [, Width, Height, Title, Text]
+`/docs/commands/SplashTextOn.htm
+
+
+Command
+SplashTextOff
+`SplashTextOff
+`/docs/commands/SplashTextOn.htm
+
+
+Command
+SplitPath
+`SplitPath, InputVar [, OutFileName, OutDir, OutExtension, OutNameNoExt, OutDrive]
+`/docs/commands/SplitPath.htm
+
+
+Command
+StatusBarGetText
+`StatusBarGetText, OutputVar [, Part#, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/StatusBarGetText.htm
+
+
+Command
+StatusBarWait
+`StatusBarWait [, BarText, Timeout, Part#, WinTitle, WinText, Interval, ExcludeTitle, ExcludeText]
+`/docs/commands/StatusBarWait.htm
+
+
+Function
+StrGet
+`String := StrGet(Source [, Length] [, Encoding := None])
+`/docs/commands/StrGet.htm
+
+
+Command
+StringCaseSense
+`StringCaseSense, OnOffLocale
+`/docs/commands/StringCaseSense.htm
+
+
+Command
+StringGetPos
+`StringGetPos, OutputVar, InputVar, SearchText [, Occurrence, Offset]
+`/docs/commands/StringGetPos.htm
+
+
+Command
+StringLeft
+`StringLeft, OutputVar, InputVar, Count
+`/docs/commands/StringLeft.htm
+
+
+Command
+StringRight
+`StringRight, OutputVar, InputVar, Count
+`/docs/commands/StringLeft.htm
+
+
+Function
+StrLen
+`Length := StrLen(String)
+`/docs/commands/StringLen.htm
+
+
+Function
+StringLen
+`StringLen, OutputVar, InputVar
+`/docs/commands/StringLen.htm
+
+
+Command
+StringLower
+`StringLower, OutputVar, InputVar [, T]
+`/docs/commands/StringLower.htm
+
+
+Command
+StringUpper
+`StringUpper, OutputVar, InputVar [, T]
+`/docs/commands/StringLower.htm
+
+
+Command
+StringMid
+`StringMid, OutputVar, InputVar, StartChar [, Count, L]
+`/docs/commands/StringMid.htm
+
+
+Function
+StrReplace
+`ReplacedStr := StrReplace(Haystack, SearchText [, ReplaceText, OutputVarCount, Limit := -1])
+`/docs/commands/StringReplace.htm
+
+
+Function
+StringReplace
+`StringReplace, OutputVar, InputVar, SearchText [, ReplaceText, ReplaceAll?]
+`/docs/commands/StringReplace.htm
+
+
+Function
+StrSplit
+`Array := StrSplit(String [, Delimiters, OmitChars, MaxParts := -1])  
+`/docs/commands/StringSplit.htm
+
+
+Function
+StringSplit 
+`StringSplit, OutputArray, InputVar [, Delimiters, OmitChars]
+`/docs/commands/StringSplit.htm
+
+
+Command
+StringTrimLeft
+`StringTrimLeft, OutputVar, InputVar, Count
+`/docs/commands/StringTrimLeft.htm
+
+
+Command
+StringTrimRight
+`StringTrimRight, OutputVar, InputVar, Count
+`/docs/commands/StringTrimLeft.htm
+
+
+Function
+StrPut
+`StrPut(String [, Encoding := None])
+StrPut(String, Target [, Length] [, Encoding := None])
+`/docs/commands/StrPut.htm
+
+
+Function
+SubStr
+`NewStr := SubStr(String, StartingPos [, Length])
+`/docs/commands/SubStr.htm
+
+
+Command
+SysGet
+`SysGet, OutputVar, SubCommand [, Value]
+/SubCommands:  MonitorCount, MonitorPrimary, Monitor, MonitorWorkArea, MonitorName, N
+`/docs/commands/SysGet.htm
+
+
+Command
+ToolTip
+`ToolTip [, Text, X, Y, WhichToolTip]
+`/docs/commands/ToolTip.htm
+
+
+Command
+Transform
+`Transform, OutputVar, SubCommand, Value1 [, Value2]
+/SubCommands:  Unicode, Deref, HTML, Asc, Chr, Mod, Exp, Sqrt, Log, Ln, Round, Ceil, Floor, Abs, Sin
+Cos, Tan, ASin, ACos, ATan, Pow, BitNot, BitAnd, BitOr, BitXOr, BitShiftLeft, BitShiftRight
+`/docs/commands/Transform.htm
+
+
+Command
+TrayTip
+`TrayTip [, Title, Text, Seconds, Options]
+`/docs/commands/TrayTip.htm
+
+
+Function
+Trim
+`Result :=  Trim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
+
+
+Function
+LTrim
+`Result := LTrim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
+
+
+Function
+RTrim
+`Result := RTrim(String, OmitChars := " `t")
+`/docs/commands/Trim.htm
+
+
+Command
+UrlDownloadToFile
+`UrlDownloadToFile, URL, Filename
+`/docs/commands/URLDownloadToFile.htm
+
+
+Function
+VarSetCapacity
+`GrantedCapacity := VarSetCapacity(TargetVar [, RequestedCapacity, FillByte])
+`/docs/commands/VarSetCapacity.htm
+
+
+Command
+WinActivate
+`WinActivate [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActivate.htm
+
+
+Command
+WinActivateBottom
+`WinActivateBottom [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinActivateBottom.htm
+
+
+Function
+WinActive
+`UniqueID := WinActive(WinTitle [, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/WinActive.htm
+
+
+Command
+WinClose
+`WinClose [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+`/docs/commands/WinClose.htm
+
+
+Function
+WinExist
+`UniqueID := WinExist(WinTitle [, WinText, ExcludeTitle, ExcludeText])
+`/docs/commands/WinExist.htm
+
+
+Command
+WinGet
+`WinGet, OutputVar [, SubCommand, WinTitle, WinText, ExcludeTitle, ExcludeText]
+/SubCommands:  ID, IDLast, PID, ProcessName, ProcessPath, Count, List, MinMax, ControlList
+ControlListHwnd, Transparent, TransColor, Style, ExStyle
+`/docs/commands/WinGet.htm
+
+
+Command
+WinGetActiveStats
+`WinGetActiveStats, Title, Width, Height, X, Y
+`/docs/commands/WinGetActiveStats.htm
+
+
+Command
+WinGetActiveTitle
+`WinGetActiveTitle, OutputVar
+`/docs/commands/WinGetActiveTitle.htm
+
+
+Command
+WinGetClass
+`WinGetClass, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetClass.htm
+
+
+Command
+WinGetPos
+`WinGetPos [, X, Y, Width, Height, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetPos.htm
+
+
+Command
+WinGetText
+`WinGetText, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetText.htm
+
+
+Command
+WinGetTitle
+`WinGetTitle, OutputVar [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinGetTitle.htm
+
+
+Command
+WinHide
+`WinHide [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinHide.htm
+
+
+Command
+WinKill
+`WinKill [, WinTitle, WinText, SecondsToWait, ExcludeTitle, ExcludeText]
+`/docs/commands/WinKill.htm
+
+
+Command
+WinMaximize
+`WinMaximize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMaximize.htm
+
+
+Command
+WinMenuSelectItem
+`WinMenuSelectItem, WinTitle, WinText, Menu [, SubMenu1, SubMenu2, SubMenu3, SubMenu4, SubMenu5, SubMenu6, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMenuSelectItem.htm
+
+
+Command
+WinMinimize
+`WinMinimize [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinMinimize.htm
+
+
+Command
+WinMinimizeAll
+`WinMinimizeAll
+`/docs/commands/WinMinimizeAll.htm
+
+
+Command
+WinMinimizeAllUndo
+`WinMinimizeAllUndo
+`/docs/commands/WinMinimizeAll.htm
+
+
+Command
+WinMove
+`WinMove, WinTitle, WinText, X, Y [, Width, Height, ExcludeTitle, ExcludeText]    or    WinMove, X, Y
+`/docs/commands/WinMove.htm
+
+
+Command
+WinRestore
+`WinRestore [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinRestore.htm
+
+
+Command
+WinSet
+`WinSet, SubCommand, Value [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+/SubCommands:  AlwaysOnTop, Buttom, Top, Disable, Enable, Redraw, Style, ExStyle
+              Region, Transparent, TransColor
+/docs/commands/WinSet.htm
+
+
+Command
+WinSetTitle
+`WinSetTitle, NewTitle
+WinSetTitle, WinTitle, WinText, NewTitle [, ExcludeTitle, ExcludeText]
+`/docs/commands/WinSetTitle.htm
+
+
+Command
+WinShow
+`WinShow [, WinTitle, WinText, ExcludeTitle, ExcludeText]
+`/docs/commands/WinShow.htm
+
+
+Command
+WinWait
+`WinWait [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWait.htm
+
+
+Command
+WinWaitActive
+`WinWaitActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitActive.htm
+
+
+Command
+WinWaitNotActive
+`WinWaitNotActive [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitActive.htm
+
+
+Command
+WinWaitClose
+`WinWaitClose [, WinTitle, WinText, Timeout, ExcludeTitle, ExcludeText]
+`/docs/commands/WinWaitClose.htm
+
+
+Function
+LV_Add
+`LV_Add([Options, Field1, Field2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_Insert
+`LV_Insert(RowNumber [, Options, Col1, Col2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_Modify
+`LV_Modify(RowNumber [, Options, NewCol1, NewCol2, ...])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_Delete
+`LV_Delete([RowNumber])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_ModifyCol
+`LV_ModifyCol([ColumnNumber, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_InsertCol
+`LV_InsertCol(ColumnNumber [, Options, ColumnTitle])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_DeleteCol
+`LV_DeleteCol(ColumnNumber)
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_GetNext
+`LV_GetNext([StartingRowNumber, RowType])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_GetText
+`LV_GetText(OutputVar, RowNumber [, ColumnNumber])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+LV_SetImageList
+`LV_SetImageList(ImageListID [, IconType])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+IL_Create
+`IL_Create([InitialCount, GrowCount, LargeIcons])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+IL_Add
+`IL_Add(ImageListID, Filename [, IconNumber, ResizeNonIcon])
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+IL_Destory
+`IL_Destroy(ImageListID)
+`/docs/commands/ListView.htm#[MemberName]
+
+
+Function
+TV_Add
+`TV_Add(Name, [ParentItemID, Options])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_Modify
+`TV_Modify(ItemID [, Options, NewName])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_Delete
+`TV_Delete([ItemID])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetSelection
+`TV_GetSelection()
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetCount
+`TV_GetCount()
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetParent
+`TV_GetParent(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetChild
+`TV_GetChild(ParentItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetPrev
+`TV_GetPrev(ItemID)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_GetNext
+`TV_GetNext([ItemID, ItemType])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_Get
+`TV_Get(ItemID, Attribute)
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+TV_SetImageList
+`TV_SetImageList(ImageListID [, IconType])
+`/docs/commands/TreeView.htm#[MemberName]
+
+
+Function
+ObjRawGet
+`Value := ObjRawGet(Object, Key)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjRawSet
+`ObjRawSet(Object, Key, Value)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjGetBase
+`BaseObject := ObjGetBase(Object)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Function
+ObjSetBase
+`ObjSetBase(Object, BaseObject)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Function
+Object
+`AssocArray := Object("KeyA", ValueA, ...)
+AssocArray := {KeyA: ValueA, ...)
+`/docs/Objects.htm#Usage_Associative_Arrays
+
+
+Function
+Array
+`LinearArray := Array("Value1", "Value2", ...)
+`/docs/Objects.htm#Usage_Simple_Arrays

@@ -1,0 +1,62 @@
+0 ProcessThreadObject ProcThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(ThreadObj\x28)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+Call
+`thread.Call("FunctionName", params...)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+PostCall
+`thread.PostCall("FunctionName", params...)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+FuncPtr
+`thread.FuncPtr("FunctionName")
+`/docs/commands/ThreadObj.htm
+
+
+Method
+LabelPtr
+`thread.LabelPtr("LabelName")
+`/docs/commands/ThreadObj.htm
+
+
+Method
+Exec
+`thread.Exec(codeStr)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+AddFile
+`thread.AddFile("FilePath", WaitExecute)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+AddScript
+`thread.AddScript(codeStr, WaitExecute)
+`/docs/commands/ThreadObj.htm
+
+
+Method
+GotoLabel
+`thread.GotoLabel("Label")
+`/docs/commands/ThreadObj.htm
+
+
+Method
+GoSubLabel
+`thread.GoSubLabel("Label")
+`/docs/commands/ThreadObj.htm
+
+
+Method
+ExitApp
+`thread.ExitApp()
+`/docs/commands/ThreadObj.htm

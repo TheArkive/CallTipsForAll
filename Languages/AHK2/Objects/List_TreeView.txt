@@ -1,7 +1,7 @@
-2 TreeViewObject TreeViewByAdd ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.Add\x28"TreeView")
-2 TreeViewObject TreeViewByAddSpec ([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\.AddTreeView\x28)
-0 TreeViewObject TreeViewByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*TreeView[\w ]*)
-`GuiObject
+0 TreeViewObject TreeViewAddByDerived [\w\.]+\.Add\(\"TreeView\"
+0 TreeViewObject TreeViewAddSpecByDerived [\w\.]+\.AddTreeView\(
+0 TreeViewObject TreeViewByComment ;[ \t]*TreeView
+`GuiControlObject
 `/docs/commands/TreeView.htm
 
 

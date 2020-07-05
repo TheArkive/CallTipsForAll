@@ -1,0 +1,112 @@
+Function
+AccessibleChildren
+`int := AccessibleChildren(_In_ IAccessible *paccContainer, _In_ LONG iChildStart, _In_ LONG cChildren, _Out_ VARIANT *rgvarChildren, _Out_ LONG *pcObtained)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessibleObjectFromEvent
+`int := AccessibleObjectFromEvent(_In_ HWND hwnd, _In_ DWORD dwObjectID, _In_ DWORD dwChildID, _Out_ IAccessible **ppacc, _Out_ VARIANT *pvarChild)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessibleObjectFromPoint
+`int := AccessibleObjectFromPoint(_In_ POINT ptScreen, _Out_ IAccessible **ppacc, _Out_ VARIANT *pvarChild)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessibleObjectFromWindow
+`int := AccessibleObjectFromWindow(_In_ HWND hwnd, _In_ DWORD dwObjectID, _In_ REFIID riid, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStdAccessibleObject
+`int := CreateStdAccessibleObject(_In_ HWND hwnd, _In_ LONG idObject, _In_ REFIID riidInterface, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStdAccessibleProxy
+`int := CreateStdAccessibleProxy(_In_ HWND hwnd, _In_ LPCTSTR pszClassName, _In_ LONG idObject, _In_ REFIID riidInterface, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStdAccessibleProxyA
+`int := CreateStdAccessibleProxyA(_In_ HWND hwnd, _In_ LPCSTR pszClassName, _In_ LONG idObject, _In_ REFIID riidInterface, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStdAccessibleProxyW
+`int := CreateStdAccessibleProxyW(_In_ HWND hwnd, _In_ LPCWSTR pszClassName, _In_ LONG idObject, _In_ REFIID riidInterface, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOleaccVersionInfo
+`VOID := GetOleaccVersionInfo(_Out_ DWORD *pdwVer, _Out_ DWORD *pdwBuild)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProcessHandleFromHwnd
+`HANDLE := GetProcessHandleFromHwnd(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRoleText
+`UINT := GetRoleText(_In_ DWORD dwRole, _Out_ LPTSTR lpszRole, _In_ UINT cchRoleMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRoleTextA
+`UINT := GetRoleTextA(_In_ DWORD dwRole, _Out_ LPSTR lpszRole, _In_ UINT cchRoleMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRoleTextW
+`UINT := GetRoleTextW(_In_ DWORD dwRole, _Out_ LPWSTR lpszRole, _In_ UINT cchRoleMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetStateText
+`UINT := GetStateText(_In_ DWORD dwStateBit, _Out_ LPTSTR lpszStateBit, _In_ UINT cchStateBitMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetStateTextA
+`UINT := GetStateTextA(_In_ DWORD dwStateBit, _Out_ LPSTR lpszStateBit, _In_ UINT cchStateBitMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetStateTextW
+`UINT := GetStateTextW(_In_ DWORD dwStateBit, _Out_ LPWSTR lpszStateBit, _In_ UINT cchStateBitMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+LresultFromObject
+`LRESULT := LresultFromObject(_In_ REFIID riid, _In_ WPARAM wParam, _In_ LPUNKNOWN pAcc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectFromLresult
+`int := ObjectFromLresult(_In_ LRESULT lResult, _In_ REFIID riid, _In_ WPARAM wParam, _Out_ void **ppvObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+WindowFromAccessibleObject
+`int := WindowFromAccessibleObject(_In_ IAccessible *pacc, _Out_ HWND *phwnd)
+`/docs/commands/WinApi.htm

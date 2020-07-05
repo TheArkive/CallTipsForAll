@@ -1,0 +1,16 @@
+Function
+RasSecurityDialogGetInfo
+`DWORD := RasSecurityDialogGetInfo(_In_ HPORT hPort, _In_ RAS_SECURITY_INFO *pBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSecurityDialogReceive
+`DWORD := RasSecurityDialogReceive(_In_ HPORT hPort, _In_ PBYTE pBuffer, _In_ PWORD pBufferLength, _In_ DWORD Timeout, _In_ HANDLE hEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasSecurityDialogSend
+`DWORD := RasSecurityDialogSend(_In_ HPORT hPort, _In_ PBYTE pBuffer, _In_ WORD BufferLength)
+`/docs/commands/WinApi.htm

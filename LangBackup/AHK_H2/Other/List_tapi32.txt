@@ -1,0 +1,1534 @@
+Function
+lineAccept
+`LONG := lineAccept(HCALL hCall, LPCSTR lpsUserUserInfo, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAddProvider
+`LONG := lineAddProvider(LPCSTR lpszProviderFilename, HWND hwndOwner, LPDWORD lpdwPermanentProviderID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAddProviderA
+`LONG := lineAddProviderA(LPCSTR lpszProviderFilename, HWND hwndOwner, LPDWORD lpdwPermanentProviderID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAddProviderW
+`LONG := lineAddProviderW(LPCSTR lpszProviderFilename, HWND hwndOwner, LPDWORD lpdwPermanentProviderID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAddToConference
+`LONG := lineAddToConference(HCALL hConfCall, HCALL hConsultCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAgentSpecific
+`LONG := lineAgentSpecific(HLINE hLine, DWORD dwAddressID, DWORD dwAgentExtensionIDIndex, LPVOID lpParams, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineAnswer
+`LONG := lineAnswer(HCALL hCall, LPCSTR lpsUserUserInfo, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineBlindTransfer
+`LONG := lineBlindTransfer(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineBlindTransferA
+`LONG := lineBlindTransferA(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineBlindTransferW
+`LONG := lineBlindTransferW(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineClose
+`LONG := lineClose(HLINE hLine)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCompleteCall
+`LONG := lineCompleteCall(HCALL hCall, LPDWORD lpdwCompletionID, DWORD dwCompletionMode, DWORD dwMessageID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCompleteTransfer
+`LONG := lineCompleteTransfer(HCALL hCall, HCALL hConsultCall, LPHCALL lphConfCall, DWORD dwTransferMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialog
+`LONG := lineConfigDialog(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialogA
+`LONG := lineConfigDialogA(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialogEdit
+`LONG := lineConfigDialogEdit(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass, LPVOID const lpDeviceConfigIn, DWORD dwSize, LPVARSTRING lpDeviceConfigOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialogEditA
+`LONG := lineConfigDialogEditA(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass, LPVOID const lpDeviceConfigIn, DWORD dwSize, LPVARSTRING lpDeviceConfigOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialogEditW
+`LONG := lineConfigDialogEditW(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass, LPVOID const lpDeviceConfigIn, DWORD dwSize, LPVARSTRING lpDeviceConfigOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigDialogW
+`LONG := lineConfigDialogW(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineConfigProvider
+`LONG := lineConfigProvider(HWND hwndOwner, DWORD dwPermanentProviderID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgent
+`LONG := lineCreateAgent(HLINE hLine, LPWSTR lpszAgentID, LPWSTR lpszAgentPIN, LPHAGENT lphAgent)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgentA
+`LONG := lineCreateAgentA(HLINE hLine, LPWSTR lpszAgentID, LPWSTR lpszAgentPIN, LPHAGENT lphAgent)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgentSession
+`LONG := lineCreateAgentSession(HLINE hLine, HAGENT hAgent, LPWSTR lpszAgentPIN, DWORD dwWorkingAddressID, LPGUID lpGroupID, LPHAGENTSESSION lphAgentSession)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgentSessionA
+`LONG := lineCreateAgentSessionA(HLINE hLine, HAGENT hAgent, LPWSTR lpszAgentPIN, DWORD dwWorkingAddressID, LPGUID lpGroupID, LPHAGENTSESSION lphAgentSession)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgentSessionW
+`LONG := lineCreateAgentSessionW(HLINE hLine, HAGENT hAgent, LPWSTR lpszAgentPIN, DWORD dwWorkingAddressID, LPGUID lpGroupID, LPHAGENTSESSION lphAgentSession)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineCreateAgentW
+`LONG := lineCreateAgentW(HLINE hLine, LPWSTR lpszAgentID, LPWSTR lpszAgentPIN, LPHAGENT lphAgent)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDeallocateCall
+`LONG := lineDeallocateCall(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDevSpecific
+`LONG := lineDevSpecific(HLINE hLine, DWORD dwAddressID, HCALL hCall, LPVOID lpParams, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDevSpecificFeature
+`LONG := lineDevSpecificFeature(HLINE hLine, DWORD dwFeature, LPVOID lpParams, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDial
+`LONG := lineDial(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDialA
+`LONG := lineDialA(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDialW
+`LONG := lineDialW(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineDrop
+`LONG := lineDrop(HCALL hCall, LPCSTR lpsUserUserInfo, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineForward
+`LONG := lineForward(HLINE hLine, DWORD bAllAddresses, DWORD dwAddressID, LPLINEFORWARDLIST const lpForwardList, DWORD dwNumRingsNoAnswer, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineForwardA
+`LONG := lineForwardA(HLINE hLine, DWORD bAllAddresses, DWORD dwAddressID, LPLINEFORWARDLIST const lpForwardList, DWORD dwNumRingsNoAnswer, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineForwardW
+`LONG := lineForwardW(HLINE hLine, DWORD bAllAddresses, DWORD dwAddressID, LPLINEFORWARDLIST const lpForwardList, DWORD dwNumRingsNoAnswer, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGatherDigits
+`LONG := lineGatherDigits(HCALL hCall, DWORD dwDigitModes, LPSTR lpsDigits, DWORD dwNumDigits, LPCSTR lpszTerminationDigits, DWORD dwFirstDigitTimeout, DWORD dwInterDigitTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGatherDigitsA
+`LONG := lineGatherDigitsA(HCALL hCall, DWORD dwDigitModes, LPSTR lpsDigits, DWORD dwNumDigits, LPCSTR lpszTerminationDigits, DWORD dwFirstDigitTimeout, DWORD dwInterDigitTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGatherDigitsW
+`LONG := lineGatherDigitsW(HCALL hCall, DWORD dwDigitModes, LPSTR lpsDigits, DWORD dwNumDigits, LPCSTR lpszTerminationDigits, DWORD dwFirstDigitTimeout, DWORD dwInterDigitTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGenerateDigits
+`LONG := lineGenerateDigits(HCALL hCall, DWORD dwDigitMode, LPCSTR lpszDigits, DWORD dwDuration)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGenerateDigitsA
+`LONG := lineGenerateDigitsA(HCALL hCall, DWORD dwDigitMode, LPCSTR lpszDigits, DWORD dwDuration)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGenerateDigitsW
+`LONG := lineGenerateDigitsW(HCALL hCall, DWORD dwDigitMode, LPCSTR lpszDigits, DWORD dwDuration)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGenerateTone
+`LONG := lineGenerateTone(HCALL hCall, DWORD dwToneMode, DWORD dwDuration, DWORD dwNumTones, LPLINEGENERATETONE const lpTones)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressCaps
+`LONG := lineGetAddressCaps(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEADDRESSCAPS lpAddressCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressCapsA
+`LONG := lineGetAddressCapsA(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEADDRESSCAPS lpAddressCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressCapsW
+`LONG := lineGetAddressCapsW(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEADDRESSCAPS lpAddressCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressID
+`LONG := lineGetAddressID(HLINE hLine, LPDWORD lpdwAddressID, DWORD dwAddressMode, LPCSTR lpsAddress, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressIDA
+`LONG := lineGetAddressIDA(HLINE hLine, LPDWORD lpdwAddressID, DWORD dwAddressMode, LPCSTR lpsAddress, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressIDW
+`LONG := lineGetAddressIDW(HLINE hLine, LPDWORD lpdwAddressID, DWORD dwAddressMode, LPCSTR lpsAddress, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressStatus
+`LONG := lineGetAddressStatus(HLINE hLine, DWORD dwAddressID, LPLINEADDRESSSTATUS lpAddressStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressStatusA
+`LONG := lineGetAddressStatusA(HLINE hLine, DWORD dwAddressID, LPLINEADDRESSSTATUS lpAddressStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAddressStatusW
+`LONG := lineGetAddressStatusW(HLINE hLine, DWORD dwAddressID, LPLINEADDRESSSTATUS lpAddressStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentActivityList
+`LONG := lineGetAgentActivityList(HLINE hLine, DWORD dwAddressID, LPLINEAGENTACTIVITYLIST lpAgentActivityList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentActivityListA
+`LONG := lineGetAgentActivityListA(HLINE hLine, DWORD dwAddressID, LPLINEAGENTACTIVITYLIST lpAgentActivityList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentActivityListW
+`LONG := lineGetAgentActivityListW(HLINE hLine, DWORD dwAddressID, LPLINEAGENTACTIVITYLIST lpAgentActivityList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentCaps
+`LONG := lineGetAgentCaps(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAppAPIVersion, LPLINEAGENTCAPS lpAgentCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentCapsA
+`LONG := lineGetAgentCapsA(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAppAPIVersion, LPLINEAGENTCAPS lpAgentCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentCapsW
+`LONG := lineGetAgentCapsW(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAddressID, DWORD dwAppAPIVersion, LPLINEAGENTCAPS lpAgentCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentGroupList
+`LONG := lineGetAgentGroupList(HLINE hLine, DWORD dwAddressID, LPLINEAGENTGROUPLIST lpAgentGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentGroupListA
+`LONG := lineGetAgentGroupListA(HLINE hLine, DWORD dwAddressID, LPLINEAGENTGROUPLIST lpAgentGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentGroupListW
+`LONG := lineGetAgentGroupListW(HLINE hLine, DWORD dwAddressID, LPLINEAGENTGROUPLIST lpAgentGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentInfo
+`LONG := lineGetAgentInfo(HLINE hLine, HAGENT hAgent, LPLINEAGENTINFO lpAgentInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentSessionInfo
+`LONG := lineGetAgentSessionInfo(HLINE hLine, HAGENTSESSION hAgentSession, LPLINEAGENTSESSIONINFO lpAgentSessionInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentSessionList
+`LONG := lineGetAgentSessionList(HLINE hLine, HAGENT hAgent, LPLINEAGENTSESSIONLIST lpAgentSessionList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentStatus
+`LONG := lineGetAgentStatus(HLINE hLine, DWORD dwAddressID, LPLINEAGENTSTATUS lpAgentStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentStatusA
+`LONG := lineGetAgentStatusA(HLINE hLine, DWORD dwAddressID, LPLINEAGENTSTATUS lpAgentStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAgentStatusW
+`LONG := lineGetAgentStatusW(HLINE hLine, DWORD dwAddressID, LPLINEAGENTSTATUS lpAgentStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAppPriority
+`LONG := lineGetAppPriority(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPVARSTRING lpExtensionName, LPDWORD lpdwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAppPriorityA
+`LONG := lineGetAppPriorityA(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPVARSTRING lpExtensionName, LPDWORD lpdwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetAppPriorityW
+`LONG := lineGetAppPriorityW(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPVARSTRING lpExtensionName, LPDWORD lpdwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCallInfo
+`LONG := lineGetCallInfo(HCALL hCall, LPLINECALLINFO lpCallInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCallInfoA
+`LONG := lineGetCallInfoA(HCALL hCall, LPLINECALLINFO lpCallInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCallInfoW
+`LONG := lineGetCallInfoW(HCALL hCall, LPLINECALLINFO lpCallInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCallStatus
+`LONG := lineGetCallStatus(HCALL hCall, LPLINECALLSTATUS lpCallStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetConfRelatedCalls
+`LONG := lineGetConfRelatedCalls(HCALL hCall, LPLINECALLLIST lpCallList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCountry
+`LONG := lineGetCountry(DWORD dwCountryID, DWORD dwAPIVersion, LPLINECOUNTRYLIST lpLineCountryList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCountryA
+`LONG := lineGetCountryA(DWORD dwCountryID, DWORD dwAPIVersion, LPLINECOUNTRYLIST lpLineCountryList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetCountryW
+`LONG := lineGetCountryW(DWORD dwCountryID, DWORD dwAPIVersion, LPLINECOUNTRYLIST lpLineCountryList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevCaps
+`LONG := lineGetDevCaps(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEDEVCAPS lpLineDevCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevCapsA
+`LONG := lineGetDevCapsA(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEDEVCAPS lpLineDevCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevCapsW
+`LONG := lineGetDevCapsW(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPLINEDEVCAPS lpLineDevCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevConfig
+`LONG := lineGetDevConfig(DWORD dwDeviceID, LPVARSTRING lpDeviceConfig, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevConfigA
+`LONG := lineGetDevConfigA(DWORD dwDeviceID, LPVARSTRING lpDeviceConfig, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetDevConfigW
+`LONG := lineGetDevConfigW(DWORD dwDeviceID, LPVARSTRING lpDeviceConfig, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetGroupList
+`LONG := lineGetGroupList(HLINE hLine, LPLINEAGENTGROUPLIST lpGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetGroupListA
+`LONG := lineGetGroupListA(HLINE hLine, LPLINEAGENTGROUPLIST lpGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetGroupListW
+`LONG := lineGetGroupListW(HLINE hLine, LPLINEAGENTGROUPLIST lpGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetIcon
+`LONG := lineGetIcon(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetIconA
+`LONG := lineGetIconA(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetIconW
+`LONG := lineGetIconW(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetID
+`LONG := lineGetID(HLINE hLine, DWORD dwAddressID, HCALL hCall, DWORD dwSelect, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetIDA
+`LONG := lineGetIDA(HLINE hLine, DWORD dwAddressID, HCALL hCall, DWORD dwSelect, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetIDW
+`LONG := lineGetIDW(HLINE hLine, DWORD dwAddressID, HCALL hCall, DWORD dwSelect, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetLineDevStatus
+`LONG := lineGetLineDevStatus(HLINE hLine, LPLINEDEVSTATUS lpLineDevStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetLineDevStatusA
+`LONG := lineGetLineDevStatusA(HLINE hLine, LPLINEDEVSTATUS lpLineDevStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetLineDevStatusW
+`LONG := lineGetLineDevStatusW(HLINE hLine, LPLINEDEVSTATUS lpLineDevStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetMessage
+`LONG := lineGetMessage(HLINEAPP hLineApp, LPLINEMESSAGE lpMessage, DWORD dwTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetNewCalls
+`LONG := lineGetNewCalls(HLINE hLine, DWORD dwAddressID, DWORD dwSelect, LPLINECALLLIST lpCallList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetNumRings
+`LONG := lineGetNumRings(HLINE hLine, DWORD dwAddressID, LPDWORD lpdwNumRings)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetProviderList
+`LONG := lineGetProviderList(DWORD dwAPIVersion, LPLINEPROVIDERLIST lpProviderList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetProviderListA
+`LONG := lineGetProviderListA(DWORD dwAPIVersion, LPLINEPROVIDERLIST lpProviderList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetProviderListW
+`LONG := lineGetProviderListW(DWORD dwAPIVersion, LPLINEPROVIDERLIST lpProviderList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetProxyStatus
+`LONG := lineGetProxyStatus(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAppAPIVersion, LPLINEPROXYREQUESTLIST lpLineProxyRequestList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetQueueInfo
+`LONG := lineGetQueueInfo(HLINE hLine, DWORD dwQueueID, LPLINEQUEUEINFO lpLineQueueInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetQueueList
+`LONG := lineGetQueueList(HLINE hLine, LPGUID lpGroupID, LPLINEQUEUELIST lpQueueList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetQueueListA
+`LONG := lineGetQueueListA(HLINE hLine, LPGUID lpGroupID, LPLINEQUEUELIST lpQueueList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetQueueListW
+`LONG := lineGetQueueListW(HLINE hLine, LPGUID lpGroupID, LPLINEQUEUELIST lpQueueList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetRequest
+`LONG := lineGetRequest(HLINEAPP hLineApp, DWORD dwRequestMode, LPVOID lpRequestBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetRequestA
+`LONG := lineGetRequestA(HLINEAPP hLineApp, DWORD dwRequestMode, LPVOID lpRequestBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetRequestW
+`LONG := lineGetRequestW(HLINEAPP hLineApp, DWORD dwRequestMode, LPVOID lpRequestBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetStatusMessages
+`LONG := lineGetStatusMessages(HLINE hLine, LPDWORD lpdwLineStates, LPDWORD lpdwAddressStates)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetTranslateCaps
+`LONG := lineGetTranslateCaps(HLINEAPP hLineApp, DWORD dwAPIVersion, LPLINETRANSLATECAPS lpTranslateCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetTranslateCapsA
+`LONG := lineGetTranslateCapsA(HLINEAPP hLineApp, DWORD dwAPIVersion, LPLINETRANSLATECAPS lpTranslateCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineGetTranslateCapsW
+`LONG := lineGetTranslateCapsW(HLINEAPP hLineApp, DWORD dwAPIVersion, LPLINETRANSLATECAPS lpTranslateCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineHandoff
+`LONG := lineHandoff(HCALL hCall, LPCSTR lpszFileName, DWORD dwMediaMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineHandoffA
+`LONG := lineHandoffA(HCALL hCall, LPCSTR lpszFileName, DWORD dwMediaMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineHandoffW
+`LONG := lineHandoffW(HCALL hCall, LPCSTR lpszFileName, DWORD dwMediaMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineHold
+`LONG := lineHold(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineInitialize
+`LONG := lineInitialize(LPHLINEAPP lphLineApp, HINSTANCE hInstance, LINECALLBACK lpfnCallback, LPCSTR lpszAppName, LPDWORD lpdwNumDevs)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineInitializeEx
+`LONG := lineInitializeEx(LPHLINEAPP lphLineApp, HINSTANCE hInstance, LINECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPLINEINITIALIZEEXPARAMS lpLineInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineInitializeExA
+`LONG := lineInitializeExA(LPHLINEAPP lphLineApp, HINSTANCE hInstance, LINECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPLINEINITIALIZEEXPARAMS lpLineInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineInitializeExW
+`LONG := lineInitializeExW(LPHLINEAPP lphLineApp, HINSTANCE hInstance, LINECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPLINEINITIALIZEEXPARAMS lpLineInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMakeCall
+`LONG := lineMakeCall(HLINE hLine, LPHCALL lphCall, LPCSTR lpszDestAddress, DWORD dwCountryCode, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMakeCallA
+`LONG := lineMakeCallA(HLINE hLine, LPHCALL lphCall, LPCSTR lpszDestAddress, DWORD dwCountryCode, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMakeCallW
+`LONG := lineMakeCallW(HLINE hLine, LPHCALL lphCall, LPCSTR lpszDestAddress, DWORD dwCountryCode, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMonitorDigits
+`LONG := lineMonitorDigits(HCALL hCall, DWORD dwDigitModes)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMonitorMedia
+`LONG := lineMonitorMedia(HCALL hCall, DWORD dwMediaModes)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineMonitorTones
+`LONG := lineMonitorTones(HCALL hCall, LPLINEMONITORTONE const lpToneList, DWORD dwNumEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineNegotiateAPIVersion
+`LONG := lineNegotiateAPIVersion(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPILowVersion, DWORD dwAPIHighVersion, LPDWORD lpdwAPIVersion, LPLINEEXTENSIONID lpExtensionID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineNegotiateExtVersion
+`LONG := lineNegotiateExtVersion(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtLowVersion, DWORD dwExtHighVersion, LPDWORD lpdwExtVersion)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineOpen
+`LONG := lineOpen(HLINEAPP hLineApp, DWORD dwDeviceID, LPHLINE lphLine, DWORD dwAPIVersion, DWORD dwExtVersion, DWORD_PTR dwCallbackInstance, DWORD dwPrivileges, DWORD dwMediaModes, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineOpenA
+`LONG := lineOpenA(HLINEAPP hLineApp, DWORD dwDeviceID, LPHLINE lphLine, DWORD dwAPIVersion, DWORD dwExtVersion, DWORD_PTR dwCallbackInstance, DWORD dwPrivileges, DWORD dwMediaModes, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineOpenW
+`LONG := lineOpenW(HLINEAPP hLineApp, DWORD dwDeviceID, LPHLINE lphLine, DWORD dwAPIVersion, DWORD dwExtVersion, DWORD_PTR dwCallbackInstance, DWORD dwPrivileges, DWORD dwMediaModes, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePark
+`LONG := linePark(HCALL hCall, DWORD dwParkMode, LPCSTR lpszDirAddress, LPVARSTRING lpNonDirAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineParkA
+`LONG := lineParkA(HCALL hCall, DWORD dwParkMode, LPCSTR lpszDirAddress, LPVARSTRING lpNonDirAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineParkW
+`LONG := lineParkW(HCALL hCall, DWORD dwParkMode, LPCSTR lpszDirAddress, LPVARSTRING lpNonDirAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePickup
+`LONG := linePickup(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress, LPCSTR lpszGroupID)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePickupA
+`LONG := linePickupA(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress, LPCSTR lpszGroupID)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePickupW
+`LONG := linePickupW(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress, LPCSTR lpszGroupID)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePrepareAddToConference
+`LONG := linePrepareAddToConference(HCALL hConfCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePrepareAddToConferenceA
+`LONG := linePrepareAddToConferenceA(HCALL hConfCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+linePrepareAddToConferenceW
+`LONG := linePrepareAddToConferenceW(HCALL hConfCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineProxyMessage
+`LONG := lineProxyMessage(HLINE hLine, HCALL hCall, DWORD dwMsg, DWORD dwParam1, DWORD dwParam2, DWORD dwParam3)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineProxyResponse
+`LONG := lineProxyResponse(HLINE hLine, LPLINEPROXYREQUEST lpProxyRequest, DWORD dwResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRedirect
+`LONG := lineRedirect(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRedirectA
+`LONG := lineRedirectA(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRedirectW
+`LONG := lineRedirectW(HCALL hCall, LPCSTR lpszDestAddress, DWORD dwCountryCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRegisterRequestRecipient
+`LONG := lineRegisterRequestRecipient(HLINEAPP hLineApp, DWORD dwRegistrationInstance, DWORD dwRequestMode, DWORD bEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineReleaseUserUserInfo
+`LONG := lineReleaseUserUserInfo(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRemoveFromConference
+`LONG := lineRemoveFromConference(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineRemoveProvider
+`LONG := lineRemoveProvider(DWORD dwPermanentProviderID, HWND hwndOwner)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSecureCall
+`LONG := lineSecureCall(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSendUserUserInfo
+`LONG := lineSendUserUserInfo(HCALL hCall, LPCSTR lpsUserUserInfo, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentActivity
+`LONG := lineSetAgentActivity(HLINE hLine, DWORD dwAddressID, DWORD dwActivityID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentGroup
+`LONG := lineSetAgentGroup(HLINE hLine, DWORD dwAddressID, LPLINEAGENTGROUPLIST lpAgentGroupList)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentMeasurementPeriod
+`LONG := lineSetAgentMeasurementPeriod(HLINE hLine, HAGENT hAgent, DWORD dwMeasurementPeriod)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentSessionState
+`LONG := lineSetAgentSessionState(HLINE hLine, HAGENTSESSION hAgentSession, DWORD dwAgentSessionState, DWORD dwNextAgentSessionState)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentState
+`LONG := lineSetAgentState(HLINE hLine, DWORD dwAddressID, DWORD dwAgentState, DWORD dwNextAgentState)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAgentStateEx
+`LONG := lineSetAgentStateEx(HLINE hLine, HAGENT hAgent, DWORD dwAgentState, DWORD dwNextAgentState)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAppPriority
+`LONG := lineSetAppPriority(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPCSTR lpszExtensionName, DWORD dwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAppPriorityA
+`LONG := lineSetAppPriorityA(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPCSTR lpszExtensionName, DWORD dwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAppPriorityW
+`LONG := lineSetAppPriorityW(LPCSTR lpszAppFilename, DWORD dwMediaMode, LPLINEEXTENSIONID lpExtensionID, DWORD dwRequestMode, LPCSTR lpszExtensionName, DWORD dwPriority)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetAppSpecific
+`LONG := lineSetAppSpecific(HCALL hCall, DWORD dwAppSpecific)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCallData
+`LONG := lineSetCallData(HCALL hCall, LPVOID lpCallData, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCallParams
+`LONG := lineSetCallParams(HCALL hCall, DWORD dwBearerMode, DWORD dwMinRate, DWORD dwMaxRate, LPLINEDIALPARAMS const lpDialParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCallPrivilege
+`LONG := lineSetCallPrivilege(HCALL hCall, DWORD dwCallPrivilege)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCallQualityOfService
+`LONG := lineSetCallQualityOfService(HCALL hCall, LPVOID lpSendingFlowspec, DWORD dwSendingFlowspecSize, LPVOID lpReceivingFlowspec, DWORD dwReceivingFlowspecSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCallTreatment
+`LONG := lineSetCallTreatment(HCALL hCall, DWORD dwTreatment)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetCurrentLocation
+`LONG := lineSetCurrentLocation(HLINEAPP hLineApp, DWORD dwLocation)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetDevConfig
+`LONG := lineSetDevConfig(DWORD dwDeviceID, LPVOID const lpDeviceConfig, DWORD dwSize, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetDevConfigA
+`LONG := lineSetDevConfigA(DWORD dwDeviceID, LPVOID const lpDeviceConfig, DWORD dwSize, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetDevConfigW
+`LONG := lineSetDevConfigW(DWORD dwDeviceID, LPVOID const lpDeviceConfig, DWORD dwSize, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetLineDevStatus
+`LONG := lineSetLineDevStatus(HLINE hLine, DWORD dwStatusToChange, DWORD fStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetMediaControl
+`LONG := lineSetMediaControl(HLINE hLine, DWORD dwAddressID, HCALL hCall, DWORD dwSelect, LPLINEMEDIACONTROLDIGIT const lpDigitList, DWORD dwDigitNumEntries, LPLINEMEDIACONTROLMEDIA const lpMediaList, DWORD dwMediaNumEntries, LPLINEMEDIACONTROLTONE const lpToneList, DWORD dwToneNumEntries, LPLINEMEDIACONTROLCALLSTATE const lpCallStateList, DWORD dwCallStateNumEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetMediaMode
+`LONG := lineSetMediaMode(HCALL hCall, DWORD dwMediaModes)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetNumRings
+`LONG := lineSetNumRings(HLINE hLine, DWORD dwAddressID, DWORD dwNumRings)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetQueueMeasurementPeriod
+`LONG := lineSetQueueMeasurementPeriod(HLINE hLine, DWORD dwQueueID, DWORD dwMeasurementPeriod)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetStatusMessages
+`LONG := lineSetStatusMessages(HLINE hLine, DWORD dwLineStates, DWORD dwAddressStates)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetTerminal
+`LONG := lineSetTerminal(HLINE hLine, DWORD dwAddressID, HCALL hCall, DWORD dwSelect, DWORD dwTerminalModes, DWORD dwTerminalID, DWORD bEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetTollList
+`LONG := lineSetTollList(HLINEAPP hLineApp, DWORD dwDeviceID, LPCSTR lpszAddressIn, DWORD dwTollListOption)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetTollListA
+`LONG := lineSetTollListA(HLINEAPP hLineApp, DWORD dwDeviceID, LPCSTR lpszAddressIn, DWORD dwTollListOption)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetTollListW
+`LONG := lineSetTollListW(HLINEAPP hLineApp, DWORD dwDeviceID, LPCSTR lpszAddressIn, DWORD dwTollListOption)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupConference
+`LONG := lineSetupConference(HCALL hCall, HLINE hLine, LPHCALL lphConfCall, LPHCALL lphConsultCall, DWORD dwNumParties, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupConferenceA
+`LONG := lineSetupConferenceA(HCALL hCall, HLINE hLine, LPHCALL lphConfCall, LPHCALL lphConsultCall, DWORD dwNumParties, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupConferenceW
+`LONG := lineSetupConferenceW(HCALL hCall, HLINE hLine, LPHCALL lphConfCall, LPHCALL lphConsultCall, DWORD dwNumParties, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupTransfer
+`LONG := lineSetupTransfer(HCALL hCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupTransferA
+`LONG := lineSetupTransferA(HCALL hCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSetupTransferW
+`LONG := lineSetupTransferW(HCALL hCall, LPHCALL lphConsultCall, LPLINECALLPARAMS const lpCallParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineShutdown
+`LONG := lineShutdown(HLINEAPP hLineApp)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineSwapHold
+`LONG := lineSwapHold(HCALL hActiveCall, HCALL hHeldCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateAddress
+`LONG := lineTranslateAddress(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, LPCSTR lpszAddressIn, DWORD dwCard, DWORD dwTranslateOptions, LPLINETRANSLATEOUTPUT lpTranslateOutput)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateAddressA
+`LONG := lineTranslateAddressA(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, LPCSTR lpszAddressIn, DWORD dwCard, DWORD dwTranslateOptions, LPLINETRANSLATEOUTPUT lpTranslateOutput)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateAddressW
+`LONG := lineTranslateAddressW(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, LPCSTR lpszAddressIn, DWORD dwCard, DWORD dwTranslateOptions, LPLINETRANSLATEOUTPUT lpTranslateOutput)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateDialog
+`LONG := lineTranslateDialog(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, HWND hwndOwner, LPCSTR lpszAddressIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateDialogA
+`LONG := lineTranslateDialogA(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, HWND hwndOwner, LPCSTR lpszAddressIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineTranslateDialogW
+`LONG := lineTranslateDialogW(HLINEAPP hLineApp, DWORD dwDeviceID, DWORD dwAPIVersion, HWND hwndOwner, LPCSTR lpszAddressIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineUncompleteCall
+`LONG := lineUncompleteCall(HLINE hLine, DWORD dwCompletionID)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineUnhold
+`LONG := lineUnhold(HCALL hCall)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineUnpark
+`LONG := lineUnpark(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineUnparkA
+`LONG := lineUnparkA(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+lineUnparkW
+`LONG := lineUnparkW(HLINE hLine, DWORD dwAddressID, LPHCALL lphCall, LPCSTR lpszDestAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneClose
+`LONG := phoneClose(HPHONE hPhone)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneConfigDialog
+`LONG := phoneConfigDialog(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneConfigDialogA
+`LONG := phoneConfigDialogA(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneConfigDialogW
+`LONG := phoneConfigDialogW(DWORD dwDeviceID, HWND hwndOwner, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneDevSpecific
+`LONG := phoneDevSpecific(HPHONE hPhone, LPVOID lpParams, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetButtonInfo
+`LONG := phoneGetButtonInfo(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetButtonInfoA
+`LONG := phoneGetButtonInfoA(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetButtonInfoW
+`LONG := phoneGetButtonInfoW(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetData
+`LONG := phoneGetData(HPHONE hPhone, DWORD dwDataID, LPVOID lpData, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetDevCaps
+`LONG := phoneGetDevCaps(HPHONEAPP hPhoneApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPPHONECAPS lpPhoneCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetDevCapsA
+`LONG := phoneGetDevCapsA(HPHONEAPP hPhoneApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPPHONECAPS lpPhoneCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetDevCapsW
+`LONG := phoneGetDevCapsW(HPHONEAPP hPhoneApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtVersion, LPPHONECAPS lpPhoneCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetDisplay
+`LONG := phoneGetDisplay(HPHONE hPhone, LPVARSTRING lpDisplay)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetGain
+`LONG := phoneGetGain(HPHONE hPhone, DWORD dwHookSwitchDev, LPDWORD lpdwGain)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetHookSwitch
+`LONG := phoneGetHookSwitch(HPHONE hPhone, LPDWORD lpdwHookSwitchDevs)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetIcon
+`LONG := phoneGetIcon(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetIconA
+`LONG := phoneGetIconA(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetIconW
+`LONG := phoneGetIconW(DWORD dwDeviceID, LPCSTR lpszDeviceClass, LPHICON lphIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetID
+`LONG := phoneGetID(HPHONE hPhone, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetIDA
+`LONG := phoneGetIDA(HPHONE hPhone, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetIDW
+`LONG := phoneGetIDW(HPHONE hPhone, LPVARSTRING lpDeviceID, LPCSTR lpszDeviceClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetLamp
+`LONG := phoneGetLamp(HPHONE hPhone, DWORD dwButtonLampID, LPDWORD lpdwLampMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetMessage
+`LONG := phoneGetMessage(HPHONEAPP hPhoneApp, LPPHONEMESSAGE lpMessage, DWORD dwTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetRing
+`LONG := phoneGetRing(HPHONE hPhone, LPDWORD lpdwRingMode, LPDWORD lpdwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetStatus
+`LONG := phoneGetStatus(HPHONE hPhone, LPPHONESTATUS lpPhoneStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetStatusA
+`LONG := phoneGetStatusA(HPHONE hPhone, LPPHONESTATUS lpPhoneStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetStatusMessages
+`LONG := phoneGetStatusMessages(HPHONE hPhone, LPDWORD lpdwPhoneStates, LPDWORD lpdwButtonModes, LPDWORD lpdwButtonStates)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetStatusW
+`LONG := phoneGetStatusW(HPHONE hPhone, LPPHONESTATUS lpPhoneStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneGetVolume
+`LONG := phoneGetVolume(HPHONE hPhone, DWORD dwHookSwitchDev, LPDWORD lpdwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneInitialize
+`LONG := phoneInitialize(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCSTR lpszAppName, LPDWORD lpdwNumDevs)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneInitializeEx
+`LONG := phoneInitializeEx(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPPHONEINITIALIZEEXPARAMS lpPhoneInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneInitializeExA
+`LONG := phoneInitializeExA(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPPHONEINITIALIZEEXPARAMS lpPhoneInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneInitializeExW
+`LONG := phoneInitializeExW(LPHPHONEAPP lphPhoneApp, HINSTANCE hInstance, PHONECALLBACK lpfnCallback, LPCSTR lpszFriendlyAppName, LPDWORD lpdwNumDevs, LPDWORD lpdwAPIVersion, LPPHONEINITIALIZEEXPARAMS lpPhoneInitializeExParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneNegotiateAPIVersion
+`LONG := phoneNegotiateAPIVersion(HPHONEAPP hPhoneApp, DWORD dwDeviceID, DWORD dwAPILowVersion, DWORD dwAPIHighVersion, LPDWORD lpdwAPIVersion, LPPHONEEXTENSIONID lpExtensionID)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneNegotiateExtVersion
+`LONG := phoneNegotiateExtVersion(HPHONEAPP hPhoneApp, DWORD dwDeviceID, DWORD dwAPIVersion, DWORD dwExtLowVersion, DWORD dwExtHighVersion, LPDWORD lpdwExtVersion)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneOpen
+`LONG := phoneOpen(HPHONEAPP hPhoneApp, DWORD dwDeviceID, LPHPHONE lphPhone, DWORD dwAPIVersion, DWORD dwExtVersion, DWORD_PTR dwCallbackInstance, DWORD dwPrivilege)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetButtonInfo
+`LONG := phoneSetButtonInfo(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO const lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetButtonInfoA
+`LONG := phoneSetButtonInfoA(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO const lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetButtonInfoW
+`LONG := phoneSetButtonInfoW(HPHONE hPhone, DWORD dwButtonLampID, LPPHONEBUTTONINFO const lpButtonInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetData
+`LONG := phoneSetData(HPHONE hPhone, DWORD dwDataID, LPVOID const lpData, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetDisplay
+`LONG := phoneSetDisplay(HPHONE hPhone, DWORD dwRow, DWORD dwColumn, LPCSTR lpsDisplay, DWORD dwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetGain
+`LONG := phoneSetGain(HPHONE hPhone, DWORD dwHookSwitchDev, DWORD dwGain)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetHookSwitch
+`LONG := phoneSetHookSwitch(HPHONE hPhone, DWORD dwHookSwitchDevs, DWORD dwHookSwitchMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetLamp
+`LONG := phoneSetLamp(HPHONE hPhone, DWORD dwButtonLampID, DWORD dwLampMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetRing
+`LONG := phoneSetRing(HPHONE hPhone, DWORD dwRingMode, DWORD dwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetStatusMessages
+`LONG := phoneSetStatusMessages(HPHONE hPhone, DWORD dwPhoneStates, DWORD dwButtonModes, DWORD dwButtonStates)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneSetVolume
+`LONG := phoneSetVolume(HPHONE hPhone, DWORD dwHookSwitchDev, DWORD dwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+phoneShutdown
+`LONG := phoneShutdown(HPHONEAPP hPhoneApp)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiGetLocationInfo
+`LONG := tapiGetLocationInfo(LPSTR lpszCountryCode, LPSTR lpszCityCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiGetLocationInfoA
+`LONG := tapiGetLocationInfoA(LPSTR lpszCountryCode, LPSTR lpszCityCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiGetLocationInfoW
+`LONG := tapiGetLocationInfoW(LPSTR lpszCountryCode, LPSTR lpszCityCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiRequestDrop
+`LONG := tapiRequestDrop(HWND hWnd, WPARAM wRequestID)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiRequestMakeCall
+`LONG := tapiRequestMakeCall(LPCSTR lpszDestAddress, LPCSTR lpszAppName, LPCSTR lpszCalledParty, LPCSTR lpszComment)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiRequestMakeCallA
+`LONG := tapiRequestMakeCallA(LPCSTR lpszDestAddress, LPCSTR lpszAppName, LPCSTR lpszCalledParty, LPCSTR lpszComment)
+`/docs/commands/WinApi.htm
+
+
+Function
+tapiRequestMakeCallW
+`LONG := tapiRequestMakeCallW(LPCSTR lpszDestAddress, LPCSTR lpszAppName, LPCSTR lpszCalledParty, LPCSTR lpszComment)
+`/docs/commands/WinApi.htm

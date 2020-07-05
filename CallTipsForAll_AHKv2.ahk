@@ -170,28 +170,28 @@ Down:: ; scroll when multiple records are available for call tips
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
 	A_Clipboard := Jxon_dump(VariablesList,4)
-	Msgbox "check VarList"
+	Msgbox "check VarList: " VariablesList.Length
 	
 	A_Clipboard := Jxon_Dump(FunctionList,4)
-	msgbox "check FunctionList"
+	msgbox "check FunctionList: " FunctionList.Count
 	
 	A_Clipboard := Jxon_dump(CustomFunctions,4)
-	msgbox "check CustomFunctions"
+	msgbox "check CustomFunctions: " CustomFunctions.Count
 	
 	A_Clipboard := Jxon_dump(MethPropList,4)
-	msgbox "check MethPropList"
+	msgbox "check MethPropList: " MethPropList.Count
 	
 	A_Clipboard := Jxon_dump(ObjectList,4)
-	msgbox "check ObjectList"
+	msgbox "check ObjectList: " ObjectList.Count
 	
 	A_Clipboard := Jxon_dump(ClassesList,4)
-	msgbox "check ClassesList"
+	msgbox "check ClassesList: " ClassesList.Count
 	
 	A_Clipboard := Jxon_dump(IncludesList,4)
-	msgbox "check IncludesList"
+	msgbox "check IncludesList: " IncludesList.Length
 	
 	A_Clipboard := Jxon_dump(ObjectCreateList,4)
-	msgbox "check ObjectCreateList"
+	msgbox "check ObjectCreateList: " ObjectCreateList.Count
 }
 
 ; F9::
@@ -466,27 +466,29 @@ KwSearchDeep(curPhrase, parentObj) {
 		
 		If (curObj) {
 			If (thisList = "ObjectList") {
-				curObject := ObjectList[curObj]["types"]
-				For curType in curObject {
-					curMethPropList := MethPropList[curType]
-					curMethList := curMethPropList["method"]
-					For methName in curMethList {
-						If (!curPhrase)
-							resultList[methName] := "Method"
-						Else If (InStr(methName,curPhrase))
-							resultList[methName] := "Method"
-					}
-					
-					curPropList := curMethPropList["property"]
-					For propName in curPropList {
-						If (!curPhrase)
-							resultList[propName] := "Property"
-						Else If (inStr(propName,curPhrase))
-							resultList[propName] := "Property"
-					}
+				curType := ObjectList[curObj]
+				curMethPropList := MethPropList[curType]
+				curMethList := curMethPropList["method"]
+				For methName in curMethList {
+					If (!curPhrase)
+						resultList[methName] := "Method"
+					Else If (InStr(methName,curPhrase))
+						resultList[methName] := "Method"
+				}
+				
+				curPropList := curMethPropList["property"]
+				For propName in curPropList {
+					If (!curPhrase)
+						resultList[propName] := "Property"
+					Else If (inStr(propName,curPhrase))
+						resultList[propName] := "Property"
 				}
 			} Else If (thisList = "ClassesList") {
 				classObj := ClassesList[curObj]
+				
+				If (classObj["type"] = "Instance")
+					classObj := ClassesList[classObj["class"]]
+				
 				memList := classObj["members"]
 				For memName, obj in memList {
 					params := obj["params"], curType := obj["type"]

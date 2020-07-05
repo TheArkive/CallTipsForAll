@@ -1,0 +1,1168 @@
+Function
+auxGetDevCaps
+`MMRESULT := auxGetDevCaps(UINT_PTR uDeviceID, LPAUXCAPS lpCaps, UINT cbCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxGetDevCapsA
+`MMRESULT := auxGetDevCapsA(UINT_PTR uDeviceID, LPAUXCAPS lpCaps, UINT cbCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxGetDevCapsW
+`MMRESULT := auxGetDevCapsW(UINT_PTR uDeviceID, LPAUXCAPS lpCaps, UINT cbCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxGetNumDevs
+`UINT := auxGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxGetVolume
+`MMRESULT := auxGetVolume(UINT uDeviceID, LPDWORD lpdwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxOutMessage
+`DWORD := auxOutMessage(UINT uDeviceID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+auxSetVolume
+`MMRESULT := auxSetVolume(UINT uDeviceID, DWORD dwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseDriver
+`LRESULT := CloseDriver(_In_ HDRVR hdrvr, _In_ LPARAM lParam1, _In_ LPARAM lParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefDriverProc
+`LRESULT := DefDriverProc(DWORD_PTR dwDriverId, HDRVR hdrvr, UINT msg, LONG lParam1, LONG lParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+DriverCallback
+`BOOL := DriverCallback(DWORD dwCallBack, DWORD dwFlags, HDRVR hdrvr, DWORD msg, DWORD dwUser, DWORD dwParam1, DWORD dwParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrvGetModuleHandle
+`HMODULE := DrvGetModuleHandle(_In_ HDRVR hDriver)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDriverModuleHandle
+`HMODULE := GetDriverModuleHandle(_In_ HDRVR hdrvr)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyConfigChanged
+`MMRESULT := joyConfigChanged(DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetDevCaps
+`MMRESULT := joyGetDevCaps(UINT_PTR uJoyID, LPJOYCAPS pjc, UINT cbjc)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetDevCapsA
+`MMRESULT := joyGetDevCapsA(UINT_PTR uJoyID, LPJOYCAPS pjc, UINT cbjc)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetDevCapsW
+`MMRESULT := joyGetDevCapsW(UINT_PTR uJoyID, LPJOYCAPS pjc, UINT cbjc)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetNumDevs
+`UINT := joyGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetPos
+`MMRESULT := joyGetPos(UINT uJoyID, LPJOYINFO pji)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetPosEx
+`MMRESULT := joyGetPosEx(UINT uJoyID, LPJOYINFOEX pji)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyGetThreshold
+`MMRESULT := joyGetThreshold(UINT uJoyID, LPUINT puThreshold)
+`/docs/commands/WinApi.htm
+
+
+Function
+joyReleaseCapture
+`MMRESULT := joyReleaseCapture(UINT uJoyID)
+`/docs/commands/WinApi.htm
+
+
+Function
+joySetCapture
+`MMRESULT := joySetCapture(HWND hwnd, UINT uJoyID, UINT uPeriod, BOOL fChanged)
+`/docs/commands/WinApi.htm
+
+
+Function
+joySetThreshold
+`MMRESULT := joySetThreshold(UINT uJoyID, UINT uThreshold)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciExecute
+`BOOL := mciExecute(LPCSTR pszCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetCreatorTask
+`HANDLE := mciGetCreatorTask(MCIDEVICEID IDDevice)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceID
+`MCIDEVICEID := mciGetDeviceID(LPCTSTR lpszDevice)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceIDA
+`MCIDEVICEID := mciGetDeviceIDA(LPCSTR lpszDevice)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceIDFromElementID
+`MCIDEVICEID := mciGetDeviceIDFromElementID(DWORD dwElementID, LPCTSTR lpstrType)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceIDFromElementIDA
+`MCIDEVICEID := mciGetDeviceIDFromElementIDA(DWORD dwElementID, LPCSTR lpstrType)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceIDFromElementIDW
+`MCIDEVICEID := mciGetDeviceIDFromElementIDW(DWORD dwElementID, LPCWSTR lpstrType)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetDeviceIDW
+`MCIDEVICEID := mciGetDeviceIDW(LPCWSTR lpszDevice)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetErrorString
+`BOOL := mciGetErrorString(DWORD fdwError, LPTSTR lpszErrorText, UINT cchErrorText)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetErrorStringA
+`BOOL := mciGetErrorStringA(DWORD fdwError, LPSTR lpszErrorText, UINT cchErrorText)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetErrorStringW
+`BOOL := mciGetErrorStringW(DWORD fdwError, LPWSTR lpszErrorText, UINT cchErrorText)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciGetYieldProc
+`YIELDPROC := mciGetYieldProc(MCIDEVICEID IDDevice, LPDWORD lpdwYieldData)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendCommand
+`MCIERROR := mciSendCommand(MCIDEVICEID IDDevice, UINT uMsg, DWORD_PTR fdwCommand, DWORD_PTR dwParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendCommandA
+`MCIERROR := mciSendCommandA(MCIDEVICEID IDDevice, UINT uMsg, DWORD_PTR fdwCommand, DWORD_PTR dwParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendCommandW
+`MCIERROR := mciSendCommandW(MCIDEVICEID IDDevice, UINT uMsg, DWORD_PTR fdwCommand, DWORD_PTR dwParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendString
+`MCIERROR := mciSendString(LPCTSTR lpszCommand, LPTSTR lpszReturnString, UINT cchReturn, HANDLE hwndCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendStringA
+`MCIERROR := mciSendStringA(LPCSTR lpszCommand, LPSTR lpszReturnString, UINT cchReturn, HANDLE hwndCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSendStringW
+`MCIERROR := mciSendStringW(LPCWSTR lpszCommand, LPWSTR lpszReturnString, UINT cchReturn, HANDLE hwndCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+mciSetYieldProc
+`UINT := mciSetYieldProc(MCIDEVICEID IDDevice, YIELDPROC yp, DWORD dwYieldData)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiConnect
+`MMRESULT := midiConnect(HMIDI hMidi, HMIDIOUT hmo, LPVOID pReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiDisconnect
+`MMRESULT := midiDisconnect(HMIDI hMidi, HMIDIOUT hmo, LPVOID pReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInAddBuffer
+`MMRESULT := midiInAddBuffer(HMIDIIN hMidiIn, LPMIDIHDR lpMidiInHdr, UINT cbMidiInHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInClose
+`MMRESULT := midiInClose(HMIDIIN hMidiIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetDevCaps
+`MMRESULT := midiInGetDevCaps(UINT_PTR uDeviceID, LPMIDIINCAPS lpMidiInCaps, UINT cbMidiInCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetDevCapsA
+`MMRESULT := midiInGetDevCapsA(UINT_PTR uDeviceID, LPMIDIINCAPS lpMidiInCaps, UINT cbMidiInCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetDevCapsW
+`MMRESULT := midiInGetDevCapsW(UINT_PTR uDeviceID, LPMIDIINCAPS lpMidiInCaps, UINT cbMidiInCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetErrorText
+`MMRESULT := midiInGetErrorText(MMRESULT wError, LPTSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetErrorTextA
+`MMRESULT := midiInGetErrorTextA(MMRESULT wError, LPSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetErrorTextW
+`MMRESULT := midiInGetErrorTextW(MMRESULT wError, LPWSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetID
+`MMRESULT := midiInGetID(HMIDIIN hmi, LPUINT puDeviceID)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInGetNumDevs
+`UINT := midiInGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInMessage
+`DWORD := midiInMessage(HMIDIIN deviceID, UINT msg, DWORD_PTR dw1, DWORD_PTR dw2)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInOpen
+`MMRESULT := midiInOpen(LPHMIDIIN lphMidiIn, UINT uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInPrepareHeader
+`MMRESULT := midiInPrepareHeader(HMIDIIN hMidiIn, LPMIDIHDR lpMidiInHdr, UINT cbMidiInHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInReset
+`MMRESULT := midiInReset(HMIDIIN hMidiIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInStart
+`MMRESULT := midiInStart(HMIDIIN hMidiIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInStop
+`MMRESULT := midiInStop(HMIDIIN hMidiIn)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiInUnprepareHeader
+`MMRESULT := midiInUnprepareHeader(HMIDIIN hMidiIn, LPMIDIHDR lpMidiInHdr, UINT cbMidiInHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutCacheDrumPatches
+`MMRESULT := midiOutCacheDrumPatches(HMIDIOUT hmo, UINT wPatch, WORD *lpKeyArray, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutCachePatches
+`MMRESULT := midiOutCachePatches(HMIDIOUT hmo, UINT wBank, WORD *lpPatchArray, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutClose
+`MMRESULT := midiOutClose(HMIDIOUT hmo)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetDevCaps
+`MMRESULT := midiOutGetDevCaps(UINT_PTR uDeviceID, LPMIDIOUTCAPS lpMidiOutCaps, UINT cbMidiOutCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetDevCapsA
+`MMRESULT := midiOutGetDevCapsA(UINT_PTR uDeviceID, LPMIDIOUTCAPS lpMidiOutCaps, UINT cbMidiOutCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetDevCapsW
+`MMRESULT := midiOutGetDevCapsW(UINT_PTR uDeviceID, LPMIDIOUTCAPS lpMidiOutCaps, UINT cbMidiOutCaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetErrorText
+`UINT := midiOutGetErrorText(MMRESULT mmrError, LPTSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetErrorTextA
+`UINT := midiOutGetErrorTextA(MMRESULT mmrError, LPSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetErrorTextW
+`UINT := midiOutGetErrorTextW(MMRESULT mmrError, LPWSTR lpText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetID
+`MMRESULT := midiOutGetID(HMIDIOUT hmo, LPUINT puDeviceID)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetNumDevs
+`UINT := midiOutGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutGetVolume
+`MMRESULT := midiOutGetVolume(HMIDIOUT hmo, LPDWORD lpdwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutLongMsg
+`MMRESULT := midiOutLongMsg(HMIDIOUT hmo, LPMIDIHDR lpMidiOutHdr, UINT cbMidiOutHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutMessage
+`DWORD := midiOutMessage(HMIDIOUT deviceID, UINT msg, DWORD_PTR dw1, DWORD_PTR dw2)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutOpen
+`MMRESULT := midiOutOpen(LPHMIDIOUT lphmo, UINT uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutPrepareHeader
+`MMRESULT := midiOutPrepareHeader(HMIDIOUT hmo, LPMIDIHDR lpMidiOutHdr, UINT cbMidiOutHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutReset
+`MMRESULT := midiOutReset(HMIDIOUT hmo)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutSetVolume
+`MMRESULT := midiOutSetVolume(HMIDIOUT hmo, DWORD dwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutShortMsg
+`MMRESULT := midiOutShortMsg(HMIDIOUT hmo, DWORD dwMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiOutUnprepareHeader
+`MMRESULT := midiOutUnprepareHeader(HMIDIOUT hmo, LPMIDIHDR lpMidiOutHdr, UINT cbMidiOutHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamClose
+`MMRESULT := midiStreamClose(HMIDISTRM hStream)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamOpen
+`MMRESULT := midiStreamOpen(LPHMIDISTRM lphStream, LPUINT puDeviceID, DWORD cMidi, DWORD_PTR dwCallback, DWORD_PTR dwInstance, DWORD fdwOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamOut
+`MMRESULT := midiStreamOut(HMIDISTRM hMidiStream, LPMIDIHDR lpMidiHdr, UINT cbMidiHdr)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamPause
+`MMRESULT := midiStreamPause(HMIDISTRM hms)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamPosition
+`MMRESULT := midiStreamPosition(HMIDISTRM hms, LPMMTIME pmmt, UINT cbmmt)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamProperty
+`MMRESULT := midiStreamProperty(HMIDISTRM hm, LPBYTE lppropdata, DWORD dwProperty)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamRestart
+`MMRESULT := midiStreamRestart(HMIDISTRM hms)
+`/docs/commands/WinApi.htm
+
+
+Function
+midiStreamStop
+`MMRESULT := midiStreamStop(HMIDISTRM hms)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerClose
+`MMRESULT := mixerClose(HMIXER hmx)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetControlDetails
+`MMRESULT := mixerGetControlDetails(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetControlDetailsA
+`MMRESULT := mixerGetControlDetailsA(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetControlDetailsW
+`MMRESULT := mixerGetControlDetailsW(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetDevCaps
+`MMRESULT := mixerGetDevCaps(UINT_PTR uMxId, LPMIXERCAPS pmxcaps, UINT cbmxcaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetDevCapsA
+`MMRESULT := mixerGetDevCapsA(UINT_PTR uMxId, LPMIXERCAPS pmxcaps, UINT cbmxcaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetDevCapsW
+`MMRESULT := mixerGetDevCapsW(UINT_PTR uMxId, LPMIXERCAPS pmxcaps, UINT cbmxcaps)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetID
+`MMRESULT := mixerGetID(HMIXEROBJ hmxobj, UINT FAR *puMxId, DWORD fdwId)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineControls
+`MMRESULT := mixerGetLineControls(HMIXEROBJ hmxobj, LPMIXERLINECONTROLS pmxlc, DWORD fdwControls)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineControlsA
+`MMRESULT := mixerGetLineControlsA(HMIXEROBJ hmxobj, LPMIXERLINECONTROLS pmxlc, DWORD fdwControls)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineControlsW
+`MMRESULT := mixerGetLineControlsW(HMIXEROBJ hmxobj, LPMIXERLINECONTROLS pmxlc, DWORD fdwControls)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineInfo
+`MMRESULT := mixerGetLineInfo(HMIXEROBJ hmxobj, LPMIXERLINE pmxl, DWORD fdwInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineInfoA
+`MMRESULT := mixerGetLineInfoA(HMIXEROBJ hmxobj, LPMIXERLINE pmxl, DWORD fdwInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetLineInfoW
+`MMRESULT := mixerGetLineInfoW(HMIXEROBJ hmxobj, LPMIXERLINE pmxl, DWORD fdwInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerGetNumDevs
+`UINT := mixerGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerMessage
+`DWORD := mixerMessage(HMIXER driverID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerOpen
+`MMRESULT := mixerOpen(LPHMIXER phmx, UINT uMxId, DWORD_PTR dwCallback, DWORD_PTR dwInstance, DWORD fdwOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+mixerSetControlDetails
+`MMRESULT := mixerSetControlDetails(HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmGetCurrentTask
+`DWORD := mmGetCurrentTask(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioAdvance
+`MMRESULT := mmioAdvance(HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioAscend
+`MMRESULT := mmioAscend(HMMIO hmmio, LPMMCKINFO lpck, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioClose
+`MMRESULT := mmioClose(HMMIO hmmio, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioCreateChunk
+`MMRESULT := mmioCreateChunk(HMMIO hmmio, LPMMCKINFO lpck, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioDescend
+`MMRESULT := mmioDescend(HMMIO hmmio, LPMMCKINFO lpck, LPMMCKINFO lpckParent, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioFlush
+`MMRESULT := mmioFlush(HMMIO hmmio, UINT fuFlush)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioGetInfo
+`MMRESULT := mmioGetInfo(HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioInstallIOProc
+`LPMMIOPROC := mmioInstallIOProc(FOURCC fccIOProc, LPMMIOPROC pIOProc, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioInstallIOProcA
+`LPMMIOPROC := mmioInstallIOProcA(FOURCC fccIOProc, LPMMIOPROC pIOProc, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioInstallIOProcW
+`LPMMIOPROC := mmioInstallIOProcW(FOURCC fccIOProc, LPMMIOPROC pIOProc, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioOpen
+`HMMIO := mmioOpen(LPTSTR szFilename, LPMMIOINFO lpmmioinfo, DWORD dwOpenFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioOpenA
+`HMMIO := mmioOpenA(LPSTR szFilename, LPMMIOINFO lpmmioinfo, DWORD dwOpenFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioOpenW
+`HMMIO := mmioOpenW(LPWSTR szFilename, LPMMIOINFO lpmmioinfo, DWORD dwOpenFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioRead
+`LONG := mmioRead(HMMIO hmmio, HPSTR pch, LONG cch)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioRename
+`MMRESULT := mmioRename(LPCTSTR szFilename, LPCTSTR szNewFilename, const LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioRenameA
+`MMRESULT := mmioRenameA(LPCSTR szFilename, LPCSTR szNewFilename, const LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioRenameW
+`MMRESULT := mmioRenameW(LPCWSTR szFilename, LPCWSTR szNewFilename, const LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioSeek
+`LONG := mmioSeek(HMMIO hmmio, LONG lOffset, int iOrigin)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioSendMessage
+`LRESULT := mmioSendMessage(HMMIO hmmio, UINT wMsg, LPARAM lParam1, LPARAM lParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioSetBuffer
+`MMRESULT := mmioSetBuffer(HMMIO hmmio, LPSTR pchBuffer, LONG cchBuffer, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioSetInfo
+`MMRESULT := mmioSetInfo(HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioStringToFOURCC
+`FOURCC := mmioStringToFOURCC(LPCTSTR sz, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioStringToFOURCCA
+`FOURCC := mmioStringToFOURCCA(LPCSTR sz, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioStringToFOURCCW
+`FOURCC := mmioStringToFOURCCW(LPCWSTR sz, UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmioWrite
+`LONG := mmioWrite(HMMIO hmmio, char _huge *pch, LONG cch)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmsystemGetVersion
+`UINT := mmsystemGetVersion(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmTaskBlock
+`VOID := mmTaskBlock(DWORD h)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmTaskCreate
+`UINT := mmTaskCreate(LPTASKCALLBACK lpfn, HANDLE FAR *lph, DWORD_PTR dwInst)
+`/docs/commands/WinApi.htm
+
+
+Function
+mmTaskYield
+`VOID := mmTaskYield(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenDriver
+`HDRVR := OpenDriver(_In_ LPCWSTR lpDriverName, _In_ LPCWSTR lpSectionName, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlaySound
+`BOOL := PlaySound(LPCTSTR pszSound, HMODULE hmod, DWORD fdwSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlaySoundA
+`BOOL := PlaySoundA(LPCSTR pszSound, HMODULE hmod, DWORD fdwSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+PlaySoundW
+`BOOL := PlaySoundW(LPCWSTR pszSound, HMODULE hmod, DWORD fdwSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendDriverMessage
+`LRESULT := SendDriverMessage(_In_ HDRVR hdrvr, _In_ UINT msg, _Inout_ LPARAM lParam1, _Inout_ LPARAM lParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+sndPlaySound
+`BOOL := sndPlaySound(LPCTSTR lpszSound, UINT fuSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+sndPlaySoundA
+`BOOL := sndPlaySoundA(LPCSTR lpszSound, UINT fuSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+sndPlaySoundW
+`BOOL := sndPlaySoundW(LPCWSTR lpszSound, UINT fuSound)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeBeginPeriod
+`MMRESULT := timeBeginPeriod(UINT uPeriod)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeEndPeriod
+`MMRESULT := timeEndPeriod(UINT uPeriod)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeGetDevCaps
+`MMRESULT := timeGetDevCaps(LPTIMECAPS ptc, UINT cbtc)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeGetSystemTime
+`MMRESULT := timeGetSystemTime(LPMMTIME pmmt, UINT cbmmt)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeGetTime
+`DWORD := timeGetTime(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeKillEvent
+`MMRESULT := timeKillEvent(UINT uTimerID)
+`/docs/commands/WinApi.htm
+
+
+Function
+timeSetEvent
+`MMRESULT := timeSetEvent(UINT uDelay, UINT uResolution, LPTIMECALLBACK lpTimeProc, DWORD_PTR dwUser, UINT fuEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInAddBuffer
+`MMRESULT := waveInAddBuffer(HWAVEIN hwi, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInClose
+`MMRESULT := waveInClose(HWAVEIN hwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetDevCaps
+`MMRESULT := waveInGetDevCaps(UINT_PTR uDeviceID, LPWAVEINCAPS pwic, UINT cbwic)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetDevCapsA
+`MMRESULT := waveInGetDevCapsA(UINT_PTR uDeviceID, LPWAVEINCAPS pwic, UINT cbwic)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetDevCapsW
+`MMRESULT := waveInGetDevCapsW(UINT_PTR uDeviceID, LPWAVEINCAPS pwic, UINT cbwic)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetErrorText
+`MMRESULT := waveInGetErrorText(MMRESULT mmrError, LPTSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetErrorTextA
+`MMRESULT := waveInGetErrorTextA(MMRESULT mmrError, LPSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetErrorTextW
+`MMRESULT := waveInGetErrorTextW(MMRESULT mmrError, LPWSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetID
+`MMRESULT := waveInGetID(HWAVEIN hwi, LPUINT puDeviceID)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetNumDevs
+`UINT := waveInGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInGetPosition
+`MMRESULT := waveInGetPosition(HWAVEIN hwi, LPMMTIME pmmt, UINT cbmmt)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInMessage
+`DWORD := waveInMessage(HWAVEIN deviceID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInOpen
+`MMRESULT := waveInOpen(LPHWAVEIN phwi, UINT uDeviceID, LPCWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, DWORD fdwOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInPrepareHeader
+`MMRESULT := waveInPrepareHeader(HWAVEIN hwi, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInReset
+`MMRESULT := waveInReset(HWAVEIN hwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInStart
+`MMRESULT := waveInStart(HWAVEIN hwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInStop
+`MMRESULT := waveInStop(HWAVEIN hwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveInUnprepareHeader
+`MMRESULT := waveInUnprepareHeader(HWAVEIN hwi, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutBreakLoop
+`MMRESULT := waveOutBreakLoop(HWAVEOUT hwo)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutClose
+`MMRESULT := waveOutClose(HWAVEOUT hwo)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetDevCaps
+`MMRESULT := waveOutGetDevCaps(UINT_PTR uDeviceID, LPWAVEOUTCAPS pwoc, UINT cbwoc)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetDevCapsA
+`MMRESULT := waveOutGetDevCapsA(UINT_PTR uDeviceID, LPWAVEOUTCAPS pwoc, UINT cbwoc)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetDevCapsW
+`MMRESULT := waveOutGetDevCapsW(UINT_PTR uDeviceID, LPWAVEOUTCAPS pwoc, UINT cbwoc)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetErrorText
+`MMRESULT := waveOutGetErrorText(MMRESULT mmrError, LPTSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetErrorTextA
+`MMRESULT := waveOutGetErrorTextA(MMRESULT mmrError, LPSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetErrorTextW
+`MMRESULT := waveOutGetErrorTextW(MMRESULT mmrError, LPWSTR pszText, UINT cchText)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetID
+`MMRESULT := waveOutGetID(HWAVEOUT hwo, LPUINT puDeviceID)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetNumDevs
+`UINT := waveOutGetNumDevs(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetPitch
+`MMRESULT := waveOutGetPitch(HWAVEOUT hwo, LPDWORD pdwPitch)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetPlaybackRate
+`MMRESULT := waveOutGetPlaybackRate(HWAVEOUT hwo, LPDWORD pdwRate)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetPosition
+`MMRESULT := waveOutGetPosition(HWAVEOUT hwo, LPMMTIME pmmt, UINT cbmmt)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutGetVolume
+`MMRESULT := waveOutGetVolume(HWAVEOUT hwo, LPDWORD pdwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutMessage
+`DWORD := waveOutMessage(HWAVEOUT deviceID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutOpen
+`MMRESULT := waveOutOpen(LPHWAVEOUT phwo, UINT_PTR uDeviceID, LPWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, DWORD fdwOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutPause
+`MMRESULT := waveOutPause(HWAVEOUT hwo)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutPrepareHeader
+`MMRESULT := waveOutPrepareHeader(HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutReset
+`MMRESULT := waveOutReset(HWAVEOUT hwo)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutRestart
+`MMRESULT := waveOutRestart(HWAVEOUT hwo)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutSetPitch
+`MMRESULT := waveOutSetPitch(HWAVEOUT hwo, DWORD dwPitch)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutSetPlaybackRate
+`MMRESULT := waveOutSetPlaybackRate(HWAVEOUT hwo, DWORD dwRate)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutSetVolume
+`MMRESULT := waveOutSetVolume(HWAVEOUT hwo, DWORD dwVolume)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutUnprepareHeader
+`MMRESULT := waveOutUnprepareHeader(HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm
+
+
+Function
+waveOutWrite
+`MMRESULT := waveOutWrite(HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh)
+`/docs/commands/WinApi.htm

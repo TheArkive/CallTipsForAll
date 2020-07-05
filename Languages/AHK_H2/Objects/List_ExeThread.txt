@@ -1,4 +1,4 @@
-0 ThreadObject ThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(ExeThread\x28)
+0 ThreadObject ThreadByFunc ExeThread(
 `/docs/commands/AhkThread.htm
 
 

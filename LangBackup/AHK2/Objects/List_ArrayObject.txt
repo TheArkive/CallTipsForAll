@@ -1,0 +1,71 @@
+0 ArrayObject ArrayByArgs (A_Args)(\x5B|[ \t]*)?
+0 ArrayObject ArrayByFunc ([\w\.]+)[ \t]*:=[ \t]*(Array\x28)
+0 ArrayObject ArrayByWinGetControls ([\w\.]+)[ \t]*:=[ \t]*(WinGetControls\x28)
+0 ArrayObject ArrayByWinGetList ([\w\.]+)[ \t]*:=[ \t]*(WinGetList\x28)
+0 ArrayObject ArrayByWinGetControlsHwnd ([\w\.]+)[ \t]*:=[ \t]*(WinGetControlsHwnd\x28)
+0 ArrayObject ArrayByStrSplit ([\w\.]+)[ \t]*:=[ \t]*(StrSplit\x28)
+0 ArrayObject ArrayByShortHand ([\w\.]+)[ \t]*:=[ \t]*(\x5B)
+0 ArrayObject ArrayBySysGetIP ([\w\.]+)[ \t]*:=[ \t]*(SysGetIPAddresses\x28)
+0 ArrayObject ArrayByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Array[\w ]*)
+`
+`/docs/objects/Array.htm
+
+
+Method
+Clone
+`Array.Clone()
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+Delete
+`Array.Delete(IndexNum)
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+Has
+`Array.Has(IndexNum)
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+InsertAt
+`Array.InsertAt(Index, Value1, [Value2, ... ValueN])
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+Pop
+`Array.Pop()
+/Removes and returns the last array element.
+If the array is empty (Length is 0), an exception is thrown.
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+Push
+`Array.Push([ Value, Value2, ..., ValueN ])
+`/docs/objects/Array.htm#[MemberName]
+
+
+Method
+RemoveAt
+`Array.RemoveAt(IndexNum, [Length])
+`/docs/objects/Array.htm#[MemberName]
+
+
+Property
+Length
+`Array.Length
+/Retrieves or sets the length of the array.
+`/docs/objects/Array.htm#[MemberName]
+
+
+Property
+Capacity
+`Array.Capacity
+/Retrieves or sets the current capacity of the array.
+`/docs/objects/Array.htm#[MemberName]
+
+

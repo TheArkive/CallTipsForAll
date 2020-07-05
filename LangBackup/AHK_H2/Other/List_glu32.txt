@@ -1,0 +1,304 @@
+Function
+gluBeginCurve
+`VOID := gluBeginCurve(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluBeginPolygon
+`VOID := gluBeginPolygon(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluBeginSurface
+`VOID := gluBeginSurface(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluBeginTrim
+`VOID := gluBeginTrim(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluBuild1DMipmaps
+`VOID := gluBuild1DMipmaps(GLenum target, GLint components, GLint width, GLenum format, GLenum type, const void *data)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluBuild2DMipmaps
+`VOID := gluBuild2DMipmaps(GLenum target, GLint components, GLint width, GLInt height, GLenum format, GLenum type, const void *data)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluCylinder
+`VOID := gluCylinder(GLUquadric *qobj, GLdouble baseRadius, GLdouble topRadius, GLdouble height, GLint slices, GLint stacks)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluDeleteNurbsRenderer
+`VOID := gluDeleteNurbsRenderer(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluDeleteQuadric
+`VOID := gluDeleteQuadric(GLUquadricObj *state)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluDeleteTess
+`VOID := gluDeleteTess(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluDisk
+`VOID := gluDisk(GLUquadric *qobj, GLdouble innerRadius, GLdouble outerRadius, GLint slices, GLint loops)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluEndCurve
+`VOID := gluEndCurve(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluEndPolygon
+`VOID := gluEndPolygon(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluEndSurface
+`VOID := gluEndSurface(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluEndTrim
+`VOID := gluEndTrim(GLUnurbs *nobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluErrorString
+`CLubyte* := gluErrorString(GLenum errCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluGetNurbsProperty
+`VOID := gluGetNurbsProperty(GLUnurbs *nobj, GLenum property, GLfloat *value)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluGetString
+`GLubyte* := gluGetString(GLenum name)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluGetTessProperty
+`VOID := gluGetTessProperty(GLUtesselator *tess, GLenum which, GLdouble *value)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluLoadSamplingMatrices
+`VOID := gluLoadSamplingMatrices(GLUnurbs *nobj, const GLfloat modelMatrix[16], const GLfloat projMatrix[16], const GLint viewport[4])
+`/docs/commands/WinApi.htm
+
+
+Function
+gluLookAt
+`VOID := gluLookAt(GLdouble eyex, GLdouble eyey, GLdouble eyez, GLdouble centerx, GLdouble centery, GLdouble centerz, GLdouble upx, GLdouble upy, GLdouble upz)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNewNurbsRenderer
+`GLUnurbs* := gluNewNurbsRenderer(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNewQuadric
+`GLUquadric* := gluNewQuadric(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNewTess
+`GLUtesselator* := gluNewTess(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNextContour
+`VOID := gluNextContour(GLUtesselator *tess, GLenum type)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNurbsCallback
+`VOID := gluNurbsCallback(GLUnurbs *nobj, GLenum which, void CALLBACK *fn)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNurbsCurve
+`VOID := gluNurbsCurve(GLUnurbs *nobj, GLint nknots, GLfloat *knot, GLint stride, GLfloat *ctlarray, GLint order, GLenum type)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNurbsProperty
+`VOID := gluNurbsProperty(GLUnurbs *nobj, GLenum property, GLfloat value)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluNurbsSurface
+`VOID := gluNurbsSurface(GLUnurbs *nobj, GLint sknot_count, float *sknot, GLint tknot_count, GLfloat *tknot, GLint s_stride, GLint t_stride, GLfloat *ctlarray, GLint sorder, GLint torder, GLenum type)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluOrtho2D
+`VOID := gluOrtho2D(GLdouble left, GLdouble right, GLdouble top, GLdouble bottom)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluPartialDisk
+`VOID := gluPartialDisk(GLUquadric *qobj, GLdouble innerRadius, GLdouble outerRadius, GLint slices, GLint loops, GLdouble startAngle, GLdouble sweepAngle)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluPerspective
+`VOID := gluPerspective(GLdouble fovy, GLdouble aspect, GLdouble zNear, GLdouble zFar)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluPickMatrix
+`VOID := gluPickMatrix(GLdouble x, GLdouble y, GLdouble height, GLdouble width, GLint viewport[4])
+`/docs/commands/WinApi.htm
+
+
+Function
+gluProject
+`int := gluProject(GLdouble objx, GLdouble objy, GLdouble objz, const GLdouble modelMatrix[16], const GLdouble projMatrix[16], const GLint viewport[4], GLdouble *winx, GLdouble *winy, GLdouble *winz)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluPwlCurve
+`VOID := gluPwlCurve(GLUnurbs *nobj, GLint count, GLfloat *array, GLint stride, GLenum type)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluQuadricCallback
+`VOID := gluQuadricCallback(GLUquadric *qobj, GLenum which, void CALLBACK *fn)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluQuadricDrawStyle
+`VOID := gluQuadricDrawStyle(GLUquadric *quadObject, GLenum drawStyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluQuadricNormals
+`VOID := gluQuadricNormals(GLUquadric *quadObject, GLenum normals)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluQuadricOrientation
+`VOID := gluQuadricOrientation(GLUquadric *quadObject, GLenum orientation)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluQuadricTexture
+`VOID := gluQuadricTexture(GLUquadric *quadObject, GLboolean textureCoords)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluScaleImage
+`int := gluScaleImage(GLenum format, GLint widthin, GLint heightin, GLenum typein, const void *datain, GLint widthout, GLint heightout, GLenum typeout, void *dataout)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluSphere
+`VOID := gluSphere(GLUquadric *qobj, GLdouble radius, GLint slices, GLint stacks)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessBeginContour
+`VOID := gluTessBeginContour(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessBeginPolygon
+`VOID := gluTessBeginPolygon(GLUtesselator *tess, void *polygon_data)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessCallback
+`VOID := gluTessCallback(GLUtesselator *tess, GLenum which, void CALLBACK *fn)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessEndContour
+`VOID := gluTessEndContour(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessEndPolygon
+`VOID := gluTessEndPolygon(GLUtesselator *tess)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessNormal
+`VOID := gluTessNormal(GLUtesselator *tess, GLdouble x, GLdouble y, GLdouble z)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessProperty
+`VOID := gluTessProperty(GLUtesselator *tess, GLenum which, GLdouble value)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluTessVertex
+`VOID := gluTessVertex(GLUtesselator *tess, GLdouble coords[3], void *data)
+`/docs/commands/WinApi.htm
+
+
+Function
+gluUnProject
+`int := gluUnProject(GLdouble winx, GLdouble winy, GLdouble winz, const GLdouble modelMatrix[16], const GLdouble projMatrix[16], const GLint viewport[4], GLdouble *objx, GLdouble *objy, GLdouble *objz)
+`/docs/commands/WinApi.htm

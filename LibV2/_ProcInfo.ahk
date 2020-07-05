@@ -129,8 +129,6 @@ ProcInput() {
 		curLine := ScintillaExt.SendMsg("SCI_LINEFROMPOSITION",curPos.dll)
 		curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE")
 		
-		; Debug.Msg(curLineText.str)
-		
 		curCol := curLineText.dll + 1
 		
 		oCallTip.lineText := curLineText.str
@@ -151,12 +149,12 @@ ProcInput() {
 	oCallTip.curPhraseType := "", curPhraseType := ""
 	oCallTip.parentObjType := "", parentObjType := ""
 	
-	parentObjTypeList := Map()
+	; parentObjTypeList := Map()
 	
 	If (ObjectList) {
 		For objName in ObjectList {
 			If (parentObj = objName) {
-				parentObjTypeList := ObjectList[objName]["types"], parentObj := objName ; correct case on parentObj
+				parentObjType := ObjectList[objName], parentObj := objName ; correct case on parentObj
 				Break
 			}
 		}
@@ -200,28 +198,24 @@ ProcInput() {
 		}
 	}
 	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			methList := MethPropList[objType]["method"]
-			For methName in methList { ; MethPropList.count
-				If (methName = curPhrase) {
-					curPhraseType := "method", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
-					Break
-				}
+	If (!curPhraseType And parentObjType) {
+		methList := MethPropList[parentObjType]["method"] ; objType?
+		For methName in methList { ; MethPropList.count
+			If (methName = curPhrase) {
+				curPhraseType := "method", oCallTip.curPhraseType := curPhraseType
+				oCallTip.parentObjType := parentObjType ; parentObjType := objType, 
+				Break
 			}
 		}
 	}
 	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			propList := MethPropList[objType]["property"]
-			For propName in propList {
-				If (propName = curPhrase) {
-					curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
-					Break
-				}
+	If (!curPhraseType And parentObjType) {
+		propList := MethPropList[parentObjType]["property"] ; objType?
+		For propName in propList {
+			If (propName = curPhrase) {
+				curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
+				oCallTip.parentObjType := parentObjType ; parentObjType := objType, 
+				Break
 			}
 		}
 	}

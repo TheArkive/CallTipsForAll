@@ -15,12 +15,18 @@
 ;			[elementName] = type_string (usually set to "keyword" by default
 
 LoadKeywordsList() {
-	KeywordList := Map() ; , KeywordList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	KeywordList := Map(), KeywordList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	Loop Files oCallTip.srcFiles "\Keywords\KW_*.txt"
 	{
 		curText := FileRead(A_LoopFileFullPath)
 		Loop Parse curText, "`n", "`r"
-			KeywordList[A_LoopField] := "keyword"
+		{
+			e := InStr(A_LoopField,"=")
+			If (!e)
+				KeywordList[A_LoopField] := "keyword"
+			Else
+				KeywordList[SubStr(A_LoopField,1,e-1)] := SubStr(A_LoopField,e+1)
+		}
 	}
 	KeywordList.Has("") ? KeywordList.Delete("") : ""
 }
@@ -41,7 +47,7 @@ LoadKeywordsList() {
 ;				["helpLink"] - help link for element, defined in lang files
 ; ==================================================
 LoadFunctionsList() {
-	FunctionList := Map() ; , FunctionList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	FunctionList := Map(), FunctionList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	Loop Files oCallTip.srcFiles "\Other\List_*.txt" ; functions and commands are combined into one list => FunctionList[]
 	{
 		a := StrSplit(A_LoopFileName,"_") ; comma (,) separator
@@ -105,7 +111,7 @@ LoadFunctionsList() {
 ; ==================================================
 
 LoadMethPropList() {
-	MethPropList := Map() ; , MethPropList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
+	MethPropList := Map(), MethPropList.CaseSense := 0 ;ZZZ - keeping CaseSense on so we can correct case on auto-complete
 	srcFiles := oCallTip.srcFiles, objMatchText := ""
 	Loop Files srcFiles "\Objects\*.txt"
 	{

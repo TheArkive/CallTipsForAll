@@ -1,0 +1,78 @@
+0 Object BasicObj ([\w\.]+)[ \t]*:=[ \t]*(\x7B)
+0 Object ObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Object)
+`
+`/docs/objects/Object.htm
+
+
+Method
+Clone
+Obj.Clone()
+`Returns a shallow copy of the object.  Object references are copied (like
+with a normal assignment), not the objects themselves.
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+DefineMethod
+`Obj.DefineMethod(MethodName,MethodFuncObj)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+DefineProp
+`Obj.DefineProp(PropName,DescObj)
+/DescObj (a function object) is used to optionally define SET/GET.
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+DeleteMethod
+`Obj.DeleteMethod(MethodName)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+DeleteProp
+`Obj.DeleteProp(PropName)
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+GetOwnPropDesc
+`Obj.GetOwnPropDesc(PropName)
+/Returns a descriptor/function Object for a given property.
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+HasOwnMethod
+`Obj.HasOwnMethod(MethodName)
+/Returns true if the object owns a method by this name, otherwise false.
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+HasOwnProp
+`Obj.HasOwnProp(PropName)
+/Returns true if the object owns a property by this name, otherwise false.
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+OwnMethods
+`For Name, [MethodFunc] in Obj.OwnMethods()
+`/docs/objects/Object.htm#[MemberName]
+
+
+Method
+OwnProps
+`For Name, [Value] in Obj.OwnProps()
+`/docs/objects/Object.htm#[MemberName]
+
+
+Property
+Base
+`Obj.Base (R/W)
+/Setting the base of a new object causes the new object to inherit the methods
+and properties of the foriegn object.
+`/docs/objects/Object.htm#[MemberName]

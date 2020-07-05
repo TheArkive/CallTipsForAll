@@ -1,0 +1,1210 @@
+Function
+BindMoniker
+`HRESULT := BindMoniker(_In_ LPMONIKER pmk, _In_ DWORD grfOpt, _In_ REFIID iidResult, _Out_ LPVOID *ppvResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+CLSIDFromProgID
+`HRESULT := CLSIDFromProgID(_In_ LPCOLESTR lpszProgID, _Out_ LPCLSID lpclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CLSIDFromProgIDEx
+`HRESULT := CLSIDFromProgIDEx(_In_ LPCOLESTR lpszProgID, _Out_ LPCLSID lpclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CLSIDFromString
+`HRESULT := CLSIDFromString(_In_ LPCOLESTR lpsz, _Out_ LPCLSID pclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoAddRefServerProcess
+`ULONG := CoAddRefServerProcess(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoAllowSetForegroundWindow
+`HRESULT := CoAllowSetForegroundWindow(_In_ IUnknown *pUnk, _In_ LPVOID lpvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCancelCall
+`HRESULT := CoCancelCall(_In_ DWORD dwThreadId, _In_ ULONG ulTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCopyProxy
+`HRESULT := CoCopyProxy(_In_ IUnknown *pProxy, _Out_ IUnknown **ppCopy)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCreateFreeThreadedMarshaler
+`HRESULT := CoCreateFreeThreadedMarshaler(_In_ LPUNKNOWN punkOuter, _Out_ LPUNKNOWN *ppunkMarshal)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCreateGuid
+`HRESULT := CoCreateGuid(_Out_ GUID *pguid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCreateInstance
+`HRESULT := CoCreateInstance(_In_ REFCLSID rclsid, _In_ LPUNKNOWN pUnkOuter, _In_ DWORD dwClsContext, _In_ REFIID riid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoCreateInstanceEx
+`HRESULT := CoCreateInstanceEx(_In_ REFCLSID rclsid, _In_ IUnknown *punkOuter, _In_ DWORD dwClsCtx, _In_ COSERVERINFO *pServerInfo, _In_ DWORD dwCount, _Inout_ MULTI_QI *pResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoDisableCallCancellation
+`HRESULT := CoDisableCallCancellation(_In_opt_ LPVOID pReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoDisconnectContext
+`HRESULT := CoDisconnectContext(_In_ DWORD dwTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoDisconnectObject
+`HRESULT := CoDisconnectObject(_In_ LPUNKNOWN pUnk, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoDosDateTimeToFileTime
+`BOOL := CoDosDateTimeToFileTime(_In_ WORD nDosDate, _In_ WORD nDosTime, _Out_ FILETIME *lpFileTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoEnableCallCancellation
+`HRESULT := CoEnableCallCancellation(_In_opt_ LPVOID pReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFileTimeNow
+`HRESULT := CoFileTimeNow(_Out_ FILETIME *lpFileTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFileTimeToDosDateTime
+`BOOL := CoFileTimeToDosDateTime(_In_ FILETIME *lpFileTime, _Out_ LPWORD lpDosDate, _Out_ LPWORD lpDosTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFreeAllLibraries
+`VOID := CoFreeAllLibraries(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFreeLibrary
+`VOID := CoFreeLibrary(_In_ HINSTANCE hInst)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFreeUnusedLibraries
+`VOID := CoFreeUnusedLibraries(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoFreeUnusedLibrariesEx
+`VOID := CoFreeUnusedLibrariesEx(_In_ DWORD dwUnloadDelay, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetApartmentType
+`HRESULT := CoGetApartmentType(_Out_ APTTYPE *pAptType, _Out_ APTTYPEQUALIFIER *pAptQualifier)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetCallContext
+`HRESULT := CoGetCallContext(_In_ REFIID riid, _Out_ void **ppInterface)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetCallerTID
+`HRESULT := CoGetCallerTID(_Out_ LPDWORD lpdwTID)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetCancelObject
+`HRESULT := CoGetCancelObject(_In_ DWORD dwThreadId, _In_ REFIID iid, _Out_ void **ppUnk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetClassObject
+`HRESULT := CoGetClassObject(_In_ REFCLSID rclsid, _In_ DWORD dwClsContext, _In_opt_ COSERVERINFO *pServerInfo, _In_ REFIID riid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetContextToken
+`HRESULT := CoGetContextToken(_Out_ ULONG_PTR *pToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetCurrentLogicalThreadId
+`HRESULT := CoGetCurrentLogicalThreadId(_Out_ GUID *pguid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetCurrentProcess
+`DWORD := CoGetCurrentProcess(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetDefaultContext
+`HRESULT := CoGetDefaultContext(_In_ APITYPE aptType, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetInstanceFromFile
+`HRESULT := CoGetInstanceFromFile(_In_opt_ COSERVERINFO *pServerInfo, _In_opt_ CLSID *pClsid, _In_opt_ IUnknown *punkOuter, _In_ DWORD dwClsCtx, _In_ DWORD grfMode, _In_ OLECHAR *pwszName, _In_ DWORD dwCount, _Inout_ MULTI_QI *pResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetInstanceFromIStorage
+`HRESULT := CoGetInstanceFromIStorage(_In_opt_ COSERVERINFO *pServerInfo, _In_opt_ CLSID *pClsid, _In_opt_ IUnknown *punkOuter, _In_ DWORD dwClsCtx, _In_ struct IStorage *pstg, _In_ DWORD dwCount, _Inout_ MULTI_QI *pResults)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetInterceptor
+`HRESULT := CoGetInterceptor(_In_ REFIID iidIntercepted, _In_ IUnknown *punkOuter, _In_ REFIID iid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetInterfaceAndReleaseStream
+`HRESULT := CoGetInterfaceAndReleaseStream(_In_ LPSTREAM pStm, _In_ REFIID iid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetMalloc
+`HRESULT := CoGetMalloc(_In_ DWORD dwMemContext, _Out_ LPMALLOC *ppMalloc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetMarshalSizeMax
+`HRESULT := CoGetMarshalSizeMax(_Out_ ULONG *pulSize, _In_ REFIID riid, _In_ LPUNKNOWN pUnk, _In_ DWORD dwDestContext, _In_opt_ LPVOID pvDestContext, _In_ DWORD mshlflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetObject
+`HRESULT := CoGetObject(_In_ LPCWSTR pszName, _In_opt_ BIND_OPTS *pBindOptions, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetObjectContext
+`HRESULT := CoGetObjectContext(_In_ REFIID riid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetPSClsid
+`HRESULT := CoGetPSClsid(_In_ REFIID riid, _Out_ CLSID *pClsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetStandardMarshal
+`HRESULT := CoGetStandardMarshal(_In_ REFIID riid, _In_ LPUNKNOWN pUnk, _In_ DWORD dwDestContext, _In_opt_ LPVOID pvDestContext, _In_ DWORD mshlflags, _Out_ LPMARSHAL *ppMarshal)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetStdMarshalEx
+`HRESULT := CoGetStdMarshalEx(_In_ LPUNKNOWN pUnkOuter, _In_ DWORD smexflags, _Out_ LPUNKNOWN *ppUnkInner)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoGetTreatAsClass
+`HRESULT := CoGetTreatAsClass(_In_ REFCLSID clsidOld, _Out_ LPCLSID pClsidNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoImpersonateClient
+`HRESULT := CoImpersonateClient(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoInitialize
+`HRESULT := CoInitialize(_In_opt_ LPVOID pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoInitializeEx
+`HRESULT := CoInitializeEx(_In_opt_ LPVOID pvReserved, _In_ DWORD dwCoInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoInitializeSecurity
+`HRESULT := CoInitializeSecurity(_In_opt_ PSECURITY_DESCRIPTOR pSecDesc, _In_ LONG cAuthSvc, _In_opt_ SOLE_AUTHENTICATION_SERVICE *asAuthSvc, _In_opt_ void *pReserved1, _In_ DWORD dwAuthnLevel, _In_ DWORD dwImpLevel, _In_opt_ void *pAuthList, _In_ DWORD dwCapabilities, _In_opt_ void *pReserved3)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoInstall
+`HRESULT := CoInstall(_In_ IBindCtx *pbc, _In_ DWORD dwFlags, _In_ uCLSSPEC *pClassSpec, _In_ QUERYCONTEXT *pQuery, _In_ LPWSTR pszCodeBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoInvalidateRemoteMachineBindings
+`HRESULT := CoInvalidateRemoteMachineBindings(_In_ LPOLESTR pszMachineName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoIsHandlerConnected
+`BOOL := CoIsHandlerConnected(_In_ LPUNKNOWN pUnk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoIsOle1Class
+`BOOL := CoIsOle1Class(_In_ REFCLSID rclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoLoadLibrary
+`HINSTANCE := CoLoadLibrary(_In_ LPOLESTR lpszLibName, _In_ BOOL bAutoFree)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoLockObjectExternal
+`HRESULT := CoLockObjectExternal(_In_ LPUNKNOWN pUnk, _In_ BOOL fLock, _In_ BOOL fLastUnlockReleases)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoMarshalHresult
+`HRESULT := CoMarshalHresult(_In_ LPSTREAM pstm, _In_ HRESULT hresult)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoMarshalInterface
+`HRESULT := CoMarshalInterface(_In_ LPSTREAM pStm, _In_ REFIID riid, _In_ LPUNKNOWN pUnk, _In_ DWORD dwDestContext, _In_opt_ LPVOID pvDestContext, _In_ DWORD mshlflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoMarshalInterThreadInterfaceInStream
+`HRESULT := CoMarshalInterThreadInterfaceInStream(_In_ REFIID riid, _In_ LPUNKNOWN pUnk, _Out_ LPSTREAM *ppStm)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoQueryAuthenticationServices
+`HRESULT := CoQueryAuthenticationServices(_Out_ DWORD *pcAuthSvc, _Out_ SOLE_AUTHENTICATION_SERVICE **asAuthSvc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoQueryClientBlanket
+`HRESULT := CoQueryClientBlanket(_Out_opt_ DWORD *pAuthnSvc, _Out_opt_ DWORD *pAuthzSvc, _Out_opt_ OLECHAR **pServerPrincName, _Out_opt_ DWORD *pAuthnLevel, _Out_opt_ DWORD *pImpLevel, _Out_opt_ RPC_AUTHZ_HANDLE *pPrivs, _Inout_opt_ DWORD *pCapabilities)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoQueryProxyBlanket
+`HRESULT := CoQueryProxyBlanket(_In_ IUnknown *pProxy, _Out_opt_ DWORD *pwAuthnSvc, _Out_opt_ DWORD *pAuthzSvc, _Out_opt_ OLECHAR **pServerPrincName, _Out_opt_ DWORD *pAuthnLevel, _Out_opt_ DWORD *pImpLevel, _Out_opt_ RPC_AUTH_IDENTITY_HANDLE *pAuthInfo, _Out_opt_ DWORD *pCapabilites)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterChannelHook
+`HRESULT := CoRegisterChannelHook(_In_ REFGUID ExtensionUuid, _In_ IChannelHook *pChannelHook)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterClassObject
+`HRESULT := CoRegisterClassObject(_In_ REFCLSID rclsid, _In_ LPUNKNOWN pUnk, _In_ DWORD dwClsContext, _In_ DWORD flags, _Out_ LPDWORD lpdwRegister)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterInitializeSpy
+`HRESULT := CoRegisterInitializeSpy(_In_ LPINITIALIZESPY pSpy, _Out_ ULARGE_INTEGER *puliCookie)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterMallocSpy
+`HRESULT := CoRegisterMallocSpy(_In_ LPMALLOCSPY pMallocSpy)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterMessageFilter
+`HRESULT := CoRegisterMessageFilter(_In_opt_ LPMESSAGEFILTER lpMessageFilter, _Out_opt_ LPMESSAGEFILTER *lplpMessageFilter)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterPSClsid
+`HRESULT := CoRegisterPSClsid(_In_ REFIID riid, _In_ REFCLSID rclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRegisterSurrogate
+`HRESULT := CoRegisterSurrogate(_In_ LPSURROGATE pSurrogate)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoReleaseMarshalData
+`HRESULT := CoReleaseMarshalData(_In_ LPSTREAM pStm)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoReleaseServerProcess
+`ULONG := CoReleaseServerProcess(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoResumeClassObjects
+`HRESULT := CoResumeClassObjects(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRevertToSelf
+`HRESULT := CoRevertToSelf(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRevokeClassObject
+`HRESULT := CoRevokeClassObject(_In_ DWORD dwRegister)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRevokeInitializeSpy
+`HRESULT := CoRevokeInitializeSpy(_In_ ULARGE_INTEGER uliCookie)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoRevokeMallocSpy
+`HRESULT := CoRevokeMallocSpy(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoSetCancelObject
+`HRESULT := CoSetCancelObject(_In_opt_ IUnknown *pUnk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoSetProxyBlanket
+`HRESULT := CoSetProxyBlanket(_In_ IUnknown *pProxy, _In_ DWORD dwAuthnSvc, _In_ DWORD dwAuthzSvc, _In_opt_ OLECHAR *pServerPrincName, _In_ DWORD dwAuthnLevel, _In_ DWORD dwImpLevel, _In_opt_ RPC_AUTH_IDENTITY_HANDLE pAuthInfo, _In_ DWORD dwCapabilities)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoSuspendClassObjects
+`HRESULT := CoSuspendClassObjects(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoSwitchCallContext
+`HRESULT := CoSwitchCallContext(_In_opt_ IUnknown *pNewObject, _Out_ IUnknown **ppOldObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoTaskMemAlloc
+`LPVOID := CoTaskMemAlloc(_In_ SIZE_T cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoTaskMemFree
+`VOID := CoTaskMemFree(_In_opt_ LPVOID pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoTaskMemRealloc
+`LPVOID := CoTaskMemRealloc(_In_opt_ LPVOID pv, _In_ SIZE_T cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoTestCancel
+`HRESULT := CoTestCancel(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoTreatAsClass
+`HRESULT := CoTreatAsClass(_In_ REFCLSID clsidOld, _In_ REFCLSID clsidNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoUninitialize
+`VOID := CoUninitialize(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoUnmarshalHresult
+`HRESULT := CoUnmarshalHresult(_In_ LPSTREAM pstm, _Out_ HRESULT *phresult)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoUnmarshalInterface
+`HRESULT := CoUnmarshalInterface(_In_ LPSTREAM pStm, _In_ REFIID riid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CoWaitForMultipleHandles
+`HRESULT := CoWaitForMultipleHandles(_In_ DWORD dwFlags, _In_ DWORD dwTimeout, _In_ ULONG cHandles, _In_ LPHANDLE pHandles, _Out_ LPDWORD lpdwindex)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateAntiMoniker
+`HRESULT := CreateAntiMoniker(_Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateBindCtx
+`HRESULT := CreateBindCtx(_In_ DWORD reserved, _Out_ LPBC *ppbc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateClassMoniker
+`HRESULT := CreateClassMoniker(_In_ REFCLSID rclsid, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDataAdviseHolder
+`HRESULT := CreateDataAdviseHolder(_Out_ LPDATAADVISEHOLDER *ppDAHolder)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDataCache
+`HRESULT := CreateDataCache(_In_ LPUNKNOWN pUnkOuter, _In_ REFCLSID rclsid, _In_ REFIID iid, _Out_ LPVOID *ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateFileMoniker
+`HRESULT := CreateFileMoniker(_In_ LPCOLESTR lpszPathName, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateGenericComposite
+`HRESULT := CreateGenericComposite(_In_opt_ LPMONIKER pmkFirst, _In_opt_ LPMONIKER pmkRest, _Out_ LPMONIKER *ppmkComposite)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateILockBytesOnHGlobal
+`int := CreateILockBytesOnHGlobal(_In_ HGLOBAL hGlobal, _In_ BOOL fDeleteOnRelease, _Out_ ILockBytes **ppLkbyt)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateItemMoniker
+`HRESULT := CreateItemMoniker(_In_ LPCOLESTR lpszDelim, _In_ LPCOLESTR lpszItem, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateObjrefMoniker
+`HRESULT := CreateObjrefMoniker(_In_opt_ LPUNKNOWN punk, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateOleAdviseHolder
+`HRESULT := CreateOleAdviseHolder(_Out_ LPOLEADVISEHOLDER *ppOAHolder)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePointerMoniker
+`HRESULT := CreatePointerMoniker(_In_opt_ LPUNKNOWN punk, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateStreamOnHGlobal
+`int := CreateStreamOnHGlobal(_In_ HGLOBAL hGlobal, _In_ BOOL fDeleteOnRelease, _Out_ LPSTREAM *ppstm)
+`/docs/commands/WinApi.htm
+
+
+Function
+DllDebugObjectRPCHook
+`BOOL := DllDebugObjectRPCHook(BOOL fTrace, LPORPC_INIT_ARGS lpOrpcInitArgs)
+`/docs/commands/WinApi.htm
+
+
+Function
+DoDragDrop
+`HRESULT := DoDragDrop(_In_ LPDATAOBJECT pDataObj, _In_ LPDROPSOURCE pDropSource, _In_ DWORD dwOKEffects, _Out_ LPDWORD pdwEffect)
+`/docs/commands/WinApi.htm
+
+
+Function
+FmtIdToPropStgName
+`HRESULT := FmtIdToPropStgName(_In_ const FMTID *pfmtid, _Out_ LPOLESTR oszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreePropVariantArray
+`HRESULT := FreePropVariantArray(_In_ ULONG cVariants, _Inout_ PROPVARIANT *rgvars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassFile
+`HRESULT := GetClassFile(_In_ LPCOLESTR szFilename, _Out_ CLSID *pclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetConvertStg
+`int := GetConvertStg(_In_ IStorage *pStg)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetHGlobalFromILockBytes
+`int := GetHGlobalFromILockBytes(_In_ ILockBytes *pLkbyt, _Out_ HGLOBAL *phglobal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetHGlobalFromStream
+`int := GetHGlobalFromStream(_In_ IStream *pstm, _Out_ HGLOBAL *phglobal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRunningObjectTable
+`HRESULT := GetRunningObjectTable(_In_ DWORD reserved, _Out_ LPRUNNINGOBJECTTABLE *pprot)
+`/docs/commands/WinApi.htm
+
+
+Function
+IIDFromString
+`HRESULT := IIDFromString(_In_ LPCOLESTR lpsz, _Out_ LPIID lpiid)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsAccelerator
+`BOOL := IsAccelerator(_In_ HACCEL hAccel, _In_ int cAccelEntries, _In_ LPMSG lpMsg, _Out_ WORD *lpwCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsEqualGUID
+`BOOL := IsEqualGUID(_In_ REFGUID rguid1, _In_ REFGUID rguid2)
+`/docs/commands/WinApi.htm
+
+
+Function
+MkParseDisplayName
+`HRESULT := MkParseDisplayName(_In_ LPBC pbc, _In_ LPCOLESTR szUserName, _Out_ ULONG *pchEaten, _Out_ LPMONIKER *ppmk)
+`/docs/commands/WinApi.htm
+
+
+Function
+MonikerCommonPrefixWith
+`HRESULT := MonikerCommonPrefixWith(_In_ LPMONIKER pmkThis, _In_ LPMONIKER pmkOther, _Out_ LPMONIKER *ppmkCommon)
+`/docs/commands/WinApi.htm
+
+
+Function
+MonikerRelativePathTo
+`HRESULT := MonikerRelativePathTo(_In_ LPMONIKER pmkSrc, _In_ LPMONIKER pmkDest, _Out_ LPMONIKER *ppmkRelPath, _In_ BOOL dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleConvertIStorageToOLESTREAM
+`int := OleConvertIStorageToOLESTREAM(_In_ IStorage *pStg, _Out_ LPOLESTREAM lpolestream)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleConvertIStorageToOLESTREAMEx
+`int := OleConvertIStorageToOLESTREAMEx(_In_ IStorage *pStg, _In_ CLIPFORMAT cfFormat, _In_ LONG lWidth, _In_ LONG lHeight, _In_ DWORD dwSize, _In_ STGMEDIUM pmedium, _Out_ LPOLESTREAM lpolestm)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleConvertOLESTREAMToIStorage
+`int := OleConvertOLESTREAMToIStorage(_In_ LPOLESTREAM lpolestream, _Out_ IStorage *pstg, _In_ const DVTARGETDEVICE *ptd)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleConvertOLESTREAMToIStorageEx
+`int := OleConvertOLESTREAMToIStorageEx(_In_ LPOLESTREAM lpolestm, _Out_ IStorage *pstg, _Out_ CLIPFORMAT *pcfFormat, _Out_ LONG *plWidth, _Out_ LONG *plHeight, _Out_ DWORD *pdwSize, _Out_ STGMEDIUM pmedium)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreate
+`HRESULT := OleCreate(_In_ REFCLSID rclsid, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC pFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateDefaultHandler
+`HRESULT := OleCreateDefaultHandler(_In_ REFCLSID clsid, _In_ LPUNKNOWN pUnkOuter, _In_ REFIID riid, _Out_ LPVOID *lplpObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateEmbeddingHelper
+`HRESULT := OleCreateEmbeddingHelper(_In_ REFCLSID clsid, _In_ LPUNKNOWN pUnkOuter, _In_ DWORD flags, _In_ LPCLASSFACTORY pCF, _In_ REFIID riid, _Out_ LPVOID *lplpObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateEx
+`HRESULT := OleCreateEx(_In_ REFCLSID rclsid, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Out_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateFromData
+`HRESULT := OleCreateFromData(_In_ LPDATAOBJECT pSrcDataObj, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC pFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateFromDataEx
+`HRESULT := OleCreateFromDataEx(_In_ LPDATAOBJECT pSrcDataObj, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Out_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateFromFile
+`HRESULT := OleCreateFromFile(_In_ REFCLSID rclsid, _In_ LPCOLESTR lpszFileName, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC lpFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateFromFileEx
+`HRESULT := OleCreateFromFileEx(_In_ REFCLSID rclsid, _In_ LPCOLESTR lpszFileName, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Out_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLink
+`HRESULT := OleCreateLink(_In_ LPMONIKER pmkLinkSrc, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC lpFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLinkEx
+`HRESULT := OleCreateLinkEx(_In_ LPMONIKER pmkLinkSrc, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Out_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLinkFromData
+`HRESULT := OleCreateLinkFromData(_In_ LPDATAOBJECT pSrcDataObj, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC pFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLinkFromDataEx
+`HRESULT := OleCreateLinkFromDataEx(_In_ LPDATAOBJECT pSrcDataObj, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Inout_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLinkToFile
+`HRESULT := OleCreateLinkToFile(_In_ LPCOLESTR lpszFileName, _In_ REFIID riid, _In_ DWORD renderopt, _In_ LPFORMATETC lpFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateLinkToFileEx
+`HRESULT := OleCreateLinkToFileEx(_In_ LPCOLESTR lpszFileName, _In_ REFIID riid, _In_ DWORD dwFlags, _In_ DWORD renderopt, _In_ ULONG cFormats, _In_ DWORD *rgAdvf, _In_ LPFORMATETC rgFormatEtc, _In_ IAdviseSink *lpAdviseSink, _Out_ DWORD *rgdwConnection, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateMenuDescriptor
+`HOLEMENU := OleCreateMenuDescriptor(_In_ HMENU hmenuCombined, _In_ LPOLEMENUGROUPWIDTHS lpMenuWidths)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleCreateStaticFromData
+`HRESULT := OleCreateStaticFromData(_In_ LPDATAOBJECT pSrcDataObj, _In_ REFIID iid, _In_ DWORD renderopt, _In_ LPFORMATETC pFormatEtc, _In_ LPOLECLIENTSITE pClientSite, _In_ LPSTORAGE pStg, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleDestroyMenuDescriptor
+`VOID := OleDestroyMenuDescriptor(_In_ HOLEMENU holemenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleDoAutoConvert
+`HRESULT := OleDoAutoConvert(_In_ LPSTORAGE pStg, _Out_ LPCLSID pClsidNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleDraw
+`HRESULT := OleDraw(_In_ LPUNKNOWN pUnknown, _In_ DWORD dwAspect, _In_ HDC hdcDraw, _In_ LPCRECT lprcBounds)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleDuplicateData
+`HANDLE := OleDuplicateData(_In_ HANDLE hSrc, _In_ CLIPFORMAT cfFormat, _In_ UINT uiFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleFlushClipboard
+`HRESULT := OleFlushClipboard(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleGetAutoConvert
+`HRESULT := OleGetAutoConvert(_In_ REFCLSID clsidOld, _Out_ LPCLSID pClsidNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleGetClipboard
+`HRESULT := OleGetClipboard(_Out_ LPDATAOBJECT *ppDataObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleGetIconOfClass
+`HGLOBAL := OleGetIconOfClass(_In_ REFCLSID rclsid, _In_opt_ LPOLESTR lpszLabel, _In_ BOOL fUseTypeAsLabel)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleGetIconOfFile
+`HGLOBAL := OleGetIconOfFile(_In_ LPOLESTR lpszPath, _In_ BOOL fUseFileAsLabel)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleInitialize
+`HRESULT := OleInitialize(_In_ LPVOID pvReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleIsCurrentClipboard
+`HRESULT := OleIsCurrentClipboard(_In_ LPDATAOBJECT pDataObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleIsRunning
+`BOOL := OleIsRunning(_In_ LPOLEOBJECT pObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoad
+`HRESULT := OleLoad(_In_ LPSTORAGE pStg, _In_ REFIID riid, _In_ LPOLECLIENTSITE pClientSite, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLoadFromStream
+`HRESULT := OleLoadFromStream(_In_ LPSTREAM pStm, _In_ REFIID iidInterface, _Out_ LPVOID *ppvObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleLockRunning
+`HRESULT := OleLockRunning(_In_ LPUNKNOWN pUnknown, _In_ BOOL fLock, _In_ BOOL fLastUnlockCloses)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleMetafilePictFromIconAndLabel
+`HGLOBAL := OleMetafilePictFromIconAndLabel(_In_ HICON hIcon, _In_ LPOLESTR lpszLabel, _In_ LPOLESTR lpszSourceFile, _In_ UINT iIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleNoteObjectVisible
+`HRESULT := OleNoteObjectVisible(_In_ LPUNKNOWN pUnknown, _In_ BOOL fVisible)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleQueryCreateFromData
+`HRESULT := OleQueryCreateFromData(_In_ LPDATAOBJECT pSrcDataObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleQueryLinkFromData
+`HRESULT := OleQueryLinkFromData(_In_ LPDATAOBJECT pSrcDataObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleRegEnumFormatEtc
+`HRESULT := OleRegEnumFormatEtc(_In_ REFCLSID clsid, _In_ DWORD dwDirection, _Out_ LPENUMFORMATETC *ppenum)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleRegEnumVerbs
+`HRESULT := OleRegEnumVerbs(_In_ REFCLSID clsid, _Out_ LPENUMOLEVERB *ppenum)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleRegGetMiscStatus
+`HRESULT := OleRegGetMiscStatus(_In_ REFCLSID clsid, _In_ DWORD dwAspect, _Out_ DWORD *pdwStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleRegGetUserType
+`HRESULT := OleRegGetUserType(_In_ REFCLSID clsid, _In_ DWORD dwFormOfType, _Out_ LPOLESTR *pszUserType)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleRun
+`HRESULT := OleRun(_In_ LPUNKNOWN pUnknown)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSave
+`HRESULT := OleSave(_In_ LPPERSISTSTORAGE pPS, _In_ LPSTORAGE pStg, _In_ BOOL fSameAsLoad)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSaveToStream
+`HRESULT := OleSaveToStream(_In_ LPPERSISTSTREAM pPStm, _In_ LPSTREAM pStm)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSetAutoConvert
+`HRESULT := OleSetAutoConvert(_In_ REFCLSID clsidOld, _In_ REFCLSID clsidNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSetClipboard
+`HRESULT := OleSetClipboard(_In_ LPDATAOBJECT pDataObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSetContainedObject
+`HRESULT := OleSetContainedObject(_In_ LPUNKNOWN pUnknown, _In_ BOOL fContained)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleSetMenuDescriptor
+`HRESULT := OleSetMenuDescriptor(_In_ HOLEMENU holemenu, _In_ HWND hwndFrame, _In_ HWND hwndActiveObject, _In_ LPOLEINPLACEFRAME lpFrame, _In_ LPOLEINPLACEACTIVEOBJECT lpActiveObj)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleTranslateAccelerator
+`HRESULT := OleTranslateAccelerator(_In_ LPOLEINPLACEFRAME lpFrame, _In_ LPOLEINPLACEFRAMEINFO lpFrameInfo, _In_ LPMSG lpmsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+OleUninitialize
+`VOID := OleUninitialize(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+ProgIDFromCLSID
+`HRESULT := ProgIDFromCLSID(_In_ REFCLSID clsid, _Out_ LPOLESTR *lplpszProgID)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropStgNameToFmtId
+`HRESULT := PropStgNameToFmtId(_In_ const LPOLESTR oszName, _Out_ FMTID *pfmtid)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropVariantClear
+`HRESULT := PropVariantClear(_Inout_ PROPVARIANT *pvar)
+`/docs/commands/WinApi.htm
+
+
+Function
+PropVariantCopy
+`HRESULT := PropVariantCopy(_Out_ PROPVARIANT *pvarDest, _In_ const PROPVARIANT *pvarSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadClassStg
+`int := ReadClassStg(_In_ IStorage *pStg, _Out_ CLSID *pclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadClassStm
+`int := ReadClassStm(_In_ IStream *pStm, _Out_ CLSID *pclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadFmtUserTypeStg
+`int := ReadFmtUserTypeStg(_In_ IStorage *pStg, _Out_ CLIPFORMAT *pcf, _Out_ LPWSTR *lplpszUserType)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterDragDrop
+`HRESULT := RegisterDragDrop(_In_ HWND hwnd, _In_ LPDROPTARGET pDropTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReleaseStgMedium
+`VOID := ReleaseStgMedium(_In_ LPSTGMEDIUM pMedium)
+`/docs/commands/WinApi.htm
+
+
+Function
+RevokeDragDrop
+`HRESULT := RevokeDragDrop(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetConvertStg
+`int := SetConvertStg(IStorage *pStg, BOOL fConvert)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgConvertPropertyToVariant
+`BOOLEAN := StgConvertPropertyToVariant(_In_ const SERIALIZEDPROPERTYVALUE *prop, _In_ USHORT CodePage, _Out_ PROPVARIANT *pvar, _In_ PMemoryAllocator *pma)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgConvertVariantToProperty
+`SERIALIZEDPROPERTYVALUE* := StgConvertVariantToProperty(_In_ const PROPVARIANT *pvar, _In_ USHORT CodePage, _Out_opt_ SERIALIZEDPROPERTYVALUE *pprop, _Inout_ ULONG *pcb, _In_ PROPID pid, _Reserved_ BOOLEAN fReserved, _Inout_opt_ ULONG *pcIndirect)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgCreateDocfile
+`HRESULT := StgCreateDocfile(_In_ const WCHAR *pwcsName, _In_ DWORD grfMode, _In_ DWORD reserved, _Out_ IStorage **ppstgOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgCreateDocfileOnILockBytes
+`HRESULT := StgCreateDocfileOnILockBytes(_In_ ILockBytes *plkbyt, _In_ DWORD grfMode, _In_ DWORD reserved, _Out_ IStorage **ppstgOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgCreatePropSetStg
+`HRESULT := StgCreatePropSetStg(_In_ IStorage *pStorage, DWORD dwReserved, _Out_ IPropertySetStorage **ppPropSetStg)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgCreatePropStg
+`HRESULT := StgCreatePropStg(_In_ IUnknown *pUnk, _In_ REFFMTID fmtid, _In_ const CLSID *pclsid, _In_ DWORD grfFlags, _In_ DWORD dwReserved, _Out_ IPropertyStorage **ppPropStg)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgCreateStorageEx
+`int := StgCreateStorageEx(_In_ const WCHAR *pwcsName, _In_ DWORD grfMode, _In_ STGFMT stgfmt, _In_ DWORD grfAttrs, _In_ STGOPTIONS *pStgOptions, _In_ PSECURITY_DESCRIPTOR *pSecurityDescriptor, _In_ REFIID riid, _Out_ void **ppObjectOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgGetIFillLockBytesOnFile
+`int := StgGetIFillLockBytesOnFile(_In_ OLECHAR *pwcsName, _Out_ IFillLockBytes **ppflb)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgGetIFillLockBytesOnILockBytes
+`int := StgGetIFillLockBytesOnILockBytes(_In_ ILockBytes *pilb, _Out_ IFillLockBytes **ppflb)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgIsStorageFile
+`int := StgIsStorageFile(_In_ const WCHAR *pwcsName)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgIsStorageILockBytes
+`int := StgIsStorageILockBytes(ILockBytes *plkbyt)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgOpenAsyncDocfileOnIFillLockBytes
+`int := StgOpenAsyncDocfileOnIFillLockBytes(_In_ IFillLockBytes *ppflb, _In_ DWORD grfmode, _In_ DWORD asyncFlags, _Out_ IStorage **ppstgOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgOpenPropStg
+`HRESULT := StgOpenPropStg(_In_ IUnknown *pUnk, _In_ REFFMTID fmtid, _In_ DWORD grfFlags, _In_ DWORD dwReserved, _Out_ IPropertyStorage **ppPropStg)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgOpenStorage
+`HRESULT := StgOpenStorage(_In_ const WCHAR *pwcsName, _In_ IStorage *pstgPriority, _In_ DWORD grfMode, _In_ SNB snbExclude, _In_ DWORD reserved, _Out_ IStorage **ppstgOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgOpenStorageEx
+`HRESULT := StgOpenStorageEx(_In_ const WCHAR *pwcsName, _In_ DWORD grfMode, _In_ STGFMT stgfmt, _In_ DWORD grfAttrs, _Inout_ STGOPTIONS *pStgOptions, _In_ void *reserved2, _In_ REFIID riid, _Out_ void **ppObjectOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgOpenStorageOnILockBytes
+`HRESULT := StgOpenStorageOnILockBytes(_In_ ILockBytes *plkbyt, _In_ IStorage *pStgPriority, _In_ DWORD grfMode, _In_ SNB snbExclude, _In_ DWORD reserved, _Out_ IStorage **ppstgOpen)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgPropertyLengthAsVariant
+`ULONG := StgPropertyLengthAsVariant(_In_ const SERIALIZEDPROPERTYVALUE *pProp, _In_ ULONG cbProp, _In_ USHORT CodePage, _Reserved_ BYTE bReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgSetTimes
+`int := StgSetTimes(_In_ WCHAR const *lpszName, _In_ FILETIME const *pctime, _In_ FILETIME const *patime, _In_ FILETIME const *pmtime)
+`/docs/commands/WinApi.htm
+
+
+Function
+StringFromCLSID
+`HRESULT := StringFromCLSID(_In_ REFCLSID rclsid, _Out_ LPOLESTR *lplpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+StringFromGUID2
+`int := StringFromGUID2(_In_ REFGUID rguid, _Out_ LPOLESTR lpsz, _In_ int cchMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+StringFromIID
+`HRESULT := StringFromIID(_In_ REFIID rclsid, _Out_ LPOLESTR *lplpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+WriteClassStg
+`int := WriteClassStg(_In_ IStorage *pStg, _In_ REFCLSID rclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+WriteClassStm
+`int := WriteClassStm(_In_ IStream *pStm, _In_ REFCLSID rclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+WriteFmtUserTypeStg
+`int := WriteFmtUserTypeStg(_In_ IStorage *pStg, _In_ CLIPFORMAT cf, _In_ LPWSTR *lpszUserType)
+`/docs/commands/WinApi.htm

@@ -1,0 +1,52 @@
+Function
+RasDialDlg
+`BOOL := RasDialDlg(_In_ LPTSTR lpszPhonebook, _In_ LPTSTR lpszEntry, _In_ LPTSTR lpszPhoneNumber, _In_ LPRASDIALDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDialDlgA
+`BOOL := RasDialDlgA(_In_ LPSTR lpszPhonebook, _In_ LPSTR lpszEntry, _In_ LPSTR lpszPhoneNumber, _In_ LPRASDIALDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasDialDlgW
+`BOOL := RasDialDlgW(_In_ LPWSTR lpszPhonebook, _In_ LPWSTR lpszEntry, _In_ LPWSTR lpszPhoneNumber, _In_ LPRASDIALDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEntryDlg
+`BOOL := RasEntryDlg(_In_ LPTSTR lpszPhonebook, _In_ LPTSTR lpszEntry, _In_ LPRASENTRYDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEntryDlgA
+`BOOL := RasEntryDlgA(_In_ LPSTR lpszPhonebook, _In_ LPSTR lpszEntry, _In_ LPRASENTRYDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasEntryDlgW
+`BOOL := RasEntryDlgW(_In_ LPWSTR lpszPhonebook, _In_ LPWSTR lpszEntry, _In_ LPRASENTRYDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasPhonebookDlg
+`BOOL := RasPhonebookDlg(_In_ LPTSTR lpszPhonebook, _In_ LPTSTR lpszEntry, _Inout_ LPRASPBDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasPhonebookDlgA
+`BOOL := RasPhonebookDlgA(_In_ LPSTR lpszPhonebook, _In_ LPSTR lpszEntry, _Inout_ LPRASPBDLG lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+RasPhonebookDlgW
+`BOOL := RasPhonebookDlgW(_In_ LPWSTR lpszPhonebook, _In_ LPWSTR lpszEntry, _Inout_ LPRASPBDLG lpInfo)
+`/docs/commands/WinApi.htm

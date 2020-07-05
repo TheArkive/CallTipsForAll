@@ -1,7 +1,7 @@
-0 FunctionObject FuncObjByFunc ([\w\.]+)[ \t]*:=[ \t]*(Func\x28)
-0 BoundFuncObject BoundFuncMethod ([\w\.]+)[ \t]*:=[ \t]*(ObjBindMethod\x28)
-0 FunctionObject FuncObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Function[\w ]*)
-0 BoundFuncObject BoundFuncByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*BoundFunc[\w ]*)
+0 FunctionObject FuncObjByFunc Func(
+0 BoundFuncObject BoundFuncMethod ObjBindMethod(
+0 FunctionObject FuncObjByComment ;[ \t]*Function
+0 BoundFuncObject BoundFuncByComment ;[ \t]*BoundFunc
 `
 `/docs/objects/Func.htm
 
