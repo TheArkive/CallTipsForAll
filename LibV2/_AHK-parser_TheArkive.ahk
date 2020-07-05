@@ -174,10 +174,8 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			}
 			
 			If (RegExMatch(StringOutline(curChunk),"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
-				; Debug.Msg("class evaluation")
 				encl := enclosureCheck(curChunk), curType := "class", lastVarStatus := "", i++
 			} Else If (RegExMatch(StringOutline(curChunk),"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
-				; Debug.Msg("function evaluation")
 				encl := enclosureCheck(curChunk), curType := "function", lastVarStatus := "", i++
 			} Else { ; ------------------------------------------------------------------------ it's something else ...
 				encl := enclosureCheck(curLine)
@@ -220,22 +218,16 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				If (!iStart)
 					iStart := i ; set start line of multi-line statement
 				
-				; Debug.Msg(iStart " / collecting")
-				
 				i++
 				If (docArr.Has(i)) {
 					nextLine := docArr[i]
-					
-					; If (curType = "Function")
-						; Debug.Msg(nextLine)
 					
 					If (RegExMatch(curLine,"^[ \t]*Global"))
 						lastVarStatus := "Global"
 					Else If (RegExMatch(curLine,"^[ \t]*Static"))
 						lastVarStatus := "Static"
-					Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
+					Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match))
 						ObjectList[match.Value(1)] := "RegExMatchObject"
-					}
 					
 					varList := getVar(nextLine,includeFile,i,lastVarStatus) ; collect vars
 					If (curLineNoStr And !varList.Length)
@@ -245,10 +237,7 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 						tempVarList.Push(obj)
 					
 					multi := true
-					
-					; Debug.Msg("compile multi-line statement")
 					encl := enclosureCheck(nextLine)
-					
 					curChunk .= "`r`n" nextLine
 				} Else
 					Break
@@ -258,10 +247,6 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				i++
 				Continue
 			}
-			
-			; Debug.Msg(curChunk "`r`n`r`n`r`n`r`ntype: " curType " / curly brace exist: " encl.c.exist)
-			; Msgbox "check chunk"
-
 			
 			c := "", f := ""
 			If (curType = "class")
@@ -299,8 +284,6 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 	oCallTip.LPar += LP, oCallTip.RPar += RP
 	oCallTip.LBrace += LB, oCallTip.RBrace += RB
 	oCallTip.LCBrace += LC, oCallTip.RCBrace += RC
-	
-	; Debug.Msg(LP " / " RP " / " LB " / " RB " / " LC " / " RC)
 	
 	p := Abs(oCallTip.LPar - oCallTip.RPar)
 	b := Abs(oCallTip.LBrace - oCallTip.RBrace)
@@ -344,10 +327,8 @@ GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work bette
 				r3 := RegExMatch(funcStart,"(\x28.*\x29)",match3)
 				params := match3.Value(0)
 				
-				If (!RegExMatch(curDocText,"[ \t\r\n]*\{",match4,curPos2+1)) {
-					; Debug.Msg("not a function`r`n" curDocText)
+				If (!RegExMatch(curDocText,"[ \t\r\n]*\{",match4,curPos2+1))
 					return "" ; not a function
-				}
 				
 				Break ; fn, funcStart, params, fileName, lineNum
 			}
