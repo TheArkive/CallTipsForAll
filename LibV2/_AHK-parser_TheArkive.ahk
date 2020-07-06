@@ -689,8 +689,8 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 }
 
 ParseObjectsInstances() { ; skip "ByCallback" labels... regex for "ByDerived" and "ByComment" labels - case insensitive!!!
-	round1 := ObjectCreateList["0"]
-	round2 := ObjectCreateList["1"]
+	round1 := ObjectCreateList.Has("0") ? ObjectCreateList["0"] : Map()
+	round2 := ObjectCreateList.Has("1") ? ObjectCreateList["1"] : Map()
 	
 	For i, obj in VariablesList {
 		nextVar := false
