@@ -12,7 +12,9 @@
 ; ================================================================
 StringOutline(sInput,pruneComments := true) {
 	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34),"**")			; blank out literal `" first
-	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
+	regex := "i)(" Chr(34) ".*?" Chr(34) "|^[ \t]*(Gui|MsgBox|Control|Win)\,[^\r\n]+)" ; |MsgBox|Control|Win
+	; regex := "(" Chr(34) ".*?" Chr(34) ")" ; original simple stringmatch
+	While (result := RegExMatch(curLineNoStr,regex,match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
 			repStr := StrRepeat("*",match.Len(1))
@@ -32,6 +34,8 @@ StringOutline(sInput,pruneComments := true) {
 	
 	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
 	; curLineNoStr := RegExReplace(curLineNoStr,"\" Chr(34),"*")
+	
+	; Debug.Msg(curLineNoStr)
 	
 	return curLineNoStr
 }

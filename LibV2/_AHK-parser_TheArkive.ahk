@@ -161,7 +161,9 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			oCallTip.LCBrace := 0, oCallTip.RCBrace := 0
 			
 			multi := false
-			curLine := docArr[i], curChunk := curLine "`r`n" (docArr.Has(i+1) ? docArr[i+1] : "")
+			curLine := docArr[i]
+			curChunk := curLine "`r`n" (docArr.Has(i+1) ? docArr[i+1] : "")
+			curChunkNoStr := StringOutline(curChunk)
 			
 			If (Trim(curLine," `t") = "") { ; blank line so skip
 				i++
@@ -173,10 +175,12 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				Continue
 			}
 			
-			If (RegExMatch(StringOutline(curChunk),"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
+			If (RegExMatch(curChunkNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
 				encl := enclosureCheck(curChunk), curType := "class", lastVarStatus := "", i++
-			} Else If (RegExMatch(StringOutline(curChunk),"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
+			} Else If (RegExMatch(curChunkNoStr,"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
 				encl := enclosureCheck(curChunk), curType := "function", lastVarStatus := "", i++
+				; if (InStr(curChunk,"GetImgFileDimension("))
+					; Debug.Msg(curChunk)
 			} Else { ; ------------------------------------------------------------------------ it's something else ...
 				encl := enclosureCheck(curLine)
 				curLineNoStr := RTrim(StringOutline(curLine)," `t")
@@ -242,6 +246,9 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				} Else
 					Break
 			}
+			
+			; if (InStr(curChunk,"GetImgFileDimension("))
+					; Debug.Msg(curChunk)
 			
 			If (!encl.c.exist) {
 				i++
