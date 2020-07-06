@@ -5,7 +5,8 @@ Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for
 
 ## Languages Supported
 * AutoHotkey v1.1.32
-* AutoHotkey v2.0-a112
+* AutoHotkey v2.0-a115
+* AutoHotkey_H v2.110-H001
 
 ## Basic Usage
 
@@ -20,9 +21,11 @@ CTRL+SHIFT+Space or Double-click   =   invoke Call-Tip
                   CTRL+ALT+Space   =   invoke Auto-Complete window manually
 ```
 
-If you selected a Base File in the Settings window, then only SAVED file data is loaded.  Click on call tips to invoke the CHM and link directly to the corresponding page.
+If you selected a Base File in the Settings window, or when you use the hotkey to reload, then only SAVED file data is loaded.  Click on call tips to invoke the CHM and link directly to the corresponding page.
 
 ### Classes - special note
+
+You may not need this, but just in case:
 
 The default mode for classes is to show all methods and properties parsed.  You can selectively hide these methods / properties by adding a `; hide` comment to the end of the line.
 
@@ -71,39 +74,22 @@ var1 := 1, var2 := 2
     method1(x,y) { ; hide
 		...
     }
-    method2(a,b) ; show
+    method2(a,b)
 	{
 		...
     }
 }
 ```
 
-## Current Status
-Auto-Complete v1 is now finished and working.  It can also be toggled in the Settings gui in the tray icon menu.  Performance is quite good.
-
-If users want objects to be "explorable", then make classes instead of constructing objects.properties := value
-
-Current parsing pattern is as follows:
-
-* 1st parse for #INCLUDEs (if enabled in user settings) - then concatenate all documents
-* 2nd parse for user defined functions
-* 3rd parse for user classes, properties, and methods
-* 4th parse for instances of classes (multiply by number of classes found)
-* 5th parse for user defined objects
-* ... this will add a 6th parse to be able to list props/methods attached to user objects
-
-I feel like this isn't ideal, but at least all this happens in about a second, and I'm frequently finding ways to add to the flexibility without sacrificing accuracy.
-
 ## To-Do List
-* Add more languages ... but that will take a while
-* Enable full customization of hotkeys to invoke / close call tips
-* Index line numbers for custom functions, classes, and class instances
+* Add more languages ... eventually ...
+* improve parser to better handle variables set to an expression as a continuation section
 
 ## AutoHotkey objects - special cases
 
 Some matches require a "cheat code" to get the call tips working.  Here they are:
 
-AHK v2 (this is planned for AHK v1 also)
+AHK v2 (this exists for AHK v1 also, though none of the v2 elements are supported of course)
 * Use comment to identify objects:
 ```
 ; Array

@@ -611,7 +611,7 @@ quick_reload_close(g) {
 ; ================================================================
 LoadAutoCompleteGUI(KeywordFilter) {
 	wa := false ; win is visible?
-	If (IsObject(AutoCompleteGUI) And WinExist("ahk_id " AutoCompleteGUI.hwnd))
+	If (IsObject(AutoCompleteGUI) And WinExist("ahk_id " oCallTip.AutoCompleteHwnd))
 		wa := true
 	
 	dispList := [], endList := [], curPhrase := oCallTip.curPhrase, kwBlock := ""
@@ -646,26 +646,22 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	CaretGetPos(outX, outY)
 	
 	If (!wa) { ; auto-complete not visible
+		AutoCompleteGUI := ""
 		fontColor := Settings["fontColor"]
 		bgColor := Settings["bgColor"]
 		hEditorWin := oCallTip.progHwnd
 		
 		AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
+		oCallTip.AutoCompleteHwnd := AutoCompleteGUI.hwnd
 		AutoCompleteGUI.BackColor := bgColor
 		AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
 		
-		If (AutoCompleteGUI)
-			ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " h" h " +Background" bgColor) ; " r" maxR
-		If (AutoCompleteGUI)
-			ctl.Add(dispList), ctl.Add(endList)
-		
-		If (AutoCompleteGUI)
-			ctl.GetPos(,,,h)
-		
-		If (AutoCompleteGUI) {
-			AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
-			AutoCompleteGUI.Show("h" h " NA NoActivate")
-		}
+		ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " h" h " +Background" bgColor) ; " r" maxR
+		ctl.Add(dispList), ctl.Add(endList)
+		ctl.GetPos(,,,h)
+	
+		AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
+		AutoCompleteGUI.Show("h" h " NA NoActivate")
 	} Else {
 		AutoCompleteGui.Move(outX,(outY + kwDims.avgH),w,h)
 		

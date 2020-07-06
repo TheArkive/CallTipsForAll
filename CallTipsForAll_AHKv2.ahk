@@ -53,8 +53,8 @@ class oCallTip { ; testing
 	; properties for text elements near the caret
 	Static curPhrase := "", curPhraseObj := "", parentObj := "", curPhraseType := "", parentObjType := ""
 	
-	; properties for regex matches
-	Static regex := Map()
+	; store various GUI hwnd values?
+	Static AutoCompleteHwnd := 0
 	
 	; properties for enclosure matching
 	Static LPar := 0, RPar := 0, LBrace := 0, RBrace := 0, LCBrace := 0, RCBrace := 0
@@ -596,7 +596,7 @@ closeCallTip() {
 }
 
 closeAutoComplete() {
-	If (IsObject(AutoCompleteGUI)) {
+	If (WinExist("ahk_id " oCallTip.AutoCompleteHwnd)) {
 		AutoCompleteGUI.Destroy()
 		AutoCompleteGUI := ""
 		If (oCallTip.ctlActive)
