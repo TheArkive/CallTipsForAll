@@ -610,8 +610,9 @@ quick_reload_close(g) {
 ; Auto-Complete
 ; ================================================================
 LoadAutoCompleteGUI(KeywordFilter) {
-	If (IsObject(AutoCompleteGUI))
-		AutoCompleteGUI.Destroy(), AutoCompleteGUI := ""
+	wa := false ; win is visible?
+	If (IsObject(AutoCompleteGUI) And WinExist("ahk_id " AutoCompleteGUI.hwnd))
+		wa := true
 	
 	dispList := [], endList := [], curPhrase := oCallTip.curPhrase, kwBlock := ""
 	For kw, kwType in KeywordFilter {
@@ -634,32 +635,45 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
-	fontColor := Settings["fontColor"]
-	bgColor := Settings["bgColor"]
-	hEditorWin := oCallTip.progHwnd
-	
 	kwDims := GetTextDims(kwBlock,fontFace,fontSize)
 	
 	w := kwDims.w + (kwDims.avgW * 4) ; add VScroll width
 	maxR := (KeywordFilter.Count > 10) ? 10 : KeywordFilter.Count
+	h := (kwDims.avgH * maxR) + 8
+	
 	
 	CoordMode "Caret", "Screen"
 	CaretGetPos(outX, outY)
 	
-	AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
-	AutoCompleteGUI.BackColor := bgColor
-	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
-	
-	If (AutoCompleteGUI)
-		ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR " +Background" bgColor)
-	If (AutoCompleteGUI)
+	If (!wa) { ; auto-complete not visible
+		fontColor := Settings["fontColor"]
+		bgColor := Settings["bgColor"]
+		hEditorWin := oCallTip.progHwnd
+		
+		AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
+		AutoCompleteGUI.BackColor := bgColor
+		AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
+		
+		If (AutoCompleteGUI)
+			ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " h" h " +Background" bgColor) ; " r" maxR
+		If (AutoCompleteGUI)
+			ctl.Add(dispList), ctl.Add(endList)
+		
+		If (AutoCompleteGUI)
+			ctl.GetPos(,,,h)
+		
+		If (AutoCompleteGUI) {
+			AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
+			AutoCompleteGUI.Show("h" h " NA NoActivate")
+		}
+	} Else {
+		AutoCompleteGui.Move(outX,(outY + kwDims.avgH),w,h)
+		
+		ctl := AutoCompleteGui["KwList"]
+		ctl.Opt("-Redraw")
+		ctl.Move(,,w,h)
+		ctl.Delete()
 		ctl.Add(dispList), ctl.Add(endList)
-	
-	If (AutoCompleteGUI)
-		ctl.GetPos(,,,h)
-	
-	If (AutoCompleteGUI) {
-		AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
-		AutoCompleteGUI.Show("h" h " NA NoActivate")
+		ctl.Opt("+Redraw")
 	}
 }
