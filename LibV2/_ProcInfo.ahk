@@ -12,8 +12,12 @@
 ; ================================================================
 StringOutline(sInput,pruneComments := true) {
 	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34),"**")			; blank out literal `" first
-	regex := "i)(" Chr(34) ".*?" Chr(34) "|^[ \t]*(Gui|MsgBox|Control|Win)\,[^\r\n]+)" ; |MsgBox|Control|Win
-	; regex := "(" Chr(34) ".*?" Chr(34) ")" ; original simple stringmatch
+	
+	If (Settings["ActiveLanguage"] = "AHK1")
+		regex := "i)(" Chr(34) ".*?" Chr(34) "|^[ \t]*(Gui|MsgBox|Control|Win)[\w]*\,[^\r\n]+)" ; try to handle unquoted strings in AHK v1
+	Else
+		regex := "(" Chr(34) ".*?" Chr(34) ")" ; original simple string match
+	
 	While (result := RegExMatch(curLineNoStr,regex,match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {

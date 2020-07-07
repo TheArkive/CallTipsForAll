@@ -61,37 +61,37 @@ class oCallTip { ; testing
 	
 	
 	
-	property1[a,b] { ; show
+	; property1[a,b] { ; show
 	
-	}
-	property2[c,d] ; show
-	{
+	; }
+	; property2[c,d] ; show
+	; {
 	
-	}
-	property3[] {
+	; }
+	; property3[] {
 	
-	}
-	property4 ; show
-	{
+	; }
+	; property4 ; show
+	; {
 	
-	}
-	property5 => a + b ; show
+	; }
+	; property5 => a + b ; show
 	
-	method1(a,b) { ; show
+	; method1(a,b) { ; show
 	
-	}
-	method2(c,d) ; show
-	{
+	; }
+	; method2(c,d) ; show
+	; {
 	
-	}
-	method3() {
+	; }
+	; method3() {
 	
-	}
-	method4() ; show
-	{
+	; }
+	; method4() ; show
+	; {
 	
-	}
-	method5() => a * b ; show
+	; }
+	; method5() => a * b ; show
 }
 
 ; ================================================================

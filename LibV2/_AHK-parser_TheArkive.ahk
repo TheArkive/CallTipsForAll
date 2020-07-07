@@ -149,11 +149,12 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 	For i, includeFile in IncludesList {
 		curDocText := FileRead(includeFile)
 		docArr := StrSplit(curDocText,"`n","`r")
+		docArrNoStr := StrSplit(StringOutline(curDocText),"`n","`r")
 		
 		i := 1, totLines := docArr.Length
 		lastVarStatus := ""
 		While (i <= totLines) {
-			curType := ""
+			curType := "", curLineNoStr := ""
 			iStart := 0 ; start of multi-line statement
 			
 			oCallTip.LPar := 0, oCallTip.RPar := 0 ; reset brace count
@@ -162,6 +163,8 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			
 			multi := false
 			curLine := docArr[i]
+			
+			
 			curChunk := curLine "`r`n" (docArr.Has(i+1) ? docArr[i+1] : "")
 			curChunkNoStr := StringOutline(curChunk)
 			
@@ -177,6 +180,7 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			
 			If (RegExMatch(curChunkNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
 				encl := enclosureCheck(curChunk), curType := "class", lastVarStatus := "", i++
+				; Debug.Msg("class eval")
 			} Else If (RegExMatch(curChunkNoStr,"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
 				encl := enclosureCheck(curChunk), curType := "function", lastVarStatus := "", i++
 				; if (InStr(curChunk,"GetImgFileDimension("))
@@ -226,23 +230,27 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				If (docArr.Has(i)) {
 					nextLine := docArr[i]
 					
-					If (RegExMatch(curLine,"^[ \t]*Global"))
-						lastVarStatus := "Global"
-					Else If (RegExMatch(curLine,"^[ \t]*Static"))
-						lastVarStatus := "Static"
-					Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match))
-						ObjectList[match.Value(1)] := "RegExMatchObject"
-					
-					varList := getVar(nextLine,includeFile,i,lastVarStatus) ; collect vars
-					If (curLineNoStr And !varList.Length)
-						lastVarStatus := ""
-					
-					For i, obj in varList
-						tempVarList.Push(obj)
+					If (curType = "Function") {
+						If (RegExMatch(curLine,"^[ \t]*Global"))
+							lastVarStatus := "Global"
+						Else If (RegExMatch(curLine,"^[ \t]*Static"))
+							lastVarStatus := "Static"
+						Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match))
+							ObjectList[match.Value(1)] := "RegExMatchObject"
+						
+						varList := getVar(nextLine,includeFile,i,lastVarStatus) ; collect vars
+						If (curLineNoStr And !varList.Length)
+							lastVarStatus := ""
+						
+						For i, obj in varList
+							tempVarList.Push(obj)
+					}
 					
 					multi := true
 					encl := enclosureCheck(nextLine)
 					curChunk .= "`r`n" nextLine
+					
+					Debug.Msg("nextLine: " nextLine)
 				} Else
 					Break
 			}
@@ -250,14 +258,14 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			; if (InStr(curChunk,"GetImgFileDimension("))
 					; Debug.Msg(curChunk)
 			
-			If (!encl.c.exist) {
-				i++
-				Continue
-			}
+			; If (!encl.c.exist) {
+				; i++
+				; Continue
+			; }
 			
 			c := "", f := ""
 			If (curType = "class")
-				c := GetClasses(curChunk,includeFile,i) ; not a big performance hit
+				c := GetClasses(curChunk,includeFile,i) ; don't push 
 			Else If (curType = "function") {
 				f := GetCustomFunction(curChunk,includeFile,iStart) ; not a big performance hit
 				If (f And !CustomFunctions.Has(f["funcName"])) {
@@ -272,6 +280,7 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			
 			i++
 		}
+		Debug.Msg("next include")
 	}
 	
 	If (c) { ; save classes to global var
@@ -388,6 +397,8 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 	curPos1 := 1
 	
 	While (result := RegExMatch(curDocTextNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{",match,curPos1)) { ; parse classes
+		Debug.Msg("parsing class iteration")
+		
 		classBody := ""
 		If (IsObject(match) And match.Count()) {
 			innerClassBody := ""
@@ -426,6 +437,8 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 			While (r14 := RegExMatch(classBodyNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{",match14,curPos14)) { ; try to get sub classes
 				curPos14 := match14.Pos(0)
 				
+				Debug.Msg("parsing sub class")
+				
 				curPos13 := curPos14
 				While (r13 := RegExMatch(classBodyNoStr,"mi)\}",match13,curPos13)) {
 					innerClassBody := SubStr(classBodyNoStr,curPos14,match13.Pos(0)+match13.Len(0)-curPos14)
@@ -457,6 +470,8 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 					methBody := SubStr(classBodyNoStr,curPos2,match5.Pos(0)+match5.Len(0)-curPos2) ; this needs to be fixed, should be parsing the "NoStr" var
 					curPos5 := match5.Pos(0) + match5.Len(0)
 					w := StrReplace(StrReplace(methBody,"{","{",lB),"}","}",rB)
+					
+					Debug.Msg("parsing class method")
 					
 					If (lB = rB) {
 						methBody := SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2)
@@ -500,6 +515,8 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 					propBody := SubStr(classBodyNoStr,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
 					curPos6 := match6.Pos(0)
 					w := StrReplace(StrReplace(propBody,"{","{",lB),"}","}",rB)
+					
+					Debug.Msg("parsing class property")
 					
 					If (lB = rB) {
 						propBody := SubStr(classBody,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
