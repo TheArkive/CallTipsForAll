@@ -766,12 +766,63 @@ GetVarAssignments(Line){
   ;these assignments are not captured by this function.
   If RegExMatch(Line, VarLegacyAssignRE, Match)
     Return [{Name: Match.VarName, Position: Match.Pos, Type: "Legacy"}]
+
   CleanLine := RemoveQuotedStrings(Line)
   Pos := 1
   Vars := []
-  While (Pos := RegExMatch(CleanLine, VarExprAssignRE, Match, Pos)) {
-    Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Expression"} )
-    Pos := Pos + Match.Len
+  While (Pos := RegExMatch(CleanLine, VarAssignRE, Match, Pos)) {
+    Len := Match.Len
+    
+    If (Match.Array)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Array"} )
+    Else If (Match.Object)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Object"} )
+    Else If (Match.Func)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Func"} )
+    Else If (Match.FileOpen)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "FileOpen"} )
+    Else If (Match.ComObj)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "ComObj"} )
+    Else If (Match.InputHook)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "InputHook"} )
+    Else If (Match.Instance)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Instance"} )
+    Else If (Match.Expression)
+      Vars.push( {Name: Match.VarName, Position: Match.Pos, Type: "Expression"} )
+
+    Else If (Match.ForKey){
+      Vars.push( {Name: Match.ForKey, Position: Match.Pos, Type: "ForKey of " Match.ForIn} )
+      If (Match.ForValue)
+        Vars.push( {Name: Match.ForValue, Position: Match.Pos, Type: "ForValue of " Match.ForIn} )
+      Len := StrLen("For " Match.ForKey Match.ForValue )
+    }
+    Else If (Match.RegExMatchOutputVar){
+      Vars.push( {Name: Match.RegExMatchOutputVar, Position: Match.Pos, Type: "RegExMatchOutputVar"} )
+      Len := StrLen("RegExMatch(")
+    }
+    Else If (Match.RegExReplaceOutputVarCount){
+      Vars.push( {Name: Match.RegExReplaceOutputVarCount, Position: Match.Pos, Type: "RegExReplaceOutputVarCount"} )
+      Len := StrLen("RegExReplace(")
+    }
+    Else If (Match.StrReplaceOutputVarCount){
+      Vars.push( {Name: Match.StrReplaceOutputVarCount, Position: Match.Pos, Type: "StrReplaceOutputVarCount"} )
+      Len := StrLen("StrReplace(")
+    }
+    Else If (Match.GetTextOutputVar)
+      Vars.push( {Name: Match.GetTextOutputVar, Position: Match.Pos, Type: "GetTextOutputVar"} )
+    Else If (Match.Hwnd or Match.gLabel or Match.vLabel)
+      If (Match.Hwnd)
+        Vars.push( {Name: Match.Hwnd, Position: Match.Pos, Type: "Hwnd"} )
+      If (Match.gLabel)
+        Vars.push( {Name: Match.gLabel, Position: Match.Pos, Type: "gLabel"} )
+      If (Match.vLabel)
+        Vars.push( {Name: Match.vLabel, Position: Match.Pos, Type: "vLabel"} )
+    Else If (Match.GuiHwnd)
+      Vars.push( {Name: Match.GuiHwnd, Position: Match.Pos, Type: "GuiHwnd"} )
+    Else If (Match.OutputVar)
+      Vars.push( {Name: Match.OutputVar, Position: Match.Pos, Type: "OutputVar of " Match.Command } )
+  
+    Pos := Pos + Len
   }
   Return Vars
 }
