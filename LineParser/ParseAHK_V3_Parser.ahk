@@ -15,8 +15,6 @@ Known Issues
 - Vars :   global variables in multi-line statements are not split due to comma in objects or arrays
            
 Potential Enhancements 
-- detect if a variable points to an object (associative/linear array, class, file, COM, function and inputhook) to inherit it's methods and properties
-
 - detect scope of variables|methods|properties (super-global, global, local, static)
 
 - detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
@@ -695,18 +693,75 @@ GetVarAssignments(Line){
   static VarLegacyAssignRE := "
                ( Join LTrim Comment
                     OS)(*UCP)                 ;Study and Unicode (for \s and \w)
-                    ^\s*                      ;optionally whitespace at start of lien
+                    ^\s*                      ;optionally whitespace at start of line
                     (?P<VarName>[\w#$@]+)     ;a variable name
                     \s*                       ;optionally whitespace
                     =                         ;legacy assignment operator
               )"
-       , VarExprAssignRE := "
-               ( Join LTrim Comment
-                    OS)(*UCP)                 ;Study and Unicode (for \s and \w)
-                    (?P<VarName>[\w#$@]+)     ;a variable name
-                    \s*                       ;optionally whitespace
-                    (:|\+|-|\*|/|//|\.|\||&|\^|>>|<<)=             ;expression assignment operator
-              )"
+       , VarAssignRE := "
+            ( Join LTrim Comment
+              OiS)(*UCP)                                       ;Study and Unicode (for \s and \w)
+              (                                                ;either an assignment
+                (?P<VarName>[\w#$@]+)\s*                            ;a variable name with optional whitespace
+                  (
+                    :=\s*                                              ;assign operator with optional whitespace
+                      (
+                        (?P<Array>\[|Array\()                          ;"[" or "Array("          ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<Object>\{|Object\()                        ;or "{" or "Object("      ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<Func>Func\()                               ;or "Func("               ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<FileOpen>FileOpen\()                       ;or "FileOpen("           ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<ComObj>ComObjCreate\()                     ;or "ComObjCreate("       ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<InputHook>InputHook\()                     ;or "InputHook("          ;only to ensure highlight of matching barces => )
+                        |
+                        (?P<Instance>new\s*(?P<Base>[\w#$@.]+))        ;or "new <BaseObject.NestedObject>"
+                      `)
+                    |                                               ;or a normal Expression
+                    (?P<Expression>:|\+|-|\*|/|//|\.|\||&|\^|>>|<<)=
+                  `)
+                |                                              ;or a for loop                                        
+                For\s*(?P<ForKey>[\w#$@]+)\s*(,\s*(?P<ForValue>[\w#$@]+)\s*)?in\s*(?P<ForIn>.*?)(\s*{)?$
+                |                                              ;or a RegExMatch with potential Mode 3 (match object) 
+                RegExMatch\([^\),]*?,[^\),]*?,\s*(?P<RegExMatchOutputVar>[\w#$@]+)
+                |                                              ;or a RegExReplace                                    
+                RegExReplace\([^\),]*?,[^\),]*?,[^\),]*?,\s*(?P<RegExReplaceOutputVarCount>[\w#$@]+)
+                |                                              ;or a StrReplace                                      
+                StrReplace\([^\),]*?,[^\),]*?,[^\),]*?,\s*(?P<StrReplaceOutputVarCount>[\w#$@]+)
+                |                                              ;or a LV_GetText or TV_GetText
+                (LV|TV)_GetText\(\s*(?P<GetTextOutputVar>[\w#$@]+)
+                |
+                ^Gui\s*,?\s*Add\s*,?\s*[\w]+\s*,?              ;or a Gui,Add statement with HWND, g or v Option when Options are not expressions
+                  (\s*
+                     (
+                       Hwnd(?P<Hwnd>[\w#$@]+)
+                       |g(?P<gLabel>[\w#$@]+)
+                       |v(?P<vLabel>[\w#$@]+)
+                       |Left|Center|Right|Bottom|Horz|Vertical
+                       |AltSubmit|Section|TabStop|VScroll|HScroll|Wrap|Border
+                       |Theme|LowerCase|UpperCase|Multi|Number|Sort|Simple
+                       |Smooth|Buttons|Invert|NoTicks|LongDate|Time|ReadOnly
+                       |Password[^\s]?|Range[\d-]*|1|2|4|8|16
+                       |(0x|Limit|Icon|Check|Choose|Buddy|Line|Page|Thick|TickInterval|Hidden|Disabled|Checked|Tooltip|C|Background|Want|-|\+)[\w#$@%]*
+                       |(x|y|w|h|r|t)[^\s,]*
+                     `)
+                  `)*
+                |                                              ;or a Gui statement that with +Hwnd Option when Options are not expressions
+                ^Gui.*[\s,]\+Hwnd(?P<GuiHwnd>[\w#$@]+)([\s,]|$)
+                |                                              ;or a command with a OutputVar
+                ^(?P<Command>Transform|ControlGet|WinGet|DriveGet|GuiControlGet|SysGet|RegRead
+                |StringLeft|StringRight|StringTrimLeft|StringTrimRight|StringMid|StringReplace|StringGetPos|GetKeyState|StringLen      ;deprecated commands
+                |Catch|FileSelectFile|FileSelectFolder|StringLower|StringUpper|Input|FileRead|FormatTime|IniRead
+                |WinGetText|ControlGetFocus|ControlGetText|EnvGet|FileReadLine|FileGetSize|FileGetTime|InputBox
+                |SoundGetWaveVolume|DriveSpaceFree|FileGetAttrib|FileGetVersion|StatusBarGetText|WinGetActiveTitle|WinGetClass
+                |PixelGetColor|Random|SoundGet|WinGetTitle)\s*,?\s*(?P<OutputVar>[\w#$@]+)
+              `)
+            )"
+
+
   ;Note: the docs state on Comma (multi-statement) that "[v1.0.46.01+]: When a comma is followed immediately by a variable and an equal sign, that equal sign is automatically treated as an assignment (:=). For example, all of the following are assignments: x:=1, y=2, a=b=c. New scripts should not rely on this behavior as it may change."
   ;these assignments are not captured by this function.
   If RegExMatch(Line, VarLegacyAssignRE, Match)
