@@ -17,8 +17,8 @@ Known Issues
 Potential Enhancements 
 - detect scope of variables|methods|properties (super-global, global, local, static)
 
-- detect variable names in commands, e.g. on Gui,Add the hwndVar/gVar/vVar etc
- - brute force: scan for all text with length > 3 and remove keywords
+- var usage  
+  detect where which var has been used 
 
 - scan include files directly where they are included in the code, to have the lines correctly WithinName (which will be rare, but correct)
   then FileName or FileContent should be the incoming parameter to ParseAHK() with detection on which is provided.
@@ -271,7 +271,7 @@ ParseAHK(FileContent, SearchRE := "", DocComment := "") {
     ContinuationBufferLineNum := PhysicalLineNum
   }
 
-    local HotKeyCommandRE :="
+  local HotKeyCommandRE :="
               ( LTrim Join Comment
                     OiS)(*UCP)                 ;case insensitive (for the Hotkey texts), Study and Unicode (for \s)
                     ^Hotkey                    ;the text 'Hotkey' at start of line
