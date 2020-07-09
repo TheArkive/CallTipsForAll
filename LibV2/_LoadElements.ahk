@@ -30,17 +30,6 @@ ReloadElements() {
 		If (A_Index = 1)
 			oCallTip.helpFile := A_LoopFileFullPath
 	
-	; curDocText := ControlGetText(oCallTip.ctlHwnd) ;get text from current doc in editor
-	
-	; ============ old parser ==================
-	; oCallTip.docTextNoStr := StringOutline(curDocText) ; this should only be done once per load/reload (for full text + includes)
-	; oCallTip.docText := curDocText
-	
-	; CustomFunctions := GetCustomFunctions(curDocText)
-	; ClassesList := GetClasses(curDocText)
-	; ScanClasses(curDocText)
-	; ObjectList := CreateObjList(curDocText)
-	
 	; ====== new parser ======
 	baseFile := Settings["BaseFile"]
 	If (baseFile)

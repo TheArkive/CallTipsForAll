@@ -1,4 +1,4 @@
-; AHK Test v2
+﻿; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
@@ -17,9 +17,7 @@ Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation betwee
 
 ; eventually move these to settings GUI
 Global WrapTextChars := 80
-; Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
 Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
-; Global maxLines := 20
 
 SetupInputHook(false) ; suppress enter - true/false
 
@@ -61,10 +59,11 @@ class oCallTip { ; testing
 	
 	
 	
-	; property1[a,b] { ; show
+	; property1[a, b] { ; show
 	
 	; }
-	; property2[c,d] ; show
+	; property2[c
+				; , d] ; show
 	; {
 	
 	; }
@@ -76,6 +75,9 @@ class oCallTip { ; testing
 	
 	; }
 	; property5 => a + b ; show
+	
+	; property6[a
+				; ,b] => c + d
 	
 	; method1(a,b) { ; show
 	
@@ -92,6 +94,9 @@ class oCallTip { ; testing
 	
 	; }
 	; method5() => a * b ; show
+	
+	; method6(a
+			; ,b) => c * d
 }
 
 ; ================================================================
@@ -108,9 +113,12 @@ class oCallTip { ; testing
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
 #INCLUDE LibV2\_Load_Call_Tip_Data.ahk
-; #INCLUDE LibV2\_old_parser.ahk
+
 #INCLUDE LibV2\_AHK-parser_TheArkive.ahk
+
 #INCLUDE LibV2\TheArkive_Debug.ahk
+
+
 
 ; ================================================================
 ; hotkeys - global ; 

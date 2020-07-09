@@ -30,7 +30,7 @@ GetIncludes(inputIncludes) { ; input should start with [baseFile]
 		curDocText := FileRead(curFile)
 		curDocArr := StrSplit(curDocText,"`n","`r")
 		
-		SplitPath curFile, , baseFolderP
+		SplitPath curFile, outFile, baseFolderP
 		curBaseFolder := baseFolderP
 		includesSearch := "^(#Include(Again)?[ \t]+.*)"
 		
@@ -46,7 +46,8 @@ GetIncludes(inputIncludes) { ; input should start with [baseFile]
 			If (curInc != curInclude) ; include is library file and will automatically be scanned
 				continue
 			
-			curInclude := StrReplace(curInclude,"%A_ScriptDir%",curBaseFolder) ;ZZZ - need to replace a larger set of vars here
+			curInclude := ReplaceVars(curInclude,curBaseFolder)
+			
 			finalFile := (FileExist(curBaseFolder "\" curInclude)) ? curBaseFolder "\" curInclude : FileExist(curInclude) ? curInclude : ""
 			incType := FileExist(finalFile)
 			
@@ -104,57 +105,57 @@ GetLibs() {
 	}
 }
 
-; ReplaceVars(v, OutFileName, CurrentOutDir){ ; made by toralf
-  ; AHKVars := {"%A_AhkPath%":         A_AhkPath
-            ; , "%A_AhkVersion%":      A_AhkVersion
-            ; , "%A_ComputerName%":    A_ComputerName
-            ; , "%A_ComSpec%":         A_ComSpec
-            ; , "%A_Desktop%":         A_Desktop
-            ; , "%A_DesktopCommon%":   A_DesktopCommon
-            ; , "%A_IsCompiled%":      A_IsCompiled
-            ; , "%A_IsUnicode%":       A_IsUnicode
-            ; , "%A_MyDocuments%":     A_MyDocuments
-            ; , "%A_ProgramFiles%":    A_ProgramFiles
-            ; , "%A_Programs%":        A_Programs
-            ; , "%A_ProgramsCommon%":  A_ProgramsCommon
-            ; , "%A_PtrSize%":         A_PtrSize
-            ; , "%A_ScriptFullPath%":    CurrentOutDir "\" OutFileName
+ReplaceVars(v, CurrentOutDir){ ; made by toralf ; orig params:  v, OutFileName, CurrentOutDir
+  AHKVars := Map("%A_AhkPath%",      A_AhkPath
+            , "%A_AhkVersion%",      A_AhkVersion
+            , "%A_ComputerName%",    A_ComputerName
+            , "%A_ComSpec%",         A_ComSpec
+            , "%A_Desktop%",         A_Desktop
+            , "%A_DesktopCommon%",   A_DesktopCommon
+            , "%A_IsCompiled%",      A_IsCompiled
+            ; , "%A_IsUnicode%",       A_IsUnicode
+            , "%A_MyDocuments%",     A_MyDocuments
+            , "%A_ProgramFiles%",    A_ProgramFiles
+            , "%A_Programs%",        A_Programs
+            , "%A_ProgramsCommon%",  A_ProgramsCommon
+            , "%A_PtrSize%",         A_PtrSize
+            ; , "%A_ScriptFullPath%":    CurrentOutDir "\" OutFileName ; less used for includes?
             ; , "%A_LineFile%":          CurrentOutDir "\" OutFileName
-            ; , "%A_ScriptDir%":         CurrentOutDir
-            ; , "%A_ScriptName%":        OutFileName
-            ; , "%A_Space%":           A_Space
-            ; , "%A_StartMenu%":       A_StartMenu
-            ; , "%A_StartMenuCommon%": A_StartMenuCommon
-            ; , "%A_Startup%":         A_Startup
-            ; , "%A_StartupCommon%":   A_StartupCommon
-            ; , "%A_Tab%":             A_Tab
-            ; , "%A_Temp%":            A_Temp
-            ; , "%A_UserName%":        A_UserName
-            ; , "%A_WinDir%":          A_WinDir }
+            , "%A_ScriptDir%",         CurrentOutDir
+            ; , "%A_ScriptName%",        OutFileName
+            , "%A_Space%",           A_Space
+            , "%A_StartMenu%",       A_StartMenu
+            , "%A_StartMenuCommon%", A_StartMenuCommon
+            , "%A_Startup%",         A_Startup
+            , "%A_StartupCommon%",   A_StartupCommon
+            , "%A_Tab%",             A_Tab
+            , "%A_Temp%",            A_Temp
+            , "%A_UserName%",        A_UserName
+            , "%A_WinDir%",          A_WinDir )
 
-  ; For var,value in AHKVars
-    ; v := StrReplace(v, var, value) 
-  ; Return v  
-; }
+  For var,value in AHKVars
+    v := StrReplace(v, var, value) 
+  Return v  
+}
 
 ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
-	q := Chr(34)
-	oCallTip.newParseClass := 1
+	q := Chr(34), c := "", f := ""
 	
 	CustomFunctions := Map(), CustomFunctions.CaseSense := 0
 	ClassesList := Map(), ClassesList.CaseSense := 0
 	ObjectList := Map(), ObjectList.CaseSense := 0
 	VariablesList := Array()
 	
+	oCallTip.newParseFunction := 1
+	
 	For i, includeFile in IncludesList {
 		curDocText := FileRead(includeFile)
 		docArr := StrSplit(curDocText,"`n","`r")
-		docArrNoStr := StrSplit(StringOutline(curDocText),"`n","`r")
 		
 		i := 1, totLines := docArr.Length
 		lastVarStatus := ""
 		While (i <= totLines) {
-			curType := "", curLineNoStr := ""
+			curType := ""
 			iStart := 0 ; start of multi-line statement
 			
 			oCallTip.LPar := 0, oCallTip.RPar := 0 ; reset brace count
@@ -163,10 +164,7 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			
 			multi := false
 			curLine := docArr[i]
-			
-			
-			curChunk := curLine "`r`n" (docArr.Has(i+1) ? docArr[i+1] : "")
-			curChunkNoStr := StringOutline(curChunk)
+			curLineNoStr := StringOutline(curLine) ; docArrNoStr[i]
 			
 			If (Trim(curLine," `t") = "") { ; blank line so skip
 				i++
@@ -178,29 +176,37 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				Continue
 			}
 			
-			If (RegExMatch(curChunkNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{")) { ; - it's a class!
-				encl := enclosureCheck(curChunk), curType := "class", lastVarStatus := "", i++
-				; Debug.Msg("class eval")
-			} Else If (RegExMatch(curChunkNoStr,"m)^[ \t]*([\w_]+)\x28")) { ; "m)^[ \t]*([\w_]+)\x28.*\x29[ \t\r\n]*\{" ; "m)^[ \t]*([\w_]+)\x28"
-				encl := enclosureCheck(curChunk), curType := "function", lastVarStatus := "", i++
-				; if (InStr(curChunk,"GetImgFileDimension("))
-					; Debug.Msg(curChunk)
-			} Else { ; ------------------------------------------------------------------------ it's something else ...
-				encl := enclosureCheck(curLine)
-				curLineNoStr := RTrim(StringOutline(curLine)," `t")
+			If (docArr.Has(i+1))
+				curChunk := curLine "`r`n" docArr[i+1], curChunkNoStr := curLineNoStr "`r`n" StringOutline(docArr[i+1])
+			Else
+				curChunk := curLine, curChunkNoStr := curLineNoStr
+			
+			If (RegExMatch(curChunkNoStr,"mi)class ([\w_]+)( extends ([\w_\.]+))?[ \t\r\n]*\{")) { ; classes
+				encl := enclosureCheck(curChunkNoStr)
+				oCallTip.newParseClass := 1 ; enable static collection of classes while parsing
+				curType := "class"
+				lastVarStatus := ""
+				i++
+			} Else If (RegExMatch(curChunkNoStr,"m)^[ \t]*([\w_]+)\x28")) { ; functions
+				encl := enclosureCheck(curChunkNoStr)
+				curType := "function"
+				lastVarStatus := ""
+				i++
+			} Else { ; NOT classes or functions ... usually not enclosed at all...
+				curLineNoStr := RTrim(curLineNoStr," `t")
 				
-				If (RegExMatch(curLine,"^[ \t]*Global"))
+				If (RegExMatch(curLine,"i)^[ \t]*Global"))
 					lastVarStatus := "Global"
-				Else If (RegExMatch(curLine,"^[ \t]*Static"))
+				Else If (RegExMatch(curLine,"i)^[ \t]*Static"))
 					lastVarStatus := "Static"
-				Else If (RegExMatch(curLineNoStr,"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match)) {
+				Else If (RegExMatch(curLineNoStr,"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w_]+)[ \t]*\x29",match)) {
 					ObjectList[match.Value(1)] := "RegExMatchObject"
 				}
 				
 				i++
 				
 				varList := getVar(curLine,includeFile,i,lastVarStatus) ; collect vars outside functions / classes
-				If (curLineNoStr And !varList.Length)
+				If (!varList.Length)
 					lastVarStatus := ""
 				
 				For i, obj in varList {
@@ -209,16 +215,6 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				}
 				
 				Continue
-				
-				; If (!encl.exist) { ; no enclosures, not a function/class
-					; i++
-					; Continue
-				; }
-				
-				; If (encl.exist And encl.even) { ; single-line statement, probably a function call, or setting object
-					; i++
-					; Continue
-				; }
 			}
 			
 			tempVarList := []
@@ -229,13 +225,14 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 				i++
 				If (docArr.Has(i)) {
 					nextLine := docArr[i]
+					nextLineNoStr := StringOutline(docArr[i])
 					
 					If (curType = "Function") {
 						If (RegExMatch(curLine,"^[ \t]*Global"))
 							lastVarStatus := "Global"
 						Else If (RegExMatch(curLine,"^[ \t]*Static"))
 							lastVarStatus := "Static"
-						Else If (RegExMatch(StringOutline(nextLine),"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29",match))
+						Else If (RegExMatch(nextLineNoStr,"i)RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w_]+)[ \t]*\x29",match))
 							ObjectList[match.Value(1)] := "RegExMatchObject"
 						
 						varList := getVar(nextLine,includeFile,i,lastVarStatus) ; collect vars
@@ -247,26 +244,16 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 					}
 					
 					multi := true
-					encl := enclosureCheck(nextLine)
-					curChunk .= "`r`n" nextLine
-					
-					Debug.Msg("nextLine: " nextLine)
+					encl := enclosureCheck(nextLineNoStr)
+					curChunk .= "`r`n" nextLine ; concatenate chunk
+					curChunkNoStr .= "`r`n" nextLineNoStr
 				} Else
 					Break
 			}
 			
-			; if (InStr(curChunk,"GetImgFileDimension("))
-					; Debug.Msg(curChunk)
-			
-			; If (!encl.c.exist) {
-				; i++
-				; Continue
-			; }
-			
-			c := "", f := ""
-			If (curType = "class")
-				c := GetClasses(curChunk,includeFile,i) ; don't push 
-			Else If (curType = "function") {
+			If (curType = "class") {
+				c := GetClasses(curChunk,includeFile,iStart) ; don't push 
+			} Else If (curType = "function") {
 				f := GetCustomFunction(curChunk,includeFile,iStart) ; not a big performance hit
 				If (f And !CustomFunctions.Has(f["funcName"])) {
 					For i, obj in tempVarList {
@@ -280,7 +267,6 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
 			
 			i++
 		}
-		Debug.Msg("next include")
 	}
 	
 	If (c) { ; save classes to global var
@@ -297,9 +283,12 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 	noStr := StrReplace(StrReplace(noStr,"[","[",LB),"]","]",RB)
 	noStr := StrReplace(StrReplace(noStr,"{","{",LC),"}","}",RC)
 	
-	oCallTip.LPar += LP, oCallTip.RPar += RP
-	oCallTip.LBrace += LB, oCallTip.RBrace += RB
-	oCallTip.LCBrace += LC, oCallTip.RCBrace += RC
+	oCallTip.LPar += LP
+	oCallTip.RPar += RP
+	oCallTip.LBrace += LB
+	oCallTip.RBrace += RB
+	oCallTip.LCBrace += LC
+	oCallTip.RCBrace += RC
 	
 	p := Abs(oCallTip.LPar - oCallTip.RPar)
 	b := Abs(oCallTip.LBrace - oCallTip.RBrace)
@@ -322,7 +311,7 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 }
 
 GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work better
-	noStr := StringOutline(curDocText), obj := ""
+	obj := "", noStr := StringOutline(curDocText)
 	curRegex := "^[ \t]*([\w]+)\x28"
 	
 	If (r1 := RegExMatch(noStr,"mi)" curRegex, match)) {
@@ -339,7 +328,7 @@ GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work bette
 			
 			If (LP = RP) {
 				funcStart := SubStr(curDocText,curPos1,curPos2-curPos1+1)
-				funcStart := RegExReplace(RegExReplace(funcStart,"\r|\n",""),"[ \t]+"," ")
+				funcStart := RegExReplace(RegExReplace(funcStart,"\r|\n",""),"[ \t]+","")
 				r3 := RegExMatch(funcStart,"(\x28.*\x29)",match3)
 				params := match3.Value(0)
 				
@@ -378,6 +367,9 @@ CheckShowMode(strBody,helper:="") { ; checks class, methods, properties for "; s
 
 PruneFirstLast(strBody) {
 	testArr := StrSplit(strBody,"`n","`r"), output := ""
+	If (testArr.Length <= 2)
+		return strBody ; if 2 lines or less, don't process
+	
 	Loop testArr.Length {
 		If (A_Index > 1 And A_Index < testArr.Length)
 			output .= testArr[A_Index] "`r`n"
@@ -386,222 +378,248 @@ PruneFirstLast(strBody) {
 }
 
 GetClasses(curDocText, fileName, lineNum, parent := "") {
-	curDocTextNoStr := StringOutline(curDocText) ; pull this from oCallTip so it only has to be done once
+	curDocTextNoStr := StringOutline(curDocText)
 	static classList := Map()
 	
-	If (oCallTip.newParseClass)
-		classList := Map(), oCallTip.newParseClass := 0
+	If (oCallTip.newParseFunction) {
+		classList := Map()
+		oCallTip.newParseFunction := 0
+	}
 	
 	If (!classList.Count)
 		classList.CaseSense := 0
-	curPos1 := 1
 	
-	While (result := RegExMatch(curDocTextNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{",match,curPos1)) { ; parse classes
-		Debug.Msg("parsing class iteration")
+	curPos1 := 1
+	result := RegExMatch(curDocTextNoStr,"mi)^[ \t]*class[ \t]+([\w_]+)([ \t]*extends[ \t]*([\w_\.]+))?[ \t\r\n]*\{",match)
+	
+	innerClassBody := ""
+	className := match.Value(1)
+	
+	curPos1 := match.Pos(0) + match.Len(0)
+	extends := match.Value(3)
+	
+	obj := Map("type","Class","desc",className,"extends",extends,"parent",parent,"fileName",fileName,"lineNum",lineNum) ;"classBody",Trim(curDocText," `t`r`n")
+	memberList := Map()
+	curDocText := PruneFirstLast(curDocText) ; prune first and last lines
+	curDocTextNoStr := PruneFirstLast(curDocTextNoStr)
+	
+	txtArr := StrSplit(curDocText,"`n","`r")
+	lastPropStatus := false
+	i := 1
+	
+	While (i <= txtArr.Length) {
+		curLine := txtArr[i]
+		curLineNoStr := StringOutline(curLine)
+		nextLine := "", nextLineNoStr := ""
 		
-		classBody := ""
-		If (IsObject(match) And match.Count()) {
-			innerClassBody := ""
-			className := match.Value(1)
-			
-			If (match.Pos(1) < curPos1)
-				break
-			
-			curPos1 := match.Pos(1)
-			extends := match.Value(3)
-			
-			If (className = "")
-				Continue
-			
-			curPos12 := curPos1 ;ZZZ - now closing brace can be caught even if not using proper indentation
-			While (r12 := RegExMatch(curDocTextNoStr,"mi)\}",match12,curPos12)) {
-				classBody := SubStr(curDocTextNoStr,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
-				
-				curPos12 := match12.Pos(0) + match12.Len(0)
-				w := StrReplace(StrReplace(classBody,"{","{",lB),"}","}",rB)
-				
-				If (lB = rB) {
-					classBody := SubStr(curDocText,curPos1,match12.Pos(0)+match12.Len(0)-curPos1)
-					curPos1 := curPos12
-					classShowStyle := CheckShowMode(classBody,"normal class - " className)
-					Break
-				}
-			}
-			
-			obj := Map("type","Class","desc",className,"extends",extends,"parent",parent,"fileName",fileName,"lineNum",lineNum,"classBody",Trim(classBody," `t`r`n"))
-			classBody := PruneFirstLast(classBody) ; prune first and last lines
-			memberList := Map()
-			classBodyNoStr := StringOutline(classBody)
-			
-			curPos14 := 1
-			While (r14 := RegExMatch(classBodyNoStr,"mi)class ([\w]+)( extends ([\w\.]+))?[ \t\r\n]*\{",match14,curPos14)) { ; try to get sub classes
-				curPos14 := match14.Pos(0)
-				
-				Debug.Msg("parsing sub class")
-				
-				curPos13 := curPos14
-				While (r13 := RegExMatch(classBodyNoStr,"mi)\}",match13,curPos13)) {
-					innerClassBody := SubStr(classBodyNoStr,curPos14,match13.Pos(0)+match13.Len(0)-curPos14)
-					curPos13 := match13.Pos(0) + match13.Len(0)
-					w := StrReplace(StrReplace(innerClassBody,"{","{",lB),"}","}",rB)
-					
-					If (lB = rB) {
-						innerClassBody := SubStr(classBody,curPos14,match13.Pos(0)+match13.Len(0)-curPos14)
-						
-						GetClasses(innerClassBody, fileName, lineNum, className)
-						blankReplace := RegExReplace(innerClassBody,".*"," ")
-						classBody := StrReplace(classBody,innerClassBody,blankReplace) ; blank out the sub class after parsing it
-						classBodyNoStr := StringOutline(classBody)
-						
-						Break
-					}
-				}
-			}
-			
-			curPos2 := 1
-			While (r2 := RegExMatch(classBodyNoStr,"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t\r\n]*\{",match2,curPos2)) { ; parse methods - multi-line
-				isStatic := match2.Value(1) ? true : false
-				memberName := match2.Value(2)
-				memberParams := match2.Value(3)
-				curPos2 := match2.Pos(0)
-				
-				curPos5 := curPos2
-				While (r5 := RegExMatch(classBodyNoStr,"mi)\}",match5,curPos5)) {
-					methBody := SubStr(classBodyNoStr,curPos2,match5.Pos(0)+match5.Len(0)-curPos2) ; this needs to be fixed, should be parsing the "NoStr" var
-					curPos5 := match5.Pos(0) + match5.Len(0)
-					w := StrReplace(StrReplace(methBody,"{","{",lB),"}","}",rB)
-					
-					Debug.Msg("parsing class method")
-					
-					If (lB = rB) {
-						methBody := SubStr(classBody,curPos2,match5.Pos(0)+match5.Len(0)-curPos2)
-						curPos2 := curPos5
-						showStyle := CheckShowMode(methBody,"method - " memberName)
-						
-						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide")) {
-							memberParams := GetCustFuncParams(methBody)
-							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","static",isStatic,"body",methBody)
-						}
-						methBodyNoStr := StringOutline(methBody)
-						
-						; curPos9 := 1
-						; While (r9 := RegExMatch(methBodyNoStr,"mi)" oCallTip.classSmallPropInt,match9,curPos9)) {
-							; tinyProp := match9.Value(1)
-							; showStyle := Trim(match9.Value(2)," `t;")
-							; curPos9 := match9.Pos(1) + match9.Len(1)
-							
-							; If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-								; memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match9.Value(0),"static",false)
-						; }
-						
-						methBody := ""
-						break
-					}
-				}
-			}
-			
-			curPos4 := 1
-			While (r4 := RegExMatch(classBodyNoStr,"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?[ \t\r\n]*\{",match4,curPos4)) {
-				; If (r15 := RegExMatch(match4.Value(0),"mi)" oCallTip.classStart))
-					; continue
-				
-				isStatic := match4.Value(1) ? true : false
-				memberName := match4.Value(2)
-				memberParams := match4.Value(3)
-				curPos4 := match4.Pos(0)
-				
-				curPos6 := curPos4
-				While (r6 := RegExMatch(classBodyNoStr,"mi)\}",match6,curPos6)) {
-					propBody := SubStr(classBodyNoStr,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
-					curPos6 := match6.Pos(0)
-					w := StrReplace(StrReplace(propBody,"{","{",lB),"}","}",rB)
-					
-					Debug.Msg("parsing class property")
-					
-					If (lB = rB) {
-						propBody := SubStr(classBody,curPos4,match6.Pos(0)+match6.Len(0)-curPos4)
-						curPos4 := curPos6
-						showStyle := CheckShowMode(propBody,"property - " memberName)
-						
-						If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide")) {
-							memberParams := GetPropParams(propBody)
-							memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","static",isStatic,"body",propBody)
-						}
-						propBodyNoStr := StringOutline(propBody)
-						
-						; curPos10 := 1
-						; While (r10 := RegExMatch(propBodyNoStr,"mi)" oCallTip.classSmallPropInt,match10,curPos10)) {
-							; tinyProp := match10.Value(1)
-							; showStyle := Trim(match10.Value(2)," `t;")
-							; curPos10 := match10.Pos(1) + match10.Len(1)
-							
-							; If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-								; memberList[tinyProp] := Map("name",tinyProp,"params","","type","propertySmall","body",match10.Value(0),"static",false)
-						; }
-						
-						propBody := ""
-						break
-					}
-				}
-			}
-			
-			curPos7 := 1
-			While (r7 := RegExMatch(StringOutline(classBody,false),"im)^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)[ \t]*\=\>.+",match7,curPos7)) {
-				isStatic := match7.Value(1) ? true : false
-				memberName := match7.Value(2)
-				memberParams := match7.Value(3)
-				showStyle := CheckShowMode(match7.Value(0))
-				curPos7 := match7.Pos(0) + match7.Len(0)
-				
-				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","method","static",isStatic,"body",Trim(match7.Value(0),"`r`n"))
-			}
-			
-			curPos8 := 1
-			While (r8 := RegExMatch(StringOutline(classBody,false),"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\x5B[^\x5D]*\x5D)?[ \t]*\=\>.+",match8,curPos8)) {
-				isStatic := match8.Value(1) ? true : false
-				memberName := match8.Value(2)
-				memberParams := match8.Value(3)
-				showStyle := CheckShowMode(match8.Value(0))
-				curPos8 := match8.Pos(0) + match8.Len(0)
-				
-				If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-					memberList[memberName] := Map("name",memberName,"params",memberParams,"type","property","static",isStatic,"body",Trim(match8.Value(0),"`r`n"))
-			}
-		
-			classBodyRemain := classBody
-			
-			For memName, memObj in memberList {
-				memBody := memObj["body"]
-				classBodyRemain := StrReplace(classBodyRemain,memBody)
-				memberList[memName].Delete("body")
-			}
-			
-			Loop Parse classBodyRemain, "`n", "`r"
-			{
-				curLine := Trim(A_LoopField," `t")
-				isStatic := (InStr(curLine,"Static ")) ? true : false
-				
-				curPos11 := 1
-				While (r11 := RegExMatch(curLine,"(([\w]+)[ \t]*\:\=)[^\;\r\n]*(\;.*)?",match11,curPos11)) {
-					memberName := match11.Value(2)
-					showStyle := Trim(match11.Value(3)," `t;")
-					
-					If ((classShowStyle = "show" And showStyle = "show") Or (!classShowStyle And showStyle != "hide"))
-						memberList[memberName] := Map("name",memberName,"params","","type","property","static",isStatic)
-					
-					curPos11 := match11.Pos(1) + match11.Len(1)
-				}
-			}
-			
-			obj["members"] := memberList, obj.Delete("classBody")
-			classList[className] := obj
+		If (txtArr.Has(i+1)) {
+			nextLine := txtArr[i+1]
+			nextLineNoStr := StringOutline(nextLine)
 		}
 		
-		funcBody := "", funcName := "", match := "", params := "", returnObj := "", className := ""
+		curType := "", iStart := 0
+		
+		oCallTip.LPar := 0, oCallTip.RPar := 0 ; reset brace count
+		oCallTip.LBrace := 0, oCallTip.RBrace := 0
+		oCallTip.LCBrace := 0, oCallTip.RCBrace := 0
+		
+		If (txtArr.Has(i+1)) {
+			curChunk := curLine "`r`n" nextLine
+			curChunkNoStr := curLineNoStr "`r`n" nextLineNoStr
+		} Else
+			curChunk := curLine, curChunkNoStr := curLineNoStr
+		
+		If (Trim(curLine," `t") = "") { ; blank line
+			i++
+			Continue
+		}
+		
+		If (RegExMatch(curLine,"^[ \t]*\;")) { ; comment so skip
+			i++
+			Continue
+		}
+		
+		encl := {exist:false, even:true}
+		If (RegExMatch(curChunkNoStr,"mi)^[ \t]*class[ \t]+([\w_]+)([ \t]*extends[ \t]*([\w_\.]+))?[ \t\r\n]*\{")) { ; sub class
+			iStart := i-1
+			i++
+			encl := enclosureCheck(curChunkNoStr)
+			curType := "subclass"
+		} Else If (RegExMatch(curChunkNoStr,"i)^[ \t]*(Static[ \t]+)?[\w_]+[ \t]*\=\>")) { ; short property no params
+			iStart := i-1
+			i++
+			encl := enclosureCheck(curChunkNoStr)
+			curType := "property-short"
+		} Else If (RegExMatch(curChunkNoStr,"i)^[ \t]*(Static[ \t]*)?[\w_]+\x28")) { ; methods
+			iStart := i-1
+			i++
+			encl := enclosureCheck(curChunkNoStr)
+			curType := "method"
+		} Else If (RegExMatch(curChunkNoStr,"i)^[ \t]*(Static[ \t]*)?[\w_]+(\x5B|[ \t\r\n]+\x7B)",match)) { ; properties
+			iStart := i-1
+			i++
+			encl := enclosureCheck(curChunkNoStr)
+			curType := "property"
+			
+			; Debug.Msg("encls:    " encl.exist " / " encl.even "`r`n" encl.p.exist "/" encl.p.total " || " encl.b.exist "/" encl.b.total " || " encl.p.exist "/" encl.p.total)
+		} Else { ; properties set on _init
+			iStart := i-1
+			curChunk := curLine
+			curChunkNoStr := curLineNoStr
+			; i++
+			encl := enclosureCheck(curLineNoStr)
+			curType := "other"
+			
+			; While (txtArr.Has(i)) {
+				; nextLine := txtArr[i]
+				; nextLineNoStr := StringOutline(nextLine)
+				; If (InStr(Trim(nextLineNoStr," `t"),Chr(44)) = 1) {
+				
+				; }
+			; }
+		}
+		
+		While ((encl.exist And !encl.even)) { ; compiles a multi-line statment
+			i++
+			
+			If (!txtArr.Has(i))
+				Break
+			
+			nextLine := txtArr[i]
+			nextLineNoStr := StringOutline(nextLine)
+			
+			multi := true
+			encl := enclosureCheck(nextLineNoStr)
+			curChunk .= "`r`n" nextLine ; concatenate chunk
+			curChunkNoStr .= "`r`n" nextLineNoStr
+		}
+		
+		; If (curType = "other")
+			; Debug.Msg(encl.exist " / " encl.even "`r`n" curChunk)
+		
+		oCallTip.LPar := 0, oCallTip.RPar := 0 ; reset brace count
+		oCallTip.LBrace := 0, oCallTip.RBrace := 0
+		oCallTip.LCBrace := 0, oCallTip.RCBrace := 0
+		
+		If (curType = "subclass") {
+			GetClasses(curChunk, fileName, lineNum+iStart, className)
+			i++
+		} Else If (curType = "method") {
+			shortMeth := false
+			opener := SubStr(curChunk,1,InStr(curChunkNoStr,")"))
+			opener := RegExReplace(opener,"`r|`n|[ ]{2,}|`t","")
+			RegExMatch(opener,"i)(Static[ \t]+)?([\w_\.]+)(\x28.*\x29)",match3)
+			
+			isStatic := (Trim(match3.Value(1)," `t") = "static") ? true : false
+			memberName := match3.Value(2), memberParams := match3.Value(3)
+			
+			If (!InStr(curChunkNoStr,"{") And !InStr(curChunkNoStr,"=>")) {
+				While (txtArr.Has(i+1)) {
+					i++
+					nextLine := txtArr[i]
+					nextLineNoStr := StringOutline(nextLine)
+					curChunk .= "`r`n" nextLine
+					curChunkNoStr .= "`r`n" nextLineNoStr
+					If (InStr(nextLine,"{"))
+						Break
+				}
+			} Else
+				shortMeth := true
+			
+			encl := enclosureCheck(curChunkNoStr)
+			While (encl.exist And !encl.even) {
+				i++
+				nextLine := txtArr[i]
+				nextLineNoStr := StringOutline(nextLine)
+				curChunk .= "`r`n" nextLine
+				curChunkNoStr .= "`r`n" nextLineNoStr
+				encl := enclosureCheck(nextLineNoStr)
+			}
+			
+			memberList[memberName] := Map("name",memberName,"params",memberParams,"type",curType,"static",isStatic ; ,"body",curChunk
+										 ,"lineNum",lineNum+iStart,"fileName",fileName)
+		} Else If (curType = "property") {
+			If (RegExMatch(curChunk,"i)(Static[ \t]*)?([\w_]+)[ \t]*\x5B")) {
+				shortProp := false
+				opener := SubStr(curChunk,1,InStr(curChunkNoStr,"]"))
+				opener := RegExReplace(opener,"`r|`n|[ ]{2,}|`t","")
+				RegExMatch(opener,"i)(Static[ \t]+)?([\w_\.]+)(\x5B.*\x5D)",match3)
+				memberParams := match3.Value(3)
+				
+				If (!InStr(curChunkNoStr,"{") And !InStr(curChunkNoStr,"=>")) {
+					While (txtArr.Has(i+1)) {
+						i++
+						nextLine := txtArr[i]
+						nextLineNoStr := StringOutline(nextLine)
+						curChunk .= "`r`n" nextLine
+						curChunkNoStr .= "`r`n" nextLineNoStr
+						If (InStr(nextLine,"{"))
+							Break
+					}
+				} Else
+					shortProp := true
+				
+				encl := enclosureCheck(curChunkNoStr)
+				While (encl.exist And !encl.even) {
+					i++
+					nextLine := txtArr[i]
+					nextLineNoStr := StringOutline(nextLine)
+					curChunk .= "`r`n" nextLine
+					curChunkNoStr .= "`r`n" nextLineNoStr
+					encl := enclosureCheck(nextLineNoStr)
+				}
+			} Else If (RegExMatch(curChunkNoStr,"i)[ \t]*(Static[ \t]*)?([\w_]+)[ \t\r\n]*(\x7B|\=\>)",match3)) {
+				opener := SubStr(curChunk,1,InStr(curChunkNoStr,"{")-1)
+				opener := RegExReplace(opener,"`r|`n|[ ]{2,}|`t","")
+				memberParams := ""
+			}
+			
+			isStatic := (Trim(match3.Value(1)," `t") = "static") ? true : false
+			memberName := match3.Value(2)
+			
+			memberList[memberName] := Map("name",memberName,"params",memberParams,"type",curType,"static",isStatic ; ,"body",curChunk
+										 ,"lineNum",lineNum+iStart,"fileName",fileName,"value","")
+		} Else If (curType = "property-short") {
+			RegExMatch(curChunkNoStr,"i)[ \t]*(Static[ \t]+)?([\w_]+)",match3)
+			isStatic := (Trim(match3.Value(1)," `t") = "static") ? true : false
+			memberName := match3.Value(2)
+			memberParams := ""
+			curType := "property"
+			
+			memberList[memberName] := Map("name",memberName,"params",memberParams,"type",curType,"static",isStatic ; ,"body",curChunk
+										 ,"lineNum",lineNum+iStart,"fileName",fileName,"value","")
+		} Else { ; short init properties
+			; Debug.Msg(curChunk)
+			
+			curLine := Trim(curLine," `t")
+			curLineNoStr := Trim(curLineNoStr," `t")
+			
+			If (InStr(curLine,Chr(44)) = 1)
+				isStatic := lastPropStatus
+			Else If (InStr(Trim(curChunk),"Static") = 1)
+				isStatic := true, lastPropStatus := true
+			
+			lNum := lineNum+iStart
+			
+			varList := getVar(curChunk,fileName,lNum,lastPropStatus)
+			
+			For i, obj in varList {
+				memberList[obj["varName"]] := Map("name",obj["varName"]
+											 ,"params",""
+											 ,"value",obj["varValue"]
+											 ,"type","property"
+											 ,"static",(obj["status"] = "static" ? true : false)
+											 ,"body",""
+											 ,"lineNum",lNum,"fileName",fileName)
+			}
+		}
+		
+		obj["members"] := memberList
+		classList[className] := obj
+		
+		i++
 	}
 	
-	curDocText := "", obj := ""
 	return classList
 }
 
@@ -622,7 +640,9 @@ GetPropParams(paramBody) {
 }
 
 getVar(stringText,fileName,lineNum,lastStatus) {
-	status := ""
+	stringText := RegExReplace(stringText,"`r|`n|[ ]{2,}|`t","")
+	
+	status := "", noStr := StringOutline(stringText)
 	If (RegExMatch(stringText,"^[ \t]*Global"))
 		status := "Global"
 	Else If (RegExMatch(stringText,"^[ \t]*Static"))
@@ -631,9 +651,11 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 		status := lastStatus
 	
 	stringText := RegExReplace(stringText,"(^[ \t]*Global[ \t]+|^[ \t]*Static[ \t]+)","")
+	noStr := RegExReplace(noStr,"(^[ \t]*Global[ \t]+|^[ \t]*Static[ \t]+)","")
 	comment := StringOutline(stringText,false), comment := SubStr(comment,InStr(comment,";"))
-	noStr := RTrim(StringOutline(stringText)," `t")
-	stringText := Trim(SubStr(stringText,1,StrLen(noStr))," `t,")
+	stringText := RTrim(stringText," `t,")
+	noStr := RTrim(noStr," `t,")
+	stringText := SubStr(stringText,1,StrLen(noStr))
 	
 	varList := Array()
 	varArr := StrSplit(noStr,",")
@@ -647,12 +669,13 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 			
 			If (!append) {
 				realLine := Trim(SubStr(stringText,1,StrLen(txt))) ; maybe user append var around here...
+				testLine := Trim(SubStr(noStr,1,StrLen(txt)))
 			} Else {
 				realLine .= "," Trim(SubStr(stringText,1,StrLen(txt)))
+				testLine .= "," Trim(SubStr(noStr,1,StrLen(txt)))
 			}
 			
 			p := 0, b := 0, c := 0
-			testLine := StringOutline(realLine)
 			testLine := StrReplace(StrReplace(testLine,"(","(",LP),")",")",RP)
 			testLine := StrReplace(StrReplace(testLine,"[","[",LB),"]","]",RB)
 			testLine := StrReplace(StrReplace(testLine,"{","{",LC),"}","}",RC)
@@ -660,24 +683,26 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 			
 			If (p Or b Or c) {
 				append++
-				stringText := SubStr(stringText,StrLen(txt)+1)
-				stringText := Trim(stringText," ,")
-				Continue
-			}  Else
+			}  Else {
 				append := 0
 			
-			If (splitter := InStr(realLine,":="))
-				varName := Trim(SubStr(realLine,1,splitter-1)), varValue := Trim(SubStr(realLine,splitter)," `t:=")
-			Else
-				varName := Trim(realLine," `t"), varValue := ""
-			
-			varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
+				If (splitter := InStr(realLine,":=")) {
+					varName := Trim(SubStr(realLine,1,splitter-1))
+					varValue := Trim(SubStr(realLine,splitter)," `t:=")
+				} Else
+					varName := Trim(realLine," `t"), varValue := ""
+				
+				varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
+			}
 			
 			stringText := SubStr(stringText,StrLen(txt)+1)
 			stringText := Trim(stringText," ,")
+			
+			noStr := SubStr(noStr,StrLen(txt)+1)
+			noStr := Trim(noStr," ,")
 		}
 	} Else {
-		noStr := RTrim(StringOutline(stringText)," `t")
+		noStr := RTrim(noStr," `t")
 		curPos := 1
 		rg := "(([\w\.]+)[ \t]*\:\=)"
 		lastPos := 0, lastLen := 0, lastVar := "", lastValue := "", t := 0
@@ -708,6 +733,8 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 			varList.Push(Map("varName",varName,"varValue",varValue,"fileName",fileName,"lineNum",lineNum,"status",status,"comment",comment))
 		}
 	}
+	If (varList.Has(""))
+		varList.Delete("")
 	
 	return varList
 }
@@ -790,28 +817,6 @@ ParseObjectsInstances() { ; skip "ByCallback" labels... regex for "ByDerived" an
 		
 		If (nextVar)
 			Continue
-		
-		; obj := Map("type","CustomFunction","desc",fn params,"funcName",fn,"params",params,"file",fileName,"lineNum",lineNum,"return",retObj)
-		; For funcName, obj4 in CustomFunctions { ; check functions for returning obj type
-			; Debug.Msg(varName)
-			
-			; If (RegExMatch(varValue,"i)^" funcName "\(")) {
-				; retArr := obj4["return"]
-				; For i, retVal in retArr {
-					; If (ObjectList.Has(retVal)) {
-						; curType := ObjectList[retVal]
-						; ObjectList[varName] := curType
-						; nextVar := true
-						
-						; Debug.Msg(varName " / " curType)
-						; Continue
-					; }
-				; }
-			; }
-			
-			; If (nextVar)
-				; Continue
-		; }
 	}
 	
 	For kw, kwType in KeywordList { ; load pre-defined objects
@@ -819,18 +824,3 @@ ParseObjectsInstances() { ; skip "ByCallback" labels... regex for "ByDerived" an
 			ObjectList[kw] := kwType
 	}
 }
-		; object create list
-		; "label": {
-            ; "direct": 0,
-            ; "regex": "([\w\.]+)[ \t]*:=[ \t]*({GuiObject}\x5B)",
-            ; "type": "GuiControlObject"
-        ; },
-
-
-		; vars
-        ; "elementName": "GetTextDims",
-        ; "fileName": "C:\\Users\\Shmoo\\Documents\\GitHub\\CallTipsForAll\\LibV2\\_Init_and_Support_Funcs.ahk",
-        ; "lineNum": 262,
-        ; "status": "",
-        ; "varName": "maxWidth",
-        ; "varValue": "0"
