@@ -1,5 +1,6 @@
-0 Object BasicObj ([\w\.]+)[ \t]*:=[ \t]*(\x7B)
-0 Object ObjByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*Object)
+0 Object BasicObj {
+0 Object ObjByComment ;[ \t]*Object
+`
 `/docs/objects/Object.htm
 
 

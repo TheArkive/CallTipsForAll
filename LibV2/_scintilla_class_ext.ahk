@@ -75,7 +75,7 @@
 ;
 ; This class aims to make using SCI_* messages easier by way of using the scintilla help docs.
 ; Most of the SCI_* messages take only 2 parameters, wParam and lParam.  In a few cases, I've simplified the input to be
-; more intuitive.
+; more intuitive, thus it deviates from the scintilla documentation, but in a minimalistic way.
 ;
 ; ==========================================================================================================================
 ; === set these first ===
@@ -96,19 +96,17 @@
 ;
 ;		1) wParam is an integer, and lParam is not used (set to zero by default).
 ;
-;		2) wParam and lParam are both integers.
+;		2) wParam and lParam are both integers.  wParam may not be used, in which case it is zero.
 ;
 ;		3) wParam is an integer and lParam is a string.
 ;
 ;			a) wParam is usually a position, or buffer length, then lParam will be a string.
 ;
-;			b) If wParam is a buffer length, then set the last optional parameter in .SendMsg() to true (wParamIsBufLen := true).
+;			b) If you are "putting" a string into the scintilla control then pass it "quoted" directly into lParam.
 ;
-;			c) If you are "putting" a string into the scintilla control then pass it "quoted" directly into lParam.
+;			c) If you are extracting a string value from the scintilla control, then pass a blank string to lParam.
 ;
-;			d) If you are extracting a string value from the scintilla control, then pass a blank string to lParam.
-;
-; For specific usage cases, see examples above.
+; For specific usage cases that deviate from the scintilla help docs, see examples above.
 ; 
 ; ==========================================================================================================================
 ; ==========================================================================================================================
@@ -222,7 +220,6 @@ class ScintillaExt {
 		
 		r := DllCall("kernel32\WriteProcessMemory", "Ptr", proc.hProc, "Ptr", proc.bufAddr, "Ptr", extBuf.ptr, "UInt", bufSize, "Ptr", 0)
 		
-		; VarSetCapacity(extBuf,0)
 		extBuf := ""
 		If (!r)
 			return {dll:0, str:""}

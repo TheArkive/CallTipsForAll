@@ -1,0 +1,160 @@
+Function
+WinHttpAddRequestHeaders
+`BOOL := WinHttpAddRequestHeaders(_In_ HINTERNET hRequest, _In_ LPCWSTR pwszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwModifiers)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpCheckPlatform
+`BOOL := WinHttpCheckPlatform(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpCloseHandle
+`BOOL := WinHttpCloseHandle(_In_ HINTERNET hInternet)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpConnect
+`HINTERNET := WinHttpConnect(_In_ HINTERNET hSession, _In_ LPCWSTR pswzServerName, _In_ INTERNET_PORT nServerPort, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpCrackUrl
+`BOOL := WinHttpCrackUrl(_In_ LPCWSTR pwszUrl, _In_ DWORD dwUrlLength, _In_ DWORD dwFlags, _Inout_ LPURL_COMPONENTS lpUrlComponents)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpCreateUrl
+`BOOL := WinHttpCreateUrl(_In_ LPURL_COMPONENTS lpUrlComponents, _In_ DWORD dwFlags, _Out_ LPWSTR pwszUrl, _Inout_ LPDWORD lpdwUrlLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpDetectAutoProxyConfigUrl
+`BOOL := WinHttpDetectAutoProxyConfigUrl(_In_ DWORD dwAutoDetectFlags, _Out_ LPWSTR *ppwszAutoConfigUrl)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpGetDefaultProxyConfiguration
+`BOOL := WinHttpGetDefaultProxyConfiguration(_Inout_ WINHTTP_PROXY_INFO *pProxyInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpGetIEProxyConfigForCurrentUser
+`BOOL := WinHttpGetIEProxyConfigForCurrentUser(_Inout_ WINHTTP_CURRENT_USER_IE_PROXY_CONFIG *pProxyConfig)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpGetProxyForUrl
+`BOOL := WinHttpGetProxyForUrl(_In_ HINTERNET hSession, _In_ LPCWSTR lpcwszUrl, _In_ WINHTTP_AUTOPROXY_OPTIONS *pAutoProxyOptions, _Out_ WINHTTP_PROXY_INFO *pProxyInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpOpen
+`HINTERNET := WinHttpOpen(_In_opt_ LPCWSTR pwszUserAgent, _In_ DWORD dwAccessType, _In_ LPCWSTR pwszProxyName, _In_ LPCWSTR pwszProxyBypass, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpOpenRequest
+`HINTERNET := WinHttpOpenRequest(_In_ HINTERNET hConnect, _In_ LPCWSTR pwszVerb, _In_ LPCWSTR pwszObjectName, _In_ LPCWSTR pwszVersion, _In_ LPCWSTR pwszReferrer, _In_ LPCWSTR *ppwszAcceptTypes, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpQueryAuthSchemes
+`BOOL := WinHttpQueryAuthSchemes(_In_ HINTERNET hRequest, _Out_ LPDWORD lpdwSupportedSchemes, _Out_ LPDWORD lpdwFirstScheme, _Out_ LPDWORD pdwAuthTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpQueryDataAvailable
+`BOOL := WinHttpQueryDataAvailable(_In_ HINTERNET hRequest, _Out_ LPDWORD lpdwNumberOfBytesAvailable)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpQueryHeaders
+`BOOL := WinHttpQueryHeaders(_In_ HINTERNET hRequest, _In_ DWORD dwInfoLevel, _In_opt_ LPCWSTR pwszName, _Out_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwBufferLength, _Inout_ LPDWORD lpdwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpQueryOption
+`BOOL := WinHttpQueryOption(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _Out_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpReadData
+`BOOL := WinHttpReadData(_In_ HINTERNET hRequest, _Out_ LPVOID lpBuffer, _In_ DWORD dwNumberOfBytesToRead, _Out_ LPDWORD lpdwNumberOfBytesRead)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpReceiveResponse
+`BOOL := WinHttpReceiveResponse(_In_ HINTERNET hRequest, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSendRequest
+`BOOL := WinHttpSendRequest(_In_ HINTERNET hRequest, _In_opt_ LPCWSTR pwszHeaders, _In_ DWORD dwHeadersLength, _In_opt_ LPVOID lpOptional, _In_ DWORD dwOptionalLength, _In_ DWORD dwTotalLength, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSetCredentials
+`BOOL := WinHttpSetCredentials(_In_ HINTERNET hRequest, _In_ DWORD AuthTargets, _In_ DWORD AuthScheme, _In_ LPCWSTR pwszUserName, _In_ LPCWSTR pwszPassword, _Reserved_ LPVOID pAuthParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSetDefaultProxyConfiguration
+`BOOL := WinHttpSetDefaultProxyConfiguration(_In_ WINHTTP_PROXY_INFO *pProxyInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSetOption
+`BOOL := WinHttpSetOption(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _In_ LPVOID lpBuffer, _In_ DWORD dwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSetStatusCallback
+`WINHTTP_STATUS_ := WinHttpSetStatusCallback(_In_ HINTERNET hInternet, _In_ WINHTTP_STATUS_CALLBACK lpfnInternetCallback, _In_ DWORD dwNotificationFlags, _Reserved_ DWORD_PTR dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpSetTimeouts
+`BOOL := WinHttpSetTimeouts(_In_ HINTERNET hInternet, _In_ int dwResolveTimeout, _In_ int dwConnectTimeout, _In_ int dwSendTimeout, _In_ int dwReceiveTimeout)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpTimeFromSystemTime
+`BOOL := WinHttpTimeFromSystemTime(_In_ const SYSTEMTIME *pst, _Out_ LPWSTR pwszTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpTimeToSystemTime
+`BOOL := WinHttpTimeToSystemTime(_In_ LPCWSTR pwszTime, _Out_ SYSTEMTIME *pst)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHttpWriteData
+`BOOL := WinHttpWriteData(_In_ HINTERNET hRequest, _In_ LPCVOID lpBuffer, _In_ DWORD dwNumberOfBytesToWrite, _Out_ LPDWORD lpdwNumberOfBytesWritten)
+`/docs/commands/WinApi.htm

@@ -1,0 +1,4128 @@
+Function
+AbortSystemShutdown
+`BOOL := AbortSystemShutdown(_In_opt_ LPTSTR lpMachineName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AbortSystemShutdownA
+`BOOL := AbortSystemShutdownA(_In_opt_ LPSTR lpMachineName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AbortSystemShutdownW
+`BOOL := AbortSystemShutdownW(_In_opt_ LPWSTR lpMachineName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheck
+`BOOL := AccessCheck(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ PGENERIC_MAPPING GenericMapping, _Out_opt_ PPRIVILEGE_SET PrivilegeSet, _Inout_ LPDWORD PrivilegeSetLength, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckAndAuditAlarm
+`BOOL := AccessCheckAndAuditAlarm(_In_ LPCTSTR SubsystemName, _In_opt_ LPVOID HandleId, _In_ LPTSTR ObjectTypeName, _In_opt_ LPTSTR ObjectName, _In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD DesiredAccess, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckAndAuditAlarmA
+`BOOL := AccessCheckAndAuditAlarmA(_In_ LPCSTR SubsystemName, _In_opt_ LPVOID HandleId, _In_ LPSTR ObjectTypeName, _In_opt_ LPSTR ObjectName, _In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD DesiredAccess, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckAndAuditAlarmW
+`BOOL := AccessCheckAndAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_opt_ LPVOID HandleId, _In_ LPWSTR ObjectTypeName, _In_opt_ LPWSTR ObjectName, _In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD DesiredAccess, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByType
+`BOOL := AccessCheckByType(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _Out_opt_ PPRIVILEGE_SET PrivilegeSet, _Inout_ LPDWORD PrivilegeSetLength, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeAndAuditAlarm
+`BOOL := AccessCheckByTypeAndAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCTSTR ObjectTypeName, _In_opt_ LPCTSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeAndAuditAlarmA
+`BOOL := AccessCheckByTypeAndAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCSTR ObjectTypeName, _In_opt_ LPCSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeAndAuditAlarmW
+`BOOL := AccessCheckByTypeAndAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCWSTR ObjectTypeName, _In_opt_ LPCWSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPBOOL AccessStatus, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultList
+`BOOL := AccessCheckByTypeResultList(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _Out_ PGENERIC_MAPPING GenericMapping, _Out_opt_ PPRIVILEGE_SET PrivilegeSet, _Inout_ LPDWORD PrivilegeSetLength, _Out_ LPDWORD GrantedAccessList, _Out_ LPDWORD AccessStatusList)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarm
+`BOOL := AccessCheckByTypeResultListAndAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCTSTR ObjectTypeName, _In_opt_ LPCTSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarmA
+`BOOL := AccessCheckByTypeResultListAndAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCSTR ObjectTypeName, _In_opt_ LPCSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarmByHandle
+`BOOL := AccessCheckByTypeResultListAndAuditAlarmByHandle(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ LPCTSTR ObjectTypeName, _In_opt_ LPCTSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarmByHandleA
+`BOOL := AccessCheckByTypeResultListAndAuditAlarmByHandleA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ LPCSTR ObjectTypeName, _In_opt_ LPCSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarmByHandleW
+`BOOL := AccessCheckByTypeResultListAndAuditAlarmByHandleW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ LPCWSTR ObjectTypeName, _In_opt_ LPCWSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AccessCheckByTypeResultListAndAuditAlarmW
+`BOOL := AccessCheckByTypeResultListAndAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPCWSTR ObjectTypeName, _In_opt_ LPCWSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID PrincipalSelfSid, _In_ DWORD DesiredAccess, _In_ AUDIT_EVENT_TYPE AuditType, _In_ DWORD Flags, _Inout_opt_ POBJECT_TYPE_LIST ObjectTypeList, _In_ DWORD ObjectTypeListLength, _In_ PGENERIC_MAPPING GenericMapping, _In_ BOOL ObjectCreation, _Out_ LPDWORD GrantedAccess, _Out_ LPDWORD AccessStatusList, _Out_ LPBOOL pfGenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessAllowedAce
+`BOOL := AddAccessAllowedAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AccessMask, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessAllowedAceEx
+`BOOL := AddAccessAllowedAceEx(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD AccessMask, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessAllowedObjectAce
+`BOOL := AddAccessAllowedObjectAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD AccessMask, _In_opt_ GUID *ObjectTypeGuid, _In_opt_ GUID *InheritedObjectTypeGuid, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessDeniedAce
+`BOOL := AddAccessDeniedAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AccessMask, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessDeniedAceEx
+`BOOL := AddAccessDeniedAceEx(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD AccessMask, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAccessDeniedObjectAce
+`BOOL := AddAccessDeniedObjectAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD AccessMask, _In_opt_ GUID *ObjectTypeGuid, _In_opt_ GUID *InheritedObjectTypeGuid, _In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAce
+`BOOL := AddAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD dwStartingAceIndex, _In_ LPVOID pAceList, _In_ DWORD nAceListLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAuditAccessAce
+`BOOL := AddAuditAccessAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD dwAccessMask, _In_ PSID pSid, _In_ BOOL bAuditSuccess, _In_ BOOL bAuditFailure)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAuditAccessAceEx
+`BOOL := AddAuditAccessAceEx(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD dwAccessMask, _In_ PSID pSid, _In_ BOOL bAuditSuccess, _In_ BOOL bAuditFailure)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddAuditAccessObjectAce
+`BOOL := AddAuditAccessObjectAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD AccessMask, _In_opt_ GUID *ObjectTypeGuid, _In_opt_ GUID *InheritedObjectTypeGuid, _In_ PSID pSid, _In_ BOOL bAuditSuccess, _In_ BOOL bAuditFailure)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddConditionalAce
+`BOOL := AddConditionalAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ UCHAR AceType, _In_ DWORD AccessMask, _In_ PSID pSid, _In_ PWCHAR ConditionStr, _Out_ DWORD *ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddMandatoryAce
+`BOOL := AddMandatoryAce(_Inout_ PACL pAcl, _In_ DWORD dwAceRevision, _In_ DWORD AceFlags, _In_ DWORD MandatoryPolicy, _In_ PSID pLabelSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddUsersToEncryptedFile
+`DWORD := AddUsersToEncryptedFile(_In_ LPCWSTR lpFileName, _In_ PENCRYPTION_CERTIFICATE_LIST pUsers)
+`/docs/commands/WinApi.htm
+
+
+Function
+AdjustTokenGroups
+`BOOL := AdjustTokenGroups(_In_ HANDLE TokenHandle, _In_ BOOL ResetToDefault, _In_opt_ PTOKEN_GROUPS NewState, _In_ DWORD BufferLength, _Out_opt_ PTOKEN_GROUPS PreviousState, _Out_opt_ PDWORD ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+AdjustTokenPrivileges
+`BOOL := AdjustTokenPrivileges(_In_ HANDLE TokenHandle, _In_ BOOL DisableAllPrivileges, _In_opt_ PTOKEN_PRIVILEGES NewState, _In_ DWORD BufferLength, _Out_opt_ PTOKEN_PRIVILEGES PreviousState, _Out_opt_ PDWORD ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+AllocateAndInitializeSid
+`BOOL := AllocateAndInitializeSid(_In_ PSID_IDENTIFIER_AUTHORITY pIdentifierAuthority, _In_ BYTE nSubAuthorityCount, _In_ DWORD dwSubAuthority0, _In_ DWORD dwSubAuthority1, _In_ DWORD dwSubAuthority2, _In_ DWORD dwSubAuthority3, _In_ DWORD dwSubAuthority4, _In_ DWORD dwSubAuthority5, _In_ DWORD dwSubAuthority6, _In_ DWORD dwSubAuthority7, _Out_ PSID *pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AllocateLocallyUniqueId
+`BOOL := AllocateLocallyUniqueId(_Out_ PLUID Luid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AreAllAccessesGranted
+`BOOL := AreAllAccessesGranted(_In_ DWORD GrantedAccess, _In_ DWORD DesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+AreAnyAccessesGranted
+`BOOL := AreAnyAccessesGranted(_In_ DWORD GrantedAccess, _In_ DWORD DesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditComputeEffectivePolicyBySid
+`BOOLEAN := AuditComputeEffectivePolicyBySid(_In_ const PSID pSid, _In_ const GUID *pSubCategoryGuids, _In_ ULONG PolicyCount, _Out_ PAUDIT_POLICY_INFORMATION *ppAuditPolicy)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditComputeEffectivePolicyByToken
+`BOOLEAN := AuditComputeEffectivePolicyByToken(_In_ HANDLE hTokenHandle, _In_ const GUID *pSubCategoryGuids, _In_ ULONG PolicyCount, _Out_ PAUDIT_POLICY_INFORMATION *ppAuditPolicy)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditEnumerateCategories
+`BOOLEAN := AuditEnumerateCategories(_Out_ GUID **ppAuditCategoriesArray, _Out_ PULONG pCountReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditEnumeratePerUserPolicy
+`BOOLEAN := AuditEnumeratePerUserPolicy(_Out_ PPOLICY_AUDIT_SID_ARRAY *ppAuditSidArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditEnumerateSubCategories
+`BOOLEAN := AuditEnumerateSubCategories(_In_ const GUID *pAuditCategoryGuid, _In_ BOOLEAN bRetrieveAllSubCategories, _Out_ GUID **ppAuditSubCategoriesArray, _Out_ PULONG pCountReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditFree
+`VOID := AuditFree(_In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupCategoryGuidFromCategoryId
+`BOOLEAN := AuditLookupCategoryGuidFromCategoryId(_In_ POLICY_AUDIT_EVENT_TYPE AuditCategoryId, _Out_ GUID *pAuditCategoryGuid)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupCategoryIdFromCategoryGuid
+`BOOLEAN := AuditLookupCategoryIdFromCategoryGuid(_In_ const GUID *pAuditCategoryGuid, _Out_ PPOLICY_AUDIT_EVENT_TYPE pAuditCategoryId)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupCategoryName
+`BOOLEAN := AuditLookupCategoryName(_In_ const GUID *pAuditCategoryGuid, _Out_ PTSTR *ppszCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupCategoryNameA
+`BOOLEAN := AuditLookupCategoryNameA(_In_ const GUID *pAuditCategoryGuid, _Out_ PTSTR *ppszCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupCategoryNameW
+`BOOLEAN := AuditLookupCategoryNameW(_In_ const GUID *pAuditCategoryGuid, _Out_ PTSTR *ppszCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupSubCategoryName
+`BOOLEAN := AuditLookupSubCategoryName(_In_ const GUID *pAuditSubCategoryGuid, _Out_ PTSTR *ppszSubCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupSubCategoryNameA
+`BOOLEAN := AuditLookupSubCategoryNameA(_In_ const GUID *pAuditSubCategoryGuid, _Out_ PTSTR *ppszSubCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditLookupSubCategoryNameW
+`BOOLEAN := AuditLookupSubCategoryNameW(_In_ const GUID *pAuditSubCategoryGuid, _Out_ PTSTR *ppszSubCategoryName)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQueryGlobalSacl
+`BOOLEAN := AuditQueryGlobalSacl(_In_ PCWSTR ObjectTypeName, _Out_ PACL *Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQueryGlobalSaclA
+`BOOLEAN := AuditQueryGlobalSaclA(_In_ PCWSTR ObjectTypeName, _Out_ PACL *Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQueryGlobalSaclW
+`BOOLEAN := AuditQueryGlobalSaclW(_In_ PCWSTR ObjectTypeName, _Out_ PACL *Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQueryPerUserPolicy
+`BOOLEAN := AuditQueryPerUserPolicy(_In_ const PSID pSid, _In_ const GUID *pSubCategoryGuids, _In_ ULONG PolicyCount, _Out_ PAUDIT_POLICY_INFORMATION *ppAuditPolicy)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQuerySecurity
+`BOOLEAN := AuditQuerySecurity(_In_ SECURITY_INFORMATION SecurityInformation, _Out_ PSECURITY_DESCRIPTOR *ppSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditQuerySystemPolicy
+`BOOLEAN := AuditQuerySystemPolicy(_In_ const GUID *pSubCategoryGuids, _In_ ULONG PolicyCount, _Out_ PAUDIT_POLICY_INFORMATION *ppAuditPolicy)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetGlobalSacl
+`BOOLEAN := AuditSetGlobalSacl(_In_ PCWSTR ObjectTypeName, _In_opt_ PACL Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetGlobalSaclA
+`BOOLEAN := AuditSetGlobalSaclA(_In_ PCWSTR ObjectTypeName, _In_opt_ PACL Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetGlobalSaclW
+`BOOLEAN := AuditSetGlobalSaclW(_In_ PCWSTR ObjectTypeName, _In_opt_ PACL Acl)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetPerUserPolicy
+`BOOLEAN := AuditSetPerUserPolicy(_In_ const PSID pSid, _In_ PCAUDIT_POLICY_INFORMATION pAuditPolicy, _In_ ULONG PolicyCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetSecurity
+`BOOLEAN := AuditSetSecurity(_In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+AuditSetSystemPolicy
+`BOOLEAN := AuditSetSystemPolicy(_In_ PCAUDIT_POLICY_INFORMATION pAuditPolicy, _In_ ULONG PolicyCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+BackupEventLog
+`BOOL := BackupEventLog(_In_ HANDLE hEventLog, _In_ LPCTSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BackupEventLogA
+`BOOL := BackupEventLogA(_In_ HANDLE hEventLog, _In_ LPCSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BackupEventLogW
+`BOOL := BackupEventLogW(_In_ HANDLE hEventLog, _In_ LPCWSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildExplicitAccessWithName
+`VOID := BuildExplicitAccessWithName(_Inout_ PEXPLICIT_ACCESS pExplicitAccess, _In_opt_ LPTSTR pTrusteeName, _In_ DWORD AccessPermissions, _In_ ACCESS_MODE AccessMode, _In_ DWORD Inheritance)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildExplicitAccessWithNameA
+`VOID := BuildExplicitAccessWithNameA(_Inout_ PEXPLICIT_ACCESS pExplicitAccess, _In_opt_ LPSTR pTrusteeName, _In_ DWORD AccessPermissions, _In_ ACCESS_MODE AccessMode, _In_ DWORD Inheritance)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildExplicitAccessWithNameW
+`VOID := BuildExplicitAccessWithNameW(_Inout_ PEXPLICIT_ACCESS pExplicitAccess, _In_opt_ LPWSTR pTrusteeName, _In_ DWORD AccessPermissions, _In_ ACCESS_MODE AccessMode, _In_ DWORD Inheritance)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildSecurityDescriptor
+`DWORD := BuildSecurityDescriptor(_In_opt_ PTRUSTEE pOwner, _In_opt_ PTRUSTEE pGroup, _In_ ULONG cCountOfAccessEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAccessEntries, _In_ ULONG cCountOfAuditEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAuditEntries, _In_opt_ PSECURITY_DESCRIPTOR pOldSD, _Out_ PULONG pSizeNewSD, _Out_ PSECURITY_DESCRIPTOR *pNewSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildSecurityDescriptorA
+`DWORD := BuildSecurityDescriptorA(_In_opt_ PTRUSTEE pOwner, _In_opt_ PTRUSTEE pGroup, _In_ ULONG cCountOfAccessEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAccessEntries, _In_ ULONG cCountOfAuditEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAuditEntries, _In_opt_ PSECURITY_DESCRIPTOR pOldSD, _Out_ PULONG pSizeNewSD, _Out_ PSECURITY_DESCRIPTOR *pNewSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildSecurityDescriptorW
+`DWORD := BuildSecurityDescriptorW(_In_opt_ PTRUSTEE pOwner, _In_opt_ PTRUSTEE pGroup, _In_ ULONG cCountOfAccessEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAccessEntries, _In_ ULONG cCountOfAuditEntries, _In_opt_ PEXPLICIT_ACCESS pListOfAuditEntries, _In_opt_ PSECURITY_DESCRIPTOR pOldSD, _Out_ PULONG pSizeNewSD, _Out_ PSECURITY_DESCRIPTOR *pNewSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithName
+`VOID := BuildTrusteeWithName(_Inout_ PTRUSTEE pTrustee, _In_opt_ LPTSTR pName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithNameA
+`VOID := BuildTrusteeWithNameA(_Inout_ PTRUSTEE pTrustee, _In_opt_ LPSTR pName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithNameW
+`VOID := BuildTrusteeWithNameW(_Inout_ PTRUSTEE pTrustee, _In_opt_ LPWSTR pName)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndName
+`VOID := BuildTrusteeWithObjectsAndName(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_NAME pObjName, _In_opt_ SE_OBJECT_TYPE ObjectType, _In_opt_ LPTSTR ObjectTypeName, _In_opt_ LPTSTR InheritedObjectTypeName, _In_opt_ LPTSTR Name)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndNameA
+`VOID := BuildTrusteeWithObjectsAndNameA(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_NAME pObjName, _In_opt_ SE_OBJECT_TYPE ObjectType, _In_opt_ LPSTR ObjectTypeName, _In_opt_ LPSTR InheritedObjectTypeName, _In_opt_ LPSTR Name)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndNameW
+`VOID := BuildTrusteeWithObjectsAndNameW(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_NAME pObjName, _In_opt_ SE_OBJECT_TYPE ObjectType, _In_opt_ LPWSTR ObjectTypeName, _In_opt_ LPWSTR InheritedObjectTypeName, _In_opt_ LPWSTR Name)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndSid
+`VOID := BuildTrusteeWithObjectsAndSid(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_SID pObjSid, _In_opt_ GUID *pObjectGuid, _In_opt_ GUID *pInheritedObjectGuid, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndSidA
+`VOID := BuildTrusteeWithObjectsAndSidA(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_SID pObjSid, _In_opt_ GUID *pObjectGuid, _In_opt_ GUID *pInheritedObjectGuid, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithObjectsAndSidW
+`VOID := BuildTrusteeWithObjectsAndSidW(_Inout_ PTRUSTEE pTrustee, _In_opt_ POBJECTS_AND_SID pObjSid, _In_opt_ GUID *pObjectGuid, _In_opt_ GUID *pInheritedObjectGuid, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithSid
+`VOID := BuildTrusteeWithSid(_Inout_ PTRUSTEE pTrustee, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithSidA
+`VOID := BuildTrusteeWithSidA(_Inout_ PTRUSTEE pTrustee, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+BuildTrusteeWithSidW
+`VOID := BuildTrusteeWithSidW(_Inout_ PTRUSTEE pTrustee, _In_opt_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfig
+`BOOL := ChangeServiceConfig(_In_ SC_HANDLE hService, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCTSTR lpBinaryPathName, _In_opt_ LPCTSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCTSTR lpDependencies, _In_opt_ LPCTSTR lpServiceStartName, _In_opt_ LPCTSTR lpPassword, _In_opt_ LPCTSTR lpDisplayName)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfig2
+`BOOL := ChangeServiceConfig2(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _In_opt_ LPVOID lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfig2A
+`BOOL := ChangeServiceConfig2A(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _In_opt_ LPVOID lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfig2W
+`BOOL := ChangeServiceConfig2W(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _In_opt_ LPVOID lpInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfigA
+`BOOL := ChangeServiceConfigA(_In_ SC_HANDLE hService, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCSTR lpBinaryPathName, _In_opt_ LPCSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCSTR lpDependencies, _In_opt_ LPCSTR lpServiceStartName, _In_opt_ LPCSTR lpPassword, _In_opt_ LPCSTR lpDisplayName)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeServiceConfigW
+`BOOL := ChangeServiceConfigW(_In_ SC_HANDLE hService, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCWSTR lpBinaryPathName, _In_opt_ LPCWSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCWSTR lpDependencies, _In_opt_ LPCWSTR lpServiceStartName, _In_opt_ LPCWSTR lpPassword, _In_opt_ LPCWSTR lpDisplayName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckTokenMembership
+`BOOL := CheckTokenMembership(_In_opt_ HANDLE TokenHandle, _In_ PSID SidToCheck, _Out_ PBOOL IsMember)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClearEventLog
+`BOOL := ClearEventLog(_In_ HANDLE hEventLog, _In_ LPCTSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClearEventLogA
+`BOOL := ClearEventLogA(_In_ HANDLE hEventLog, _In_ LPCSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClearEventLogW
+`BOOL := ClearEventLogW(_In_ HANDLE hEventLog, _In_ LPCWSTR lpBackupFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseEncryptedFileRaw
+`VOID := CloseEncryptedFileRaw(_In_ PVOID pvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseEventLog
+`BOOL := CloseEventLog(_Inout_ HANDLE hEventLog)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseServiceHandle
+`BOOL := CloseServiceHandle(_In_ SC_HANDLE hSCObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseThreadWaitChainSession
+`VOID := CloseThreadWaitChainSession(_In_ HWCT WctHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ControlService
+`BOOL := ControlService(_In_ SC_HANDLE hService, _In_ DWORD dwControl, _Out_ LPSERVICE_STATUS lpServiceStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+ControlServiceEx
+`BOOL := ControlServiceEx(_In_ SC_HANDLE hService, _In_ DWORD dwControl, _In_ DWORD dwInfoLevel, _Inout_ PVOID pControlParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+ControlServiceExA
+`BOOL := ControlServiceExA(_In_ SC_HANDLE hService, _In_ DWORD dwControl, _In_ DWORD dwInfoLevel, _Inout_ PVOID pControlParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+ControlServiceExW
+`BOOL := ControlServiceExW(_In_ SC_HANDLE hService, _In_ DWORD dwControl, _In_ DWORD dwInfoLevel, _Inout_ PVOID pControlParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSecurityDescriptorToStringSecurityDescriptor
+`BOOL := ConvertSecurityDescriptorToStringSecurityDescriptor(_In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD RequestedStringSDRevision, _In_ SECURITY_INFORMATION SecurityInformation, _Out_ LPTSTR *StringSecurityDescriptor, _Out_ PULONG StringSecurityDescriptorLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSecurityDescriptorToStringSecurityDescriptorA
+`BOOL := ConvertSecurityDescriptorToStringSecurityDescriptorA(_In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD RequestedStringSDRevision, _In_ SECURITY_INFORMATION SecurityInformation, _Out_ LPSTR *StringSecurityDescriptor, _Out_ PULONG StringSecurityDescriptorLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSecurityDescriptorToStringSecurityDescriptorW
+`BOOL := ConvertSecurityDescriptorToStringSecurityDescriptorW(_In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_ DWORD RequestedStringSDRevision, _In_ SECURITY_INFORMATION SecurityInformation, _Out_ LPWSTR *StringSecurityDescriptor, _Out_ PULONG StringSecurityDescriptorLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSidToStringSid
+`BOOL := ConvertSidToStringSid(_In_ PSID Sid, _Out_ LPTSTR *StringSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSidToStringSidA
+`BOOL := ConvertSidToStringSidA(_In_ PSID Sid, _Out_ LPSTR *StringSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertSidToStringSidW
+`BOOL := ConvertSidToStringSidW(_In_ PSID Sid, _Out_ LPWSTR *StringSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSecurityDescriptorToSecurityDescriptor
+`BOOL := ConvertStringSecurityDescriptorToSecurityDescriptor(_In_ LPCTSTR StringSecurityDescriptor, _In_ DWORD StringSDRevision, _Out_ PSECURITY_DESCRIPTOR *SecurityDescriptor, _Out_ PULONG SecurityDescriptorSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSecurityDescriptorToSecurityDescriptorA
+`BOOL := ConvertStringSecurityDescriptorToSecurityDescriptorA(_In_ LPCSTR StringSecurityDescriptor, _In_ DWORD StringSDRevision, _Out_ PSECURITY_DESCRIPTOR *SecurityDescriptor, _Out_ PULONG SecurityDescriptorSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSecurityDescriptorToSecurityDescriptorW
+`BOOL := ConvertStringSecurityDescriptorToSecurityDescriptorW(_In_ LPCWSTR StringSecurityDescriptor, _In_ DWORD StringSDRevision, _Out_ PSECURITY_DESCRIPTOR *SecurityDescriptor, _Out_ PULONG SecurityDescriptorSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSidToSid
+`BOOL := ConvertStringSidToSid(_In_ LPCTSTR StringSid, _Out_ PSID *Sid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSidToSidA
+`BOOL := ConvertStringSidToSidA(_In_ LPCSTR StringSid, _Out_ PSID *Sid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertStringSidToSidW
+`BOOL := ConvertStringSidToSidW(_In_ LPCWSTR StringSid, _Out_ PSID *Sid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ConvertToAutoInheritPrivateObjectSecurity
+`BOOL := ConvertToAutoInheritPrivateObjectSecurity(_In_opt_ PSECURITY_DESCRIPTOR ParentDescriptor, _In_ PSECURITY_DESCRIPTOR CurrentSecurityDescriptor, _Out_ PSECURITY_DESCRIPTOR *NewSecurityDescriptor, _In_opt_ GUID *ObjectType, _In_ BOOLEAN IsDirectoryObject, _In_ PGENERIC_MAPPING GenericMapping)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopySid
+`BOOL := CopySid(_In_ DWORD nDestinationSidLength, _Out_ PSID pDestinationSid, _In_ PSID pSourceSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePrivateObjectSecurity
+`BOOL := CreatePrivateObjectSecurity(_In_opt_ PSECURITY_DESCRIPTOR ParentDescriptor, _In_opt_ PSECURITY_DESCRIPTOR CreatorDescriptor, _Out_ PSECURITY_DESCRIPTOR *NewDescriptor, _In_ BOOL IsDirectoryObject, _In_opt_ HANDLE Token, _In_ PGENERIC_MAPPING GenericMapping)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePrivateObjectSecurityEx
+`BOOL := CreatePrivateObjectSecurityEx(_In_opt_ PSECURITY_DESCRIPTOR ParentDescriptor, _In_opt_ PSECURITY_DESCRIPTOR CreatorDescriptor, _Out_ PSECURITY_DESCRIPTOR *NewDescriptor, _In_opt_ GUID *ObjectType, _In_ BOOL IsContainerObject, _In_ ULONG AutoInheritFlags, _In_opt_ HANDLE Token, _In_ PGENERIC_MAPPING GenericMapping)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePrivateObjectSecurityWithMultipleInheritance
+`BOOL := CreatePrivateObjectSecurityWithMultipleInheritance(_In_opt_ PSECURITY_DESCRIPTOR ParentDescriptor, _In_opt_ PSECURITY_DESCRIPTOR CreatorDescriptor, _Out_ PSECURITY_DESCRIPTOR *NewDescriptor, _In_opt_ GUID **ObjectTypes, _In_ ULONG GuidCount, _In_ BOOL IsContainerObject, _In_ ULONG AutoInheritFlags, _In_opt_ HANDLE Token, _In_ PGENERIC_MAPPING GenericMapping)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProcessAsUser
+`BOOL := CreateProcessAsUser(_In_opt_ HANDLE hToken, _In_opt_ LPCTSTR lpApplicationName, _Inout_opt_ LPTSTR lpCommandLine, _In_opt_ LPSECURITY_ATTRIBUTES lpProcessAttributes, _In_opt_ LPSECURITY_ATTRIBUTES lpThreadAttributes, _In_ BOOL bInheritHandles, _In_ DWORD dwCreationFlags, _In_opt_ LPVOID lpEnvironment, _In_opt_ LPCTSTR lpCurrentDirectory, _In_ LPSTARTUPINFO lpStartupInfo, _Out_ LPPROCESS_INFORMATION lpProcessInformation)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProcessAsUserA
+`BOOL := CreateProcessAsUserA(_In_opt_ HANDLE hToken, _In_opt_ LPCSTR lpApplicationName, _Inout_opt_ LPSTR lpCommandLine, _In_opt_ LPSECURITY_ATTRIBUTES lpProcessAttributes, _In_opt_ LPSECURITY_ATTRIBUTES lpThreadAttributes, _In_ BOOL bInheritHandles, _In_ DWORD dwCreationFlags, _In_opt_ LPVOID lpEnvironment, _In_opt_ LPCSTR lpCurrentDirectory, _In_ LPSTARTUPINFO lpStartupInfo, _Out_ LPPROCESS_INFORMATION lpProcessInformation)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProcessAsUserW
+`BOOL := CreateProcessAsUserW(_In_opt_ HANDLE hToken, _In_opt_ LPCWSTR lpApplicationName, _Inout_opt_ LPWSTR lpCommandLine, _In_opt_ LPSECURITY_ATTRIBUTES lpProcessAttributes, _In_opt_ LPSECURITY_ATTRIBUTES lpThreadAttributes, _In_ BOOL bInheritHandles, _In_ DWORD dwCreationFlags, _In_opt_ LPVOID lpEnvironment, _In_opt_ LPCWSTR lpCurrentDirectory, _In_ LPSTARTUPINFO lpStartupInfo, _Out_ LPPROCESS_INFORMATION lpProcessInformation)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProcessWithLogonW
+`BOOL := CreateProcessWithLogonW(_In_ LPCWSTR lpUsername, _In_opt_ LPCWSTR lpDomain, _In_ LPCWSTR lpPassword, _In_ DWORD dwLogonFlags, _In_opt_ LPCWSTR lpApplicationName, _Inout_opt_ LPWSTR lpCommandLine, _In_ DWORD dwCreationFlags, _In_opt_ LPVOID lpEnvironment, _In_opt_ LPCWSTR lpCurrentDirectory, _In_ LPSTARTUPINFOW lpStartupInfo, _Out_ LPPROCESS_INFORMATION lpProcessInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateProcessWithTokenW
+`BOOL := CreateProcessWithTokenW(_In_ HANDLE hToken, _In_ DWORD dwLogonFlags, _In_opt_ LPCWSTR lpApplicationName, _Inout_opt_ LPWSTR lpCommandLine, _In_ DWORD dwCreationFlags, _In_opt_ LPVOID lpEnvironment, _In_opt_ LPCWSTR lpCurrentDirectory, _In_ LPSTARTUPINFOW lpStartupInfo, _Out_ LPPROCESS_INFORMATION lpProcessInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateRestrictedToken
+`BOOL := CreateRestrictedToken(_In_ HANDLE ExistingTokenHandle, _In_ DWORD Flags, _In_ DWORD DisableSidCount, _In_opt_ PSID_AND_ATTRIBUTES SidsToDisable, _In_ DWORD DeletePrivilegeCount, _In_opt_ PLUID_AND_ATTRIBUTES PrivilegesToDelete, _In_ DWORD RestrictedSidCount, _In_opt_ PSID_AND_ATTRIBUTES SidsToRestrict, _Out_ PHANDLE NewTokenHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateService
+`SC_HANDLE := CreateService(_In_ SC_HANDLE hSCManager, _In_ LPCTSTR lpServiceName, _In_opt_ LPCTSTR lpDisplayName, _In_ DWORD dwDesiredAccess, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCTSTR lpBinaryPathName, _In_opt_ LPCTSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCTSTR lpDependencies, _In_opt_ LPCTSTR lpServiceStartName, _In_opt_ LPCTSTR lpPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateServiceA
+`SC_HANDLE := CreateServiceA(_In_ SC_HANDLE hSCManager, _In_ LPCSTR lpServiceName, _In_opt_ LPCSTR lpDisplayName, _In_ DWORD dwDesiredAccess, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCSTR lpBinaryPathName, _In_opt_ LPCSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCSTR lpDependencies, _In_opt_ LPCSTR lpServiceStartName, _In_opt_ LPCSTR lpPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateServiceW
+`SC_HANDLE := CreateServiceW(_In_ SC_HANDLE hSCManager, _In_ LPCWSTR lpServiceName, _In_opt_ LPCWSTR lpDisplayName, _In_ DWORD dwDesiredAccess, _In_ DWORD dwServiceType, _In_ DWORD dwStartType, _In_ DWORD dwErrorControl, _In_opt_ LPCWSTR lpBinaryPathName, _In_opt_ LPCWSTR lpLoadOrderGroup, _Out_opt_ LPDWORD lpdwTagId, _In_opt_ LPCWSTR lpDependencies, _In_opt_ LPCWSTR lpServiceStartName, _In_opt_ LPCWSTR lpPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateTraceInstanceId
+`ULONG := CreateTraceInstanceId(_In_ HANDLE RegHandle, _Out_ PEVENT_INSTANCE_INFO pInstInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWellKnownSid
+`BOOL := CreateWellKnownSid(_In_ WELL_KNOWN_SID_TYPE WellKnownSidType, _In_opt_ PSID DomainSid, _Out_opt_ PSID pSid, _Inout_ DWORD *cbSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredDelete
+`BOOL := CredDelete(_In_ LPCTSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredDeleteA
+`BOOL := CredDeleteA(_In_ LPCSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredDeleteW
+`BOOL := CredDeleteW(_In_ LPCWSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredEnumerate
+`BOOL := CredEnumerate(_In_ LPCTSTR Filter, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredEnumerateA
+`BOOL := CredEnumerateA(_In_ LPCSTR Filter, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredEnumerateW
+`BOOL := CredEnumerateW(_In_ LPCWSTR Filter, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredFindBestCredential
+`BOOL := CredFindBestCredential(_In_ LPCTSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredFindBestCredentialA
+`BOOL := CredFindBestCredentialA(_In_ LPCSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredFindBestCredentialW
+`BOOL := CredFindBestCredentialW(_In_ LPCWSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredFree
+`VOID := CredFree(_In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredGetSessionTypes
+`BOOL := CredGetSessionTypes(_In_ DWORD MaximumPersistCount, _Out_ LPDWORD MaximumPersist)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredGetTargetInfo
+`BOOL := CredGetTargetInfo(_In_ LPCTSTR TargetName, _In_ DWORD Flags, _Out_ PCREDENTIAL_TARGET_INFORMATION *TargetInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredGetTargetInfoA
+`BOOL := CredGetTargetInfoA(_In_ LPCSTR TargetName, _In_ DWORD Flags, _Out_ PCREDENTIAL_TARGET_INFORMATION *TargetInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredGetTargetInfoW
+`BOOL := CredGetTargetInfoW(_In_ LPCWSTR TargetName, _In_ DWORD Flags, _Out_ PCREDENTIAL_TARGET_INFORMATION *TargetInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsMarshaledCredential
+`BOOL := CredIsMarshaledCredential(_In_ LPCTSTR MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsMarshaledCredentialA
+`BOOL := CredIsMarshaledCredentialA(_In_ LPCSTR MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsMarshaledCredentialW
+`BOOL := CredIsMarshaledCredentialW(_In_ LPCWSTR MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsProtected
+`BOOL := CredIsProtected(_In_ LPTSTR pszProtectedCredentials, _Out_ CRED_PROTECTION_TYPE *pProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsProtectedA
+`BOOL := CredIsProtectedA(_In_ LPSTR pszProtectedCredentials, _Out_ CRED_PROTECTION_TYPE *pProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredIsProtectedW
+`BOOL := CredIsProtectedW(_In_ LPWSTR pszProtectedCredentials, _Out_ CRED_PROTECTION_TYPE *pProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredMarshalCredential
+`BOOL := CredMarshalCredential(_In_ CRED_MARSHAL_TYPE CredType, _In_ PVOID Credential, _Out_ LPTSTR *MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredMarshalCredentialA
+`BOOL := CredMarshalCredentialA(_In_ CRED_MARSHAL_TYPE CredType, _In_ PVOID Credential, _Out_ LPSTR *MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredMarshalCredentialW
+`BOOL := CredMarshalCredentialW(_In_ CRED_MARSHAL_TYPE CredType, _In_ PVOID Credential, _Out_ LPWSTR *MarshaledCredential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredMarshalTargetInfo
+`int := CredMarshalTargetInfo(_In_ PCREDENTIAL_TARGET_INFORMATIONW InTargetInfo, _Out_ PUSHORT *Buffer, PULONG BufferSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredProtect
+`BOOL := CredProtect(_In_ BOOL fAsSelf, _In_ LPTSTR pszCredentials, _In_ DWORD cchCredentials, _Out_ LPTSTR pszProtectedCredentials, _Inout_ DWORD *pcchMaxChars, _Out_ CRED_PROTECTION_TYPE *ProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredProtectA
+`BOOL := CredProtectA(_In_ BOOL fAsSelf, _In_ LPSTR pszCredentials, _In_ DWORD cchCredentials, _Out_ LPSTR pszProtectedCredentials, _Inout_ DWORD *pcchMaxChars, _Out_ CRED_PROTECTION_TYPE *ProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredProtectW
+`BOOL := CredProtectW(_In_ BOOL fAsSelf, _In_ LPWSTR pszCredentials, _In_ DWORD cchCredentials, _Out_ LPWSTR pszProtectedCredentials, _Inout_ DWORD *pcchMaxChars, _Out_ CRED_PROTECTION_TYPE *ProtectionType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredRead
+`BOOL := CredRead(_In_ LPCTSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredReadA
+`BOOL := CredReadA(_In_ LPCSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredReadDomainCredentials
+`BOOL := CredReadDomainCredentials(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredReadDomainCredentialsA
+`BOOL := CredReadDomainCredentialsA(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredReadDomainCredentialsW
+`BOOL := CredReadDomainCredentialsW(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ DWORD Flags, _Out_ DWORD *Count, _Out_ PCREDENTIAL **Credentials)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredReadW
+`BOOL := CredReadW(_In_ LPCWSTR TargetName, _In_ DWORD Type, _In_ DWORD Flags, _Out_ PCREDENTIAL *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredRename
+`BOOL := CredRename(_In_ LPCTSTR OldTargetName, _In_ LPCTSTR NewTargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredRenameA
+`BOOL := CredRenameA(_In_ LPCSTR OldTargetName, _In_ LPCSTR NewTargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredRenameW
+`BOOL := CredRenameW(_In_ LPCWSTR OldTargetName, _In_ LPCWSTR NewTargetName, _In_ DWORD Type, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnmarshalCredential
+`BOOL := CredUnmarshalCredential(_In_ LPCTSTR MarshaledCredential, _Out_ PCRED_MARSHAL_TYPE CredType, _Out_ PVOID *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnmarshalCredentialA
+`BOOL := CredUnmarshalCredentialA(_In_ LPCSTR MarshaledCredential, _Out_ PCRED_MARSHAL_TYPE CredType, _Out_ PVOID *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnmarshalCredentialW
+`BOOL := CredUnmarshalCredentialW(_In_ LPCWSTR MarshaledCredential, _Out_ PCRED_MARSHAL_TYPE CredType, _Out_ PVOID *Credential)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnprotect
+`BOOL := CredUnprotect(_In_ BOOL fAsSelf, _In_ LPTSTR pszProtectedCredentials, _In_ DWORD cchCredentials, _Out_ LPTSTR pszCredentials, _Inout_ DWORD *pcchMaxChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnprotectA
+`BOOL := CredUnprotectA(_In_ BOOL fAsSelf, _In_ LPSTR pszProtectedCredentials, _In_ DWORD cchCredentials, _Out_ LPSTR pszCredentials, _Inout_ DWORD *pcchMaxChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredUnprotectW
+`BOOL := CredUnprotectW(_In_ BOOL fAsSelf, _In_ LPWSTR pszProtectedCredentials, _In_ DWORD cchCredentials, _Out_ LPWSTR pszCredentials, _Inout_ DWORD *pcchMaxChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWrite
+`BOOL := CredWrite(_In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWriteA
+`BOOL := CredWriteA(_In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWriteDomainCredentials
+`BOOL := CredWriteDomainCredentials(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWriteDomainCredentialsA
+`BOOL := CredWriteDomainCredentialsA(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWriteDomainCredentialsW
+`BOOL := CredWriteDomainCredentialsW(_In_ PCREDENTIAL_TARGET_INFORMATION TargetInfo, _In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CredWriteW
+`BOOL := CredWriteW(_In_ PCREDENTIAL Credential, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptAcquireContext
+`BOOL := CryptAcquireContext(_Out_ HCRYPTPROV *phProv, _In_ LPCTSTR pszContainer, _In_ LPCTSTR pszProvider, _In_ DWORD dwProvType, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptAcquireContextA
+`BOOL := CryptAcquireContextA(_Out_ HCRYPTPROV *phProv, _In_ LPCSTR pszContainer, _In_ LPCSTR pszProvider, _In_ DWORD dwProvType, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptAcquireContextW
+`BOOL := CryptAcquireContextW(_Out_ HCRYPTPROV *phProv, _In_ LPCWSTR pszContainer, _In_ LPCWSTR pszProvider, _In_ DWORD dwProvType, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptContextAddRef
+`BOOL := CryptContextAddRef(_In_ HCRYPTPROV hProv, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptCreateHash
+`BOOL := CryptCreateHash(_In_ HCRYPTPROV hProv, _In_ ALG_ID Algid, _In_ HCRYPTKEY hKey, _In_ DWORD dwFlags, _Out_ HCRYPTHASH *phHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDecrypt
+`BOOL := CryptDecrypt(_In_ HCRYPTKEY hKey, _In_ HCRYPTHASH hHash, _In_ BOOL Final, _In_ DWORD dwFlags, _Inout_ BYTE *pbData, _Inout_ DWORD *pdwDataLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDeriveKey
+`BOOL := CryptDeriveKey(_In_ HCRYPTPROV hProv, _In_ ALG_ID Algid, _In_ HCRYPTHASH hBaseData, _In_ DWORD dwFlags, _Inout_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDestroyHash
+`BOOL := CryptDestroyHash(_In_ HCRYPTHASH hHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDestroyKey
+`BOOL := CryptDestroyKey(_In_ HCRYPTKEY hKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDuplicateHash
+`BOOL := CryptDuplicateHash(_In_ HCRYPTHASH hHash, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ HCRYPTHASH *phHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptDuplicateKey
+`BOOL := CryptDuplicateKey(_In_ HCRYPTKEY hKey, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEncrypt
+`BOOL := CryptEncrypt(_In_ HCRYPTKEY hKey, _In_ HCRYPTHASH hHash, _In_ BOOL Final, _In_ DWORD dwFlags, _Inout_ BYTE *pbData, _Inout_ DWORD *pdwDataLen, _In_ DWORD dwBufLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProviders
+`BOOL := CryptEnumProviders(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPTSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProvidersA
+`BOOL := CryptEnumProvidersA(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProvidersW
+`BOOL := CryptEnumProvidersW(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPWSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProviderTypes
+`BOOL := CryptEnumProviderTypes(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPTSTR pszTypeName, _Inout_ DWORD *pcbTypeName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProviderTypesA
+`BOOL := CryptEnumProviderTypesA(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPSTR pszTypeName, _Inout_ DWORD *pcbTypeName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptEnumProviderTypesW
+`BOOL := CryptEnumProviderTypesW(_In_ DWORD dwIndex, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ DWORD *pdwProvType, _Out_ LPWSTR pszTypeName, _Inout_ DWORD *pcbTypeName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptExportKey
+`BOOL := CryptExportKey(_In_ HCRYPTKEY hKey, _In_ HCRYPTKEY hExpKey, _In_ DWORD dwBlobType, _In_ DWORD dwFlags, _Out_ BYTE *pbData, _Inout_ DWORD *pdwDataLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGenKey
+`BOOL := CryptGenKey(_In_ HCRYPTPROV hProv, _In_ ALG_ID Algid, _In_ DWORD dwFlags, _Out_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGenRandom
+`BOOL := CryptGenRandom(_In_ HCRYPTPROV hProv, _In_ DWORD dwLen, _Inout_ BYTE *pbBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetDefaultProvider
+`BOOL := CryptGetDefaultProvider(_In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ LPTSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetDefaultProviderA
+`BOOL := CryptGetDefaultProviderA(_In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ LPSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetDefaultProviderW
+`BOOL := CryptGetDefaultProviderW(_In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags, _Out_ LPWSTR pszProvName, _Inout_ DWORD *pcbProvName)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetHashParam
+`BOOL := CryptGetHashParam(_In_ HCRYPTHASH hHash, _In_ DWORD dwParam, _Out_ BYTE *pbData, _Inout_ DWORD *pdwDataLen, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetKeyParam
+`BOOL := CryptGetKeyParam(_In_ HCRYPTKEY hKey, _In_ DWORD dwParam, _Out_ BYTE *pbData, _Inout_ DWORD *pdwDataLen, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetProvParam
+`BOOL := CryptGetProvParam(_In_ HCRYPTPROV hProv, _In_ DWORD dwParam, _Out_ BYTE *pbData, _Inout_ DWORD *pdwDataLen, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptGetUserKey
+`BOOL := CryptGetUserKey(_In_ HCRYPTPROV hProv, _In_ DWORD dwKeySpec, _Out_ HCRYPTKEY *phUserKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashData
+`BOOL := CryptHashData(_In_ HCRYPTHASH hHash, _In_ BYTE *pbData, _In_ DWORD dwDataLen, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptHashSessionKey
+`BOOL := CryptHashSessionKey(_In_ HCRYPTHASH hHash, _In_ HCRYPTKEY hKey, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptImportKey
+`BOOL := CryptImportKey(_In_ HCRYPTPROV hProv, _In_ BYTE *pbData, _In_ DWORD dwDataLen, _In_ HCRYPTKEY hPubKey, _In_ DWORD dwFlags, _Out_ HCRYPTKEY *phKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptReleaseContext
+`BOOL := CryptReleaseContext(_In_ HCRYPTPROV hProv, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetHashParam
+`BOOL := CryptSetHashParam(_In_ HCRYPTHASH hHash, _In_ DWORD dwParam, _In_ const BYTE *pbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetKeyParam
+`BOOL := CryptSetKeyParam(_In_ HCRYPTKEY hKey, _In_ DWORD dwParam, _In_ const BYTE *pbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProvider
+`BOOL := CryptSetProvider(_In_ LPCTSTR pszProvName, _In_ DWORD dwProvType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProviderA
+`BOOL := CryptSetProviderA(_In_ LPCSTR pszProvName, _In_ DWORD dwProvType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProviderEx
+`BOOL := CryptSetProviderEx(_In_ LPCTSTR pszProvName, _In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProviderExA
+`BOOL := CryptSetProviderExA(_In_ LPCSTR pszProvName, _In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProviderExW
+`BOOL := CryptSetProviderExW(_In_ LPCWSTR pszProvName, _In_ DWORD dwProvType, _In_ DWORD *pdwReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProviderW
+`BOOL := CryptSetProviderW(_In_ LPCWSTR pszProvName, _In_ DWORD dwProvType)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSetProvParam
+`BOOL := CryptSetProvParam(_In_ HCRYPTPROV hProv, _In_ DWORD dwParam, _In_ const BYTE *pbData, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignHash
+`BOOL := CryptSignHash(_In_ HCRYPTHASH hHash, _In_ DWORD dwKeySpec, _In_ LPCTSTR sDescription, _In_ DWORD dwFlags, _Out_ BYTE *pbSignature, _Inout_ DWORD *pdwSigLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignHashA
+`BOOL := CryptSignHashA(_In_ HCRYPTHASH hHash, _In_ DWORD dwKeySpec, _In_ LPCSTR sDescription, _In_ DWORD dwFlags, _Out_ BYTE *pbSignature, _Inout_ DWORD *pdwSigLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptSignHashW
+`BOOL := CryptSignHashW(_In_ HCRYPTHASH hHash, _In_ DWORD dwKeySpec, _In_ LPCWSTR sDescription, _In_ DWORD dwFlags, _Out_ BYTE *pbSignature, _Inout_ DWORD *pdwSigLen)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifySignature
+`BOOL := CryptVerifySignature(_In_ HCRYPTHASH hHash, _In_ BYTE *pbSignature, _In_ DWORD dwSigLen, _In_ HCRYPTKEY hPubKey, _In_ LPCTSTR sDescription, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifySignatureA
+`BOOL := CryptVerifySignatureA(_In_ HCRYPTHASH hHash, _In_ BYTE *pbSignature, _In_ DWORD dwSigLen, _In_ HCRYPTKEY hPubKey, _In_ LPCSTR sDescription, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CryptVerifySignatureW
+`BOOL := CryptVerifySignatureW(_In_ HCRYPTHASH hHash, _In_ BYTE *pbSignature, _In_ DWORD dwSigLen, _In_ HCRYPTKEY hPubKey, _In_ LPCWSTR sDescription, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DecryptFile
+`BOOL := DecryptFile(_In_ LPCTSTR lpFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+DecryptFileA
+`BOOL := DecryptFileA(_In_ LPCSTR lpFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+DecryptFileW
+`BOOL := DecryptFileW(_In_ LPCWSTR lpFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteAce
+`BOOL := DeleteAce(_Inout_ PACL pAcl, _In_ DWORD dwAceIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteService
+`BOOL := DeleteService(_In_ SC_HANDLE hService)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeregisterEventSource
+`BOOL := DeregisterEventSource(_Inout_ HANDLE hEventLog)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyPrivateObjectSecurity
+`BOOL := DestroyPrivateObjectSecurity(_Inout_ PSECURITY_DESCRIPTOR *ObjectDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+DuplicateEncryptionInfoFile
+`DWORD := DuplicateEncryptionInfoFile(_In_ LPCTSTR SrcFileName, _In_ LPCTSTR DstFileName, _In_ DWORD dwCreationDistribution, _In_ DWORD dwAttributes, _In_opt_ const LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+DuplicateToken
+`BOOL := DuplicateToken(_In_ HANDLE ExistingTokenHandle, _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel, _Out_ PHANDLE DuplicateTokenHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+DuplicateTokenEx
+`BOOL := DuplicateTokenEx(_In_ HANDLE hExistingToken, _In_ DWORD dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpTokenAttributes, _In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel, _In_ TOKEN_TYPE TokenType, _Out_ PHANDLE phNewToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableTrace
+`ULONG := EnableTrace(_In_ ULONG Enable, _In_ ULONG EnableFlag, _In_ ULONG EnableLevel, _In_ LPCGUID ControlGuid, _In_ TRACEHANDLE SessionHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableTraceEx
+`ULONG := EnableTraceEx(_In_ LPCGUID ProviderId, _In_opt_ LPCGUID SourceId, _In_ TRACEHANDLE TraceHandle, _In_ ULONG IsEnabled, _In_ UCHAR Level, _In_ ULONGLONG MatchAnyKeyword, _In_ ULONGLONG MatchAllKeyword, _In_ ULONG EnableProperty, _In_opt_ PEVENT_FILTER_DESCRIPTOR EnableFilterDesc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EncryptFile
+`BOOL := EncryptFile(_In_ LPCTSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EncryptFileA
+`BOOL := EncryptFileA(_In_ LPCSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EncryptFileW
+`BOOL := EncryptFileW(_In_ LPCWSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EncryptionDisable
+`BOOL := EncryptionDisable(_In_ LPCWSTR DirPath, _In_ BOOL Disable)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDependentServices
+`BOOL := EnumDependentServices(_In_ SC_HANDLE hService, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDependentServicesA
+`BOOL := EnumDependentServicesA(_In_ SC_HANDLE hService, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDependentServicesW
+`BOOL := EnumDependentServicesW(_In_ SC_HANDLE hService, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumerateTraceGuids
+`ULONG := EnumerateTraceGuids(_Inout_ PTRACE_GUID_PROPERTIES *GuidPropertiesArray, _In_ ULONG PropertyArrayCount, _Out_ PULONG GuidCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumerateTraceGuidsEx
+`ULONG := EnumerateTraceGuidsEx(_In_ TRACE_QUERY_INFO_CLASS TraceQueryInfoClass, _In_ PVOID InBuffer, _In_ ULONG InBufferSize, _Out_ PVOID OutBuffer, _In_ ULONG OutBufferSize, _Out_ PULONG ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatus
+`BOOL := EnumServicesStatus(_In_ SC_HANDLE hSCManager, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatusA
+`BOOL := EnumServicesStatusA(_In_ SC_HANDLE hSCManager, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatusEx
+`BOOL := EnumServicesStatusEx(_In_ SC_HANDLE hSCManager, _In_ SC_ENUM_TYPE InfoLevel, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPBYTE lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle, _In_opt_ LPCTSTR pszGroupName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatusExA
+`BOOL := EnumServicesStatusExA(_In_ SC_HANDLE hSCManager, _In_ SC_ENUM_TYPE InfoLevel, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPBYTE lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle, _In_opt_ LPCSTR pszGroupName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatusExW
+`BOOL := EnumServicesStatusExW(_In_ SC_HANDLE hSCManager, _In_ SC_ENUM_TYPE InfoLevel, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPBYTE lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle, _In_opt_ LPCWSTR pszGroupName)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumServicesStatusW
+`BOOL := EnumServicesStatusW(_In_ SC_HANDLE hSCManager, _In_ DWORD dwServiceType, _In_ DWORD dwServiceState, _Out_opt_ LPENUM_SERVICE_STATUS lpServices, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded, _Out_ LPDWORD lpServicesReturned, _Inout_opt_ LPDWORD lpResumeHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EqualDomainSid
+`BOOL := EqualDomainSid(_In_ PSID pSid1, _In_ PSID pSid2, _Out_ BOOL *pfEqual)
+`/docs/commands/WinApi.htm
+
+
+Function
+EqualPrefixSid
+`BOOL := EqualPrefixSid(_In_ PSID pSid1, _In_ PSID pSid2)
+`/docs/commands/WinApi.htm
+
+
+Function
+EqualSid
+`BOOL := EqualSid(_In_ PSID pSid1, _In_ PSID pSid2)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventAccessQuery
+`ULONG := EventAccessQuery(_In_ LPGUID Guid, _Inout_ PSECURITY_DESCRIPTOR Buffer, _Inout_ PULONG BufferSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventActivityIdControl
+`ULONG := EventActivityIdControl(_In_ ULONG ControlCode, _Inout_ LPGUID ActivityId)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventEnabled
+`BOOLEAN := EventEnabled(_In_ REGHANDLE RegHandle, _In_ PCEVENT_DESCRIPTOR EventDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventProviderEnabled
+`BOOLEAN := EventProviderEnabled(_In_ REGHANDLE RegHandle, _In_ UCHAR Level, _In_ ULONGLONG Keyword)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventRegister
+`ULONG := EventRegister(_In_ LPCGUID ProviderId, _In_opt_ PENABLECALLBACK EnableCallback, _In_opt_ PVOID CallbackContext, _Out_ PREGHANDLE RegHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventUnregister
+`ULONG := EventUnregister(_In_ REGHANDLE RegHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventWrite
+`ULONG := EventWrite(_In_ REGHANDLE RegHandle, _In_ PCEVENT_DESCRIPTOR EventDescriptor, _In_ ULONG UserDataCount, _In_opt_ PEVENT_DATA_DESCRIPTOR UserData)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventWriteEx
+`ULONG := EventWriteEx(_In_ REGHANDLE RegHandle, _In_ PCEVENT_DESCRIPTOR EventDescriptor, _In_ ULONG64 Filter, _In_ ULONG Flags, _In_opt_ LPCGUID ActivityId, _In_ LPCGUID RelatedActivityId, _In_ ULONG UserDataCount, _In_opt_ PEVENT_DATA_DESCRIPTOR UserData)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventWriteString
+`ULONG := EventWriteString(_In_ REGHANDLE RegHandle, _In_ UCHAR Level, _In_ ULONGLONG Keyword, _In_ PCWSTR String)
+`/docs/commands/WinApi.htm
+
+
+Function
+EventWriteTransfer
+`ULONG := EventWriteTransfer(_In_ REGHANDLE RegHandle, _In_ PCEVENT_DESCRIPTOR EventDescriptor, _In_opt_ LPCGUID ActivityId, _In_ LPCGUID RelatedActivityId, _In_ ULONG UserDataCount, _In_opt_ PEVENT_DATA_DESCRIPTOR UserData)
+`/docs/commands/WinApi.htm
+
+
+Function
+FileEncryptionStatus
+`BOOL := FileEncryptionStatus(_In_ LPCTSTR lpFileName, _Out_ LPDWORD lpStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+FileEncryptionStatusA
+`BOOL := FileEncryptionStatusA(_In_ LPCSTR lpFileName, _Out_ LPDWORD lpStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+FileEncryptionStatusW
+`BOOL := FileEncryptionStatusW(_In_ LPCWSTR lpFileName, _Out_ LPDWORD lpStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstFreeAce
+`BOOL := FindFirstFreeAce(_In_ PACL pAcl, _Out_ LPVOID *pAce)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlushTrace
+`ULONG := FlushTrace(_In_ TRACEHANDLE SessionHandle, _In_ LPCTSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlushTraceA
+`ULONG := FlushTraceA(_In_ TRACEHANDLE SessionHandle, _In_ LPCSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlushTraceW
+`ULONG := FlushTraceW(_In_ TRACEHANDLE SessionHandle, _In_ LPCWSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeEncryptionCertificateHashList
+`VOID := FreeEncryptionCertificateHashList(_In_ PENCRYPTION_CERTIFICATE_HASH_LIST pHashes)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeInheritedFromArray
+`DWORD := FreeInheritedFromArray(_In_ PINHERITED_FROM pInheritArray, _In_ USHORT AceCnt, _In_opt_ PFN_OBJECT_MGR_FUNCTS pfnArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeSid
+`PVOID := FreeSid(_In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAce
+`BOOL := GetAce(_In_ PACL pAcl, _In_ DWORD dwAceIndex, _Out_ LPVOID *pAce)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAclInformation
+`BOOL := GetAclInformation(_In_ PACL pAcl, _Out_ LPVOID pAclInformation, _In_ DWORD nAclInformationLength, _In_ ACL_INFORMATION_CLASS dwAclInformationClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAuditedPermissionsFromAcl
+`DWORD := GetAuditedPermissionsFromAcl(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pSuccessfulAuditedRights, _Out_ PACCESS_MASK pFailedAuditRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAuditedPermissionsFromAclA
+`DWORD := GetAuditedPermissionsFromAclA(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pSuccessfulAuditedRights, _Out_ PACCESS_MASK pFailedAuditRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAuditedPermissionsFromAclW
+`DWORD := GetAuditedPermissionsFromAclW(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pSuccessfulAuditedRights, _Out_ PACCESS_MASK pFailedAuditRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentHwProfile
+`BOOL := GetCurrentHwProfile(_Out_ LPHW_PROFILE_INFO lpHwProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentHwProfileA
+`BOOL := GetCurrentHwProfileA(_Out_ LPHW_PROFILE_INFO lpHwProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentHwProfileW
+`BOOL := GetCurrentHwProfileW(_Out_ LPHW_PROFILE_INFO lpHwProfileInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEffectiveRightsFromAcl
+`DWORD := GetEffectiveRightsFromAcl(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pAccessRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEffectiveRightsFromAclA
+`DWORD := GetEffectiveRightsFromAclA(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pAccessRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEffectiveRightsFromAclW
+`DWORD := GetEffectiveRightsFromAclW(_In_ PACL pacl, _In_ PTRUSTEE pTrustee, _Out_ PACCESS_MASK pAccessRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetEventLogInformation
+`BOOL := GetEventLogInformation(_In_ HANDLE hEventLog, _In_ DWORD dwInfoLevel, _Out_ LPVOID lpBuffer, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetExplicitEntriesFromAcl
+`DWORD := GetExplicitEntriesFromAcl(_In_ PACL pacl, _Out_ PULONG pcCountOfExplicitEntries, _Out_ PEXPLICIT_ACCESS *pListOfExplicitEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetExplicitEntriesFromAclA
+`DWORD := GetExplicitEntriesFromAclA(_In_ PACL pacl, _Out_ PULONG pcCountOfExplicitEntries, _Out_ PEXPLICIT_ACCESS *pListOfExplicitEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetExplicitEntriesFromAclW
+`DWORD := GetExplicitEntriesFromAclW(_In_ PACL pacl, _Out_ PULONG pcCountOfExplicitEntries, _Out_ PEXPLICIT_ACCESS *pListOfExplicitEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileSecurity
+`BOOL := GetFileSecurity(_In_ LPCTSTR lpFileName, _In_ SECURITY_INFORMATION RequestedInformation, _Out_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ DWORD nLength, _Out_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileSecurityA
+`BOOL := GetFileSecurityA(_In_ LPCSTR lpFileName, _In_ SECURITY_INFORMATION RequestedInformation, _Out_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ DWORD nLength, _Out_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileSecurityW
+`BOOL := GetFileSecurityW(_In_ LPCWSTR lpFileName, _In_ SECURITY_INFORMATION RequestedInformation, _Out_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ DWORD nLength, _Out_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetInheritanceSource
+`DWORD := GetInheritanceSource(_In_ LPTSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_ BOOL Container, _In_opt_ GUID **pObjectClassGuids, _In_ DWORD GuidCount, _In_ PACL pAcl, _In_opt_ PFN_OBJECT_MGR_FUNCTS pfnArray, _In_ PGENERIC_MAPPING pGenericMapping, _Out_ PINHERITED_FROM pInheritArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetInheritanceSourceA
+`DWORD := GetInheritanceSourceA(_In_ LPSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_ BOOL Container, _In_opt_ GUID **pObjectClassGuids, _In_ DWORD GuidCount, _In_ PACL pAcl, _In_opt_ PFN_OBJECT_MGR_FUNCTS pfnArray, _In_ PGENERIC_MAPPING pGenericMapping, _Out_ PINHERITED_FROM pInheritArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetInheritanceSourceW
+`DWORD := GetInheritanceSourceW(_In_ LPWSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_ BOOL Container, _In_opt_ GUID **pObjectClassGuids, _In_ DWORD GuidCount, _In_ PACL pAcl, _In_opt_ PFN_OBJECT_MGR_FUNCTS pfnArray, _In_ PGENERIC_MAPPING pGenericMapping, _Out_ PINHERITED_FROM pInheritArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKernelObjectSecurity
+`BOOL := GetKernelObjectSecurity(_In_ HANDLE Handle, _In_ SECURITY_INFORMATION RequestedInformation, _Out_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ DWORD nLength, _Out_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLengthSid
+`DWORD := GetLengthSid(_In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLocalManagedApplications
+`DWORD := GetLocalManagedApplications(_In_ BOOL bUserApps, _Out_ LPDWORD pdwApps, _Out_ PLOCALMANAGEDAPPLICATION *prgLocalApps)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetManagedApplicationCategories
+`DWORD := GetManagedApplicationCategories(_Out_ DWORD dwReserved, _Out_ APPCATEGORYINFOLIST *pAppCategory)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetManagedApplications
+`DWORD := GetManagedApplications(_In_ GUID *pCategory, _In_ DWORD dwQueryFlags, _In_ DWORD dwInfoLevel, _Out_ LPDWORD pdwApps, _Out_ PMANAGEDAPPLICATION *prgManagedApps)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNamedSecurityInfo
+`DWORD := GetNamedSecurityInfo(_In_ LPTSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _Out_opt_ PSID *ppsidOwner, _Out_opt_ PSID *ppsidGroup, _Out_opt_ PACL *ppDacl, _Out_opt_ PACL *ppSacl, _Out_opt_ PSECURITY_DESCRIPTOR *ppSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNamedSecurityInfoA
+`DWORD := GetNamedSecurityInfoA(_In_ LPSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _Out_opt_ PSID *ppsidOwner, _Out_opt_ PSID *ppsidGroup, _Out_opt_ PACL *ppDacl, _Out_opt_ PACL *ppSacl, _Out_opt_ PSECURITY_DESCRIPTOR *ppSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNamedSecurityInfoW
+`DWORD := GetNamedSecurityInfoW(_In_ LPWSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _Out_opt_ PSID *ppsidOwner, _Out_opt_ PSID *ppsidGroup, _Out_opt_ PACL *ppDacl, _Out_opt_ PACL *ppSacl, _Out_opt_ PSECURITY_DESCRIPTOR *ppSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNumberOfEventLogRecords
+`BOOL := GetNumberOfEventLogRecords(_In_ HANDLE hEventLog, _Out_ PDWORD NumberOfRecords)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOldestEventLogRecord
+`BOOL := GetOldestEventLogRecord(_In_ HANDLE hEventLog, _Out_ PDWORD OldestRecord)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPrivateObjectSecurity
+`BOOL := GetPrivateObjectSecurity(_In_ PSECURITY_DESCRIPTOR ObjectDescriptor, _In_ SECURITY_INFORMATION SecurityInformation, _Out_opt_ PSECURITY_DESCRIPTOR ResultantDescriptor, _In_ DWORD DescriptorLength, _Out_ PDWORD ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorControl
+`BOOL := GetSecurityDescriptorControl(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Out_ PSECURITY_DESCRIPTOR_CONTROL pControl, _Out_ LPDWORD lpdwRevision)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorDacl
+`BOOL := GetSecurityDescriptorDacl(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Out_ LPBOOL lpbDaclPresent, _Out_ PACL *pDacl, _Out_ LPBOOL lpbDaclDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorGroup
+`BOOL := GetSecurityDescriptorGroup(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Out_ PSID *pGroup, _Out_ LPBOOL lpbGroupDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorLength
+`DWORD := GetSecurityDescriptorLength(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorOwner
+`BOOL := GetSecurityDescriptorOwner(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Out_ PSID *pOwner, _Out_ LPBOOL lpbOwnerDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorRMControl
+`DWORD := GetSecurityDescriptorRMControl(_In_ PSECURITY_DESCRIPTOR SecurityDescriptor, _Out_ PUCHAR RMControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityDescriptorSacl
+`BOOL := GetSecurityDescriptorSacl(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Out_ LPBOOL lpbSaclPresent, _Out_ PACL *pSacl, _Out_ LPBOOL lpbSaclDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSecurityInfo
+`DWORD := GetSecurityInfo(_In_ HANDLE handle, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _Out_opt_ PSID *ppsidOwner, _Out_opt_ PSID *ppsidGroup, _Out_opt_ PACL *ppDacl, _Out_opt_ PACL *ppSacl, _Out_opt_ PSECURITY_DESCRIPTOR *ppSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceDisplayName
+`BOOL := GetServiceDisplayName(_In_ SC_HANDLE hSCManager, _In_ LPCTSTR lpServiceName, _Out_opt_ LPTSTR lpDisplayName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceDisplayNameA
+`BOOL := GetServiceDisplayNameA(_In_ SC_HANDLE hSCManager, _In_ LPCSTR lpServiceName, _Out_opt_ LPSTR lpDisplayName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceDisplayNameW
+`BOOL := GetServiceDisplayNameW(_In_ SC_HANDLE hSCManager, _In_ LPCWSTR lpServiceName, _Out_opt_ LPWSTR lpDisplayName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceKeyName
+`BOOL := GetServiceKeyName(_In_ SC_HANDLE hSCManager, _In_ LPCTSTR lpDisplayName, _Out_opt_ LPTSTR lpServiceName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceKeyNameA
+`BOOL := GetServiceKeyNameA(_In_ SC_HANDLE hSCManager, _In_ LPCSTR lpDisplayName, _Out_opt_ LPSTR lpServiceName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetServiceKeyNameW
+`BOOL := GetServiceKeyNameW(_In_ SC_HANDLE hSCManager, _In_ LPCWSTR lpDisplayName, _Out_opt_ LPWSTR lpServiceName, _Inout_ LPDWORD lpcchBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSidIdentifierAuthority
+`PSID_IDENTIFIER_AUTHORITY := GetSidIdentifierAuthority(_In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSidLengthRequired
+`DWORD := GetSidLengthRequired(_In_ UCHAR nSubAuthorityCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSidSubAuthority
+`PDWORD := GetSidSubAuthority(_In_ PSID pSid, _In_ DWORD nSubAuthority)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSidSubAuthorityCount
+`PUCHAR := GetSidSubAuthorityCount(_In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThreadWaitChain
+`BOOL := GetThreadWaitChain(_In_ HWCT WctHandle, _In_opt_ DWORD_PTR Context, _In_ DWORD Flags, _In_ DWORD ThreadId, _Inout_ LPDWORD NodeCount, _Out_ PWAITCHAIN_NODE_INFO NodeInfoArray, _Out_ LPBOOL IsCycle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTokenInformation
+`BOOL := GetTokenInformation(_In_ HANDLE TokenHandle, _In_ TOKEN_INFORMATION_CLASS TokenInformationClass, _Out_opt_ LPVOID TokenInformation, _In_ DWORD TokenInformationLength, _Out_ PDWORD ReturnLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTraceEnableFlags
+`ULONG := GetTraceEnableFlags(_In_ TRACEHANDLE SessionHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTraceEnableLevel
+`UCHAR := GetTraceEnableLevel(_In_ TRACEHANDLE SessionHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTraceLoggerHandle
+`TRACEHANDLE := GetTraceLoggerHandle(_In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeForm
+`TRUSTEE_FORM := GetTrusteeForm(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeFormA
+`TRUSTEE_FORM := GetTrusteeFormA(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeFormW
+`TRUSTEE_FORM := GetTrusteeFormW(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeName
+`LPTSTR := GetTrusteeName(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeNameA
+`LPSTR := GetTrusteeNameA(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeNameW
+`LPWSTR := GetTrusteeNameW(_In_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeType
+`TRUSTEE_TYPE := GetTrusteeType(_In_opt_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeTypeA
+`TRUSTEE_TYPE := GetTrusteeTypeA(_In_opt_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTrusteeTypeW
+`TRUSTEE_TYPE := GetTrusteeTypeW(_In_opt_ PTRUSTEE pTrustee)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserName
+`BOOL := GetUserName(_Out_ LPTSTR lpBuffer, _Inout_ LPDWORD lpnSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserNameA
+`BOOL := GetUserNameA(_Out_ LPSTR lpBuffer, _Inout_ LPDWORD lpnSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserNameW
+`BOOL := GetUserNameW(_Out_ LPWSTR lpBuffer, _Inout_ LPDWORD lpnSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowsAccountDomainSid
+`BOOL := GetWindowsAccountDomainSid(_In_ PSID pSid, _Out_opt_ PSID ppDomainSid, _Inout_ DWORD *cbSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImpersonateAnonymousToken
+`BOOL := ImpersonateAnonymousToken(_In_ HANDLE ThreadHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImpersonateLoggedOnUser
+`BOOL := ImpersonateLoggedOnUser(_In_ HANDLE hToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImpersonateNamedPipeClient
+`BOOL := ImpersonateNamedPipeClient(_In_ HANDLE hNamedPipe)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImpersonateSelf
+`BOOL := ImpersonateSelf(_In_ SECURITY_IMPERSONATION_LEVEL ImpersonationLevel)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitializeAcl
+`BOOL := InitializeAcl(_Out_ PACL pAcl, _In_ DWORD nAclLength, _In_ DWORD dwAclRevision)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitializeSecurityDescriptor
+`BOOL := InitializeSecurityDescriptor(_Out_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ DWORD dwRevision)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitializeSid
+`BOOL := InitializeSid(_Out_ PSID Sid, _In_ PSID_IDENTIFIER_AUTHORITY pIdentifierAuthority, _In_ BYTE nSubAuthorityCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateShutdown
+`DWORD := InitiateShutdown(_In_opt_ LPTSTR lpMachineName, _In_opt_ LPTSTR lpMessage, _In_ DWORD dwGracePeriod, _In_ DWORD dwShutdownFlags, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateShutdownA
+`DWORD := InitiateShutdownA(_In_opt_ LPSTR lpMachineName, _In_opt_ LPSTR lpMessage, _In_ DWORD dwGracePeriod, _In_ DWORD dwShutdownFlags, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateShutdownW
+`DWORD := InitiateShutdownW(_In_opt_ LPWSTR lpMachineName, _In_opt_ LPWSTR lpMessage, _In_ DWORD dwGracePeriod, _In_ DWORD dwShutdownFlags, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdown
+`BOOL := InitiateSystemShutdown(_In_opt_ LPTSTR lpMachineName, _In_opt_ LPTSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdownA
+`BOOL := InitiateSystemShutdownA(_In_opt_ LPSTR lpMachineName, _In_opt_ LPSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdownEx
+`BOOL := InitiateSystemShutdownEx(_In_opt_ LPTSTR lpMachineName, _In_opt_ LPTSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdownExA
+`BOOL := InitiateSystemShutdownExA(_In_opt_ LPSTR lpMachineName, _In_opt_ LPSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdownExW
+`BOOL := InitiateSystemShutdownExW(_In_opt_ LPWSTR lpMachineName, _In_opt_ LPWSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitiateSystemShutdownW
+`BOOL := InitiateSystemShutdownW(_In_opt_ LPWSTR lpMachineName, _In_opt_ LPWSTR lpMessage, _In_ DWORD dwTimeout, _In_ BOOL bForceAppsClosed, _In_ BOOL bRebootAfterShutdown)
+`/docs/commands/WinApi.htm
+
+
+Function
+InstallApplication
+`DWORD := InstallApplication(_In_ PINSTALLDATA *pInstallInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsTextUnicode
+`BOOL := IsTextUnicode(_In_ const VOID *lpv, _In_ int iSize, _Inout_opt_ LPINT lpiResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsTokenRestricted
+`BOOL := IsTokenRestricted(_In_ HANDLE TokenHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsValidAcl
+`BOOL := IsValidAcl(_In_ PACL pAcl)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsValidSecurityDescriptor
+`BOOL := IsValidSecurityDescriptor(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsValidSid
+`BOOL := IsValidSid(_In_ PSID pSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWellKnownSid
+`BOOL := IsWellKnownSid(_In_ PSID pSid, _In_ WELL_KNOWN_SID_TYPE WellKnownSidType)
+`/docs/commands/WinApi.htm
+
+
+Function
+LockServiceDatabase
+`SC_LOCK := LockServiceDatabase(_In_ SC_HANDLE hSCManager)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUser
+`BOOL := LogonUser(_In_ LPTSTR lpszUsername, _In_opt_ LPTSTR lpszDomain, _In_opt_ LPTSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_ PHANDLE phToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserA
+`BOOL := LogonUserA(_In_ LPSTR lpszUsername, _In_opt_ LPSTR lpszDomain, _In_opt_ LPSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_ PHANDLE phToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserEx
+`BOOL := LogonUserEx(_In_ LPTSTR lpszUsername, _In_opt_ LPTSTR lpszDomain, _In_opt_ LPTSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_opt_ PHANDLE phToken, _Out_opt_ PSID *ppLogonSid, _Out_opt_ PVOID *ppProfileBuffer, _Out_opt_ LPDWORD pdwProfileLength, _Out_opt_ PQUOTA_LIMITS pQuotaLimits)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserExA
+`BOOL := LogonUserExA(_In_ LPSTR lpszUsername, _In_opt_ LPSTR lpszDomain, _In_opt_ LPSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_opt_ PHANDLE phToken, _Out_opt_ PSID *ppLogonSid, _Out_opt_ PVOID *ppProfileBuffer, _Out_opt_ LPDWORD pdwProfileLength, _Out_opt_ PQUOTA_LIMITS pQuotaLimits)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserExExW
+`BOOL := LogonUserExExW(_In_ LPTSTR lpszUsername, _In_opt_ LPTSTR lpszDomain, _In_opt_ LPTSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _In_opt_ PTOKEN_GROUPS pTokenGroups, _Out_opt_ PHANDLE phToken, _Out_opt_ PSID *ppLogonSid, _Out_opt_ PVOID *ppProfileBuffer, _Out_opt_ LPDWORD pdwProfileLength, _Out_opt_ PQUOTA_LIMITS pQuotaLimits)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserExW
+`BOOL := LogonUserExW(_In_ LPWSTR lpszUsername, _In_opt_ LPWSTR lpszDomain, _In_opt_ LPWSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_opt_ PHANDLE phToken, _Out_opt_ PSID *ppLogonSid, _Out_opt_ PVOID *ppProfileBuffer, _Out_opt_ LPDWORD pdwProfileLength, _Out_opt_ PQUOTA_LIMITS pQuotaLimits)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogonUserW
+`BOOL := LogonUserW(_In_ LPWSTR lpszUsername, _In_opt_ LPWSTR lpszDomain, _In_opt_ LPWSTR lpszPassword, _In_ DWORD dwLogonType, _In_ DWORD dwLogonProvider, _Out_ PHANDLE phToken)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountName
+`BOOL := LookupAccountName(_In_opt_ LPCTSTR lpSystemName, _In_ LPCTSTR lpAccountName, _Out_opt_ PSID Sid, _Inout_ LPDWORD cbSid, _Out_opt_ LPTSTR ReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountNameA
+`BOOL := LookupAccountNameA(_In_opt_ LPCSTR lpSystemName, _In_ LPCSTR lpAccountName, _Out_opt_ PSID Sid, _Inout_ LPDWORD cbSid, _Out_opt_ LPSTR ReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountNameW
+`BOOL := LookupAccountNameW(_In_opt_ LPCWSTR lpSystemName, _In_ LPCWSTR lpAccountName, _Out_opt_ PSID Sid, _Inout_ LPDWORD cbSid, _Out_opt_ LPWSTR ReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountSid
+`BOOL := LookupAccountSid(_In_opt_ LPCTSTR lpSystemName, _In_ PSID lpSid, _Out_opt_ LPTSTR lpName, _Inout_ LPDWORD cchName, _Out_opt_ LPTSTR lpReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountSidA
+`BOOL := LookupAccountSidA(_In_opt_ LPCSTR lpSystemName, _In_ PSID lpSid, _Out_opt_ LPSTR lpName, _Inout_ LPDWORD cchName, _Out_opt_ LPSTR lpReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupAccountSidW
+`BOOL := LookupAccountSidW(_In_opt_ LPCWSTR lpSystemName, _In_ PSID lpSid, _Out_opt_ LPWSTR lpName, _Inout_ LPDWORD cchName, _Out_opt_ LPWSTR lpReferencedDomainName, _Inout_ LPDWORD cchReferencedDomainName, _Out_ PSID_NAME_USE peUse)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeDisplayName
+`BOOL := LookupPrivilegeDisplayName(_In_opt_ LPCTSTR lpSystemName, _In_ LPCTSTR lpName, _Out_opt_ LPTSTR lpDisplayName, _Inout_ LPDWORD cchDisplayName, _Out_ LPDWORD lpLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeDisplayNameA
+`BOOL := LookupPrivilegeDisplayNameA(_In_opt_ LPCSTR lpSystemName, _In_ LPCSTR lpName, _Out_opt_ LPSTR lpDisplayName, _Inout_ LPDWORD cchDisplayName, _Out_ LPDWORD lpLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeDisplayNameW
+`BOOL := LookupPrivilegeDisplayNameW(_In_opt_ LPCWSTR lpSystemName, _In_ LPCWSTR lpName, _Out_opt_ LPWSTR lpDisplayName, _Inout_ LPDWORD cchDisplayName, _Out_ LPDWORD lpLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeName
+`BOOL := LookupPrivilegeName(_In_opt_ LPCTSTR lpSystemName, _In_ PLUID lpLuid, _Out_opt_ LPTSTR lpName, _Inout_ LPDWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeNameA
+`BOOL := LookupPrivilegeNameA(_In_opt_ LPCSTR lpSystemName, _In_ PLUID lpLuid, _Out_opt_ LPSTR lpName, _Inout_ LPDWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeNameW
+`BOOL := LookupPrivilegeNameW(_In_opt_ LPCWSTR lpSystemName, _In_ PLUID lpLuid, _Out_opt_ LPWSTR lpName, _Inout_ LPDWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeValue
+`BOOL := LookupPrivilegeValue(_In_opt_ LPCTSTR lpSystemName, _In_ LPCTSTR lpName, _Out_ PLUID lpLuid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeValueA
+`BOOL := LookupPrivilegeValueA(_In_opt_ LPCSTR lpSystemName, _In_ LPCSTR lpName, _Out_ PLUID lpLuid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupPrivilegeValueW
+`BOOL := LookupPrivilegeValueW(_In_opt_ LPCWSTR lpSystemName, _In_ LPCWSTR lpName, _Out_ PLUID lpLuid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupSecurityDescriptorParts
+`DWORD := LookupSecurityDescriptorParts(_Out_opt_ PTRUSTEE *pOwner, _Out_opt_ PTRUSTEE *pGroup, _Out_opt_ PULONG cCountOfAccessEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAccessEntries, _Out_opt_ PULONG cCountOfAuditEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAuditEntries, _In_ PSECURITY_DESCRIPTOR pSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupSecurityDescriptorPartsA
+`DWORD := LookupSecurityDescriptorPartsA(_Out_opt_ PTRUSTEE *pOwner, _Out_opt_ PTRUSTEE *pGroup, _Out_opt_ PULONG cCountOfAccessEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAccessEntries, _Out_opt_ PULONG cCountOfAuditEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAuditEntries, _In_ PSECURITY_DESCRIPTOR pSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupSecurityDescriptorPartsW
+`DWORD := LookupSecurityDescriptorPartsW(_Out_opt_ PTRUSTEE *pOwner, _Out_opt_ PTRUSTEE *pGroup, _Out_opt_ PULONG cCountOfAccessEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAccessEntries, _Out_opt_ PULONG cCountOfAuditEntries, _Out_opt_ PEXPLICIT_ACCESS *pListOfAuditEntries, _In_ PSECURITY_DESCRIPTOR pSD)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaAddAccountRights
+`int := LsaAddAccountRights(_In_ LSA_HANDLE PolicyHandle, _In_ PSID AccountSid, _In_ PLSA_UNICODE_STRING UserRights, _In_ ULONG CountOfRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaClose
+`int := LsaClose(_In_ LSA_HANDLE ObjectHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaCreateTrustedDomainEx
+`int := LsaCreateTrustedDomainEx(_In_ LSA_HANDLE PolicyHandle, _In_ PTRUSTED_DOMAIN_INFORMATION_EX TrustedDomainInformation, _In_ PTRUSTED_DOMAIN_AUTH_INFORMATION AuthenticationInformation, _In_ ACCESS_MASK DesiredAccess, _Out_ PLSA_HANDLE TrustedDomainHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaDeleteTrustedDomain
+`int := LsaDeleteTrustedDomain(_In_ LSA_HANDLE PolicyHandle, _In_ PSID TrustedDomainSid)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaEnumerateAccountRights
+`int := LsaEnumerateAccountRights(_In_ LSA_HANDLE PolicyHandle, _In_ PSID AccountSid, _Out_ PLSA_UNICODE_STRING *UserRights, _Out_ PULONG CountOfRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaEnumerateAccountsWithUserRight
+`int := LsaEnumerateAccountsWithUserRight(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING UserRights, _Out_ PVOID *EnumerationBuffer, _Out_ PULONG CountReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaEnumerateTrustedDomains
+`int := LsaEnumerateTrustedDomains(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_ENUMERATION_HANDLE EnumerationContext, _Out_ PVOID *Buffer, _In_ ULONG PreferedMaximumLength, _Out_ PULONG CountReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaEnumerateTrustedDomainsEx
+`int := LsaEnumerateTrustedDomainsEx(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_ENUMERATION_HANDLE EnumerationContext, _Out_ PVOID *Buffer, _In_ ULONG PreferredMaximumLength, _Out_ PULONG CountReturned)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaFreeMemory
+`int := LsaFreeMemory(_In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaLookupNames
+`int := LsaLookupNames(_In_ LSA_HANDLE PolicyHandle, _In_ ULONG Count, _In_ PLSA_UNICODE_STRING Names, _Out_ PLSA_REFERENCED_DOMAIN_LIST *ReferencedDomains, _Out_ PLSA_TRANSLATED_SID *Sids)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaLookupNames2
+`int := LsaLookupNames2(_In_ LSA_HANDLE PolicyHandle, _In_ ULONG Flags, _In_ ULONG Count, _In_ PLSA_UNICODE_STRING Names, _Out_ PLSA_REFERENCED_DOMAIN_LIST *ReferencedDomains, _Out_ PLSA_TRANSLATED_SID2 *Sids)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaLookupPrivilegeValue
+`int := LsaLookupPrivilegeValue(LSA_HANDLE PolicyHandle, PUNICODE_STRING Name, PLUID Value)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaLookupSids
+`int := LsaLookupSids(_In_ LSA_HANDLE PolicyHandle, _In_ ULONG Count, _In_ PSID *Sids, _Out_ PLSA_REFERENCED_DOMAIN_LIST *ReferencedDomains, _Out_ PLSA_TRANSLATED_NAME *Names)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaNtStatusToWinError
+`ULONG := LsaNtStatusToWinError(_In_ NTSTATUS Status)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaOpenPolicy
+`int := LsaOpenPolicy(_In_ PLSA_UNICODE_STRING SystemName, _In_ PLSA_OBJECT_ATTRIBUTES ObjectAttributes, _In_ ACCESS_MASK DesiredAccess, _Inout_ PLSA_HANDLE PolicyHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaOpenTrustedDomainByName
+`int := LsaOpenTrustedDomainByName(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING TrustedDomainName, _In_ ACCESS_MASK DesiredAccess, _Out_ PLSA_HANDLE TrustedDomainHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaQueryDomainInformationPolicy
+`int := LsaQueryDomainInformationPolicy(_In_ LSA_HANDLE PolicyHandle, _In_ POLICY_DOMAIN_INFORMATION_CLASS InformationClass, _Out_ PVOID *Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaQueryForestTrustInformation
+`int := LsaQueryForestTrustInformation(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING TrustedDomainName, _Out_ PLSA_FOREST_TRUST_INFORMATION *ForestTrustInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaQueryInformationPolicy
+`int := LsaQueryInformationPolicy(_In_ LSA_HANDLE PolicyHandle, _In_ POLICY_INFORMATION_CLASS InformationClass, _Out_ PVOID *Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaQueryTrustedDomainInfo
+`int := LsaQueryTrustedDomainInfo(_In_ LSA_HANDLE PolicyHandle, _In_ PSID TrustedDomainSid, _In_ TRUSTED_INFORMATION_CLASS InformationClass, _Out_ PVOID *Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaQueryTrustedDomainInfoByName
+`int := LsaQueryTrustedDomainInfoByName(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING TrustedDomainName, _In_ TRUSTED_INFORMATION_CLASS InformationClass, _Out_ PVOID *Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaRemoveAccountRights
+`int := LsaRemoveAccountRights(_In_ LSA_HANDLE PolicyHandle, _In_ PSID AccountSid, _In_ BOOLEAN AllRights, _In_ PLSA_UNICODE_STRING UserRights, _In_ ULONG CountOfRights)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaRetrievePrivateData
+`int := LsaRetrievePrivateData(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING KeyName, _Out_ PLSA_UNICODE_STRING *PrivateData)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaSetDomainInformationPolicy
+`int := LsaSetDomainInformationPolicy(_In_ LSA_HANDLE PolicyHandle, _In_ POLICY_DOMAIN_INFORMATION_CLASS InformationClass, _In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaSetForestTrustInformation
+`int := LsaSetForestTrustInformation(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING TrustedDomainName, _In_ PLSA_FOREST_TRUST_INFORMATION ForestTrustInfo, _In_ BOOLEAN CheckOnly, _Out_ PLSA_FOREST_TRUST_COLLISION_INFORMATION *CollisionInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaSetInformationPolicy
+`int := LsaSetInformationPolicy(_In_ LSA_HANDLE PolicyHandle, _In_ POLICY_INFORMATION_CLASS InformationClass, _In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaSetTrustedDomainInfoByName
+`int := LsaSetTrustedDomainInfoByName(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING TrustedDomainName, _In_ TRUSTED_INFORMATION_CLASS InformationClass, _In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaSetTrustedDomainInformation
+`int := LsaSetTrustedDomainInformation(_In_ LSA_HANDLE PolicyHandle, _In_ PSID TrustedDomainSid, _In_ TRUSTED_INFORMATION_CLASS InformationClass, _In_ PVOID Buffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+LsaStorePrivateData
+`int := LsaStorePrivateData(_In_ LSA_HANDLE PolicyHandle, _In_ PLSA_UNICODE_STRING KeyName, _In_ PLSA_UNICODE_STRING PrivateData)
+`/docs/commands/WinApi.htm
+
+
+Function
+MakeAbsoluteSD
+`BOOL := MakeAbsoluteSD(_In_ PSECURITY_DESCRIPTOR pSelfRelativeSD, _Out_opt_ PSECURITY_DESCRIPTOR pAbsoluteSD, _Inout_ LPDWORD lpdwAbsoluteSDSize, _Out_opt_ PACL pDacl, _Inout_ LPDWORD lpdwDaclSize, _Out_opt_ PACL pSacl, _Inout_ LPDWORD lpdwSaclSize, _Out_opt_ PSID pOwner, _Inout_ LPDWORD lpdwOwnerSize, _Out_opt_ PSID pPrimaryGroup, _Inout_ LPDWORD lpdwPrimaryGroupSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+MakeSelfRelativeSD
+`BOOL := MakeSelfRelativeSD(_In_ PSECURITY_DESCRIPTOR pAbsoluteSD, _Out_opt_ PSECURITY_DESCRIPTOR pSelfRelativeSD, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapGenericMask
+`VOID := MapGenericMask(_Inout_ PDWORD AccessMask, _In_ PGENERIC_MAPPING GenericMapping)
+`/docs/commands/WinApi.htm
+
+
+Function
+MSChapSrvChangePassword
+`DWORD := MSChapSrvChangePassword(_In_ PWSTR ServerName, _In_ PWSTR UserName, _In_ BOOLEAN LmOldPresent, _In_ PLM_OWF_PASSWORD LmOldOwfPassword, _In_ PLM_OWF_PASSWORD LmNewOwfPassword, _In_ PNT_OWF_PASSWORD NtOldOwfPassword, _In_ PNT_OWF_PASSWORD NtNewOwfPassword)
+`/docs/commands/WinApi.htm
+
+
+Function
+MSChapSrvChangePassword2
+`DWORD := MSChapSrvChangePassword2(_In_ PWSTR ServerName, _In_ PWSTR UserName, _In_ PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldNt, _In_ PENCRYPTED_NT_OWF_PASSWORD OldNtOwfPasswordEncryptedWithNewNt, _In_ BOOLEAN LmPresent, _In_ PSAMPR_ENCRYPTED_USER_PASSWORD NewPasswordEncryptedWithOldLm, _In_ PENCRYPTED_LM_OWF_PASSWORD OldLmOwfPasswordEncryptedWithNewLmOrNt)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyBootConfigStatus
+`BOOL := NotifyBootConfigStatus(_In_ BOOL BootAcceptable)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyChangeEventLog
+`BOOL := NotifyChangeEventLog(_In_ HANDLE hEventLog, _In_ HANDLE hEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyServiceStatusChange
+`DWORD := NotifyServiceStatusChange(_In_ SC_HANDLE hService, _In_ DWORD dwNotifyMask, _In_ PSERVICE_NOTIFY pNotifyBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyServiceStatusChangeA
+`DWORD := NotifyServiceStatusChangeA(_In_ SC_HANDLE hService, _In_ DWORD dwNotifyMask, _In_ PSERVICE_NOTIFY pNotifyBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyServiceStatusChangeW
+`DWORD := NotifyServiceStatusChangeW(_In_ SC_HANDLE hService, _In_ DWORD dwNotifyMask, _In_ PSERVICE_NOTIFY pNotifyBuffer)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectCloseAuditAlarm
+`BOOL := ObjectCloseAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectCloseAuditAlarmA
+`BOOL := ObjectCloseAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectCloseAuditAlarmW
+`BOOL := ObjectCloseAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectDeleteAuditAlarm
+`BOOL := ObjectDeleteAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectDeleteAuditAlarmA
+`BOOL := ObjectDeleteAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectDeleteAuditAlarmW
+`BOOL := ObjectDeleteAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ BOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectOpenAuditAlarm
+`BOOL := ObjectOpenAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPTSTR ObjectTypeName, _In_opt_ LPTSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ DWORD GrantedAccess, _In_opt_ PPRIVILEGE_SET Privileges, _In_ BOOL ObjectCreation, _In_ BOOL AccessGranted, _Out_ LPBOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectOpenAuditAlarmA
+`BOOL := ObjectOpenAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPSTR ObjectTypeName, _In_opt_ LPSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ DWORD GrantedAccess, _In_opt_ PPRIVILEGE_SET Privileges, _In_ BOOL ObjectCreation, _In_ BOOL AccessGranted, _Out_ LPBOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectOpenAuditAlarmW
+`BOOL := ObjectOpenAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ LPWSTR ObjectTypeName, _In_opt_ LPWSTR ObjectName, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ DWORD GrantedAccess, _In_opt_ PPRIVILEGE_SET Privileges, _In_ BOOL ObjectCreation, _In_ BOOL AccessGranted, _Out_ LPBOOL GenerateOnClose)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectPrivilegeAuditAlarm
+`BOOL := ObjectPrivilegeAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectPrivilegeAuditAlarmA
+`BOOL := ObjectPrivilegeAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+ObjectPrivilegeAuditAlarmW
+`BOOL := ObjectPrivilegeAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPVOID HandleId, _In_ HANDLE ClientToken, _In_ DWORD DesiredAccess, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenBackupEventLog
+`HANDLE := OpenBackupEventLog(_In_ LPCTSTR lpUNCServerName, _In_ LPCTSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenBackupEventLogA
+`HANDLE := OpenBackupEventLogA(_In_ LPCSTR lpUNCServerName, _In_ LPCSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenBackupEventLogW
+`HANDLE := OpenBackupEventLogW(_In_ LPCWSTR lpUNCServerName, _In_ LPCWSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEncryptedFileRaw
+`DWORD := OpenEncryptedFileRaw(_In_ LPCTSTR lpFileName, _In_ ULONG ulFlags, _Out_ PVOID *pvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEncryptedFileRawA
+`DWORD := OpenEncryptedFileRawA(_In_ LPCSTR lpFileName, _In_ ULONG ulFlags, _Out_ PVOID *pvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEncryptedFileRawW
+`DWORD := OpenEncryptedFileRawW(_In_ LPCWSTR lpFileName, _In_ ULONG ulFlags, _Out_ PVOID *pvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEventLog
+`HANDLE := OpenEventLog(_In_ LPCTSTR lpUNCServerName, _In_ LPCTSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEventLogA
+`HANDLE := OpenEventLogA(_In_ LPCSTR lpUNCServerName, _In_ LPCSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenEventLogW
+`HANDLE := OpenEventLogW(_In_ LPCWSTR lpUNCServerName, _In_ LPCWSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenProcessToken
+`BOOL := OpenProcessToken(_In_ HANDLE ProcessHandle, _In_ DWORD DesiredAccess, _Out_ PHANDLE TokenHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenSCManager
+`SC_HANDLE := OpenSCManager(_In_opt_ LPCTSTR lpMachineName, _In_opt_ LPCTSTR lpDatabaseName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenSCManagerA
+`SC_HANDLE := OpenSCManagerA(_In_opt_ LPCSTR lpMachineName, _In_opt_ LPCSTR lpDatabaseName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenSCManagerW
+`SC_HANDLE := OpenSCManagerW(_In_opt_ LPCWSTR lpMachineName, _In_opt_ LPCWSTR lpDatabaseName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenService
+`SC_HANDLE := OpenService(_In_ SC_HANDLE hSCManager, _In_ LPCTSTR lpServiceName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenServiceA
+`SC_HANDLE := OpenServiceA(_In_ SC_HANDLE hSCManager, _In_ LPCSTR lpServiceName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenServiceW
+`SC_HANDLE := OpenServiceW(_In_ SC_HANDLE hSCManager, _In_ LPCWSTR lpServiceName, _In_ DWORD dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenThreadToken
+`BOOL := OpenThreadToken(_In_ HANDLE ThreadHandle, _In_ DWORD DesiredAccess, _In_ BOOL OpenAsSelf, _Out_ PHANDLE TokenHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenThreadWaitChainSession
+`HWCT := OpenThreadWaitChainSession(_In_ DWORD Flags, _In_opt_ PWAITCHAINCALLBACK callback)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfCreateInstance
+`PPERF_COUNTERSET_INSTANCE := PerfCreateInstance(_In_ HANDLE hProvider, _In_ LPCGUID CounterSetGuid, _In_ LPCWSTR szInstanceName, _In_ ULONG dwInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfDecrementULongCounterValue
+`ULONG := PerfDecrementULongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONG lValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfDecrementULongLongCounterValue
+`ULONG := PerfDecrementULongLongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONGLONG llValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfDeleteInstance
+`ULONG := PerfDeleteInstance(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE InstanceBlock)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfIncrementULongCounterValue
+`ULONG := PerfIncrementULongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONG lValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfIncrementULongLongCounterValue
+`ULONG := PerfIncrementULongLongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONGLONG llValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfQueryInstance
+`PPERF_COUNTERSET_INSTANCE := PerfQueryInstance(_In_ HANDLE hProvider, _In_ LPCGUID CounterSetGuid, _In_ LPCWSTR szInstance, _In_ ULONG dwInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfSetCounterRefValue
+`ULONG := PerfSetCounterRefValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ PVOID lpAddr)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfSetCounterSetInfo
+`ULONG := PerfSetCounterSetInfo(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INFO pTemplate, _In_ ULONG dwTemplateSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfSetULongCounterValue
+`ULONG := PerfSetULongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONG lValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfSetULongLongCounterValue
+`ULONG := PerfSetULongLongCounterValue(_In_ HANDLE hProvider, _In_ PPERF_COUNTERSET_INSTANCE pInstance, _In_ ULONG CounterId, _In_ ULONGLONG llValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfStartProvider
+`ULONG := PerfStartProvider(_In_ LPGUID ProviderGuid, _In_opt_ PERFLIBREQUEST ControlCallback, _Out_ HANDLE *phProvider)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfStartProviderEx
+`ULONG := PerfStartProviderEx(_In_ LPGUID ProviderGuid, _In_opt_ PPERF_PROVIDER_CONTEXT ProviderContext, _Out_ HANDLE *phProvider)
+`/docs/commands/WinApi.htm
+
+
+Function
+PerfStopProvider
+`ULONG := PerfStopProvider(_In_ HANDLE hProvider)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivilegeCheck
+`BOOL := PrivilegeCheck(_In_ HANDLE ClientToken, _Inout_ PPRIVILEGE_SET RequiredPrivileges, _Out_ LPBOOL pfResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivilegedServiceAuditAlarm
+`BOOL := PrivilegedServiceAuditAlarm(_In_ LPCTSTR SubsystemName, _In_ LPCTSTR ServiceName, _In_ HANDLE ClientToken, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivilegedServiceAuditAlarmA
+`BOOL := PrivilegedServiceAuditAlarmA(_In_ LPCSTR SubsystemName, _In_ LPCSTR ServiceName, _In_ HANDLE ClientToken, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivilegedServiceAuditAlarmW
+`BOOL := PrivilegedServiceAuditAlarmW(_In_ LPCWSTR SubsystemName, _In_ LPCWSTR ServiceName, _In_ HANDLE ClientToken, _In_ PPRIVILEGE_SET Privileges, _In_ BOOL AccessGranted)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryRecoveryAgentsOnEncryptedFile
+`DWORD := QueryRecoveryAgentsOnEncryptedFile(_In_ LPCWSTR lpFileName, _Out_ PENCRYPTION_CERTIFICATE_HASH_LIST *pRecoveryAgents)
+`/docs/commands/WinApi.htm
+
+
+Function
+QuerySecurityAccessMask
+`VOID := QuerySecurityAccessMask(_In_ SECURITY_INFORMATION SecurityInformation, _Out_ LPDWORD DesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfig
+`BOOL := QueryServiceConfig(_In_ SC_HANDLE hService, _Out_opt_ LPQUERY_SERVICE_CONFIG lpServiceConfig, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfig2
+`BOOL := QueryServiceConfig2(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _Out_opt_ LPBYTE lpBuffer, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfig2A
+`BOOL := QueryServiceConfig2A(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _Out_opt_ LPBYTE lpBuffer, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfig2W
+`BOOL := QueryServiceConfig2W(_In_ SC_HANDLE hService, _In_ DWORD dwInfoLevel, _Out_opt_ LPBYTE lpBuffer, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfigA
+`BOOL := QueryServiceConfigA(_In_ SC_HANDLE hService, _Out_opt_ LPQUERY_SERVICE_CONFIG lpServiceConfig, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceConfigW
+`BOOL := QueryServiceConfigW(_In_ SC_HANDLE hService, _Out_opt_ LPQUERY_SERVICE_CONFIG lpServiceConfig, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceLockStatus
+`BOOL := QueryServiceLockStatus(_In_ SC_HANDLE hSCManager, _Out_opt_ LPQUERY_SERVICE_LOCK_STATUS lpLockStatus, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceLockStatusA
+`BOOL := QueryServiceLockStatusA(_In_ SC_HANDLE hSCManager, _Out_opt_ LPQUERY_SERVICE_LOCK_STATUS lpLockStatus, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceLockStatusW
+`BOOL := QueryServiceLockStatusW(_In_ SC_HANDLE hSCManager, _Out_opt_ LPQUERY_SERVICE_LOCK_STATUS lpLockStatus, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceObjectSecurity
+`BOOL := QueryServiceObjectSecurity(_In_ SC_HANDLE hService, _In_ SECURITY_INFORMATION dwSecurityInformation, _Out_opt_ PSECURITY_DESCRIPTOR lpSecurityDescriptor, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceStatus
+`BOOL := QueryServiceStatus(_In_ SC_HANDLE hService, _Out_ LPSERVICE_STATUS lpServiceStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryServiceStatusEx
+`BOOL := QueryServiceStatusEx(_In_ SC_HANDLE hService, _In_ SC_STATUS_TYPE InfoLevel, _Out_opt_ LPBYTE lpBuffer, _In_ DWORD cbBufSize, _Out_ LPDWORD pcbBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryTrace
+`ULONG := QueryTrace(_In_ TRACEHANDLE SessionHandle, _In_ LPCTSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryTraceA
+`ULONG := QueryTraceA(_In_ TRACEHANDLE SessionHandle, _In_ LPCSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryTraceW
+`ULONG := QueryTraceW(_In_ TRACEHANDLE SessionHandle, _In_ LPCWSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+QueryUsersOnEncryptedFile
+`DWORD := QueryUsersOnEncryptedFile(_In_ LPCWSTR lpFileName, _Out_ PENCRYPTION_CERTIFICATE_HASH_LIST *pUsers)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadEncryptedFileRaw
+`DWORD := ReadEncryptedFileRaw(_In_ PFE_EXPORT_FUNC pfExportCallback, _In_opt_ PVOID pvCallbackContext, _In_ PVOID pvContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadEventLog
+`BOOL := ReadEventLog(_In_ HANDLE hEventLog, _In_ DWORD dwReadFlags, _In_ DWORD dwRecordOffset, _Out_ LPVOID lpBuffer, _In_ DWORD nNumberOfBytesToRead, _Out_ DWORD *pnBytesRead, _Out_ DWORD *pnMinNumberOfBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadEventLogA
+`BOOL := ReadEventLogA(_In_ HANDLE hEventLog, _In_ DWORD dwReadFlags, _In_ DWORD dwRecordOffset, _Out_ LPVOID lpBuffer, _In_ DWORD nNumberOfBytesToRead, _Out_ DWORD *pnBytesRead, _Out_ DWORD *pnMinNumberOfBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadEventLogW
+`BOOL := ReadEventLogW(_In_ HANDLE hEventLog, _In_ DWORD dwReadFlags, _In_ DWORD dwRecordOffset, _Out_ LPVOID lpBuffer, _In_ DWORD nNumberOfBytesToRead, _Out_ DWORD *pnBytesRead, _Out_ DWORD *pnMinNumberOfBytesNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCloseKey
+`LONG := RegCloseKey(_In_ HKEY hKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegConnectRegistry
+`LONG := RegConnectRegistry(_In_opt_ LPCTSTR lpMachineName, _In_ HKEY hKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegConnectRegistryA
+`LONG := RegConnectRegistryA(_In_opt_ LPCSTR lpMachineName, _In_ HKEY hKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegConnectRegistryW
+`LONG := RegConnectRegistryW(_In_opt_ LPCWSTR lpMachineName, _In_ HKEY hKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCopyTree
+`LONG := RegCopyTree(_In_ HKEY hKeySrc, _In_opt_ LPCTSTR lpSubKey, _In_ HKEY hKeyDest)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCopyTreeA
+`LONG := RegCopyTreeA(_In_ HKEY hKeySrc, _In_opt_ LPCSTR lpSubKey, _In_ HKEY hKeyDest)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCopyTreeW
+`LONG := RegCopyTreeW(_In_ HKEY hKeySrc, _In_opt_ LPCWSTR lpSubKey, _In_ HKEY hKeyDest)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKey
+`LONG := RegCreateKey(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyA
+`LONG := RegCreateKeyA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyEx
+`LONG := RegCreateKeyEx(_In_ HKEY hKey, _In_ LPCTSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPTSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyExA
+`LONG := RegCreateKeyExA(_In_ HKEY hKey, _In_ LPCSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyExW
+`LONG := RegCreateKeyExW(_In_ HKEY hKey, _In_ LPCWSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPWSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyTransacted
+`LONG := RegCreateKeyTransacted(_In_ HKEY hKey, _In_ LPCTSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPTSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ const LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParemeter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyTransactedA
+`LONG := RegCreateKeyTransactedA(_In_ HKEY hKey, _In_ LPCSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ const LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParemeter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyTransactedW
+`LONG := RegCreateKeyTransactedW(_In_ HKEY hKey, _In_ LPCWSTR lpSubKey, _Reserved_ DWORD Reserved, _In_opt_ LPWSTR lpClass, _In_ DWORD dwOptions, _In_ REGSAM samDesired, _In_opt_ const LPSECURITY_ATTRIBUTES lpSecurityAttributes, _Out_ PHKEY phkResult, _Out_opt_ LPDWORD lpdwDisposition, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParemeter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegCreateKeyW
+`LONG := RegCreateKeyW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKey
+`LONG := RegDeleteKey(_In_ HKEY hKey, _In_ LPCTSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyA
+`LONG := RegDeleteKeyA(_In_ HKEY hKey, _In_ LPCSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyEx
+`LONG := RegDeleteKeyEx(_In_ HKEY hKey, _In_ LPCTSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyExA
+`LONG := RegDeleteKeyExA(_In_ HKEY hKey, _In_ LPCSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyExW
+`LONG := RegDeleteKeyExW(_In_ HKEY hKey, _In_ LPCWSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyTransacted
+`LONG := RegDeleteKeyTransacted(_In_ HKEY hKey, _In_ LPCTSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyTransactedA
+`LONG := RegDeleteKeyTransactedA(_In_ HKEY hKey, _In_ LPCSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyTransactedW
+`LONG := RegDeleteKeyTransactedW(_In_ HKEY hKey, _In_ LPCWSTR lpSubKey, _In_ REGSAM samDesired, _Reserved_ DWORD Reserved, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyValue
+`LONG := RegDeleteKeyValue(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_opt_ LPCTSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyValueA
+`LONG := RegDeleteKeyValueA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_opt_ LPCSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyValueW
+`LONG := RegDeleteKeyValueW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_opt_ LPCWSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteKeyW
+`LONG := RegDeleteKeyW(_In_ HKEY hKey, _In_ LPCWSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteTree
+`LONG := RegDeleteTree(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteTreeA
+`LONG := RegDeleteTreeA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteTreeW
+`LONG := RegDeleteTreeW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteValue
+`LONG := RegDeleteValue(_In_ HKEY hKey, _In_opt_ LPCTSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteValueA
+`LONG := RegDeleteValueA(_In_ HKEY hKey, _In_opt_ LPCSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDeleteValueW
+`LONG := RegDeleteValueW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpValueName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDisablePredefinedCache
+`LONG := RegDisablePredefinedCache(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDisablePredefinedCacheEx
+`LONG := RegDisablePredefinedCacheEx(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegDisableReflectionKey
+`LONG := RegDisableReflectionKey(_In_ HKEY hBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnableReflectionKey
+`LONG := RegEnableReflectionKey(_In_ HKEY hBase)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKey
+`LONG := RegEnumKey(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPTSTR lpName, _In_ DWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKeyA
+`LONG := RegEnumKeyA(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPSTR lpName, _In_ DWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKeyEx
+`LONG := RegEnumKeyEx(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPTSTR lpName, _Inout_ LPDWORD lpcName, _Reserved_ LPDWORD lpReserved, _Inout_ LPTSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKeyExA
+`LONG := RegEnumKeyExA(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPSTR lpName, _Inout_ LPDWORD lpcName, _Reserved_ LPDWORD lpReserved, _Inout_ LPSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKeyExW
+`LONG := RegEnumKeyExW(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPWSTR lpName, _Inout_ LPDWORD lpcName, _Reserved_ LPDWORD lpReserved, _Inout_ LPWSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumKeyW
+`LONG := RegEnumKeyW(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPWSTR lpName, _In_ DWORD cchName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumValue
+`LONG := RegEnumValue(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPTSTR lpValueName, _Inout_ LPDWORD lpcchValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumValueA
+`LONG := RegEnumValueA(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPSTR lpValueName, _Inout_ LPDWORD lpcchValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegEnumValueW
+`LONG := RegEnumValueW(_In_ HKEY hKey, _In_ DWORD dwIndex, _Out_ LPWSTR lpValueName, _Inout_ LPDWORD lpcchValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegFlushKey
+`LONG := RegFlushKey(_In_ HKEY hKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegGetKeySecurity
+`LONG := RegGetKeySecurity(_In_ HKEY hKey, _In_ SECURITY_INFORMATION SecurityInformation, _Out_opt_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _Inout_ LPDWORD lpcbSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegGetValue
+`LONG := RegGetValue(_In_ HKEY hkey, _In_opt_ LPCTSTR lpSubKey, _In_opt_ LPCTSTR lpValue, _In_opt_ DWORD dwFlags, _Out_opt_ LPDWORD pdwType, _Out_opt_ PVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegGetValueA
+`LONG := RegGetValueA(_In_ HKEY hkey, _In_opt_ LPCSTR lpSubKey, _In_opt_ LPCSTR lpValue, _In_opt_ DWORD dwFlags, _Out_opt_ LPDWORD pdwType, _Out_opt_ PVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegGetValueW
+`LONG := RegGetValueW(_In_ HKEY hkey, _In_opt_ LPCWSTR lpSubKey, _In_opt_ LPCWSTR lpValue, _In_opt_ DWORD dwFlags, _Out_opt_ LPDWORD pdwType, _Out_opt_ PVOID pvData, _Inout_opt_ LPDWORD pcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterEventSource
+`HANDLE := RegisterEventSource(_In_ LPCTSTR lpUNCServerName, _In_ LPCTSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterEventSourceA
+`HANDLE := RegisterEventSourceA(_In_ LPCSTR lpUNCServerName, _In_ LPCSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterEventSourceW
+`HANDLE := RegisterEventSourceW(_In_ LPCWSTR lpUNCServerName, _In_ LPCWSTR lpSourceName)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandler
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandler(_In_ LPCTSTR lpServiceName, _In_ LPHANDLER_FUNCTION lpHandlerProc)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandlerA
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandlerA(_In_ LPCSTR lpServiceName, _In_ LPHANDLER_FUNCTION lpHandlerProc)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandlerEx
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandlerEx(_In_ LPCTSTR lpServiceName, _In_ LPHANDLER_FUNCTION_EX lpHandlerProc, _In_opt_ LPVOID lpContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandlerExA
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandlerExA(_In_ LPCSTR lpServiceName, _In_ LPHANDLER_FUNCTION_EX lpHandlerProc, _In_opt_ LPVOID lpContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandlerExW
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandlerExW(_In_ LPCWSTR lpServiceName, _In_ LPHANDLER_FUNCTION_EX lpHandlerProc, _In_opt_ LPVOID lpContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterServiceCtrlHandlerW
+`SERVICE_STATUS_HANDLE := RegisterServiceCtrlHandlerW(_In_ LPCWSTR lpServiceName, _In_ LPHANDLER_FUNCTION lpHandlerProc)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterWaitChainCOMCallback
+`VOID := RegisterWaitChainCOMCallback(_In_ PCOGETCALLSTATE CallStateCallback, _In_ PCOGETACTIVATIONSTATE ActivationStateCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadAppKey
+`LONG := RegLoadAppKey(_In_ LPCTSTR lpFile, _Out_ PHKEY phkResult, _In_ REGSAM samDesired, _In_ DWORD dwOptions, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadAppKeyA
+`LONG := RegLoadAppKeyA(_In_ LPCSTR lpFile, _Out_ PHKEY phkResult, _In_ REGSAM samDesired, _In_ DWORD dwOptions, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadAppKeyW
+`LONG := RegLoadAppKeyW(_In_ LPCWSTR lpFile, _Out_ PHKEY phkResult, _In_ REGSAM samDesired, _In_ DWORD dwOptions, _Reserved_ DWORD Reserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadKey
+`LONG := RegLoadKey(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_ LPCTSTR lpFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadKeyA
+`LONG := RegLoadKeyA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_ LPCSTR lpFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadKeyW
+`LONG := RegLoadKeyW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_ LPCWSTR lpFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadMUIString
+`LONG := RegLoadMUIString(_In_ HKEY hKey, _In_opt_ LPCTSTR pszValue, _Out_opt_ LPTSTR pszOutBuf, _In_ DWORD cbOutBuf, _Out_opt_ LPDWORD pcbData, _In_ DWORD Flags, _In_opt_ LPCTSTR pszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadMUIStringA
+`LONG := RegLoadMUIStringA(_In_ HKEY hKey, _In_opt_ LPCSTR pszValue, _Out_opt_ LPSTR pszOutBuf, _In_ DWORD cbOutBuf, _Out_opt_ LPDWORD pcbData, _In_ DWORD Flags, _In_opt_ LPCSTR pszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegLoadMUIStringW
+`LONG := RegLoadMUIStringW(_In_ HKEY hKey, _In_opt_ LPCWSTR pszValue, _Out_opt_ LPWSTR pszOutBuf, _In_ DWORD cbOutBuf, _Out_opt_ LPDWORD pcbData, _In_ DWORD Flags, _In_opt_ LPCWSTR pszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegNotifyChangeKeyValue
+`LONG := RegNotifyChangeKeyValue(_In_ HKEY hKey, _In_ BOOL bWatchSubtree, _In_ DWORD dwNotifyFilter, _In_opt_ HANDLE hEvent, _In_ BOOL fAsynchronous)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenCurrentUser
+`LONG := RegOpenCurrentUser(_In_ REGSAM samDesired, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKey
+`LONG := RegOpenKey(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyA
+`LONG := RegOpenKeyA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyEx
+`LONG := RegOpenKeyEx(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _Reserved_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyExA
+`LONG := RegOpenKeyExA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _Reserved_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyExW
+`LONG := RegOpenKeyExW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _Reserved_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyTransacted
+`LONG := RegOpenKeyTransacted(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyTransactedA
+`LONG := RegOpenKeyTransactedA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyTransactedW
+`LONG := RegOpenKeyTransactedW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_ DWORD ulOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult, _In_ HANDLE hTransaction, _Reserved_ PVOID pExtendedParameter)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenKeyW
+`LONG := RegOpenKeyW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOpenUserClassesRoot
+`LONG := RegOpenUserClassesRoot(_In_ HANDLE hToken, _Reserved_ DWORD dwOptions, _In_ REGSAM samDesired, _Out_ PHKEY phkResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegOverridePredefKey
+`LONG := RegOverridePredefKey(_In_ HKEY hKey, _In_opt_ HKEY hNewHKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryInfoKey
+`LONG := RegQueryInfoKey(_In_ HKEY hKey, _Out_opt_ LPTSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpcSubKeys, _Out_opt_ LPDWORD lpcMaxSubKeyLen, _Out_opt_ LPDWORD lpcMaxClassLen, _Out_opt_ LPDWORD lpcValues, _Out_opt_ LPDWORD lpcMaxValueNameLen, _Out_opt_ LPDWORD lpcMaxValueLen, _Out_opt_ LPDWORD lpcbSecurityDescriptor, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryInfoKeyA
+`LONG := RegQueryInfoKeyA(_In_ HKEY hKey, _Out_opt_ LPSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpcSubKeys, _Out_opt_ LPDWORD lpcMaxSubKeyLen, _Out_opt_ LPDWORD lpcMaxClassLen, _Out_opt_ LPDWORD lpcValues, _Out_opt_ LPDWORD lpcMaxValueNameLen, _Out_opt_ LPDWORD lpcMaxValueLen, _Out_opt_ LPDWORD lpcbSecurityDescriptor, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryInfoKeyW
+`LONG := RegQueryInfoKeyW(_In_ HKEY hKey, _Out_opt_ LPWSTR lpClass, _Inout_opt_ LPDWORD lpcClass, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpcSubKeys, _Out_opt_ LPDWORD lpcMaxSubKeyLen, _Out_opt_ LPDWORD lpcMaxClassLen, _Out_opt_ LPDWORD lpcValues, _Out_opt_ LPDWORD lpcMaxValueNameLen, _Out_opt_ LPDWORD lpcMaxValueLen, _Out_opt_ LPDWORD lpcbSecurityDescriptor, _Out_opt_ PFILETIME lpftLastWriteTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryMultipleValues
+`LONG := RegQueryMultipleValues(_In_ HKEY hKey, _Out_ PVALENT val_list, _In_ DWORD num_vals, _Out_opt_ LPTSTR lpValueBuf, _Inout_opt_ LPDWORD ldwTotsize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryMultipleValuesA
+`LONG := RegQueryMultipleValuesA(_In_ HKEY hKey, _Out_ PVALENT val_list, _In_ DWORD num_vals, _Out_opt_ LPSTR lpValueBuf, _Inout_opt_ LPDWORD ldwTotsize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryMultipleValuesW
+`LONG := RegQueryMultipleValuesW(_In_ HKEY hKey, _Out_ PVALENT val_list, _In_ DWORD num_vals, _Out_opt_ LPWSTR lpValueBuf, _Inout_opt_ LPDWORD ldwTotsize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryReflectionKey
+`LONG := RegQueryReflectionKey(_In_ HKEY hBase, _Out_ BOOL *bIsReflectionDisabled)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValue
+`LONG := RegQueryValue(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _Out_opt_ LPTSTR lpValue, _Inout_opt_ PLONG lpcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValueA
+`LONG := RegQueryValueA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _Out_opt_ LPSTR lpValue, _Inout_opt_ PLONG lpcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValueEx
+`LONG := RegQueryValueEx(_In_ HKEY hKey, _In_opt_ LPCTSTR lpValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValueExA
+`LONG := RegQueryValueExA(_In_ HKEY hKey, _In_opt_ LPCSTR lpValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValueExW
+`LONG := RegQueryValueExW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpValueName, _Reserved_ LPDWORD lpReserved, _Out_opt_ LPDWORD lpType, _Out_opt_ LPBYTE lpData, _Inout_opt_ LPDWORD lpcbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegQueryValueW
+`LONG := RegQueryValueW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _Out_opt_ LPWSTR lpValue, _Inout_opt_ PLONG lpcbValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegReplaceKey
+`LONG := RegReplaceKey(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_ LPCTSTR lpNewFile, _In_ LPCTSTR lpOldFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegReplaceKeyA
+`LONG := RegReplaceKeyA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_ LPCSTR lpNewFile, _In_ LPCSTR lpOldFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegReplaceKeyW
+`LONG := RegReplaceKeyW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_ LPCWSTR lpNewFile, _In_ LPCWSTR lpOldFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegRestoreKey
+`LONG := RegRestoreKey(_In_ HKEY hKey, _In_ LPCTSTR lpFile, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegRestoreKeyA
+`LONG := RegRestoreKeyA(_In_ HKEY hKey, _In_ LPCSTR lpFile, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegRestoreKeyW
+`LONG := RegRestoreKeyW(_In_ HKEY hKey, _In_ LPCWSTR lpFile, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKey
+`LONG := RegSaveKey(_In_ HKEY hKey, _In_ LPCTSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKeyA
+`LONG := RegSaveKeyA(_In_ HKEY hKey, _In_ LPCSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKeyEx
+`LONG := RegSaveKeyEx(_In_ HKEY hKey, _In_ LPCTSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKeyExA
+`LONG := RegSaveKeyExA(_In_ HKEY hKey, _In_ LPCSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKeyExW
+`LONG := RegSaveKeyExW(_In_ HKEY hKey, _In_ LPCWSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSaveKeyW
+`LONG := RegSaveKeyW(_In_ HKEY hKey, _In_ LPCWSTR lpFile, _In_opt_ LPSECURITY_ATTRIBUTES lpSecurityAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetKeySecurity
+`LONG := RegSetKeySecurity(_In_ HKEY hKey, _In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetKeyValue
+`LONG := RegSetKeyValue(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_opt_ LPCTSTR lpValueName, _In_ DWORD dwType, _In_opt_ LPCVOID lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetKeyValueA
+`LONG := RegSetKeyValueA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_opt_ LPCSTR lpValueName, _In_ DWORD dwType, _In_opt_ LPCVOID lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetKeyValueW
+`LONG := RegSetKeyValueW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_opt_ LPCWSTR lpValueName, _In_ DWORD dwType, _In_opt_ LPCVOID lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValue
+`LONG := RegSetValue(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey, _In_ DWORD dwType, _In_ LPCTSTR lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValueA
+`LONG := RegSetValueA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey, _In_ DWORD dwType, _In_ LPCSTR lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValueEx
+`LONG := RegSetValueEx(_In_ HKEY hKey, _In_opt_ LPCTSTR lpValueName, _Reserved_ DWORD Reserved, _In_ DWORD dwType, _In_ const BYTE *lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValueExA
+`LONG := RegSetValueExA(_In_ HKEY hKey, _In_opt_ LPCSTR lpValueName, _Reserved_ DWORD Reserved, _In_ DWORD dwType, _In_ const BYTE *lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValueExW
+`LONG := RegSetValueExW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpValueName, _Reserved_ DWORD Reserved, _In_ DWORD dwType, _In_ const BYTE *lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegSetValueW
+`LONG := RegSetValueW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey, _In_ DWORD dwType, _In_ LPCWSTR lpData, _In_ DWORD cbData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegUnLoadKey
+`LONG := RegUnLoadKey(_In_ HKEY hKey, _In_opt_ LPCTSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegUnLoadKeyA
+`LONG := RegUnLoadKeyA(_In_ HKEY hKey, _In_opt_ LPCSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegUnLoadKeyW
+`LONG := RegUnLoadKeyW(_In_ HKEY hKey, _In_opt_ LPCWSTR lpSubKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveUsersFromEncryptedFile
+`DWORD := RemoveUsersFromEncryptedFile(_In_ LPCWSTR lpFileName, _In_ PENCRYPTION_CERTIFICATE_HASH_LIST pHashes)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReportEvent
+`BOOL := ReportEvent(_In_ HANDLE hEventLog, _In_ WORD wType, _In_ WORD wCategory, _In_ DWORD dwEventID, _In_ PSID lpUserSid, _In_ WORD wNumStrings, _In_ DWORD dwDataSize, _In_ LPCTSTR *lpStrings, _In_ LPVOID lpRawData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReportEventA
+`BOOL := ReportEventA(_In_ HANDLE hEventLog, _In_ WORD wType, _In_ WORD wCategory, _In_ DWORD dwEventID, _In_ PSID lpUserSid, _In_ WORD wNumStrings, _In_ DWORD dwDataSize, _In_ LPCSTR *lpStrings, _In_ LPVOID lpRawData)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReportEventW
+`BOOL := ReportEventW(_In_ HANDLE hEventLog, _In_ WORD wType, _In_ WORD wCategory, _In_ DWORD dwEventID, _In_ PSID lpUserSid, _In_ WORD wNumStrings, _In_ DWORD dwDataSize, _In_ LPCWSTR *lpStrings, _In_ LPVOID lpRawData)
+`/docs/commands/WinApi.htm
+
+
+Function
+RevertToSelf
+`BOOL := RevertToSelf(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferCloseLevel
+`BOOL := SaferCloseLevel(_In_ SAFER_LEVEL_HANDLE hLevelHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferComputeTokenFromLevel
+`BOOL := SaferComputeTokenFromLevel(_In_ SAFER_LEVEL_HANDLE LevelHandle, _In_opt_ HANDLE InAccessToken, _Out_ PHANDLE OutAccessToken, _In_ DWORD dwFlags, _Inout_opt_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferCreateLevel
+`BOOL := SaferCreateLevel(_In_ DWORD dwScopeId, _In_ DWORD dwLevelId, _In_ DWORD OpenFlags, _Out_ SAFER_LEVEL_HANDLE *pLevelHandle, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferGetLevelInformation
+`BOOL := SaferGetLevelInformation(_In_ SAFER_LEVEL_HANDLE LevelHandle, _In_ SAFER_OBJECT_INFO_CLASS dwInfoType, _Out_opt_ LPVOID lpQueryBuffer, _In_ DWORD dwInBufferSize, _Out_ LPDWORD lpdwOutBufferSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferGetPolicyInformation
+`BOOL := SaferGetPolicyInformation(_In_ DWORD dwScopeId, _In_ SAFER_POLICY_INFO_CLASS SaferPolicyInfoClass, _In_ DWORD InfoBufferSize, _Out_ PVOID InfoBuffer, _Out_ PDWORD InfoBufferRetSize, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferIdentifyLevel
+`BOOL := SaferIdentifyLevel(_In_ DWORD dwNumProperties, _In_opt_ PSAFER_CODE_PROPERTIES pCodeProperties, _Out_ SAFER_LEVEL_HANDLE *pLevelHandle, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferiIsExecutableFileType
+`BOOL := SaferiIsExecutableFileType(_In_ LPCWSTR szFullPath, _In_ BOOLEAN bFromShellExecute)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferRecordEventLogEntry
+`BOOL := SaferRecordEventLogEntry(_In_ SAFER_LEVEL_HANDLE hLevel, _In_ LPCWSTR szTargetPath, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferSetLevelInformation
+`BOOL := SaferSetLevelInformation(_In_ SAFER_LEVEL_HANDLE LevelHandle, _In_ SAFER_OBJECT_INFO_CLASS dwInfoType, _In_ LPVOID lpQueryBuffer, _In_ DWORD dwInBufferSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SaferSetPolicyInformation
+`BOOL := SaferSetPolicyInformation(_In_ DWORD dwScopeId, _In_ SAFER_POLICY_INFO_CLASS SaferPolicyInfoClass, _In_ DWORD InfoBufferSize, _In_ PVOID InfoBuffer, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetAclInformation
+`BOOL := SetAclInformation(_Inout_ PACL pAcl, _In_ LPVOID pAclInformation, _In_ DWORD nAclInformationLength, _In_ ACL_INFORMATION_CLASS dwAclInformationClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetEntriesInAcl
+`DWORD := SetEntriesInAcl(_In_ ULONG cCountOfExplicitEntries, _In_opt_ PEXPLICIT_ACCESS pListOfExplicitEntries, _In_opt_ PACL OldAcl, _Out_ PACL *NewAcl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetEntriesInAclA
+`DWORD := SetEntriesInAclA(_In_ ULONG cCountOfExplicitEntries, _In_opt_ PEXPLICIT_ACCESS pListOfExplicitEntries, _In_opt_ PACL OldAcl, _Out_ PACL *NewAcl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetEntriesInAclW
+`DWORD := SetEntriesInAclW(_In_ ULONG cCountOfExplicitEntries, _In_opt_ PEXPLICIT_ACCESS pListOfExplicitEntries, _In_opt_ PACL OldAcl, _Out_ PACL *NewAcl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetFileSecurity
+`BOOL := SetFileSecurity(_In_ LPCTSTR lpFileName, _In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetFileSecurityA
+`BOOL := SetFileSecurityA(_In_ LPCSTR lpFileName, _In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetFileSecurityW
+`BOOL := SetFileSecurityW(_In_ LPCWSTR lpFileName, _In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR pSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetKernelObjectSecurity
+`BOOL := SetKernelObjectSecurity(_In_ HANDLE Handle, _In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR SecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetNamedSecurityInfo
+`DWORD := SetNamedSecurityInfo(_In_ LPTSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID psidOwner, _In_opt_ PSID psidGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetNamedSecurityInfoA
+`DWORD := SetNamedSecurityInfoA(_In_ LPSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID psidOwner, _In_opt_ PSID psidGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetNamedSecurityInfoW
+`DWORD := SetNamedSecurityInfoW(_In_ LPWSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID psidOwner, _In_opt_ PSID psidGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPrivateObjectSecurity
+`BOOL := SetPrivateObjectSecurity(_In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR ModificationDescriptor, _Inout_ PSECURITY_DESCRIPTOR *ObjectsSecurityDescriptor, _In_ PGENERIC_MAPPING GenericMapping, _In_opt_ HANDLE Token)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPrivateObjectSecurityEx
+`BOOL := SetPrivateObjectSecurityEx(_In_ SECURITY_INFORMATION SecurityInformation, _In_ PSECURITY_DESCRIPTOR ModificationDescriptor, _Inout_ PSECURITY_DESCRIPTOR *ObjectsSecurityDescriptor, _In_ ULONG AutoInheritFlags, _In_ PGENERIC_MAPPING GenericMapping, _In_opt_ HANDLE Token)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityAccessMask
+`VOID := SetSecurityAccessMask(_In_ SECURITY_INFORMATION SecurityInformation, _Out_ LPDWORD DesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorControl
+`BOOL := SetSecurityDescriptorControl(_In_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ SECURITY_DESCRIPTOR_CONTROL ControlBitsOfInterest, _In_ SECURITY_DESCRIPTOR_CONTROL ControlBitsToSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorDacl
+`BOOL := SetSecurityDescriptorDacl(_Inout_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ BOOL bDaclPresent, _In_opt_ PACL pDacl, _In_ BOOL bDaclDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorGroup
+`BOOL := SetSecurityDescriptorGroup(_Inout_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID pGroup, _In_ BOOL bGroupDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorOwner
+`BOOL := SetSecurityDescriptorOwner(_Inout_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_opt_ PSID pOwner, _In_ BOOL bOwnerDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorRMControl
+`DWORD := SetSecurityDescriptorRMControl(_Inout_ PSECURITY_DESCRIPTOR SecurityDescriptor, _In_opt_ PUCHAR RMControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityDescriptorSacl
+`BOOL := SetSecurityDescriptorSacl(_Inout_ PSECURITY_DESCRIPTOR pSecurityDescriptor, _In_ BOOL bSaclPresent, _In_opt_ PACL pSacl, _In_ BOOL bSaclDefaulted)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSecurityInfo
+`DWORD := SetSecurityInfo(_In_ HANDLE handle, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID psidOwner, _In_opt_ PSID psidGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetServiceBits
+`BOOL := SetServiceBits(_In_ SERVICE_STATUS_HANDLE hServiceStatus, _In_ DWORD dwServiceBits, _In_ BOOL bSetBitsOn, _In_ BOOL bUpdateImmediately)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetServiceObjectSecurity
+`BOOL := SetServiceObjectSecurity(_In_ SC_HANDLE hService, _In_ SECURITY_INFORMATION dwSecurityInformation, _In_ PSECURITY_DESCRIPTOR lpSecurityDescriptor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetServiceStatus
+`BOOL := SetServiceStatus(_In_ SERVICE_STATUS_HANDLE hServiceStatus, _In_ LPSERVICE_STATUS lpServiceStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetThreadToken
+`BOOL := SetThreadToken(_In_opt_ PHANDLE Thread, _In_opt_ HANDLE Token)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTokenInformation
+`BOOL := SetTokenInformation(_In_ HANDLE TokenHandle, _In_ TOKEN_INFORMATION_CLASS TokenInformationClass, _In_ LPVOID TokenInformation, _In_ DWORD TokenInformationLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUserFileEncryptionKey
+`DWORD := SetUserFileEncryptionKey(_In_ PENCRYPTION_CERTIFICATE pEncryptionCertificate)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartService
+`BOOL := StartService(_In_ SC_HANDLE hService, _In_ DWORD dwNumServiceArgs, _In_opt_ LPCTSTR *lpServiceArgVectors)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartServiceA
+`BOOL := StartServiceA(_In_ SC_HANDLE hService, _In_ DWORD dwNumServiceArgs, _In_opt_ LPCSTR *lpServiceArgVectors)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartServiceCtrlDispatcher
+`BOOL := StartServiceCtrlDispatcher(_In_ const SERVICE_TABLE_ENTRY *lpServiceTable)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartServiceCtrlDispatcherA
+`BOOL := StartServiceCtrlDispatcherA(_In_ const SERVICE_TABLE_ENTRY *lpServiceTable)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartServiceCtrlDispatcherW
+`BOOL := StartServiceCtrlDispatcherW(_In_ const SERVICE_TABLE_ENTRY *lpServiceTable)
+`/docs/commands/WinApi.htm
+
+
+Function
+StartServiceW
+`BOOL := StartServiceW(_In_ SC_HANDLE hService, _In_ DWORD dwNumServiceArgs, _In_opt_ LPCWSTR *lpServiceArgVectors)
+`/docs/commands/WinApi.htm
+
+
+Function
+TraceEvent
+`ULONG := TraceEvent(_In_ TRACEHANDLE SessionHandle, _In_ PEVENT_TRACE_HEADER EventTrace)
+`/docs/commands/WinApi.htm
+
+
+Function
+TraceEventInstance
+`ULONG := TraceEventInstance(_In_ TRACEHANDLE SessionHandle, _In_ PEVENT_INSTANCE_HEADER EventTrace, _In_ PEVENT_INSTANCE_INFO pInstInfo, _In_ PEVENT_INSTANCE_INFO pParentInstInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+TraceMessage
+`ULONG := TraceMessage(_In_ TRACEHANDLE SessionHandle, _In_ ULONG MessageFlags, _In_ LPGUID MessageGuid, _In_ USHORT MessageNumber, ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+TraceMessageVa
+`ULONG := TraceMessageVa(_In_ TRACEHANDLE SessionHandle, _In_ ULONG MessageFlags, _In_ LPGUID MessageGuid, _In_ USHORT MessageNumber, _In_ va_list MessageArgList)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeResetNamedSecurityInfo
+`DWORD := TreeResetNamedSecurityInfo(_In_ LPTSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ BOOL KeepExplicit, _In_opt_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeResetNamedSecurityInfoA
+`DWORD := TreeResetNamedSecurityInfoA(_In_ LPSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ BOOL KeepExplicit, _In_opt_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeResetNamedSecurityInfoW
+`DWORD := TreeResetNamedSecurityInfoW(_In_ LPWSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ BOOL KeepExplicit, _In_opt_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeSetNamedSecurityInfo
+`DWORD := TreeSetNamedSecurityInfo(_In_ LPTSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ DWORD dwAction, _In_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeSetNamedSecurityInfoA
+`DWORD := TreeSetNamedSecurityInfoA(_In_ LPSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ DWORD dwAction, _In_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+TreeSetNamedSecurityInfoW
+`DWORD := TreeSetNamedSecurityInfoW(_In_ LPWSTR pObjectName, _In_ SE_OBJECT_TYPE ObjectType, _In_ SECURITY_INFORMATION SecurityInfo, _In_opt_ PSID pOwner, _In_opt_ PSID pGroup, _In_opt_ PACL pDacl, _In_opt_ PACL pSacl, _In_ DWORD dwAction, _In_ FN_PROGRESS fnProgress, _In_ PROG_INVOKE_SETTING ProgressInvokeSetting, _In_opt_ PVOID Args)
+`/docs/commands/WinApi.htm
+
+
+Function
+UninstallApplication
+`DWORD := UninstallApplication(_In_ WCHAR *ProductCode, _In_ DWORD dwStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnlockServiceDatabase
+`BOOL := UnlockServiceDatabase(_In_ SC_LOCK ScLock)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterTraceGuids
+`ULONG := UnregisterTraceGuids(_In_ TRACEHANDLE RegistrationHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateTrace
+`ULONG := UpdateTrace(_In_ TRACEHANDLE SessionHandle, _In_ LPCTSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateTraceA
+`ULONG := UpdateTraceA(_In_ TRACEHANDLE SessionHandle, _In_ LPCSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateTraceW
+`ULONG := UpdateTraceW(_In_ TRACEHANDLE SessionHandle, _In_ LPCWSTR SessionName, _Inout_ PEVENT_TRACE_PROPERTIES Properties)
+`/docs/commands/WinApi.htm
+
+
+Function
+WriteEncryptedFileRaw
+`DWORD := WriteEncryptedFileRaw(_In_ PFE_IMPORT_FUNC pfImportCallback, _In_opt_ PVOID pvCallbackContext, _In_ PVOID pvContext)
+`/docs/commands/WinApi.htm
+
+

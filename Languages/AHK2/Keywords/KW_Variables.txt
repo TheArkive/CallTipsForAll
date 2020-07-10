@@ -3,7 +3,7 @@ A_AhkVersion
 A_AllowMainWindow
 A_AppData
 A_AppDataCommon
-A_Args
+A_Args=ArrayObject
 A_AutoTrim
 A_BatchLines
 A_CaretX
@@ -136,7 +136,7 @@ A_TimeSincePriorHotkey
 A_TimeSinceThisHotkey
 A_TitleMatchMode
 A_TitleMatchModeSpeed
-A_TrayMenu
+A_TrayMenu=MenuObject
 A_UserName
 A_WDay
 A_WinDelay
@@ -151,6 +151,6 @@ unset
 this
 super
 base
-Menu
-MenuBar
-Gui
+Menu=MenuObject
+MenuBar=MenuBarObject
+Gui=GuiObject

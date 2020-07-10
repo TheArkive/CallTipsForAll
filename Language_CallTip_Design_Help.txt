@@ -34,68 +34,32 @@ All entries are folders unless they have an extension.
 				Objects
 					List_ObjType.txt
 				Other
-					List_BeginEnd.txt
 					List_Commands.txt
+					List_Functions.txt
 		CallTipsForAll.ahk   <---   script file
 
 ================================================================================
 2. Script Settings
 ================================================================================
 
-At the top of the script are variables that are meant to be set by the user.
-
-The following settings are used:
-	|
-	|srcFiles := A_ScriptDir "\Languages\AHK"	<-- sub folder
-	|fontFace := "Courier New"					<-- font name
-	|fontSize := 10								<-- font size
-	|fontColor := "Yellow"						<-- font color
-	|
-
-Other settings are likely to be added for more features and flexibility.  I may
-even make a GUI and allow user settings to be saved.
+Modify script settings in the Settings window.  You can access the Settings
+window from the tray menu.
 	
 ================================================================================
-3. Commands List - including functions and other 1 to 1 references
+3. Other folder - including only 1 to 1 references
 ================================================================================
 
-The "Commands List" consists of files named List_*.txt  (ie. List_Commands.txt).
-Only one file is needed for functions and commands, but you can use multiple
-files to break things up into categories, and for easier proofing.  One other
-file must go in there, and that is "List_BeginEnd.txt".  This file configures
-the regex strings that recognize the beginning and end of user defined
-functions.
+The "Other" folder consists of files named List_*.txt  (ie. List_Commands.txt).
+Only one file is needed but you can use multiple files to break things up into 
+categories, and for easier proofing.
 
 A "Command List" in this context simply means something that can be expressed as
 "1 to 1".  Functions and commands have a single name, and a definition.  Objects
 on the other hand have the "object name" as well as a list of nested methods,
 properties, and other objects (in some cases).
-
-The Begin/End regex is the same as AutoHotkey regex, so refer to the AutoHotkey
-help files for help on regex for this context.
-
-Starting with "List_BeginEnd.txt", the format is as follows:
-	|
-	|Begin: ^([\w]+)(\(.+\))[ \t]*\{
-	|End: ^\}.*
-	|
-	
-This would match a function formatted like so:
-	|
-	|FuncName(param1, ByRef param2, param3 := "a") {
-	|	If (nested braces indented) {
-	|		; blah
-	|	}
-	|}
-	|
-	
-In the case of identifying a function with braces, any nested braces within a
-function MUST be indented.  The last brace signifying the end of the function
-should NOT be indented for the best simplicity.  But you can change the
-Begin/End lines to match any kind of function formatting you wish.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-The format for Function and Command entries is the same.  All line batches must
-be separated by 2 blank lines (a total of 3 CRLFs). All entries are multi-line
+The format for files in the Other folder is as follows.  All entries must be
+separated by 2 blank lines (a total of 3 CRLFs). All entries are multi-line
 entries.
 
 Example:
@@ -111,31 +75,25 @@ Example:
 
 The format for each "Entry" is as follows:
 	|
-	|Type                      <--- Function, Command, Flow, Operator, etc.
-	|Func/Cmd_Name
-	|`
-	|multi-line_call_tip_text
-	|`                         <--- Chr(96)
-	|another_call_tip ...      <--- optional
-	|`
-	|help_link_to_chm_topic    <--- optional, must be last
+	|Type                       <--- Function, Command, Flow, Operator, etc.
+	|Element_Name
+	|`multi-line_call_tip_text  <--- First call tip (starts with Chr(96))
+    |more text for first call tip.
+	|`another_call_tip ...      <--- optional
+	|`help_link_to_chm_topic    <--- required, can be blank
 	|
-
-Extra line breaks after the ` are not necessary.  The extra breaks are only
-shown here for clarity.  If desired, you can omit all line breaks surrounding
-the ` character for each entry.
 
 The user will use Up/Down arrows to scroll between the various call tips.
 
 You can have single blank lines in the description, but I don't recommend this
-for the sake of grouping.  Instead format your descriptions like so:
+for the sake of grouping and clarity.  Instead format your descriptions like so:
 	|
-	|Desc start line.
+	|`Desc start line.
 	|/Start a line with forward slash to add a CRLF before it.
 	|Forward slashes (/) can still be used within the desc.
 	|Only forward slashes at the beginning of the line will
 	|create extra CRLFs.
-	|
+	|`This starts another call tip entry.  Scroll call tips with UP/DOWN keys.
 
 For CHM help links, decompile the CHM to see the dir structure.  You can
 decomplie a CHM with HTML Help Workshop.
@@ -151,10 +109,15 @@ Ensure your object list files are placed in the proper folder as described
 above.  The structure of each file is as follows:
 	|
 	|Regex matches (multi-line)  <-- first batch of lines
-	|`
-	|custom_call_tip_for_obj     <-- optional
-	|`
-	|help_link_to_chm_topic      <--- optional, must be last
+    |... more regex matches
+    |... take as many lines as you need
+    |... to identify as many objects as you want...
+	|`custom_call_tip_for_obj    <-- First call tip
+    |remember, all call tips can be multi-line
+	|`another call tip           <--- optional
+    |2nd line of 2nd calltip
+    |`ObjectOverLapList          <--- required, can be blank
+	|`help_link_to_chm_topic     <--- required, can be blank
 	|
 	|
 	|Method or Property Entry
@@ -166,20 +129,17 @@ above.  The structure of each file is as follows:
 	|...
 	|
 
-Extra line breaks after the ` are not necessary.  The extra breaks are only
-shown here for clarity.  If desired, you can omit all line breaks surrounding
-the ` character for each entry.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 The "Regex matches (multi-line)" are formatted as follows:
 	|
 	|Level ObjType Label RegexMatchStr    <--- separated by spaces
-	|...
-	|
+	|   ie...
+	|0 ArrayObject ArrayByFunc Array\(
 
 > Level is an integer from 0-9.  It indicates which order the objects should be
 loaded in.  Some objects are derived from other objects, so it is important to
-set the level correctly, otherwise you may have issues getting your call tips to
-display properly.  Several example files are included.
+set the level correctly, otherwise some objects may not show if you don't take
+the proper order into account.
 
 > ObjType is a string such as "GuiObject".  This is normally consistent on each
 line within a single regex line batch, but different related objects that share
@@ -189,35 +149,25 @@ do so.
 > Label this can be anything but it MUST be unique across ALL of the object
 list files.
 
-> RegExMatchStr must have 2 "back reference" sections specified in most cases.
-The other case is described later.  Be sure to NOT use literal braces \{ or \}
-in the regex as this will confuse the script.  Use \x7B and \x7D instead. Braces
-are used on level 1+ lines to indicated that a specific {ObjectType} must be
-substituted.  So, the list of all level 0 objects will be parsed to find a
+> RegExMatchStr must match the expression that represents the value of the var
+(meaning everything to the right of the operator that assigns the value, like = 
+or :=). The other case is described later.  Be sure to NOT use literal braces \{
+ or \} in the regex as this will confuse the script.  Use \x7B and \x7D instead.
+Braces are used on level 1+ lines to indicated that a specific {ObjectType} must
+be substituted.  So, the list of all level 0 objects will be parsed to find a
 match.  All other levels are parsed the same way.
 
-    ^[ \t]*([\w\.]+)[ \t]*:=[ \t]*(InputHook\x28)
-           (       )              (             )
-           backRef1                  backRef2
-          object name           corresponding match
-
-This would match:
-
-	varName := InputHook(
-
-... and thus would match "varName" as an InputHook object.
-
-Be careful using ^ and $, otherwise your scope may be too specific.  The script
-will parse lines and still recognize cases of:
-
-    var := expression, var := expression
+Be careful using ^ and $, otherwise your scope may be too specific.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Some objects are not set by assignment and must be detected differently.  You
 can identify an object in that case using comments:
 
-0 InputHookObject InputHookByComment ^[ \t]*[\w]+\(([\w]+).*(; InputHookObject)$
-                                                   (     )  (                 )
-                                                     BR1       BackReference2
+0 InputHookObject InputHookByComment ;[ \t]*InputHookObject
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Some objects are derived from callback function parameters.  Matching callback
+objects should be done starting on level 2.  Here's an example:
+
+2 InputHookObject InputHookByCallback [\w]+\x28([\w]+).*;[ \t]*InputHook
 
 The above line would match "iHook" in the following InputHook callback example:
 	|
@@ -229,24 +179,17 @@ The above line would match "iHook" in the following InputHook callback example:
 	|}
 	|
 
-In the above callback function example, this is a callback for the OnKeyDown
-property in an InputHook object in AutoHotkey.  You can see "; InputHookObject"
-as a comment at the end of the line.  The regex match string will match "iHook"
-in this case as an InputHookObject, and you can invoke the call tip for
-InputObjects on the phrase "iHook".
-
 Matching objects this way can be a bit dicey, since it requires specific
-instances that may be quite obsecure.  Use with caution.
+instances that may be sometimes obsecure.  Use with caution.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Each "Method or Property Entry" is formatted as follows:
-	|Format:         |Example:
-	|                |
-	|Type            |Method
-	|Name            |DefineMethod
-	|`               |`
-	|Desc-multi-line |Obj.DefineMethod(Name,FuncObj)
-	|`               |`
-	|CHM_help_Link   |/docs/folder/item.htm
+	|Format:           |Example:
+	|                  |
+	|Type              |Method
+	|Name              |DefineMethod
+	|`Desc-multi-line  |`Obj.DefineMethod(Name,FuncObj)   <--- required
+    |`2nd call tip     |`Another call tip...              <--- optional
+	|`CHM_help_Link    |`/docs/folder/item.htm      <--- required, can be blank
 
 Extra line breaks after the ` are not necessary.  The extra breaks are only
 shown here for clarity.  If desired, you can omit all line breaks surrounding
@@ -265,15 +208,4 @@ at the beginning of a line to add a CRLF.
 5. Hotkeys
 ================================================================================
 
-CTRL + SHIFT + Space    =    invoke call tip
-> Cursor must be a the beginning, end, or anywhere in the middle of the keyword
-you want to invoke a call tip for.
-
-CTRL + ALT + Space      =    invoke auto complete window
-> not implemented yet
-
-ESC                     =    closes call tip window
-> Clicking on the call tip window will also close it.  You can scroll wile the
-call tip window is active and it will remain.
-
-CTRL + SHIFT + F12      =    close script
+Set hotkeys in the settings window from the tray icon.

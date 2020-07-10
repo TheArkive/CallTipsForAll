@@ -1,0 +1,436 @@
+Function
+BeginBufferedAnimation
+`HANIMATIONBUFFER := BeginBufferedAnimation(HWND hwnd, HDC hdcTarget, const RECT *rcTarget, BP_BUFFERFORMAT dwFormat, _In_ BP_PAINTPARAMS *pPaintParams, _In_ BP_ANIMATIONPARAMS *pAnimationParams, _Out_ HDC *phdcFrom, _Out_ HDC *phdcTo)
+`/docs/commands/WinApi.htm
+
+
+Function
+BeginBufferedPaint
+`HPAINTBUFFER := BeginBufferedPaint(HDC hdcTarget, const RECT *prcTarget, BP_BUFFERFORMAT dwFormat, _In_ BP_PAINTPARAMS *pPaintParams, _Out_ HDC *phdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+BeginPanningFeedback
+`BOOL := BeginPanningFeedback(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintClear
+`HRESULT := BufferedPaintClear(HPAINTBUFFER hBufferedPaint, _In_ const RECT *prc)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintInit
+`HRESULT := BufferedPaintInit(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintRenderAnimation
+`BOOL := BufferedPaintRenderAnimation(HWND hwnd, HDC hdcTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintSetAlpha
+`HRESULT := BufferedPaintSetAlpha(HPAINTBUFFER hBufferedPaint, _In_ const RECT *prc, BYTE alpha)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintStopAllAnimations
+`HRESULT := BufferedPaintStopAllAnimations(HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+BufferedPaintUnInit
+`HRESULT := BufferedPaintUnInit(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseThemeData
+`HRESULT := CloseThemeData(_In_ HTHEME hTheme)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeBackground
+`HRESULT := DrawThemeBackground(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ const RECT *pRect, _In_ const RECT *pClipRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeBackgroundEx
+`HRESULT := DrawThemeBackgroundEx(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ const RECT *pRect, _In_ const DTBGOPTS *pOptions)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeEdge
+`HRESULT := DrawThemeEdge(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT pDestRect, _In_ UINT uEdge, _In_ UINT uFlags, _Out_ LPRECT pContentRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeIcon
+`HRESULT := DrawThemeIcon(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT pRect, _In_ HIMAGELIST himl, _In_ int iImageIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeParentBackground
+`HRESULT := DrawThemeParentBackground(_In_ HWND hwnd, _In_ HDC hdc, _In_ const RECT *prc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeParentBackgroundEx
+`HRESULT := DrawThemeParentBackgroundEx(_In_ HWND hwnd, _In_ HDC hdc, _In_ DWORD dwFlags, _In_ const RECT *prc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeText
+`HRESULT := DrawThemeText(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCWSTR pszText, _In_ int iCharCount, _In_ DWORD dwTextFlags, _In_ DWORD dwTextFlags2, _In_ LPCRECT pRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawThemeTextEx
+`HRESULT := DrawThemeTextEx(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCWSTR pszText, _In_ int iCharCount, _In_ DWORD dwFlags, _Inout_ LPRECT pRect, _In_ const DTTOPTS *pOptions)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableThemeDialogTexture
+`HRESULT := EnableThemeDialogTexture(_In_ HWND hwnd, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableTheming
+`HRESULT := EnableTheming(_In_ BOOL fEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndBufferedAnimation
+`HRESULT := EndBufferedAnimation(HANIMATIONBUFFER hbpAnimation, BOOL fUpdateTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndBufferedPaint
+`HRESULT := EndBufferedPaint(HPAINTBUFFER hBufferedPaint, BOOL fUpdateTarget)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndPanningFeedback
+`BOOL := EndPanningFeedback(_In_ HWND hwnd, BOOL fAnimateBack)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBufferedPaintBits
+`HRESULT := GetBufferedPaintBits(HPAINTBUFFER hBufferedPaint, _Out_ RGBQUAD **ppbBuffer, _Out_ int *pcxRow)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBufferedPaintDC
+`HDC := GetBufferedPaintDC(HPAINTBUFFER hBufferedPaint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBufferedPaintTargetDC
+`HDC := GetBufferedPaintTargetDC(HPAINTBUFFER hBufferedPaint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetBufferedPaintTargetRect
+`HRESULT := GetBufferedPaintTargetRect(HPAINTBUFFER hBufferedPaint, _Out_ RECT *prc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentThemeName
+`HRESULT := GetCurrentThemeName(_Out_ LPWSTR pszThemeFileName, _In_ int dwMaxNameChars, _Out_ LPWSTR pszColorBuff, _In_ int cchMaxColorChars, _Out_ LPWSTR pszSizeBuff, _In_ int cchMaxSizeChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeAppProperties
+`DWORD := GetThemeAppProperties(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeBackgroundContentRect
+`HRESULT := GetThemeBackgroundContentRect(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT pBoundingRect, _Out_ LPRECT pContentRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeBackgroundExtent
+`HRESULT := GetThemeBackgroundExtent(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT pContentRect, _Out_ LPRECT pExtentRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeBackgroundRegion
+`HRESULT := GetThemeBackgroundRegion(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT pRect, _Out_ HRGN *pRegion)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeBitmap
+`HRESULT := GetThemeBitmap(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _In_ ULONG dwFlags, _Out_ HBITMAP *phBitmap)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeBool
+`HRESULT := GetThemeBool(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ BOOL *pfVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeColor
+`HRESULT := GetThemeColor(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ COLORREF *pColor)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeDocumentationProperty
+`HRESULT := GetThemeDocumentationProperty(_In_ LPCWSTR pszThemeName, _In_ LPCWSTR pszPropertyName, _Out_ LPWSTR pszValueBuff, _In_ int cchMaxValChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeEnumValue
+`HRESULT := GetThemeEnumValue(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ int *piVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeFilename
+`HRESULT := GetThemeFilename(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ LPWSTR pszThemeFilename, _In_ int cchMaxBuffChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeFont
+`HRESULT := GetThemeFont(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ LOGFONTW *pFont)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeInt
+`HRESULT := GetThemeInt(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ int *piVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeIntList
+`HRESULT := GetThemeIntList(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ INTLIST *pIntList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeMargins
+`HRESULT := GetThemeMargins(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _In_ LPRECT prc, _Out_ MARGINS *pMargins)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeMetric
+`HRESULT := GetThemeMetric(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ int *piVal)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemePartSize
+`HRESULT := GetThemePartSize(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCRECT prc, _In_ THEMESIZE eSize, _Out_ SIZE *psz)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemePosition
+`HRESULT := GetThemePosition(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ POINT *pPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemePropertyOrigin
+`HRESULT := GetThemePropertyOrigin(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ PROPERTYORIGIN *pOrigin)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeRect
+`HRESULT := GetThemeRect(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ LPRECT pRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeStream
+`HRESULT := GetThemeStream(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ VOID **ppvStream, _Out_ DWORD *pcbStream, _In_ HINSTANCE hInst)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeString
+`HRESULT := GetThemeString(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId, _In_ int iPropId, _Out_ LPWSTR pszBuff, _In_ int cchMaxBuffChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysBool
+`BOOL := GetThemeSysBool(_In_ HTHEME hTheme, _In_ int iBoolID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysColor
+`COLORREF := GetThemeSysColor(_In_ HTHEME hTheme, _In_ int iColorID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysColorBrush
+`HBRUSH := GetThemeSysColorBrush(_In_ HTHEME hTheme, _In_ int iColorID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysFont
+`HRESULT := GetThemeSysFont(_In_ HTHEME hTheme, _In_ int iFontID, _Out_ LOGFONTW *plf)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysInt
+`HRESULT := GetThemeSysInt(_In_ HTHEME hTheme, _In_ int iIntID, _In_ int *piValue)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysSize
+`int := GetThemeSysSize(_In_ HTHEME hTheme, _In_ int iSizeID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeSysString
+`HRESULT := GetThemeSysString(_In_ HTHEME hTheme, _In_ int iStringID, _Out_ LPWSTR pszStringBuff, _In_ int cchMaxStringChars)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeTextExtent
+`HRESULT := GetThemeTextExtent(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ LPCWSTR pszText, _In_ int iCharCount, _In_ DWORD dwTextFlags, _In_ LPCRECT pBoundingRect, _Out_ LPRECT pExtentRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeTextMetrics
+`HRESULT := GetThemeTextMetrics(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _Out_ TEXTMETRIC *ptm)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThemeTransitionDuration
+`HRESULT := GetThemeTransitionDuration(HTHEME hTheme, int iPartId, int iStateIdFrom, int iStateIdTo, int iPropId, _Out_ DWORD *pdwDuration)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTheme
+`HTHEME := GetWindowTheme(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+HitTestThemeBackground
+`HRESULT := HitTestThemeBackground(_In_ HTHEME hTheme, _In_ HDC hdc, _In_ int iPartId, _In_ int iStateId, _In_ DWORD dwOptions, _In_ LPCRECT pRect, _In_ HRGN hrgn, _In_ POINT ptTest, _Out_ WORD *pwHitTestCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsAppThemed
+`BOOL := IsAppThemed(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCompositionActive
+`BOOL := IsCompositionActive(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsThemeActive
+`BOOL := IsThemeActive(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsThemeBackgroundPartiallyTransparent
+`BOOL := IsThemeBackgroundPartiallyTransparent(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsThemeDialogTextureEnabled
+`BOOL := IsThemeDialogTextureEnabled(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsThemePartDefined
+`BOOL := IsThemePartDefined(_In_ HTHEME hTheme, _In_ int iPartId, _In_ int iStateId)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenThemeData
+`HTHEME := OpenThemeData(_In_ HWND hwnd, _In_ LPCWSTR pszClassList)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenThemeDataEx
+`HTHEME := OpenThemeDataEx(_In_ HWND hwnd, _In_ LPCWSTR pszClassIdList, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetThemeAppProperties
+`VOID := SetThemeAppProperties(DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowTheme
+`HRESULT := SetWindowTheme(_In_ HWND hwnd, _In_ LPCWSTR pszSubAppName, _In_ LPCWSTR pszSubIdList)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowThemeAttribute
+`HRESULT := SetWindowThemeAttribute(_In_ HWND hwnd, _In_ enum WINDOWTHEMEATTRIBUTETYPE eAttribute, _In_ PVOID pvAttribute, _In_ DWORD cbAttribute)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdatePanningFeedback
+`BOOL := UpdatePanningFeedback(_In_ HWND hwnd, _In_ LONG lTotalOverpanOffsetX, _In_ LONG lTotalOverpanOffsetY, _In_ BOOL fInInertia)
+`/docs/commands/WinApi.htm

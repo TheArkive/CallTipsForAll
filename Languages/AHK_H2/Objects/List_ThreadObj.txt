@@ -1,4 +1,4 @@
-0 ProcessThreadObject ProcThreadByFunc ([\w\.]+)[ \t]*:=[ \t]*(ThreadObj\x28)
+0 ProcessThreadObject ProcThreadByFunc ThreadObj(
 `/docs/commands/ThreadObj.htm
 
 

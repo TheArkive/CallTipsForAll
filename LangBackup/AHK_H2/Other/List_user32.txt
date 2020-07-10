@@ -1,0 +1,4672 @@
+Function
+ActivateKeyboardLayout
+`HKL := ActivateKeyboardLayout(_In_ HKL hkl, _In_ UINT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+AddClipboardFormatListener
+`BOOL := AddClipboardFormatListener(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+AdjustWindowRect
+`BOOL := AdjustWindowRect(_Inout_ LPRECT lpRect, _In_ DWORD dwStyle, _In_ BOOL bMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+AdjustWindowRectEx
+`BOOL := AdjustWindowRectEx(_Inout_ LPRECT lpRect, _In_ DWORD dwStyle, _In_ BOOL bMenu, _In_ DWORD dwExStyle)
+`/docs/commands/WinApi.htm
+
+
+Function
+AllowSetForegroundWindow
+`BOOL := AllowSetForegroundWindow(_In_ DWORD dwProcessId)
+`/docs/commands/WinApi.htm
+
+
+Function
+AnimateWindow
+`BOOL := AnimateWindow(_In_ HWND hwnd, _In_ DWORD dwTime, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+AnyPopup
+`BOOL := AnyPopup(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+AppendMenu
+`BOOL := AppendMenu(_In_ HMENU hMenu, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCTSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+AppendMenuA
+`BOOL := AppendMenuA(_In_ HMENU hMenu, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+AppendMenuW
+`BOOL := AppendMenuW(_In_ HMENU hMenu, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCWSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+ArrangeIconicWindows
+`UINT := ArrangeIconicWindows(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+AttachThreadInput
+`BOOL := AttachThreadInput(_In_ DWORD idAttach, _In_ DWORD idAttachTo, _In_ BOOL fAttach)
+`/docs/commands/WinApi.htm
+
+
+Function
+BeginDeferWindowPos
+`HDWP := BeginDeferWindowPos(_In_ int nNumWindows)
+`/docs/commands/WinApi.htm
+
+
+Function
+BeginPaint
+`HDC := BeginPaint(_In_ HWND hwnd, _Out_ LPPAINTSTRUCT lpPaint)
+`/docs/commands/WinApi.htm
+
+
+Function
+BlockInput_
+`BOOL := BlockInput_(_In_ BOOL fBlockIt)
+`/docs/commands/WinApi.htm
+
+
+Function
+BringWindowToTop
+`BOOL := BringWindowToTop(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessage
+`LONG := BroadcastSystemMessage(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessageA
+`LONG := BroadcastSystemMessageA(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessageEx
+`LONG := BroadcastSystemMessageEx(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam, _Out_opt_ PBSMINFO pBSMInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessageExA
+`LONG := BroadcastSystemMessageExA(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam, _Out_opt_ PBSMINFO pBSMInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessageExW
+`LONG := BroadcastSystemMessageExW(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam, _Out_opt_ PBSMINFO pBSMInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+BroadcastSystemMessageW
+`LONG := BroadcastSystemMessageW(_In_ DWORD dwFlags, _Inout_opt_ LPDWORD lpdwRecipients, _In_ UINT uiMessage, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CalculatePopupWindowPosition
+`BOOL := CalculatePopupWindowPosition(_In_ const POINT *anchorPoint, _In_ const SIZE *windowSize, _In_ UINT flags, _In_opt_ RECT *excludeRect, _Out_ RECT *popupWindowPosition)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallMsgFilter
+`BOOL := CallMsgFilter(_In_ LPMSG lpMsg, _In_ int nCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallMsgFilterA
+`BOOL := CallMsgFilterA(_In_ LPMSG lpMsg, _In_ int nCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallMsgFilterW
+`BOOL := CallMsgFilterW(_In_ LPMSG lpMsg, _In_ int nCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallNextHookEx
+`LRESULT := CallNextHookEx(_In_opt_ HHOOK hhk, _In_ int nCode, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallWindowProc
+`LRESULT := CallWindowProc(_In_ WNDPROC lpPrevWndFunc, _In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallWindowProcA
+`LRESULT := CallWindowProcA(_In_ WNDPROC lpPrevWndFunc, _In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CallWindowProcW
+`LRESULT := CallWindowProcW(_In_ WNDPROC lpPrevWndFunc, _In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CascadeWindows
+`WORD := CascadeWindows(_In_opt_ HWND hwndParent, _In_ UINT wHow, _In_opt_ const RECT *lpRect, _In_ UINT cKids, _In_opt_ const HWND *lpKids)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeClipboardChain
+`BOOL := ChangeClipboardChain(_In_ HWND hWndRemove, _In_ HWND hWndNewNext)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettings
+`LONG := ChangeDisplaySettings(_In_ DEVMODE *lpDevMode, _In_ DWORD dwflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettingsA
+`LONG := ChangeDisplaySettingsA(_In_ DEVMODE *lpDevMode, _In_ DWORD dwflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettingsEx
+`LONG := ChangeDisplaySettingsEx(_In_ LPCTSTR lpszDeviceName, _In_ DEVMODE *lpDevMode, HWND hwnd, _In_ DWORD dwflags, _In_ LPVOID lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettingsExA
+`LONG := ChangeDisplaySettingsExA(_In_ LPCSTR lpszDeviceName, _In_ DEVMODE *lpDevMode, HWND hwnd, _In_ DWORD dwflags, _In_ LPVOID lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettingsExW
+`LONG := ChangeDisplaySettingsExW(_In_ LPCWSTR lpszDeviceName, _In_ DEVMODE *lpDevMode, HWND hwnd, _In_ DWORD dwflags, _In_ LPVOID lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeDisplaySettingsW
+`LONG := ChangeDisplaySettingsW(_In_ DEVMODE *lpDevMode, _In_ DWORD dwflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeWindowMessageFilter
+`BOOL := ChangeWindowMessageFilter(_In_ UINT message, _In_ DWORD dwFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChangeWindowMessageFilterEx
+`BOOL := ChangeWindowMessageFilterEx(_In_ HWND hWnd, _In_ UINT message, _In_ DWORD action, _Inout_opt_ PCHANGEFILTERSTRUCT pChangeFilterStruct)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLower
+`LPTSTR := CharLower(_Inout_ LPTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLowerA
+`LPSTR := CharLowerA(_Inout_ LPSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLowerBuff
+`DWORD := CharLowerBuff(_Inout_ LPTSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLowerBuffA
+`DWORD := CharLowerBuffA(_Inout_ LPSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLowerBuffW
+`DWORD := CharLowerBuffW(_Inout_ LPWSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharLowerW
+`LPWSTR := CharLowerW(_Inout_ LPWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharNext
+`LPTSTR := CharNext(_In_ LPCTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharNextA
+`LPSTR := CharNextA(_In_ LPCSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharNextExA
+`LPSTR := CharNextExA(_In_ WORD CodePage, _In_ LPCSTR lpCurrentChar, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharNextW
+`LPWSTR := CharNextW(_In_ LPCWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharPrev
+`LPTSTR := CharPrev(_In_ LPCTSTR lpszStart, _In_ LPCTSTR lpszCurrent)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharPrevA
+`LPSTR := CharPrevA(_In_ LPCSTR lpszStart, _In_ LPCSTR lpszCurrent)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharPrevExA
+`LPSTR := CharPrevExA(_In_ WORD CodePage, _In_ LPCSTR lpStart, _In_ LPCSTR lpCurrentChar, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharPrevW
+`LPWSTR := CharPrevW(_In_ LPCWSTR lpszStart, _In_ LPCWSTR lpszCurrent)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOem
+`BOOL := CharToOem(_In_ LPCTSTR lpszSrc, _Out_ LPSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOemA
+`BOOL := CharToOemA(_In_ LPCSTR lpszSrc, _Out_ LPSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOemBuff
+`BOOL := CharToOemBuff(_In_ LPCTSTR lpszSrc, _Out_ LPSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOemBuffA
+`BOOL := CharToOemBuffA(_In_ LPCSTR lpszSrc, _Out_ LPSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOemBuffW
+`BOOL := CharToOemBuffW(_In_ LPCWSTR lpszSrc, _Out_ LPSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharToOemW
+`BOOL := CharToOemW(_In_ LPCWSTR lpszSrc, _Out_ LPSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpper
+`LPTSTR := CharUpper(_Inout_ LPTSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpperA
+`LPSTR := CharUpperA(_Inout_ LPSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpperBuff
+`DWORD := CharUpperBuff(_Inout_ LPTSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpperBuffA
+`DWORD := CharUpperBuffA(_Inout_ LPSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpperBuffW
+`DWORD := CharUpperBuffW(_Inout_ LPWSTR lpsz, _In_ DWORD cchLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+CharUpperW
+`LPWSTR := CharUpperW(_Inout_ LPWSTR lpsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckDlgButton
+`BOOL := CheckDlgButton(_In_ HWND hDlg, _In_ int nIDButton, _In_ UINT uCheck)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckMenuItem
+`DWORD := CheckMenuItem(_In_ HMENU hmenu, _In_ UINT uIDCheckItem, _In_ UINT uCheck)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckMenuRadioItem
+`BOOL := CheckMenuRadioItem(_In_ HMENU hmenu, _In_ UINT idFirst, _In_ UINT idLast, _In_ UINT idCheck, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CheckRadioButton
+`BOOL := CheckRadioButton(_In_ HWND hDlg, _In_ int nIDFirstButton, _In_ int nIDLastButton, _In_ int nIDCheckButton)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChildWindowFromPoint
+`HWND := ChildWindowFromPoint(_In_ HWND hWndParent, _In_ POINT Point)
+`/docs/commands/WinApi.htm
+
+
+Function
+ChildWindowFromPointEx
+`HWND := ChildWindowFromPointEx(_In_ HWND hwndParent, _In_ POINT pt, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClientToScreen
+`BOOL := ClientToScreen(_In_ HWND hWnd, _Inout_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+ClipCursor
+`BOOL := ClipCursor(_In_opt_ const RECT *lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseClipboard
+`BOOL := CloseClipboard(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseDesktop
+`BOOL := CloseDesktop(_In_ HDESK hDesktop)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseGestureInfoHandle
+`BOOL := CloseGestureInfoHandle(HGESTUREINFO hGestureInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseTouchInputHandle
+`BOOL := CloseTouchInputHandle(_In_ HTOUCHINPUT hTouchInput)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseWindow
+`BOOL := CloseWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+CloseWindowStation
+`BOOL := CloseWindowStation(_In_ HWINSTA hWinSta)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyAcceleratorTable
+`int := CopyAcceleratorTable(_In_ HACCEL hAccelSrc, _Out_opt_ LPACCEL lpAccelDst, _In_ int cAccelEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyAcceleratorTableA
+`int := CopyAcceleratorTableA(_In_ HACCEL hAccelSrc, _Out_opt_ LPACCEL lpAccelDst, _In_ int cAccelEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyAcceleratorTableW
+`int := CopyAcceleratorTableW(_In_ HACCEL hAccelSrc, _Out_opt_ LPACCEL lpAccelDst, _In_ int cAccelEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyIcon
+`HICON := CopyIcon(_In_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyImage
+`HANDLE := CopyImage(_In_ HANDLE hImage, _In_ UINT uType, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT fuFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CopyRect
+`BOOL := CopyRect(_Out_ LPRECT lprcDst, _In_ const RECT *lprcSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+CountClipboardFormats
+`int := CountClipboardFormats(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateAcceleratorTable
+`HACCEL := CreateAcceleratorTable(_In_ LPACCEL lpaccl, _In_ int cEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateAcceleratorTableA
+`HACCEL := CreateAcceleratorTableA(_In_ LPACCEL lpaccl, _In_ int cEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateAcceleratorTableW
+`HACCEL := CreateAcceleratorTableW(_In_ LPACCEL lpaccl, _In_ int cEntries)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateCaret
+`BOOL := CreateCaret(_In_ HWND hWnd, _In_opt_ HBITMAP hBitmap, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateCursor
+`HCURSOR := CreateCursor(_In_opt_ HINSTANCE hInst, _In_ int xHotSpot, _In_ int yHotSpot, _In_ int nWidth, _In_ int nHeight, _In_ const VOID *pvANDPlane, _In_ const VOID *pvXORPlane)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktop
+`HDESK := CreateDesktop(_In_ LPCTSTR lpszDesktop, _Reserved_ LPCTSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktopA
+`HDESK := CreateDesktopA(_In_ LPCSTR lpszDesktop, _Reserved_ LPCSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktopEx
+`HDESK := CreateDesktopEx(_In_ LPCTSTR lpszDesktop, _Reserved_ LPCTSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa, _In_ ULONG ulHeapSize, _Reserved_ PVOID pvoid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktopExA
+`HDESK := CreateDesktopExA(_In_ LPCSTR lpszDesktop, _Reserved_ LPCSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa, _In_ ULONG ulHeapSize, _Reserved_ PVOID pvoid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktopExW
+`HDESK := CreateDesktopExW(_In_ LPCWSTR lpszDesktop, _Reserved_ LPCWSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa, _In_ ULONG ulHeapSize, _Reserved_ PVOID pvoid)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDesktopW
+`HDESK := CreateDesktopW(_In_ LPCWSTR lpszDesktop, _Reserved_ LPCWSTR lpszDevice, _Reserved_ DEVMODE *pDevmode, _In_ DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogIndirectParam
+`HWND := CreateDialogIndirectParam(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE lpTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM lParamInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogIndirectParamA
+`HWND := CreateDialogIndirectParamA(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE lpTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM lParamInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogIndirectParamW
+`HWND := CreateDialogIndirectParamW(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE lpTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM lParamInit)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogParam
+`HWND := CreateDialogParam(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogParamA
+`HWND := CreateDialogParamA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateDialogParamW
+`HWND := CreateDialogParamW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateIcon
+`HICON := CreateIcon(_In_opt_ HINSTANCE hInstance, _In_ int nWidth, _In_ int nHeight, _In_ BYTE cPlanes, _In_ BYTE cBitsPixel, _In_ const BYTE *lpbANDbits, _In_ const BYTE *lpbXORbits)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateIconFromResource
+`HICON := CreateIconFromResource(_In_ PBYTE presbits, _In_ DWORD dwResSize, _In_ BOOL fIcon, _In_ DWORD dwVer)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateIconFromResourceEx
+`HICON := CreateIconFromResourceEx(_In_ PBYTE pbIconBits, _In_ DWORD cbIconBits, _In_ BOOL fIcon, _In_ DWORD dwVersion, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateIconIndirect
+`HICON := CreateIconIndirect(_In_ PICONINFO piconinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMDIWindow
+`HWND := CreateMDIWindow(_In_ LPCTSTR lpClassName, _In_ LPCTSTR lpWindowName, _In_ DWORD dwStyle, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HINSTANCE hInstance, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMDIWindowA
+`HWND := CreateMDIWindowA(_In_ LPCSTR lpClassName, _In_ LPCSTR lpWindowName, _In_ DWORD dwStyle, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HINSTANCE hInstance, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMDIWindowW
+`HWND := CreateMDIWindowW(_In_ LPCWSTR lpClassName, _In_ LPCWSTR lpWindowName, _In_ DWORD dwStyle, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HINSTANCE hInstance, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMenu
+`HMENU := CreateMenu(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreatePopupMenu
+`HMENU := CreatePopupMenu(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowEx
+`HWND := CreateWindowEx(_In_ DWORD dwExStyle, _In_opt_ LPCTSTR lpClassName, _In_opt_ LPCTSTR lpWindowName, _In_ DWORD dwStyle, _In_ int x, _In_ int y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HMENU hMenu, _In_opt_ HINSTANCE hInstance, _In_opt_ LPVOID lpParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowExA
+`HWND := CreateWindowExA(_In_ DWORD dwExStyle, _In_opt_ LPCSTR lpClassName, _In_opt_ LPCSTR lpWindowName, _In_ DWORD dwStyle, _In_ int x, _In_ int y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HMENU hMenu, _In_opt_ HINSTANCE hInstance, _In_opt_ LPVOID lpParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowExW
+`HWND := CreateWindowExW(_In_ DWORD dwExStyle, _In_opt_ LPCWSTR lpClassName, _In_opt_ LPCWSTR lpWindowName, _In_ DWORD dwStyle, _In_ int x, _In_ int y, _In_ int nWidth, _In_ int nHeight, _In_opt_ HWND hWndParent, _In_opt_ HMENU hMenu, _In_opt_ HINSTANCE hInstance, _In_opt_ LPVOID lpParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowStation
+`HWINSTA := CreateWindowStation(_In_opt_ LPCTSTR lpwinsta, DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowStationA
+`HWINSTA := CreateWindowStationA(_In_opt_ LPCSTR lpwinsta, DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateWindowStationW
+`HWINSTA := CreateWindowStationW(_In_opt_ LPCWSTR lpwinsta, DWORD dwFlags, _In_ ACCESS_MASK dwDesiredAccess, _In_opt_ LPSECURITY_ATTRIBUTES lpsa)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeAbandonTransaction
+`BOOL := DdeAbandonTransaction(_In_ DWORD idInst, _In_ HCONV hConv, _In_ DWORD idTransaction)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeAccessData
+`LPBYTE := DdeAccessData(_In_ HDDEDATA hData, _Out_opt_ LPDWORD pcbDataSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeAddData
+`HDDEDATA := DdeAddData(_In_ HDDEDATA hData, _In_ LPBYTE pSrc, _In_ DWORD cb, _In_ DWORD cbOff)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeClientTransaction
+`HDDEDATA := DdeClientTransaction(_In_opt_ LPBYTE pData, _In_ DWORD cbData, _In_ HCONV hConv, _In_opt_ HSZ hszItem, _In_ UINT wFmt, _In_ UINT wType, _In_ DWORD dwTimeout, _Out_opt_ LPDWORD pdwResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeCmpStringHandles
+`int := DdeCmpStringHandles(_In_ HSZ hsz1, _In_ HSZ hsz2)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeConnect
+`HCONV := DdeConnect(_In_ DWORD idInst, _In_ HSZ hszService, _In_ HSZ hszTopic, _In_opt_ PCONVCONTEXT pCC)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeConnectList
+`HCONVLIST := DdeConnectList(_In_ DWORD idInst, _In_ HSZ hszService, _In_ HSZ hszTopic, _In_ HCONVLIST hConvList, _In_opt_ PCONVCONTEXT pCC)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeCreateDataHandle
+`HDDEDATA := DdeCreateDataHandle(_In_ DWORD idInst, _In_opt_ LPBYTE pSrc, _In_ DWORD cb, _In_ DWORD cbOff, _In_opt_ HSZ hszItem, _In_ UINT wFmt, _In_ UINT afCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeCreateStringHandle
+`HSZ := DdeCreateStringHandle(_In_ DWORD idInst, _In_ LPTSTR psz, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeCreateStringHandleA
+`HSZ := DdeCreateStringHandleA(_In_ DWORD idInst, _In_ LPSTR psz, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeCreateStringHandleW
+`HSZ := DdeCreateStringHandleW(_In_ DWORD idInst, _In_ LPWSTR psz, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeDisconnect
+`BOOL := DdeDisconnect(_In_ HCONV hConv)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeDisconnectList
+`BOOL := DdeDisconnectList(_In_ HCONVLIST hConvList)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeEnableCallback
+`BOOL := DdeEnableCallback(_In_ DWORD idInst, _In_ HCONV hConv, _In_ UINT wCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeFreeDataHandle
+`BOOL := DdeFreeDataHandle(_In_ HDDEDATA hData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeFreeStringHandle
+`BOOL := DdeFreeStringHandle(_In_ DWORD idInst, _In_ HSZ hsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeGetData
+`DWORD := DdeGetData(_In_ HDDEDATA hData, _Out_opt_ LPBYTE pDst, _In_ DWORD cbMax, _In_ DWORD cbOff)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeGetLastError
+`UINT := DdeGetLastError(_In_ DWORD idInst)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeImpersonateClient
+`BOOL := DdeImpersonateClient(_In_ HCONV hConv)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeInitialize
+`UINT := DdeInitialize(_Inout_ LPDWORD pidInst, _In_ PFNCALLBACK pfnCallback, _In_ DWORD afCmd, _Reserved_ DWORD ulRes)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeInitializeA
+`UINT := DdeInitializeA(_Inout_ LPDWORD pidInst, _In_ PFNCALLBACK pfnCallback, _In_ DWORD afCmd, _Reserved_ DWORD ulRes)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeInitializeW
+`UINT := DdeInitializeW(_Inout_ LPDWORD pidInst, _In_ PFNCALLBACK pfnCallback, _In_ DWORD afCmd, _Reserved_ DWORD ulRes)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeKeepStringHandle
+`BOOL := DdeKeepStringHandle(_In_ DWORD idInst, _In_ HSZ hsz)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeNameService
+`HDDEDATA := DdeNameService(_In_ DWORD idInst, _In_opt_ HSZ hsz1, _In_opt_ HSZ hsz2, _In_ UINT afCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdePostAdvise
+`BOOL := DdePostAdvise(_In_ DWORD idInst, _In_ HSZ hszTopic, _In_ HSZ hszItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeQueryConvInfo
+`UINT := DdeQueryConvInfo(_In_ HCONV hConv, _In_ DWORD idTransaction, _Inout_ PCONVINFO pConvInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeQueryNextServer
+`HCONV := DdeQueryNextServer(_In_ HCONVLIST hConvList, _In_ HCONV hConvPrev)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeQueryString
+`DWORD := DdeQueryString(_In_ DWORD idInst, _In_ HSZ hsz, _Out_opt_ LPTSTR psz, _In_ DWORD cchMax, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeQueryStringA
+`DWORD := DdeQueryStringA(_In_ DWORD idInst, _In_ HSZ hsz, _Out_opt_ LPSTR psz, _In_ DWORD cchMax, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeQueryStringW
+`DWORD := DdeQueryStringW(_In_ DWORD idInst, _In_ HSZ hsz, _Out_opt_ LPWSTR psz, _In_ DWORD cchMax, _In_ int iCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeReconnect
+`HCONV := DdeReconnect(_In_ HCONV hConv)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeSetQualityOfService
+`BOOL := DdeSetQualityOfService(_In_ HWND hwndClient, _In_ const SECURITY_QUALITY_OF_SERVICE *pqosNew, _Out_ PSECURITY_QUALITY_OF_SERVICE pqosPrev)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeSetUserHandle
+`BOOL := DdeSetUserHandle(_In_ HCONV hConv, _In_ DWORD id, _In_ DWORD_PTR hUser)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeUnaccessData
+`BOOL := DdeUnaccessData(_In_ HDDEDATA hData)
+`/docs/commands/WinApi.htm
+
+
+Function
+DdeUninitialize
+`BOOL := DdeUninitialize(_In_ DWORD idInst)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefDlgProc
+`LRESULT := DefDlgProc(_In_ HWND hDlg, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefDlgProcA
+`LRESULT := DefDlgProcA(_In_ HWND hDlg, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefDlgProcW
+`LRESULT := DefDlgProcW(_In_ HWND hDlg, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeferWindowPos
+`HDWP := DeferWindowPos(_In_ HDWP hWinPosInfo, _In_ HWND hWnd, _In_opt_ HWND hWndInsertAfter, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefFrameProc
+`LRESULT := DefFrameProc(_In_ HWND hWnd, _In_ HWND hWndMDIClient, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefFrameProcA
+`LRESULT := DefFrameProcA(_In_ HWND hWnd, _In_ HWND hWndMDIClient, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefFrameProcW
+`LRESULT := DefFrameProcW(_In_ HWND hWnd, _In_ HWND hWndMDIClient, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefMDIChildProc
+`LRESULT := DefMDIChildProc(_In_ HWND hWnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefMDIChildProcA
+`LRESULT := DefMDIChildProcA(_In_ HWND hWnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefMDIChildProcW
+`LRESULT := DefMDIChildProcW(_In_ HWND hWnd, _In_ UINT uMsg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefRawInputProc
+`LRESULT := DefRawInputProc(_In_ PRAWINPUT *paRawInput, _In_ INT nInput, _In_ UINT cbSizeHeader)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefWindowProc
+`LRESULT := DefWindowProc(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefWindowProcA
+`LRESULT := DefWindowProcA(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DefWindowProcW
+`LRESULT := DefWindowProcW(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteMenu
+`BOOL := DeleteMenu(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeregisterShellHookWindow
+`BOOL := DeregisterShellHookWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyAcceleratorTable
+`BOOL := DestroyAcceleratorTable(_In_ HACCEL hAccel)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyCaret
+`BOOL := DestroyCaret(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyCursor
+`BOOL := DestroyCursor(_In_ HCURSOR hCursor)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyIcon
+`BOOL := DestroyIcon(_In_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyMenu
+`BOOL := DestroyMenu(_In_ HMENU hMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+DestroyWindow
+`BOOL := DestroyWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxIndirectParam
+`INT_PTR := DialogBoxIndirectParam(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE hDialogTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxIndirectParamA
+`INT_PTR := DialogBoxIndirectParamA(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE hDialogTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxIndirectParamW
+`INT_PTR := DialogBoxIndirectParamW(_In_opt_ HINSTANCE hInstance, _In_ LPCDLGTEMPLATE hDialogTemplate, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxParam
+`INT_PTR := DialogBoxParam(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxParamA
+`INT_PTR := DialogBoxParamA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DialogBoxParamW
+`INT_PTR := DialogBoxParamW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpTemplateName, _In_opt_ HWND hWndParent, _In_opt_ DLGPROC lpDialogFunc, _In_ LPARAM dwInitParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispatchMessage
+`LRESULT := DispatchMessage(_In_ const MSG *lpmsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispatchMessageA
+`LRESULT := DispatchMessageA(_In_ const MSG *lpmsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+DispatchMessageW
+`LRESULT := DispatchMessageW(_In_ const MSG *lpmsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirList
+`int := DlgDirList(_In_ HWND hDlg, _Inout_ LPTSTR lpPathSpec, _In_ int nIDListBox, _In_ int nIDStaticPath, _In_ UINT uFileType)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirListA
+`int := DlgDirListA(_In_ HWND hDlg, _Inout_ LPSTR lpPathSpec, _In_ int nIDListBox, _In_ int nIDStaticPath, _In_ UINT uFileType)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirListComboBox
+`int := DlgDirListComboBox(_In_ HWND hDlg, _Inout_ LPTSTR lpPathSpec, _In_ int nIDComboBox, _In_ int nIDStaticPath, _In_ UINT uFiletype)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirListComboBoxA
+`int := DlgDirListComboBoxA(_In_ HWND hDlg, _Inout_ LPSTR lpPathSpec, _In_ int nIDComboBox, _In_ int nIDStaticPath, _In_ UINT uFiletype)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirListComboBoxW
+`int := DlgDirListComboBoxW(_In_ HWND hDlg, _Inout_ LPWSTR lpPathSpec, _In_ int nIDComboBox, _In_ int nIDStaticPath, _In_ UINT uFiletype)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirListW
+`int := DlgDirListW(_In_ HWND hDlg, _Inout_ LPWSTR lpPathSpec, _In_ int nIDListBox, _In_ int nIDStaticPath, _In_ UINT uFileType)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectComboBoxEx
+`BOOL := DlgDirSelectComboBoxEx(_In_ HWND hDlg, _Out_ LPTSTR lpString, _In_ int nCount, _In_ int nIDComboBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectComboBoxExA
+`BOOL := DlgDirSelectComboBoxExA(_In_ HWND hDlg, _Out_ LPSTR lpString, _In_ int nCount, _In_ int nIDComboBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectComboBoxExW
+`BOOL := DlgDirSelectComboBoxExW(_In_ HWND hDlg, _Out_ LPWSTR lpString, _In_ int nCount, _In_ int nIDComboBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectEx
+`BOOL := DlgDirSelectEx(_In_ HWND hDlg, _Out_ LPTSTR lpString, _In_ int nCount, _In_ int nIDListBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectExA
+`BOOL := DlgDirSelectExA(_In_ HWND hDlg, _Out_ LPSTR lpString, _In_ int nCount, _In_ int nIDListBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DlgDirSelectExW
+`BOOL := DlgDirSelectExW(_In_ HWND hDlg, _Out_ LPWSTR lpString, _In_ int nCount, _In_ int nIDListBox)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragDetect
+`BOOL := DragDetect(_In_ HWND hwnd, _In_ POINT pt)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawAnimatedRects
+`BOOL := DrawAnimatedRects(_In_ HWND hwnd, _In_ int idAni, const RECT *lprcFrom, const RECT *lprcTo)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawCaption
+`BOOL := DrawCaption(_In_ HWND hwnd, _In_ HDC hdc, _In_ LPCRECT lprc, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawEdge
+`BOOL := DrawEdge(_In_ HDC hdc, _Inout_ LPRECT qrc, _In_ UINT edge, _In_ UINT grfFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawFocusRect
+`BOOL := DrawFocusRect(_In_ HDC hDC, _In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawFrameControl
+`BOOL := DrawFrameControl(_In_ HDC hdc, _In_ LPRECT lprc, _In_ UINT uType, _In_ UINT uState)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawIcon
+`BOOL := DrawIcon(_In_ HDC hDC, _In_ int X, _In_ int Y, _In_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawIconEx
+`BOOL := DrawIconEx(_In_ HDC hdc, _In_ int xLeft, _In_ int yTop, _In_ HICON hIcon, _In_ int cxWidth, _In_ int cyWidth, _In_ UINT istepIfAniCur, _In_opt_ HBRUSH hbrFlickerFreeDraw, _In_ UINT diFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawMenuBar
+`BOOL := DrawMenuBar(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawState
+`BOOL := DrawState(_In_ HDC hdc, _In_ HBRUSH hbr, _In_ DRAWSTATEPROC lpOutputFunc, _In_ LPARAM lData, _In_ WPARAM wData, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_ UINT fuFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawStateA
+`BOOL := DrawStateA(_In_ HDC hdc, _In_ HBRUSH hbr, _In_ DRAWSTATEPROC lpOutputFunc, _In_ LPARAM lData, _In_ WPARAM wData, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_ UINT fuFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawStateW
+`BOOL := DrawStateW(_In_ HDC hdc, _In_ HBRUSH hbr, _In_ DRAWSTATEPROC lpOutputFunc, _In_ LPARAM lData, _In_ WPARAM wData, _In_ int x, _In_ int y, _In_ int cx, _In_ int cy, _In_ UINT fuFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawText
+`int := DrawText(_In_ HDC hDC, _Inout_ LPCTSTR lpchText, _In_ int nCount, _Inout_ LPRECT lpRect, _In_ UINT uFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawTextA
+`int := DrawTextA(_In_ HDC hDC, _Inout_ LPCSTR lpchText, _In_ int nCount, _Inout_ LPRECT lpRect, _In_ UINT uFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawTextEx
+`int := DrawTextEx(_In_ HDC hdc, _Inout_ LPTSTR lpchText, _In_ int cchText, _Inout_ LPRECT lprc, _In_ UINT dwDTFormat, _In_ LPDRAWTEXTPARAMS lpDTParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawTextExA
+`int := DrawTextExA(_In_ HDC hdc, _Inout_ LPSTR lpchText, _In_ int cchText, _Inout_ LPRECT lprc, _In_ UINT dwDTFormat, _In_ LPDRAWTEXTPARAMS lpDTParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawTextExW
+`int := DrawTextExW(_In_ HDC hdc, _Inout_ LPWSTR lpchText, _In_ int cchText, _Inout_ LPRECT lprc, _In_ UINT dwDTFormat, _In_ LPDRAWTEXTPARAMS lpDTParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+DrawTextW
+`int := DrawTextW(_In_ HDC hDC, _Inout_ LPCWSTR lpchText, _In_ int nCount, _Inout_ LPRECT lpRect, _In_ UINT uFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+EmptyClipboard
+`BOOL := EmptyClipboard(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableMenuItem
+`BOOL := EnableMenuItem(_In_ HMENU hMenu, _In_ UINT uIDEnableItem, _In_ UINT uEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableScrollBar
+`BOOL := EnableScrollBar(_In_ HWND hWnd, _In_ UINT wSBflags, _In_ UINT wArrows)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnableWindow
+`BOOL := EnableWindow(_In_ HWND hWnd, _In_ BOOL bEnable)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndDeferWindowPos
+`BOOL := EndDeferWindowPos(_In_ HDWP hWinPosInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndDialog
+`BOOL := EndDialog(_In_ HWND hDlg, _In_ INT_PTR nResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndMenu
+`BOOL := EndMenu(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndPaint
+`BOOL := EndPaint(_In_ HWND hWnd, _In_ const PAINTSTRUCT *lpPaint)
+`/docs/commands/WinApi.htm
+
+
+Function
+EndTask
+`BOOL := EndTask(_In_ HWND hWnd, _In_ BOOL fShutDown, _In_ BOOL fForce)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumChildWindows
+`BOOL := EnumChildWindows(_In_opt_ HWND hWndParent, _In_ WNDENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumClipboardFormats
+`UINT := EnumClipboardFormats(_In_ UINT format)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDesktops
+`BOOL := EnumDesktops(_In_opt_ HWINSTA hwinsta, _In_ DESKTOPENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDesktopsA
+`BOOL := EnumDesktopsA(_In_opt_ HWINSTA hwinsta, _In_ DESKTOPENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDesktopsW
+`BOOL := EnumDesktopsW(_In_opt_ HWINSTA hwinsta, _In_ DESKTOPENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDesktopWindows
+`BOOL := EnumDesktopWindows(_In_opt_ HDESK hDesktop, _In_ WNDENUMPROC lpfn, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplayDevices
+`BOOL := EnumDisplayDevices(_In_ LPCTSTR lpDevice, _In_ DWORD iDevNum, _Out_ PDISPLAY_DEVICE lpDisplayDevice, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplayDevicesA
+`BOOL := EnumDisplayDevicesA(_In_ LPCSTR lpDevice, _In_ DWORD iDevNum, _Out_ PDISPLAY_DEVICE lpDisplayDevice, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplayDevicesW
+`BOOL := EnumDisplayDevicesW(_In_ LPCWSTR lpDevice, _In_ DWORD iDevNum, _Out_ PDISPLAY_DEVICE lpDisplayDevice, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplayMonitors
+`BOOL := EnumDisplayMonitors(_In_ HDC hdc, _In_ LPCRECT lprcClip, _In_ MONITORENUMPROC lpfnEnum, _In_ LPARAM dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettings
+`BOOL := EnumDisplaySettings(_In_ LPCTSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettingsA
+`BOOL := EnumDisplaySettingsA(_In_ LPCSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettingsEx
+`BOOL := EnumDisplaySettingsEx(_In_ LPCTSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettingsExA
+`BOOL := EnumDisplaySettingsExA(_In_ LPCSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettingsExW
+`BOOL := EnumDisplaySettingsExW(_In_ LPCWSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumDisplaySettingsW
+`BOOL := EnumDisplaySettingsW(_In_ LPCWSTR lpszDeviceName, _In_ DWORD iModeNum, _Out_ DEVMODE *lpDevMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumProps
+`int := EnumProps(_In_ HWND hWnd, _In_ PROPENUMPROC lpEnumFunc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumPropsA
+`int := EnumPropsA(_In_ HWND hWnd, _In_ PROPENUMPROC lpEnumFunc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumPropsEx
+`int := EnumPropsEx(_In_ HWND hWnd, _In_ PROPENUMPROCEX lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumPropsExA
+`int := EnumPropsExA(_In_ HWND hWnd, _In_ PROPENUMPROCEX lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumPropsExW
+`int := EnumPropsExW(_In_ HWND hWnd, _In_ PROPENUMPROCEX lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumPropsW
+`int := EnumPropsW(_In_ HWND hWnd, _In_ PROPENUMPROC lpEnumFunc)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumThreadWindows
+`BOOL := EnumThreadWindows(_In_ DWORD dwThreadId, _In_ WNDENUMPROC lpfn, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumWindows
+`BOOL := EnumWindows(_In_ WNDENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumWindowStations
+`BOOL := EnumWindowStations(_In_ WINSTAENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumWindowStationsA
+`BOOL := EnumWindowStationsA(_In_ WINSTAENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EnumWindowStationsW
+`BOOL := EnumWindowStationsW(_In_ WINSTAENUMPROC lpEnumFunc, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+EqualRect
+`BOOL := EqualRect(_In_ const RECT *lprc1, _In_ const RECT *lprc2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExcludeUpdateRgn
+`int := ExcludeUpdateRgn(_In_ HDC hDC, _In_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExitWindowsEx
+`BOOL := ExitWindowsEx(_In_ UINT uFlags, _In_ DWORD dwReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+FillRect
+`int := FillRect(_In_ HDC hDC, _In_ const RECT *lprc, _In_ HBRUSH hbr)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindow
+`HWND := FindWindow(_In_opt_ LPCTSTR lpClassName, _In_opt_ LPCTSTR lpWindowName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindowA
+`HWND := FindWindowA(_In_opt_ LPCSTR lpClassName, _In_opt_ LPCSTR lpWindowName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindowEx
+`HWND := FindWindowEx(_In_opt_ HWND hwndParent, _In_opt_ HWND hwndChildAfter, _In_opt_ LPCTSTR lpszClass, _In_opt_ LPCTSTR lpszWindow)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindowExA
+`HWND := FindWindowExA(_In_opt_ HWND hwndParent, _In_opt_ HWND hwndChildAfter, _In_opt_ LPCSTR lpszClass, _In_opt_ LPCSTR lpszWindow)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindowExW
+`HWND := FindWindowExW(_In_opt_ HWND hwndParent, _In_opt_ HWND hwndChildAfter, _In_opt_ LPCWSTR lpszClass, _In_opt_ LPCWSTR lpszWindow)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindWindowW
+`HWND := FindWindowW(_In_opt_ LPCWSTR lpClassName, _In_opt_ LPCWSTR lpWindowName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlashWindow
+`BOOL := FlashWindow(_In_ HWND hWnd, _In_ BOOL bInvert)
+`/docs/commands/WinApi.htm
+
+
+Function
+FlashWindowEx
+`BOOL := FlashWindowEx(_In_ PFLASHWINFO pfwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+FrameRect
+`int := FrameRect(_In_ HDC hDC, _In_ const RECT *lprc, _In_ HBRUSH hbr)
+`/docs/commands/WinApi.htm
+
+
+Function
+FreeDDElParam
+`BOOL := FreeDDElParam(_In_ UINT msg, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetActiveWindow
+`HWND := GetActiveWindow(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAltTabInfo
+`BOOL := GetAltTabInfo(_In_opt_ HWND hwnd, _In_ int iItem, _Inout_ PALTTABINFO pati, _Out_opt_ LPTSTR pszItemText, _In_ UINT cchItemText)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAltTabInfoA
+`BOOL := GetAltTabInfoA(_In_opt_ HWND hwnd, _In_ int iItem, _Inout_ PALTTABINFO pati, _Out_opt_ LPSTR pszItemText, _In_ UINT cchItemText)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAltTabInfoW
+`BOOL := GetAltTabInfoW(_In_opt_ HWND hwnd, _In_ int iItem, _Inout_ PALTTABINFO pati, _Out_opt_ LPWSTR pszItemText, _In_ UINT cchItemText)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAncestor
+`HWND := GetAncestor(_In_ HWND hwnd, _In_ UINT gaFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetAsyncKeyState
+`SHORT := GetAsyncKeyState(_In_ int vKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCapture
+`HWND := GetCapture(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCaretBlinkTime
+`UINT := GetCaretBlinkTime(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCaretPos
+`BOOL := GetCaretPos(_Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfo
+`BOOL := GetClassInfo(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpClassName, _Out_ LPWNDCLASS lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfoA
+`BOOL := GetClassInfoA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpClassName, _Out_ LPWNDCLASS lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfoEx
+`BOOL := GetClassInfoEx(_In_opt_ HINSTANCE hinst, _In_ LPCTSTR lpszClass, _Out_ LPWNDCLASSEX lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfoExA
+`BOOL := GetClassInfoExA(_In_opt_ HINSTANCE hinst, _In_ LPCSTR lpszClass, _Out_ LPWNDCLASSEX lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfoExW
+`BOOL := GetClassInfoExW(_In_opt_ HINSTANCE hinst, _In_ LPCWSTR lpszClass, _Out_ LPWNDCLASSEX lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassInfoW
+`BOOL := GetClassInfoW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpClassName, _Out_ LPWNDCLASS lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassLong
+`DWORD := GetClassLong(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassLongA
+`DWORD := GetClassLongA(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassLongW
+`DWORD := GetClassLongW(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassName
+`int := GetClassName(_In_ HWND hWnd, _Out_ LPTSTR lpClassName, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassNameA
+`int := GetClassNameA(_In_ HWND hWnd, _Out_ LPSTR lpClassName, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassNameW
+`int := GetClassNameW(_In_ HWND hWnd, _Out_ LPWSTR lpClassName, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClassWord
+`WORD := GetClassWord(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClientRect
+`BOOL := GetClientRect(_In_ HWND hWnd, _Out_ LPRECT lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardData
+`HANDLE := GetClipboardData(_In_ UINT uFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardFormatName
+`int := GetClipboardFormatName(_In_ UINT format, _Out_ LPTSTR lpszFormatName, _In_ int cchMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardFormatNameA
+`int := GetClipboardFormatNameA(_In_ UINT format, _Out_ LPSTR lpszFormatName, _In_ int cchMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardFormatNameW
+`int := GetClipboardFormatNameW(_In_ UINT format, _Out_ LPWSTR lpszFormatName, _In_ int cchMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardOwner
+`HWND := GetClipboardOwner(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardSequenceNumber
+`DWORD := GetClipboardSequenceNumber(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipboardViewer
+`HWND := GetClipboardViewer(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetClipCursor
+`BOOL := GetClipCursor(_Out_ LPRECT lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetComboBoxInfo
+`BOOL := GetComboBoxInfo(_In_ HWND hwndCombo, _Out_ PCOMBOBOXINFO pcbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCursor
+`HCURSOR := GetCursor(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCursorInfo
+`BOOL := GetCursorInfo(_Inout_ PCURSORINFO pci)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCursorPos
+`BOOL := GetCursorPos(_Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDC
+`HDC := GetDC(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDCEx
+`HDC := GetDCEx(_In_ HWND hWnd, _In_ HRGN hrgnClip, _In_ DWORD flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDesktopWindow
+`HWND := GetDesktopWindow(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDialogBaseUnits
+`LONG := GetDialogBaseUnits(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgCtrlID
+`int := GetDlgCtrlID(_In_ HWND hwndCtl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgItem
+`HWND := GetDlgItem(_In_opt_ HWND hDlg, _In_ int nIDDlgItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgItemInt
+`UINT := GetDlgItemInt(_In_ HWND hDlg, _In_ int nIDDlgItem, _Out_opt_ BOOL *lpTranslated, _In_ BOOL bSigned)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgItemText
+`UINT := GetDlgItemText(_In_ HWND hDlg, _In_ int nIDDlgItem, _Out_ LPTSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgItemTextA
+`UINT := GetDlgItemTextA(_In_ HWND hDlg, _In_ int nIDDlgItem, _Out_ LPSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDlgItemTextW
+`UINT := GetDlgItemTextW(_In_ HWND hDlg, _In_ int nIDDlgItem, _Out_ LPWSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetDoubleClickTime
+`UINT := GetDoubleClickTime(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFocus
+`HWND := GetFocus(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetForegroundWindow
+`HWND := GetForegroundWindow(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGestureConfig
+`BOOL := GetGestureConfig(_In_ HWND hwnd, _In_ DWORD dwReserved, _In_ DWORD dwFlags, _In_ PUINT pcIDs, _Inout_ PGESTURECONFIG pGestureConfig, _In_ UINT cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGestureExtraArgs
+`BOOL := GetGestureExtraArgs(_In_ HGESTUREINFO hGestureInfo, _In_ UINT cbExtraArgs, _Out_ PBYTE pExtraArgs)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGestureInfo
+`BOOL := GetGestureInfo(_In_ HGESTUREINFO hGestureInfo, _Out_ PGESTUREINFO pGestureInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGuiResources
+`DWORD := GetGuiResources(_In_ HANDLE hProcess, _In_ DWORD uiFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetGUIThreadInfo
+`BOOL := GetGUIThreadInfo(_In_ DWORD idThread, _Inout_ LPGUITHREADINFO lpgui)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetIconInfo
+`BOOL := GetIconInfo(_In_ HICON hIcon, _Out_ PICONINFO piconinfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetIconInfoEx
+`BOOL := GetIconInfoEx(_In_ HICON hIcon, _Inout_ PICONINFOEX piconinfoex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetIconInfoExA
+`BOOL := GetIconInfoExA(_In_ HICON hIcon, _Inout_ PICONINFOEX piconinfoex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetIconInfoExW
+`BOOL := GetIconInfoExW(_In_ HICON hIcon, _Inout_ PICONINFOEX piconinfoex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetInputState
+`BOOL := GetInputState(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKBCodePage
+`UINT := GetKBCodePage(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardLayout
+`HKL := GetKeyboardLayout(_In_ DWORD idThread)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardLayoutList
+`int := GetKeyboardLayoutList(_In_ int nBuff, _Out_ HKL *lpList)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardLayoutName
+`BOOL := GetKeyboardLayoutName(_Out_ LPTSTR pwszKLID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardLayoutNameA
+`BOOL := GetKeyboardLayoutNameA(_Out_ LPSTR pwszKLID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardLayoutNameW
+`BOOL := GetKeyboardLayoutNameW(_Out_ LPWSTR pwszKLID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardState
+`BOOL := GetKeyboardState(_Out_ PBYTE lpKeyState)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyboardType
+`int := GetKeyboardType(_In_ int nTypeFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyNameText
+`int := GetKeyNameText(_In_ LONG lParam, _Out_ LPTSTR lpString, _In_ int cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyNameTextA
+`int := GetKeyNameTextA(_In_ LONG lParam, _Out_ LPSTR lpString, _In_ int cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyNameTextW
+`int := GetKeyNameTextW(_In_ LONG lParam, _Out_ LPWSTR lpString, _In_ int cchSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetKeyState_
+`SHORT := GetKeyState_(_In_ int nVirtKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLastActivePopup
+`HWND := GetLastActivePopup(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLastInputInfo
+`BOOL := GetLastInputInfo(_Out_ PLASTINPUTINFO plii)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetLayeredWindowAttributes
+`BOOL := GetLayeredWindowAttributes(_In_ HWND hwnd, _Out_opt_ COLORREF *pcrKey, _Out_opt_ BYTE *pbAlpha, _Out_opt_ DWORD *pdwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetListBoxInfo
+`DWORD := GetListBoxInfo(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenu
+`HMENU := GetMenu(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuBarInfo
+`BOOL := GetMenuBarInfo(_In_ HWND hwnd, _In_ LONG idObject, _In_ LONG idItem, _Inout_ PMENUBARINFO pmbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuCheckMarkDimensions
+`LONG := GetMenuCheckMarkDimensions(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuContextHelpId
+`DWORD := GetMenuContextHelpId(HMENU hmenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuDefaultItem
+`UINT := GetMenuDefaultItem(_In_ HMENU hMenu, _In_ UINT fByPos, _In_ UINT gmdiFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuInfo
+`BOOL := GetMenuInfo(_In_ HMENU hmenu, _Inout_ LPMENUINFO lpcmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemCount
+`int := GetMenuItemCount(_In_opt_ HMENU hMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemID
+`UINT := GetMenuItemID(_In_ HMENU hMenu, _In_ int nPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemInfo
+`BOOL := GetMenuItemInfo(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _Inout_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemInfoA
+`BOOL := GetMenuItemInfoA(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _Inout_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemInfoW
+`BOOL := GetMenuItemInfoW(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _Inout_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuItemRect
+`BOOL := GetMenuItemRect(_In_opt_ HWND hWnd, _In_ HMENU hMenu, _In_ UINT uItem, _Out_ LPRECT lprcItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuState
+`UINT := GetMenuState(_In_ HMENU hMenu, _In_ UINT uId, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuString
+`int := GetMenuString(_In_ HMENU hMenu, _In_ UINT uIDItem, _Out_opt_ LPTSTR lpString, _In_ int nMaxCount, _In_ UINT uFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuStringA
+`int := GetMenuStringA(_In_ HMENU hMenu, _In_ UINT uIDItem, _Out_opt_ LPSTR lpString, _In_ int nMaxCount, _In_ UINT uFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMenuStringW
+`int := GetMenuStringW(_In_ HMENU hMenu, _In_ UINT uIDItem, _Out_opt_ LPWSTR lpString, _In_ int nMaxCount, _In_ UINT uFlag)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessage
+`BOOL := GetMessage(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessageA
+`BOOL := GetMessageA(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessageExtraInfo
+`LPARAM := GetMessageExtraInfo(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessagePos
+`DWORD := GetMessagePos(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessageTime
+`LONG := GetMessageTime(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMessageW
+`BOOL := GetMessageW(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMonitorInfo
+`BOOL := GetMonitorInfo(_In_ HMONITOR hMonitor, _Out_ LPMONITORINFO lpmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMonitorInfoA
+`BOOL := GetMonitorInfoA(_In_ HMONITOR hMonitor, _Out_ LPMONITORINFO lpmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMonitorInfoW
+`BOOL := GetMonitorInfoW(_In_ HMONITOR hMonitor, _Out_ LPMONITORINFO lpmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetMouseMovePointsEx
+`int := GetMouseMovePointsEx(_In_ UINT cbSize, _In_ LPMOUSEMOVEPOINT lppt, _Out_ LPMOUSEMOVEPOINT lpptBuf, _In_ int nBufPoints, _In_ DWORD resolution)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNextDlgGroupItem
+`HWND := GetNextDlgGroupItem(_In_ HWND hDlg, _In_opt_ HWND hCtl, _In_ BOOL bPrevious)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetNextDlgTabItem
+`HWND := GetNextDlgTabItem(_In_ HWND hDlg, _In_opt_ HWND hCtl, _In_ BOOL bPrevious)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetOpenClipboardWindow
+`HWND := GetOpenClipboardWindow(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetParent
+`HWND := GetParent(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPhysicalCursorPos
+`BOOL := GetPhysicalCursorPos(_Out_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPriorityClipboardFormat
+`int := GetPriorityClipboardFormat(_In_ UINT *paFormatPriorityList, _In_ int cFormats)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProcessDefaultLayout
+`BOOL := GetProcessDefaultLayout(_Out_ DWORD *pdwDefaultLayout)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProcessWindowStation
+`HWINSTA := GetProcessWindowStation(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetProp
+`HANDLE := GetProp(_In_ HWND hWnd, _In_ LPCTSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPropA
+`HANDLE := GetPropA(_In_ HWND hWnd, _In_ LPCSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetPropW
+`HANDLE := GetPropW(_In_ HWND hWnd, _In_ LPCWSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetQueueStatus
+`DWORD := GetQueueStatus(_In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputBuffer
+`UINT := GetRawInputBuffer(_Out_opt_ PRAWINPUT pData, _Inout_ PUINT pcbSize, _In_ UINT cbSizeHeader)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputData
+`UINT := GetRawInputData(_In_ HRAWINPUT hRawInput, _In_ UINT uiCommand, _Out_opt_ LPVOID pData, _Inout_ PUINT pcbSize, _In_ UINT cbSizeHeader)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputDeviceInfo
+`UINT := GetRawInputDeviceInfo(_In_opt_ HANDLE hDevice, _In_ UINT uiCommand, _Inout_opt_ LPVOID pData, _Inout_ PUINT pcbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputDeviceInfoA
+`UINT := GetRawInputDeviceInfoA(_In_opt_ HANDLE hDevice, _In_ UINT uiCommand, _Inout_opt_ LPVOID pData, _Inout_ PUINT pcbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputDeviceInfoW
+`UINT := GetRawInputDeviceInfoW(_In_opt_ HANDLE hDevice, _In_ UINT uiCommand, _Inout_opt_ LPVOID pData, _Inout_ PUINT pcbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRawInputDeviceList
+`UINT := GetRawInputDeviceList(_Out_opt_ PRAWINPUTDEVICELIST pRawInputDeviceList, _Inout_ PUINT puiNumDevices, _In_ UINT cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetRegisteredRawInputDevices
+`UINT := GetRegisteredRawInputDevices(_Out_opt_ PRAWINPUTDEVICE pRawInputDevices, _Inout_ PUINT puiNumDevices, _In_ UINT cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetScrollBarInfo
+`BOOL := GetScrollBarInfo(_In_ HWND hwnd, _In_ LONG idObject, _Out_ PSCROLLBARINFO psbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetScrollInfo
+`BOOL := GetScrollInfo(_In_ HWND hwnd, _In_ int fnBar, _Inout_ LPSCROLLINFO lpsi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetScrollPos
+`int := GetScrollPos(_In_ HWND hWnd, _In_ int nBar)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetScrollRange
+`BOOL := GetScrollRange(_In_ HWND hWnd, _In_ int nBar, _Out_ LPINT lpMinPos, _Out_ LPINT lpMaxPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetShellWindow
+`HWND := GetShellWindow(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSubMenu
+`HMENU := GetSubMenu(_In_ HMENU hMenu, _In_ int nPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSysColor
+`DWORD := GetSysColor(_In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSysColorBrush
+`HBRUSH := GetSysColorBrush(_In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSystemMenu
+`HMENU := GetSystemMenu(_In_ HWND hWnd, _In_ BOOL bRevert)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetSystemMetrics
+`int := GetSystemMetrics(_In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTabbedTextExtent
+`DWORD := GetTabbedTextExtent(_In_ HDC hDC, _In_ LPCTSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTabbedTextExtentA
+`DWORD := GetTabbedTextExtentA(_In_ HDC hDC, _In_ LPCSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTabbedTextExtentW
+`DWORD := GetTabbedTextExtentW(_In_ HDC hDC, _In_ LPCWSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetThreadDesktop
+`HDESK := GetThreadDesktop(_In_ DWORD dwThreadId)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTitleBarInfo
+`BOOL := GetTitleBarInfo(_In_ HWND hwnd, _Inout_ PTITLEBARINFO pti)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTopWindow
+`HWND := GetTopWindow(_In_opt_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetTouchInputInfo
+`BOOL := GetTouchInputInfo(_In_ HTOUCHINPUT hTouchInput, _In_ UINT cInputs, _Out_ PTOUCHINPUT pInputs, _In_ int cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUpdatedClipboardFormats
+`BOOL := GetUpdatedClipboardFormats(_Out_ PUINT lpuiFormats, _In_ UINT cFormats, _Out_ PUINT pcFormatsOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUpdateRect
+`BOOL := GetUpdateRect(_In_ HWND hWnd, _Out_ LPRECT lpRect, _In_ BOOL bErase)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUpdateRgn
+`int := GetUpdateRgn(_In_ HWND hWnd, _In_ HRGN hRgn, _In_ BOOL bErase)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserObjectInformation
+`BOOL := GetUserObjectInformation(_In_ HANDLE hObj, _In_ int nIndex, _Out_opt_ PVOID pvInfo, _In_ DWORD nLength, _Out_opt_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserObjectInformationA
+`BOOL := GetUserObjectInformationA(_In_ HANDLE hObj, _In_ int nIndex, _Out_opt_ PVOID pvInfo, _In_ DWORD nLength, _Out_opt_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserObjectInformationW
+`BOOL := GetUserObjectInformationW(_In_ HANDLE hObj, _In_ int nIndex, _Out_opt_ PVOID pvInfo, _In_ DWORD nLength, _Out_opt_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUserObjectSecurity
+`BOOL := GetUserObjectSecurity(_In_ HANDLE hObj, _In_ PSECURITY_INFORMATION pSIRequested, _Inout_opt_ PSECURITY_DESCRIPTOR pSD, _In_ DWORD nLength, _Out_ LPDWORD lpnLengthNeeded)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindow
+`HWND := GetWindow(_In_ HWND hWnd, _In_ UINT uCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowContextHelpId
+`DWORD := GetWindowContextHelpId(HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowDC
+`HDC := GetWindowDC(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowDisplayAffinity
+`BOOL := GetWindowDisplayAffinity(_In_ HWND hWnd, _Out_ DWORD *dwAffinity)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowInfo
+`BOOL := GetWindowInfo(_In_ HWND hwnd, _Inout_ PWINDOWINFO pwi)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowLong
+`LONG := GetWindowLong(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowLongA
+`LONG := GetWindowLongA(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowLongW
+`LONG := GetWindowLongW(_In_ HWND hWnd, _In_ int nIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowModuleFileName
+`UINT := GetWindowModuleFileName(_In_ HWND hwnd, _Out_ LPTSTR lpszFileName, _In_ UINT cchFileNameMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowModuleFileNameA
+`UINT := GetWindowModuleFileNameA(_In_ HWND hwnd, _Out_ LPSTR lpszFileName, _In_ UINT cchFileNameMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowModuleFileNameW
+`UINT := GetWindowModuleFileNameW(_In_ HWND hwnd, _Out_ LPWSTR lpszFileName, _In_ UINT cchFileNameMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowPlacement
+`BOOL := GetWindowPlacement(_In_ HWND hWnd, _Inout_ WINDOWPLACEMENT *lpwndpl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowRect
+`BOOL := GetWindowRect(_In_ HWND hWnd, _Out_ LPRECT lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowRgn
+`int := GetWindowRgn(_In_ HWND hWnd, _In_ HRGN hRgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowRgnBox
+`int := GetWindowRgnBox(_In_ HWND hWnd, _Out_ LPRECT lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowText
+`int := GetWindowText(_In_ HWND hWnd, _Out_ LPTSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTextA
+`int := GetWindowTextA(_In_ HWND hWnd, _Out_ LPSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTextLength
+`int := GetWindowTextLength(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTextLengthA
+`int := GetWindowTextLengthA(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTextLengthW
+`int := GetWindowTextLengthW(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowTextW
+`int := GetWindowTextW(_In_ HWND hWnd, _Out_ LPWSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetWindowThreadProcessId
+`DWORD := GetWindowThreadProcessId(_In_ HWND hWnd, _Out_opt_ LPDWORD lpdwProcessId)
+`/docs/commands/WinApi.htm
+
+
+Function
+GrayString
+`BOOL := GrayString(_In_ HDC hDC, _In_ HBRUSH hBrush, _In_ GRAYSTRINGPROC lpOutputFunc, _In_ LPARAM lpData, _In_ int nCount, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+GrayStringA
+`BOOL := GrayStringA(_In_ HDC hDC, _In_ HBRUSH hBrush, _In_ GRAYSTRINGPROC lpOutputFunc, _In_ LPARAM lpData, _In_ int nCount, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+GrayStringW
+`BOOL := GrayStringW(_In_ HDC hDC, _In_ HBRUSH hBrush, _In_ GRAYSTRINGPROC lpOutputFunc, _In_ LPARAM lpData, _In_ int nCount, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight)
+`/docs/commands/WinApi.htm
+
+
+Function
+HideCaret
+`BOOL := HideCaret(_In_opt_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+HiliteMenuItem
+`BOOL := HiliteMenuItem(_In_ HWND hwnd, _In_ HMENU hmenu, _In_ UINT uItemHilite, _In_ UINT uHilite)
+`/docs/commands/WinApi.htm
+
+
+Function
+ImpersonateDdeClientWindow
+`BOOL := ImpersonateDdeClientWindow(_In_ HWND hWndClient, _In_ HWND hWndServer)
+`/docs/commands/WinApi.htm
+
+
+Function
+InflateRect
+`BOOL := InflateRect(_Inout_ LPRECT lprc, _In_ int dx, _In_ int dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+InSendMessage
+`BOOL := InSendMessage(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+InSendMessageEx
+`DWORD := InSendMessageEx(_Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenu
+`BOOL := InsertMenu(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCTSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenuA
+`BOOL := InsertMenuA(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenuItem
+`BOOL := InsertMenuItem(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPCMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenuItemA
+`BOOL := InsertMenuItemA(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPCMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenuItemW
+`BOOL := InsertMenuItemW(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPCMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+InsertMenuW
+`BOOL := InsertMenuW(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCWSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternalGetWindowText
+`int := InternalGetWindowText(_In_ HWND hWnd, _Out_ LPWSTR lpString, _In_ int nMaxCount)
+`/docs/commands/WinApi.htm
+
+
+Function
+IntersectRect
+`BOOL := IntersectRect(_Out_ LPRECT lprcDst, _In_ const RECT *lprcSrc1, _In_ const RECT *lprcSrc2)
+`/docs/commands/WinApi.htm
+
+
+Function
+InvalidateRect
+`BOOL := InvalidateRect(_In_ HWND hWnd, _In_ const RECT *lpRect, _In_ BOOL bErase)
+`/docs/commands/WinApi.htm
+
+
+Function
+InvalidateRgn
+`BOOL := InvalidateRgn(_In_ HWND hWnd, _In_ HRGN hRgn, _In_ BOOL bErase)
+`/docs/commands/WinApi.htm
+
+
+Function
+InvertRect
+`BOOL := InvertRect(_In_ HDC hDC, _In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlpha
+`BOOL := IsCharAlpha(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlphaA
+`BOOL := IsCharAlphaA(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlphaNumeric
+`BOOL := IsCharAlphaNumeric(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlphaNumericA
+`BOOL := IsCharAlphaNumericA(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlphaNumericW
+`BOOL := IsCharAlphaNumericW(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharAlphaW
+`BOOL := IsCharAlphaW(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharLower
+`BOOL := IsCharLower(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharLowerA
+`BOOL := IsCharLowerA(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharLowerW
+`BOOL := IsCharLowerW(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharUpper
+`BOOL := IsCharUpper(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharUpperA
+`BOOL := IsCharUpperA(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsCharUpperW
+`BOOL := IsCharUpperW(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsChild
+`BOOL := IsChild(_In_ HWND hWndParent, _In_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsClipboardFormatAvailable
+`BOOL := IsClipboardFormatAvailable(_In_ UINT format)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsDialogMessage
+`BOOL := IsDialogMessage(_In_ HWND hDlg, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsDialogMessageA
+`BOOL := IsDialogMessageA(_In_ HWND hDlg, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsDialogMessageW
+`BOOL := IsDialogMessageW(_In_ HWND hDlg, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsDlgButtonChecked
+`UINT := IsDlgButtonChecked(_In_ HWND hDlg, _In_ int nIDButton)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsGUIThread
+`BOOL := IsGUIThread(_In_ BOOL bConvert)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsHungAppWindow
+`BOOL := IsHungAppWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsIconic
+`BOOL := IsIconic(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsMenu
+`BOOL := IsMenu(_In_ HMENU hMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsProcessDPIAware
+`BOOL := IsProcessDPIAware(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsRectEmpty
+`BOOL := IsRectEmpty(_In_ const RECT *lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsTouchWindow
+`BOOL := IsTouchWindow(_In_ HWND hWnd, _Out_opt_ PULONG pulFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWindow
+`BOOL := IsWindow(_In_opt_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWindowEnabled
+`BOOL := IsWindowEnabled(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWindowRedirectedForPrint
+`BOOL := IsWindowRedirectedForPrint(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWindowUnicode
+`BOOL := IsWindowUnicode(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWindowVisible
+`BOOL := IsWindowVisible(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWinEventHookInstalled
+`BOOL := IsWinEventHookInstalled(_In_ DWORD event)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsWow64Message
+`BOOL := IsWow64Message(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsZoomed
+`BOOL := IsZoomed(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+keybd_event
+`VOID := keybd_event(_In_ BYTE bVk, _In_ BYTE bScan, _In_ DWORD dwFlags, _In_ ULONG_PTR dwExtraInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+KillTimer
+`BOOL := KillTimer(_In_opt_ HWND hWnd, _In_ UINT_PTR uIDEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadAccelerators
+`HACCEL := LoadAccelerators(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpTableName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadAcceleratorsA
+`HACCEL := LoadAcceleratorsA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpTableName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadAcceleratorsW
+`HACCEL := LoadAcceleratorsW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpTableName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadBitmap
+`HBITMAP := LoadBitmap(_In_ HINSTANCE hInstance, _In_ LPCTSTR lpBitmapName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadBitmapA
+`HBITMAP := LoadBitmapA(_In_ HINSTANCE hInstance, _In_ LPCSTR lpBitmapName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadBitmapW
+`HBITMAP := LoadBitmapW(_In_ HINSTANCE hInstance, _In_ LPCWSTR lpBitmapName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursor
+`HCURSOR := LoadCursor(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpCursorName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursorA
+`HCURSOR := LoadCursorA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpCursorName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursorFromFile
+`HCURSOR := LoadCursorFromFile(_In_ LPCTSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursorFromFileA
+`HCURSOR := LoadCursorFromFileA(_In_ LPCSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursorFromFileW
+`HCURSOR := LoadCursorFromFileW(_In_ LPCWSTR lpFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadCursorW
+`HCURSOR := LoadCursorW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpCursorName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadIcon
+`HICON := LoadIcon(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpIconName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadIconA
+`HICON := LoadIconA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpIconName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadIconW
+`HICON := LoadIconW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpIconName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadImage
+`HANDLE := LoadImage(_In_opt_ HINSTANCE hinst, _In_ LPCTSTR lpszName, _In_ UINT uType, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT fuLoad)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadImageA
+`HANDLE := LoadImageA(_In_opt_ HINSTANCE hinst, _In_ LPCSTR lpszName, _In_ UINT uType, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT fuLoad)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadImageW
+`HANDLE := LoadImageW(_In_opt_ HINSTANCE hinst, _In_ LPCWSTR lpszName, _In_ UINT uType, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT fuLoad)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadKeyboardLayout
+`HKL := LoadKeyboardLayout(_In_ LPCTSTR pwszKLID, _In_ UINT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadKeyboardLayoutA
+`HKL := LoadKeyboardLayoutA(_In_ LPCSTR pwszKLID, _In_ UINT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadKeyboardLayoutW
+`HKL := LoadKeyboardLayoutW(_In_ LPCWSTR pwszKLID, _In_ UINT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenu
+`HMENU := LoadMenu(_In_opt_ HINSTANCE hInstance, _In_ LPCTSTR lpMenuName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenuA
+`HMENU := LoadMenuA(_In_opt_ HINSTANCE hInstance, _In_ LPCSTR lpMenuName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenuIndirect
+`HMENU := LoadMenuIndirect(_In_ const MENUTEMPLATE *lpMenuTemplate)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenuIndirectA
+`HMENU := LoadMenuIndirectA(_In_ const MENUTEMPLATE *lpMenuTemplate)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenuIndirectW
+`HMENU := LoadMenuIndirectW(_In_ const MENUTEMPLATE *lpMenuTemplate)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadMenuW
+`HMENU := LoadMenuW(_In_opt_ HINSTANCE hInstance, _In_ LPCWSTR lpMenuName)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadString
+`int := LoadString(_In_opt_ HINSTANCE hInstance, _In_ UINT uID, _Out_ LPTSTR lpBuffer, _In_ int nBufferMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadStringA
+`int := LoadStringA(_In_opt_ HINSTANCE hInstance, _In_ UINT uID, _Out_ LPSTR lpBuffer, _In_ int nBufferMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+LoadStringW
+`int := LoadStringW(_In_opt_ HINSTANCE hInstance, _In_ UINT uID, _Out_ LPWSTR lpBuffer, _In_ int nBufferMax)
+`/docs/commands/WinApi.htm
+
+
+Function
+LockSetForegroundWindow
+`BOOL := LockSetForegroundWindow(_In_ UINT uLockCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+LockWindowUpdate
+`BOOL := LockWindowUpdate(_In_ HWND hWndLock)
+`/docs/commands/WinApi.htm
+
+
+Function
+LockWorkStation
+`BOOL := LockWorkStation(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+LogicalToPhysicalPoint
+`BOOL := LogicalToPhysicalPoint(_In_ HWND hWnd, _Inout_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupIconIdFromDirectory
+`int := LookupIconIdFromDirectory(_In_ PBYTE presbits, _In_ BOOL fIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+LookupIconIdFromDirectoryEx
+`int := LookupIconIdFromDirectoryEx(_In_ PBYTE presbits, _In_ BOOL fIcon, _In_ int cxDesired, _In_ int cyDesired, _In_ UINT Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapDialogRect
+`BOOL := MapDialogRect(_In_ HWND hDlg, _Inout_ LPRECT lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKey
+`UINT := MapVirtualKey(_In_ UINT uCode, _In_ UINT uMapType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKeyA
+`UINT := MapVirtualKeyA(_In_ UINT uCode, _In_ UINT uMapType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKeyEx
+`UINT := MapVirtualKeyEx(_In_ UINT uCode, _In_ UINT uMapType, _Inout_opt_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKeyExA
+`UINT := MapVirtualKeyExA(_In_ UINT uCode, _In_ UINT uMapType, _Inout_opt_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKeyExW
+`UINT := MapVirtualKeyExW(_In_ UINT uCode, _In_ UINT uMapType, _Inout_opt_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapVirtualKeyW
+`UINT := MapVirtualKeyW(_In_ UINT uCode, _In_ UINT uMapType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MapWindowPoints
+`int := MapWindowPoints(_In_ HWND hWndFrom, _In_ HWND hWndTo, _Inout_ LPPOINT lpPoints, _In_ UINT cPoints)
+`/docs/commands/WinApi.htm
+
+
+Function
+MenuItemFromPoint
+`int := MenuItemFromPoint(_In_opt_ HWND hWnd, _In_ HMENU hMenu, _In_ POINT ptScreen)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBeep
+`BOOL := MessageBeep(_In_ UINT uType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBox
+`int := MessageBox(_In_opt_ HWND hWnd, _In_opt_ LPCTSTR lpText, _In_opt_ LPCTSTR lpCaption, _In_ UINT uType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxA
+`int := MessageBoxA(_In_opt_ HWND hWnd, _In_opt_ LPCSTR lpText, _In_opt_ LPCSTR lpCaption, _In_ UINT uType)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxEx
+`int := MessageBoxEx(_In_opt_ HWND hWnd, _In_opt_ LPCTSTR lpText, _In_opt_ LPCTSTR lpCaption, _In_ UINT uType, _In_ WORD wLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxExA
+`int := MessageBoxExA(_In_opt_ HWND hWnd, _In_opt_ LPCSTR lpText, _In_opt_ LPCSTR lpCaption, _In_ UINT uType, _In_ WORD wLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxExW
+`int := MessageBoxExW(_In_opt_ HWND hWnd, _In_opt_ LPCWSTR lpText, _In_opt_ LPCWSTR lpCaption, _In_ UINT uType, _In_ WORD wLanguageId)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxIndirect
+`int := MessageBoxIndirect(_In_ const LPMSGBOXPARAMS lpMsgBoxParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxIndirectA
+`int := MessageBoxIndirectA(_In_ const LPMSGBOXPARAMS lpMsgBoxParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxIndirectW
+`int := MessageBoxIndirectW(_In_ const LPMSGBOXPARAMS lpMsgBoxParams)
+`/docs/commands/WinApi.htm
+
+
+Function
+MessageBoxW
+`int := MessageBoxW(_In_opt_ HWND hWnd, _In_opt_ LPCWSTR lpText, _In_opt_ LPCWSTR lpCaption, _In_ UINT uType)
+`/docs/commands/WinApi.htm
+
+
+Function
+ModifyMenu
+`BOOL := ModifyMenu(_In_ HMENU hMnu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCTSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+ModifyMenuA
+`BOOL := ModifyMenuA(_In_ HMENU hMnu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+ModifyMenuW
+`BOOL := ModifyMenuW(_In_ HMENU hMnu, _In_ UINT uPosition, _In_ UINT uFlags, _In_ UINT_PTR uIDNewItem, _In_opt_ LPCWSTR lpNewItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+MonitorFromPoint
+`HMONITOR := MonitorFromPoint(_In_ POINT pt, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+MonitorFromRect
+`HMONITOR := MonitorFromRect(_In_ LPCRECT lprc, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+MonitorFromWindow
+`HMONITOR := MonitorFromWindow(_In_ HWND hwnd, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+mouse_event
+`VOID := mouse_event(_In_ DWORD dwFlags, _In_ DWORD dx, _In_ DWORD dy, _In_ DWORD dwData, _In_ ULONG_PTR dwExtraInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+MoveWindow
+`BOOL := MoveWindow(_In_ HWND hWnd, _In_ int X, _In_ int Y, _In_ int nWidth, _In_ int nHeight, _In_ BOOL bRepaint)
+`/docs/commands/WinApi.htm
+
+
+Function
+MsgWaitForMultipleObjects
+`DWORD := MsgWaitForMultipleObjects(_In_ DWORD nCount, _In_ const HANDLE *pHandles, _In_ BOOL bWaitAll, _In_ DWORD dwMilliseconds, _In_ DWORD dwWakeMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+MsgWaitForMultipleObjectsEx
+`DWORD := MsgWaitForMultipleObjectsEx(_In_ DWORD nCount, _In_ const HANDLE *pHandles, _In_ DWORD dwMilliseconds, _In_ DWORD dwWakeMask, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+NotifyWinEvent
+`VOID := NotifyWinEvent(_In_ DWORD event, _In_ HWND hwnd, _In_ LONG idObject, _In_ LONG idChild)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemKeyScan
+`DWORD := OemKeyScan(_In_ WORD wOemChar)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToChar
+`BOOL := OemToChar(_In_ LPCSTR lpszSrc, _Out_ LPTSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToCharA
+`BOOL := OemToCharA(_In_ LPCSTR lpszSrc, _Out_ LPSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToCharBuff
+`BOOL := OemToCharBuff(_In_ LPCSTR lpszSrc, _Out_ LPTSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToCharBuffA
+`BOOL := OemToCharBuffA(_In_ LPCSTR lpszSrc, _Out_ LPSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToCharBuffW
+`BOOL := OemToCharBuffW(_In_ LPCSTR lpszSrc, _Out_ LPWSTR lpszDst, _In_ DWORD cchDstLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+OemToCharW
+`BOOL := OemToCharW(_In_ LPCSTR lpszSrc, _Out_ LPWSTR lpszDst)
+`/docs/commands/WinApi.htm
+
+
+Function
+OffsetRect
+`BOOL := OffsetRect(_Inout_ LPRECT lprc, _In_ int dx, _In_ int dy)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenClipboard
+`BOOL := OpenClipboard(_In_opt_ HWND hWndNewOwner)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenDesktop
+`HDESK := OpenDesktop(_In_ LPTSTR lpszDesktop, _In_ DWORD dwFlags, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenDesktopA
+`HDESK := OpenDesktopA(_In_ LPSTR lpszDesktop, _In_ DWORD dwFlags, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenDesktopW
+`HDESK := OpenDesktopW(_In_ LPWSTR lpszDesktop, _In_ DWORD dwFlags, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenIcon
+`BOOL := OpenIcon(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenInputDesktop
+`HDESK := OpenInputDesktop(_In_ DWORD dwFlags, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenWindowStation
+`HWINSTA := OpenWindowStation(_In_ LPTSTR lpszWinSta, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenWindowStationA
+`HWINSTA := OpenWindowStationA(_In_ LPSTR lpszWinSta, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenWindowStationW
+`HWINSTA := OpenWindowStationW(_In_ LPWSTR lpszWinSta, _In_ BOOL fInherit, _In_ ACCESS_MASK dwDesiredAccess)
+`/docs/commands/WinApi.htm
+
+
+Function
+PackDDElParam
+`LPARAM := PackDDElParam(_In_ UINT msg, _In_ UINT_PTR uiLo, _In_ UINT_PTR uiHi)
+`/docs/commands/WinApi.htm
+
+
+Function
+PaintDesktop
+`BOOL := PaintDesktop(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+PeekMessage
+`BOOL := PeekMessage(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax, _In_ UINT wRemoveMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+PeekMessageA
+`BOOL := PeekMessageA(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax, _In_ UINT wRemoveMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+PeekMessageW
+`BOOL := PeekMessageW(_Out_ LPMSG lpMsg, _In_opt_ HWND hWnd, _In_ UINT wMsgFilterMin, _In_ UINT wMsgFilterMax, _In_ UINT wRemoveMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+PhysicalToLogicalPoint
+`BOOL := PhysicalToLogicalPoint(_In_ HWND hWnd, _Inout_ LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostMessage_
+`BOOL := PostMessage_(_In_opt_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostMessageA
+`BOOL := PostMessageA(_In_opt_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostMessageW
+`BOOL := PostMessageW(_In_opt_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostQuitMessage
+`VOID := PostQuitMessage(_In_ int nExitCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostThreadMessage
+`BOOL := PostThreadMessage(_In_ DWORD idThread, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostThreadMessageA
+`BOOL := PostThreadMessageA(_In_ DWORD idThread, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PostThreadMessageW
+`BOOL := PostThreadMessageW(_In_ DWORD idThread, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrintWindow
+`BOOL := PrintWindow(HWND hwnd, HDC hdcBlt, UINT nFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivateExtractIcons
+`UINT := PrivateExtractIcons(_In_ LPCTSTR lpszFile, _In_ int nIconIndex, _In_ int cxIcon, _In_ int cyIcon, _Out_opt_ HICON *phicon, _Out_opt_ UINT *piconid, _In_ UINT nIcons, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivateExtractIconsA
+`UINT := PrivateExtractIconsA(_In_ LPCSTR lpszFile, _In_ int nIconIndex, _In_ int cxIcon, _In_ int cyIcon, _Out_opt_ HICON *phicon, _Out_opt_ UINT *piconid, _In_ UINT nIcons, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivateExtractIconsW
+`UINT := PrivateExtractIconsW(_In_ LPCWSTR lpszFile, _In_ int nIconIndex, _In_ int cxIcon, _In_ int cyIcon, _Out_opt_ HICON *phicon, _Out_opt_ UINT *piconid, _In_ UINT nIcons, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PtInRect
+`BOOL := PtInRect(_In_ const RECT *lprc, _In_ POINT pt)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealChildWindowFromPoint
+`HWND := RealChildWindowFromPoint(_In_ HWND hwndParent, _In_ POINT ptParentClientCoords)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealGetWindowClass
+`UINT := RealGetWindowClass(_In_ HWND hwnd, _Out_ LPTSTR pszType, _In_ UINT cchType)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealGetWindowClassA
+`UINT := RealGetWindowClassA(_In_ HWND hwnd, _Out_ LPSTR pszType, _In_ UINT cchType)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealGetWindowClassW
+`UINT := RealGetWindowClassW(_In_ HWND hwnd, _Out_ LPWSTR pszType, _In_ UINT cchType)
+`/docs/commands/WinApi.htm
+
+
+Function
+RedrawWindow
+`BOOL := RedrawWindow(_In_ HWND hWnd, _In_ const RECT *lprcUpdate, _In_ HRGN hrgnUpdate, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClass
+`ATOM := RegisterClass(_In_ const WNDCLASS *lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClassA
+`ATOM := RegisterClassA(_In_ const WNDCLASS *lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClassEx
+`ATOM := RegisterClassEx(_In_ const WNDCLASSEX *lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClassExA
+`ATOM := RegisterClassExA(_In_ const WNDCLASSEX *lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClassExW
+`ATOM := RegisterClassExW(_In_ const WNDCLASSEX *lpwcx)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClassW
+`ATOM := RegisterClassW(_In_ const WNDCLASS *lpWndClass)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClipboardFormat
+`UINT := RegisterClipboardFormat(_In_ LPCTSTR lpszFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClipboardFormatA
+`UINT := RegisterClipboardFormatA(_In_ LPCSTR lpszFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterClipboardFormatW
+`UINT := RegisterClipboardFormatW(_In_ LPCWSTR lpszFormat)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterDeviceNotification
+`HDEVNOTIFY := RegisterDeviceNotification(_In_ HANDLE hRecipient, _In_ LPVOID NotificationFilter, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterDeviceNotificationA
+`HDEVNOTIFY := RegisterDeviceNotificationA(_In_ HANDLE hRecipient, _In_ LPVOID NotificationFilter, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterDeviceNotificationW
+`HDEVNOTIFY := RegisterDeviceNotificationW(_In_ HANDLE hRecipient, _In_ LPVOID NotificationFilter, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterHotKey
+`BOOL := RegisterHotKey(_In_opt_ HWND hWnd, _In_ int id, _In_ UINT fsModifiers, _In_ UINT vk)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterPowerSettingNotification
+`HPOWERNOTIFY := RegisterPowerSettingNotification(_In_ HANDLE hRecipient, _In_ LPCGUID PowerSettingGuid, _In_ DWORD Flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterRawInputDevices
+`BOOL := RegisterRawInputDevices(_In_ PCRAWINPUTDEVICE pRawInputDevices, _In_ UINT uiNumDevices, _In_ UINT cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterShellHookWindow
+`BOOL := RegisterShellHookWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterTouchWindow
+`BOOL := RegisterTouchWindow(_In_ HWND hWnd, _In_ ULONG ulFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterWindowMessage
+`UINT := RegisterWindowMessage(_In_ LPCTSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterWindowMessageA
+`UINT := RegisterWindowMessageA(_In_ LPCSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+RegisterWindowMessageW
+`UINT := RegisterWindowMessageW(_In_ LPCWSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReleaseCapture
+`BOOL := ReleaseCapture(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReleaseDC
+`int := ReleaseDC(_In_ HWND hWnd, _In_ HDC hDC)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveClipboardFormatListener
+`BOOL := RemoveClipboardFormatListener(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveMenu
+`BOOL := RemoveMenu(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemoveProp
+`HANDLE := RemoveProp(_In_ HWND hWnd, _In_ LPCTSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemovePropA
+`HANDLE := RemovePropA(_In_ HWND hWnd, _In_ LPCSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+RemovePropW
+`HANDLE := RemovePropW(_In_ HWND hWnd, _In_ LPCWSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReplyMessage
+`BOOL := ReplyMessage(_In_ LRESULT lResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReuseDDElParam
+`LPARAM := ReuseDDElParam(_In_ LPARAM lParam, _In_ UINT msgIn, _In_ UINT msgOut, _In_ UINT_PTR uiLo, _In_ UINT_PTR uiHi)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScreenToClient
+`BOOL := ScreenToClient(_In_ HWND hWnd, LPPOINT lpPoint)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScrollDC
+`BOOL := ScrollDC(_In_ HDC hDC, _In_ int dx, _In_ int dy, _In_ const RECT *lprcScroll, _In_ const RECT *lprcClip, _In_ HRGN hrgnUpdate, _Out_ LPRECT lprcUpdate)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScrollWindow
+`BOOL := ScrollWindow(_In_ HWND hWnd, _In_ int XAmount, _In_ int YAmount, _In_ const RECT *lpRect, _In_ const RECT *lpClipRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+ScrollWindowEx
+`int := ScrollWindowEx(_In_ HWND hWnd, _In_ int dx, _In_ int dy, _In_ const RECT *prcScroll, _In_ const RECT *prcClip, _In_ HRGN hrgnUpdate, _Out_ LPRECT prcUpdate, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendDlgItemMessage
+`LRESULT := SendDlgItemMessage(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendDlgItemMessageA
+`LRESULT := SendDlgItemMessageA(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendDlgItemMessageW
+`LRESULT := SendDlgItemMessageW(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendInput_
+`UINT := SendInput_(_In_ UINT nInputs, _In_ LPINPUT pInputs, _In_ int cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessage_
+`LRESULT := SendMessage_(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageA
+`LRESULT := SendMessageA(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageCallback
+`BOOL := SendMessageCallback(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ SENDASYNCPROC lpCallBack, _In_ ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageCallbackA
+`BOOL := SendMessageCallbackA(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ SENDASYNCPROC lpCallBack, _In_ ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageCallbackW
+`BOOL := SendMessageCallbackW(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ SENDASYNCPROC lpCallBack, _In_ ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageTimeout
+`LRESULT := SendMessageTimeout(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ UINT fuFlags, _In_ UINT uTimeout, _Out_opt_ PDWORD_PTR lpdwResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageTimeoutA
+`LRESULT := SendMessageTimeoutA(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ UINT fuFlags, _In_ UINT uTimeout, _Out_opt_ PDWORD_PTR lpdwResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageTimeoutW
+`LRESULT := SendMessageTimeoutW(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam, _In_ UINT fuFlags, _In_ UINT uTimeout, _Out_opt_ PDWORD_PTR lpdwResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendMessageW
+`LRESULT := SendMessageW(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendNotifyMessage
+`BOOL := SendNotifyMessage(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendNotifyMessageA
+`BOOL := SendNotifyMessageA(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SendNotifyMessageW
+`BOOL := SendNotifyMessageW(_In_ HWND hWnd, _In_ UINT Msg, _In_ WPARAM wParam, _In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetActiveWindow
+`HWND := SetActiveWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCapture
+`HWND := SetCapture(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCaretBlinkTime
+`BOOL := SetCaretBlinkTime(_In_ UINT uMSeconds)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCaretPos
+`BOOL := SetCaretPos(_In_ int X, _In_ int Y)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClassLong
+`DWORD := SetClassLong(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClassLongA
+`DWORD := SetClassLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClassLongW
+`DWORD := SetClassLongW(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClassWord
+`WORD := SetClassWord(_In_ HWND hWnd, _In_ int nIndex, _In_ WORD wNewWord)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClipboardData
+`HANDLE := SetClipboardData(_In_ UINT uFormat, _In_opt_ HANDLE hMem)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetClipboardViewer
+`HWND := SetClipboardViewer(_In_ HWND hWndNewViewer)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCursor
+`HCURSOR := SetCursor(_In_opt_ HCURSOR hCursor)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCursorPos
+`BOOL := SetCursorPos(_In_ int X, _In_ int Y)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDlgItemInt
+`BOOL := SetDlgItemInt(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ UINT uValue, _In_ BOOL bSigned)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDlgItemText
+`BOOL := SetDlgItemText(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ LPCTSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDlgItemTextA
+`BOOL := SetDlgItemTextA(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ LPCSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDlgItemTextW
+`BOOL := SetDlgItemTextW(_In_ HWND hDlg, _In_ int nIDDlgItem, _In_ LPCWSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetDoubleClickTime
+`BOOL := SetDoubleClickTime(_In_ UINT uInterval)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetFocus
+`HWND := SetFocus(_In_opt_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetForegroundWindow
+`BOOL := SetForegroundWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetGestureConfig
+`BOOL := SetGestureConfig(_In_ HWND hwnd, _In_ DWORD dwReserved, _In_ UINT cIDs, _In_ PGESTURECONFIG pGestureConfig, _In_ UINT cbSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetKeyboardState
+`BOOL := SetKeyboardState(_In_ LPBYTE lpKeyState)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetLastErrorEx
+`VOID := SetLastErrorEx(_In_ DWORD dwErrCode, _In_ DWORD dwType)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetLayeredWindowAttributes
+`BOOL := SetLayeredWindowAttributes(_In_ HWND hwnd, _In_ COLORREF crKey, _In_ BYTE bAlpha, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenu
+`BOOL := SetMenu(_In_ HWND hWnd, _In_opt_ HMENU hMenu)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuContextHelpId
+`BOOL := SetMenuContextHelpId(HMENU hmenu, DWORD dwContextHelpId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuDefaultItem
+`BOOL := SetMenuDefaultItem(_In_ HMENU hMenu, _In_ UINT uItem, _In_ UINT fByPos)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuInfo
+`BOOL := SetMenuInfo(_In_ HMENU hmenu, _In_ LPCMENUINFO lpcmi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuItemBitmaps
+`BOOL := SetMenuItemBitmaps(_In_ HMENU hMenu, _In_ UINT uPosition, _In_ UINT uFlags, _In_opt_ HBITMAP hBitmapUnchecked, _In_opt_ HBITMAP hBitmapChecked)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuItemInfo
+`BOOL := SetMenuItemInfo(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuItemInfoA
+`BOOL := SetMenuItemInfoA(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMenuItemInfoW
+`BOOL := SetMenuItemInfoW(_In_ HMENU hMenu, _In_ UINT uItem, _In_ BOOL fByPosition, _In_ LPMENUITEMINFO lpmii)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetMessageExtraInfo
+`LPARAM := SetMessageExtraInfo(_In_ LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetParent
+`HWND := SetParent(_In_ HWND hWndChild, _In_opt_ HWND hWndNewParent)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPhysicalCursorPos
+`BOOL := SetPhysicalCursorPos(_In_ int X, _In_ int Y)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetProcessDefaultLayout
+`BOOL := SetProcessDefaultLayout(_In_ DWORD dwDefaultLayout)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetProcessDPIAware
+`BOOL := SetProcessDPIAware(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetProcessWindowStation
+`BOOL := SetProcessWindowStation(_In_ HWINSTA hWinSta)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetProp
+`BOOL := SetProp(_In_ HWND hWnd, _In_ LPCTSTR lpString, _In_opt_ HANDLE hData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPropA
+`BOOL := SetPropA(_In_ HWND hWnd, _In_ LPCSTR lpString, _In_opt_ HANDLE hData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetPropW
+`BOOL := SetPropW(_In_ HWND hWnd, _In_ LPCWSTR lpString, _In_opt_ HANDLE hData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetRect
+`BOOL := SetRect(_Out_ LPRECT lprc, _In_ int xLeft, _In_ int yTop, _In_ int xRight, _In_ int yBottom)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetRectEmpty
+`BOOL := SetRectEmpty(_Out_ LPRECT lprc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetScrollInfo
+`int := SetScrollInfo(_In_ HWND hwnd, _In_ int fnBar, _In_ LPCSCROLLINFO lpsi, _In_ BOOL fRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetScrollPos
+`int := SetScrollPos(_In_ HWND hWnd, _In_ int nBar, _In_ int nPos, _In_ BOOL bRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetScrollRange
+`BOOL := SetScrollRange(_In_ HWND hWnd, _In_ int nBar, _In_ int nMinPos, _In_ int nMaxPos, _In_ BOOL bRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSysColors
+`BOOL := SetSysColors(_In_ int cElements, _In_ const INT *lpaElements, _In_ const COLORREF *lpaRgbValues)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetSystemCursor
+`BOOL := SetSystemCursor(_In_ HCURSOR hcur, _In_ DWORD id)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetThreadDesktop
+`BOOL := SetThreadDesktop(_In_ HDESK hDesktop)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetTimer_
+`UINT_PTR := SetTimer_(_In_opt_ HWND hWnd, _In_ UINT_PTR nIDEvent, _In_ UINT uElapse, _In_opt_ TIMERPROC lpTimerFunc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUserObjectInformation
+`BOOL := SetUserObjectInformation(_In_ HANDLE hObj, _In_ int nIndex, _In_ PVOID pvInfo, _In_ DWORD nLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUserObjectInformationA
+`BOOL := SetUserObjectInformationA(_In_ HANDLE hObj, _In_ int nIndex, _In_ PVOID pvInfo, _In_ DWORD nLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUserObjectInformationW
+`BOOL := SetUserObjectInformationW(_In_ HANDLE hObj, _In_ int nIndex, _In_ PVOID pvInfo, _In_ DWORD nLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUserObjectSecurity
+`BOOL := SetUserObjectSecurity(_In_ HANDLE hObj, _In_ PSECURITY_INFORMATION pSIRequested, _In_ PSECURITY_DESCRIPTOR pSID)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowContextHelpId
+`BOOL := SetWindowContextHelpId(HWND hwnd, DWORD dwContextHelpId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowDisplayAffinity
+`BOOL := SetWindowDisplayAffinity(_In_ HWND hWnd, _In_ DWORD dwAffinity)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowLong
+`LONG := SetWindowLong(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowLongA
+`LONG := SetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowLongW
+`LONG := SetWindowLongW(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowPlacement
+`BOOL := SetWindowPlacement(_In_ HWND hWnd, _In_ const WINDOWPLACEMENT *lpwndpl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowPos
+`BOOL := SetWindowPos(_In_ HWND hWnd, _In_opt_ HWND hWndInsertAfter, _In_ int X, _In_ int Y, _In_ int cx, _In_ int cy, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowRgn
+`int := SetWindowRgn(_In_ HWND hWnd, _In_ HRGN hRgn, _In_ BOOL bRedraw)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowsHookEx
+`HHOOK := SetWindowsHookEx(_In_ int idHook, _In_ HOOKPROC lpfn, _In_ HINSTANCE hMod, _In_ DWORD dwThreadId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowsHookExA
+`HHOOK := SetWindowsHookExA(_In_ int idHook, _In_ HOOKPROC lpfn, _In_ HINSTANCE hMod, _In_ DWORD dwThreadId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowsHookExW
+`HHOOK := SetWindowsHookExW(_In_ int idHook, _In_ HOOKPROC lpfn, _In_ HINSTANCE hMod, _In_ DWORD dwThreadId)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowText
+`BOOL := SetWindowText(_In_ HWND hWnd, _In_opt_ LPCTSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowTextA
+`BOOL := SetWindowTextA(_In_ HWND hWnd, _In_opt_ LPCSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWindowTextW
+`BOOL := SetWindowTextW(_In_ HWND hWnd, _In_opt_ LPCWSTR lpString)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetWinEventHook
+`HWINEVENTHOOK := SetWinEventHook(_In_ UINT eventMin, _In_ UINT eventMax, _In_ HMODULE hmodWinEventProc, _In_ WINEVENTPROC lpfnWinEventProc, _In_ DWORD idProcess, _In_ DWORD idThread, _In_ UINT dwflags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowCaret
+`BOOL := ShowCaret(_In_opt_ HWND hWnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowCursor
+`int := ShowCursor(_In_ BOOL bShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowOwnedPopups
+`BOOL := ShowOwnedPopups(_In_ HWND hWnd, _In_ BOOL fShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowScrollBar
+`BOOL := ShowScrollBar(_In_ HWND hWnd, _In_ int wBar, _In_ BOOL bShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowWindow
+`BOOL := ShowWindow(_In_ HWND hWnd, _In_ int nCmdShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShowWindowAsync
+`BOOL := ShowWindowAsync(_In_ HWND hWnd, _In_ int nCmdShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShutdownBlockReasonCreate
+`BOOL := ShutdownBlockReasonCreate(_In_ HWND hWnd, _In_ LPCWSTR pwszReason)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShutdownBlockReasonDestroy
+`BOOL := ShutdownBlockReasonDestroy(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShutdownBlockReasonQuery
+`BOOL := ShutdownBlockReasonQuery(_In_ HWND hWnd, _Out_opt_ LPWSTR pwszBuff, _Inout_ DWORD *pcchBuff)
+`/docs/commands/WinApi.htm
+
+
+Function
+SoundSentry
+`BOOL := SoundSentry(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SubtractRect
+`BOOL := SubtractRect(_Out_ LPRECT lprcDst, _In_ const RECT *lprcSrc1, _In_ const RECT *lprcSrc2)
+`/docs/commands/WinApi.htm
+
+
+Function
+SwapMouseButton
+`BOOL := SwapMouseButton(_In_ BOOL fSwap)
+`/docs/commands/WinApi.htm
+
+
+Function
+SwitchDesktop
+`BOOL := SwitchDesktop(_In_ HDESK hDesktop)
+`/docs/commands/WinApi.htm
+
+
+Function
+SwitchToThisWindow
+`VOID := SwitchToThisWindow(_In_ HWND hWnd, _In_ BOOL fAltTab)
+`/docs/commands/WinApi.htm
+
+
+Function
+SystemParametersInfo
+`BOOL := SystemParametersInfo(_In_ UINT uiAction, _In_ UINT uiParam, _Inout_ PVOID pvParam, _In_ UINT fWinIni)
+`/docs/commands/WinApi.htm
+
+
+Function
+SystemParametersInfoA
+`BOOL := SystemParametersInfoA(_In_ UINT uiAction, _In_ UINT uiParam, _Inout_ PVOID pvParam, _In_ UINT fWinIni)
+`/docs/commands/WinApi.htm
+
+
+Function
+SystemParametersInfoW
+`BOOL := SystemParametersInfoW(_In_ UINT uiAction, _In_ UINT uiParam, _Inout_ PVOID pvParam, _In_ UINT fWinIni)
+`/docs/commands/WinApi.htm
+
+
+Function
+TabbedTextOut
+`LONG := TabbedTextOut(_In_ HDC hDC, _In_ int X, _In_ int Y, _In_ LPCTSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions, _In_ int nTabOrigin)
+`/docs/commands/WinApi.htm
+
+
+Function
+TabbedTextOutA
+`LONG := TabbedTextOutA(_In_ HDC hDC, _In_ int X, _In_ int Y, _In_ LPCSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions, _In_ int nTabOrigin)
+`/docs/commands/WinApi.htm
+
+
+Function
+TabbedTextOutW
+`LONG := TabbedTextOutW(_In_ HDC hDC, _In_ int X, _In_ int Y, _In_ LPCWSTR lpString, _In_ int nCount, _In_ int nTabPositions, _In_ const LPINT lpnTabStopPositions, _In_ int nTabOrigin)
+`/docs/commands/WinApi.htm
+
+
+Function
+TileWindows
+`WORD := TileWindows(_In_opt_ HWND hwndParent, _In_ UINT wHow, _In_opt_ const RECT *lpRect, _In_ UINT cKids, _In_opt_ const HWND *lpKids)
+`/docs/commands/WinApi.htm
+
+
+Function
+ToAscii
+`int := ToAscii(_In_ UINT uVirtKey, _In_ UINT uScanCode, _In_opt_ const BYTE *lpKeyState, _Out_ LPWORD lpChar, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ToAsciiEx
+`int := ToAsciiEx(_In_ UINT uVirtKey, _In_ UINT uScanCode, _In_opt_ const BYTE *lpKeyState, _Out_ LPWORD lpChar, _In_ UINT uFlags, _In_opt_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ToUnicode
+`int := ToUnicode(_In_ UINT wVirtKey, _In_ UINT wScanCode, _In_opt_ const BYTE *lpKeyState, _Out_ LPWSTR pwszBuff, _In_ int cchBuff, _In_ UINT wFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+ToUnicodeEx
+`int := ToUnicodeEx(_In_ UINT wVirtKey, _In_ UINT wScanCode, _In_ const BYTE *lpKeyState, _Out_ LPWSTR pwszBuff, _In_ int cchBuff, _In_ UINT wFlags, _In_opt_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+TrackMouseEvent
+`BOOL := TrackMouseEvent(_Inout_ LPTRACKMOUSEEVENT lpEventTrack)
+`/docs/commands/WinApi.htm
+
+
+Function
+TrackPopupMenu
+`BOOL := TrackPopupMenu(_In_ HMENU hMenu, _In_ UINT uFlags, _In_ int x, _In_ int y, _In_ int nReserved, _In_ HWND hWnd, _In_opt_ const RECT *prcRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+TrackPopupMenuEx
+`BOOL := TrackPopupMenuEx(_In_ HMENU hmenu, _In_ UINT fuFlags, _In_ int x, _In_ int y, _In_ HWND hwnd, _In_opt_ LPTPMPARAMS lptpm)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateAccelerator
+`int := TranslateAccelerator(_In_ HWND hWnd, _In_ HACCEL hAccTable, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateAcceleratorA
+`int := TranslateAcceleratorA(_In_ HWND hWnd, _In_ HACCEL hAccTable, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateAcceleratorW
+`int := TranslateAcceleratorW(_In_ HWND hWnd, _In_ HACCEL hAccTable, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateMDISysAccel
+`BOOL := TranslateMDISysAccel(_In_ HWND hWndClient, _In_ LPMSG lpMsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+TranslateMessage
+`BOOL := TranslateMessage(_In_ const MSG *lpmsg)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnhookWindowsHookEx
+`BOOL := UnhookWindowsHookEx(_In_ HHOOK hhk)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnhookWinEvent
+`BOOL := UnhookWinEvent(_In_ HWINEVENTHOOK hWinEventHook)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnionRect
+`BOOL := UnionRect(_Out_ LPRECT lprcDst, _In_ const RECT *lprcSrc1, _In_ const RECT *lprcSrc2)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnloadKeyboardLayout
+`BOOL := UnloadKeyboardLayout(_In_ HKL hKL)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnpackDDElParam
+`BOOL := UnpackDDElParam(_In_ UINT msg, _In_ LPARAM lParam, _Out_ PUINT_PTR puiLo, _Out_ PUINT_PTR puiHi)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterClass
+`BOOL := UnregisterClass(_In_ LPCTSTR lpClassName, _In_opt_ HINSTANCE hInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterClassA
+`BOOL := UnregisterClassA(_In_ LPCSTR lpClassName, _In_opt_ HINSTANCE hInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterClassW
+`BOOL := UnregisterClassW(_In_ LPCWSTR lpClassName, _In_opt_ HINSTANCE hInstance)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterDeviceNotification
+`BOOL := UnregisterDeviceNotification(_In_ HDEVNOTIFY Handle)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterHotKey
+`BOOL := UnregisterHotKey(_In_opt_ HWND hWnd, _In_ int id)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterPowerSettingNotification
+`BOOL := UnregisterPowerSettingNotification(_In_ HPOWERNOTIFY Handle)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnregisterTouchWindow
+`BOOL := UnregisterTouchWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateLayeredWindow
+`BOOL := UpdateLayeredWindow(_In_ HWND hwnd, _In_opt_ HDC hdcDst, _In_opt_ POINT *pptDst, _In_opt_ SIZE *psize, _In_opt_ HDC hdcSrc, _In_opt_ POINT *pptSrc, _In_ COLORREF crKey, _In_opt_ BLENDFUNCTION *pblend, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateLayeredWindowIndirect
+`BOOL := UpdateLayeredWindowIndirect(_In_ HWND hwnd, _In_ const UPDATELAYEREDWINDOWINFO *pULWInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+UpdateWindow
+`BOOL := UpdateWindow(_In_ HWND hwnd)
+`/docs/commands/WinApi.htm
+
+
+Function
+UserHandleGrantAccess
+`BOOL := UserHandleGrantAccess(_In_ HANDLE hUserHandle, _In_ HANDLE hJob, _In_ BOOL bGrant)
+`/docs/commands/WinApi.htm
+
+
+Function
+ValidateRect
+`BOOL := ValidateRect(_In_ HWND hWnd, _In_ const RECT *lpRect)
+`/docs/commands/WinApi.htm
+
+
+Function
+ValidateRgn
+`BOOL := ValidateRgn(_In_ HWND hWnd, _In_ HRGN hRgn)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScan
+`SHORT := VkKeyScan(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScanA
+`SHORT := VkKeyScanA(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScanEx
+`SHORT := VkKeyScanEx(_In_ TCHAR ch, _In_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScanExA
+`SHORT := VkKeyScanExA(_In_ TCHAR ch, _In_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScanExW
+`SHORT := VkKeyScanExW(_In_ TCHAR ch, _In_ HKL dwhkl)
+`/docs/commands/WinApi.htm
+
+
+Function
+VkKeyScanW
+`SHORT := VkKeyScanW(_In_ TCHAR ch)
+`/docs/commands/WinApi.htm
+
+
+Function
+WaitForInputIdle
+`DWORD := WaitForInputIdle(_In_ HANDLE hProcess, _In_ DWORD dwMilliseconds)
+`/docs/commands/WinApi.htm
+
+
+Function
+WaitMessage
+`BOOL := WaitMessage(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+WindowFromDC
+`HWND := WindowFromDC(_In_ HDC hdc)
+`/docs/commands/WinApi.htm
+
+
+Function
+WindowFromPhysicalPoint
+`HWND := WindowFromPhysicalPoint(_In_ POINT Point)
+`/docs/commands/WinApi.htm
+
+
+Function
+WindowFromPoint
+`HWND := WindowFromPoint(_In_ POINT Point)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHelp
+`BOOL := WinHelp(HWND hWndMain, LPCTSTR lpszHelp, UINT uCommand, ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHelpA
+`BOOL := WinHelpA(HWND hWndMain, LPCSTR lpszHelp, UINT uCommand, ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+WinHelpW
+`BOOL := WinHelpW(HWND hWndMain, LPCWSTR lpszHelp, UINT uCommand, ULONG_PTR dwData)
+`/docs/commands/WinApi.htm
+
+
+Function
+wsprintf
+`int := wsprintf(_Out_ LPTSTR lpOut, _In_ LPCTSTR lpFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wsprintfA
+`int := wsprintfA(_Out_ LPSTR lpOut, _In_ LPCSTR lpFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wsprintfW
+`int := wsprintfW(_Out_ LPWSTR lpOut, _In_ LPCWSTR lpFmt, _In_ ...)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvsprintf
+`int := wvsprintf(_Out_ LPTSTR lpOutput, _In_ LPCTSTR lpFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvsprintfA
+`int := wvsprintfA(_Out_ LPSTR lpOutput, _In_ LPCSTR lpFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm
+
+
+Function
+wvsprintfW
+`int := wvsprintfW(_Out_ LPWSTR lpOutput, _In_ LPCWSTR lpFmt, _In_ va_list arglist)
+`/docs/commands/WinApi.htm

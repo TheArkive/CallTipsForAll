@@ -68,9 +68,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		}
 	} Else If (curPhraseType = "object") {
 		found := false
-		For objName, objobj in ObjectList { ; find element and correct case
+		For objName, curObjType in ObjectList { ; find element and correct case
 			If (objName = curPhrase) {
-				obj := objobj["types"]
+				objType := curObjType
 				found := true
 				Break
 			}
@@ -80,13 +80,23 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			return
 		
 		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		
+		If (listObj) {
+			descArr := listObj["desc"]
+			helpLink := listObj["helpLink"]
 			
-			If (listObj) {
-				descArr := listObj["desc"]
-				helpLink := listObj["helpLink"]
-				
+			For index, desc in descArr {
+				curObj := Map()
+				curObj["desc"] := desc, curObj["helpLink"] := helpLink
+				fullDescArr[i] := curObj
+				i++
+			}
+			
+			addon := listObj["moreObj"]
+			addon := StrSplit(addon,",")
+			For j, objType in addon {
+				descArr := MethPropList[objType]["desc"]
 				For index, desc in descArr {
 					curObj := Map()
 					curObj["desc"] := desc, curObj["helpLink"] := helpLink
@@ -98,9 +108,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 		curObj := "", listObj := "", obj := ""
 	} Else If (curPhraseType = "method" Or curPhraseType = "property") {
 		found := false
-		For objName, objobj in ObjectList { ; find element and correct case
+		For objName, curObjType in ObjectList { ; find element and correct case
 			If (objName = parentObj) {
-				obj := objobj["types"]
+				objType := curObjType
 				found := true
 				Break
 			}
@@ -110,27 +120,25 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 			return
 		
 		fullDescArr := Map(), i := 1
-		For objType, typeObj in obj {
-			listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
-			memObj := listObj[curPhraseType]
-			
-			For methPropName, descObj in memObj {
-				If (methPropName = curPhrase) {
-					descArr := descObj["desc"]
-					helpLink := descObj["helpLink"]
-					helpLink := StrReplace(helpLink,"[MemberName]",methPropName)
-					
-					For index, desc in descArr {
-						titleHeader := StrUpper(curPhraseType,"T")
-						desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
-						curObj := Map()
-						curObj["helpLink"] := helpLink, curObj["desc"] := desc
-						fullDescArr[i] := curObj
-						i++
-					}
-					
-					Break
+		listObj := MethPropList.Has(objType) ? MethPropList[objType] : ""
+		memObj := listObj[curPhraseType]
+		
+		For methPropName, descObj in memObj {
+			If (methPropName = curPhrase) {
+				descArr := descObj["desc"]
+				helpLink := descObj["helpLink"]
+				helpLink := StrReplace(helpLink,"[MemberName]",methPropName)
+				
+				For index, desc in descArr {
+					titleHeader := StrUpper(curPhraseType,"T")
+					desc := objType " " titleHeader ":`r`n`r`n" StrReplace(desc,"[MemberName]",methPropName)
+					curObj := Map()
+					curObj["helpLink"] := helpLink, curObj["desc"] := desc
+					fullDescArr[i] := curObj
+					i++
 				}
+				
+				Break
 			}
 		}
 		
@@ -287,7 +295,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
 
 gui_click(ctlObj,info) {
 	curIndex := oCallTip.curIndex
-	fullDescArrObj := oCallTip.fullDescArr[curIndex]
+	fullDescArrObj := oCallTip.fullDescArr[curIndex] ; map
 	fullDesc := fullDescArrObj["desc"]
 	link := fullDescArrObj["helpLink"]
 	helpFile := oCallTip.helpFile
@@ -395,6 +403,8 @@ SettingsGUILoad() {
 	
 	SettingsGUI.Add("Text","xs yp-28","`r`nClose CallTipsForAll Hotkey:")
 	SettingsGUI.Add("Hotkey","vCloseInvoke xs y+2 w" w,Settings["CloseInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["CloseInvoke"]
+	
+	SettingsGUI.Add("Text","xm y+8","Last parse took:`r`n     " (Settings.Has("lastParse") ? Settings["lastParse"] : ""))
 	
 	SetFontDemo()
 	SettingsGUI.Show()
@@ -602,8 +612,9 @@ quick_reload_close(g) {
 ; Auto-Complete
 ; ================================================================
 LoadAutoCompleteGUI(KeywordFilter) {
-	If (IsObject(AutoCompleteGUI))
-		AutoCompleteGUI.Destroy(), AutoCompleteGUI := ""
+	wa := false ; win is visible?
+	If (IsObject(AutoCompleteGUI) And WinExist("ahk_id " oCallTip.AutoCompleteHwnd))
+		wa := true
 	
 	dispList := [], endList := [], curPhrase := oCallTip.curPhrase, kwBlock := ""
 	For kw, kwType in KeywordFilter {
@@ -626,32 +637,41 @@ LoadAutoCompleteGUI(KeywordFilter) {
 	
 	fontFace := Settings["fontFace"]
 	fontSize := Settings["fontSize"]
-	fontColor := Settings["fontColor"]
-	bgColor := Settings["bgColor"]
-	hEditorWin := oCallTip.progHwnd
-	
 	kwDims := GetTextDims(kwBlock,fontFace,fontSize)
 	
 	w := kwDims.w + (kwDims.avgW * 4) ; add VScroll width
 	maxR := (KeywordFilter.Count > 10) ? 10 : KeywordFilter.Count
+	h := (kwDims.avgH * maxR) + 8
+	
 	
 	CoordMode "Caret", "Screen"
 	CaretGetPos(outX, outY)
 	
-	AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
-	AutoCompleteGUI.BackColor := bgColor
-	AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
-	
-	If (AutoCompleteGUI)
-		ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " r" maxR " +Background" bgColor)
-	If (AutoCompleteGUI)
+	If (!wa) { ; auto-complete not visible
+		AutoCompleteGUI := ""
+		fontColor := Settings["fontColor"]
+		bgColor := Settings["bgColor"]
+		hEditorWin := oCallTip.progHwnd
+		
+		AutoCompleteGUI := Gui.New("-DPIScale -Border AlwaysOnTop +Owner" hEditorWin)
+		oCallTip.AutoCompleteHwnd := AutoCompleteGUI.hwnd
+		AutoCompleteGUI.BackColor := bgColor
+		AutoCompleteGUI.SetFont("s" fontSize " c" fontColor,fontFace)
+		
+		ctl := AutoCompleteGUI.Add("ListBox","vKwList x0 y0 w" w " h" h " +Background" bgColor) ; " r" maxR
 		ctl.Add(dispList), ctl.Add(endList)
-	
-	If (AutoCompleteGUI)
 		ctl.GetPos(,,,h)
 	
-	If (AutoCompleteGUI) {
 		AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
 		AutoCompleteGUI.Show("h" h " NA NoActivate")
+	} Else {
+		AutoCompleteGui.Move(outX,(outY + kwDims.avgH),w,h)
+		
+		ctl := AutoCompleteGui["KwList"]
+		ctl.Opt("-Redraw")
+		ctl.Move(,,w,h)
+		ctl.Delete()
+		ctl.Add(dispList), ctl.Add(endList)
+		ctl.Opt("+Redraw")
 	}
 }

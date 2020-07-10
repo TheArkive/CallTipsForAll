@@ -1,0 +1,197 @@
+Command
+#AllowSameLineComments
+`#AllowSameLineComments
+`/docs/commands/_AllowSameLineComments.htm
+
+
+Command
+#ClipboardTimeout
+`#ClipboardTimeout Milliseconds
+`/docs/commands/_ClipboardTimeout.htm
+
+
+Command
+#CommentFlag
+`#CommentFlag NewString
+`/docs/commands/_CommentFlag.htm
+
+
+Command
+#ErrorStdOut
+`#ErrorStdOut
+`/docs/commands/_ErrorStdOut.htm
+
+
+Command
+#EscapeChar
+`#EscapeChar NewChar
+`/docs/commands/_EscapeChar.htm
+
+
+Command
+#HotkeyInterval
+`#HotkeyInterval Milliseconds
+`/docs/commands/_HotkeyInterval.htm
+
+
+Command
+#HotkeyModifierTimeout
+`#HotkeyModifierTimeout Milliseconds
+`/docs/commands/_HotkeyModifierTimeout.htm
+
+
+Command
+#Hotstring
+`#Hotstring NoMouse       |    #Hotstring EndChars NewChars
+#Hotstring NewOptions    |
+`/docs/commands/_Hotstring.htm
+
+
+Command
+#If
+`#If [Expression]
+`/docs/commands/_If.htm
+
+
+Command
+#IfTimeout
+`#IfTimeout Timeout
+`/docs/commands/_IfTimeout.htm
+
+
+Command
+#IfWinActive
+`#IfWinActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinExist
+`#IfWinExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinNotActive
+`#IfWinNotActive [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#IfWinNotExist
+`#IfWinNotExist [WinTitle, WinText]
+`/docs/commands/_IfWinActive.htm
+
+
+Command
+#Include
+`#Include FileOrDirName    or    #Include <LibName>
+`/docs/commands/_Include.htm
+
+
+Command
+#IncludeAgain
+`#IncludeAgain FileOrDirName
+`/docs/commands/_Include.htm
+
+
+Command
+#InputLevel
+`#InputLevel [Level]
+`/docs/commands/_InputLevel.htm
+
+
+Command
+#InstallKeybdHook
+`#InstallKeybdHook
+`/docs/commands/_InstallKeybdHook.htm
+
+
+Command
+#InstallMouseHook
+`#InstallMouseHook
+`/docs/commands/_InstallMouseHook.htm
+
+
+Command
+#KeyHistory
+`#KeyHistory MaxEvents
+`/docs/commands/_KeyHistory.htm
+
+
+Command
+#MaxHotkeysPerInterval
+`#MaxHotkeysPerInterval Value
+`/docs/commands/_MaxHotkeysPerInterval.htm
+
+
+Command
+#MaxMem
+`#MaxMem Megabytes
+`/docs/commands/_MaxMem.htm
+
+
+Command
+#MaxThreads
+`#MaxThreads Value
+`/docs/commands/_MaxThreads.htm
+
+
+Command
+#MaxThreadsBuffer
+`#MaxThreadsBuffer OnOff
+`/docs/commands/_MaxThreadsBuffer.htm
+
+
+Command
+#MaxThreadsPerHotkey
+`#MaxThreadsPerHotkey Value
+`/docs/commands/_MaxThreadsPerHotkey.htm
+
+
+Command
+#MenuMaskKey
+`#MenuMaskKey KeyName
+`/docs/commands/_MenuMaskKey.htm
+
+
+Command
+#NoEnv
+`#NoEnv
+`/docs/commands/_NoEnv.htm
+
+
+Command
+#NoTrayIcon
+`#NoTrayIcon
+`/docs/commands/_NoTrayIcon.htm
+
+
+Command
+#Persistent
+`#Persistent
+`/docs/commands/_Persistent.htm
+
+
+Command
+#SingleInstance
+`#SingleInstance [ForceIgnoreOff]
+`/docs/commands/_SingleInstance.htm
+
+
+Command
+#UseHook
+`#UseHook [OnOff]
+`/docs/commands/_UseHook.htm
+
+
+Command
+#Warn
+`#Warn [WarningType, WarningMode]
+`/docs/commands/_Warn.htm
+
+
+Command
+#WinActivateForce
+`#WinActivateForce
+`/docs/commands/_WinActivateForce.htm

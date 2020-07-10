@@ -1,0 +1,1342 @@
+Function
+CommitUrlCacheEntryA
+`BOOL := CommitUrlCacheEntryA(_In_ LPCSTR lpszUrlName, _In_ LPCSTR lpszLocalFileName, _In_ FILETIME ExpireTime, _In_ FILETIME LastModifiedTime, _In_ DWORD CacheEntryType, _In_ LPBYTE lpHeaderInfo, _In_ DWORD cchHeaderInfo, _Reserved_ LPCSTR lpszFileExtension, _In_ LPCSTR lpszOriginalUrl)
+`/docs/commands/WinApi.htm
+
+
+Function
+CommitUrlCacheEntryW
+`BOOL := CommitUrlCacheEntryW(_In_ LPCWSTR lpszUrlName, _In_ LPCWSTR lpszLocalFileName, _In_ FILETIME ExpireTime, _In_ FILETIME LastModifiedTime, _In_ DWORD CacheEntryType, _In_ LPCWSTR lpHeaderInfo, _In_ DWORD cchHeaderInfo, _Reserved_ LPCWSTR lpszFileExtension, _In_ LPCWSTR lpszOriginalUrl)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateMD5SSOHash
+`BOOL := CreateMD5SSOHash(_In_ PWSTR pszChallengeInfo, _In_ PWSTR pwszRealm, _In_ PWSTR pwszTarget, _Out_ PBYTE pbHexHash)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateUrlCacheEntry
+`BOOL := CreateUrlCacheEntry(_In_ LPCTSTR lpszUrlName, _In_ DWORD dwExpectedFileSize, _In_ LPCTSTR lpszFileExtension, _Out_ LPTSTR lpszFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateUrlCacheEntryA
+`BOOL := CreateUrlCacheEntryA(_In_ LPCSTR lpszUrlName, _In_ DWORD dwExpectedFileSize, _In_ LPCSTR lpszFileExtension, _Out_ LPSTR lpszFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateUrlCacheEntryW
+`BOOL := CreateUrlCacheEntryW(_In_ LPCWSTR lpszUrlName, _In_ DWORD dwExpectedFileSize, _In_ LPCWSTR lpszFileExtension, _Out_ LPWSTR lpszFileName, _Reserved_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+CreateUrlCacheGroup
+`GROUPID := CreateUrlCacheGroup(_In_ DWORD dwFlags, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteUrlCacheEntry
+`BOOL := DeleteUrlCacheEntry(_In_ LPCTSTR lpszUrlName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteUrlCacheEntryA
+`BOOL := DeleteUrlCacheEntryA(_In_ LPCSTR lpszUrlName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteUrlCacheEntryW
+`BOOL := DeleteUrlCacheEntryW(_In_ LPCWSTR lpszUrlName)
+`/docs/commands/WinApi.htm
+
+
+Function
+DeleteUrlCacheGroup
+`BOOL := DeleteUrlCacheGroup(_In_ GROUPID GroupId, _In_ DWORD dwFlags, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+DetectAutoProxyUrl
+`BOOL := DetectAutoProxyUrl(_Inout_ LPSTR lpszAutoProxyUrl, _In_ DWORD dwAutoProxyUrlLength, _In_ DWORD dwDetectFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindCloseUrlCache
+`BOOL := FindCloseUrlCache(_In_ HANDLE hEnumHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntry
+`HANDLE := FindFirstUrlCacheEntry(_In_ LPCTSTR lpszUrlSearchPattern, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntryA
+`HANDLE := FindFirstUrlCacheEntryA(_In_ LPCSTR lpszUrlSearchPattern, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntryEx
+`HANDLE := FindFirstUrlCacheEntryEx(_In_ LPCTSTR lpszUrlSearchPattern, _In_ DWORD dwFlags, _In_ DWORD dwFilter, _In_ GROUPID GroupId, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpdwEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntryExA
+`HANDLE := FindFirstUrlCacheEntryExA(_In_ LPCSTR lpszUrlSearchPattern, _In_ DWORD dwFlags, _In_ DWORD dwFilter, _In_ GROUPID GroupId, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpdwEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntryExW
+`HANDLE := FindFirstUrlCacheEntryExW(_In_ LPCWSTR lpszUrlSearchPattern, _In_ DWORD dwFlags, _In_ DWORD dwFilter, _In_ GROUPID GroupId, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpdwEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheEntryW
+`HANDLE := FindFirstUrlCacheEntryW(_In_ LPCWSTR lpszUrlSearchPattern, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpFirstCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindFirstUrlCacheGroup
+`HANDLE := FindFirstUrlCacheGroup(_Reserved_ DWORD dwFlags, _In_ DWORD dwFilter, _Reserved_ LPVOID lpSearchCondition, _Reserved_ DWORD dwSearchCondition, _Out_ GROUPID *lpGroupId, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntry
+`BOOL := FindNextUrlCacheEntry(_In_ HANDLE hEnumHandle, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntryA
+`BOOL := FindNextUrlCacheEntryA(_In_ HANDLE hEnumHandle, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntryEx
+`BOOL := FindNextUrlCacheEntryEx(_In_ HANDLE hEnumHandle, _Inout_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntryExA
+`BOOL := FindNextUrlCacheEntryExA(_In_ HANDLE hEnumHandle, _Inout_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntryExW
+`BOOL := FindNextUrlCacheEntryExW(_In_ HANDLE hEnumHandle, _Inout_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbEntryInfo, _Reserved_ LPVOID lpGroupAttributes, _Reserved_ LPDWORD lpcbGroupAttributes, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheEntryW
+`BOOL := FindNextUrlCacheEntryW(_In_ HANDLE hEnumHandle, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpNextCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindNextUrlCacheGroup
+`BOOL := FindNextUrlCacheGroup(_In_ HANDLE hFind, _Out_ GROUPID *lpGroupId, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCommand
+`BOOL := FtpCommand(_In_ HINTERNET hConnect, _In_ BOOL fExpectResponse, _In_ DWORD dwFlags, _In_ LPCTSTR lpszCommand, _In_ DWORD_PTR dwContext, _Out_ HINTERNET *phFtpCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCommandA
+`BOOL := FtpCommandA(_In_ HINTERNET hConnect, _In_ BOOL fExpectResponse, _In_ DWORD dwFlags, _In_ LPCSTR lpszCommand, _In_ DWORD_PTR dwContext, _Out_ HINTERNET *phFtpCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCommandW
+`BOOL := FtpCommandW(_In_ HINTERNET hConnect, _In_ BOOL fExpectResponse, _In_ DWORD dwFlags, _In_ LPCWSTR lpszCommand, _In_ DWORD_PTR dwContext, _Out_ HINTERNET *phFtpCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCreateDirectory
+`BOOL := FtpCreateDirectory(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCreateDirectoryA
+`BOOL := FtpCreateDirectoryA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpCreateDirectoryW
+`BOOL := FtpCreateDirectoryW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpDeleteFile
+`BOOL := FtpDeleteFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpDeleteFileA
+`BOOL := FtpDeleteFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpDeleteFileW
+`BOOL := FtpDeleteFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpFindFirstFile
+`HINTERNET := FtpFindFirstFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszSearchFile, _Out_ LPWIN32_FIND_DATA lpFindFileData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpFindFirstFileA
+`HINTERNET := FtpFindFirstFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszSearchFile, _Out_ LPWIN32_FIND_DATA lpFindFileData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpFindFirstFileW
+`HINTERNET := FtpFindFirstFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszSearchFile, _Out_ LPWIN32_FIND_DATA lpFindFileData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetCurrentDirectory
+`BOOL := FtpGetCurrentDirectory(_In_ HINTERNET hConnect, _Out_ LPTSTR lpszCurrentDirectory, _Inout_ LPDWORD lpdwCurrentDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetCurrentDirectoryA
+`BOOL := FtpGetCurrentDirectoryA(_In_ HINTERNET hConnect, _Out_ LPSTR lpszCurrentDirectory, _Inout_ LPDWORD lpdwCurrentDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetCurrentDirectoryW
+`BOOL := FtpGetCurrentDirectoryW(_In_ HINTERNET hConnect, _Out_ LPWSTR lpszCurrentDirectory, _Inout_ LPDWORD lpdwCurrentDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetFile
+`BOOL := FtpGetFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszRemoteFile, _In_ LPCTSTR lpszNewFile, _In_ BOOL fFailIfExists, _In_ DWORD dwFlagsAndAttributes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetFileA
+`BOOL := FtpGetFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszRemoteFile, _In_ LPCSTR lpszNewFile, _In_ BOOL fFailIfExists, _In_ DWORD dwFlagsAndAttributes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetFileSize
+`DWORD := FtpGetFileSize(_In_ HINTERNET hFile, _Out_ LPDWORD lpdwFileSizeHigh)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpGetFileW
+`BOOL := FtpGetFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszRemoteFile, _In_ LPCWSTR lpszNewFile, _In_ BOOL fFailIfExists, _In_ DWORD dwFlagsAndAttributes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpOpenFile
+`HINTERNET := FtpOpenFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszFileName, _In_ DWORD dwAccess, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpOpenFileA
+`HINTERNET := FtpOpenFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszFileName, _In_ DWORD dwAccess, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpOpenFileW
+`HINTERNET := FtpOpenFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszFileName, _In_ DWORD dwAccess, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpPutFile
+`BOOL := FtpPutFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszLocalFile, _In_ LPCTSTR lpszNewRemoteFile, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpPutFileA
+`BOOL := FtpPutFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszLocalFile, _In_ LPCSTR lpszNewRemoteFile, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpPutFileW
+`BOOL := FtpPutFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszLocalFile, _In_ LPCWSTR lpszNewRemoteFile, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRemoveDirectory
+`BOOL := FtpRemoveDirectory(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRemoveDirectoryA
+`BOOL := FtpRemoveDirectoryA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRemoveDirectoryW
+`BOOL := FtpRemoveDirectoryW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRenameFile
+`BOOL := FtpRenameFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszExisting, _In_ LPCTSTR lpszNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRenameFileA
+`BOOL := FtpRenameFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszExisting, _In_ LPCSTR lpszNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpRenameFileW
+`BOOL := FtpRenameFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszExisting, _In_ LPCWSTR lpszNew)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpSetCurrentDirectory
+`BOOL := FtpSetCurrentDirectory(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpSetCurrentDirectoryA
+`BOOL := FtpSetCurrentDirectoryA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+FtpSetCurrentDirectoryW
+`BOOL := FtpSetCurrentDirectoryW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszDirectory)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheConfigInfo
+`BOOL := GetUrlCacheConfigInfo(_Inout_ LPINTERNET_CACHE_CONFIG_INFO lpCacheConfigInfo, _Reserved_ LPDWORD lpcbCacheConfigInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheConfigInfoA
+`BOOL := GetUrlCacheConfigInfoA(_Inout_ LPINTERNET_CACHE_CONFIG_INFO lpCacheConfigInfo, _Reserved_ LPDWORD lpcbCacheConfigInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheConfigInfoW
+`BOOL := GetUrlCacheConfigInfoW(_Inout_ LPINTERNET_CACHE_CONFIG_INFO lpCacheConfigInfo, _Reserved_ LPDWORD lpcbCacheConfigInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfo
+`BOOL := GetUrlCacheEntryInfo(_In_ LPCTSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfoA
+`BOOL := GetUrlCacheEntryInfoA(_In_ LPCSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfoEx
+`BOOL := GetUrlCacheEntryInfoEx(_In_ LPCTSTR lpszUrl, _Inout_opt_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_opt_ LPDWORD lpcbCacheEntryInfo, _Reserved_ LPTSTR lpszRedirectUrl, _Reserved_ LPDWORD lpcbRedirectUrl, _Reserved_ LPVOID lpReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfoExA
+`BOOL := GetUrlCacheEntryInfoExA(_In_ LPCSTR lpszUrl, _Inout_opt_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_opt_ LPDWORD lpcbCacheEntryInfo, _Reserved_ LPSTR lpszRedirectUrl, _Reserved_ LPDWORD lpcbRedirectUrl, _Reserved_ LPVOID lpReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfoExW
+`BOOL := GetUrlCacheEntryInfoExW(_In_ LPCWSTR lpszUrl, _Inout_opt_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_opt_ LPDWORD lpcbCacheEntryInfo, _Reserved_ LPWSTR lpszRedirectUrl, _Reserved_ LPDWORD lpcbRedirectUrl, _Reserved_ LPVOID lpReserved, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheEntryInfoW
+`BOOL := GetUrlCacheEntryInfoW(_In_ LPCWSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheGroupAttribute
+`BOOL := GetUrlCacheGroupAttribute(_In_ GROUPID gid, _Reserved_ DWORD dwFlags, _In_ DWORD dwAttributes, _Out_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPDWORD lpdwGroupInfo, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheGroupAttributeA
+`BOOL := GetUrlCacheGroupAttributeA(_In_ GROUPID gid, _Reserved_ DWORD dwFlags, _In_ DWORD dwAttributes, _Out_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPDWORD lpdwGroupInfo, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetUrlCacheGroupAttributeW
+`BOOL := GetUrlCacheGroupAttributeW(_In_ GROUPID gid, _Reserved_ DWORD dwFlags, _In_ DWORD dwAttributes, _Out_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPDWORD lpdwGroupInfo, _Reserved_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherCreateLocator
+`BOOL := GopherCreateLocator(_In_ LPCTSTR lpszHost, _In_ INTERNET_PORT nServerPort, _In_ LPCTSTR lpszDisplayString, _In_ LPCTSTR lpszSelectorString, _In_ DWORD dwGopherType, _Out_ LPTSTR lpszLocator, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherCreateLocatorA
+`BOOL := GopherCreateLocatorA(_In_ LPCSTR lpszHost, _In_ INTERNET_PORT nServerPort, _In_ LPCSTR lpszDisplayString, _In_ LPCSTR lpszSelectorString, _In_ DWORD dwGopherType, _Out_ LPSTR lpszLocator, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherCreateLocatorW
+`BOOL := GopherCreateLocatorW(_In_ LPCWSTR lpszHost, _In_ INTERNET_PORT nServerPort, _In_ LPCWSTR lpszDisplayString, _In_ LPCWSTR lpszSelectorString, _In_ DWORD dwGopherType, _Out_ LPWSTR lpszLocator, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherFindFirstFile
+`HINTERNET := GopherFindFirstFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszLocator, _In_ LPCTSTR lpszSearchString, _Out_ LPGOPHER_FIND_DATA lpFindData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherFindFirstFileA
+`HINTERNET := GopherFindFirstFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszLocator, _In_ LPCSTR lpszSearchString, _Out_ LPGOPHER_FIND_DATA lpFindData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherFindFirstFileW
+`HINTERNET := GopherFindFirstFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszLocator, _In_ LPCWSTR lpszSearchString, _Out_ LPGOPHER_FIND_DATA lpFindData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetAttribute
+`BOOL := GopherGetAttribute(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszLocator, _In_ LPCTSTR lpszAttributeName, _Out_ LPBYTE lpBuffer, _In_ DWORD dwBufferLength, _Out_ LPDWORD lpdwCharactersReturned, _In_ GOPHER_ATTRIBUTE_ENUMERATOR lpfnEnumerator, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetAttributeA
+`BOOL := GopherGetAttributeA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszLocator, _In_ LPCSTR lpszAttributeName, _Out_ LPBYTE lpBuffer, _In_ DWORD dwBufferLength, _Out_ LPDWORD lpdwCharactersReturned, _In_ GOPHER_ATTRIBUTE_ENUMERATOR lpfnEnumerator, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetAttributeW
+`BOOL := GopherGetAttributeW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszLocator, _In_ LPCWSTR lpszAttributeName, _Out_ LPBYTE lpBuffer, _In_ DWORD dwBufferLength, _Out_ LPDWORD lpdwCharactersReturned, _In_ GOPHER_ATTRIBUTE_ENUMERATOR lpfnEnumerator, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetLocatorType
+`BOOL := GopherGetLocatorType(_In_ LPCTSTR lpszLocator, _Out_ LPDWORD lpdwGopherType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetLocatorTypeA
+`BOOL := GopherGetLocatorTypeA(_In_ LPCSTR lpszLocator, _Out_ LPDWORD lpdwGopherType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherGetLocatorTypeW
+`BOOL := GopherGetLocatorTypeW(_In_ LPCWSTR lpszLocator, _Out_ LPDWORD lpdwGopherType)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherOpenFile
+`HINTERNET := GopherOpenFile(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszLocator, _In_ LPCTSTR lpszView, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherOpenFileA
+`HINTERNET := GopherOpenFileA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszLocator, _In_ LPCSTR lpszView, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+GopherOpenFileW
+`HINTERNET := GopherOpenFileW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszLocator, _In_ LPCWSTR lpszView, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpAddRequestHeaders
+`BOOL := HttpAddRequestHeaders(_In_ HINTERNET hRequest, _In_ LPCTSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwModifiers)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpAddRequestHeadersA
+`BOOL := HttpAddRequestHeadersA(_In_ HINTERNET hRequest, _In_ LPCSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwModifiers)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpAddRequestHeadersW
+`BOOL := HttpAddRequestHeadersW(_In_ HINTERNET hRequest, _In_ LPCWSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwModifiers)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpEndRequest
+`BOOL := HttpEndRequest(_In_ HINTERNET hRequest, _Out_opt_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_opt_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpEndRequestA
+`BOOL := HttpEndRequestA(_In_ HINTERNET hRequest, _Out_opt_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_opt_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpEndRequestW
+`BOOL := HttpEndRequestW(_In_ HINTERNET hRequest, _Out_opt_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_opt_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpOpenRequest
+`HINTERNET := HttpOpenRequest(_In_ HINTERNET hConnect, _In_ LPCTSTR lpszVerb, _In_ LPCTSTR lpszObjectName, _In_ LPCTSTR lpszVersion, _In_ LPCTSTR lpszReferer, _In_ LPCTSTR *lplpszAcceptTypes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpOpenRequestA
+`HINTERNET := HttpOpenRequestA(_In_ HINTERNET hConnect, _In_ LPCSTR lpszVerb, _In_ LPCSTR lpszObjectName, _In_ LPCSTR lpszVersion, _In_ LPCSTR lpszReferer, _In_ LPCSTR *lplpszAcceptTypes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpOpenRequestW
+`HINTERNET := HttpOpenRequestW(_In_ HINTERNET hConnect, _In_ LPCWSTR lpszVerb, _In_ LPCWSTR lpszObjectName, _In_ LPCWSTR lpszVersion, _In_ LPCWSTR lpszReferer, _In_ LPCWSTR *lplpszAcceptTypes, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpQueryInfo
+`BOOL := HttpQueryInfo(_In_ HINTERNET hRequest, _In_ DWORD dwInfoLevel, _Inout_ LPVOID lpvBuffer, _Inout_ LPDWORD lpdwBufferLength, _Inout_ LPDWORD lpdwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpQueryInfoA
+`BOOL := HttpQueryInfoA(_In_ HINTERNET hRequest, _In_ DWORD dwInfoLevel, _Inout_ LPVOID lpvBuffer, _Inout_ LPDWORD lpdwBufferLength, _Inout_ LPDWORD lpdwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpQueryInfoW
+`BOOL := HttpQueryInfoW(_In_ HINTERNET hRequest, _In_ DWORD dwInfoLevel, _Inout_ LPVOID lpvBuffer, _Inout_ LPDWORD lpdwBufferLength, _Inout_ LPDWORD lpdwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequest
+`BOOL := HttpSendRequest(_In_ HINTERNET hRequest, _In_ LPCTSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ LPVOID lpOptional, _In_ DWORD dwOptionalLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequestA
+`BOOL := HttpSendRequestA(_In_ HINTERNET hRequest, _In_ LPCSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ LPVOID lpOptional, _In_ DWORD dwOptionalLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequestEx
+`BOOL := HttpSendRequestEx(_In_ HINTERNET hRequest, _In_ LPINTERNET_BUFFERS lpBuffersIn, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequestExA
+`BOOL := HttpSendRequestExA(_In_ HINTERNET hRequest, _In_ LPINTERNET_BUFFERS lpBuffersIn, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequestExW
+`BOOL := HttpSendRequestExW(_In_ HINTERNET hRequest, _In_ LPINTERNET_BUFFERS lpBuffersIn, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HttpSendRequestW
+`BOOL := HttpSendRequestW(_In_ HINTERNET hRequest, _In_ LPCWSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ LPVOID lpOptional, _In_ DWORD dwOptionalLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetAttemptConnect
+`DWORD := InternetAttemptConnect(_In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetAutodial
+`BOOL := InternetAutodial(_In_ DWORD dwFlags, _In_ HWND hwndParent)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetAutodialHangup
+`BOOL := InternetAutodialHangup(_In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCanonicalizeUrl
+`BOOL := InternetCanonicalizeUrl(_In_ LPCTSTR lpszUrl, _Out_ LPTSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCanonicalizeUrlA
+`BOOL := InternetCanonicalizeUrlA(_In_ LPCSTR lpszUrl, _Out_ LPSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCanonicalizeUrlW
+`BOOL := InternetCanonicalizeUrlW(_In_ LPCWSTR lpszUrl, _Out_ LPWSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCheckConnection
+`BOOL := InternetCheckConnection(_In_ LPCTSTR lpszUrl, _In_ DWORD dwFlags, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCheckConnectionA
+`BOOL := InternetCheckConnectionA(_In_ LPCSTR lpszUrl, _In_ DWORD dwFlags, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCheckConnectionW
+`BOOL := InternetCheckConnectionW(_In_ LPCWSTR lpszUrl, _In_ DWORD dwFlags, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetClearAllPerSiteCookieDecisions
+`BOOL := InternetClearAllPerSiteCookieDecisions(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCloseHandle
+`BOOL := InternetCloseHandle(_In_ HINTERNET hInternet)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCombineUrl
+`BOOL := InternetCombineUrl(_In_ LPCTSTR lpszBaseUrl, _In_ LPCTSTR lpszRelativeUrl, _Out_ LPTSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCombineUrlA
+`BOOL := InternetCombineUrlA(_In_ LPCSTR lpszBaseUrl, _In_ LPCSTR lpszRelativeUrl, _Out_ LPSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCombineUrlW
+`BOOL := InternetCombineUrlW(_In_ LPCWSTR lpszBaseUrl, _In_ LPCWSTR lpszRelativeUrl, _Out_ LPWSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConfirmZoneCrossing
+`DWORD := InternetConfirmZoneCrossing(_In_ HWND hWnd, _In_ LPTSTR szUrlPrev, _In_ LPTSTR szUrlNew, _In_ BOOL bPost)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConfirmZoneCrossingA
+`DWORD := InternetConfirmZoneCrossingA(_In_ HWND hWnd, _In_ LPSTR szUrlPrev, _In_ LPSTR szUrlNew, _In_ BOOL bPost)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConfirmZoneCrossingW
+`DWORD := InternetConfirmZoneCrossingW(_In_ HWND hWnd, _In_ LPWSTR szUrlPrev, _In_ LPWSTR szUrlNew, _In_ BOOL bPost)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConnect
+`HINTERNET := InternetConnect(_In_ HINTERNET hInternet, _In_ LPCTSTR lpszServerName, _In_ INTERNET_PORT nServerPort, _In_ LPCTSTR lpszUsername, _In_ LPCTSTR lpszPassword, _In_ DWORD dwService, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConnectA
+`HINTERNET := InternetConnectA(_In_ HINTERNET hInternet, _In_ LPCSTR lpszServerName, _In_ INTERNET_PORT nServerPort, _In_ LPCSTR lpszUsername, _In_ LPCSTR lpszPassword, _In_ DWORD dwService, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetConnectW
+`HINTERNET := InternetConnectW(_In_ HINTERNET hInternet, _In_ LPCWSTR lpszServerName, _In_ INTERNET_PORT nServerPort, _In_ LPCWSTR lpszUsername, _In_ LPCWSTR lpszPassword, _In_ DWORD dwService, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCrackUrl
+`BOOL := InternetCrackUrl(_In_ LPCTSTR lpszUrl, _In_ DWORD dwUrlLength, _In_ DWORD dwFlags, _Inout_ LPURL_COMPONENTS lpUrlComponents)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCrackUrlA
+`BOOL := InternetCrackUrlA(_In_ LPCSTR lpszUrl, _In_ DWORD dwUrlLength, _In_ DWORD dwFlags, _Inout_ LPURL_COMPONENTS lpUrlComponents)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCrackUrlW
+`BOOL := InternetCrackUrlW(_In_ LPCWSTR lpszUrl, _In_ DWORD dwUrlLength, _In_ DWORD dwFlags, _Inout_ LPURL_COMPONENTS lpUrlComponents)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCreateUrl
+`BOOL := InternetCreateUrl(_In_ LPURL_COMPONENTS lpUrlComponents, _In_ DWORD dwFlags, _Out_ LPTSTR lpszUrl, _Inout_ LPDWORD lpdwUrlLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCreateUrlA
+`BOOL := InternetCreateUrlA(_In_ LPURL_COMPONENTS lpUrlComponents, _In_ DWORD dwFlags, _Out_ LPSTR lpszUrl, _Inout_ LPDWORD lpdwUrlLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetCreateUrlW
+`BOOL := InternetCreateUrlW(_In_ LPURL_COMPONENTS lpUrlComponents, _In_ DWORD dwFlags, _Out_ LPWSTR lpszUrl, _Inout_ LPDWORD lpdwUrlLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetDial
+`DWORD := InternetDial(_In_ HWND hwndParent, _In_ LPTSTR pszEntryName, _In_ DWORD dwFlags, _Out_ DWORD_PTR *lpdwConnection, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetDialA
+`DWORD := InternetDialA(_In_ HWND hwndParent, _In_ LPSTR pszEntryName, _In_ DWORD dwFlags, _Out_ DWORD_PTR *lpdwConnection, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetDialW
+`DWORD := InternetDialW(_In_ HWND hwndParent, _In_ LPWSTR pszEntryName, _In_ DWORD dwFlags, _Out_ DWORD_PTR *lpdwConnection, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetEnumPerSiteCookieDecision
+`BOOL := InternetEnumPerSiteCookieDecision(_Out_ LPTSTR pszSiteName, _Inout_ unsigned long *pcSiteNameSize, _Out_ unsigned long *pdwDecision, _In_ unsigned long dwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetEnumPerSiteCookieDecisionA
+`BOOL := InternetEnumPerSiteCookieDecisionA(_Out_ LPSTR pszSiteName, _Inout_ unsigned long *pcSiteNameSize, _Out_ unsigned long *pdwDecision, _In_ unsigned long dwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetEnumPerSiteCookieDecisionW
+`BOOL := InternetEnumPerSiteCookieDecisionW(_Out_ LPWSTR pszSiteName, _Inout_ unsigned long *pcSiteNameSize, _Out_ unsigned long *pdwDecision, _In_ unsigned long dwIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetErrorDlg
+`DWORD := InternetErrorDlg(_In_ HWND hWnd, _Inout_ HINTERNET hRequest, _In_ DWORD dwError, _In_ DWORD dwFlags, _Inout_ LPVOID *lppvData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetFindNextFile
+`BOOL := InternetFindNextFile(_In_ HINTERNET hFind, _Out_ LPVOID lpvFindData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetFindNextFileA
+`BOOL := InternetFindNextFileA(_In_ HINTERNET hFind, _Out_ LPVOID lpvFindData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetFindNextFileW
+`BOOL := InternetFindNextFileW(_In_ HINTERNET hFind, _Out_ LPVOID lpvFindData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetConnectedState
+`BOOL := InternetGetConnectedState(_Out_ LPDWORD lpdwFlags, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetConnectedStateEx
+`BOOL := InternetGetConnectedStateEx(_Out_ LPDWORD lpdwFlags, _Out_ LPTSTR lpszConnectionName, _In_ DWORD dwNameLen, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetConnectedStateExA
+`BOOL := InternetGetConnectedStateExA(_Out_ LPDWORD lpdwFlags, _Out_ LPSTR lpszConnectionName, _In_ DWORD dwNameLen, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetConnectedStateExW
+`BOOL := InternetGetConnectedStateExW(_Out_ LPDWORD lpdwFlags, _Out_ LPWSTR lpszConnectionName, _In_ DWORD dwNameLen, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookie
+`BOOL := InternetGetCookie(_In_ LPCTSTR lpszUrl, _In_ LPCTSTR lpszCookieName, _Out_ LPTSTR lpszCookieData, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookieA
+`BOOL := InternetGetCookieA(_In_ LPCSTR lpszUrl, _In_ LPCSTR lpszCookieName, _Out_ LPSTR lpszCookieData, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookieEx
+`BOOL := InternetGetCookieEx(_In_ LPCTSTR lpszURL, _In_ LPCTSTR lpszCookieName, _Inout_opt_ LPTSTR lpszCookieData, _Inout_ LPDWORD lpdwSize, _In_ DWORD dwFlags, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookieExA
+`BOOL := InternetGetCookieExA(_In_ LPCSTR lpszURL, _In_ LPCSTR lpszCookieName, _Inout_opt_ LPSTR lpszCookieData, _Inout_ LPDWORD lpdwSize, _In_ DWORD dwFlags, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookieExW
+`BOOL := InternetGetCookieExW(_In_ LPCWSTR lpszURL, _In_ LPCWSTR lpszCookieName, _Inout_opt_ LPWSTR lpszCookieData, _Inout_ LPDWORD lpdwSize, _In_ DWORD dwFlags, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetCookieW
+`BOOL := InternetGetCookieW(_In_ LPCWSTR lpszUrl, _In_ LPCWSTR lpszCookieName, _Out_ LPWSTR lpszCookieData, _Inout_ LPDWORD lpdwSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetLastResponseInfo
+`BOOL := InternetGetLastResponseInfo(_Out_ LPDWORD lpdwError, _Out_ LPTSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetLastResponseInfoA
+`BOOL := InternetGetLastResponseInfoA(_Out_ LPDWORD lpdwError, _Out_ LPSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetLastResponseInfoW
+`BOOL := InternetGetLastResponseInfoW(_Out_ LPDWORD lpdwError, _Out_ LPWSTR lpszBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetPerSiteCookieDecision
+`BOOL := InternetGetPerSiteCookieDecision(_In_ LPCTSTR pchHostName, _Out_ unsigned long *pResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetPerSiteCookieDecisionA
+`BOOL := InternetGetPerSiteCookieDecisionA(_In_ LPCSTR pchHostName, _Out_ unsigned long *pResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGetPerSiteCookieDecisionW
+`BOOL := InternetGetPerSiteCookieDecisionW(_In_ LPCWSTR pchHostName, _Out_ unsigned long *pResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGoOnline
+`BOOL := InternetGoOnline(_In_ LPTSTR lpszURL, _In_ HWND hwndParent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGoOnlineA
+`BOOL := InternetGoOnlineA(_In_ LPSTR lpszURL, _In_ HWND hwndParent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetGoOnlineW
+`BOOL := InternetGoOnlineW(_In_ LPWSTR lpszURL, _In_ HWND hwndParent, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetHangUp
+`DWORD := InternetHangUp(_In_ DWORD_PTR dwConnection, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetLockRequestFile
+`BOOL := InternetLockRequestFile(_In_ HINTERNET hInternet, _Out_ HANDLE *lphLockReqHandle)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpen
+`HINTERNET := InternetOpen(_In_ LPCTSTR lpszAgent, _In_ DWORD dwAccessType, _In_ LPCTSTR lpszProxyName, _In_ LPCTSTR lpszProxyBypass, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpenA
+`HINTERNET := InternetOpenA(_In_ LPCSTR lpszAgent, _In_ DWORD dwAccessType, _In_ LPCSTR lpszProxyName, _In_ LPCSTR lpszProxyBypass, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpenUrl
+`HINTERNET := InternetOpenUrl(_In_ HINTERNET hInternet, _In_ LPCTSTR lpszUrl, _In_ LPCTSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpenUrlA
+`HINTERNET := InternetOpenUrlA(_In_ HINTERNET hInternet, _In_ LPCSTR lpszUrl, _In_ LPCSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpenUrlW
+`HINTERNET := InternetOpenUrlW(_In_ HINTERNET hInternet, _In_ LPCWSTR lpszUrl, _In_ LPCWSTR lpszHeaders, _In_ DWORD dwHeadersLength, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetOpenW
+`HINTERNET := InternetOpenW(_In_ LPCWSTR lpszAgent, _In_ DWORD dwAccessType, _In_ LPCWSTR lpszProxyName, _In_ LPCWSTR lpszProxyBypass, _In_ DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetQueryDataAvailable
+`BOOL := InternetQueryDataAvailable(_In_ HINTERNET hFile, _Out_ LPDWORD lpdwNumberOfBytesAvailable, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetQueryOption
+`BOOL := InternetQueryOption(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _Out_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetQueryOptionA
+`BOOL := InternetQueryOptionA(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _Out_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetQueryOptionW
+`BOOL := InternetQueryOptionW(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _Out_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetReadFile
+`BOOL := InternetReadFile(_In_ HINTERNET hFile, _Out_ LPVOID lpBuffer, _In_ DWORD dwNumberOfBytesToRead, _Out_ LPDWORD lpdwNumberOfBytesRead)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetReadFileEx
+`BOOL := InternetReadFileEx(_In_ HINTERNET hFile, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetReadFileExA
+`BOOL := InternetReadFileExA(_In_ HINTERNET hFile, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetReadFileExW
+`BOOL := InternetReadFileExW(_In_ HINTERNET hFile, _Out_ LPINTERNET_BUFFERS lpBuffersOut, _In_ DWORD dwFlags, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookie
+`BOOL := InternetSetCookie(_In_ LPCTSTR lpszUrl, _In_ LPCTSTR lpszCookieName, _In_ LPCTSTR lpszCookieData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookieA
+`BOOL := InternetSetCookieA(_In_ LPCSTR lpszUrl, _In_ LPCSTR lpszCookieName, _In_ LPCSTR lpszCookieData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookieEx
+`DWORD := InternetSetCookieEx(_In_ LPCTSTR lpszURL, _In_ LPCTSTR lpszCookieName, _In_ LPCTSTR lpszCookieData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookieExA
+`DWORD := InternetSetCookieExA(_In_ LPCSTR lpszURL, _In_ LPCSTR lpszCookieName, _In_ LPCSTR lpszCookieData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookieExW
+`DWORD := InternetSetCookieExW(_In_ LPCWSTR lpszURL, _In_ LPCWSTR lpszCookieName, _In_ LPCWSTR lpszCookieData, _In_ DWORD dwFlags, _In_ DWORD_PTR dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetCookieW
+`BOOL := InternetSetCookieW(_In_ LPCWSTR lpszUrl, _In_ LPCWSTR lpszCookieName, _In_ LPCWSTR lpszCookieData)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetFilePointer
+`DWORD := InternetSetFilePointer(_In_ HINTERNET hFile, _In_ LONG lDistanceToMove, _Inout_ PLONG lpDistanceToMoveHigh, _In_ DWORD dwMoveMethod, _In_ DWORD_PTR dwContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetOption
+`BOOL := InternetSetOption(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _In_ LPVOID lpBuffer, _In_ DWORD dwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetOptionA
+`BOOL := InternetSetOptionA(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _In_ LPVOID lpBuffer, _In_ DWORD dwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetOptionW
+`BOOL := InternetSetOptionW(_In_ HINTERNET hInternet, _In_ DWORD dwOption, _In_ LPVOID lpBuffer, _In_ DWORD dwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetPerSiteCookieDecision
+`BOOL := InternetSetPerSiteCookieDecision(_In_ LPCTSTR pchHostName, _In_ DWORD dwDecision)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetPerSiteCookieDecisionA
+`BOOL := InternetSetPerSiteCookieDecisionA(_In_ LPCSTR pchHostName, _In_ DWORD dwDecision)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetPerSiteCookieDecisionW
+`BOOL := InternetSetPerSiteCookieDecisionW(_In_ LPCWSTR pchHostName, _In_ DWORD dwDecision)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetStatusCallback
+`INTERNET_STATUS_ := InternetSetStatusCallback(_In_ HINTERNET hInternet, _In_ INTERNET_STATUS_CALLBACK lpfnInternetCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetStatusCallbackA
+`INTERNET_STATUS_ := InternetSetStatusCallbackA(_In_ HINTERNET hInternet, _In_ INTERNET_STATUS_CALLBACK lpfnInternetCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetSetStatusCallbackW
+`INTERNET_STATUS_ := InternetSetStatusCallbackW(_In_ HINTERNET hInternet, _In_ INTERNET_STATUS_CALLBACK lpfnInternetCallback)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeFromSystemTime
+`BOOL := InternetTimeFromSystemTime(_In_ const SYSTEMTIME *pst, _In_ DWORD dwRFC, _Out_ LPTSTR lpszTime, _In_ DWORD cbTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeFromSystemTimeA
+`BOOL := InternetTimeFromSystemTimeA(_In_ const SYSTEMTIME *pst, _In_ DWORD dwRFC, _Out_ LPSTR lpszTime, _In_ DWORD cbTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeFromSystemTimeW
+`BOOL := InternetTimeFromSystemTimeW(_In_ const SYSTEMTIME *pst, _In_ DWORD dwRFC, _Out_ LPWSTR lpszTime, _In_ DWORD cbTime)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeToSystemTime
+`BOOL := InternetTimeToSystemTime(_In_ LPCTSTR lpszTime, _Out_ SYSTEMTIME *pst, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeToSystemTimeA
+`BOOL := InternetTimeToSystemTimeA(_In_ LPCSTR lpszTime, _Out_ SYSTEMTIME *pst, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetTimeToSystemTimeW
+`BOOL := InternetTimeToSystemTimeW(_In_ LPCWSTR lpszTime, _Out_ SYSTEMTIME *pst, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetUnlockRequestFile
+`BOOL := InternetUnlockRequestFile(_In_ HANDLE hLockRequestInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+InternetWriteFile
+`BOOL := InternetWriteFile(_In_ HINTERNET hFile, _In_ LPCVOID lpBuffer, _In_ DWORD dwNumberOfBytesToWrite, _Out_ LPDWORD lpdwNumberOfBytesWritten)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivacyGetZonePreferenceW
+`DWORD := PrivacyGetZonePreferenceW(_In_ DWORD dwZone, _In_ DWORD dwType, _Out_opt_ LPDWORD pdwTemplate, _Out_opt_ LPWSTR *pszBuffer, _Inout_opt_ LPDWORD pdwBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+PrivacySetZonePreferenceW
+`DWORD := PrivacySetZonePreferenceW(_In_ DWORD dwZone, _In_ DWORD dwType, _In_ DWORD dwTemplate, _In_opt_ LPCWSTR pszPreference)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadUrlCacheEntryStream
+`BOOL := ReadUrlCacheEntryStream(_In_ HANDLE hUrlCacheStream, _In_ DWORD dwLocation, _Inout_ LPVOID lpBuffer, _Inout_ LPDWORD lpdwLen, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+ResumeSuspendedDownload
+`BOOL := ResumeSuspendedDownload(_In_ HINTERNET hRequest, _In_ DWORD dwResultCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryFile
+`BOOL := RetrieveUrlCacheEntryFile(_In_ LPCTSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryFileA
+`BOOL := RetrieveUrlCacheEntryFileA(_In_ LPCSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryFileW
+`BOOL := RetrieveUrlCacheEntryFileW(_In_ LPCWSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryStream
+`HANDLE := RetrieveUrlCacheEntryStream(_In_ LPCTSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ BOOL fRandomRead, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryStreamA
+`HANDLE := RetrieveUrlCacheEntryStreamA(_In_ LPCSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ BOOL fRandomRead, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+RetrieveUrlCacheEntryStreamW
+`HANDLE := RetrieveUrlCacheEntryStreamW(_In_ LPCWSTR lpszUrlName, _Out_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _Inout_ LPDWORD lpcbCacheEntryInfo, _In_ BOOL fRandomRead, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryGroup
+`BOOL := SetUrlCacheEntryGroup(_In_ LPCTSTR lpszUrlName, _In_ DWORD dwFlags, _In_ GROUPID GroupId, _In_ LPBYTE pbGroupAttributes, _In_ DWORD cbGroupAttributes, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryGroupA
+`BOOL := SetUrlCacheEntryGroupA(_In_ LPCSTR lpszUrlName, _In_ DWORD dwFlags, _In_ GROUPID GroupId, _In_ LPBYTE pbGroupAttributes, _In_ DWORD cbGroupAttributes, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryGroupW
+`BOOL := SetUrlCacheEntryGroupW(_In_ LPCWSTR lpszUrlName, _In_ DWORD dwFlags, _In_ GROUPID GroupId, _In_ LPBYTE pbGroupAttributes, _In_ DWORD cbGroupAttributes, _In_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryInfo
+`BOOL := SetUrlCacheEntryInfo(_In_ LPCTSTR lpszUrlName, _In_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryInfoA
+`BOOL := SetUrlCacheEntryInfoA(_In_ LPCSTR lpszUrlName, _In_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheEntryInfoW
+`BOOL := SetUrlCacheEntryInfoW(_In_ LPCWSTR lpszUrlName, _In_ LPINTERNET_CACHE_ENTRY_INFO lpCacheEntryInfo, _In_ DWORD dwFieldControl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheGroupAttribute
+`BOOL := SetUrlCacheGroupAttribute(_In_ GROUPID gid, _In_ DWORD dwFlags, _In_ DWORD dwAttributes, _In_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheGroupAttributeA
+`BOOL := SetUrlCacheGroupAttributeA(_In_ GROUPID gid, _In_ DWORD dwFlags, _In_ DWORD dwAttributes, _In_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetUrlCacheGroupAttributeW
+`BOOL := SetUrlCacheGroupAttributeW(_In_ GROUPID gid, _In_ DWORD dwFlags, _In_ DWORD dwAttributes, _In_ LPINTERNET_CACHE_GROUP_INFO lpGroupInfo, _Inout_ LPVOID lpReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnlockUrlCacheEntryFile
+`BOOL := UnlockUrlCacheEntryFile(_In_ LPCTSTR lpszUrlName, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnlockUrlCacheEntryFileA
+`BOOL := UnlockUrlCacheEntryFileA(_In_ LPCSTR lpszUrlName, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnlockUrlCacheEntryFileW
+`BOOL := UnlockUrlCacheEntryFileW(_In_ LPCWSTR lpszUrlName, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm
+
+
+Function
+UnlockUrlCacheEntryStream
+`BOOL := UnlockUrlCacheEntryStream(_In_ HANDLE hUrlCacheStream, _In_ DWORD dwReserved)
+`/docs/commands/WinApi.htm

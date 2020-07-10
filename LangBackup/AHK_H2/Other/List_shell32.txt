@@ -1,0 +1,1696 @@
+Function
+AssocCreateForClasses
+`HRESULT := AssocCreateForClasses(_In_ const ASSOCIATIONELEMENT *rgClasses, _In_ ULONG cClasses, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+AssocGetDetailsOfPropKey
+`HRESULT := AssocGetDetailsOfPropKey(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, _In_ PROPERTYKEY *pkey, _Out_ VARIANT *pv, _Out_ BOOL *pfFoundPropKey)
+`/docs/commands/WinApi.htm
+
+
+Function
+CDefFolderMenu_Create2
+`HRESULT := CDefFolderMenu_Create2(_In_opt_ PCIDLIST_ABSOLUTE pidlFolder, _In_opt_ HWND hwnd, UINT cidl, _In_opt_ PCUITEMID_CHILD_ARRAY *apidl, _In_opt_ IShellFolder *psf, _In_opt_ LPFNDFMCALLBACK lpfn, UINT nKeys, _In_opt_ const HKEY *ahkeys, _Out_ IContextMenu **ppcm)
+`/docs/commands/WinApi.htm
+
+
+Function
+CIDLData_CreateFromIDArray
+`HRESULT := CIDLData_CreateFromIDArray(_In_ PCIDLIST_ABSOLUTE pidlFolder, _In_ UINT cidl, _In_ PCUIDLIST_RELATIVE_ARRAY apidl, _Out_ IDataObject **ppdtobj)
+`/docs/commands/WinApi.htm
+
+
+Function
+CommandLineToArgvW
+`LPWSTR* := CommandLineToArgvW(_In_ LPCWSTR lpCmdLine, _Out_ int *pNumArgs)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_AutoScroll
+`BOOL := DAD_AutoScroll(_In_ HWND hwnd, _In_ AUTO_SCROLL_DATA *pad, _In_ const POINT *pptNow)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_DragEnterEx
+`BOOL := DAD_DragEnterEx(HWND hwndTarget, const POINT ptStart)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_DragEnterEx2
+`BOOL := DAD_DragEnterEx2(_In_ HWND hwndTarget, const POINT ptStart, _In_opt_ IDataObject *pdtObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_DragLeave
+`BOOL := DAD_DragLeave(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_DragMove
+`BOOL := DAD_DragMove(POINT pt)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_SetDragImage
+`BOOL := DAD_SetDragImage(HIMAGELIST him, POINT *pptOffset)
+`/docs/commands/WinApi.htm
+
+
+Function
+DAD_ShowDragImage
+`BOOL := DAD_ShowDragImage(BOOL fShow)
+`/docs/commands/WinApi.htm
+
+
+Function
+DllGetVersion
+`HRESULT := DllGetVersion(DLLVERSIONINFO *pdvi)
+`/docs/commands/WinApi.htm
+
+
+Function
+DoEnvironmentSubst
+`DWORD := DoEnvironmentSubst(_Inout_ LPTSTR pszSrc, UINT cchSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DoEnvironmentSubstA
+`DWORD := DoEnvironmentSubstA(_Inout_ LPSTR pszSrc, UINT cchSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DoEnvironmentSubstW
+`DWORD := DoEnvironmentSubstW(_Inout_ LPWSTR pszSrc, UINT cchSrc)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragAcceptFiles
+`VOID := DragAcceptFiles(HWND hWnd, BOOL fAccept)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragFinish
+`VOID := DragFinish(HDROP hDrop)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragQueryFile
+`UINT := DragQueryFile(_In_ HDROP hDrop, _In_ UINT iFile, _Out_ LPTSTR lpszFile, UINT cch)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragQueryFileA
+`UINT := DragQueryFileA(_In_ HDROP hDrop, _In_ UINT iFile, _Out_ LPSTR lpszFile, UINT cch)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragQueryFileW
+`UINT := DragQueryFileW(_In_ HDROP hDrop, _In_ UINT iFile, _Out_ LPWSTR lpszFile, UINT cch)
+`/docs/commands/WinApi.htm
+
+
+Function
+DragQueryPoint
+`BOOL := DragQueryPoint(_In_ HDROP hDrop, _Out_ POINT *lppt)
+`/docs/commands/WinApi.htm
+
+
+Function
+DriveType
+`int := DriveType(_In_ int iDrive)
+`/docs/commands/WinApi.htm
+
+
+Function
+DuplicateIcon
+`HICON := DuplicateIcon(_Reserved_ HINSTANCE hInst, _In_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIcon
+`HICON := ExtractAssociatedIcon(_Reserved_ HINSTANCE hInst, _Inout_ LPTSTR lpIconPath, _Inout_ WORD *lpiIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIconA
+`HICON := ExtractAssociatedIconA(_Reserved_ HINSTANCE hInst, _Inout_ LPSTR lpIconPath, _Inout_ WORD *lpiIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIconEx
+`HICON := ExtractAssociatedIconEx(_Reserved_ HINSTANCE hInst, _Inout_ LPTSTR lpIconPath, _Inout_ LPWORD lpiIconIndex, _Inout_ LPWORD lpiIconId)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIconExA
+`HICON := ExtractAssociatedIconExA(_Reserved_ HINSTANCE hInst, _Inout_ LPSTR lpIconPath, _Inout_ LPWORD lpiIconIndex, _Inout_ LPWORD lpiIconId)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIconExW
+`HICON := ExtractAssociatedIconExW(_Reserved_ HINSTANCE hInst, _Inout_ LPWSTR lpIconPath, _Inout_ LPWORD lpiIconIndex, _Inout_ LPWORD lpiIconId)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractAssociatedIconW
+`HICON := ExtractAssociatedIconW(_Reserved_ HINSTANCE hInst, _Inout_ LPWSTR lpIconPath, _Inout_ WORD *lpiIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIcon
+`HICON := ExtractIcon(_Reserved_ HINSTANCE hInst, _In_ LPCTSTR lpszExeFileName, _In_ UINT nIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIconA
+`HICON := ExtractIconA(_Reserved_ HINSTANCE hInst, _In_ LPCSTR lpszExeFileName, _In_ UINT nIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIconEx
+`UINT := ExtractIconEx(_In_ LPCTSTR lpszFile, _In_ int nIconIndex, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, _In_ UINT nIcons)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIconExA
+`UINT := ExtractIconExA(_In_ LPCSTR lpszFile, _In_ int nIconIndex, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, _In_ UINT nIcons)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIconExW
+`UINT := ExtractIconExW(_In_ LPCWSTR lpszFile, _In_ int nIconIndex, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, _In_ UINT nIcons)
+`/docs/commands/WinApi.htm
+
+
+Function
+ExtractIconW
+`HICON := ExtractIconW(_Reserved_ HINSTANCE hInst, _In_ LPCWSTR lpszExeFileName, _In_ UINT nIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindExecutable
+`HINSTANCE := FindExecutable(_In_ LPCTSTR lpFile, _In_opt_ LPCTSTR lpDirectory, _Out_ LPTSTR lpResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindExecutableA
+`HINSTANCE := FindExecutableA(_In_ LPCSTR lpFile, _In_opt_ LPCSTR lpDirectory, _Out_ LPSTR lpResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+FindExecutableW
+`HINSTANCE := FindExecutableW(_In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpDirectory, _Out_ LPWSTR lpResult)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetCurrentProcessExplicitAppUserModelID
+`HRESULT := GetCurrentProcessExplicitAppUserModelID(_Out_ PWSTR *AppID)
+`/docs/commands/WinApi.htm
+
+
+Function
+GetFileNameFromBrowse
+`BOOL := GetFileNameFromBrowse(_In_opt_ HWND hwnd, _Inout_ PWSTR pszFilePath, UINT cchFilePath, _In_opt_ PCWSTR pszWorkingDir, _In_ PCWSTR pszDefExt, _In_opt_ PCWSTR pszFilters, _In_opt_ PCWSTR szTitle)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILAppendID
+`PIDLIST_RELATIVE := ILAppendID(_In_opt_ PIDLIST_RELATIVE pidl, _In_ LPSHITEMID pmkid, BOOL fAppend)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILClone
+`PIDLIST_RELATIVE := ILClone(_In_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILCloneFirst
+`PITEMID_CHILD := ILCloneFirst(_In_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILCombine
+`PIDLIST_ABSOLUTE := ILCombine(_In_ PCIDLIST_ABSOLUTE pidl1, _In_ PCUIDLIST_RELATIVE pidl2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILCreateFromPath
+`PIDLIST_ABSOLUTE := ILCreateFromPath(_In_ PCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILCreateFromPathA
+`PIDLIST_ABSOLUTE := ILCreateFromPathA(_In_ PCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILCreateFromPathW
+`PIDLIST_ABSOLUTE := ILCreateFromPathW(_In_ PCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILFindChild
+`PUIDLIST_RELATIVE := ILFindChild(_In_ PCIDLIST_ABSOLUTE pidlParent, _In_ PCIDLIST_ABSOLUTE pidlChild)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILFindLastID
+`PUITEMID_CHILD := ILFindLastID(_In_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILFree
+`VOID := ILFree(_In_ PIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILGetNext
+`PUIDLIST_RELATIVE := ILGetNext(_In_opt_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILGetSize
+`UINT := ILGetSize(_In_opt_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILIsEqual
+`BOOL := ILIsEqual(_In_ PCIDLIST_ABSOLUTE pidl1, _In_ PCIDLIST_ABSOLUTE pidl2)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILIsParent
+`BOOL := ILIsParent(_In_ PCIDLIST_ABSOLUTE pidl1, _In_ PCIDLIST_ABSOLUTE pidl2, _In_ BOOL fImmediate)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILLoadFromStreamEx
+`HRESULT := ILLoadFromStreamEx(_In_ IStream *pstm, _Out_ PIDLIST_RELATIVE *pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILRemoveLastID
+`BOOL := ILRemoveLastID(_Inout_opt_ PUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+ILSaveToStream
+`HRESULT := ILSaveToStream(_In_ IStream * pstm, _In_ PCUIDLIST_RELATIVE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+InitNetworkAddressControl
+`BOOL := InitNetworkAddressControl(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsNetDrive
+`int := IsNetDrive(_In_ int iDrive)
+`/docs/commands/WinApi.htm
+
+
+Function
+IsUserAnAdmin
+`BOOL := IsUserAnAdmin(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+OpenRegStream
+`IStream* := OpenRegStream(_In_ HKEY hkey, _In_opt_ PCWSTR pszSubkey, _In_opt_ PCWSTR pszValue, DWORD grfMode)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathCleanupSpec
+`int := PathCleanupSpec(_In_opt_ PCWSTR pszDir, _Inout_ PWSTR pszSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathGetShortPath
+`VOID := PathGetShortPath(_Inout_ PWSTR pszLongPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsExe
+`BOOL := PathIsExe(_In_ PCWSTR szfile)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSlow
+`BOOL := PathIsSlow(_In_ LPCTSTR pszFile, DWORD dwFileAttr)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSlowA
+`BOOL := PathIsSlowA(_In_ LPCSTR pszFile, DWORD dwFileAttr)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathIsSlowW
+`BOOL := PathIsSlowW(_In_ LPCWSTR pszFile, DWORD dwFileAttr)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathMakeUniqueName
+`BOOL := PathMakeUniqueName(_Out_ PWSTR pszUniqueName, UINT cchMax, _In_ PCWSTR pszTemplate, _In_opt_ PCWSTR pszLongPlate, _In_opt_ PCWSTR pszDir)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathResolve
+`int := PathResolve(_Inout_ PWSTR pszPath, _In_opt_ PZPCWSTR dirs, UINT fFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+PathYetAnotherMakeUniqueName
+`BOOL := PathYetAnotherMakeUniqueName(_Out_ PWSTR pszUniqueName, _In_ PCWSTR pszPath, _In_opt_ PCWSTR pszShort, _In_opt_ PCWSTR pszFileSpec)
+`/docs/commands/WinApi.htm
+
+
+Function
+PickIconDlg
+`int := PickIconDlg(_In_opt_ HWND hwnd, _Inout_ PWSTR pszIconPath, UINT cchIconPath, _Inout_opt_ int *piIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+PifMgr_CloseProperties
+`int := PifMgr_CloseProperties(_In_ HANDLE hProps, _In_ UINT flOpt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PifMgr_GetProperties
+`int := PifMgr_GetProperties(_In_opt_ HANDLE hProps, _In_opt_ PCSTR pszGroup, _Out_opt_ void *lpProps, int cbProps, UINT flOpt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PifMgr_OpenProperties
+`HANDLE := PifMgr_OpenProperties(_In_ PCWSTR pszApp, _In_opt_ PCWSTR lpszPIF, UINT hInf, UINT flOpt)
+`/docs/commands/WinApi.htm
+
+
+Function
+PifMgr_SetProperties
+`int := PifMgr_SetProperties(_In_opt_ HANDLE hProps, _In_opt_ PCSTR pszGroup, _In_ const void *lpProps, int cbProps, UINT flOpt)
+`/docs/commands/WinApi.htm
+
+
+Function
+ReadCabinetState
+`BOOL := ReadCabinetState(_Out_ CABINETSTATE *pcs, _In_ int cLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+RealDriveType
+`int := RealDriveType(_In_ int iDrive, _Reserved_ BOOL fOKToHitNet)
+`/docs/commands/WinApi.htm
+
+
+Function
+RestartDialog
+`int := RestartDialog(_In_opt_ HWND hParent, _In_opt_ PCWSTR pszPrompt, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+RestartDialogEx
+`int := RestartDialogEx(_In_opt_ HWND hParent, _In_opt_ PCWSTR pszPrompt, DWORD dwFlags, DWORD dwReasonCode)
+`/docs/commands/WinApi.htm
+
+
+Function
+SetCurrentProcessExplicitAppUserModelID
+`HRESULT := SetCurrentProcessExplicitAppUserModelID(_In_ PCWSTR AppID)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAddDefaultPropertiesByExt
+`HRESULT := SHAddDefaultPropertiesByExt(_In_ PCWSTR pszExt, _In_ IPropertyStore *pPropStore)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAddFromPropSheetExtArray
+`UINT := SHAddFromPropSheetExtArray(_In_ HPSXA hpsxa, _In_ LPFNADDPROPSHEETPAGE lpfnAddPage, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAddToRecentDocs
+`VOID := SHAddToRecentDocs(UINT uFlags, _In_opt_ LPCVOID pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAlloc
+`LPVOID := SHAlloc(_In_ SIZE_T cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAppBarMessage
+`UINT_PTR := SHAppBarMessage(_In_ DWORD dwMessage, _Inout_ PAPPBARDATA pData)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAssocEnumHandlers
+`HRESULT := SHAssocEnumHandlers(_In_ PCWSTR pszExtra, _In_ ASSOC_FILTER afFilter, _Out_ IEnumAssocHandlers **ppEnumHandler)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHAssocEnumHandlersForProtocolByApplication
+`HRESULT := SHAssocEnumHandlersForProtocolByApplication(_In_ PCWSTR protocol, _In_ REFIID riid, _Out_ void **enumHandlers)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBindToFolderIDListParent
+`HRESULT := SHBindToFolderIDListParent(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_ REFIID riid, _Out_ void **ppv, _Out_opt_ PCUITEMID_CHILD *ppidlLast)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBindToFolderIDListParentEx
+`HRESULT := SHBindToFolderIDListParentEx(_In_opt_ IShellFolder *psfRoot, _In_ PCUIDLIST_RELATIVE pidl, _In_opt_ IBindCtx *ppbc, _In_ REFIID riid, _Out_ void **ppv, _Out_opt_ PCUITEMID_CHILD *ppidlLast)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBindToObject
+`HRESULT := SHBindToObject(IShellFolder *psf, PCUIDLIST_RELATIVE pidl, _In_ IBindCtx *pbc, REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBindToParent
+`HRESULT := SHBindToParent(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _Out_ VOID **ppv, _Out_ PCUITEMID_CHILD *ppidlLast)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBrowseForFolder
+`PIDLIST_ABSOLUTE := SHBrowseForFolder(_In_ LPBROWSEINFO lpbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBrowseForFolderA
+`PIDLIST_ABSOLUTE := SHBrowseForFolderA(_In_ LPBROWSEINFO lpbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHBrowseForFolderW
+`PIDLIST_ABSOLUTE := SHBrowseForFolderW(_In_ LPBROWSEINFO lpbi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotification_Lock
+`HANDLE := SHChangeNotification_Lock(_In_ HANDLE hChange, DWORD dwProcId, _Out_opt_ PIDLIST_ABSOLUTE **pppidl, _Out_opt_ LONG *plEvent)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotification_Unlock
+`BOOL := SHChangeNotification_Unlock(_In_ HANDLE hLock)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotify
+`VOID := SHChangeNotify(LONG wEventId, UINT uFlags, _In_opt_ LPCVOID dwItem1, _In_opt_ LPCVOID dwItem2)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotifyDeregister
+`BOOL := SHChangeNotifyDeregister(ULONG ulID)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotifyRegister
+`ULONG := SHChangeNotifyRegister(_In_ HWND hwnd, int fSources, LONG fEvents, UINT wMsg, int cEntries, _In_ const SHChangeNotifyEntry *pshcne)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHChangeNotifyRegisterThread
+`VOID := SHChangeNotifyRegisterThread(SCNRT_STATUS status)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCloneSpecialIDList
+`PIDLIST_ABSOLUTE := SHCloneSpecialIDList(HWND hwndOwner, _In_ int csidl, _In_ BOOL fCreate)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCLSIDFromString
+`HRESULT := SHCLSIDFromString(_In_ PCWSTR psz, _Out_ CLSID *pcClsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCoCreateInstance
+`HRESULT := SHCoCreateInstance(_In_opt_ PCWSTR pszCLSID, _In_opt_ const CLSID *pclsid, _In_opt_ IUnknown *pUnkOuter, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateAssociationRegistration
+`HRESULT := SHCreateAssociationRegistration(_In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDataObject
+`HRESULT := SHCreateDataObject(_In_opt_ PCIDLIST_ABSOLUTE pidlFolder, _In_ UINT cidl, _In_opt_ PCUITEMID_CHILD_ARRAY apidl, _In_opt_ IDataObject *pdtInner, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDefaultContextMenu
+`HRESULT := SHCreateDefaultContextMenu(_In_ const DEFCONTEXTMENU *pdcm, REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDefaultExtractIcon
+`HRESULT := SHCreateDefaultExtractIcon(REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDefaultPropertiesOp
+`HRESULT := SHCreateDefaultPropertiesOp(_In_ IShellItem *psi, _Out_ IFileOperation **ppFileOp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDirectory
+`int := SHCreateDirectory(_In_opt_ HWND hwnd, _In_ PCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDirectoryEx
+`int := SHCreateDirectoryEx(_In_opt_ HWND hwnd, _In_ LPCTSTR pszPath, _In_opt_ const SECURITY_ATTRIBUTES *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDirectoryExA
+`int := SHCreateDirectoryExA(_In_opt_ HWND hwnd, _In_ LPCSTR pszPath, _In_opt_ const SECURITY_ATTRIBUTES *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateDirectoryExW
+`int := SHCreateDirectoryExW(_In_opt_ HWND hwnd, _In_ LPCWSTR pszPath, _In_opt_ const SECURITY_ATTRIBUTES *psa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateFileExtractIcon
+`HRESULT := SHCreateFileExtractIcon(_In_ LPCTSTR pszFile, _In_ DWORD dwFileAttributes, _In_ REFIID riid, void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateFileExtractIconW
+`HRESULT := SHCreateFileExtractIconW(_In_ LPCWSTR pszFile, _In_ DWORD dwFileAttributes, _In_ REFIID riid, void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateItemFromIDList
+`HRESULT := SHCreateItemFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateItemFromParsingName
+`HRESULT := SHCreateItemFromParsingName(_In_ PCWSTR pszPath, _In_ IBindCtx *pbc, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateItemFromRelativeName
+`HRESULT := SHCreateItemFromRelativeName(_In_ IShellItem *psiParent, _In_ PCWSTR pszName, _In_ IBindCtx *pbc, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateItemInKnownFolder
+`HRESULT := SHCreateItemInKnownFolder(_In_ REFKNOWNFOLDERID kfid, DWORD dwKFFlags, _In_opt_ PCWSTR pszItem, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateItemWithParent
+`HRESULT := SHCreateItemWithParent(_In_ PCIDLIST_ABSOLUTE pidlParent, _In_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _In_ REFIID riid, _Out_ void **ppvItem)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateProcessAsUserW
+`BOOL := SHCreateProcessAsUserW(_Inout_ PSHCREATEPROCESSINFOW pscpi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreatePropSheetExtArray
+`HPSXA := SHCreatePropSheetExtArray(_In_ HKEY hkey, _In_opt_ PCWSTR pszSubkey, UINT max_iface)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateQueryCancelAutoPlayMoniker
+`HRESULT := SHCreateQueryCancelAutoPlayMoniker(_Out_ IMoniker **ppmoniker)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellFolderView
+`HRESULT := SHCreateShellFolderView(_In_ const SFV_CREATE *pcsfv, _Out_ IShellView **ppsv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellFolderViewEx
+`HRESULT := SHCreateShellFolderViewEx(_In_ CSFV *pcsfv, _Out_ IShellView **ppsv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellItem
+`HRESULT := SHCreateShellItem(_In_opt_ PCIDLIST_ABSOLUTE pidlParent, _In_opt_ IShellFolder *psfParent, _In_ PCUITEMID_CHILD pidl, _Out_ IShellItem **ppsi)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellItemArray
+`HRESULT := SHCreateShellItemArray(_In_ PCIDLIST_ABSOLUTE pidlParent, _In_ IShellFolder *psf, _In_ UINT cidl, _In_ PCUITEMID_CHILD_ARRAY ppidl, _Out_ IShellItemArray **ppsiItemArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellItemArrayFromDataObject
+`HRESULT := SHCreateShellItemArrayFromDataObject(_In_ IDataObject *pdo, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellItemArrayFromIDLists
+`HRESULT := SHCreateShellItemArrayFromIDLists(_In_ UINT cidl, _In_ PCIDLIST_ABSOLUTE_ARRAY rgpidl, _Out_ IShellItemArray **ppsiItemArray)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateShellItemArrayFromShellItem
+`HRESULT := SHCreateShellItemArrayFromShellItem(_In_ IShellItem *psi, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHCreateStdEnumFmtEtc
+`HRESULT := SHCreateStdEnumFmtEtc(_In_ UINT cfmt, const FORMATETC afmt[], _Out_ IEnumFORMATETC **ppenumFormatEtc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDefExtractIcon
+`HRESULT := SHDefExtractIcon(_In_ LPCTSTR pszIconFile, int iIndex, _In_ UINT uFlags, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDefExtractIconA
+`HRESULT := SHDefExtractIconA(_In_ LPCSTR pszIconFile, int iIndex, _In_ UINT uFlags, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDefExtractIconW
+`HRESULT := SHDefExtractIconW(_In_ LPCWSTR pszIconFile, int iIndex, _In_ UINT uFlags, _Out_opt_ HICON *phiconLarge, _Out_opt_ HICON *phiconSmall, UINT nIconSize)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDestroyPropSheetExtArray
+`VOID := SHDestroyPropSheetExtArray(_In_ HPSXA hpsxa)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHDoDragDrop
+`HRESULT := SHDoDragDrop(_In_ HWND hwnd, _In_ IDataObject *pdtobj, _In_ IDropSource *pdsrc, _In_ DWORD dwEffect, _Out_ DWORD *pdwEffect)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_GetCachedImageIndex
+`int := Shell_GetCachedImageIndex(_In_ PCWSTR pwszIconPath, int iIconIndex, UINT uIconFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_GetCachedImageIndexA
+`int := Shell_GetCachedImageIndexA(_In_ PCWSTR pwszIconPath, int iIconIndex, UINT uIconFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_GetCachedImageIndexW
+`int := Shell_GetCachedImageIndexW(_In_ PCWSTR pwszIconPath, int iIconIndex, UINT uIconFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_GetImageLists
+`BOOL := Shell_GetImageLists(_In_ HIMAGELIST *phiml, _In_ HIMAGELIST *phimlSmall)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_MergeMenus
+`UINT := Shell_MergeMenus(_In_ HMENU hmDst, _In_ HMENU hmSrc, UINT uInsert, UINT uIDAdjust, UINT uIDAdjustMax, ULONG uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_NotifyIcon
+`BOOL := Shell_NotifyIcon(_In_ DWORD dwMessage, _In_ PNOTIFYICONDATA lpdata)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_NotifyIconA
+`BOOL := Shell_NotifyIconA(_In_ DWORD dwMessage, _In_ PNOTIFYICONDATA lpdata)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_NotifyIconGetRect
+`HRESULT := Shell_NotifyIconGetRect(_In_ const NOTIFYICONIDENTIFIER *identifier, _Out_ RECT *iconLocation)
+`/docs/commands/WinApi.htm
+
+
+Function
+Shell_NotifyIconW
+`BOOL := Shell_NotifyIconW(_In_ DWORD dwMessage, _In_ PNOTIFYICONDATA lpdata)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellAbout
+`int := ShellAbout(_In_opt_ HWND hWnd, _In_ LPCTSTR szApp, _In_opt_ LPCTSTR szOtherStuff, _In_opt_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellAboutA
+`int := ShellAboutA(_In_opt_ HWND hWnd, _In_ LPCSTR szApp, _In_opt_ LPCSTR szOtherStuff, _In_opt_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellAboutW
+`int := ShellAboutW(_In_opt_ HWND hWnd, _In_ LPCWSTR szApp, _In_opt_ LPCWSTR szOtherStuff, _In_opt_ HICON hIcon)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecute
+`HINSTANCE := ShellExecute(_In_opt_ HWND hwnd, _In_opt_ LPCTSTR lpOperation, _In_ LPCTSTR lpFile, _In_opt_ LPCTSTR lpParameters, _In_opt_ LPCTSTR lpDirectory, _In_ INT nShowCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecuteA
+`HINSTANCE := ShellExecuteA(_In_opt_ HWND hwnd, _In_opt_ LPCSTR lpOperation, _In_ LPCSTR lpFile, _In_opt_ LPCSTR lpParameters, _In_opt_ LPCSTR lpDirectory, _In_ INT nShowCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecuteEx
+`BOOL := ShellExecuteEx(_Inout_ SHELLEXECUTEINFO *pExecInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecuteExA
+`BOOL := ShellExecuteExA(_Inout_ SHELLEXECUTEINFO *pExecInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecuteExW
+`BOOL := ShellExecuteExW(_Inout_ SHELLEXECUTEINFO *pExecInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+ShellExecuteW
+`HINSTANCE := ShellExecuteW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR lpOperation, _In_ LPCWSTR lpFile, _In_opt_ LPCWSTR lpParameters, _In_opt_ LPCWSTR lpDirectory, _In_ INT nShowCmd)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEmptyRecycleBin
+`HRESULT := SHEmptyRecycleBin(_In_opt_ HWND hwnd, _In_opt_ LPCTSTR pszRootPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEmptyRecycleBinA
+`HRESULT := SHEmptyRecycleBinA(_In_opt_ HWND hwnd, _In_opt_ LPCSTR pszRootPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEmptyRecycleBinW
+`HRESULT := SHEmptyRecycleBinW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRootPath, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumerateUnreadMailAccounts
+`HRESULT := SHEnumerateUnreadMailAccounts(_In_opt_ HKEY hKeyUser, DWORD dwIndex, _Out_ LPTSTR pszMailAddress, int cchMailAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEnumerateUnreadMailAccountsW
+`HRESULT := SHEnumerateUnreadMailAccountsW(_In_opt_ HKEY hKeyUser, DWORD dwIndex, _Out_ LPWSTR pszMailAddress, int cchMailAddress)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHEvaluateSystemCommandTemplate
+`HRESULT := SHEvaluateSystemCommandTemplate(_In_ PCWSTR pszCmdTemplate, _Out_ PWSTR *ppszApplication, _Out_opt_ PWSTR *ppszCommandLine, _Out_opt_ PWSTR *ppszParameters)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHExtractIconsW
+`UINT := SHExtractIconsW(_In_ LPCWSTR pszFileName, _In_ int nIconIndex, _In_ int cxIcon, _In_ int cyIcon, _Out_ HICON *phIcon, _Out_ UINT *pIconId, _In_ UINT nIcons, _In_ UINT flags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFileOperation
+`int := SHFileOperation(_Inout_ LPSHFILEOPSTRUCT lpFileOp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFileOperationA
+`int := SHFileOperationA(_Inout_ LPSHFILEOPSTRUCT lpFileOp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFileOperationW
+`int := SHFileOperationW(_Inout_ LPSHFILEOPSTRUCT lpFileOp)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFind_InitMenuPopup
+`IContextMenu* := SHFind_InitMenuPopup(_In_ HMENU hmenu, _In_opt_ HWND hwnd, UINT idCmdFirst, UINT idCmdLast)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFindFiles
+`BOOL := SHFindFiles(_In_opt_ PCIDLIST_ABSOLUTE pidlFolder, _In_opt_ PCIDLIST_ABSOLUTE pidlSaveFile)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFlushSFCache
+`VOID := SHFlushSFCache(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFormatDrive
+`DWORD := SHFormatDrive(_In_ HWND hwnd, UINT drive, UINT fmtID, UINT options)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFree
+`VOID := SHFree(_In_ VOID *pv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHFreeNameMappings
+`VOID := SHFreeNameMappings(_In_opt_ HANDLE hNameMappings)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetAttributesFromDataObject
+`HRESULT := SHGetAttributesFromDataObject(_In_opt_ IDataObject *pdo, DWORD dwAttributeMask, _Out_opt_ DWORD *pdwAttributes, _Out_opt_ UINT *pcItems)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDataFromIDList
+`HRESULT := SHGetDataFromIDList(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, int nFormat, _Out_ void *pv, int cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDataFromIDListA
+`HRESULT := SHGetDataFromIDListA(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, int nFormat, _Out_ void *pv, int cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDataFromIDListW
+`HRESULT := SHGetDataFromIDListW(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, int nFormat, _Out_ void *pv, int cb)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDesktopFolder
+`HRESULT := SHGetDesktopFolder(_Out_ IShellFolder **ppshf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDiskFreeSpace
+`BOOL := SHGetDiskFreeSpace(LPCTSTR pszVolume, ULARGE_INTEGER *pqwFreeCaller, ULARGE_INTEGER *pqwTot, ULARGE_INTEGER *pqwFree)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDiskFreeSpaceA
+`BOOL := SHGetDiskFreeSpaceA(LPCSTR pszVolume, ULARGE_INTEGER *pqwFreeCaller, ULARGE_INTEGER *pqwTot, ULARGE_INTEGER *pqwFree)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDiskFreeSpaceEx
+`BOOL := SHGetDiskFreeSpaceEx(_In_ LPCTSTR pszDirectoryName, _Out_opt_ ULARGE_INTEGER *pulFreeBytesAvailableToCaller, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfBytes, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfFreeBytes)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDiskFreeSpaceExA
+`BOOL := SHGetDiskFreeSpaceExA(_In_ LPCSTR pszDirectoryName, _Out_opt_ ULARGE_INTEGER *pulFreeBytesAvailableToCaller, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfBytes, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfFreeBytes)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDiskFreeSpaceExW
+`BOOL := SHGetDiskFreeSpaceExW(_In_ LPCWSTR pszDirectoryName, _Out_opt_ ULARGE_INTEGER *pulFreeBytesAvailableToCaller, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfBytes, _Out_opt_ ULARGE_INTEGER *pulTotalNumberOfFreeBytes)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetDriveMedia
+`HRESULT := SHGetDriveMedia(_In_ PCWSTR pszDrive, _Out_ DWORD *pdwMediaContent)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFileInfo
+`DWORD_PTR := SHGetFileInfo(_In_ LPCTSTR pszPath, DWORD dwFileAttributes, _Inout_ SHFILEINFO *psfi, UINT cbFileInfo, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFileInfoA
+`DWORD_PTR := SHGetFileInfoA(_In_ LPCSTR pszPath, DWORD dwFileAttributes, _Inout_ SHFILEINFO *psfi, UINT cbFileInfo, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFileInfoW
+`DWORD_PTR := SHGetFileInfoW(_In_ LPCWSTR pszPath, DWORD dwFileAttributes, _Inout_ SHFILEINFO *psfi, UINT cbFileInfo, UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderLocation
+`HRESULT := SHGetFolderLocation(_In_ HWND hwndOwner, _In_ int nFolder, _In_ HANDLE hToken, _Reserved_ DWORD dwReserved, _Out_ PIDLIST_ABSOLUTE *ppidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPath
+`HRESULT := SHGetFolderPath(_In_ HWND hwndOwner, _In_ int nFolder, _In_ HANDLE hToken, _In_ DWORD dwFlags, _Out_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPathA
+`HRESULT := SHGetFolderPathA(_In_ HWND hwndOwner, _In_ int nFolder, _In_ HANDLE hToken, _In_ DWORD dwFlags, _Out_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPathAndSubDir
+`HRESULT := SHGetFolderPathAndSubDir(_In_ HWND hwnd, _In_ int csidl, _In_ HANDLE hToken, _In_ DWORD dwFlags, _In_ LPCTSTR pszSubDir, _Out_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPathAndSubDirA
+`HRESULT := SHGetFolderPathAndSubDirA(_In_ HWND hwnd, _In_ int csidl, _In_ HANDLE hToken, _In_ DWORD dwFlags, _In_ LPCSTR pszSubDir, _Out_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPathAndSubDirW
+`HRESULT := SHGetFolderPathAndSubDirW(_In_ HWND hwnd, _In_ int csidl, _In_ HANDLE hToken, _In_ DWORD dwFlags, _In_ LPCWSTR pszSubDir, _Out_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetFolderPathW
+`HRESULT := SHGetFolderPathW(_In_ HWND hwndOwner, _In_ int nFolder, _In_ HANDLE hToken, _In_ DWORD dwFlags, _Out_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetIconOverlayIndex
+`int := SHGetIconOverlayIndex(_In_opt_ LPCTSTR pszIconPath, int iIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetIconOverlayIndexA
+`int := SHGetIconOverlayIndexA(_In_opt_ LPCSTR pszIconPath, int iIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetIconOverlayIndexW
+`int := SHGetIconOverlayIndexW(_In_opt_ LPCWSTR pszIconPath, int iIconIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetIDListFromObject
+`HRESULT := SHGetIDListFromObject(_In_ IUnknown *punk, _Out_ PIDLIST_ABSOLUTE *ppidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetImageList
+`HRESULT := SHGetImageList(_In_ int iImageList, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetInstanceExplorer
+`HRESULT := SHGetInstanceExplorer(_Out_ IUnknown **ppunk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetItemFromDataObject
+`HRESULT := SHGetItemFromDataObject(_In_ IDataObject *pdtobj, _In_ DATAOBJ_GET_ITEM_FLAGS dwFlags, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetItemFromObject
+`HRESULT := SHGetItemFromObject(_In_ IUnknown *punk, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetKnownFolderIDList
+`HRESULT := SHGetKnownFolderIDList(_In_ REFKNOWNFOLDERID rfid, _In_ DWORD dwFlags, _In_ HANDLE hToken, _Out_ PIDLIST_ABSOLUTE *ppidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetKnownFolderItem
+`HRESULT := SHGetKnownFolderItem(_In_ REFKNOWNFOLDERID rfid, _In_ KNOWN_FOLDER_FLAG dwFlags, _In_ HANDLE hToken, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetKnownFolderPath
+`HRESULT := SHGetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid, _In_ DWORD dwFlags, _In_opt_ HANDLE hToken, _Out_ PWSTR *ppszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetLocalizedName
+`HRESULT := SHGetLocalizedName(_In_ PCWSTR pszPath, _Out_ PWSTR pszResModule, UINT cch, _Out_ int *pidsRes)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetMalloc
+`HRESULT := SHGetMalloc(LPMALLOC *ppMalloc)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetNameFromIDList
+`HRESULT := SHGetNameFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ SIGDN sigdnName, _Out_ PWSTR *ppszName)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetNewLinkInfo
+`BOOL := SHGetNewLinkInfo(_In_ LPCTSTR pszLinkTo, _In_ LPCTSTR pszDir, _Out_ LPTSTR pszName, _Out_ BOOL *pfMustCopy, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetNewLinkInfoA
+`BOOL := SHGetNewLinkInfoA(_In_ LPCSTR pszLinkTo, _In_ LPCSTR pszDir, _Out_ LPSTR pszName, _Out_ BOOL *pfMustCopy, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetNewLinkInfoW
+`BOOL := SHGetNewLinkInfoW(_In_ LPCWSTR pszLinkTo, _In_ LPCWSTR pszDir, _Out_ LPWSTR pszName, _Out_ BOOL *pfMustCopy, _In_ UINT uFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPathFromIDList
+`BOOL := SHGetPathFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _Out_ LPTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPathFromIDListA
+`BOOL := SHGetPathFromIDListA(_In_ PCIDLIST_ABSOLUTE pidl, _Out_ LPSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPathFromIDListEx
+`BOOL := SHGetPathFromIDListEx(_In_ PCIDLIST_ABSOLUTE pidl, _Out_ PWSTR pszPath, DWORD cchPath, GPFIDL_FLAGS uOpts)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPathFromIDListW
+`BOOL := SHGetPathFromIDListW(_In_ PCIDLIST_ABSOLUTE pidl, _Out_ LPWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPropertyStoreForWindow
+`HRESULT := SHGetPropertyStoreForWindow(_In_ HWND hwnd, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPropertyStoreFromIDList
+`HRESULT := SHGetPropertyStoreFromIDList(_In_ PCIDLIST_ABSOLUTE pidl, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetPropertyStoreFromParsingName
+`HRESULT := SHGetPropertyStoreFromParsingName(_In_ PCWSTR pszPath, _In_opt_ IBindCtx *pbc, _In_ GETPROPERTYSTOREFLAGS flags, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetRealIDL
+`HRESULT := SHGetRealIDL(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidlSimple, _Out_ PITEMID_CHILD *ppidlReal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSetFolderCustomSettings
+`HRESULT := SHGetSetFolderCustomSettings(_Inout_ LPSHFOLDERCUSTOMSETTINGS pfcs, _In_ PCTSTR pszPath, DWORD dwReadWrite)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSetSettings
+`VOID := SHGetSetSettings(_Inout_ LPSHELLSTATE lpss, _In_ DWORD dwMask, _In_ BOOL bSet)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSettings
+`VOID := SHGetSettings(LPSHELLFLAGSTATE lpsfs, DWORD dwMask)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSpecialFolderLocation
+`HRESULT := SHGetSpecialFolderLocation(_In_ HWND hwndOwner, _In_ int nFolder, _Out_ PIDLIST_ABSOLUTE *ppidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSpecialFolderPath
+`BOOL := SHGetSpecialFolderPath(HWND hwndOwner, _Out_ LPTSTR lpszPath, _In_ int csidl, _In_ BOOL fCreate)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSpecialFolderPathA
+`BOOL := SHGetSpecialFolderPathA(HWND hwndOwner, _Out_ LPSTR lpszPath, _In_ int csidl, _In_ BOOL fCreate)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetSpecialFolderPathW
+`BOOL := SHGetSpecialFolderPathW(HWND hwndOwner, _Out_ LPWSTR lpszPath, _In_ int csidl, _In_ BOOL fCreate)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetStockIconInfo
+`HRESULT := SHGetStockIconInfo(SHSTOCKICONID siid, UINT uFlags, _Inout_ SHSTOCKICONINFO *psii)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetTemporaryPropertyForItem
+`HRESULT := SHGetTemporaryPropertyForItem(_In_ IShellItem *psi, REFPROPERTYKEY pk, _Out_ PROPVARIANT *ppropvarInk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetUnreadMailCount
+`HRESULT := SHGetUnreadMailCount(_In_opt_ HKEY hKeyUser, _In_opt_ LPCTSTR pszMailAddress, _Out_opt_ DWORD *pdwCount, _Out_opt_ FILETIME *pFileTime, _Out_opt_ LPCTSTR pszShellExecuteCommand, int cchShellExecuteCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHGetUnreadMailCountW
+`HRESULT := SHGetUnreadMailCountW(_In_opt_ HKEY hKeyUser, _In_opt_ LPCWSTR pszMailAddress, _Out_opt_ DWORD *pdwCount, _Out_opt_ FILETIME *pFileTime, _Out_opt_ LPCWSTR pszShellExecuteCommand, int cchShellExecuteCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHHandleUpdateImage
+`int := SHHandleUpdateImage(_In_ PCIDLIST_ABSOLUTE pidlExtra)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHILCreateFromPath
+`HRESULT := SHILCreateFromPath(_In_ PCWSTR pszPath, _Out_ PIDLIST_ABSOLUTE *ppidl, _Inout_opt_ DWORD *rgflnOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHInvokePrinterCommand
+`BOOL := SHInvokePrinterCommand(_In_opt_ HWND hwnd, UINT uAction, _In_ LPCTSTR lpBuf1, _In_opt_ LPCTSTR lpBuf2, BOOL fModal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHInvokePrinterCommandA
+`BOOL := SHInvokePrinterCommandA(_In_opt_ HWND hwnd, UINT uAction, _In_ LPCSTR lpBuf1, _In_opt_ LPCSTR lpBuf2, BOOL fModal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHInvokePrinterCommandW
+`BOOL := SHInvokePrinterCommandW(_In_opt_ HWND hwnd, UINT uAction, _In_ LPCWSTR lpBuf1, _In_opt_ LPCWSTR lpBuf2, BOOL fModal)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHIsFileAvailableOffline
+`HRESULT := SHIsFileAvailableOffline(_In_ PCWSTR pszPath, _Out_opt_ LPDWORD pdwStatus)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHLimitInputEdit
+`HRESULT := SHLimitInputEdit(_In_opt_ HWND hwndEdit, _In_ IShellFolder *psf)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHLoadInProc
+`HRESULT := SHLoadInProc(_In_ REFCLSID rclsid)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHLoadNonloadedIconOverlayIdentifiers
+`HRESULT := SHLoadNonloadedIconOverlayIdentifiers(void)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHMapPIDLToSystemImageListIndex
+`int := SHMapPIDLToSystemImageListIndex(_In_ IShellFolder *psf, _In_ PCUITEMID_CHILD pidl, _Out_opt_ int *piIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHMultiFileProperties
+`HRESULT := SHMultiFileProperties(_In_ IDataObject *pdtobj, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHObjectProperties
+`BOOL := SHObjectProperties(_In_ HWND hwnd, _In_ DWORD shopObjectType, _In_ PCWSTR pszObjectName, _In_ PCWSTR pszPropertyPage)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenFolderAndSelectItems
+`HRESULT := SHOpenFolderAndSelectItems(_In_ PCIDLIST_ABSOLUTE pidlFolder, UINT cidl, _In_opt_ PCUITEMID_CHILD_ARRAY apidl, DWORD dwFlags)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenPropSheet
+`BOOL := SHOpenPropSheet(_In_opt_ LPCTSTR pszCaption, _In_opt_ HKEY ahkeys[], UINT ckeys, _In_opt_ const CLSID *pclsidDef, _In_ IDataObject *pdtobj, _In_opt_ IShellBrowser *psb, _In_opt_ LPCTSTR pStartPage)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenPropSheetW
+`BOOL := SHOpenPropSheetW(_In_opt_ LPCWSTR pszCaption, _In_opt_ HKEY ahkeys[], UINT ckeys, _In_opt_ const CLSID *pclsidDef, _In_ IDataObject *pdtobj, _In_opt_ IShellBrowser *psb, _In_opt_ LPCWSTR pStartPage)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHOpenWithDialog
+`HRESULT := SHOpenWithDialog(_In_opt_ HWND hwndParent, _In_ const OPENASINFO *poainfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHParseDisplayName
+`HRESULT := SHParseDisplayName(_In_ LPCWSTR pszName, _In_opt_ IBindCtx *pbc, _Out_ PIDLIST_ABSOLUTE *ppidl, _In_ SFGAOF sfgaoIn, _Out_opt_ SFGAOF *psfgaoOut)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPathPrepareForWrite
+`HRESULT := SHPathPrepareForWrite(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCTSTR pszPath, DWORD dwFlags = SHPPFW_DEFAULT)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPathPrepareForWriteA
+`HRESULT := SHPathPrepareForWriteA(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCSTR pszPath, DWORD dwFlags = SHPPFW_DEFAULT)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPathPrepareForWriteW
+`HRESULT := SHPathPrepareForWriteW(_In_opt_ HWND hwnd, _In_opt_ IUnknown *punkEnableModless, _In_ LPCWSTR pszPath, DWORD dwFlags = SHPPFW_DEFAULT)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPropStgCreate
+`HRESULT := SHPropStgCreate(_In_ IPropertySetStorage *psstg, _In_ REFFMTID fmtid, _In_opt_ const CLSID *pclsid, DWORD grfFlags, DWORD grfMode, DWORD dwDisposition, _Out_ IPropertyStorage **ppstg, _Out_opt_ UINT *puCodePage)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPropStgReadMultiple
+`HRESULT := SHPropStgReadMultiple(_In_ IPropertyStorage *pps, UINT uCodePage, ULONG cpspec, _In_ PROPSPEC const rgpspec[], _Out_ PROPVARIANT rgvar[])
+`/docs/commands/WinApi.htm
+
+
+Function
+SHPropStgWriteMultiple
+`HRESULT := SHPropStgWriteMultiple(_In_ IPropertyStorage *pps, _Inout_opt_ UINT *uCodePage, ULONG cpspec, _In_ PROPSPEC const rgpspec[], _Inout_ PROPVARIANT rgvar[], PROPID propidNameFirst)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryRecycleBin
+`HRESULT := SHQueryRecycleBin(_In_opt_ LPCTSTR pszRootPath, _Inout_ LPSHQUERYRBINFO pSHQueryRBInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryRecycleBinA
+`HRESULT := SHQueryRecycleBinA(_In_opt_ LPCSTR pszRootPath, _Inout_ LPSHQUERYRBINFO pSHQueryRBInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryRecycleBinW
+`HRESULT := SHQueryRecycleBinW(_In_opt_ LPCWSTR pszRootPath, _Inout_ LPSHQUERYRBINFO pSHQueryRBInfo)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHQueryUserNotificationState
+`HRESULT := SHQueryUserNotificationState(_Out_ QUERY_USER_NOTIFICATION_STATE *pquns)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRemoveLocalizedName
+`HRESULT := SHRemoveLocalizedName(_In_ PCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHReplaceFromPropSheetExtArray
+`UINT := SHReplaceFromPropSheetExtArray(_In_ HPSXA hpsxa, UINT uPageID, _In_ LPFNADDPROPSHEETPAGE lpfnReplaceWith, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHResolveLibrary
+`HRESULT := SHResolveLibrary(_In_ IShellItem *psiLibrary)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHRestricted
+`DWORD := SHRestricted(RESTRICTIONS rest)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetDefaultProperties
+`HRESULT := SHSetDefaultProperties(_In_opt_ HWND hwnd, _In_ IShellItem *psi, DWORD dwFileOpFlags, _In_opt_ IFileOperationProgressSink *pfops)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetFolderPath
+`HRESULT := SHSetFolderPath(_In_ int csidl, _In_ HANDLE hToken, _Reserved_ DWORD dwFlags, _In_ LPCTSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetFolderPathA
+`HRESULT := SHSetFolderPathA(_In_ int csidl, _In_ HANDLE hToken, _Reserved_ DWORD dwFlags, _In_ LPCSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetFolderPathW
+`HRESULT := SHSetFolderPathW(_In_ int csidl, _In_ HANDLE hToken, _Reserved_ DWORD dwFlags, _In_ LPCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetInstanceExplorer
+`VOID := SHSetInstanceExplorer(_In_opt_ IUnknown *pUnk)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetKnownFolderPath
+`HRESULT := SHSetKnownFolderPath(_In_ REFKNOWNFOLDERID rfid, _In_ DWORD dwFlags, _In_ HANDLE hToken, _In_ PCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetLocalizedName
+`HRESULT := SHSetLocalizedName(_In_ PCWSTR pszPath, _In_ PCWSTR pszResModule, int idsRes)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetTemporaryPropertyForItem
+`HRESULT := SHSetTemporaryPropertyForItem(_In_ IShellItem *psi, _In_ REFPROPERTYKEY propkey, _In_ REFPROPVARIANT propvar)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetUnreadMailCount
+`HRESULT := SHSetUnreadMailCount(_In_ LPCTSTR pszMailAddress, DWORD dwCount, _In_ LPCTSTR pszShellExecuteCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSetUnreadMailCountW
+`HRESULT := SHSetUnreadMailCountW(_In_ LPCWSTR pszMailAddress, DWORD dwCount, _In_ LPCWSTR pszShellExecuteCommand)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHShellFolderView_Message
+`LRESULT := SHShellFolderView_Message(_In_ HWND hwndMain, UINT uMsg, LPARAM lParam)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHShowManageLibraryUI
+`HRESULT := SHShowManageLibraryUI(_In_ IShellItem *psiLibrary, _In_opt_ HWND hwndOwner, _In_opt_ LPCWSTR pszTitle, _In_opt_ LPCWSTR pszInstruction, _In_ LIBRARYMANAGEDIALOGOPTIONS lmdOptions)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHSimpleIDListFromPath
+`PIDLIST_ABSOLUTE := SHSimpleIDListFromPath(_In_ PCWSTR pszPath)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStartNetConnectionDialog
+`HRESULT := SHStartNetConnectionDialog(_In_opt_ HWND hwnd, _In_opt_ LPCTSTR pszRemoteName, DWORD dwType)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHStartNetConnectionDialogW
+`HRESULT := SHStartNetConnectionDialogW(_In_opt_ HWND hwnd, _In_opt_ LPCWSTR pszRemoteName, DWORD dwType)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHTestTokenMembership
+`BOOL := SHTestTokenMembership(_In_opt_ HANDLE hToken, ULONG ulRID)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUpdateImage
+`VOID := SHUpdateImage(_In_ LPCTSTR pszHashItem, _In_ int iIndex, _In_ UINT uFlags, _In_ int iImageIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUpdateImageA
+`VOID := SHUpdateImageA(_In_ LPCSTR pszHashItem, _In_ int iIndex, _In_ UINT uFlags, _In_ int iImageIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHUpdateImageW
+`VOID := SHUpdateImageW(_In_ LPCWSTR pszHashItem, _In_ int iIndex, _In_ UINT uFlags, _In_ int iImageIndex)
+`/docs/commands/WinApi.htm
+
+
+Function
+SHValidateUNC
+`BOOL := SHValidateUNC(_In_opt_ HWND hwndOwner, _Inout_ PWSTR pszFile, UINT fConnect)
+`/docs/commands/WinApi.htm
+
+
+Function
+SignalFileOpen
+`BOOL := SignalFileOpen(_In_ PCIDLIST_ABSOLUTE pidl)
+`/docs/commands/WinApi.htm
+
+
+Function
+StgMakeUniqueName
+`HRESULT := StgMakeUniqueName(_In_ IStorage *pstgParent, _In_ PCWSTR pszFileSpec, _In_ DWORD grfMode, _In_ REFIID riid, _Out_ void **ppv)
+`/docs/commands/WinApi.htm
+
+
+Function
+Win32DeleteFile
+`BOOL := Win32DeleteFile(_In_ PCWSTR pszFileName)
+`/docs/commands/WinApi.htm
+
+
+Function
+WOWShellExecute
+`HINSTANCE := WOWShellExecute(_In_ HWND hwnd, _In_ LPCTSTR lpOperation, _In_ LPCTSTR lpFile, _In_ LPCTSTR lpParameters, _In_ LPCTSTR lpDirectory, _In_ INT nShowCmd, void *lpfnCBWinExec)
+`/docs/commands/WinApi.htm
+
+
+Function
+WriteCabinetState
+`BOOL := WriteCabinetState(_In_ CABINETSTATE *pcs)
+`/docs/commands/WinApi.htm

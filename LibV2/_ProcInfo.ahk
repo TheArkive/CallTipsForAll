@@ -12,7 +12,13 @@
 ; ================================================================
 StringOutline(sInput,pruneComments := true) {
 	curLineNoStr := RegExReplace(sInput,Chr(96) Chr(34),"**")			; blank out literal `" first
-	While (result := RegExMatch(curLineNoStr,"(" Chr(34) ".*?" Chr(34) ")",match)) {	; which helps properly match strings
+	
+	If (Settings["ActiveLanguage"] = "AHK1")
+		regex := "i)(" Chr(34) ".*?" Chr(34) "|^[ \t]*(Gui|MsgBox|Control|Win)[\w]*\,[^\r\n]+)" ; try to handle unquoted strings in AHK v1
+	Else
+		regex := "(" Chr(34) ".*?" Chr(34) ")" ; original simple string match
+	
+	While (result := RegExMatch(curLineNoStr,regex,match)) {	; which helps properly match strings
 		repStr := ""
 		If (IsObject(match)) {
 			repStr := StrRepeat("*",match.Len(1))
@@ -32,6 +38,8 @@ StringOutline(sInput,pruneComments := true) {
 	
 	; curLineNoStr := RegExReplace(curLineNoStr,"\\" Chr(34),"**") ;ZZZ - hopefully don't need these
 	; curLineNoStr := RegExReplace(curLineNoStr,"\" Chr(34),"*")
+	
+	; Debug.Msg(curLineNoStr)
 	
 	return curLineNoStr
 }
@@ -110,8 +118,8 @@ GetParentObj(phraseObj, ByRef methProp, funcName := "", curTopFunc := "") {
 }
 
 ProcInput() {
-	If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
-		return
+	; If (!IsObject(ObjectList) Or !IsObject(FunctionList) Or !IsObject(CustomFunctions))
+		; return
 	
 	hCtl := oCalLTip.ctlHwnd
 	ctlClassNN := Settings["ProgClassNN"]
@@ -149,11 +157,14 @@ ProcInput() {
 	oCallTip.curPhraseType := "", curPhraseType := ""
 	oCallTip.parentObjType := "", parentObjType := ""
 	
-	parentObjTypeList := Map()
-	For objName in ObjectList {
-		If (parentObj = objName) {
-			parentObjTypeList := ObjectList[objName]["types"], parentObj := objName ; correct case on parentObj
-			Break
+	; parentObjTypeList := Map()
+	
+	If (ObjectList) {
+		For objName in ObjectList {
+			If (parentObj = objName) {
+				parentObjType := ObjectList[objName], parentObj := objName ; correct case on parentObj
+				Break
+			}
 		}
 	}
 	
@@ -173,70 +184,72 @@ ProcInput() {
 		}
 	}
 	
-	If (!curPhraseType) {
-		For curFuncName, obj in CustomFunctions {
-			If (curFuncName = curPhrase) {
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
-				Break
-			}
-		}
-	}
-	
-	If (!curPhraseType) {
-		For curObjName in ObjectList {
-			If (curObjName = curPhrase) {
-				curPhraseType := "object", oCallTip.curPhraseType := curPhraseType
-				Break
-			}
-		}
-	}
-	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			methList := MethPropList[objType]["method"]
-			For methName in methList { ; MethPropList.count
-				If (methName = curPhrase) {
-					curPhraseType := "method", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
+	If (CustomFunctions) {
+		If (!curPhraseType) {
+			For curFuncName, obj in CustomFunctions {
+				If (curFuncName = curPhrase) {
+					curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
 					Break
 				}
 			}
 		}
 	}
 	
-	If (!curPhraseType And parentObjTypeList.Count) {
-		For objType in parentObjTypeList {
-			propList := MethPropList[objType]["property"]
-			For propName in propList {
-				If (propName = curPhrase) {
-					curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
-					parentObjType := objType, oCallTip.parentObjType := parentObjType
+	If (ObjectList) {
+		If (!curPhraseType) {
+			For curObjName in ObjectList {
+				If (curObjName = curPhrase) {
+					curPhraseType := "object", oCallTip.curPhraseType := curPhraseType
 					Break
 				}
 			}
 		}
 	}
 	
-	If (!curPhraseType And ClassesList.Count) {
-		For instName, obj in ClassesList {
-			If (instName = curPhrase) { ; catch classname and instances
-				curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
+	If (!curPhraseType And parentObjType) {
+		methList := MethPropList[parentObjType]["method"] ; objType?
+		For methName in methList { ; MethPropList.count
+			If (methName = curPhrase) {
+				curPhraseType := "method", oCallTip.curPhraseType := curPhraseType
+				oCallTip.parentObjType := parentObjType ; parentObjType := objType, 
 				Break
 			}
 		}
 	}
 	
-	If (!curPhraseType And ClassesList.Count) { ; class methods and properties
-		For instName, obj in ClassesList {
-			If (instName = parentObj) {
-				If (obj["type"] = "Instance")
-					obj := ClassesList[obj["class"]]
-				
-				memList := obj["members"]
-				For memName, memObj in memList {
-					If (memName = curPhrase Or memName = "__" curPhrase) {
-						curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
-						break
+	If (!curPhraseType And parentObjType) {
+		propList := MethPropList[parentObjType]["property"] ; objType?
+		For propName in propList {
+			If (propName = curPhrase) {
+				curPhraseType := "property", oCallTip.curPhraseType := curPhraseType
+				oCallTip.parentObjType := parentObjType ; parentObjType := objType, 
+				Break
+			}
+		}
+	}
+	
+	If (ClassesList) {
+		If (!curPhraseType And ClassesList.Count) {
+			For instName, obj in ClassesList {
+				If (instName = curPhrase) { ; catch classname and instances
+					curPhraseType := obj["type"], oCallTip.curPhraseType := curPhraseType
+					Break
+				}
+			}
+		}
+		
+		If (!curPhraseType And ClassesList.Count) { ; class methods and properties
+			For instName, obj in ClassesList {
+				If (instName = parentObj) {
+					If (obj["type"] = "Instance")
+						obj := ClassesList[obj["class"]]
+					
+					memList := obj["members"]
+					For memName, memObj in memList {
+						If (memName = curPhrase Or memName = "__" curPhrase) {
+							curPhraseType := "class-" memObj["type"], oCallTip.curPhraseType := curPhraseType
+							break
+						}
 					}
 				}
 			}

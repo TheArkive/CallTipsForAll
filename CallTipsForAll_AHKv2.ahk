@@ -1,4 +1,4 @@
-; AHK Test v2
+﻿; AHK v2
 ; === comment out if using this script as a library and these are already determined. ===
 SendMode "Input"  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
@@ -6,25 +6,26 @@ SetWorkingDir A_ScriptDir  ; Ensures a consistent starting directory.
 
 FileEncoding "UTF-8"
 
-Global SettingsGUI, AutoCompleteGUI, callTipGui
-SettingsGUI := "", AutoCompleteGUI := "", callTipGui := ""
+Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := "" ; GuiObject
 
-Global ClassesList := "", ObjectCreateList := "", ObjectList := "", DocumentMap := "", KeywordFilter := Map() ; internal lists
-Global MethPropList := "", UserObjMethProp := "", FunctionList := "", CustomFunctions := "", KeywordList := "" ; internal lists
-Global IncludesList := []
-Global Settings := "" ; user settings object
+Global ClassesList := Map(), CustomFunctions := Map(), ObjectList := Map()	; internal lists - by parsing
+Global IncludesList := [], VariablesList := Array(), HotkeyList := Map()
+
+Global ObjectCreateList := Map(), MethPropList := Map()						; internal lists - by lang files
+Global KeywordFilter := Map(), KeywordList := Map(), FunctionList := Map()
+
+Global Settings := Map() ; user settings object
 Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
 
 ; eventually move these to settings GUI
 Global WrapTextChars := 80
-; Global AutoCompleteLength := 0			; this actually needs to be zero for actual intuitive auto-complete... 
 Global useTooltip := false				; ignores fontFace, fontSize, and callTipSelectable
-; Global maxLines := 20
 
 SetupInputHook(false) ; suppress enter - true/false
 
-Settings := ReadSettingsFromFile() ; Map
+Settings := ReadSettingsFromFile()
+
 AddTrayMenu() ; modify tray menu
 
 If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for important settings (if these are blank)
@@ -32,9 +33,8 @@ If (!Settings["ProgClassNN"] Or !Settings["ProgExe"]) ; prompt user for importan
 
 GetEditorHwnd() ; checks Settings["ProgExe"] windows and populate oCallTip properties
 SetHotkeys()
-If (oCallTip.progHwnd) {  ; initial loading of functions, custom functions, objects, if matching window found
+If (oCallTip.progHwnd)  ; initial loading of functions, custom functions, objects, if matching window found
 	FullReload()
-}
 
 return ; end of auto execute section
 
@@ -43,6 +43,7 @@ class oCallTip { ; testing
 	Static captureKeys := "abcdefghijklmnopqrstuvwxyz1234567890.,-=/'\[]{{}{}}{Space}{Backspace}{Up}{Down}{Left}{Right}{Escape}~"
 	Static colNum := 0, lineNum := 0, lineText := ""
 	Static scintBufferLen := 0, suppressEnter := false
+	Static newParseClass := 0, newParseFunction := 0
 	
 	; properties for call display and help link
 	Static curIndex := "", fullDescArr := Map(), helpFile := ""
@@ -53,23 +54,23 @@ class oCallTip { ; testing
 	; properties for text elements near the caret
 	Static curPhrase := "", curPhraseObj := "", parentObj := "", curPhraseType := "", parentObjType := ""
 	
-	; properties for regex matches
-	Static funcStart := "", funcEnd := "", funcReturn := "", classStart := "", classEnd := "", includes := ""
-	Static classMethodStart := "", classMethodEnd := "", classMethodOneLine := ""
-	Static classPropertyStart := "", classPropertyEnd := "", classPropertyOneLine := ""
-	Static classSmallPropExt := "", classSmallPropInt := "", classInstance := ""
-	Static lineComment := ""
+	; store various GUI hwnd values?
+	Static AutoCompleteHwnd := 0
+	
+	; properties for enclosure matching
+	Static LPar := 0, RPar := 0, LBrace := 0, RBrace := 0, LCBrace := 0, RCBrace := 0
 	
 	
 	
-	; property1[a,b] { ; show
+	; property1[a, b] { ; show
 	
 	; }
-	; property2[c,d] ; show
+	; property2[c
+				; , d] ; show
 	; {
 	
 	; }
-	; property3 {
+	; property3[] {
 	
 	; }
 	; property4 ; show
@@ -77,6 +78,9 @@ class oCallTip { ; testing
 	
 	; }
 	; property5 => a + b ; show
+	
+	; property6[a
+				; ,b] => c + d
 	
 	; method1(a,b) { ; show
 	
@@ -93,6 +97,9 @@ class oCallTip { ; testing
 	
 	; }
 	; method5() => a * b ; show
+	
+	; method6(a
+			; ,b) => c * d
 }
 
 ; ================================================================
@@ -107,8 +114,14 @@ class oCallTip { ; testing
 #INCLUDE LibV2\_ProcInfo.ahk
 #INCLUDE LibV2\_gui.ahk
 #INCLUDE LibV2\_Init_and_Support_Funcs.ahk
-#INCLUDE LibV2\TheArkive_Debug.ahk
 #INCLUDE LibV2\_scintilla_class_ext.ahk
+#INCLUDE LibV2\_Load_Call_Tip_Data.ahk
+
+#INCLUDE LibV2\_AHK-parser_TheArkive.ahk
+
+#INCLUDE LibV2\TheArkive_Debug.ahk
+
+
 
 ; ================================================================
 ; hotkeys - global ; 
@@ -167,23 +180,32 @@ Down:: ; scroll when multiple records are available for call tips
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
+	A_Clipboard := Jxon_dump(HotkeyList,4)
+	MsgBox "check HotkeyList: " HotkeyList.Count "`r`nPaste object structure into a text document."
+	
+	A_Clipboard := Jxon_dump(VariablesList,4)
+	Msgbox "check VarList: " VariablesList.Length "`r`nPaste object structure into a text document."
+	
 	A_Clipboard := Jxon_Dump(FunctionList,4)
-	msgbox "check FunctionList"
+	msgbox "check FunctionList: " FunctionList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(CustomFunctions,4)
-	msgbox "check CustomFunctions"
+	msgbox "check CustomFunctions: " CustomFunctions.Count "`r`nPaste object structure into a text document."
+	
+	A_Clipboard := Jxon_dump(MethPropList,4)
+	msgbox "check MethPropList: " MethPropList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ObjectList,4)
-	msgbox "check ObjectList"
+	msgbox "check ObjectList: " ObjectList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ClassesList,4)
-	msgbox "check ClassesList"
+	msgbox "check ClassesList: " ClassesList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(IncludesList,4)
-	msgbox "check IncludesList"
+	msgbox "check IncludesList: " IncludesList.Length "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ObjectCreateList,4)
-	msgbox "check ObjectCreateList"
+	msgbox "check ObjectCreateList: " ObjectCreateList.Count "`r`nPaste object structure into a text document."
 }
 
 ; F9::
@@ -201,7 +223,8 @@ F11:: ; list custom functions, commands, and objects - for debugging List_*.txt 
 ; ======================================================================================
 ; input hook - for processing during user input - i prefer hotkey to invoke reload.
 ; ======================================================================================
-FullReload() {
+FullReload()
+{
 	If (!oCallTip.progHwnd) ;ZZZ - mostly only applies to first run
 		GetEditorHwnd() ;ZZZ - this function now also puts text editor PID into oCallTip
 	
@@ -220,7 +243,8 @@ FullReload() {
 	ReParseText() ; reload user defined elements
 }
 
-SetupInputHook(suppressEnter) {
+SetupInputHook(suppressEnter)
+{
 	IH := InputHook("V I1","","") ; options , endKeys , matchList
 	IH.OnKeyDown := Func("keyPress")
 	IH.KeyOpt(oCallTip.captureKeys,"N") ; don't capture all keys, that causes problems
@@ -403,19 +427,25 @@ LoadAutoComplete(force:=false) { ; use force:=true for manual invocation (mostly
 KwSearchDeep(curPhrase, parentObj) {
 	resultList := Map()
 	If (curPhrase And !parentObj) {
-		For objName in ObjectList {
-			If (inStr(objName,curPhrase))
-				resultList[objName] := "User Object"
+		If (ObjectList) {
+			For objName in ObjectList {
+				If (inStr(objName,curPhrase))
+					resultList[objName] := "User Object"
+			}
 		}
 		
-		For className, obj in ClassesList {
-			If (inStr(className,curPhrase))
-				resultList[classname] := "User " obj["type"]
+		If (ClassesList) {
+			For className, obj in ClassesList {
+				If (inStr(className,curPhrase))
+					resultList[classname] := "User " obj["type"]
+			}
 		}
 		
-		For funcName, obj in CustomFunctions {
-			If (InStr(funcName,curPhrase))
-				resultList[funcName] := "User Function"
+		If (CustomFunctions) {
+			For funcName, obj in CustomFunctions {
+				If (InStr(funcName,curPhrase))
+					resultList[funcName] := "User Function"
+			}
 		}
 		
 		If (!resultList.Count) {
@@ -450,27 +480,29 @@ KwSearchDeep(curPhrase, parentObj) {
 		
 		If (curObj) {
 			If (thisList = "ObjectList") {
-				curObject := ObjectList[curObj]["types"]
-				For curType in curObject {
-					curMethPropList := MethPropList[curType]
-					curMethList := curMethPropList["method"]
-					For methName in curMethList {
-						If (!curPhrase)
-							resultList[methName] := "Method"
-						Else If (InStr(methName,curPhrase))
-							resultList[methName] := "Method"
-					}
-					
-					curPropList := curMethPropList["property"]
-					For propName in curPropList {
-						If (!curPhrase)
-							resultList[propName] := "Property"
-						Else If (inStr(propName,curPhrase))
-							resultList[propName] := "Property"
-					}
+				curType := ObjectList[curObj]
+				curMethPropList := MethPropList[curType]
+				curMethList := curMethPropList["method"]
+				For methName in curMethList {
+					If (!curPhrase)
+						resultList[methName] := "Method"
+					Else If (InStr(methName,curPhrase))
+						resultList[methName] := "Method"
+				}
+				
+				curPropList := curMethPropList["property"]
+				For propName in curPropList {
+					If (!curPhrase)
+						resultList[propName] := "Property"
+					Else If (inStr(propName,curPhrase))
+						resultList[propName] := "Property"
 				}
 			} Else If (thisList = "ClassesList") {
 				classObj := ClassesList[curObj]
+				
+				If (classObj["type"] = "Instance")
+					classObj := ClassesList[classObj["class"]]
+				
 				memList := classObj["members"]
 				For memName, obj in memList {
 					params := obj["params"], curType := obj["type"]
@@ -490,6 +522,7 @@ KwSearchDeep(curPhrase, parentObj) {
 debugToolTip() {
 	ProcInput()
 	
+	funcName := "", funcText := ""
 	curPhrase := oCallTip.curPhrase
 	curPhraseObj := oCallTip.curPhraseObj
 	curPhraseType := oCallTip.curPhraseType
@@ -534,7 +567,6 @@ ClickCheck(curKey) {
 	c := MultiClick.Count
 	
 	If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
-		; msgbox "active: " oCallTip.ctlActive
 		If (!oCallTip.ctlActive)
 			return
 		closeAutoComplete()
@@ -578,7 +610,7 @@ closeCallTip() {
 }
 
 closeAutoComplete() {
-	If (IsObject(AutoCompleteGUI)) {
+	If (WinExist("ahk_id " oCallTip.AutoCompleteHwnd)) {
 		AutoCompleteGUI.Destroy()
 		AutoCompleteGUI := ""
 		If (oCallTip.ctlActive)

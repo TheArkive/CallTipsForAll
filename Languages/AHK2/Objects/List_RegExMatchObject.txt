@@ -1,5 +1,6 @@
-0 RegExMatchObject RegExMatchFunc [\w]+[ \t]*:=[ \t]*RegExMatch\([^,]*\,[^,]*\,([\w]+)
-0 RegExMatchObject RegExByComment ([\w\.]+)[ \t]*:=[ \t]*(.*[ \t]+;[ \t]*RegExMatch[\w ]*)
+2 RegExMatchObject RegExMatchByCallback RegExMatch\x28[^\,]*\,[^\,]*\,[ \t]*([\w]+)[ \t]*\x29
+0 RegExMatchObject RegExByComment ;[ \t]*RegExMatch
+`
 `/docs/commands/RegExMatch.htm
 
 

@@ -1,0 +1,250 @@
+Function
+HidD_FlushQueue
+`BOOLEAN := HidD_FlushQueue(_In_ HANDLE HidDeviceObject)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_FreePreparsedData
+`BOOLEAN := HidD_FreePreparsedData(_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetAttributes
+`BOOLEAN := HidD_GetAttributes(_In_ HANDLE HidDeviceObject,_Out_ PHIDD_ATTRIBUTES Attributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetConfiguration
+`BOOLEAN := HidD_GetConfiguration(_In_ HANDLE HidDeviceObject,_Out_ PHIDD_CONFIGURATION Configuration, _In_ ULONG ConfigurationLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetFeature
+`BOOLEAN := HidD_GetFeature(_In_ HANDLE HidDeviceObject,_Out_ PVOID ReportBuffer,_In_ ULONG ReportBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetIndexedString
+`BOOLEAN := HidD_GetIndexedString(_In_ HANDLE HidDeviceObject,_In_ ULONG StringIndex,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetInputReport
+`BOOLEAN := HidD_GetInputReport(_In_ HANDLE HidDeviceObject,_Out_ PVOID ReportBuffer,_In_ ULONG ReportBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetManufacturerString
+`BOOLEAN := HidD_GetManufacturerString(_In_ HANDLE HidDeviceObject,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetMsGenreDescriptor
+`BOOLEAN := HidD_GetMsGenreDescriptor(_In_ HANDLE HidDeviceObject,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetNumInputBuffers
+`BOOLEAN := HidD_GetNumInputBuffers(_In_ HANDLE HidDeviceObject,_Out_ PULONG NumberBuffers)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetPhysicalDescriptor
+`BOOLEAN := HidD_GetPhysicalDescriptor(_In_ HANDLE HidDeviceObject,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetPreparsedData
+`BOOLEAN := HidD_GetPreparsedData(_In_ HANDLE HidDeviceObject,_Out_ PHIDP_PREPARSED_DATA * PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetProductString
+`BOOLEAN := HidD_GetProductString(_In_ HANDLE HidDeviceObject,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_GetSerialNumberString
+`BOOLEAN := HidD_GetSerialNumberString(_In_ HANDLE HidDeviceObject,_Out_ PVOID Buffer,_In_ ULONG BufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_SetConfiguration
+`BOOLEAN := HidD_SetConfiguration(_In_ HANDLE HidDeviceObject,_In_ PHIDD_CONFIGURATION Configuration, _In_ ULONG ConfigurationLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_SetFeature
+`BOOLEAN := HidD_SetFeature(_In_ HANDLE HidDeviceObject,_In_ PVOID ReportBuffer,_In_ ULONG ReportBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_SetNumInputBuffers
+`BOOLEAN := HidD_SetNumInputBuffers(_In_ HANDLE HidDeviceObject,_In_ ULONG NumberBuffers)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidD_SetOutputReport
+`BOOLEAN := HidD_SetOutputReport(_In_ HANDLE HidDeviceObject,_In_ PVOID ReportBuffer,_In_ ULONG ReportBufferLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetButtonCaps
+`int := HidP_GetButtonCaps(_In_ HIDP_REPORT_TYPE ReportType,_Out_ PHIDP_BUTTON_CAPS ButtonCaps,_Inout_ PUSHORT ButtonCapsLength,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetCaps
+`int := HidP_GetCaps(_In_ PHIDP_PREPARSED_DATA PreparsedData,_Out_ PHIDP_CAPS Capabilities)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetData
+`int := HidP_GetData(_In_ HIDP_REPORT_TYPE ReportType,_Out_ PHIDP_DATA DataList,_Inout_ PULONG DataLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Out_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetExtendedAttributes
+`int := HidP_GetExtendedAttributes(_In_ HIDP_REPORT_TYPE ReportType,_In_ USHORT DataIndex,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Out_ PHIDP_EXTENDED_ATTRIBUTES Attributes,_Inout_ PULONG LengthAttributes)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetLinkCollectionNodes
+`int := HidP_GetLinkCollectionNodes(_Out_ PHIDP_LINK_COLLECTION_NODE LinkCollectionNodes,_Inout_ PULONG LinkCollectionNodesLength,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetScaledUsageValue
+`int := HidP_GetScaledUsageValue(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_Out_ PLONG UsageValue,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetSpecificButtonCaps
+`int := HidP_GetSpecificButtonCaps(_In_ HIDP_REPORT_TYPE ReportType,_In_opt_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_opt_ USAGE Usage,_Out_ PHIDP_BUTTON_CAPS ButtonCaps,_Inout_ PUSHORT ButtonCapsLength,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetSpecificValueCaps
+`int := HidP_GetSpecificValueCaps(_In_ HIDP_REPORT_TYPE ReportType,_In_opt_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_opt_ USAGE Usage,_Out_ PHIDP_VALUE_CAPS ValueCaps,_Inout_ PUSHORT ValueCapsLength,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetUsages
+`int := HidP_GetUsages(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_Out_ PUSAGE UsageList,_Inout_ PULONG UsageLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Out_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetUsagesEx
+`int := HidP_GetUsagesEx(_In_ HIDP_REPORT_TYPE ReportType,_In_opt_ USHORT LinkCollection,_Inout_ PUSAGE_AND_PAGE ButtonList,_Inout_ ULONG * UsageLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetUsageValue
+`int := HidP_GetUsageValue(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_Out_ PULONG UsageValue,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetUsageValueArray
+`int := HidP_GetUsageValueArray(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_Inout_ PCHAR UsageValue,_In_ USHORT UsageValueByteLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_GetValueCaps
+`int := HidP_GetValueCaps(_In_ HIDP_REPORT_TYPE ReportType,_Out_ PHIDP_VALUE_CAPS ValueCaps,_Inout_ PUSHORT ValueCapsLength,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_InitializeReportForID
+`int := HidP_InitializeReportForID(_In_ HIDP_REPORT_TYPE ReportType,_In_ UCHAR ReportID,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Out_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_MaxDataListLength
+`ULONG := HidP_MaxDataListLength(_In_ HIDP_REPORT_TYPE ReportType,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_MaxUsageListLength
+`ULONG := HidP_MaxUsageListLength(_In_ HIDP_REPORT_TYPE ReportType,_In_opt_ USAGE UsagePage,_In_ PHIDP_PREPARSED_DATA PreparsedData)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_SetData
+`int := HidP_SetData(_In_ HIDP_REPORT_TYPE ReportType,_Inout_ PHIDP_DATA DataList,_Inout_ PULONG DataLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_reads_bytes_ReportLength PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_SetScaledUsageValue
+`int := HidP_SetScaledUsageValue(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_In_ LONG UsageValue,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Inout_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_SetUsages
+`int := HidP_SetUsages(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_Inout_ PUSAGE UsageList,_Inout_ PULONG UsageLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_SetUsageValue
+`int := HidP_SetUsageValue(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_In_ ULONG UsageValue,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Inout_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_SetUsageValueArray
+`int := HidP_SetUsageValueArray(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_In_ USAGE Usage,_In_ PCHAR UsageValue,_In_ USHORT UsageValueByteLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_Inout_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_TranslateUsagesToI8042ScanCodes
+`int := HidP_TranslateUsagesToI8042ScanCodes(_In_ PUSAGE ChangedUsageList,_In_ ULONG UsageListLength,_In_ HIDP_KEYBOARD_DIRECTION KeyAction,_Inout_ PHIDP_KEYBOARD_MODIFIER_STATE ModifierState,_In_ PHIDP_INSERT_SCANCODES InsertCodesProcedure,_In_opt_ PVOID InsertCodesContext)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_UnsetUsages
+`int := HidP_UnsetUsages(_In_ HIDP_REPORT_TYPE ReportType,_In_ USAGE UsagePage,_In_opt_ USHORT LinkCollection,_Inout_ PUSAGE UsageList,_Inout_ PULONG UsageLength,_In_ PHIDP_PREPARSED_DATA PreparsedData,_In_ PCHAR Report,_In_ ULONG ReportLength)
+`/docs/commands/WinApi.htm
+
+
+Function
+HidP_UsageListDifference
+`int := HidP_UsageListDifference(_In_ PUSAGE PreviousUsageList,_In_ PUSAGE CurrentUsageList,_Out_ PUSAGE BreakUsageList,_Out_ PUSAGE MakeUsageList,_In_ ULONG UsageListLength)
+`/docs/commands/WinApi.htm
