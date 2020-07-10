@@ -404,6 +404,8 @@ SettingsGUILoad() {
 	SettingsGUI.Add("Text","xs yp-28","`r`nClose CallTipsForAll Hotkey:")
 	SettingsGUI.Add("Hotkey","vCloseInvoke xs y+2 w" w,Settings["CloseInvoke"]).OnEvent("change","gui_hotkey_events") ; Settings["CloseInvoke"]
 	
+	SettingsGUI.Add("Text","xm y+8","Last parse took:`r`n     " (Settings.Has("lastParse") ? Settings["lastParse"] : ""))
+	
 	SetFontDemo()
 	SettingsGUI.Show()
 }

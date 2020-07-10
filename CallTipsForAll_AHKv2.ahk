@@ -8,9 +8,12 @@ FileEncoding "UTF-8"
 
 Global SettingsGUI := "", AutoCompleteGUI := "", callTipGui := "" ; GuiObject
 
-Global ClassesList := Map(), ObjectCreateList := Map(), ObjectList := Map(), KeywordFilter := Map() ; internal lists
-Global MethPropList := Map(), FunctionList := Map(), CustomFunctions := Map(), KeywordList := Map() ; internal lists
-Global IncludesList := [], VariablesList := Array()
+Global ClassesList := Map(), CustomFunctions := Map(), ObjectList := Map()	; internal lists - by parsing
+Global IncludesList := [], VariablesList := Array(), HotkeyList := Map()
+
+Global ObjectCreateList := Map(), MethPropList := Map()						; internal lists - by lang files
+Global KeywordFilter := Map(), KeywordList := Map(), FunctionList := Map()
+
 Global Settings := Map() ; user settings object
 Global IH := "" ; inputHook must be global or dupes will be made if user holds down a key
 Global entryEnd := "`r`n`r`n`r`n" ; used to determine expected separation between elements in language files
@@ -177,29 +180,32 @@ Down:: ; scroll when multiple records are available for call tips
 
 F11:: ; list custom functions, commands, and objects - for debugging List_*.txt files only
 {
+	A_Clipboard := Jxon_dump(HotkeyList,4)
+	MsgBox "check HotkeyList: " HotkeyList.Count "`r`nPaste object structure into a text document."
+	
 	A_Clipboard := Jxon_dump(VariablesList,4)
-	Msgbox "check VarList: " VariablesList.Length
+	Msgbox "check VarList: " VariablesList.Length "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_Dump(FunctionList,4)
-	msgbox "check FunctionList: " FunctionList.Count
+	msgbox "check FunctionList: " FunctionList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(CustomFunctions,4)
-	msgbox "check CustomFunctions: " CustomFunctions.Count
+	msgbox "check CustomFunctions: " CustomFunctions.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(MethPropList,4)
-	msgbox "check MethPropList: " MethPropList.Count
+	msgbox "check MethPropList: " MethPropList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ObjectList,4)
-	msgbox "check ObjectList: " ObjectList.Count
+	msgbox "check ObjectList: " ObjectList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ClassesList,4)
-	msgbox "check ClassesList: " ClassesList.Count
+	msgbox "check ClassesList: " ClassesList.Count "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(IncludesList,4)
-	msgbox "check IncludesList: " IncludesList.Length
+	msgbox "check IncludesList: " IncludesList.Length "`r`nPaste object structure into a text document."
 	
 	A_Clipboard := Jxon_dump(ObjectCreateList,4)
-	msgbox "check ObjectCreateList: " ObjectCreateList.Count
+	msgbox "check ObjectCreateList: " ObjectCreateList.Count "`r`nPaste object structure into a text document."
 }
 
 ; F9::
