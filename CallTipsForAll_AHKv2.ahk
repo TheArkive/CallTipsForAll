@@ -263,7 +263,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
 	Try b := AutoCompleteGUI.HasProp("hwnd") ? WinActive("ahk_id " AutoCompleteGUI.hwnd) : 0 ; check if auto-complete is active
 	Try c := SettingsGUI.HasProp("hwnd") ? WinActive("ahk_id " SettingsGUI.hwnd) : 0
 	
-	If ((vk = 9 And GetKeyState("Alt")) Or (!a And !b) Or c)	; if alt-tab editor control is inactive
+	If (GetKeyState("Alt") Or GetKeyState("Ctrl") Or (!a And !b) Or c)	; if alt-tab editor control is inactive
 		oCallTip.ctlActive := false
 	Else If (a Or b) 								; if a > 0 then editor control is active
 		oCallTip.ctlActive := true
