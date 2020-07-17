@@ -1,4 +1,46 @@
-﻿; originally posted by user coco on AutoHotkey.com
+﻿; AHK v2
+; Example ===================================================================================
+; ===========================================================================================
+; a := Map(), b := Map(), c := Map(), d := Map(), e := Map(), f := Map() ; Object() is more technically correct than {} but both will work.
+
+; d["g"] := 1, d["h"] := 2, d["i"] := ["purple","pink","pippy red"]
+; e["g"] := 1, e["h"] := 2, e["i"] := Map("1","test1","2","test2","3","test3")
+; f["g"] := 1, f["h"] := 2, f["i"] := [1,2,Map("a",1.0009,"b",2.0003,"c",3.0001)]
+
+; a["test1"] := "test11", a["d"] := d
+; b["test3"] := "test33", b["e"] := e
+; c["test5"] := "test55", c["f"] := f
+
+; myObj := Map()
+; myObj["a"] := a, myObj["b"] := b, myObj["c"] := c, myObj["test7"] := "test77", myObj["test8"] := "test88"
+
+; g := ["blue","green","red"], myObj["h"] := g ; add linear array for testing
+
+; q := Chr(34)
+; textData2 := Jxon_dump(myObj,4) ; ===> convert array to XML
+; msgbox "XML Breakdown:`r`n===========================================`r`n(Should match second breakdown.)`r`n`r`n" textData2
+
+
+; ===========================================================================================
+; Error Test - Duplicate Node ; =============================================================
+; ===========================================================================================
+; textData2 := StrReplace(textData2,"</Base>","<test8 type=" q "String" q ">test88</test8>`r`n</Base>") ; <--- test error, duplicate node
+; ===========================================================================================
+; ===========================================================================================
+
+
+; newObj := Jxon_load(textData2) ; ===> convert XML back to array
+
+; textData3 := Jxon_dump(newObj,4) ; ===> break down array into 2D layout again, should be identical
+; msgbox "Second Breakdown:`r`n===========================================`r`n(should be identical to first breakdown)`r`n`r`n" textData3
+
+; ExitApp
+; ===========================================================================================
+; End Example ; =============================================================================
+; ===========================================================================================
+
+
+; originally posted by user coco on AutoHotkey.com
 ; https://github.com/cocobelgica/AutoHotkey-JSON
 
 Jxon_Load(ByRef src, args*) {

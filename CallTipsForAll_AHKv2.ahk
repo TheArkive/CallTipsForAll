@@ -49,7 +49,7 @@ class oCallTip { ; testing
     Static curIndex := "", fullDescArr := Map(), helpFile := ""
     
     ; properties for parent window and editor control
-    Static ctlHwnd := 0, progHwnd := 0, progTitle := "", ctlActive := false, ctlConfirmed := false
+    Static ctlHwnd := 0, progHwnd := 0, progTitle := "", ctlActive := false, ctlConfirmed := false, clickCtlHwnd := 0
     
     ; properties for text elements near the caret
     Static curPhrase := "", curPhraseObj := "", parentObj := "", curPhraseType := "", parentObjType := ""
@@ -119,7 +119,7 @@ class oCallTip { ; testing
 
 #INCLUDE LibV2\_AHK-parser_TheArkive.ahk
 
-; #INCLUDE LibV2\TheArkive_Debug.ahk
+#INCLUDE LibV2\TheArkive_Debug.ahk
 
 
 
@@ -335,7 +335,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
             closeAutoComplete()
         } Else If (acON and ctl.Focused) {
             kwSel := ctl.Text
-            kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
+            kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)|\(o\)|\(c\)","")
             
             hwnd := oCallTip.ctlHwnd
             ScintillaExt.ctlHwnd := hwnd
@@ -512,22 +512,42 @@ KwSearchDeep(curPhrase, parentObj) {
                         resultList[propName] := "Property"
                 }
             } Else If (thisList = "ClassesList") {
-                classObj := ClassesList[curObj]
-                
-                If (classObj["type"] = "Instance")
-                    classObj := ClassesList[classObj["class"]]
-                
-                memList := classObj["members"]
-                For memName, obj in memList {
-                    params := obj["params"], curType := obj["type"]
-                    curType := (curType = "property" And params) ? "property-params" : curType
-                    If (!curPhrase)
-                        resultList[memName] := curType
-                    Else If (InStr(memName,curPhrase))
-                        resultList[memName] := curType
-                }
+                resultList := kwParseClass(curObj,resultList,curPhrase,parentObj)
             }
+        } ; end obj/class searching
+    }
+    
+    return resultList
+}
+
+kwParseClass(curObj, resultList, curPhrase, parentObj) {
+    classObj := ClassesList[curObj]
+    classType := classObj["type"], className := curObj
+    classObj := (classObj["type"] = "Instance") ? ClassesList[classObj["class"]] : classObj
+    extends := classObj["extends"], parent := classObj["parent"]
+    
+    memList := classObj["members"]
+    For memName, obj in memList {
+        params := obj["params"], curType := obj["type"], isStatic := obj["static"]
+        
+        If (classType := "class" And isStatic) {
+            curType := (curType = "property" And params) ? "property-params" : curType
+            If (!curPhrase)
+                resultList[memName] := curType
+            Else If (InStr(memName,curPhrase))
+                resultList[memName] := curType
+        } Else If (classType := "instance" And !isStatic) {
+            curType := (curType = "property" And params) ? "property-params" : curType
+            If (!curPhrase)
+                resultList[memName] := curType
+            Else If (InStr(memName,curPhrase))
+                resultList[memName] := curType
         }
+    }
+    
+    extends := StrReplace(StrReplace(extends,className ".",""),"." className,"")
+    If (extends And ClassesList.Has(extends)) {
+        resultList := kwParseClass(extends, resultList, curPhrase, parentObj)
     }
     
     return resultList
@@ -566,12 +586,15 @@ CloseScript(ThisKey:="") {
 
 ClickCheck(curKey) {
     CheckMouseLocation()
-    closeAutoComplete(), oCallTip.suppressEnter := false, IH.Stop(), SetupInputHook(false)
+    oCallTip.suppressEnter := false, IH.Stop(), SetupInputHook(false)
     
     If (!oCallTip.ctlActive) {
         closeCallTip()
         return
     }
+    
+    If (oCallTip.clickCtlHwnd != oCallTip.AutoCompleteHwnd)
+        closeAutoComplete()
     
     MultiClick.Detect(curKey)
     c := MultiClick.Count
@@ -579,7 +602,7 @@ ClickCheck(curKey) {
     If (curKey = "~LButton" And c = 2 And Settings["LoadCallTipOnClick"]) {
         If (!oCallTip.ctlActive)
             return
-        closeAutoComplete()
+        
         DisplayCallTip()
     } Else If (curKey = "Reload") {
         oCallTip.c := c
@@ -621,6 +644,7 @@ closeCallTip() {
 
 closeAutoComplete() {
     If (WinExist("ahk_id " oCallTip.AutoCompleteHwnd)) {
+        oCallTip.AutoCompleteHwnd := 0
         AutoCompleteGUI.Destroy()
         AutoCompleteGUI := ""
         If (oCallTip.ctlActive)

@@ -40,6 +40,8 @@ GetEditorHwnd() {
 ; 
 CheckMouseLocation() {
 	MouseGetPos x,y,hWnd, ctlHwndCheck, 2
+    ctlHwndCheck := (ctlHwndCheck = "") ? 0 : ctlHwndCheck
+    oCallTip.clickCtlHwnd := ctlHwndCheck
 	
 	ctlClassNnCheck := ""
 	Try ctlClassNnCheck := ControlGetClassNN(ctlHwndCheck) ; try to get ClassNN
