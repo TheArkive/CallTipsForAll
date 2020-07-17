@@ -119,7 +119,7 @@ class oCallTip { ; testing
 
 #INCLUDE LibV2\_AHK-parser_TheArkive.ahk
 
-; #INCLUDE LibV2\TheArkive_Debug.ahk
+#INCLUDE LibV2\TheArkive_Debug.ahk
 
 
 
@@ -335,7 +335,7 @@ keyPress(iHook,VK,SC) { ; InputHook ;ZZZ - significant changes here...
             closeAutoComplete()
         } Else If (acON and ctl.Focused) {
             kwSel := ctl.Text
-            kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)","")
+            kwSel := RegExReplace(kwSel,"\.|\(f\)|\(m\)|\(o\)|\(c\)","")
             
             hwnd := oCallTip.ctlHwnd
             ScintillaExt.ctlHwnd := hwnd
