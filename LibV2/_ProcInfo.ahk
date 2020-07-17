@@ -22,7 +22,7 @@ StringOutline(sInput,pruneComments := true) {
 		repStr := ""
 		If (IsObject(match)) {
 			repStr := StrRepeat("*",match.Len(1))
-			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,1)
+			curLineNoStr := StrReplace(curLineNoStr,match.Value(1),repStr,,,1)
 			match := ""
 		}
 	}
@@ -31,7 +31,7 @@ StringOutline(sInput,pruneComments := true) {
 		While (r := RegExMatch(curLineNoStr,"(;.*)",match)) { ;ZZZ - this doesn't work ... need to replace comments with spaces to keep POS accurate
 			If (IsObject(match)) {
 				repStr := StrRepeat(" ",match.Len(0)) ;ZZZ - this will be slightly less annoying than below
-				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,1)
+				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,,1)
 			}
 		}
 	}
@@ -327,7 +327,7 @@ FuncParamOutline(sInput,ByRef funcName) {
 			Loop newCurLen
 				repStr .= "~"
 			
-			paramStr := StrReplace(paramStr,curChunk,repStr,,1)
+			paramStr := StrReplace(paramStr,curChunk,repStr,,,1)
 			result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match)
 			if (!result)
 				break

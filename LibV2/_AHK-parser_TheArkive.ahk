@@ -268,9 +268,9 @@ enclosureCheck(sInput) { ; checks for even numbers of enclosures () [] {}, retur
 	noStr := StringOutline(sInput)
 	
 	p := 0, b := 0, c := 0
-	noStr := StrReplace(StrReplace(noStr,"(","(",LP),")",")",RP)
-	noStr := StrReplace(StrReplace(noStr,"[","[",LB),"]","]",RB)
-	noStr := StrReplace(StrReplace(noStr,"{","{",LC),"}","}",RC)
+	noStr := StrReplace(StrReplace(noStr,"(","(",,LP),")",")",,RP)
+	noStr := StrReplace(StrReplace(noStr,"[","[",,LB),"]","]",,RB)
+	noStr := StrReplace(StrReplace(noStr,"{","{",,LC),"}","}",,RC)
 	
 	oCallTip.LPar += LP
 	oCallTip.RPar += RP
@@ -313,7 +313,7 @@ GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work bette
 		While (r2 := InStr(noStr, ")",, curPos2)) {
 			curPos2 := r2
 			funcStart := SubStr(noStr,curPos1,curPos2-curPos1+1)
-			w := StrReplace(StrReplace(funcStart,"(","(",LP),")",")",RP)
+			w := StrReplace(StrReplace(funcStart,"(","(",,LP),")",")",,RP)
 			
 			If (LP = RP) {
 				funcStart := SubStr(curDocText,curPos1,curPos2-curPos1+1)
@@ -387,12 +387,12 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
 	curPos1 := match.Pos(0) + match.Len(0)
 	extends := match.Value(3)
 	
-	obj := Map("type","Class","desc",className,"extends",extends,"parent",parent,"fileName",fileName,"lineNum",lineNum) ;"classBody",Trim(curDocText," `t`r`n")
-	memberList := Map()
 	curDocText := PruneFirstLast(curDocText) ; prune first and last lines
-	curDocTextNoStr := PruneFirstLast(curDocTextNoStr)
-	
 	txtArr := StrSplit(curDocText,"`n","`r")
+	
+	obj := Map("type","Class","desc",className,"extends",extends,"parent",parent,"fileName",fileName,"lineNum",lineNum,"lines",txtArr.Length)
+	memberList := Map()
+	
 	lastPropStatus := false
 	i := 1
 	
@@ -655,9 +655,9 @@ getVar(stringText,fileName,lineNum,lastStatus) {
 			}
 			
 			p := 0, b := 0, c := 0
-			testLine := StrReplace(StrReplace(testLine,"(","(",LP),")",")",RP)
-			testLine := StrReplace(StrReplace(testLine,"[","[",LB),"]","]",RB)
-			testLine := StrReplace(StrReplace(testLine,"{","{",LC),"}","}",RC)
+			testLine := StrReplace(StrReplace(testLine,"(","(",,LP),")",")",,RP)
+			testLine := StrReplace(StrReplace(testLine,"[","[",,LB),"]","]",,RB)
+			testLine := StrReplace(StrReplace(testLine,"{","{",,LC),"}","}",,RC)
 			p := LP - RP, b := LB - RB, c := LC - RC
 			
 			If (p Or b Or c) {

@@ -12,7 +12,10 @@
 	}
 	
 	Static makeGui() {
-		this._gui := ""
+		If (this.hwnd) ; skip this
+            return
+        
+        this._gui := ""
 		
 		guiClose := ObjBindMethod(this,"gClose")
 		this.guiClose := guiClose
