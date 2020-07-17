@@ -1,4 +1,4 @@
-; AHK v2
+﻿; AHK v2
 ; =================================================================================
 ; EXAMPLES
 ; =================================================================================
@@ -12,6 +12,8 @@
 ; ABOVE TEXT MUST BE UNCOMMENTED FOR BELOW EXAMPLES
 ; =================================================================================
 
+; r := ScintillaExt.SendMsg("SCI_GETCODEPAGE")
+; msgbox r.dll
  
 
 ; curLineText := ScintillaExt.SendMsg("SCI_GETCURLINE") ; get text and cursor col
