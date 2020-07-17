@@ -28,7 +28,7 @@ StringOutline(sInput,pruneComments := true) {
 	}
 	
 	If (pruneComments) {
-		While (r := RegExMatch(curLineNoStr,"(;.*)",match)) { ;ZZZ - this doesn't work ... need to replace comments with spaces to keep POS accurate
+		While (r := RegExMatch(curLineNoStr,"m)(;.*|/\*[.\r\n]*?\*/)",match)) { ;ZZZ - this doesn't work ... need to replace comments with spaces to keep POS accurate
 			If (IsObject(match)) {
 				repStr := StrRepeat(" ",match.Len(0)) ;ZZZ - this will be slightly less annoying than below
 				curLineNoStr := StrReplace(curLineNoStr,match.Value(0),repStr,,,1)

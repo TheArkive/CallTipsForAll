@@ -669,8 +669,7 @@ LoadAutoCompleteGUI(KeywordFilter) {
         AutoCompleteGUI.Show("x" outX " y" (outY + kwDims.avgH) " w" w " h" h " hide")
         AutoCompleteGUI.Show("h" h " NA NoActivate")
     } Else {
-        outY := outY + kwDims.avgH
-        If (!IsInteger(outX) Or !IsInteger(outY) Or !IsInteger(w) Or !IsInteger(h))
+        If (Type(outY) = "String") ; caret pos couldn't be retrieved
             return
         
         AutoCompleteGui.Move(outX,(outY + kwDims.avgH),w,h)
