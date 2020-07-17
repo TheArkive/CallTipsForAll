@@ -171,18 +171,17 @@ ahk_parser_thearkive() { ; () = \x28 \x29 ... [] = \x5B \x5D ... {} = \x7B \x7D
                 Continue
             }
             
-            If (RegExMatch(curLine,"^[ \t]*\;")) { ; comment so skip
+            If (RegExMatch(curLine,"^[ \t]*\;|[ \t]*/\*.*?\*/")) { ; comment so skip
                 i++
                 Continue
             }
             
-            If (RegExMatch(curLineNoStr,"^[ \t]*/\*")) {
+            If (RegExMatch(curLineNoStr,"^[ \t]*.*?/\*")) {
                 curChunk := curLine
                 i++, curLine := docArr[i], curChunk .= "`r`n" curLine
-                While (!RegExMatch(curLine,"^[ \t]*\*/"))
+                While (!RegExMatch(curLine,".*?\*/$"))
                     i++, curLine := docArr[i], curChunk .= "`r`n" curLine
                 
-                ; Debug.Msg(curChunk)
                 i++
                 Continue ; just skipping the multi-line comment block
             }
@@ -352,19 +351,6 @@ GetCustomFunction(curDocText, fileName, lineNum) { ;ZZZ - this should work bette
     return obj
 }
 
-; CheckShowMode(strBody,helper:="") { ; checks class, methods, properties for "; show" or "; hide" comment
-    ; showStyle := ""
-    ; arr := StrSplit(strBody,"`n","`r"), firstLine := StringOutline(arr[1],false) ; blank out strings, but not comments
-    ; r := RegExMatch(firstLine,"\;(.*)",match)
-    
-    ; If (IsObject(match)) {
-        ; showStyle := Trim(match.Value(1)," `t;")
-        ; showStyle := (InStr(showStyle,"hide") = 1) ? "hide" : (InStr(showStyle,"show") = 1) ? "show" : ""
-    ; }
-    
-    ; return showStyle
-; }
-
 PruneFirstLast(strBody) {
     testArr := StrSplit(strBody,"`n","`r"), output := ""
     If (testArr.Length <= 2)
@@ -434,18 +420,17 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
             Continue
         }
         
-        If (RegExMatch(curLine,"^[ \t]*\;")) { ; comment so skip
+        If (RegExMatch(curLine,"^[ \t]*\;|[ \t]*/\*.*?\*/")) { ; comment so skip
             i++
             Continue
         }
         
-        If (RegExMatch(curLineNoStr,"^[ \t]*/\*")) {
+        If (RegExMatch(curLineNoStr,"^[ \t]*/\*")) { ; look for multi-line /* comments */
             curChunk := curLine
             i++, curLine := txtArr[i], curChunk .= "`r`n" curLine
-            While (!RegExMatch(curLine,"^[ \t]*\*/"))
+            While (!RegExMatch(curLine,".*?\*/$"))
                 i++, curLine := txtArr[i], curChunk .= "`r`n" curLine
             
-            ; Debug.Msg(curChunk)
             i++
             Continue ; just skipping the multi-line comment block
         }
@@ -500,7 +485,7 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
         }
         
         ; If (curType = "other")
-            Debug.Msg(encl.exist " / " encl.even "`r`n" curChunk)
+            ; Debug.Msg(encl.exist " / " encl.even "`r`n" curChunk)
         
         oCallTip.LPar := 0, oCallTip.RPar := 0 ; reset brace count
         oCallTip.LBrace := 0, oCallTip.RBrace := 0
@@ -625,22 +610,6 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
     
     return classList
 }
-
-; GetCustFuncParams(funcBody) {
-    ; r := RegExMatch(funcBody,"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\x28.*\x29)([ \t]*\;.*)?[ \t\r\n]*\{",match)
-    ; If (match.HasMethod("Value"))
-        ; return match.Value(3)
-    ; Else
-        ; return ""
-; }
-
-; GetPropParams(paramBody) {
-    ; r := RegExMatch(paramBody,"mi)^[ \t]*(Static[ \t]+)?([\w\.]+)(\[.*?\])?([ \t]*\;.*)?[ \t\r\n]*\{",match)
-    ; If (match.HasMethod("Value"))
-        ; return match.Value(3)
-    ; Else
-        ; return ""
-; }
 
 getVar(stringText,fileName,lineNum,lastStatus) {
     stringText := RegExReplace(stringText,"`r|`n|[ ]{2,}|`t","")
