@@ -36,9 +36,6 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
         phraseRedir := "function"
     
     if (phraseRedir = "function") {
-        
-        Debug.Msg("IN")
-        
         For funcName, obj in FunctionList {
             If (funcName = curPhrase) { ; Or funcName = curPhraseObj ??
                 descArr := obj["desc"] ; desc array
@@ -51,8 +48,6 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
             For funcName, obj in CustomFunctions {
                 If (funcName = curPhrase) {
                 params := RegExReplace(obj["params"]," |`t","")
-                
-                ; Debug.Msg("params:  " params)
                 
                 If ((params = "()" Or params = "") And Settings["HideNoParamFuncs"])
                     return
