@@ -308,7 +308,7 @@ gui_click(ctlObj,info) {
         callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
     }
     
-    If (callTipGui And closeTipOnClick) {
+    If (callTipGui) { ; closeTipOnClick - this shouldn't be an issue...
         callTipGui.Destroy()
         callTipGui := "", oCallTip.curIndex := "", oCallTip.fullDescArr := ""
     }
