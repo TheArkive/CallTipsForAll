@@ -8,6 +8,7 @@
     "CloseInvoke": "^F12",
     "CloseTipOnFocusChange": 1,
     "DebugToolTip": 0,
+    "HideNoParamFuncs": 1,
     "LoadCallTipOnClick": 1,
     "ProgClassNN": "scintilla",
     "ProgExe": "notepad++.exe",
@@ -15,5 +16,6 @@
     "bgColor": "0x444444",
     "fontColor": "0xFFFF00",
     "fontFace": "Consolas",
-    "fontSize": 10.0
+    "fontSize": 10.0,
+    "lastParse": ""
 }
