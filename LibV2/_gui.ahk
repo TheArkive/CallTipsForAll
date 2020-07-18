@@ -36,6 +36,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
         phraseRedir := "function"
     
     if (phraseRedir = "function") {
+        
+        Debug.Msg("IN")
+        
         For funcName, obj in FunctionList {
             If (funcName = curPhrase) { ; Or funcName = curPhraseObj ??
                 descArr := obj["desc"] ; desc array
@@ -47,6 +50,13 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
         If (!descArr.Length) {
             For funcName, obj in CustomFunctions {
                 If (funcName = curPhrase) {
+                params := RegExReplace(obj["params"]," |`t","")
+                
+                ; Debug.Msg("params:  " params)
+                
+                If ((params = "()" Or params = "") And Settings["HideNoParamFuncs"])
+                    return
+                    
                     descStr := obj["desc"]
                     descArr.Push(descStr) ; make array from str
                     break
@@ -363,9 +373,13 @@ SettingsGUILoad() {
     ctl.OnEvent("click","gui_change_events")
     ctl.Value := Settings["DebugToolTip"]
     
-    ctl := SettingsGUI.Add("Checkbox","xs yp vCallTipSelectable","Selectable call tips")
+    ctl := SettingsGUI.Add("Checkbox","xs yp vCallTipSelectable Disabled","Selectable call tips")
     ctl.OnEvent("click","gui_change_events")
     ctl.Value := Settings["CallTipSelectable"]
+    
+    ctl := SettingsGUI.Add("Checkbox","xm y+8 vHideNoParamFuncs","Omit user functions without params from call tips")
+    ctl.OnEvent("click","gui_change_events")
+    ctl.Value := Settings["HideNoParamFuncs"]
     
     ctl := SettingsGUI.Add("Button","vPickFont xm y+8","Select Font")
     ctl.OnEvent("click","gui_change_events")
@@ -432,6 +446,8 @@ gui_change_events(ctl, Info) { ; GuiControlObject
         Settings["DebugToolTip"] := ctl.Value
     Else If (ctl.Name = "AutoComplete")
         Settings["AutoComplete"] := ctl.Value
+    Else If (ctl.Name = "HideNoParamFuncs")
+        Settings["HideNoParamFuncs"] := ctl.Value
     If (ctl.Name = "PickFont") {
         fName := Settings["fontFace"]
         fSize := Settings["fontSize"]
