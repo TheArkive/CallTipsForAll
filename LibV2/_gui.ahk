@@ -47,10 +47,9 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
         If (!descArr.Length) {
             For funcName, obj in CustomFunctions {
                 If (funcName = curPhrase) {
-                params := RegExReplace(obj["params"]," |`t","")
-                
-                If ((params = "()" Or params = "") And Settings["HideNoParamFuncs"])
-                    return
+                    params := RegExReplace(obj["params"]," |`t","")
+                    If ((params = "()" Or params = "") And Settings["HideNoParamFuncs"])
+                        return
                     
                     descStr := obj["desc"]
                     descArr.Push(descStr) ; make array from str
@@ -285,6 +284,7 @@ LoadCallTip() { ; curPhrase, curPhraseType ---> globals
         If (!Settings["CallTipSelectable"])
             ctl.OnEvent("Click","gui_click")
         
+        dCtl := "", dCtlw := "", dCtlh := ""
         dCtl := ctl.GetPos(,,dCtlw,dCtlh)
         posTest := OutX + dCtlw
         
@@ -592,6 +592,7 @@ QuickReloadGUI() {
     
     g.Show("Hide")
     
+    w := "", h := ""
     g.GetPos(,,w,h)
     showDims := "x" (m.Cx - (w/2)) " y" (m.Cy - (h/2))
     g.Show(showDims)

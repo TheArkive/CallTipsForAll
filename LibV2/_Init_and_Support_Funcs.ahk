@@ -78,19 +78,19 @@ AddTrayMenu() {
 	; ======================================================================================
 	; Tray Menu
 	; ======================================================================================
-	subMenuAutoGen := Menu.New()
-	; subMenuAutoGen.Add("Generate Commands","iconMenu")
-
-	trayMenu := A_TrayMenu
-	trayMenu.Delete()
-	trayMenu.Add("Settings","iconMenu")
-	trayMenu.Add()
-	trayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
-	trayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
-	; trayMenu.Add("AHK Auto-Gen",subMenuAutoGen) ; not really useful for this script
-	trayMenu.Add("Reload Items (Full)","iconMenu")
-	trayMenu.Add("Reload Script","iconMenu")
-	trayMenu.Add("Exit","iconMenu")
+	; trayMenu := A_TrayMenu
+    
+    ; Debug.Msg(Type(A_TrayMenu) " - " Type(trayMenu))
+    
+	A_TrayMenu.Delete()
+	A_TrayMenu.Add("Settings","iconMenu")
+	A_TrayMenu.Add()
+	A_TrayMenu.Add("ReWrap Text (CTL + ALT + W)","iconMenu")
+	A_TrayMenu.Add("UnWrap Text (CTL + ALT + U)","iconMenu")
+	
+	A_TrayMenu.Add("Reload Items (Full)","iconMenu")
+	A_TrayMenu.Add("Reload Script","iconMenu")
+	A_TrayMenu.Add("Exit","iconMenu")
 
 	iconMenu(ItemName, ItemPos, MenuObj) { ; MenuObject
 		If (ItemName = "Settings") {
@@ -114,15 +114,15 @@ AddTrayMenu() {
 ; just a quick little tool to wrap text -- text must be copied to clipboard first
 ; ======================================================================================
 WrapText(x) {
-	If (!StrLen(clipboard))
+	If (!StrLen(A_Clipboard))
 		return ""
 	
-	inText := clipboard
+	inText := A_Clipboard
 	endCRLF := false
 	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
 		endCRLF := true
 	
-	inText := StrReplace(clipboard,"`r`n",Chr(1))
+	inText := StrReplace(A_Clipboard,"`r`n",Chr(1))
 	a := StrSplit(inText,Chr(1))
 	
 	Loop a.Length {
@@ -177,15 +177,15 @@ WrapText(x) {
 ; ======================================================================================
 
 unwrapText() {
-	If (!StrLen(clipboard))
+	If (!StrLen(A_Clipboard))
 		return ""
 	
-	inText := clipboard
+	inText := A_Clipboard
 	endCRLF := false
 	If (result := RegExMatch(inText,"(.*[\r\n]+$)",match))
 		endCRLF := true
 	
-	inText := StrReplace(clipboard,"`r`n`r`n",Chr(1))
+	inText := StrReplace(A_Clipboard,"`r`n`r`n",Chr(1))
 	a := StrSplit(inText,Chr(1))
 	
 	Loop a.Length {
