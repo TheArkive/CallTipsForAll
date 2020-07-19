@@ -1,7 +1,9 @@
 ; ahk parser by TheArkive
 
 ahk_parser_launcher(baseFile:="") {
-    curTicks := A_TickCount
+    finalTick := Integer(A_TickCount) ; finalTick := 0, 
+    
+        ; Debug.Msg(Type(A_TickCount) " - " Type(finalTick))
     
     If (baseFile)
         IncludesList := [], GetIncludes([baseFile]), GetLibs()
@@ -10,7 +12,10 @@ ahk_parser_launcher(baseFile:="") {
     
     ParseObjectsInstances() ; identify objects and instances
     
-    finalTick := A_TickCount - curTicks
+        ; Debug.Msg(Type(A_TickCount) " - " Type(finalTick))
+    
+    finalTick := Integer(A_TickCount) - finalTick
+    
     mins := Integer(Integer(finalTick / 1000) / 60)
     secs := finalTick/1000 - (mins * 60)
     
@@ -678,8 +683,12 @@ getVar(stringText,fileName,lineNum,lastStatus) {
         curPos := 1
         rg := "(([\w\_\.]+)[ \t]*\:\=)"
         lastPos := 0, lastLen := 0, lastVar := "", lastValue := "", t := 0
+        
+        ; Debug.Msg("t1: " Type(t))
+        
         While (r := RegExMatch(noStr,rg,match,curPos)) {
-            t := A_Index
+            ; t := A_Index
+            t++
             If (lastPos = 0) {
                 lastVar := match.Value(2)
                 lastPos := match.Pos(0)
@@ -696,6 +705,8 @@ getVar(stringText,fileName,lineNum,lastStatus) {
             }
             curPos := match.Pos(0) + match.Len(0)
         }
+        
+        ; Debug.Msg("t2: " Type(t))
         
         If (t > 0) {
             varName := lastVar

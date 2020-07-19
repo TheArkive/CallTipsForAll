@@ -263,7 +263,7 @@ ProcInput() {
 ; ================================================================
 GetTopLevelFunc(sInput, curCol, ByRef funcStart, ByRef funcEnd) {
 	result := RegExMatch(sInput,"([\w\.]+\(.*?\))",match)
-	curFunc := "", foundIt := 0
+	curFunc := "", foundIt := 0, LPar := "", RPar := ""
 	
 	Loop { ; isolate top-level function
 		If (IsObject(match)) {
@@ -308,6 +308,7 @@ FuncParamOutline(sInput,ByRef funcName) {
 	funcName := RegExMatch(sInput,"^([\w\.]*)",match), funcName := match.Value(1)
 	paramStrStart := StrLen(funcName) + 2, paramStr := SubStr(sInput,paramStrStart,-1)
 	result := RegExMatch(paramStr,"([\w\.]+\(.*?\))",match) ; similar to above
+    LPar := "", RPar := ""
 	
 	Loop { ; blank out expressions in top-level function parameters
 		If (IsObject(match)) {

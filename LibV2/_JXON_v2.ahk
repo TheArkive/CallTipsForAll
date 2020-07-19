@@ -1,6 +1,7 @@
 ﻿; AHK v2
 ; Example ===================================================================================
 ; ===========================================================================================
+
 ; a := Map(), b := Map(), c := Map(), d := Map(), e := Map(), f := Map() ; Object() is more technically correct than {} but both will work.
 
 ; d["g"] := 1, d["h"] := 2, d["i"] := ["purple","pink","pippy red"]
@@ -20,7 +21,6 @@
 ; textData2 := Jxon_dump(myObj,4) ; ===> convert array to XML
 ; msgbox "XML Breakdown:`r`n===========================================`r`n(Should match second breakdown.)`r`n`r`n" textData2
 
-
 ; ===========================================================================================
 ; Error Test - Duplicate Node ; =============================================================
 ; ===========================================================================================
@@ -28,13 +28,13 @@
 ; ===========================================================================================
 ; ===========================================================================================
 
-
 ; newObj := Jxon_load(textData2) ; ===> convert XML back to array
 
 ; textData3 := Jxon_dump(newObj,4) ; ===> break down array into 2D layout again, should be identical
 ; msgbox "Second Breakdown:`r`n===========================================`r`n(should be identical to first breakdown)`r`n`r`n" textData3
 
 ; ExitApp
+
 ; ===========================================================================================
 ; End Example ; =============================================================================
 ; ===========================================================================================
@@ -108,13 +108,13 @@ Jxon_Load(ByRef src, args*) {
 
 				pos := i ; update pos
 
-				  val := StrReplace(val,    "\/",  "/")
-				val := StrReplace(val, "\" . q,    q)
-				, val := StrReplace(val,    "\b", "`b")
-				, val := StrReplace(val,    "\f", "`f")
-				, val := StrReplace(val,    "\n", "`n")
-				, val := StrReplace(val,    "\r", "`r")
-				, val := StrReplace(val,    "\t", "`t")
+				val := StrReplace(val, "\/", "/")
+				val := StrReplace(val, "\" . q, q)
+				, val := StrReplace(val, "\b", "`b")
+				, val := StrReplace(val, "\f", "`f")
+				, val := StrReplace(val, "\n", "`n")
+				, val := StrReplace(val, "\r", "`r")
+				, val := StrReplace(val, "\t", "`t")
 
 				i := 0
 				while i := InStr(val, "\",, i+1) {
@@ -133,14 +133,13 @@ Jxon_Load(ByRef src, args*) {
 			} else { ; number | true | false | null
 				val := SubStr(src, pos, i := RegExMatch(src, "[\]\},\s]|$",, pos)-pos)
 				
-				if IsNumber(val)
-				{
+				if IsNumber(val) {
 					if IsInteger(val)
 						val += 0
 					else if IsFloat(val)
 						val += 0
 					else if (val == "true" || val == "false")
-						val := %value% + 0
+						val := %val% + 0
 					else if (val == "null")
 						val := ""
 					else if is_key {			; Else if (pos--, next := "#")

@@ -56,6 +56,7 @@
     
     Static gSize(g, MinMax, Width, Height) {
         ; msgbox "in size"
+        x := "", y := "", w := "", h := "", ctl := ""
         w := Width - 10, h := Height - 10 - 40
         ctl := g["EditBox"]
         ctl.GetPos(x,y)
