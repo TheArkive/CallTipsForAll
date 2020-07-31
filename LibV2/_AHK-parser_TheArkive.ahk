@@ -522,7 +522,7 @@ GetClasses(curDocText, fileName, lineNum, parent := "") {
                 shortMeth := true
             
             encl := enclosureCheck(curChunkNoStr)
-            While (encl.exist And !encl.even) {
+            While (encl.exist And !encl.even And i <= txtArr.Length) {
                 i++
                 nextLine := txtArr[i]
                 nextLineNoStr := StringOutline(nextLine)
