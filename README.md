@@ -1,5 +1,5 @@
 # CallTipsForAll
-External call tip solution for multiple text editors.  Currently Scintilla and edit controls are supported.  However, in Notepad, double-click select behaves differently.  So you may need to make more use of the keyboard to invoke call tips, rather than double-click to invoke them.
+External call tip solution for multiple text editors.  Currently Scintilla and edit controls are supported.  However, in Notepad, double-click select behaves differently.  So you may need to make more use of the keyboard to invoke call tips, rather than double-click to invoke them...
 
 Check [Language_CallTip_Design_Help.txt](./Language_CallTip_Design_Help.txt) for help on how to design call tips for another language.
 
